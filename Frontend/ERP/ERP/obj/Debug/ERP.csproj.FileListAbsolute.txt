@@ -1,3 +1,9 @@
+C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\x64\ClearScriptV8-64.dll
+C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\x64\v8-base-x64.dll
+C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\x64\v8-x64.dll
+C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\x86\ClearScriptV8-32.dll
+C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\x86\v8-base-ia32.dll
+C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\x86\v8-ia32.dll
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\roslyn\csc.exe
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\roslyn\csc.exe.config
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\roslyn\csc.rsp
@@ -29,7 +35,9 @@ C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\ERP.dll
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\ERP.pdb
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\AdvancedStringBuilder.dll
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\Antlr3.Runtime.dll
+C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\ClearScript.dll
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\JavaScriptEngineSwitcher.Core.dll
+C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\JavaScriptEngineSwitcher.V8.dll
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\JSPool.dll
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\Microsoft.Web.Infrastructure.dll
@@ -49,6 +57,7 @@ C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\WebGrease.dll
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\AdvancedStringBuilder.xml
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\Antlr3.Runtime.pdb
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\JavaScriptEngineSwitcher.Core.xml
+C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\JavaScriptEngineSwitcher.V8.xml
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\JSPool.xml
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\Newtonsoft.Json.xml
@@ -63,6 +72,7 @@ C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Webpa
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Helpers.xml
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Mvc.xml
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\ru-ru\JavaScriptEngineSwitcher.Core.resources.dll
+C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\ru-ru\JavaScriptEngineSwitcher.V8.resources.dll
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.csprojResolveAssemblyReference.cache
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.dll
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.pdb

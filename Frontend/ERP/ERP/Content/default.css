@@ -282,11 +282,15 @@ a {
     font-weight: 500;
 }
 
-.lgnform > .form-group > p > a {
-    font-size: 11px;
-    font-weight: 600;
-    text-decoration: underline;
+.frgt {
+    line-height: 0px;
 }
+
+    .frgt > a {
+        font-size: 11px;
+        font-weight: 600;
+        text-decoration: underline;
+    }
 
 .latestnews {
     margin-top: 20px;
@@ -323,6 +327,28 @@ a {
 
 .lgnftr {
     background: #2E3F50;
-    padding:10px;
-    margin-top:8px;
+    padding: 10px;
+    margin-top: 8px;
+}
+
+.input-validation-error {
+    border-color: #f2545b !important;
+    box-shadow: 0 0 0 1px #f2545b !important;
+}
+
+.field-validation-error {
+    font-size: 10px;
+    margin-top: 5px;
+    font-weight: 500;
+    color: #f2545b !important;
+    display: block;
+    text-align:left;
+}
+
+.field-validation-success {
+    font-size: 12px;
+    margin-top: 5px;
+    font-weight: 500;
+    color: green !important;
+    display: block;
 }

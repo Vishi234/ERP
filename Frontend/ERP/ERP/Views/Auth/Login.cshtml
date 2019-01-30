@@ -12,81 +12,83 @@
     @Scripts.Render("~/bundles/react")
 </head>
 <body>
-    <div class="lgnheader">
-        <div class="container">
-            <div class="row">
-                <div class="rmenu">
-                    <ul>
-                        <li>
-                            <span>Support : +91-9650402952</span>
-                        </li>
-                        <li>
-                            <span><i class="fa fa-microphone"></i> English <i class="fa fa-caret-down"></i></span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="lgnbdy">
-        <div class="banner">
-            <div class="banner-circle">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-4 col-xs-12 col-sm-6 col-md-4">
-                            <div class="bnrdtl">
-                                <h1>
-                                    Welcome to IMS University
-                                </h1>
-                                <p>
-                                    Learning is enabling the individual to utilize his/ her potential to its fullest.
-                                    Without education, the training of the human minds is incomplete.
-                                </p>
-                                <a href="javascript:void(0)">Contact Us</a>
-                            </div>
-                        </div>
-                        <div class="col-lg-8 col-xs-12 col-sm-6 col-md-8">
-                            <div class="lgnform">
-                                <div class="tpara">
-                                    <span class="pull-left">LOGIN</span>
-                                </div>
-                                <div class="form-group">
-                                    <label>Username or Email address</label>
-                                    <input type="text" class="form-control" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Password</label>
-                                    <input type="password" class="form-control" />
-                                    <p class="pull-right"><a href="javascript:void(0)">Forgot Password?</a></p>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-success btnDisable col-md-12">Login</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="content-section">
+    <div id="logincontent"></div>
+    <script src="@Url.Content("../../React/authorization/login.jsx")"></script>
+    @*<div class="lgnheader">
             <div class="container">
                 <div class="row">
-                    <div class="latestnews">
-                        <span>
-                            Latest News
-                        </span>
-                        <i class="fa fa-caret-right"></i>
-                        <div class="news-content">
-                            I wish all my friends and colleagues in the DAV and the Arya Samaj the very best for the year 2019. "Swasth Raho! Vyasth Raho! Aur Masth Raho!". Punam Suri,
+                    <div class="rmenu">
+                        <ul>
+                            <li>
+                                <span>Support : +91-9650402952</span>
+                            </li>
+                            <li>
+                                <span><i class="fa fa-microphone"></i> English <i class="fa fa-caret-down"></i></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lgnbdy">
+            <div class="banner">
+                <div class="banner-circle">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-xs-12 col-sm-6 col-md-4">
+                                <div class="bnrdtl">
+                                    <h1>
+                                        Welcome to IMS University
+                                    </h1>
+                                    <p>
+                                        Learning is enabling the individual to utilize his/ her potential to its fullest.
+                                        Without education, the training of the human minds is incomplete.
+                                    </p>
+                                    <a href="javascript:void(0)">Contact Us</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-xs-12 col-sm-6 col-md-8">
+                                <div class="lgnform">
+                                    <div class="tpara">
+                                        <span class="pull-left">LOGIN</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Username or Email address</label>
+                                        <input type="text" class="form-control" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input type="password" class="form-control" />
+                                        <p class="pull-right"><a href="javascript:void(0)">Forgot Password?</a></p>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success btnDisable col-md-12">Login</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="content-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="latestnews">
+                            <span>
+                                Latest News
+                            </span>
+                            <i class="fa fa-caret-right"></i>
+                            <div class="news-content">
+                                I wish all my friends and colleagues in the DAV and the Arya Samaj the very best for the year 2019. "Swasth Raho! Vyasth Raho! Aur Masth Raho!". Punam Suri,
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="lgnftr">
+        <div class="lgnftr">
 
-    </div>
+        </div>*@
 </body>
 </html>
