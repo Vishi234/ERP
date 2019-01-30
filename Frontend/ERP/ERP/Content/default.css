@@ -5,7 +5,7 @@
 
 body {
     color: #333;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 12px;
     line-height: 1.42857;
     overflow-x: hidden;
@@ -87,3 +87,41 @@ a {
 .pull-right {
     float: right;
 }
+
+.overlay-img {
+    background: url(../Images/admin_bg.jpg) repeat center #2E353F;
+    height: 100%;
+    width: 100%;
+}
+
+.header {
+    display: block;
+    width: 100%;
+    background: #2E353F;
+    height: 60px;
+}
+
+.rmenu {
+    display: inline-block;
+    width: 100%;
+}
+
+    .rmenu > ul {
+        float: right;
+    }
+
+        .rmenu > ul > li {
+            display: block;
+            float: left;
+            margin-right: 10px;
+        }
+
+            .rmenu > ul > li > span {
+                padding: 20px;
+                display: block;
+                color: rgba(255,255,255,0.9);
+                font-size: 1.0em;
+                font-weight: 600;
+                border-right: 1px solid rgba(255, 255, 255,0.1);
+                cursor: pointer;
+            }
