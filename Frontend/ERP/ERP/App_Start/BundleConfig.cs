@@ -17,6 +17,7 @@ namespace ERP
                         "~/Scripts/jquery.unobtrusive-ajax.min.js",
                         "~/Scripts/jquery.toast.min.js",
                         "~/Scripts/jquery.sumoselect.min.js",
+                        "~/Scripts/jquery-isotope.min.js",
                         "~/Scripts/custom.js",
                         "~/Scripts/fontawesome/all.js"));
             bundles.Add(new ScriptBundle("~/bundles/react").Include(
