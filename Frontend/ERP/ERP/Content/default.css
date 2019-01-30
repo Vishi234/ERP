@@ -9,6 +9,7 @@ body {
     font-size: 12px;
     line-height: 1.42857;
     overflow-x: hidden;
+    background: #EDF1F5;
 }
 
 img {
@@ -342,7 +343,7 @@ a {
     font-weight: 500;
     color: #f2545b !important;
     display: block;
-    text-align:left;
+    text-align: left;
 }
 
 .field-validation-success {
@@ -351,4 +352,229 @@ a {
     font-weight: 500;
     color: green !important;
     display: block;
+}
+
+.header {
+    background: #2E3F50;
+    width: 100%;
+    height: 50px;
+}
+
+.ltopcon {
+    display: inline-block;
+    width: 60%;
+    padding: 8px;
+}
+
+    .ltopcon > h3 {
+        float: left;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 500;
+        margin-top: 7px;
+    }
+
+    .ltopcon > .form-control {
+        float: left;
+        margin-left: 10px;
+        width: 40%;
+        border-radius: 0px;
+        border-color: #2E3F50;
+    }
+
+    .ltopcon > svg {
+        position: absolute;
+        z-index: 999999;
+        /* right: 0; */
+        float: left;
+        margin-left: -30px;
+        margin-top: 8px;
+        font-size: 18px;
+    }
+
+.rtopcon {
+    width: 35%;
+}
+
+    .rtopcon > ul > li {
+        display: inline-block;
+        float: left;
+    }
+
+        .rtopcon > ul > li > a {
+            display: block;
+            padding: 15px;
+            font-size: 14px;
+            color: #fff;
+        }
+
+            .rtopcon > ul > li > a:hover {
+                background: rgba(0,0,0,0.1);
+            }
+
+.userinfo {
+    font-size: 14px;
+    padding: 10px;
+    color: #fff;
+}
+
+    .userinfo > a > svg:nth-child(1) {
+        font-size: 20px;
+        margin-right: 10px;
+        float: left;
+        margin-top: -12px;
+    }
+
+    .userinfo > a > span {
+        float: left;
+        margin-top: -10px;
+    }
+
+        .userinfo > a > span > svg {
+            margin-left: 11px;
+            float: right;
+            margin-top: 3px;
+        }
+
+.arrow_box {
+    position: absolute;
+    background: #fff;
+    /* border: 1px solid #ccc; */
+    /* margin-top: 25px; */
+    margin-left: 96%;
+    margin-top: 11px;
+    z-index: 99999999;
+}
+
+    .arrow_box:after, .arrow_box:before {
+        bottom: 100%;
+        left: 50%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+
+    .arrow_box:after {
+        border-color: rgba(136, 183, 213, 0);
+        border-bottom-color: #fff;
+        border-width: 13.2px;
+        margin-left: -30px;
+    }
+
+    .arrow_box:before {
+        border-color: rgba(194, 225, 245, 0);
+        border-bottom-color: #cbd6e2;
+        border-width: 15px;
+        margin-left: -31.4px;
+    }
+
+.top-sub-menu {
+    display: none;
+    position: absolute;
+    /* width: 20%; */
+    z-index: 9999999;
+    right: 5px;
+}
+
+.top-sub-menu-inner {
+    background: #fff;
+    border: 1px solid #cbd6e2;
+    margin-top: 10px;
+    display: inline-block;
+    width: 100%;
+}
+
+.pro-base {
+    display: inline-block;
+    padding: 10px;
+    width: 100%;
+    border-bottom: 1px solid #cbd6e2;
+}
+
+.pro-img {
+    display: block;
+    float: left;
+    overflow: hidden;
+    border-radius: 70px;
+    height: 60px;
+    width: 60px;
+}
+
+    .pro-img img {
+        height: 100%;
+        width: 100%;
+    }
+
+.pro-name {
+    float: left;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+    .pro-name span {
+        display: block;
+        width: 100%;
+        line-height: 20px;
+    }
+
+.pro-user-name {
+    font-size: 16px;
+    color: #33475b;
+    font-weight: 600;
+}
+
+.pro-user-email {
+    color: #7c98b6;
+    font-size: 12px;
+}
+
+.pro-user-setting a {
+    font-size: 14px;
+    color: #0091ae;
+}
+
+.pro-menu {
+    border-bottom: 1px solid #cbd6e2;
+}
+
+    .pro-menu li {
+        display: block;
+        width: 100%;
+    }
+
+        .pro-menu li a {
+            color: #33475b;
+            padding: 5px 10px;
+            display: block;
+            font-size: 14px;
+        }
+
+            .pro-menu li a:hover {
+                text-decoration: underline;
+            }
+
+.pro-footer {
+    display: inline-block;
+    width: 100%;
+}
+
+    .pro-footer span a {
+        display: block;
+        padding: 5px 10px;
+    }
+.sidebar {
+    width: 15%;
+    display: inline-block;
+    float: left;
+    position: fixed;
+    padding: 10px;
+    background: #2E3F50;
+    height: 100%;
+}
+.content-section {
+    width: 85%;
+    float: right;
 }
