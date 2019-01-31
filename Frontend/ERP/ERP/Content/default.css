@@ -706,3 +706,28 @@ a {
             .smenu > ul > li > a:hover {
                 background: rgba(255, 255, 255, .08) !important;
             }
+
+
+.Registrationform {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px 40px;
+    background: #ffffff;
+    top:20px;
+    left: 198px;
+    position: relative;
+    border: 1px, solid, #cbcbcb;
+    -webkit-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.24);
+    -moz-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.24);
+    -ms-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.24);
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.24);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+    margin-bottom: 30px;
+    height: auto;
+    overflow: hidden;
+    float: right;
+}
