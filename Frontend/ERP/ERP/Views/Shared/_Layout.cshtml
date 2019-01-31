@@ -10,77 +10,134 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/react")
 </head>
-<body>
-    <div class="sidebar">
-
-    </div>
-    <div class="content-section">
-        <div class="header">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12">
-                        <div class="pull-left ltopcon">
-                            <h3>IMS University</h3>
-                            <input type="text" class="form-control" />
-                            <i class="fa fa-search"></i>
-                        </div>
-                        <div class="pull-right rtopcon">
-                            <ul>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <i class="fa fa-info"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <i class="fa fa-envelope"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <i class="fa fa-bell"></i>
-                                    </a>
-                                </li>
-                                <li class="userinfo">
-                                    <a href="javascript:void(0)">
-                                        <i class="far fa-user-circle"></i><span>Web Designers Hub<i class="fa fa-angle-down"></i></span>
-                                    </a>
-                                    <div class="top-sub-menu">
-                                        <div class="arrow_box"></div>
-                                        <div class="top-sub-menu-inner">
-                                            <div class="pro-base">
-                                                <div class="pro-img">
-                                                    <img src="~/Images/user-img.png" />
-                                                </div>
-                                                <div class="pro-name">
-                                                    <span class="pro-user-name">Vishal Singh</span>
-                                                    <span class="pro-user-email">Web Designers hub</span>
-                                                    <span class="pro-user-setting"><a href="javascript:void(0)">Profile & Preferences</a></span>
-                                                </div>
+<body class="dashbdy">
+    <div class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12">
+                    <div class="pull-left ltopcon">
+                        @*<h3>IMS University</h3>*@
+                        @*<input type="text" class="form-control" />
+                            <i class="fa fa-search"></i>*@
+                    </div>
+                    <div class="pull-right rtopcon">
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <i class="fa fa-info"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <i class="fa fa-envelope"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <i class="fa fa-bell"></i>
+                                </a>
+                            </li>
+                            <li class="userinfo">
+                                <a href="javascript:void(0)" class="user-dtl">
+                                    <span>Web Designers Hub<i class="fa fa-angle-down"></i></span>
+                                </a>
+                                <div class="top-sub-menu">
+                                    <div class="arrow_box"></div>
+                                    <div class="top-sub-menu-inner">
+                                        <div class="pro-base">
+                                            <div class="pro-img">
+                                                <img src="~/Images/user-img.png" />
                                             </div>
-                                            <div class="pro-menu">
-                                                <ul>
-                                                    <li><a href="javascript:void(0)">Account & Billing</a></li>
-                                                    <li><a href="javascript:void(0)">Configuration</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="pro-footer">
-                                                <span class="pull-left"><a href="@Url.Action("Logout","Auth")">Sign out</a></span>
-                                                <span class="pull-right"><a href="javascript:void(0)">Privacy policy</a></span>
+                                            <div class="pro-name">
+                                                <span class="pro-user-name">Vishal Singh</span>
+                                                <span class="pro-user-email">Web Designers hub</span>
+                                                <span class="pro-user-setting"><a href="javascript:void(0)">Profile & Preferences</a></span>
                                             </div>
                                         </div>
+                                        <div class="pro-menu">
+                                            <ul>
+                                                <li><a href="javascript:void(0)">Account & Billing</a></li>
+                                                <li><a href="javascript:void(0)">Configuration</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="pro-footer">
+                                            <span class="pull-left"><a href="@Url.Action("Logout","Auth")">Sign out</a></span>
+                                            <span class="pull-right"><a href="javascript:void(0)">Privacy policy</a></span>
+                                        </div>
                                     </div>
-                                </li>
-                            </ul>
-                        </div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-        @RenderBody()
     </div>
-
-
-
+    <div class="innerbdy">
+        <div class="sidebar">
+            <div class="navigation-menu">
+                <ul>
+                    <li>
+                        <a href="javascript:void(0)">
+                            @*<i class="fa fa-shopping-cart"></i>*@
+                            Orders <i class="fa fa-angle-up"></i>
+                            <p class="sml-desc">Authentication,Database....</p>
+                        </a>
+                        <div class="smenu" menu-level="hm3">
+                            <ul>
+                                <li><a href="javascript:void(0)"><i class="fa fa-shopping-bag"></i>Authentication</a></li>
+                                <li><a href="javascript:void(0)"><i class="fa fa-shopping-bag"></i>Database</a></li>
+                                <li><a href="javascript:void(0)"><i class="fa fa-shopping-bag"></i>Storage</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            Products<i class="fa fa-angle-up"></i>
+                            <p class="sml-desc">Manage,Listing,Inventory....</p>
+                        </a>
+                        <div class="smenu" menu-level="hm3">
+                            <ul>
+                                <li><a href="@Url.Action("Products","Manage")"><i class="fa fa-adjust"></i>Manage</a></li>
+                                <li><a href="@Url.Action("Products","Listing")"><i class="fa fa-list-alt"></i>Listing</a></li>
+                                <li><a href="@Url.Action("Products","Inventory")"><i class="fa fa-shopping-cart"></i>Inventory</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            Products<i class="fa fa-angle-up"></i>
+                            <p class="sml-desc">Manage,Listing,Inventory....</p>
+                        </a>
+                        <div class="smenu" menu-level="hm3">
+                            <ul>
+                                <li><a href="@Url.Action("Manage","Products")"><i class="fa fa-adjust"></i>Manage</a></li>
+                                <li><a href="@Url.Action("Listing","Products")"><i class="fa fa-list-alt"></i>Listing</a></li>
+                                <li><a href="@Url.Action("Inventory","Products")"><i class="fa fa-shopping-cart"></i>Inventory</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            Settings<i class="fa fa-angle-up"></i>
+                            <p class="sml-desc">Account,Category,Channel....</p>
+                        </a>
+                        <div class="smenu" menu-level="hm7">
+                            <ul>
+                                <li><a href="@Url.Action("Account","Setting")"><i class="fa fa-user"></i>Account</a></li>
+                                <li><a href="@Url.Action("Category","Setting")"><i class="fa fa-list-alt"></i>Category</a></li>
+                                <li><a href="@Url.Action("Channel","Setting")"><i class="fa fa-plug"></i>Channel</a></li>
+                                <li><a href="@Url.Action("Import","Setting")"><i class="fa fa-file-import"></i>Import</a></li>
+                                <li><a href="javascript:void(0)"><i class="fa fa-map-marker"></i>Location</a></li>
+                                <li><a href="javascript:void(0)"><i class="fa fa-bell"></i>Notification</a></li>
+                                <li><a href="javascript:void(0)"><i class="fa fa-location-arrow"></i>Pincode</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    @RenderBody()
 </body>
 </html>
