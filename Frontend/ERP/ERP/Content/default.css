@@ -567,12 +567,12 @@ a {
     top: 0;
     height: 100%;
     background: #2E3F50;
-    width: 14%;
+    width: 15%;
     border-top: 3px solid #ff7a59;
 }
 
 .navigation-menu {
-    height: 480px;
+    height: 550px;
     overflow: auto;
     margin-right: 2px;
     /* box-shadow: 0px 0px 10px rgba(0,0,0,0.2); */
@@ -676,6 +676,71 @@ a {
     transition: all 0.4s ease-in-out;
 }
 
+.hm8 {
+    height: 245px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm9 {
+    height: 272px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm10 {
+    height: 300px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm11 {
+    height: 210px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm12 {
+    height: 210px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm13 {
+    height: 210px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm14 {
+    height: 210px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm15 {
+    height: 210px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm16 {
+    height: 210px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm17 {
+    height: 210px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm18 {
+    height: 210px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm19 {
+    height: 210px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm20 {
+    height: 210px !important;
+    transition: all 0.4s ease-in-out;
+}
+
 .smenu {
     background: #19212B;
     margin-bottom: 10px;
@@ -706,3 +771,9 @@ a {
             .smenu > ul > li > a:hover {
                 background: rgba(255, 255, 255, .08) !important;
             }
+
+.rightcontentsec {
+    width: 85%;
+    float: right;
+    height: 100%;
+}
