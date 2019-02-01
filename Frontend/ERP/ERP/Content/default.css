@@ -781,13 +781,11 @@ a {
 .Registrationform {
     display: block;
     width: 100%;
-    margin: 0 auto;
+    margin: 30px auto;
     padding: 30px 40px;
     background: #ffffff;
-    top:20px;
-    left: 198px;
     position: relative;
-    border: 1px, solid, #cbcbcb;
+    border: 2px, solid, #cbcbcb;
     -webkit-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.24);
     -moz-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.24);
     -ms-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.24);
@@ -800,4 +798,24 @@ a {
     height: auto;
     overflow: hidden;
     float: right;
+}
+
+.registration-form-control {
+    background: #fff;
+    border: 1px solid #999;
+    border-radius: 4px;
+    font-size: 12px;
+    height: 25px;
+    width: 50%;
+    box-shadow: none;
+}
+
+    .registration-form-control:focus {
+        border: solid 1px rgb(21, 137, 238);
+        box-shadow: 0 0 3px #0070d2;
+    }
+
+.label--title {
+    min-width: 45%;
+    max-width: 45%;
 }
