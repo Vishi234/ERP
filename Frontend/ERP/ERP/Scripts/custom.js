@@ -21,8 +21,27 @@
         $(".top-sub-menu").toggleClass("show");
     });
     //$("select").SumoSelect({ search: true, searchText: 'Enter here.' });
-    
+
 })
+function ShowCreate() {
+    $(".listorg").addClass("slideOutLeft");
+    $(".listorg").removeClass("show");
+    $(".listorg").addClass("hide");
+    setTimeout(function () {
+        $(".createorg").removeClass("hide");
+        $(".createorg").addClass("show");
+        $(".createorg").addClass("slideInRight");
+    }, 500)
+   
+}
+function Back() {
+    $(".listorg").animate({ 'margin': '0 auto' });
+    $(".listorg").addClass("show");
+    $(".listorg").removeClass("hide");
+    $(".createorg").animate({ 'margin': '0 auto' });
+    $(".createorg").addClass("hide");
+    $(".createorg").removeClass("show");
+}
 function InlineLoading(evt, action) {
     var a = document.getElementById(evt);
     if (action == "Show") {
