@@ -819,3 +819,9 @@ a {
     min-width: 45%;
     max-width: 45%;
 }
+
+.dropdown {
+    width: 100px;
+    border-radius: 5px;
+    height:20px;
+}
