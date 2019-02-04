@@ -1112,9 +1112,9 @@ a {
 
 
 
-    .createorg > h3 {
-        font-weight: 400;
-    }
+.createorg > h3 {
+    font-weight: 400;
+}
 
 .setupform > .form-group:nth-child(1) label {
     font-size: 14px;
@@ -1233,3 +1233,4 @@ a {
     font-size: 29px;
     padding: 10px;
 }
+
