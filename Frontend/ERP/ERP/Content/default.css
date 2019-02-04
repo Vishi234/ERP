@@ -1112,9 +1112,9 @@ a {
 
 
 
-    .createorg > h3 {
-        font-weight: 400;
-    }
+.createorg > h3 {
+    font-weight: 400;
+}
 
 .setupform > .form-group:nth-child(1) label {
     font-size: 14px;
@@ -1150,13 +1150,25 @@ a {
     padding-top: 15px;
 }
 
-    .formbase > .form-group > label {
-        font-weight: 500;
+    .formbase > .form-group {
+        margin-bottom: 3px;
+    }
+
+        .formbase > .form-group > label {
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+    .formbase .form-control {
+        font-size: 12px !important;
+        height: 30px;
+        text-transform: capitalize !important;
     }
 
 .btn-group {
     display: inline-block;
     width: 100%;
+    margin-top: 10px;
 }
 
     .btn-group span:nth-child(1) {
@@ -1168,7 +1180,7 @@ a {
             text-decoration: underline;
         }
 
-    .btn-group span:nth-child(2) a {
+    .btn-group span:nth-child(2) input {
         font-size: 12px;
     }
 
@@ -1231,5 +1243,6 @@ a {
     color: #fff;
     font-weight: 100;
     font-size: 29px;
+    margin-right: -10px;
     padding: 10px;
 }
