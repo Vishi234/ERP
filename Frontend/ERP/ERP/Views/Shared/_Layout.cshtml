@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using System.Data;
+@using System.Configuration;
+@using ERP.Models.Common;
+
 <html>
 <head>
     <meta charset="utf-8" />
@@ -76,97 +79,134 @@
     <div class="innerbdy">
         <div class="sidebar">
             <div class="navigation-menu">
-                <ul>
-                    <li>
-                        <a href="javascript:void(0)">
-                            @*<i class="fa fa-shopping-cart"></i>*@
-                            Masters <i class="fa fa-angle-up"></i>
-                            <p class="sml-desc">Fees Type,Subjects....</p>
-                        </a>
-                        <div class="smenu" menu-level="hm4">
-                            <ul>
-                                <li><a href="javascript:void(0)"><i class="fa fa-shopping-bag"></i>General Management</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-shopping-bag"></i>Accounting Management</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-shopping-bag"></i>Libray Management</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-shopping-bag"></i>Transport Management</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            Transaction<i class="fa fa-angle-up"></i>
-                            <p class="sml-desc">Student,Followup,Admission....</p>
-                        </a>
-                        <div class="smenu" menu-level="hm10">
-                            <ul>
-                                <li><a href="javascript:void(0)"><i class="fa fa-adjust"></i>Student Info</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-list-alt"></i>Enquiry Followup</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-shopping-cart"></i>Admission/Invoice</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-shopping-cart"></i>Reciept</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-shopping-cart"></i>Other Reciept</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-shopping-cart"></i>Accounting</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-shopping-cart"></i>Attendance</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-shopping-cart"></i>Transport</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-shopping-cart"></i>Time Table</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-shopping-cart"></i>Event Management</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-shopping-cart"></i>Assignment</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            Library<i class="fa fa-angle-up"></i>
-                            <p class="sml-desc">Issue,Return,Circulation....</p>
-                        </a>
-                        <div class="smenu" menu-level="hm4">
-                            <ul>
-                                <li><a href="javascript:void(0)"><i class="fa fa-adjust"></i>Book Issue</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-list-alt"></i>Book Return</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-shopping-cart"></i>Book Circulation Report</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-shopping-cart"></i>Book Catalouge Report</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            Settings<i class="fa fa-angle-up"></i>
-                            <p class="sml-desc">Organisation,Branch....</p>
-                        </a>
-                        <div class="smenu" menu-level="hm7">
-                            <ul>
-                                <li><a href="javascript:void(0)"><i class="fa fa-user"></i>Organisation</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-list-alt"></i>Branch</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-plug"></i>Custom Document Title</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-file-import"></i>Role & Permission</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-map-marker"></i>User Management</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-bell"></i>Notification</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-location-arrow"></i>Preference</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            Reports<i class="fa fa-angle-up"></i>
-                            <p class="sml-desc">Student,Employee,Fees....</p>
-                        </a>
-                        <div class="smenu" menu-level="hm9">
-                            <ul>
-                                <li><a href="javascript:void(0)"><i class="fa fa-user"></i>Student</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-list-alt"></i>Employee</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-plug"></i>Fees</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-file-import"></i>Time Table</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-map-marker"></i>Batch Scheduling</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-bell"></i>Other Certificated</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-location-arrow"></i>Outflow</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-location-arrow"></i>SMS Delivery</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-location-arrow"></i>Financial</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-location-arrow"></i>Inventory</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+                @try
+                {
+                    if (Session["ModuleInfo"] != null)
+                    {
+
+                        DataTable dt = new DataTable();
+                        dt = (DataTable)Session["ModuleInfo"];
+                        DataRow[] result = dt.Select("[PARENT_ID] IS NULL");
+                        foreach (DataRow dtRow in dt.Rows)
+                        {
+                            int FORM;
+                            // object value = ;
+                            if (dtRow["PARENT_ID"] == "")
+                            {
+                                FORM = Convert.ToInt32(dtRow["FORM_ID"]);
+                        <ul>
+                            <li>
+
+                                <a href="javascript:void(0)">
+                                    @*<i class="fa fa-shopping-cart"></i>*@
+                                    @dtRow["CAPTION"] <i class="fa fa-angle-up"></i>
+                                    <p class="sml-desc">Fees Type,Subjects....</p>
+                                </a>
+                            </li>
+                  </ul>
+                                foreach (DataRow dtRow1 in dt.Select("[PARENT_ID] IS NOT NULL"))
+                                {
+
+                                    if (dtRow1["PARENT_ID"] != "") {
+                                        int parent = Convert.ToInt32(dtRow1["PARENT_ID"]);
+                                        if (parent == FORM)
+                                        {
+                                <div class="smenu" menu-level="hm4">
+                                    <ul>
+                                        <li>@dtRow1["CAPTION"]</li>
+                                        <li><a href="@dtRow1["LINK"]"><i class="fa fa-shopping-bag"></i>@dtRow1["CAPTION"]</a></li>
+                                        @*<li><a href="javascript:void(0)"><i class="fa fa-shopping-bag"></i>Accounting Management</a></li>
+                                         <li><a href="javascript:void(0)"><i class="fa fa-shopping-bag"></i>Libray Management</a></li>
+                                          <li><a href="javascript:void(0)"><i class="fa fa-shopping-bag"></i>Transport Management</a></li>*@
+                                    </ul>
+                                </div>
+                                    }
+                                }
+                            }
+                        }
+                            @*<li>
+                                <a href="javascript:void(0)">
+                                    Transaction<i class="fa fa-angle-up"></i>
+                                    <p class="sml-desc">Student,Followup,Admission....</p>
+                                </a>
+                                <div class="smenu" menu-level="hm10">
+                                    <ul>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-adjust"></i>Student Info</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-list-alt"></i>Enquiry Followup</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-shopping-cart"></i>Admission/Invoice</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-shopping-cart"></i>Reciept</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-shopping-cart"></i>Other Reciept</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-shopping-cart"></i>Accounting</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-shopping-cart"></i>Attendance</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-shopping-cart"></i>Transport</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-shopping-cart"></i>Time Table</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-shopping-cart"></i>Event Management</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-shopping-cart"></i>Assignment</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    Library<i class="fa fa-angle-up"></i>
+                                    <p class="sml-desc">Issue,Return,Circulation....</p>
+                                </a>
+                                <div class="smenu" menu-level="hm4">
+                                    <ul>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-adjust"></i>Book Issue</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-list-alt"></i>Book Return</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-shopping-cart"></i>Book Circulation Report</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-shopping-cart"></i>Book Catalouge Report</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    Settings<i class="fa fa-angle-up"></i>
+                                    <p class="sml-desc">Organisation,Branch....</p>
+                                </a>
+                                <div class="smenu" menu-level="hm7">
+                                    <ul>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-user"></i>Organisation</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-list-alt"></i>Branch</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-plug"></i>Custom Document Title</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-file-import"></i>Role & Permission</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-map-marker"></i>User Management</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-bell"></i>Notification</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-location-arrow"></i>Preference</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    Reports<i class="fa fa-angle-up"></i>
+                                    <p class="sml-desc">Student,Employee,Fees....</p>
+                                </a>
+                                <div class="smenu" menu-level="hm9">
+                                    <ul>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-user"></i>Student</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-list-alt"></i>Employee</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-plug"></i>Fees</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-file-import"></i>Time Table</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-map-marker"></i>Batch Scheduling</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-bell"></i>Other Certificated</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-location-arrow"></i>Outflow</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-location-arrow"></i>SMS Delivery</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-location-arrow"></i>Financial</a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-location-arrow"></i>Inventory</a></li>
+                                    </ul>
+                                </div>
+                            </li>*@
+                       // </ul>
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Excep.WriteException(ex);
+                }
+                    </div>
         </div>
+
         <div class="rightcontentsec">
             @RenderBody()
         </div>
