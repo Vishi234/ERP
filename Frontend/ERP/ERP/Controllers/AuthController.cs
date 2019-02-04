@@ -19,12 +19,12 @@ namespace ERP.Controllers
             Models.Login.CommonLogin objLogin = new Models.Login.CommonLogin();
 
             // Construct JSON format for indexing 
-            var indexObject = new JObject();
-            var indexObjectArray = new JArray();
-            var itemChild = new JObject { { "@search.action", "upload" } };
-            itemChild.Merge(message.Content);
-            indexObjectArray.Add(itemChild);
-            indexObject.Add("value", indexObjectArray)
+            //var indexObject = new JObject();
+            //var indexObjectArray = new JArray();
+            //var itemChild = new JObject { { "@search.action", "upload" } };
+            //itemChild.Merge(message.Content);
+            //indexObjectArray.Add(itemChild);
+            //indexObject.Add("value", indexObjectArray)
 
             return (objLogin.CheckLogin(email, password));
 
