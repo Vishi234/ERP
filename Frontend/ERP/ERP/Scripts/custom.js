@@ -21,6 +21,13 @@
         $(".top-sub-menu").toggleClass("show");
     });
     //$("select").SumoSelect({ search: true, searchText: 'Enter here.' });
+    $('.openmodal').click(function () {
+        $(".modal").modal("hide");
+        $($(this).attr("data-target"))
+            .prop('class', 'modal fade') // revert to default
+            .addClass($(this).data('direction'));
+        $($(this).attr("data-target")).modal('show');
+    });
 
 })
 function ShowCreate() {
@@ -32,7 +39,7 @@ function ShowCreate() {
         $(".createorg").addClass("show");
         $(".createorg").addClass("slideInRight");
     }, 500)
-   
+
 }
 function Back() {
     $(".listorg").animate({ 'margin': '0 auto' });
