@@ -85,6 +85,7 @@ var LoginForm = React.createClass({
                     }
                     else if (jsonData[jsonData.length - 1].flag == "Super Admin")
                     {
+                        $("#selectorg").modal("show");
                     }
                     else
                     {
@@ -168,7 +169,7 @@ var LoginForm = React.createClass({
                                                     onChange={this.onChangePassword} className="form-control col-md-12" onComponentMounted={this.register} messageRequired={'Password required'} />
                                                 <p className="pull-right frgt"><a href="javascript:void(0)">Forgot Password?</a></p>
                                                 <div className="form-group">
-                                                    <button type="submit" className="btn btn-success btnDisable col-md-12 openmodal" data-direction="top" data-target="#selectorg">Login</button>
+                                                    <button type="submit" className="btn btn-success btnDisable col-md-12" >Login</button>
                                                 </div>
                                             </div>
                                         </form>
