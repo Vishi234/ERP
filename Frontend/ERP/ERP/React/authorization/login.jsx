@@ -76,13 +76,22 @@ var LoginForm = React.createClass({
                     $("#progress").show();
                 },
                 success: function (data) {
+                    debugger;
                     $("#progress").hide();
-                    if (1==1) {
+                    var jsonData=JSON.parse(data);                    
+                    if (jsonData[jsonData.length - 1].flag=="S")
+                    {
                         window.location.href = "/Dashboard/Overview";
                     }
-                    else {
-                        CallToast(data.ERROR_MSG, data.ERROR_FLAG);
+                    else if (jsonData[jsonData.length - 1].flag == "Super Admin")
+                    {
                     }
+                    else
+                    {
+                        CallToast(jsonData[jsonData.length - 1].msg, jsonData[jsonData.length - 1].flag);
+                    }
+
+                   
                 }.bind(this),
                 error: function (e) {
                     console.log(e);

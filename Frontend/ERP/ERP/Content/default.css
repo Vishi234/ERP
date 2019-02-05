@@ -913,7 +913,8 @@ a {
     }
 }
 
-@keyframes slideInRight {
+@keyframes slideInRight 
+{
     0% {
         -webkit-transform: translateX(100%);
         transform: translateX(100%);
@@ -1203,7 +1204,8 @@ a {
     transform: translate3d(-25%, 25%, 0);
 }
 
-.modal.fade:not(.in).bottom-right .modal-dialog {
+.modal.fade:not(.in).bottom-right .modal-dialog 
+{
     -webkit-transform: translate3d(25%, 25%, 0);
     transform: translate3d(25%, 25%, 0);
 }

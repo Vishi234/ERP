@@ -8,6 +8,8 @@ using System.Text;
 using System.Web;
 using ERP.Models.Common;
 using System.Configuration;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace ERP.Models.Login
 {
@@ -52,7 +54,17 @@ namespace ERP.Models.Login
                 rspMsg = sqlParameter[7].Value.ToString();
                 HttpContext.Current.Session["UserDetails"] = objUserEntity;
                 jsonResult = CommonFunc.DtToJSON(ds.Tables[0]);
-                return jsonResult;
+
+                var array = JArray.Parse(jsonResult);
+
+                var itemToAdd = new JObject();
+                itemToAdd["flag"] = verifyFlag;
+                itemToAdd["msg"] = rspMsg;
+                array.Add(itemToAdd);
+
+                var jsonToOutput = JsonConvert.SerializeObject(array, Formatting.Indented);
+
+                return jsonToOutput;
             }
             catch (Exception ex)
             {            
