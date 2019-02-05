@@ -179,10 +179,16 @@ var RegistrationForm = React.createClass({
                          <MyInput type={'motherLName'} value={this.state.motherLName} label={'Mother Last Name'} name={'motherLName'} htmlFor={'motherLName'}
                              onChange={this.onChangePassword} className="registration-form-control col-md-3" onComponentMounted={this.register} />                                                                                         
                          <MyInput type={'section'} value={this.state.section} label={'Student Section'} name={'section'} htmlFor={'section'} isrequired={true}
-                             onChange={this.onChangePassword} className="registration-form-control col-md-3" onComponentMounted={this.register} messageRequired={'Student Section required'} />
-                         <MyInput type={'Gender'} value={this.state.Gender} label={'Gender'} name={'Gender'} htmlFor={'Gender'} isrequired={true}
-                            onChange={this.onChangePassword} className="registration-form-control col-md-3" onComponentMounted={this.register} messageRequired={'Gender required'} /> 
-                         <MyInput type={'mediumIns'} value={this.state.mediumIns} label={'Medium Instrution'} name={'mediumIns'} htmlFor={'mediumIns'} isrequired={true}
+                             onChange={this.onChangePassword} className="registration-form-control col-md-3" onComponentMounted={this.register} messageRequired={'Student Section required'}  />
+
+                         <label className="registration-form-control col-md-3">Gender</label>               
+                         <select className="dropdown" data-val="true" className="registration-form-control col-md-3" name="gender" defaultValue={this.state.gender}  >
+                             <option value="">  Select Gender </option>
+                             <option value="Male">Male</option>
+                             <option value="Female">Female</option>
+                         </select>
+                   
+                          <MyInput type={'mediumIns'} value={this.state.mediumIns} label={'Medium Instrution'} name={'mediumIns'} htmlFor={'mediumIns'} isrequired={true}
                              onChange={this.onChangePassword} className="registration-form-control col-md-3" onComponentMounted={this.register} messageRequired={'Medium Instrution required'} />                                                        
                          <MyInput type={'nameSibiling'} value={this.state.nameSibiling} label={'Sibiling Name'} name={'nameSibiling'} htmlFor={'nameSibiling'}
                              onChange={this.onChangePassword} className="registration-form-control col-md-3" onComponentMounted={this.register} />                   
@@ -190,6 +196,8 @@ var RegistrationForm = React.createClass({
                             onChange={this.onChangePassword} className="registration-form-control col-md-3" onComponentMounted={this.register} messageRequired={'Landline required'} />                                              
                          <MyInput type={'regisAmount'} value={this.state.regisAmount} label={'Registration Amount'} name={'regisAmount'} htmlFor={'regisAmount'} isrequired={true}
                              onChange={this.onChangePassword} className="registration-form-control col-md-3" onComponentMounted={this.register} messageRequired={'Registration Amount required'} /> 
+                        
+
                             </div>                
                         </div>
                         <div className="form-group">
