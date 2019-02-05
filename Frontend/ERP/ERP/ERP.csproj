@@ -162,6 +162,7 @@
     <Content Include="React\authorization\login.jsx" />
     <Content Include="React\configuration\createorg.jsx" />
     <Content Include="React\configuration\orglist.jsx" />
+    <Content Include="React\master\academicyear.jsx" />
     <Content Include="React\Registration\Registration.jsx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -238,6 +239,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -259,6 +261,8 @@
     <Content Include="Views\Dashboard\Overview.cshtml" />
     <Content Include="Views\Registration\Registration.cshtml" />
     <Content Include="Logs\ExceptionLog" />
+    <Content Include="Views\Master\Academic.cshtml" />
+    <Content Include="Views\Master\Course.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
