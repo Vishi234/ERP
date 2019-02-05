@@ -76,7 +76,6 @@ var LoginForm = React.createClass({
                     $("#progress").show();
                 },
                 success: function (data) {
-                    debugger;
                     $("#progress").hide();
                     var jsonData=JSON.parse(data);                    
                     if (jsonData[jsonData.length - 1].flag=="S")

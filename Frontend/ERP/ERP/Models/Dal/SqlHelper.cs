@@ -11,22 +11,22 @@ using System.Data.SqlClient;
 //}
 
 
-namespace ERP.Dal
+namespace Dal
 {
-    public class CommanDal
+    public sealed class SqlHelper
     {
-        private SqlDataAdapter adaptr;
-        private SqlConnection conn;
-        private SqlCommand command;
-        private SqlDataReader reader;
-        public CommanDal()
+        private static SqlDataAdapter adaptr;
+        private static SqlConnection conn;
+        private static SqlCommand command;
+        private static SqlDataReader reader;
+        public SqlHelper()
         {
             adaptr = new SqlDataAdapter();
             conn = new SqlConnection(ConfigurationManager.ConnectionStrings
                     ["CS"].ConnectionString);
         }
         //return dataset to business layer        
-        public  DataSet ExecuteDataSet(string commandText, SqlParameter[] param, bool isProcedure)
+        public static DataSet ExecuteDataSet(string commandText, SqlParameter[] param, bool isProcedure)
         {
             command = new SqlCommand();
             command.Connection = conn;
@@ -57,7 +57,7 @@ namespace ERP.Dal
 
         }
         //execute procedure without returning cursor        
-        public  void ExecuteNonQuery(string commandText, SqlParameter[] param, bool isProcedure)
+        public static  void ExecuteNonQuery(string commandText, SqlParameter[] param, bool isProcedure)
         {
             command = new SqlCommand();
             command.Connection = conn;
@@ -90,7 +90,7 @@ namespace ERP.Dal
             //return rowsEffected;
         }
         //return datatable to business layer        
-        public  DataTable ExecuteDataTable(string commandText, SqlParameter[] param, bool isProcedure)
+        public static DataTable ExecuteDataTable(string commandText, SqlParameter[] param, bool isProcedure)
         {
             command = new SqlCommand();
             command.Connection = conn;
@@ -122,7 +122,7 @@ namespace ERP.Dal
 
         }
         //return datareader to business layer        
-        public SqlDataReader ExecuteReader(string commandText, SqlParameter[] param, bool isProcedure)
+        public static SqlDataReader ExecuteReader(string commandText, SqlParameter[] param, bool isProcedure)
         {
             /// <summary>Executes Command and return DataReader </summary>
 
@@ -152,7 +152,7 @@ namespace ERP.Dal
             return (SqlDataReader)command.ExecuteReader(CommandBehavior.CloseConnection);
         }
 
-        public DataTable executeSelectQuery(String _query, SqlParameter[] sqlParameter)
+        public static DataTable ExecuteSelectQuery(String _query, SqlParameter[] sqlParameter)
         {
             command = new SqlCommand();
             DataTable dataTable = new DataTable();
@@ -182,7 +182,7 @@ namespace ERP.Dal
             return dataTable;
         }
 
-        public bool executeInsertQuery(String _query, SqlParameter[] sqlParameter)
+        public static bool ExecuteInsertQuery(String _query, SqlParameter[] sqlParameter)
         {
             command = new SqlCommand();
             try
@@ -204,7 +204,7 @@ namespace ERP.Dal
             return true;
         }
 
-        public bool executeUpdateQuery(String _query, SqlParameter[] sqlParameter)
+        public static bool ExecuteUpdateQuery(String _query, SqlParameter[] sqlParameter)
         {
             command = new SqlCommand();
             try
