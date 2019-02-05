@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using System.Data;
+@using System.Configuration;
+@using ERP.Models.Common;
+
+
 <html>
 <head>
     <meta charset="utf-8" />
@@ -193,7 +197,19 @@
                         </a>
                     </li>
                     <li>
-                        <a onclick="ShowCreate();" href="javascript:void(0)">
+        @try
+        {
+            if (Session["ModuleInfo"] != null)
+            {
+                DataTable dt = new DataTable();
+               string  dt1 = Session["ModuleInfo"].ToString();
+            }
+        }
+        catch (Exception ex)
+        {
+            Excep.WriteException(ex);
+        }
+                                <a onclick="ShowCreate();" href="javascript:void(0)">
                             <i class="fa fa-plus"></i> Create
                         </a>
                     </li>

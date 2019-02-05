@@ -77,7 +77,7 @@ var LoginForm = React.createClass({
                 },
                 success: function (data) {
                     $("#progress").hide();
-                    if (data.ERROR_FLAG == "S") {
+                    if (1==1) {
                         window.location.href = "/Dashboard/Overview";
                     }
                     else {
