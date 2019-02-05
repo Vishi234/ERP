@@ -77,21 +77,19 @@ var LoginForm = React.createClass({
                 },
                 success: function (data) {
                     $("#progress").hide();
-                    var jsonData=JSON.parse(data);                    
-                    if (jsonData[jsonData.length - 1].flag=="S")
+                    console.log(data);
+                    if (data.flag == "S")
                     {
                         window.location.href = "/Dashboard/Overview";
                     }
-                    else if (jsonData[jsonData.length - 1].flag == "Super Admin")
+                    else if (data.msg == "Super Admin")
                     {
                         $("#selectorg").modal("show");
                     }
                     else
                     {
-                        CallToast(jsonData[jsonData.length - 1].msg, jsonData[jsonData.length - 1].flag);
+                        CallToast(data.msg, data.flag);
                     }
-
-                   
                 }.bind(this),
                 error: function (e) {
                     console.log(e);

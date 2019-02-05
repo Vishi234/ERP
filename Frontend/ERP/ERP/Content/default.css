@@ -379,7 +379,7 @@ a {
 
         .rtopcon > ul > li > a {
             display: block;
-            padding: 4px;
+            padding: 6px;
             border: 2px solid #fff;
             border-radius: 35px;
             height: 30px;
@@ -567,7 +567,7 @@ a {
     top: 0;
     height: 100%;
     background: #2E3F50;
-    width: 15%;
+    width: 17%;
     border-top: 3px solid #ff7a59;
 }
 
@@ -747,8 +747,24 @@ a {
     display: block;
     height: 0px;
     transition: all 0.4s ease-in-out;
-    overflow: hidden;
+    overflow: auto;
+    width: 98%;
 }
+
+    .smenu::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    .smenu::-webkit-scrollbar-track {
+        border-radius: 10px;
+        padding: 10px;
+        display: none;
+    }
+
+    .smenu::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background: rgba(255, 255, 255, .7);
+    }
 
     .smenu > ul > li {
         display: inline-block;
@@ -774,7 +790,7 @@ a {
 
 
 .rightcontentsec {
-    width: 85%;
+    width: 83%;
     float: right;
     height: 100%;
 }
@@ -825,7 +841,7 @@ a {
 .dropdown {
     width: 100px;
     border-radius: 5px;
-    height:20px;
+    height: 20px;
 }
 
 .slideInDown {
@@ -920,8 +936,7 @@ a {
     }
 }
 
-@keyframes slideInRight 
-{
+@keyframes slideInRight {
     0% {
         -webkit-transform: translateX(100%);
         transform: translateX(100%);
@@ -1223,8 +1238,7 @@ a {
     transform: translate3d(-25%, 25%, 0);
 }
 
-.modal.fade:not(.in).bottom-right .modal-dialog 
-{
+.modal.fade:not(.in).bottom-right .modal-dialog {
     -webkit-transform: translate3d(25%, 25%, 0);
     transform: translate3d(25%, 25%, 0);
 }

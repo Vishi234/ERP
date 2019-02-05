@@ -244,7 +244,8 @@
     </Compile>
     <Compile Include="Models\Common\CommonFunc.cs" />
     <Compile Include="Models\Common\Excep.cs" />
-    <Compile Include="Models\Dal\SqlHelper.cs" />
+    <Compile Include="Models\Dal\SQLHelper.cs" />
+    <Compile Include="Models\Dal\SqlHelper2.cs" />
     <Compile Include="Models\Entity\ResultEntity.cs" />
     <Compile Include="Models\Entity\UserEntity.cs" />
     <Compile Include="Models\Login\Login.cs" />

@@ -12,11 +12,15 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using Dal;
 using ERP.Models.Entity;
+using DaL;
 
 namespace ERP.Models.Login
 {
     public class CommonLogin
     {
+        
+        string sqlConn= ConfigurationManager.ConnectionStrings["CS"].ConnectionString;
+
         public ResultEntity CheckLogin(string email, string password)
         {
             ResultEntity result = new ResultEntity();
@@ -44,7 +48,7 @@ namespace ERP.Models.Login
                 sqlParameter[7].Direction = ParameterDirection.Output;
                 sqlParameter[7].Size = 500;
                 DataSet ds = new DataSet();
-                ds = SqlHelper.ExecuteDataSet("SP_CHECK_LOGIN", sqlParameter, true);
+                ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_CHECK_LOGIN", sqlParameter);
                 result.flag = sqlParameter[6].Value.ToString();
                 result.msg = sqlParameter[7].Value.ToString();
 
