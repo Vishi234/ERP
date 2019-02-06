@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ERP.Models.Entity;
+using ERP.Models.Login;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,9 +11,17 @@ namespace ERP.Controllers
     public class DashboardController : Controller
     {
         // GET: Dashboard
-        public ActionResult Overview()
+        public ActionResult Overview(string custId)
         {
             return View();
+        }
+        [HttpPost]
+        public ActionResult Overview(CustomerEntity customer)
+        {
+            CommonLogin objLogin = new CommonLogin();
+            return Json(objLogin.regisOrg(customer));
+
+
         }
     }
 }

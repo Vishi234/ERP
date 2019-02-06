@@ -52,6 +52,68 @@ namespace ERP.Models.Login
                 result.flag = sqlParameter[6].Value.ToString();
                 result.msg = sqlParameter[7].Value.ToString();
 
+                if ((result.flag.ToUpper() == "S")|| (result.flag.ToUpper() == "D"))
+                {
+                    UserEntity objUserEntity = UserEntity.GetInstance();
+                    objUserEntity.UserName = sqlParameter[2].Value.ToString();
+                    objUserEntity.Userid = sqlParameter[3].Value.ToString();
+                    objUserEntity.RoleId = sqlParameter[4].Value.ToString();
+                    objUserEntity.userCategoryId = sqlParameter[5].Value.ToString();
+                    HttpContext.Current.Session["UserDetails"] = objUserEntity;
+
+                    if (ds != null)
+                    {
+                        if (ds.Tables[0].Rows.Count > 0)
+                        {
+                           result.addParams= CommonFunc.DtToJSON(ds.Tables[0]);
+                           // HttpContext.Current.Session["CustomerList"] = ds.Tables[0];
+                        }
+                        if (ds.Tables[1].Rows.Count > 0)
+                        {
+                            HttpContext.Current.Session["ModuelInfo"] = ds.Tables[1];
+                        }
+                    }
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Excep.WriteException(ex);
+                return result;
+            }
+
+        }
+
+        public ResultEntity regisOrg(CustomerEntity customer)
+        {
+            ResultEntity result = new ResultEntity();
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[13];
+                sqlParameter[0] = new SqlParameter("@P_CUSTOMER_NAME", customer.orgName);
+                sqlParameter[1] = new SqlParameter("@P_ADD_1", customer.orgAdd1);
+                sqlParameter[2] = new SqlParameter("@P_ADD_2", customer.orgAdd2);
+                sqlParameter[3] = new SqlParameter("@P_FAX_NO", customer.orgFax);
+                sqlParameter[4] = new SqlParameter("@P_CITY", customer.orgCity);
+                sqlParameter[5] = new SqlParameter("@P_MOBILE", customer.orgMobile);
+                sqlParameter[6] = new SqlParameter("@P_PHONE", customer.orgPhone);
+                sqlParameter[7] = new SqlParameter("@P_EMAIL", customer.orgEmail);
+                sqlParameter[8] = new SqlParameter("@P_WEBSITE", customer.orgWebsite);
+                sqlParameter[9] = new SqlParameter("@P_CUSTOMER_ID",customer.orgId);
+                sqlParameter[10] = new SqlParameter("@P_OPER_TYPE", customer.oper);
+                sqlParameter[11] = new SqlParameter("@P_FLAG", SqlDbType.Char);
+                sqlParameter[11].Direction = ParameterDirection.Output;
+                sqlParameter[11].Size = 1;
+                sqlParameter[12] = new SqlParameter("@P_RSP_MSG", SqlDbType.NVarChar);
+                sqlParameter[12].Direction = ParameterDirection.Output;
+                sqlParameter[12].Size = 500;
+
+                DataSet ds = new DataSet();
+                ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_ADD_CUSTOMER_AMD", sqlParameter);
+                result.flag = sqlParameter[11].Value.ToString();
+                result.msg = sqlParameter[12].Value.ToString();
+
                 if (result.flag.ToUpper() == "S")
                 {
                     UserEntity objUserEntity = UserEntity.GetInstance();
