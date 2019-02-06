@@ -1,4 +1,58 @@
-﻿var CreateOrg = React.createClass({
+﻿
+
+var CreateOrg = React.createClass({
+
+    handleSubmit: function (e) {
+        var validForm = true;
+        //after validation complete post to server
+        if (validForm) {
+            var d = {
+                email: "1",
+                password: "2"
+            }
+            $.ajax({
+                type: "POST",
+                url: this.props.urlPost,
+                data: d,
+                beforeSend: function () {
+                    window.location.href = "/Dashboard/Overview";
+                    $("#progress").show();
+                },
+                success: function (data) {
+                    alert(112);
+                    $("#progress").hide();
+                    console.log(data);
+                    if (data.flag == "S") {
+                        window.location.href = "/Dashboard/Overview";
+                    }
+                    else if (data.flag == "D") {
+                        $("#selectorg").modal("show");
+                    }
+                    else {
+                        CallToast(data.msg, data.flag);
+                    }
+                    //if (data.flag == "S")
+                    //{
+                    //    window.location.href = "/Dashboard/Overview";
+                    //}
+                    //else if (data.msg == "Super Admin")
+                    //{
+                    //    $("#selectorg").modal("show");
+                    //}
+                    //else
+                    //{
+                    //    CallToast(data.msg, data.flag);
+                    //}
+                }.bind(this),
+                error: function (e) {
+                    console.log(e);
+                    $("#progress").hide();
+                    alert('Error! Please try again');
+                }
+            })
+        }
+    },
+
     render: function () {
         //Render form
         return (
@@ -12,7 +66,7 @@
                             </div>
                             <div className="modal-body">
                                 <div className="createorg">
-                                    <form>
+                                    <form noValidate onSubmit={this.handleSubmit}>
                                         <div className="setupform">
                                             <div className="form-group">
                                                 <label>Enter Name of Oraganization</label>
@@ -74,7 +128,7 @@
                                         </div>
                                         <div className="btn-group">
                                             <span className="pull-left"><a href="javascript:void(0)">I will do it later</a></span>
-                                            <span className="pull-right"><input type="submit" className="btn btn-success" value="Create" /></span>
+                                            <span className="pull-right"><input type="submit" className="btn btn-success" value="Create"  /></span>
                                         </div>
                                     </form>
                                 </div>

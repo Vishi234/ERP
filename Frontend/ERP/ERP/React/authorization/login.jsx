@@ -7,6 +7,7 @@
     //validation function
     isValid: function (input) {
         //check required field
+       
         if (input.getAttribute('required') != null && input.value === "") {
             input.classList.add('input-validation-error'); //add class error
             input.nextSibling.classList.add('field-validation-error');
@@ -78,18 +79,27 @@ var LoginForm = React.createClass({
                 success: function (data) {
                     $("#progress").hide();
                     console.log(data);
-                    if (data.flag == "S")
-                    {
+                    if (data.flag == "S") {
                         window.location.href = "/Dashboard/Overview";
                     }
-                    else if (data.msg == "Super Admin")
-                    {
+                    else if (data.flag == "D") {
                         $("#selectorg").modal("show");
                     }
-                    else
-                    {
+                    else {
                         CallToast(data.msg, data.flag);
                     }
+                    //if (data.flag == "S")
+                    //{
+                    //    window.location.href = "/Dashboard/Overview";
+                    //}
+                    //else if (data.msg == "Super Admin")
+                    //{
+                    //    $("#selectorg").modal("show");
+                    //}
+                    //else
+                    //{
+                    //    CallToast(data.msg, data.flag);
+                    //}
                 }.bind(this),
                 error: function (e) {
                     console.log(e);
