@@ -1354,22 +1354,34 @@ a {
 }
 
 .acform {
-    width: 80%;
-    display: block;
-    margin: 0 auto;
+    width: 100%;
+    display: inline-block;
+    margin: 15px auto;
+    text-align: center;
 }
 
-    .acform label {
-        font-weight: 500;
+    .acform > form > ul > li {
+        display: inline-block;
+        margin-right: 15px;
+        width: 15%;
     }
 
-    .acform .form-control {
-        font-size: 12px;
-        height: 33px;
-    }
+        .acform > form > ul > li > .form-group > label {
+            font-weight: 500;
+            float: left;
+            margin-bottom: 3px;
+            letter-spacing: 1.1px;
+        }
+
+        .acform > form > ul > li > .form-group > .form-control {
+            font-size: 12px;
+            height: 33px;
+        }
 
     .acform .btn-success {
-        width: 100%;
+        width: 7%;
+        border-radius: 3px;
+        font-size: 1.1em;
     }
 
 .modal-md {
@@ -1377,8 +1389,9 @@ a {
 }
 
 .acform .SumoSelect {
-    display: block !important;
     width: 100% !important;
+    text-align: left;
+    display: grid;
 }
 
 .acform p {
@@ -1392,3 +1405,24 @@ a {
     .SumoSelect.open > .optWrapper > ul > li > label {
         margin-bottom: 0px;
     }
+
+.formarea {
+    background: #fff;
+    margin: 7px;
+    text-align: center;
+    border: 1px solid #eee;
+    box-shadow: 0px 0px 1px rgba(0,0,0,0.1);
+}
+
+.formheader {
+    display: inline-block;
+    margin: 0 auto;
+    /* width: 20%; */
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1.1px;
+    padding: 10px;
+    text-align: center;
+    color: #ea2330;
+    border-bottom: 2px solid #ea2330;
+}

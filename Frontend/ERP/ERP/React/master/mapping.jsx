@@ -1,52 +1,52 @@
-﻿var CourseDurationForm = React.createClass({
+﻿var MappingForm = React.createClass({
     render: function () {
         //Render form
         return (
             <div>
                 <div className="inner-menu">
                     <span className="pull-left httl">
-                        Course Semester Duration
+                        Course Subject Mapping
                     </span>
                 </div>
                 <div className="formarea">
-                    <span className="formheader">Add/Update Duration</span>
+                    <span className="formheader">Add/Update Mapping</span>
                     <div className="acform">
                         <form>
                             <ul>
                                 <li>
                                     <div className="form-group">
-                                        <label>Academic Year</label>
-                                        <select>
-                                            <option>Select Academic Year</option>
-                                        </select>
-                                    </div>
-                                </li>
-                                <li>
-                                   <div className="form-group">
                                         <label>Course</label>
                                         <select>
-                                            <option>Select Course</option>
+                                            <option value="0" selected="selected">Select Course</option>
+
                                         </select>
-                                   </div>
+                                    </div>
                                 </li>
                                 <li>
                                     <div className="form-group">
                                         <label>Semester</label>
                                         <select>
-                                            <option>Select Semester</option>
+                                            <option value="0" selected="selected">Select Semester</option>
+
                                         </select>
                                     </div>
                                 </li>
                                 <li>
                                     <div className="form-group">
-                                        <label>Start Date</label>
-                                        <input type="text" className="startDate form-control" />
+                                        <label>Subject</label>
+                                        <select>
+                                            <option value="0" selected="selected">Select Subject</option>
+
+                                        </select>
                                     </div>
                                 </li>
                                 <li>
                                     <div className="form-group">
-                                        <label>End Date</label>
-                                        <input type="text" className="endDate form-control" />
+                                        <label>Subject Type</label>
+                                        <select>
+                                            <option value="1" selected="selected">Compulsory</option>
+                                            <option value="0">Elective</option>
+                                        </select>
                                     </div>
                                 </li>
                             </ul>
@@ -58,4 +58,4 @@
         );
     }
 });
-ReactDOM.render(<CourseDurationForm />, document.getElementById('durationform'));
+ReactDOM.render(<MappingForm />, document.getElementById('mappingform'));
