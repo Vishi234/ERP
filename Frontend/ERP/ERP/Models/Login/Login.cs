@@ -52,7 +52,7 @@ namespace ERP.Models.Login
                 result.flag = sqlParameter[6].Value.ToString();
                 result.msg = sqlParameter[7].Value.ToString();
 
-                if (result.flag.ToUpper() == "S")
+                if ((result.flag.ToUpper() == "S")|| (result.flag.ToUpper() == "D"))
                 {
                     UserEntity objUserEntity = UserEntity.GetInstance();
                     objUserEntity.UserName = sqlParameter[2].Value.ToString();
@@ -64,6 +64,11 @@ namespace ERP.Models.Login
                     if (ds != null)
                     {
                         if (ds.Tables[0].Rows.Count > 0)
+                        {
+                           result.addParams= CommonFunc.DtToJSON(ds.Tables[0]);
+                           // HttpContext.Current.Session["CustomerList"] = ds.Tables[0];
+                        }
+                        if (ds.Tables[1].Rows.Count > 0)
                         {
                             HttpContext.Current.Session["ModuelInfo"] = ds.Tables[0];
                         }
