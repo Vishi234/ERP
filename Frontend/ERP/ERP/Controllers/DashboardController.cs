@@ -9,7 +9,7 @@ namespace ERP.Controllers
     public class DashboardController : Controller
     {
         // GET: Dashboard
-        public ActionResult Overview()
+        public ActionResult Overview(string custId)
         {
             return View();
         }

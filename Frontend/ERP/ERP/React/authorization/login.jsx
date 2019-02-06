@@ -77,13 +77,19 @@ var LoginForm = React.createClass({
                 },
                 success: function (data) {
                     $("#progress").hide();
-                    console.log(data);
                     if (data.flag == "S")
                     {
                         window.location.href = "/Dashboard/Overview";
                     }
-                    else if (data.msg == "Super Admin")
+                    else if (data.flag == "D")
                     {
+                        var customerList = JSON.parse(data.addParams); var dynamicLi = "";                      
+                        $.each(customerList, function (i, data)
+                        {
+                        dynamicLi += '<li> <a href="/Dashboard/Overview/custId=' + data.CUSTOMER_ID + ' ">  <i className="fa fa-home" ></i> ' + data.CUSTOMER_NAME + ' </a></li>';
+                        });
+                        
+                        $('.leftlist ul').append(dynamicLi);
                         $("#selectorg").modal("show");
                     }
                     else

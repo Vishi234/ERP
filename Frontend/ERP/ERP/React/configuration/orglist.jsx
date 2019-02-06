@@ -14,11 +14,7 @@
                                 <div className="listorg show">
                                     <div className="leftlist">
                                         <ul>
-                                            <li>
-                                                <a href="javascript:void(0)">
-                                                    <i className="fa fa-home"></i> IMS College, Noida
-                                                </a>
-                                            </li>
+                                            
                                         </ul>
                                     </div>
                                     <div className="rightoption">
