@@ -20,13 +20,32 @@
         $(this).toggleClass("right-menu-active");
         $(".top-sub-menu").toggleClass("show");
     });
-    //$("select").SumoSelect({ search: true, searchText: 'Enter here.' });
+    $("select").SumoSelect({ search: true, searchText: 'Enter here.' });
     $('.openmodal').click(function () {
         $(".modal").modal("hide");
         $($(this).attr("data-target"))
             .prop('class', 'modal fade') // revert to default
             .addClass($(this).data('direction'));
         $($(this).attr("data-target")).modal('show');
+    });
+
+    $('.startDate').daterangepicker({
+        singleDatePicker: true,
+        startDate: moment(),
+        locale:
+        {
+            format: 'DD-MMM-YYYY'
+        }
+
+    });
+
+    $('.endDate').daterangepicker({
+        singleDatePicker: true,
+        startDate: moment().add(10, 'days'),
+        locale:
+        {
+            format: 'DD-MMM-YYYY'
+        }
     });
 
 })

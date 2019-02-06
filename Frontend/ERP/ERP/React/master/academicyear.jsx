@@ -43,11 +43,11 @@
                                         </div>
                                         <div className="form-group">
                                             <label>Start Date</label>
-                                            <input type="text" placeholder="DD-MMM-YYYY" className="form-control" />
+                                            <input type="text" placeholder="DD-MMM-YYYY" className="startDate form-control" />
                                         </div>
                                         <div className="form-group">
                                             <label>End Date</label>
-                                            <input type="text" placeholder="DD-MMM-YYYY" className="form-control" />
+                                            <input type="text" placeholder="DD-MMM-YYYY" className="endDate form-control" />
                                         </div>
                                         <input type="submit" className="btn btn-success" value="Save" />
                                     </form>
