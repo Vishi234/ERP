@@ -77,6 +77,7 @@ var LoginForm = React.createClass({
                 },
                 success: function (data) {
                     $("#progress").hide();
+
                     if (data.flag == "S")
                     {
                         window.location.href = "/Dashboard/Overview";
@@ -92,8 +93,7 @@ var LoginForm = React.createClass({
                         $('.leftlist ul').append(dynamicLi);
                         $("#selectorg").modal("show");
                     }
-                    else
-                    {
+                    else {
                         CallToast(data.msg, data.flag);
                     }
                 }.bind(this),

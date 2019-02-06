@@ -1,4 +1,64 @@
 ﻿var CreateOrg = React.createClass({
+
+    handleSubmit: function (e) {
+        var validForm = true;
+        //after validation complete post to server
+        if (validForm) {
+            var d = {
+                CUSTOMER_NAME: "JSS",
+                ADD_1: "2",
+                ADD_2:"111",
+                FAX_NO:"2222",
+                CITY: "2222",
+                MOBILE: "2222",
+                PHONE: "2222",
+                EMAIL: "2222",
+                WEBSITE: "2222",
+                CUSTOMER_ID: "2222",
+                OPER_TYPE:"sdfdf"
+            }
+            $.ajax({
+                type: "POST",
+                url: this.props.urlPost,
+                data: d,
+                beforeSend: function () {
+                    $("#progress").show();
+                },
+                success: function (data) {
+                    alert(112);
+                    $("#progress").hide();
+                    console.log(data);
+                    if (data.flag == "S") {
+                        window.location.href = "/Dashboard/Overview";
+                    }
+                    else if (data.flag == "D") {
+                        $("#selectorg").modal("show");
+                    }
+                    else {
+                        CallToast(data.msg, data.flag);
+                    }
+                    //if (data.flag == "S")
+                    //{
+                    //    window.location.href = "/Dashboard/Overview";
+                    //}
+                    //else if (data.msg == "Super Admin")
+                    //{
+                    //    $("#selectorg").modal("show");
+                    //}
+                    //else
+                    //{
+                    //    CallToast(data.msg, data.flag);
+                    //}
+                }.bind(this),
+                error: function (e) {
+                    console.log(e);
+                    $("#progress").hide();
+                    alert('Error! Please try again');
+                }
+            })
+        }
+    },
+
     render: function () {
         //Render form
         return (
@@ -12,7 +72,7 @@
                             </div>
                             <div className="modal-body">
                                 <div className="createorg">
-                                    <form>
+                                    <form noValidate onSubmit={this.handleSubmit}>
                                         <div className="setupform">
                                             <div className="form-group">
                                                 <label>Enter Name of Oraganization</label>
@@ -86,4 +146,4 @@
         );
     }
 });
-ReactDOM.render(<CreateOrg />, document.getElementById('create'));
+ReactDOM.render(<CreateOrg urlPost="/Dashboard/Overview" />, document.getElementById('create'));
