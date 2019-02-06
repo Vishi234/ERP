@@ -88,7 +88,7 @@ var LoginForm = React.createClass({
                         {
                         dynamicLi += '<li> <a href="/Dashboard/Overview/custId=' + data.CUSTOMER_ID + ' ">  <i className="fa fa-home" ></i> ' + data.CUSTOMER_NAME + ' </a></li>';
                         });
-                        
+                        $('.leftlist ul').empty();
                         $('.leftlist ul').append(dynamicLi);
                         $("#selectorg").modal("show");
                     }
