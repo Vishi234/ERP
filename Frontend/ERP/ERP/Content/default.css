@@ -1056,23 +1056,7 @@ a {
     border: 1px solid #ccc;
     height: 200px;
     border-right: none;
-    overflow: auto;
 }
-
-    .leftlist::-webkit-scrollbar {
-        width: 5px;
-    }
-
-    .leftlist::-webkit-scrollbar-track {
-        border-radius: 10px;
-        padding: 10px;
-        display: none;
-    }
-
-    .leftlist::-webkit-scrollbar-thumb {
-        border-radius: 10px;
-        background: rgba(0, 0, 0, .7);
-    }
 
     .leftlist > ul > li {
         display: inline-block;
@@ -1083,14 +1067,11 @@ a {
             padding: 10px;
             display: block;
             border-bottom: 1px solid #eee;
-            font-size: 1em;
-            font-weight: 500;
-            text-transform: capitalize;
+            font-size: 1.1em;
+            font-weight: 400;
         }
 
-            .leftlist > ul > li > a:hover {
-                background: #f4f4f4;
-            }
+
 
 .rightoption {
     float: right;
@@ -1365,7 +1346,7 @@ a {
 
     .acform .form-control {
         font-size: 12px;
-        height: 33px;
+        height: 30px;
     }
 
     .acform .btn-success {
@@ -1375,20 +1356,3 @@ a {
 .modal-md {
     max-width: 400px !important;
 }
-
-.acform .SumoSelect {
-    display: block !important;
-    width: 100% !important;
-}
-
-.acform p {
-    line-height: 20px !important;
-}
-
-.SumoSelect.open > .optWrapper {
-    top: 32px !important;
-}
-
-    .SumoSelect.open > .optWrapper > ul > li > label {
-        margin-bottom: 0px;
-    }

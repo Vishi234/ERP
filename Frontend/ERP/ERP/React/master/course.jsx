@@ -5,12 +5,12 @@
             <div>
                 <div className="inner-menu">
                     <span className="pull-left httl">
-                        Course Details
+                        Course
                     </span>
                     <div className="pull-right hlink">
                         <ul>
                             <li>
-                                <a href="javascript:void(0)" data-target="#course" className="btn btn-primary openmodal"><i className="fa fa-plus"></i> Add</a>
+                                <a href="javascript:void(0)" data-target="#academic" className="btn btn-primary openmodal"><i className="fa fa-plus"></i> Add</a>
                             </li>
                             <li>
                                 <input type="text" className="form-control" placeholder="Search inside.." />
@@ -23,7 +23,7 @@
                         </ul>
                     </div>
                 </div>
-                <div className="modal fade" id="course" data-backdrop="static" data-keyboard="false">
+                <div className="modal fade" id="academic" data-backdrop="static" data-keyboard="false">
                     <div className="modal-dialog modal-md">
                         <div className="modal-content">
                             <div className="modal-header">
@@ -38,12 +38,16 @@
                                             <input type="text" className="form-control" />
                                         </div>
                                         <div className="form-group">
-                                            <label>Course Name</label>
-                                            <input type="text" className="form-control" />
+                                            <label>Academic Year</label>
+                                            <input type="text" placeholder="YYYY-YYYY" className="form-control" />
                                         </div>
                                         <div className="form-group">
-                                            <label>No. Of Semester</label>
-                                            <input type="text" className="form-control" />
+                                            <label>Start Date</label>
+                                            <input type="text" placeholder="DD-MMM-YYYY" className="form-control" />
+                                        </div>
+                                        <div className="form-group">
+                                            <label>End Date</label>
+                                            <input type="text" placeholder="DD-MMM-YYYY" className="form-control" />
                                         </div>
                                         <input type="submit" className="btn btn-success" value="Save" />
                                     </form>

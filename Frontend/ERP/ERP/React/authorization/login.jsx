@@ -7,7 +7,6 @@
     //validation function
     isValid: function (input) {
         //check required field
-       
         if (input.getAttribute('required') != null && input.value === "") {
             input.classList.add('input-validation-error'); //add class error
             input.nextSibling.classList.add('field-validation-error');
@@ -78,7 +77,6 @@ var LoginForm = React.createClass({
                 },
                 success: function (data) {
                     $("#progress").hide();
-
                     if (data.flag == "S")
                     {
                         window.location.href = "/Dashboard/Overview";
@@ -90,25 +88,14 @@ var LoginForm = React.createClass({
                         {
                         dynamicLi += '<li> <a href="/Dashboard/Overview/custId=' + data.CUSTOMER_ID + ' ">  <i className="fa fa-home" ></i> ' + data.CUSTOMER_NAME + ' </a></li>';
                         });
-                        
+                        $('.leftlist ul').empty();
                         $('.leftlist ul').append(dynamicLi);
                         $("#selectorg").modal("show");
                     }
-                    else {
+                    else
+                    {
                         CallToast(data.msg, data.flag);
                     }
-                    //if (data.flag == "S")
-                    //{
-                    //    window.location.href = "/Dashboard/Overview";
-                    //}
-                    //else if (data.msg == "Super Admin")
-                    //{
-                    //    $("#selectorg").modal("show");
-                    //}
-                    //else
-                    //{
-                    //    CallToast(data.msg, data.flag);
-                    //}
                 }.bind(this),
                 error: function (e) {
                     console.log(e);

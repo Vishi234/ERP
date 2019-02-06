@@ -18,8 +18,6 @@ namespace ERP
                         "~/Scripts/jquery.toast.min.js",
                         "~/Scripts/jquery.sumoselect.min.js",
                         "~/Scripts/jquery-isotope.min.js",
-                        "~/Scripts/moment.min.js",
-                        "~/Scripts/daterangepicker.js",
                         "~/Scripts/custom.js",
                         "~/Scripts/fontawesome/all.js"));
             bundles.Add(new ScriptBundle("~/bundles/react").Include(
@@ -36,7 +34,6 @@ namespace ERP
                       "~/Content/default.css",
                       "~/Content/fontawesome-all.css",
                       "~/Content/jquery.toast.min.css",
-                      "~/Content/daterangepicker.css",
                       "~/Content/sumoselect.min.css"));
         }
     }
