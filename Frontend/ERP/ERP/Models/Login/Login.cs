@@ -70,7 +70,7 @@ namespace ERP.Models.Login
                         }
                         if (ds.Tables[1].Rows.Count > 0)
                         {
-                            HttpContext.Current.Session["ModuelInfo"] = ds.Tables[0];
+                            HttpContext.Current.Session["ModuelInfo"] = ds.Tables[1];
                         }
                     }
                 }

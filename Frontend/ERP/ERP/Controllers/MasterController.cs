@@ -17,5 +17,9 @@ namespace ERP.Controllers
         {
             return View();
         }
+        public ActionResult Duration()
+        {
+            return View();
+        }
     }
 }
