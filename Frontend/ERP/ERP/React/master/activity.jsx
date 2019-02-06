@@ -1,40 +1,53 @@
-﻿var AcademicYearForm = React.createClass({
+﻿var ActivityForm = React.createClass({
     render: function () {
         //Render form
         return (
             <div>
                 <div className="inner-menu">
                     <span className="pull-left httl">
-                        Academic Year
+                        Activity
                     </span>
                 </div>
                 <div className="formarea">
-                    <span className="formheader">Add/Update Academic Year</span>
+                    <span className="formheader">Add/Update Activity</span>
                     <div className="acform">
                         <form>
                             <ul>
                                 <li>
                                     <div className="form-group">
-                                        <label>Code</label>
+                                        <label>Activity Name</label>
                                         <input type="text" className="form-control" />
                                     </div>
                                 </li>
                                 <li>
                                     <div className="form-group">
-                                        <label>Academic Year</label>
-                                        <input type="text" placeholder="YYYY-YYYY" className="form-control" />
+                                        <label>Status</label>
+                                        <select>
+                                            <option value="1" selected="selected">Active</option>
+                                            <option value="0">In-Active</option>
+                                        </select>
                                     </div>
+                                </li>
+                                <li>
+                                   <div className="form-group">
+                                        <label>Activity Type</label>
+                                        <select>
+                                            <option value="0" selected="selected">Select Activity Type</option>
+                                            <option value="1">Temporary</option>
+                                            <option value="2">Permanent</option>
+                                        </select>
+                                   </div>
                                 </li>
                                 <li>
                                     <div className="form-group">
                                         <label>Start Date</label>
-                                        <input type="text" placeholder="DD-MMM-YYYY" className="startDate form-control" />
+                                        <input type="text" className="startDate form-control" />
                                     </div>
                                 </li>
                                 <li>
                                     <div className="form-group">
                                         <label>End Date</label>
-                                        <input type="text" placeholder="DD-MMM-YYYY" className="endDate form-control" />
+                                        <input type="text" className="endDate form-control" />
                                     </div>
                                 </li>
                             </ul>
@@ -46,4 +59,4 @@
         );
     }
 });
-ReactDOM.render(<AcademicYearForm />, document.getElementById('academicform'));
+ReactDOM.render(<ActivityForm />, document.getElementById('activityform'));
