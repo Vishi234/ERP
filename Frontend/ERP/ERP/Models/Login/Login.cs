@@ -8,15 +8,22 @@ using System.Text;
 using System.Web;
 using ERP.Models.Common;
 using System.Configuration;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using Dal;
+using ERP.Models.Entity;
+using DaL;
 
 namespace ERP.Models.Login
 {
     public class CommonLogin
     {
-        public string CheckLogin(string email,string password)
+        
+        string sqlConn= ConfigurationManager.ConnectionStrings["CS"].ConnectionString;
+
+        public ResultEntity CheckLogin(string email, string password)
         {
-            Dal.CommanDal objDal = new Dal.CommanDal();
-            string jsonResult, verifyFlag, rspMsg = string.Empty;
+            ResultEntity result = new ResultEntity();
             try
             {
                 SqlParameter[] sqlParameter = new SqlParameter[8];
@@ -40,24 +47,35 @@ namespace ERP.Models.Login
                 sqlParameter[7] = new SqlParameter("@P_ERR_MSG", SqlDbType.NVarChar);
                 sqlParameter[7].Direction = ParameterDirection.Output;
                 sqlParameter[7].Size = 500;
-
                 DataSet ds = new DataSet();
-                ds = objDal.ExecuteDataSet("SP_CHECK_LOGIN", sqlParameter , true);
-                UserEntity objUserEntity = new UserEntity();
-                objUserEntity.UserName = sqlParameter[2].Value.ToString();
-                objUserEntity.Userid = sqlParameter[3].Value.ToString();
-                objUserEntity.RoleId = sqlParameter[4].Value.ToString();
-                objUserEntity.userCategoryId = sqlParameter[5].Value.ToString();
-                verifyFlag = sqlParameter[6].Value.ToString();
-                rspMsg = sqlParameter[7].Value.ToString();
-                HttpContext.Current.Session["UserDetails"] = objUserEntity;
-                jsonResult = CommonFunc.DtToJSON(ds.Tables[0]);
-                return jsonResult;
+                ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_CHECK_LOGIN", sqlParameter);
+                result.flag = sqlParameter[6].Value.ToString();
+                result.msg = sqlParameter[7].Value.ToString();
+
+                if (result.flag.ToUpper() == "S")
+                {
+                    UserEntity objUserEntity = UserEntity.GetInstance();
+                    objUserEntity.UserName = sqlParameter[2].Value.ToString();
+                    objUserEntity.Userid = sqlParameter[3].Value.ToString();
+                    objUserEntity.RoleId = sqlParameter[4].Value.ToString();
+                    objUserEntity.userCategoryId = sqlParameter[5].Value.ToString();
+                    HttpContext.Current.Session["UserDetails"] = objUserEntity;
+
+                    if (ds != null)
+                    {
+                        if (ds.Tables[0].Rows.Count > 0)
+                        {
+                            HttpContext.Current.Session["ModuelInfo"] = ds.Tables[0];
+                        }
+                    }
+                }
+
+                return result;
             }
             catch (Exception ex)
-            {            
+            {
                 Excep.WriteException(ex);
-                return jsonResult="";
+                return result;
             }
 
         }

@@ -77,11 +77,18 @@ var LoginForm = React.createClass({
                 },
                 success: function (data) {
                     $("#progress").hide();
-                    if (1==1) {
+                    console.log(data);
+                    if (data.flag == "S")
+                    {
                         window.location.href = "/Dashboard/Overview";
                     }
-                    else {
-                        CallToast(data.ERROR_MSG, data.ERROR_FLAG);
+                    else if (data.msg == "Super Admin")
+                    {
+                        $("#selectorg").modal("show");
+                    }
+                    else
+                    {
+                        CallToast(data.msg, data.flag);
                     }
                 }.bind(this),
                 error: function (e) {
@@ -159,7 +166,7 @@ var LoginForm = React.createClass({
                                                     onChange={this.onChangePassword} className="form-control col-md-12" onComponentMounted={this.register} messageRequired={'Password required'} />
                                                 <p className="pull-right frgt"><a href="javascript:void(0)">Forgot Password?</a></p>
                                                 <div className="form-group">
-                                                    <button type="submit" className="btn btn-success btnDisable col-md-12 openmodal" data-direction="top" data-target="#selectorg">Login</button>
+                                                    <button type="submit" className="btn btn-success btnDisable col-md-12" >Login</button>
                                                 </div>
                                             </div>
                                         </form>

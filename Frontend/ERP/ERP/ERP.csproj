@@ -158,9 +158,11 @@
     <Content Include="Images\admin_bg.jpg" />
     <Content Include="Licenses\clearscript-license.txt" />
     <Content Include="Licenses\v8-license.txt" />
+    <Content Include="Logs\ExceptionLog.txt" />
     <Content Include="React\authorization\login.jsx" />
     <Content Include="React\configuration\createorg.jsx" />
     <Content Include="React\configuration\orglist.jsx" />
+    <Content Include="React\master\academicyear.jsx" />
     <Content Include="React\Registration\Registration.jsx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -237,13 +239,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Common\CommonFunc.cs" />
     <Compile Include="Models\Common\Excep.cs" />
-    <Compile Include="Models\Dal\Dal.cs" />
+    <Compile Include="Models\Dal\SQLHelper.cs" />
+    <Compile Include="Models\Dal\SqlHelper2.cs" />
+    <Compile Include="Models\Entity\ResultEntity.cs" />
     <Compile Include="Models\Entity\UserEntity.cs" />
     <Compile Include="Models\Login\Login.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -255,6 +260,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Dashboard\Overview.cshtml" />
     <Content Include="Views\Registration\Registration.cshtml" />
+    <Content Include="Logs\ExceptionLog" />
+    <Content Include="Views\Master\Academic.cshtml" />
+    <Content Include="Views\Master\Course.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

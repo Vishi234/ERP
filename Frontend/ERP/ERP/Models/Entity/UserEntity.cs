@@ -2,9 +2,19 @@
 namespace Models.Entity
 {
 
-    [Serializable()]    
-        public class UserEntity
+    [Serializable()]
+    public class UserEntity
+    {
+        private static UserEntity _instance;
+        protected UserEntity()
         {
+
+        }
+        public static UserEntity GetInstance()
+        {
+            if (_instance == null) _instance = new UserEntity();
+            return _instance;
+        }
         public string Status { get; set; }
         public string Userid { get; set; }
         public string countryID { get; set; }
@@ -28,5 +38,5 @@ namespace Models.Entity
         public string userCategory { get; set; }
         public string userCategoryId { get; set; }
     }
-    
+
 }
