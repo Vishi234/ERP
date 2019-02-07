@@ -85,7 +85,7 @@ namespace ERP.Models.Login
 
         }
 
-        public ResultEntity regisOrg(CustomerEntity customer)
+        public ResultEntity RegisOrg(CustomerEntity customer)
         {
             ResultEntity result = new ResultEntity();
             try

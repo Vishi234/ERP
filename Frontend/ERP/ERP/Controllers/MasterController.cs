@@ -21,5 +21,17 @@ namespace ERP.Controllers
         {
             return View();
         }
+        public ActionResult Activity()
+        {
+            return View();
+        }
+        public ActionResult Subject()
+        {
+            return View();
+        }
+        public ActionResult Mapping()
+        {
+            return View();
+        }
     }
 }

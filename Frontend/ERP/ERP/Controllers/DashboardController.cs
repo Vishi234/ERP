@@ -19,7 +19,7 @@ namespace ERP.Controllers
         public ActionResult Overview(CustomerEntity customer)
         {
             CommonLogin objLogin = new CommonLogin();
-            return Json(objLogin.regisOrg(customer));
+            return Json(objLogin.RegisOrg(customer));
 
 
         }

@@ -1,4 +1,4 @@
-﻿var CreateFields = React.createClass({
+﻿﻿var CreateFields = React.createClass({
     //onchange event
     handleChange: function (e) {
         this.props.onChange(e.target.value);
@@ -250,7 +250,7 @@ var CreateOrg = React.createClass({
                                         </div>
                                         <div className="btn-group">
                                             <span className="pull-left"><a href="javascript:void(0)">I will do it later</a></span>
-                                            <span className="pull-right"><input type="submit" className="btn btn-success" value="Create" /></span>
+                                            <span className="pull-right"><input type="submit" className="btn btn-success" value="Create"  /></span>
                                         </div>
                                     </form>
                                 </div>
