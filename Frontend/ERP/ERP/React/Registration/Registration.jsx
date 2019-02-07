@@ -171,7 +171,7 @@ var RegistrationForm = React.createClass({
                          <MyInput type={'coresszipCode'} value={this.state.coresszipCode} label={'Zip Code'} name={'coresszipCode'} htmlFor={'coresszipCode'}
                              onChange={this.onChangePassword} className="registration-form-control col-md-3" onComponentMounted={this.register} />
                             </div>
-                    <div className="col-lg-4 col-xs-12 col-sm-6 col-md-10">
+                        <div className="col-lg-4 col-xs-12 col-sm-6 col-md-10">
                          <MyInput type={'lastName'} value={this.state.lastName} label={'Last Name'} name={'lastName'} htmlFor={'lastName'} 
                             onChange={this.onChangeEmail} className="registration-form-control col-md-3" onComponentMounted={this.register} />
                          <MyInput type={'fatherLName'} value={this.state.fatherLName} label={'Father Last Name'} name={'fatherLName'} htmlFor={'fatherLName'}
@@ -188,7 +188,7 @@ var RegistrationForm = React.createClass({
                              <option value="Female">Female</option>
                          </select>
                    
-                          <MyInput type={'mediumIns'} value={this.state.mediumIns} label={'Medium Instrution'} name={'mediumIns'} htmlFor={'mediumIns'} isrequired={true}
+                         <MyInput type={'mediumIns'} value={this.state.mediumIns} label={'Medium Instrution'} name={'mediumIns'} htmlFor={'mediumIns'} isrequired={true}
                              onChange={this.onChangePassword} className="registration-form-control col-md-3" onComponentMounted={this.register} messageRequired={'Medium Instrution required'} />                                                        
                          <MyInput type={'nameSibiling'} value={this.state.nameSibiling} label={'Sibiling Name'} name={'nameSibiling'} htmlFor={'nameSibiling'}
                              onChange={this.onChangePassword} className="registration-form-control col-md-3" onComponentMounted={this.register} />                   

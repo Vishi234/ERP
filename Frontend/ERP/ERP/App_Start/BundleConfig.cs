@@ -26,9 +26,9 @@ namespace ERP
                          "~/Scripts/react.development.js",
                         "~/Scripts/react-dom.development.js",
                         "~/Scripts/remarkable.min.js",
-                        "~/Scripts/prop-types.js"));
-            //bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-            //            "~/Scripts/jquery.validate*"));
+                        "~/Scripts/prop-types.js",
+                        "~/React/common/commonInputFields.jsx"
+                        ));
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
             bundles.Add(new StyleBundle("~/bundles/css").Include(

@@ -163,9 +163,7 @@ var CreateOrg = React.createClass({
         this.setState({
             orgPan: value
         });
-    },
-
-
+    }, 
     //register input controls
     register: function (field) {
         var s = this.state.Fields;
@@ -174,6 +172,7 @@ var CreateOrg = React.createClass({
             Fields: s
         })
     },
+
     render: function () {
         //Render form
         return (
@@ -261,5 +260,8 @@ var CreateOrg = React.createClass({
             </div>
         );
     }
+
+
+
 });
 ReactDOM.render(<CreateOrg urlPost="Dashboard/Overview" />, document.getElementById('create'));

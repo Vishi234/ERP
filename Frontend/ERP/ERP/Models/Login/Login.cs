@@ -68,10 +68,10 @@ namespace ERP.Models.Login
                            result.addParams= CommonFunc.DtToJSON(ds.Tables[0]);
                            // HttpContext.Current.Session["CustomerList"] = ds.Tables[0];
                         }
-                        //if (ds.Tables[1].Rows.Count > 0)
-                        //{
-                        //    HttpContext.Current.Session["ModuelInfo"] = ds.Tables[1];
-                        //}
+                        if (ds.Tables[1].Rows.Count > 0)
+                        {
+                            HttpContext.Current.Session["ModuelInfo"] = ds.Tables[1];
+                        }
                     }
                 }
 

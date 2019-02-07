@@ -161,6 +161,7 @@
     <Content Include="Licenses\v8-license.txt" />
     <Content Include="Logs\ExceptionLog.txt" />
     <Content Include="React\authorization\login.jsx" />
+    <Content Include="React\common\commonInputFields.jsx" />
     <Content Include="React\configuration\createorg.jsx" />
     <Content Include="React\configuration\orglist.jsx" />
     <Content Include="React\master\academicyear.jsx" />
@@ -256,9 +257,11 @@
     <Compile Include="Models\Dal\SQLHelper.cs" />
     <Compile Include="Models\Dal\SqlHelper2.cs" />
     <Compile Include="Models\Entity\CustomerEntity.cs" />
+    <Compile Include="Models\Entity\MasterEntity.cs" />
     <Compile Include="Models\Entity\ResultEntity.cs" />
     <Compile Include="Models\Entity\UserEntity.cs" />
     <Compile Include="Models\Login\Login.cs" />
+    <Compile Include="Models\Master\Master.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
