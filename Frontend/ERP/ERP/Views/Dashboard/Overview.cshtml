@@ -3,10 +3,33 @@
     ViewBag.Title = "Overview";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="top-bar">
-    <div class="bread-custom">
-        <h4>General Management</h4>
-        <span>Masters</span>
+<div class="tab-base">
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#home" tab-id="#home">Academic Year</a></li>
+        <li><a data-toggle="tab" href="#menu1" tab-id="#menu1">Course</a></li>
+        <li><a data-toggle="tab" href="#menu2" tab-id="#menu1">Semester</a></li>
+        <li><a data-toggle="tab" href="#menu2" tab-id="#menu1">Course Semester Duration</a></li>
+        <li><a data-toggle="tab" href="#menu2" tab-id="#menu1">Subjects</a></li>
+        <li><a data-toggle="tab" href="#menu2"tab-id="#menu1">Course Subject Mapping</a></li>
+        <li><a data-toggle="tab" href="#menu2"tab-id="#menu1">Employee</a></li>
+        <li><a data-toggle="tab" href="#menu2"tab-id="#menu1">Section</a></li>
+        <li><a data-toggle="tab" href="#menu2"tab-id="#menu1">Student Section Mapping</a></li>
+        <li><a data-toggle="tab" href="#menu2"tab-id="#menu1">Faculty Subjects</a></li>
+        <li><a data-toggle="tab" href="#menu2"tab-id="#menu1">Master Grade</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="home" class="tab-pane fade in active show">
+            <h3>HOME</h3>
+            <p>Some content.</p>
+        </div>
+        <div id="menu1" class="tab-pane fade">
+            <h3>Menu 1</h3>
+            <p>Some content in menu 1.</p>
+        </div>
+        <div id="menu2" class="tab-pane fade">
+            <h3>Menu 2</h3>
+            <p>Some content in menu 2.</p>
+        </div>
     </div>
 </div>
 

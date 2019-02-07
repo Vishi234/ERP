@@ -5,10 +5,12 @@
 
 body {
     color: #333;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 12px;
+    /*font-family: 'Montserrat', sans-serif;*/
+    font: 12px 'Roboto', sans-serif;
+    /*font-size: 12px;*/
     line-height: 1.42857;
     overflow-x: hidden;
+    letter-spacing: 0.9px;
     /*background: #EDF1F5;*/
 }
 
@@ -91,7 +93,6 @@ a {
 
 .lgnheader {
     background: #2E3F50;
-    border-top: 3px solid #ea2330;
 }
 
 
@@ -236,8 +237,9 @@ a {
 
     .tpara > span:nth-child(1) {
         font-size: 18px;
-        border-bottom: 2px solid #ea2330;
+        border-bottom: 2px solid #265077;
         font-weight: 600;
+        color: #00887a;
     }
 
     .tpara > span:nth-child(2) {
@@ -252,13 +254,13 @@ a {
         }
 
 .btn-success {
-    background: #ea2330;
+    background: #265077;
     font-size: 1.2em;
     font-weight: 500;
     letter-spacing: 1px;
     color: #fff;
-    border: 1px solid #ea2330;
-    border-color: #ea2330;
+    border: 1px solid #265077;
+    border-color: #265077;
     border-radius: 0px;
     -webkit-box-shadow: 0px 2px 2px 0px #cdcdcd;
     -moz-box-shadow: 0px 2px 2px 0px #cdcdcd;
@@ -275,15 +277,15 @@ a {
     .btn-success:active,
     .btn-success.active,
     .open .dropdown-toggle.btn-success {
-        background: #c7131f;
-        border-color: #c7131f;
+        background: #1f4161;
+        border-color: #1f4161;
         outline: none;
         box-shadow: 0px 2px 2px 0px #cdcdcd;
     }
 
     .btn-success:not(:disabled):not(.disabled):active, .btn-success:not(:disabled):not(.disabled).active, .show > .btn-success.dropdown-toggle {
-        background: #c7131f;
-        border-color: #c7131f;
+        background: #1f4161;
+        border-color: #1f4161;
         outline: none;
         box-shadow: 0px 2px 2px 0px #cdcdcd;
     }
@@ -372,10 +374,10 @@ a {
 
 .header {
     width: 100%;
-    background: #2E3F50;
-    height: 50px;
-    border-top: 3px solid #ea2330;
-    position: fixed;
+    background: #fff;
+    height: 46px;
+    /* border-top: 3px solid #265077; */
+    /*border-bottom: 1px solid #cbd6e2*/
 }
 
 .rtopcon {
@@ -391,18 +393,19 @@ a {
         .rtopcon > ul > li > a {
             display: block;
             padding: 6px;
-            border: 2px solid #fff;
+            border: 2px solid #808080;
             border-radius: 35px;
             height: 30px;
             width: 30px;
             text-align: center;
-            color: #fff;
+            color: #808080;
             transition: all 0.4s ease-in-out;
         }
 
         .rtopcon > ul > li:hover > a {
-            color: #ea2330;
-            border: 2px solid #00BCA6;
+            color: #00887a;
+            border: 2px solid #00887a;
+            border-radius: 2px;
             cursor: pointer;
         }
 
@@ -413,8 +416,8 @@ a {
 .userinfo {
     margin: 0px !important;
     padding: 14px;
-    background: #293848;
-    border-left: 1px solid #000;
+    background: #fff;
+    cursor: pointer;
 }
 
     .userinfo > a {
@@ -423,15 +426,31 @@ a {
         border: none !important;
         padding: 0px !important;
         font-size: 12px !important;
-        color: #fff !important;
+        color: #808080;
         font-weight: 500;
     }
 
-        .userinfo > a > span > svg {
-            font-size: 16px;
-            margin-left: 8px;
-            float: right;
-        }
+.userinfoactive {
+    background: #00887a;
+}
+
+    .userinfoactive > a {
+        color: #fff !important;
+    }
+
+.userinfo:hover {
+    background: #00887a;
+}
+
+    .userinfo:hover > a {
+        color: #fff !important;
+    }
+
+.userinfo > a > span > svg {
+    font-size: 16px;
+    margin-left: 8px;
+    float: right;
+}
 
 .arrow_box {
     position: absolute;
@@ -564,6 +583,32 @@ a {
         padding: 5px 10px;
     }
 
+.top-menu {
+    background: #265077;
+    height: 33px;
+    overflow: hidden;
+}
+
+.top-menu-inside > ul > li {
+    display: inline-block;
+    border-right: 1px solid #1f4161;
+    margin-left: -4px;
+}
+
+    .top-menu-inside > ul > li > a {
+        display: block;
+        padding: 8px;
+        color: #fff;
+    }
+
+        .top-menu-inside > ul > li > a:hover {
+            background: #00887a;
+        }
+
+.top-men-active {
+    background: #00887a !important;
+}
+
 .show {
     display: block !important;
 }
@@ -579,7 +624,7 @@ a {
     height: 100%;
     background: #2E3F50;
     width: 17%;
-    border-top: 3px solid #ea2330;
+    border-top: 3px solid #265077;
 }
 
 .navigation-menu {
@@ -1284,7 +1329,7 @@ a {
 
 .modal-header {
     background: #2E3F50 !important;
-    border-top: 3px solid #ea2330 !important;
+    border-top: 3px solid #265077 !important;
     border-radius: 0px !important;
     padding: 10px !important;
 }
@@ -1313,7 +1358,7 @@ a {
         padding: 11px;
         font-weight: 500;
         letter-spacing: 1px;
-        border-bottom: 2px solid #ea2330;
+        border-bottom: 2px solid #265077;
     }
 
 .btn-primary {
@@ -1354,22 +1399,34 @@ a {
 }
 
 .acform {
-    width: 80%;
-    display: block;
-    margin: 0 auto;
+    width: 100%;
+    display: inline-block;
+    margin: 15px auto;
+    text-align: center;
 }
 
-    .acform label {
-        font-weight: 500;
+    .acform > form > ul > li {
+        display: inline-block;
+        margin-right: 15px;
+        width: 15%;
     }
 
-    .acform .form-control {
-        font-size: 12px;
-        height: 33px;
-    }
+        .acform > form > ul > li > .form-group > label {
+            font-weight: 500;
+            float: left;
+            margin-bottom: 3px;
+            letter-spacing: 1.1px;
+        }
+
+        .acform > form > ul > li > .form-group > .form-control {
+            font-size: 12px;
+            height: 33px;
+        }
 
     .acform .btn-success {
-        width: 100%;
+        width: 7%;
+        border-radius: 3px;
+        font-size: 1.1em;
     }
 
 .modal-md {
@@ -1377,8 +1434,9 @@ a {
 }
 
 .acform .SumoSelect {
-    display: block !important;
     width: 100% !important;
+    text-align: left;
+    display: grid;
 }
 
 .acform p {
@@ -1392,3 +1450,94 @@ a {
     .SumoSelect.open > .optWrapper > ul > li > label {
         margin-bottom: 0px;
     }
+
+.formarea {
+    background: #fff;
+    margin: 7px;
+    text-align: center;
+    border: 1px solid #eee;
+    box-shadow: 0px 0px 1px rgba(0,0,0,0.1);
+}
+
+.formheader {
+    display: inline-block;
+    margin: 0 auto;
+    /* width: 20%; */
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1.1px;
+    padding: 10px;
+    text-align: center;
+    color: #265077;
+    border-bottom: 2px solid #265077;
+}
+
+.tab-base {
+    margin-top: 10px;
+    /* background: #fff; */
+    display: block;
+    padding-top: 0px;
+    width: 100%;
+    /* box-shadow: 0px 0px 8px rgba(203, 214, 226,0.5); */
+    /* padding: 10px; */
+    /* border: 1px solid #cbd6e2; */
+}
+
+.nav > li {
+    position: relative;
+    display: block;
+}
+
+.nav-tabs {
+    margin-top: 20px;
+}
+
+    .nav-tabs > li {
+        float: left;
+        margin-bottom: -2px;
+    }
+
+        .nav-tabs > li:first-child {
+            margin-left: 15px;
+        }
+
+        .nav-tabs > li > a {
+            margin-right: 2px;
+            font-weight: 500;
+            color: #808080;
+            line-height: 1.42857143;
+            border: 1px solid transparent;
+            border-radius: 4px 4px 0 0;
+        }
+
+.nav > li > a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+    color: #555;
+    cursor: default;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-top: 2px solid #00887a !important;
+    border-bottom-color: transparent;
+    box-shadow: 0px -2px 8px rgba(203, 214, 226,0.5);
+}
+
+.nav-tabs > li > a {
+    padding: 8px 5px;
+    font-size: 11px;
+    border: 1px solid #ccc;
+    border-top: 2px solid rgba(203, 214, 226,0.5);
+    border-radius: 4px 2px 0px 0px;
+    /* background: -webkit-linear-gradient(top, #fefefe 0%,#d1d1d1 100%); */
+}
+
+.tab-content {
+    border-top: 0px;
+    padding: 15px;
+    background: #fff;
+    box-shadow: 0px 0px 8px rgba(203, 214, 226,0.5);
+}

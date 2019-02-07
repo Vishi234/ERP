@@ -165,8 +165,11 @@
     <Content Include="React\configuration\createorg.jsx" />
     <Content Include="React\configuration\orglist.jsx" />
     <Content Include="React\master\academicyear.jsx" />
+    <Content Include="React\master\activity.jsx" />
     <Content Include="React\master\course.jsx" />
     <Content Include="React\master\duration.jsx" />
+    <Content Include="React\master\mapping.jsx" />
+    <Content Include="React\master\subject.jsx" />
     <Content Include="React\Registration\Registration.jsx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -275,6 +278,9 @@
     <Content Include="Views\Master\Academic.cshtml" />
     <Content Include="Views\Master\Course.cshtml" />
     <Content Include="Views\Master\Duration.cshtml" />
+    <Content Include="Views\Master\Activity.cshtml" />
+    <Content Include="Views\Master\Subject.cshtml" />
+    <Content Include="Views\Master\Mapping.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -303,7 +309,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50515</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
