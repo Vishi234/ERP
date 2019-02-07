@@ -45,22 +45,14 @@
                 className='registration-form-control' required={this.props.isrequired} onChange={this.handleChange} />
 
         }
-        else if (this.props.type == 'wefDate') {
-            inputField = <input type={this.props.type} placeholder={"DD-MMM-YYYY"} value={this.props.value} ref={this.props.name} name={this.props.name}
-                className='startDate' required={this.props.isrequired} onChange={this.handleChange} />
-        }
-        else if (this.props.type == 'wetDate') {
-            inputField = <input type={this.props.type} placeholder={"DD-MMM-YYYY"} value={this.props.value} ref={this.props.name} name={this.props.name}
-                className='endDate' required={this.props.isrequired} onChange={this.handleChange} />
-        }
         else
         {
             inputField = <input type={this.props.type} value={this.props.value} ref={this.props.name} name={this.props.name}
-                className='registration-form-control' required={this.props.isrequired} onChange={this.handleChange} />
+                className={this.props.className} required={this.props.isrequired} onChange={this.handleChange} />
         }
         return (
             <div className="form-group">
-                <label className="label--title" htmlFor={this.props.htmlFor}>{this.props.label}:</label>
+                <label htmlFor={this.props.htmlFor}>{this.props.label}:</label>
                 {inputField}
                 <span className="field-validation-error"></span>
             </div>

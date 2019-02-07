@@ -237,9 +237,8 @@ a {
 
     .tpara > span:nth-child(1) {
         font-size: 18px;
-        border-bottom: 2px solid #265077;
+        border-bottom: 2px solid #ea2330;
         font-weight: 600;
-        color: #00887a;
     }
 
     .tpara > span:nth-child(2) {
@@ -254,13 +253,13 @@ a {
         }
 
 .btn-success {
-    background: #265077;
+    background: #00887a;
     font-size: 1.2em;
     font-weight: 500;
     letter-spacing: 1px;
     color: #fff;
-    border: 1px solid #265077;
-    border-color: #265077;
+    border: 1px solid #00887a;
+    border-color: #00887a;
     border-radius: 0px;
     -webkit-box-shadow: 0px 2px 2px 0px #cdcdcd;
     -moz-box-shadow: 0px 2px 2px 0px #cdcdcd;
@@ -277,15 +276,15 @@ a {
     .btn-success:active,
     .btn-success.active,
     .open .dropdown-toggle.btn-success {
-        background: #1f4161;
-        border-color: #1f4161;
+        background: #02665c;
+        border-color: #02665c;
         outline: none;
         box-shadow: 0px 2px 2px 0px #cdcdcd;
     }
 
     .btn-success:not(:disabled):not(.disabled):active, .btn-success:not(:disabled):not(.disabled).active, .show > .btn-success.dropdown-toggle {
-        background: #1f4161;
-        border-color: #1f4161;
+        background: #02665c;
+        border-color: #02665c;
         outline: none;
         box-shadow: 0px 2px 2px 0px #cdcdcd;
     }
@@ -374,10 +373,10 @@ a {
 
 .header {
     width: 100%;
-    background: #fff;
-    height: 46px;
-    /* border-top: 3px solid #265077; */
-    /*border-bottom: 1px solid #cbd6e2*/
+    background: #2E3F50;
+    height: 47px;
+    /* border-top: 3px solid #ea2330; */
+    position: fixed;
 }
 
 .rtopcon {
@@ -393,19 +392,18 @@ a {
         .rtopcon > ul > li > a {
             display: block;
             padding: 6px;
-            border: 2px solid #808080;
+            border: 2px solid #fff;
             border-radius: 35px;
             height: 30px;
             width: 30px;
             text-align: center;
-            color: #808080;
+            color: #fff;
             transition: all 0.4s ease-in-out;
         }
 
         .rtopcon > ul > li:hover > a {
-            color: #00887a;
-            border: 2px solid #00887a;
-            border-radius: 2px;
+            color: #ea2330;
+            border: 2px solid #00BCA6;
             cursor: pointer;
         }
 
@@ -416,7 +414,8 @@ a {
 .userinfo {
     margin: 0px !important;
     padding: 14px;
-    background: #fff;
+    background: #293848;
+    border-left: 1px solid #000;
     cursor: pointer;
 }
 
@@ -426,30 +425,18 @@ a {
         border: none !important;
         padding: 0px !important;
         font-size: 12px !important;
-        color: #808080;
+        color: #fff !important;
         font-weight: 500;
     }
 
+        .userinfo > a > span > svg {
+            font-size: 16px;
+            margin-left: 8px;
+            float: right;
+        }
+
 .userinfoactive {
-    background: #00887a;
-}
-
-    .userinfoactive > a {
-        color: #fff !important;
-    }
-
-.userinfo:hover {
-    background: #00887a;
-}
-
-    .userinfo:hover > a {
-        color: #fff !important;
-    }
-
-.userinfo > a > span > svg {
-    font-size: 16px;
-    margin-left: 8px;
-    float: right;
+    background: #19212B;
 }
 
 .arrow_box {
@@ -583,32 +570,6 @@ a {
         padding: 5px 10px;
     }
 
-.top-menu {
-    background: #265077;
-    height: 33px;
-    overflow: hidden;
-}
-
-.top-menu-inside > ul > li {
-    display: inline-block;
-    border-right: 1px solid #1f4161;
-    margin-left: -4px;
-}
-
-    .top-menu-inside > ul > li > a {
-        display: block;
-        padding: 8px;
-        color: #fff;
-    }
-
-        .top-menu-inside > ul > li > a:hover {
-            background: #00887a;
-        }
-
-.top-men-active {
-    background: #00887a !important;
-}
-
 .show {
     display: block !important;
 }
@@ -623,8 +584,7 @@ a {
     top: 0;
     height: 100%;
     background: #2E3F50;
-    width: 17%;
-    border-top: 3px solid #265077;
+    width: 15%;
 }
 
 .navigation-menu {
@@ -657,12 +617,12 @@ a {
         .navigation-menu > ul > li > a {
             display: block;
             padding: 15px 10px;
-            font-size: 1em;
+            /* font-size: 1em; */
             font-weight: 500;
             border-bottom: 1px solid #404854;
             color: #fff;
             transition: all 0.4s ease-in-out;
-            height: 60px;
+            height: 45px;
         }
 
             .navigation-menu > ul > li > a > p {
@@ -846,10 +806,10 @@ a {
 
 
 .rightcontentsec {
-    width: 83%;
+    width: 85%;
     float: right;
     height: 100%;
-    margin-top: 51px;
+    margin-top: 47px;
 }
 
 .Registrationform {
@@ -878,6 +838,7 @@ a {
     background: #fff;
     border: 1px solid #999;
     border-radius: 4px;
+    padding-left: 5px;
     font-size: 12px;
     height: 25px;
     width: 50%;
@@ -1329,7 +1290,7 @@ a {
 
 .modal-header {
     background: #2E3F50 !important;
-    border-top: 3px solid #265077 !important;
+    border-top: 3px solid #ea2330 !important;
     border-radius: 0px !important;
     padding: 10px !important;
 }
@@ -1350,7 +1311,10 @@ a {
     display: inline-block;
     width: 100%;
     background: #fff;
-    box-shadow: 0px 0px 4px rgba(0,0,0,0.4);
+    /* box-shadow: 0px 0px 4px rgba(0,0,0,0.4); */
+    box-shadow: 0px 0px 8px rgba(203, 214, 226,0.5);
+    /* padding: 10px; */
+    border: 1px solid #cbd6e2;
 }
 
     .inner-menu > .httl {
@@ -1358,7 +1322,7 @@ a {
         padding: 11px;
         font-weight: 500;
         letter-spacing: 1px;
-        border-bottom: 2px solid #265077;
+        border-bottom: 2px solid #ea2330;
     }
 
 .btn-primary {
@@ -1401,32 +1365,39 @@ a {
 .acform {
     width: 100%;
     display: inline-block;
-    margin: 15px auto;
-    text-align: center;
 }
 
     .acform > form > ul > li {
         display: inline-block;
-        margin-right: 15px;
-        width: 15%;
+        width: 20%;
     }
 
         .acform > form > ul > li > .form-group > label {
             font-weight: 500;
             float: left;
             margin-bottom: 3px;
+            margin-top: 4px;
             letter-spacing: 1.1px;
+            margin-right: 5px;
         }
 
         .acform > form > ul > li > .form-group > .form-control {
+            background: #fff;
+            border: 1px solid #999;
+            border-radius: 4px;
+            padding-left: 5px;
             font-size: 12px;
-            height: 33px;
+            height: 25px;
+            width: 50%;
+            box-shadow: none;
         }
 
     .acform .btn-success {
-        width: 7%;
+        width: 30%;
         border-radius: 3px;
-        font-size: 1.1em;
+        font-size: 12px;
+        height: 27px;
+        padding: 0px;
     }
 
 .modal-md {
@@ -1468,8 +1439,8 @@ a {
     letter-spacing: 1.1px;
     padding: 10px;
     text-align: center;
-    color: #265077;
-    border-bottom: 2px solid #265077;
+    color: #ea2330;
+    border-bottom: 2px solid #ea2330;
 }
 
 .tab-base {
@@ -1494,7 +1465,7 @@ a {
 
     .nav-tabs > li {
         float: left;
-        margin-bottom: -2px;
+        margin-bottom: -1px;
     }
 
         .nav-tabs > li:first-child {
@@ -1528,7 +1499,7 @@ a {
 
 .nav-tabs > li > a {
     padding: 8px 5px;
-    font-size: 11px;
+    font-size: 14px;
     border: 1px solid #ccc;
     border-top: 2px solid rgba(203, 214, 226,0.5);
     border-radius: 4px 2px 0px 0px;
@@ -1540,4 +1511,8 @@ a {
     padding: 15px;
     background: #fff;
     box-shadow: 0px 0px 8px rgba(203, 214, 226,0.5);
+}
+
+.fbse {
+    margin: 10px;
 }
