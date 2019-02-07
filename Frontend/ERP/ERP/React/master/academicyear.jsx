@@ -97,22 +97,6 @@ var AcademicYearForm = React.createClass({
                     <span className="pull-left httl">
                         Academic Year
                     </span>
-                    <div className="pull-right hlink">
-                        <ul>
-                            <li>
-                                <a href="javascript:void(0)" data-target="#academic" className="btn btn-primary openmodal">
-                                    <i className="fa fa-plus"></i> Add</a>
-                            </li>
-                            <li>
-                                <input type="text" className="form-control" placeholder="Search inside.." />
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">
-                                    <i className="fa fa-download"></i> <i className="fa fa-caret-down"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
                 <div className="formarea">
                     <span className="formheader">Add/Update Academic Year</span>
