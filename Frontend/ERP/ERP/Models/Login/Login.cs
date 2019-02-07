@@ -85,25 +85,23 @@ namespace ERP.Models.Login
 
         }
 
-        public ResultEntity regisOrg(string CUSTOMER_NAME, string ADD_1, string ADD_2, string FAX_NO, string CITY, string MOBILE, string PHONE, string EMAIL, string WEBSITE, string CUSTOMER_ID, string OPER_TYPE)
+        public ResultEntity RegisOrg(CustomerEntity customer)
         {
             ResultEntity result = new ResultEntity();
             try
             {
                 SqlParameter[] sqlParameter = new SqlParameter[13];
-                sqlParameter[0] = new SqlParameter("@P_CUSTOMER_NAME", CUSTOMER_NAME);
-                sqlParameter[1] = new SqlParameter("@P_ADD_1", ADD_1);
-                sqlParameter[2] = new SqlParameter("@P_ADD_2", ADD_2);
-                sqlParameter[3] = new SqlParameter("@P_FAX_NO", FAX_NO);
-                sqlParameter[4] = new SqlParameter("@P_CITY", CITY);
-                sqlParameter[5] = new SqlParameter("@P_MOBILE", MOBILE);
-                sqlParameter[6] = new SqlParameter("@P_PHONE", PHONE);
-                sqlParameter[7] = new SqlParameter("@P_EMAIL", EMAIL);
-                sqlParameter[8] = new SqlParameter("@P_WEBSITE", WEBSITE);
-                sqlParameter[9] = new SqlParameter("@P_CUSTOMER_ID", CUSTOMER_ID);
-                sqlParameter[10] = new SqlParameter("@P_OPER_TYPE", OPER_TYPE);
-
-
+                sqlParameter[0] = new SqlParameter("@P_CUSTOMER_NAME", customer.orgName);
+                sqlParameter[1] = new SqlParameter("@P_ADD_1", customer.orgAdd1);
+                sqlParameter[2] = new SqlParameter("@P_ADD_2", customer.orgAdd2);
+                sqlParameter[3] = new SqlParameter("@P_FAX_NO", customer.orgFax);
+                sqlParameter[4] = new SqlParameter("@P_CITY", customer.orgCity);
+                sqlParameter[5] = new SqlParameter("@P_MOBILE", customer.orgMobile);
+                sqlParameter[6] = new SqlParameter("@P_PHONE", customer.orgPhone);
+                sqlParameter[7] = new SqlParameter("@P_EMAIL", customer.orgEmail);
+                sqlParameter[8] = new SqlParameter("@P_WEBSITE", customer.orgWebsite);
+                sqlParameter[9] = new SqlParameter("@P_CUSTOMER_ID",customer.orgId);
+                sqlParameter[10] = new SqlParameter("@P_OPER_TYPE", customer.oper);
                 sqlParameter[11] = new SqlParameter("@P_FLAG", SqlDbType.Char);
                 sqlParameter[11].Direction = ParameterDirection.Output;
                 sqlParameter[11].Size = 1;
@@ -113,8 +111,8 @@ namespace ERP.Models.Login
 
                 DataSet ds = new DataSet();
                 ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_ADD_CUSTOMER_AMD", sqlParameter);
-                result.flag = sqlParameter[6].Value.ToString();
-                result.msg = sqlParameter[7].Value.ToString();
+                result.flag = sqlParameter[11].Value.ToString();
+                result.msg = sqlParameter[12].Value.ToString();
 
                 if (result.flag.ToUpper() == "S")
                 {
