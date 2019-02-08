@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/bundles/css")
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
+    @*<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">*@
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/react")
@@ -40,8 +41,8 @@
                                     <i class="fa fa-bell"></i>
                                 </a>
                             </li>
-                            <li class="userinfo">
-                                <a href="javascript:void(0)" class="user-dtl">
+                            <li class="userinfo user-dtl">
+                                <a href="javascript:void(0)">
                                     <span>Web Designers Hub<i class="fa fa-angle-down"></i></span>
                                 </a>
                                 <div class="top-sub-menu">
@@ -92,7 +93,6 @@
                                     <li>
                                         <a href="javascript:void(0)">
                                             @dtRow["MODULE_NAME"]<i class="fa fa-angle-up"></i>
-                                            <p class="sml-desc">Student,Followup,Admission....</p>
                                         </a>
                                         <div class="smenu" menu-level="hm5">
                                             <ul>
@@ -111,16 +111,18 @@
                                             </ul>
                                         </div>
                                     </li>
-                                }
+                                                    }
                             }
                         </ul>
-                    }
+                                                    }
 
                 }
             </div>
         </div>
         <div class="rightcontentsec">
-            @RenderBody()
+            <div class="conbse">
+                @RenderBody()
+            </div>
         </div>
     </div>
 </body>

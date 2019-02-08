@@ -3,6 +3,7 @@
         $(".top-menu li").find("a").removeClass("top-menu-active");
         $(this).addClass("top-menu-active");
     });
+
     $(".navigation-menu > ul > li").click(function () {
         if ($(this).find("a").first().hasClass("click-remove")) {
             var level = $(this).find(".smenu").attr("menu-level");
@@ -16,11 +17,14 @@
         }
 
     });
+
     $(".user-dtl").click(function () {
-        $(this).toggleClass("right-menu-active");
+        $(this).toggleClass("userinfoactive");
         $(".top-sub-menu").toggleClass("show");
     });
+
     $("select").SumoSelect({ search: true, searchText: 'Enter here.' });
+
     $('.openmodal').click(function () {
         $(".modal").modal("hide");
         $($(this).attr("data-target"))
@@ -38,14 +42,30 @@
         }
 
     });
+    $('.startDate').on('apply.daterangepicker', function (ev, picker) {
+        $(this).attr("value", picker.startDate.format('DD-MMM-YYYY'));
 
+    });
     $('.endDate').daterangepicker({
         singleDatePicker: true,
-        startDate: moment().add(10, 'days'),
+        startDate: moment(),
         locale:
         {
             format: 'DD-MMM-YYYY'
         }
+    });
+    $('.endDate').on('apply.daterangepicker', function (ev, picker) {
+        $(this).attr("value", picker.startDate.format('DD-MMM-YYYY'));
+
+    });
+    $(".nav-tabs li").click(function () {
+        var tabId = $(this).find("a").attr("tab-id");
+        $(".nav-tabs>li").removeClass("active");
+        $(".nav-tabs>li>a").removeClass("fade in active show");
+        $(".tab-content").find("div").removeClass("in active show");
+        $(this).addClass("active");
+        $(this).find("a").addClass("active show");
+        $(tabId).addClass("in active show");
     });
 
 })
