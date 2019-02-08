@@ -69,17 +69,6 @@ var AcademicYearForm = React.createClass({
             academicYear: value
         });
     },
-    onChangeStartDate: function (value) {
-        this.setState({
-            wfDate: value
-        });
-    },
-    onChangeEndDate: function (value) {
-        this.setState({
-            wtDate: value
-        });
-    },
-
     //register input controls
     register: function (field) {
         var s = this.state.Fields;
@@ -106,19 +95,19 @@ var AcademicYearForm = React.createClass({
                                         <ul>
                                             <li>
                                                 <CreateInput type={'text'} value={this.state.yearCode} label={'Enter Code'} name={'yearCode'} htmlFor={'yearCode'} isrequired={true}
-                                                             onChange={this.onChangeCode} className={'form-control'} onComponentMounted={this.register} messageRequired={'Academic Year Code is required.'} />
+                                                    onChange={this.onChangeCode} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                             </li>
                                             <li>
                                                 <CreateInput type={'text'} value={this.state.academicYear} label={'Academic Year'} name={'academicYear'} htmlFor={'academicYear'} isrequired={true}
-                                                             onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'Academic Year is required.'} />
+                                                    onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                             </li>
                                             <li>
-                                                <CreateInput type={'text'} value={this.state.wfDate} label={'Start Date'} name={'wfDate'} htmlFor={'wfDate'} isrequired={true}
-                                                             onChange={this.onChangeStartDate} className={'startDate form-control'} onComponentMounted={this.register} messageRequired={'Start Date is required.'} />
+                                                <CreateInput type={'date'} value={this.state.wfDate} label={'Start Date'} name={'wfDate'} htmlFor={'wfDate'} isrequired={true}
+                                                className={'startDate form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                             </li>
                                             <li>
-                                                <CreateInput type={'text'} value={this.state.wtDate} label={'End Date'} name={'wtDate'} htmlFor={'wtDate'} isrequired={true}
-                                                             onChange={this.onChangeEndDate} className={'endDate form-control'} onComponentMounted={this.register} messageRequired={'End Date is required.'} />
+                                                <CreateInput type={'date'} value={this.state.wtDate} label={'End Date'} name={'wtDate'} htmlFor={'wtDate'} isrequired={true}
+                                                className={'endDate form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                             </li>
                                             <li>
                                                 <input type="submit" className="btn btn-success" value="Save" />
