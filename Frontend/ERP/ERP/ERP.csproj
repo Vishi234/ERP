@@ -171,6 +171,7 @@
     <Content Include="React\master\mapping.jsx" />
     <Content Include="React\master\subject.jsx" />
     <Content Include="React\Registration\Registration.jsx" />
+    <Content Include="Scripts\AppConfig.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\custom.js" />

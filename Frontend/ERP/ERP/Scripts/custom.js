@@ -42,16 +42,22 @@
         }
 
     });
+    $('.startDate').on('apply.daterangepicker', function (ev, picker) {
+        $(this).attr("value", picker.startDate.format('DD-MMM-YYYY'));
 
+    });
     $('.endDate').daterangepicker({
         singleDatePicker: true,
-        startDate: moment().add(10, 'days'),
+        startDate: moment(),
         locale:
         {
             format: 'DD-MMM-YYYY'
         }
     });
+    $('.endDate').on('apply.daterangepicker', function (ev, picker) {
+        $(this).attr("value", picker.startDate.format('DD-MMM-YYYY'));
 
+    });
     $(".nav-tabs li").click(function () {
         var tabId = $(this).find("a").attr("tab-id");
         $(".nav-tabs>li").removeClass("active");
