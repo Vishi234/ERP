@@ -5,7 +5,7 @@
             status: "",
             actType: "",
             stDate: "",
-            endDarw:"",
+            endDate: "",
             Fields: [],
             ServerMessage: ''
         }
@@ -22,12 +22,12 @@
         //after validation complete post to server
         if (validForm) {
             var d = {
-                yearCode: this.state.yearCode,
-                academicYear: this.state.academicYear,
-                wfDate: this.state.wfDate,
-                wtDate: this.state.wtDate,
+                actName: this.state.actName,
+                status: this.state.status,
+                actType: this.state.actType,
+                stDate: this.state.stDate,
+                endDate: this.state.endDate,
                 flag: 'A'
-
             }
             $.ajax({
                 type: "POST",
@@ -41,7 +41,7 @@
                     $("#progress").hide();
                     console.log(data);
                     if (data.flag == "S") {
-                        window.location.href = "/Master/Activity";
+                        window.location.href = "/Dashboard/Overview";
                     }
                     else if (data.flag == "D") {
                         $("#selectorg").modal("show");
@@ -49,7 +49,6 @@
                     else {
                         CallToast(data.msg, data.flag);
                     }
-
                 }.bind(this),
                 error: function (e) {
                     console.log(e);
@@ -79,9 +78,9 @@
             stDate: value
         });
     },
-    onChangeendDarw: function (value) {
+    onChangeendDate: function (value) {
         this.setState({
-            endDarw: value
+            endDate: value
         });
     },
     //register input controls
@@ -99,7 +98,7 @@
                 <div className="inner-menu">
                     <span className="pull-left httl">
                         Activity
-                    </span>
+                   </span>
                 </div>
                 <div className="formarea">
                     <span className="formheader">Add/Update Activity</span>
@@ -108,7 +107,7 @@
                             <ul>
                                 <li>
                                     <div className="form-group">
-                                        <CreateInput type={'text'} value={this.state.actName} label={'Enter Code'} name={'actName'} htmlFor={'actName'} isrequired={true}
+                                        <CreateInput type={'text'} value={this.state.actName} label={'Activity Name'} name={'actName'} htmlFor={'actName'} isrequired={true}
                                             onChange={this.onChangeactName} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                     </div>
                                 </li>
@@ -117,28 +116,27 @@
                                         <label>Status</label>
                                         <select className="dropdown" data-val="true" name="status" defaultValue={this.state.status} isrequired={true} messageRequired={'required.'}   >
                                             <option value="Active">Active</option>
-                                            <option value="In-Active">In-Active</option>  
-                                        </select> 
+                                            <option value="In-Active">In-Active</option>
+                                        </select>
                                     </div>
                                 </li>
                                 <li>
-                                   <div className="form-group">
+                                    <div className="form-group">
                                         <label>Activity Type</label>
                                         <select className="dropdown" data-val="true" name="status" defaultValue={this.state.actType} isrequired={true} onChange={this.onChangeactType} messageRequired={'required.'} >
                                             <option value="Temporary">Temporary</option>
                                             <option value="Permanent">Permanent</option>
-                                        </select> 
-                                   </div>
+                                        </select>
+                                    </div>
                                 </li>
                                 <li>
-                                    <div className="form-group">
-                                        
+                                    <div className="form-group">                               
                                         <CreateInput type={'date'} value={this.state.stDate} label={'Start Date'} name={'stDate'} htmlFor={'stDate'} isrequired={true}
                                             className={'startDate form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                     </div>
                                 </li>
-                                <li>
-                                    <div className="form-group">
+                                <li>                       
+                                    <div className="form-group">                                   
                                         <CreateInput type={'date'} value={this.state.endDate} label={'End Date'} name={'endDate'} htmlFor={'endDate'} isrequired={true}
                                             className={'endDate form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                     </div>
@@ -152,4 +150,5 @@
         );
     }
 });
-ReactDOM.render(<ActivityForm urlPost="/Dashboard/Overview" />, document.getElementById('activityform'));
+
+ReactDOM.render(<ActivityForm urlPost="/Master/Activity"/>, document.getElementById('activityform'));

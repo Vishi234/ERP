@@ -85,12 +85,12 @@ var LoginForm = React.createClass({
                     }
                     else if (data.flag == "D")
                     {
-                        debugger;
-                        var customerList = JSON.parse(data.addParams); var dynamicLi = ""; var orgValue = "";                
+                        var customerList = JSON.parse(data.addParams); var dynamicLi = ""; var dynamicData = "";                     
                         $.each(customerList, function (i, data)
                         {
-                            dynamicLi += '<ul id="idInput"><li> <a href="/Dashboard/Overview/custId=' + data.CUSTOMER_ID + ' ">  <i className="fa fa-home" ></i> ' + data.CUSTOMER_NAME + ' </a></li></ul>';
-                        });                    
+                            dynamicLi += '<li><i className="fa fa-home" ></i> ' +' '+data.CUSTOMER_NAME + '</li>';
+                            dynamicData = data.CUSTOMER_ID + '~' + data.CUSTOMER_NAME + '~' + data.ADDRESS_PRIMARY + '~' + data.ADDRESS_SECONDRY + '~' + data.FAX_NO;
+                        });
                         $('.leftlist ul').append(dynamicLi);
                         $("#selectorg").modal("show");
                     }
