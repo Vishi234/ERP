@@ -29,7 +29,7 @@
     },
     render: function () {
         var grid;
-        grid = <div id="myGrid" style={{ height: '450px', width: '100%' }} className="ag-theme-balham"></div>
+        grid = <div id="myGrid" style={{ height: '300px', width: '100%' }} className="ag-theme-balham"></div>
         return (
             <div className="dtlbse">
                 {grid}
