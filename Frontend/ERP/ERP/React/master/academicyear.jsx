@@ -1,12 +1,25 @@
-﻿
-var AcademicYearForm = React.createClass({
+﻿var AcademicYearForm = React.createClass({
     getInitialState: function () {
+        var columnDefs = [
+            { headerName: "Make", field: "make" },
+            { headerName: "Model", field: "model" },
+            { headerName: "Price", field: "price" }
+        ];
+
+        // specify the data
+        var rowData = [
+            { make: "Toyota", model: "Celica", price: 35000 },
+            { make: "Ford", model: "Mondeo", price: 32000 },
+            { make: "Porsche", model: "Boxter", price: 72000 }
+        ];
         return {
             yearCode: "",
             academicYear: "",
             wfDate: "",
             wtDate: "",
             Fields: [],
+            columnDef: columnDefs,
+            rowData: rowData,
             ServerMessage: ''
         }
     },
@@ -69,6 +82,16 @@ var AcademicYearForm = React.createClass({
             academicYear: value
         });
     },
+    onWefBlur: function (value) {
+        this.setState({
+            wfDate: value
+        });
+    },
+    onWetBlur: function (value) {
+        this.setState({
+            wtDate: value
+        });
+    },
     //register input controls
     register: function (field) {
         var s = this.state.Fields;
@@ -95,19 +118,19 @@ var AcademicYearForm = React.createClass({
                                         <ul>
                                             <li>
                                                 <CreateInput type={'text'} value={this.state.yearCode} label={'Enter Code'} name={'yearCode'} htmlFor={'yearCode'} isrequired={true}
-                                                    onChange={this.onChangeCode} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                             onChange={this.onChangeCode} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                             </li>
                                             <li>
                                                 <CreateInput type={'text'} value={this.state.academicYear} label={'Academic Year'} name={'academicYear'} htmlFor={'academicYear'} isrequired={true}
-                                                    onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                             onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                             </li>
                                             <li>
-                                                <CreateInput type={'date'} value={this.state.wfDate} label={'Start Date'} name={'wfDate'} htmlFor={'wfDate'} isrequired={true}
-                                                className={'startDate form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                <CreateInput type={'date'} value={this.state.wfDate} id={'wfDate'} label={'Start Date'} name={'daterangepicker'} htmlFor={'wfDate'} isrequired={true}
+                                                             className={'startDate form-control'} onBlur={this.onWefBlur} onComponentMounted={this.register} messageRequired={'required.'} />
                                             </li>
                                             <li>
-                                                <CreateInput type={'date'} value={this.state.wtDate} label={'End Date'} name={'wtDate'} htmlFor={'wtDate'} isrequired={true}
-                                                className={'endDate form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                <CreateInput type={'date'} value={this.state.wtDate} id={'wtDate'} label={'End Date'} name={'daterangepicker'} htmlFor={'wtDate'} isrequired={true}
+                                                             className={'startDate form-control'} onBlur={this.onWetBlur} onComponentMounted={this.register} messageRequired={'required.'} />
                                             </li>
                                             <li>
                                                 <input type="submit" className="btn btn-success" value="Save" />
@@ -118,6 +141,7 @@ var AcademicYearForm = React.createClass({
                                 </div>
                             </div>
                         </div>
+                        <AgGrid columnDef={this.state.columnDef} rowData={this.state.rowData} />
                     </div>
                 </div>
             </div>
