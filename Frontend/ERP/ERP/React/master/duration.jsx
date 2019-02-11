@@ -31,53 +31,79 @@
             Fields: s
         })
     },
+    onChangeYear: function (value) {
+        this.setState({
+            academicYear: value
+        });
+    },
+    onChangeCourse: function (value) {
+        this.setState({
+            course: value
+        });
+    },
+    onChangeSemester: function (value) {
+        this.setState({
+            semester: value
+        });
+    },
+    onBlurWefDate: function (value) {
+        this.setState({
+            wefDate: value
+        });
+    },
+    onBlurWetDate: function (value) {
+        this.setState({
+            wetDate: value
+        });
+    },
     render: function () {
         //Render form
         return (
             <div>
                 <div className="fbse">
-                    <div className="tab-base">
-                        <ul className="nav nav-tabs">
-                            <li className="active">
-                                <a href="javascript:void(0)">Course Creation</a>
-                            </li>
-                        </ul>
-                        <div className="tab-content">
-                            <div id="Create" className="tab-pane fade in active show">
-                                <div className="acform">
-                                    <form name='CourseForm' noValidate onSubmit={this.handleSubmit}>
-                                        <ul>
-                                            <li>
-                                                <CreateInput type={'ddl'} value={this.state.academicYear} label={'Academic Year'} name={'academicYear'} htmlFor={'academicYear'} isrequired={true}
-                                                             onChange={this.onChangeCode} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                            </li>
-                                            <li>
-                                                <CreateInput type={'ddl'} value={this.state.course} label={'Course'} name={'course'} htmlFor={'course'} isrequired={true}
-                                                             onChange={this.onChangeName} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                            </li>
-                                            <li>
-                                                <CreateInput type={'ddl'} value={this.state.semester} label={'Semester'} name={'semester'} htmlFor={'semester'} isrequired={true}
-                                                             className={'form-control'} onChange={this.onChangeSemester} onComponentMounted={this.register} messageRequired={'required.'} />
-                                            </li>
-                                            <li>
-                                                <CreateInput type={'date'} value={this.state.wefDate} label={'Start Date'} name={'wefDate'} htmlFor={'wefDate'} isrequired={true}
-                                                             className={'form-control'} onChange={this.onChangeSemester} onComponentMounted={this.register} messageRequired={'required.'} />
-                                            </li>
-                                            <li>
-                                                <CreateInput type={'date'} value={this.state.wetDate} label={'End Date'} name={'wetDate'} htmlFor={'wetDate'} isrequired={true}
-                                                             className={'form-control'} onChange={this.onChangeSemester} onComponentMounted={this.register} messageRequired={'required.'} />
-                                            </li>
-                                            <li>
-                                                <input type="submit" className="btn btn-success" value="Save" />
-                                            </li>
-                                        </ul>
-
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <AgGrid columnDef={this.state.columnDef} rowData={this.state.rowData} />
+                    <div className="rttl">
+                        <span className="pull-left lft">Courses Semester Duration</span>
+                        <span className="pull-right toptotal">2 Record(S)</span>
+                        <hr />
                     </div>
+                    <div className="acform">
+                        <form name='CourseForm' noValidate onSubmit={this.handleSubmit}>
+                            <ul>
+                                <li>
+                                    <CreateInput type={'ddl'} value={this.state.academicYear} label={'Academic Year'} name={'academicYear'} htmlFor={'academicYear'} isrequired={true}
+                                        onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                </li>
+                                <li>
+                                    <CreateInput type={'ddl'} value={this.state.course} label={'Course'} name={'course'} htmlFor={'course'} isrequired={true}
+                                        onChange={this.onChangeCourse} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                </li>
+                                <li>
+                                    <CreateInput type={'ddl'} value={this.state.semester} label={'Semester'} name={'semester'} htmlFor={'semester'} isrequired={true}
+                                        className={'form-control'} onChange={this.onChangeSemester} onComponentMounted={this.register} messageRequired={'required.'} />
+                                </li>
+                                <li>
+                                    <CreateInput type={'date'} value={this.state.wefDate} label={'Start Date'} name={'daterangepicker'} htmlFor={'wefDate'} isrequired={true}
+                                        className={'form-control'} onBlur={this.onBlurWefDate} onComponentMounted={this.register} messageRequired={'required.'} />
+                                </li>
+                                <li>
+                                    <CreateInput type={'date'} value={this.state.wetDate} label={'End Date'} name={'daterangepicker'} htmlFor={'wetDate'} isrequired={true}
+                                        className={'form-control'} onBlur={this.onBlurWetDate} onComponentMounted={this.register} messageRequired={'required.'} />
+                                </li>
+                                <li>
+                                    <input type="submit" className="btn btn-success" value="Save" />
+                                </li>
+                            </ul>
+
+                        </form>
+                    </div>
+                    <div className="actionbse">
+                        <div className="aclft pull-left">
+                        </div>
+                        <div className="acrght pull-right">
+                            <input type="text" placeholder="Type here......" className="form-control"></input>
+                        </div>
+                    </div>
+                    <AgGrid columnDef={this.state.columnDef} rowData={this.state.rowData} />
                 </div>
             </div>
         );

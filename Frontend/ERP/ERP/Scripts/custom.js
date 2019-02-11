@@ -48,7 +48,18 @@
         $(this).find("a").addClass("active show");
         $(tabId).addClass("in active show");
     });
-
+    $(".aclft span:nth-child(1)").click(function () {
+        if ($(this).find("svg").hasClass("fa-plus")) {
+            $(this).find("svg").removeClass("fa-plus");
+            $(this).find("svg").addClass("fa-minus");
+            $(".acform").addClass("acformopen");
+        }
+        else {
+            $(this).find("svg").addClass("fa-plus");
+            $(this).find("svg").removeClass("fa-minus");
+            $(".acform").removeClass("acformopen");
+        }
+    })
 })
 function InitializeDate(name) {
     $('input[name=' + name + ']').daterangepicker({
