@@ -1,4 +1,4 @@
-﻿alert(window.dynamicData);
+﻿//alert(window.dynamicData);
 var OrgList = React.createClass({
    // alert(window.dynamicData)
     render: function () {
