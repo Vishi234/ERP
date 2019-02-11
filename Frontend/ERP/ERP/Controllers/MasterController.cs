@@ -16,6 +16,7 @@ namespace ERP.Controllers
         {
                 return View();
         }
+
         [HttpPost]
         public JsonResult Academic(MasterEntity masterEntity)
         {
@@ -24,9 +25,16 @@ namespace ERP.Controllers
 
          
         }
+
         public ActionResult Course()
         {
             return View();
+        }
+        [HttpPost]
+        public ActionResult Course(CourseEntity courseEntity)
+        {
+            Master objMaster = new Master();
+            return Json(objMaster.AddCourse(courseEntity));
         }
         public ActionResult Duration()
         {
@@ -35,6 +43,12 @@ namespace ERP.Controllers
         public ActionResult Activity()
         {
             return View();
+        }
+        [HttpPost]
+        public JsonResult Activity(ActivityEntity activityEntity)
+        {
+            Master objMaster = new Master();
+            return Json(objMaster.AddActivity(activityEntity));
         }
         public ActionResult Subject()
         {

@@ -1,4 +1,97 @@
 ﻿var ActivityForm = React.createClass({
+    getInitialState: function () {
+        return {
+            actName: "",
+            status: "",
+            actType: "",
+            stDate: "",
+            endDate: "",
+            Fields: [],
+            ServerMessage: ''
+        }
+    },
+    handleSubmit: function (e) {
+        e.preventDefault();
+        var validForm = true;
+        this.state.Fields.forEach(function (field) {
+            if (typeof field.isValid === "function") {
+                var validField = field.isValid(field.refs[field.props.name]);
+                validForm = validForm && validField;
+            }
+        });
+        //after validation complete post to server
+        if (validForm) {
+            var d = {
+                actName: this.state.actName,
+                status: this.state.status,
+                actType: this.state.actType,
+                stDate: this.state.stDate,
+                endDate: this.state.endDate,
+                flag: 'A'
+            }
+            $.ajax({
+                type: "POST",
+                url: this.props.urlPost,
+                data: d,
+                async: false,
+                beforeSend: function () {
+                    $("#progress").show();
+                },
+                success: function (data) {
+                    $("#progress").hide();
+                    console.log(data);
+                    if (data.flag == "S") {
+                        window.location.href = "/Dashboard/Overview";
+                    }
+                    else if (data.flag == "D") {
+                        $("#selectorg").modal("show");
+                    }
+                    else {
+                        CallToast(data.msg, data.flag);
+                    }
+                }.bind(this),
+                error: function (e) {
+                    console.log(e);
+                    $("#progress").hide();
+                    alert('Error! Please try again');
+                }
+            })
+        }
+    },
+    onChangeactName: function (value) {
+        this.setState({
+            actName: value
+        });
+    },
+    onChangestatus: function (value) {
+        this.setState({
+            status: value
+        });
+    },
+    onChangeactType: function (value) {
+
+        this.setState({
+            actType: value
+        });
+    },
+    onChangestDate: function (value) {
+        this.setState({
+            stDate: value
+        });
+    },
+    onChangeendDate: function (value) {
+        this.setState({
+            endDate: value
+        });
+    },
+    //register input controls
+    register: function (field) {
+        var s = this.state.Fields;
+        s.push(field);
+        this.setState({
+            Fields: s
+        })
+    },
     render: function () {
         //Render form
         return (
@@ -6,48 +99,47 @@
                 <div className="inner-menu">
                     <span className="pull-left httl">
                         Activity
-                    </span>
+                   </span>
                 </div>
                 <div className="formarea">
                     <span className="formheader">Add/Update Activity</span>
                     <div className="acform">
-                        <form>
+                        <form noValidate onSubmit={this.handleSubmit}>
                             <ul>
                                 <li>
                                     <div className="form-group">
-                                        <label>Activity Name</label>
-                                        <input type="text" className="form-control" />
+                                        <CreateInput type={'text'} value={this.state.actName} label={'Activity Name'} name={'actName'} htmlFor={'actName'} isrequired={true}
+                                            onChange={this.onChangeactName} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                     </div>
                                 </li>
                                 <li>
                                     <div className="form-group">
                                         <label>Status</label>
-                                        <select>
-                                            <option value="1" selected="selected">Active</option>
-                                            <option value="0">In-Active</option>
+                                        <select className="dropdown" data-val="true" name="status" defaultValue={this.state.status} isrequired={true} messageRequired={'required.'}   >
+                                            <option value="Active">Active</option>
+                                            <option value="In-Active">In-Active</option>
                                         </select>
                                     </div>
                                 </li>
                                 <li>
-                                   <div className="form-group">
+                                    <div className="form-group">
                                         <label>Activity Type</label>
-                                        <select>
-                                            <option value="0" selected="selected">Select Activity Type</option>
-                                            <option value="1">Temporary</option>
-                                            <option value="2">Permanent</option>
+                                        <select className="dropdown" data-val="true" name="status" defaultValue={this.state.actType} isrequired={true} onChange={this.onChangeactType} messageRequired={'required.'} >
+                                            <option value="Temporary">Temporary</option>
+                                            <option value="Permanent">Permanent</option>
                                         </select>
-                                   </div>
-                                </li>
-                                <li>
-                                    <div className="form-group">
-                                        <label>Start Date</label>
-                                        <input type="text" className="startDate form-control" />
                                     </div>
                                 </li>
                                 <li>
-                                    <div className="form-group">
-                                        <label>End Date</label>
-                                        <input type="text" className="endDate form-control" />
+                                    <div className="form-group">                               
+                                        <CreateInput type={'date'} value={this.state.stDate} label={'Start Date'} name={'stDate'} htmlFor={'stDate'} isrequired={true}
+                                            className={'startDate form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                    </div>
+                                </li>
+                                <li>                       
+                                    <div className="form-group">                                   
+                                        <CreateInput type={'date'} value={this.state.endDate} label={'End Date'} name={'endDate'} htmlFor={'endDate'} isrequired={true}
+                                            className={'endDate form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                     </div>
                                 </li>
                             </ul>
@@ -59,4 +151,5 @@
         );
     }
 });
-ReactDOM.render(<ActivityForm />, document.getElementById('activityform'));
+
+ReactDOM.render(<ActivityForm urlPost="/Master/Activity"/>, document.getElementById('activityform'));

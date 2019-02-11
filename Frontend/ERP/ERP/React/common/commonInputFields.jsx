@@ -1,8 +1,11 @@
 ﻿var CreateInput = React.createClass({
-
     //onchange event
     handleChange: function (e) {
         this.props.onChange(e.target.value);
+        var isValidField = this.isValid(e.target);
+    },
+    handleBlur: function (e) {
+        this.props.onBlur(e.target.value);
         var isValidField = this.isValid(e.target);
     },
     //validation function
@@ -25,35 +28,37 @@
         if (this.props.onComponentMounted) {
             this.props.onComponentMounted(this); //register this input in the form
         }
+        InitializeDate("daterangepicker");
     },
     render: function () {
         var inputField;
         if (this.props.type == 'textarea') {
             inputField = <textarea value={this.props.value} ref={this.props.name} name={this.props.name}
-                className='registration-form-control' required={this.props.isrequired} onChange={this.handleChange} />
+                                   className='registration-form-control' required={this.props.isrequired} onChange={this.handleChange} />
         }
         else if (this.props.type == 'ddl') {
-
             inputField = <select value={this.props.value} ref={this.props.name} name={this.props.name}
-                className='registration-form-control dropdown' required={this.props.isrequired} onChange={this.handleChange} />
+                                 className='registration-form-control dropdown' required={this.props.isrequired} onChange={this.handleChange} />
         }
         else if (this.props.type == 'multiSelect') {
             inputField = <select value={this.props.value} ref={this.props.name} name={this.props.name}
-                className='registration-form-control' required={this.props.isrequired} onChange={this.handleChange} />
+                                 className='registration-form-control' required={this.props.isrequired} onChange={this.handleChange} />
         }
         else if (this.props.type == 'date') {
-            inputField = <input type="text" id={this.props.name} readOnly="readOnly" value={this.props.value} ref={this.props.name} name={this.props.name}
-                className={this.props.className} required={this.props.isrequired} onChange={this.handleChange} />
+            inputField = <input type="text" id={this.props.id} value={this.props.value} ref={this.props.name} readOnly autoComplete="off" name={this.props.name}
+                                className={this.props.className} required={this.props.isrequired} onBlur={this.handleBlur} />
         }
         else {
             inputField = <input type={this.props.type} value={this.props.value} ref={this.props.name} name={this.props.name}
-                className={this.props.className} required={this.props.isrequired} onChange={this.handleChange} />
+                                className={this.props.className} required={this.props.isrequired} onChange={this.handleChange} />
         }
         return (
-            <div className="form-group">
-                <label htmlFor={this.props.htmlFor}>{this.props.label}:</label>
-                {inputField}
-                <span className="field-validation-error"></span>
+            <div className={this.props.type}>
+                <div className="form-group">
+                    <label htmlFor={this.props.htmlFor}>{this.props.label}:</label>{inputField}
+                    <span className="field-validation-error"></span>
+                </div>
+                <span className="calendarbase"><img src="../../Images/calendar.png" /></span>
             </div>
         );
     }

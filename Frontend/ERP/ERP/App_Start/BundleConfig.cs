@@ -21,13 +21,15 @@ namespace ERP
                         "~/Scripts/moment.min.js",
                         "~/Scripts/daterangepicker.js",
                         "~/Scripts/custom.js",
+                        "~/Scripts/ag-grid.min.js",
                         "~/Scripts/fontawesome/all.js"));
             bundles.Add(new ScriptBundle("~/bundles/react").Include(
                          "~/Scripts/react.development.js",
                         "~/Scripts/react-dom.development.js",
                         "~/Scripts/remarkable.min.js",
                         "~/Scripts/prop-types.js",
-                        "~/React/common/commonInputFields.jsx"
+                        "~/React/common/CommonInputFields.jsx",
+                        "~/React/common/AgGridReact.jsx"
                         ));
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
@@ -37,7 +39,9 @@ namespace ERP
                       "~/Content/fontawesome-all.css",
                       "~/Content/jquery.toast.min.css",
                       "~/Content/daterangepicker.css",
-                      "~/Content/sumoselect.min.css"));
+                      "~/Content/sumoselect.min.css",
+                      "~/Content/ag-grid.css",
+                      "~/Content/ag-theme-balham.css"));
         }
     }
 }
