@@ -40,6 +40,12 @@ namespace ERP.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult Duration(DurationEntity durationEntity)
+        {
+            Master objMaster = new Master();
+            return Json(objMaster.AddDuration(durationEntity));
+        }
         public ActionResult Activity()
         {
             return View();
@@ -55,6 +61,10 @@ namespace ERP.Controllers
             return View();
         }
         public ActionResult Mapping()
+        {
+            return View();
+        }
+        public ActionResult Section()
         {
             return View();
         }

@@ -24,6 +24,55 @@
             ServerMessage: ''
         }
     },
+    handleSubmit: function (e) {
+        e.preventDefault();
+        var validForm = true;
+        this.state.Fields.forEach(function (field) {
+            if (typeof field.isValid === "function") {
+                var validField = field.isValid(field.refs[field.props.name]);
+                validForm = validForm && validField;
+            }
+        });
+        //after validation complete post to server
+        if (validForm) {
+            var d = {
+                academicYear: this.state.academicYear,
+                course: this.state.course,
+                semester: this.state.semester,
+                wefDate: this.state.wefDate,
+                wetDate: this.state.wetDate,
+                flag: 'A'
+            }
+            $.ajax({
+                type: "POST",
+                url: this.props.urlPost,
+                data: d,
+                async: false,
+                beforeSend: function () {
+                    $("#progress").show();
+                },
+                success: function (data) {
+                    $("#progress").hide();
+                    console.log(data);
+                    if (data.flag == "S") {
+                        window.location.href = "/Dashboard/Overview";
+                    }
+                    else if (data.flag == "D") {
+                        $("#selectorg").modal("show");
+                    }
+                    else {
+                        CallToast(data.msg, data.flag);
+                    }
+
+                }.bind(this),
+                error: function (e) {
+                    console.log(e);
+                    $("#progress").hide();
+                    alert('Error! Please try again');
+                }
+            })
+        }
+    },
     register: function (field) {
         var s = this.state.Fields;
         s.push(field);
@@ -109,4 +158,4 @@
         );
     }
 });
-ReactDOM.render(<CourseDurationForm />, document.getElementById('durationform'));
+ReactDOM.render(<CourseDurationForm urlPost="/Master/Duration" />, document.getElementById('durationform'));
