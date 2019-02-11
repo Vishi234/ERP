@@ -1,4 +1,4 @@
-﻿var MappingForm = React.createClass({
+﻿var SectionForm = React.createClass({
     getInitialState: function () {
         var columnDefs = [
             { headerName: "Make", field: "make" },
@@ -13,10 +13,10 @@
             { make: "Porsche", model: "Boxter", price: 72000 }
         ];
         return {
+            sectionCode: "",
+            sectionName: "",
             course: 0,
             semester: 0,
-            subject: 0,
-            type: 0,
             Fields: [],
             columnDef: columnDefs,
             rowData: rowData,
@@ -30,6 +30,16 @@
             Fields: s
         })
     },
+    onChangeCode: function (value) {
+        this.setState({
+            sectionCode: value
+        });
+    },
+    onChangeName: function (value) {
+        this.setState({
+            sectionName: value
+        });
+    },
     onChangeCourse: function (value) {
         this.setState({
             course: value
@@ -40,29 +50,27 @@
             semester: value
         });
     },
-    onChangeSubject: function (value) {
-        this.setState({
-            subject: value
-        });
-    },
-    onChangeType: function (value) {
-        this.setState({
-            type: value
-        });
-    },
     render: function () {
         //Render form
         return (
             <div>
                 <div className="fbse">
                     <div className="rttl">
-                        <span className="pull-left lft">Courses Subject Mapping</span>
+                        <span className="pull-left lft">Section Management</span>
                         <span className="pull-right toptotal">2 Record(S)</span>
                         <hr />
                     </div>
                     <div className="acform">
                         <form>
                             <ul>
+                                <li>
+                                    <CreateInput type={'text'} value={this.state.sectionCode} label={'Section Code'} name={'sectionCode'} htmlFor={'sectionCode'} isrequired={true}
+                                        onChange={this.onChangeCode} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                </li>
+                                <li>
+                                    <CreateInput type={'text'} value={this.state.sectionName} label={'Section Name'} name={'sectionName'} htmlFor={'sectionName'} isrequired={true}
+                                        onChange={this.onChangeName} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                </li>
                                 <li>
                                     <CreateInput type={'ddl'} value={this.state.course} label={'Course'} name={'course'} htmlFor={'course'} isrequired={true}
                                         onChange={this.onChangeCourse} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
@@ -72,18 +80,10 @@
                                         onChange={this.onChangeSemester} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
-                                    <CreateInput type={'ddl'} value={this.state.subject} label={'Subject'} name={'subject'} htmlFor={'subject'} isrequired={true}
-                                        onChange={this.onChangeSubject} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                </li>
-                                <li>
-                                    <CreateInput type={'ddl'} value={this.state.type} label={'Subject Type'} name={'type'} htmlFor={'type'} isrequired={true}
-                                        onChange={this.onChangeType} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                </li>
-                                <li>
                                     <input type="submit" className="btn btn-success" value="Save" />
                                 </li>
                             </ul>
-                            
+
                         </form>
                     </div>
                     <div className="actionbse">
@@ -99,4 +99,4 @@
         );
     }
 });
-ReactDOM.render(<MappingForm />, document.getElementById('mappingform'));
+ReactDOM.render(<SectionForm />, document.getElementById('sectionform'));

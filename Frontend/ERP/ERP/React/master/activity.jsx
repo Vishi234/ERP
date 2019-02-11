@@ -1,12 +1,26 @@
 ﻿var ActivityForm = React.createClass({
     getInitialState: function () {
+        var columnDefs = [
+            { headerName: "Make", field: "make" },
+            { headerName: "Model", field: "model" },
+            { headerName: "Price", field: "price" }
+        ];
+
+        // specify the data
+        var rowData = [
+            { make: "Toyota", model: "Celica", price: 35000 },
+            { make: "Ford", model: "Mondeo", price: 32000 },
+            { make: "Porsche", model: "Boxter", price: 72000 }
+        ];
         return {
             actName: "",
-            status: "",
-            actType: "",
+            status: 0,
+            actType: 0,
             stDate: "",
             endDate: "",
             Fields: [],
+            columnDef: columnDefs,
+            rowData: rowData,
             ServerMessage: ''
         }
     },
@@ -69,17 +83,16 @@
         });
     },
     onChangeactType: function (value) {
-
         this.setState({
             actType: value
         });
     },
-    onChangestDate: function (value) {
+    onBlurWefDate: function (value) {
         this.setState({
             stDate: value
         });
     },
-    onChangeendDate: function (value) {
+    onBlurWetDate: function (value) {
         this.setState({
             endDate: value
         });
@@ -96,60 +109,54 @@
         //Render form
         return (
             <div>
-                <div className="inner-menu">
-                    <span className="pull-left httl">
-                        Activity
-                   </span>
-                </div>
-                <div className="formarea">
-                    <span className="formheader">Add/Update Activity</span>
+                <div className="fbse">
+                    <div className="rttl">
+                        <span className="pull-left lft">Activity Management</span>
+                        <span className="pull-right toptotal">2 Record(S)</span>
+                        <hr />
+                    </div>
                     <div className="acform">
                         <form noValidate onSubmit={this.handleSubmit}>
                             <ul>
                                 <li>
-                                    <div className="form-group">
-                                        <CreateInput type={'text'} value={this.state.actName} label={'Activity Name'} name={'actName'} htmlFor={'actName'} isrequired={true}
-                                            onChange={this.onChangeactName} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                    </div>
+                                    <CreateInput type={'text'} value={this.state.actName} label={'Activity Name'} name={'actName'} htmlFor={'actName'} isrequired={true}
+                                        onChange={this.onChangeactName} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
-                                    <div className="form-group">
-                                        <label>Status</label>
-                                        <select className="dropdown" data-val="true" name="status" defaultValue={this.state.status} isrequired={true} messageRequired={'required.'}   >
-                                            <option value="Active">Active</option>
-                                            <option value="In-Active">In-Active</option>
-                                        </select>
-                                    </div>
+                                    <CreateInput type={'ddl'} value={this.state.status} label={'Status'} name={'status'} htmlFor={'status'} isrequired={true}
+                                        onChange={this.onChangestatus} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
-                                    <div className="form-group">
-                                        <label>Activity Type</label>
-                                        <select className="dropdown" data-val="true" name="status" defaultValue={this.state.actType} isrequired={true} onChange={this.onChangeactType} messageRequired={'required.'} >
-                                            <option value="Temporary">Temporary</option>
-                                            <option value="Permanent">Permanent</option>
-                                        </select>
-                                    </div>
+                                    <CreateInput type={'ddl'} value={this.state.actType} label={'Activity Type'} name={'actType'} htmlFor={'actType'} isrequired={true}
+                                        onChange={this.onChangeactType} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
-                                    <div className="form-group">                               
-                                        <CreateInput type={'date'} value={this.state.stDate} label={'Start Date'} name={'stDate'} htmlFor={'stDate'} isrequired={true}
-                                            className={'startDate form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                    </div>
+                                    <CreateInput type={'date'} value={this.state.stDate} label={'Start Date'} name={'daterangepicker'} htmlFor={'stDate'} isrequired={true}
+                                        className={'form-control'} onBlur={this.onBlurWefDate} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
-                                <li>                       
-                                    <div className="form-group">                                   
-                                        <CreateInput type={'date'} value={this.state.endDate} label={'End Date'} name={'endDate'} htmlFor={'endDate'} isrequired={true}
-                                            className={'endDate form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                    </div>
+                                <li>
+                                    <CreateInput type={'date'} value={this.state.endDate} label={'End Date'} name={'daterangepicker'} htmlFor={'endDate'} isrequired={true}
+                                        className={'form-control'} onBlur={this.onBlurWetDate} onComponentMounted={this.register} messageRequired={'required.'} />
+                                </li>
+                                <li>
+                                    <input type="submit" className="btn btn-success" value="Save" />
                                 </li>
                             </ul>
-                            <input type="submit" className="btn btn-success" value="Save" />
+
                         </form>
                     </div>
+                    <div className="actionbse">
+                        <div className="aclft pull-left">
+                        </div>
+                        <div className="acrght pull-right">
+                            <input type="text" placeholder="Type here......" className="form-control"></input>
+                        </div>
+                    </div>
+                    <AgGrid columnDef={this.state.columnDef} rowData={this.state.rowData} />
                 </div>
             </div>
         );
     }
 });
 
-ReactDOM.render(<ActivityForm urlPost="/Master/Activity"/>, document.getElementById('activityform'));
+ReactDOM.render(<ActivityForm urlPost="/Master/Activity" />, document.getElementById('activityform'));
