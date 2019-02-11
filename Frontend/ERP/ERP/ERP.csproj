@@ -260,6 +260,7 @@
     <Compile Include="Models\Common\Excep.cs" />
     <Compile Include="Models\Dal\SQLHelper.cs" />
     <Compile Include="Models\Dal\SqlHelper2.cs" />
+    <Compile Include="Models\Entity\ActivityEntity.cs" />
     <Compile Include="Models\Entity\CustomerEntity.cs" />
     <Compile Include="Models\Entity\MasterEntity.cs" />
     <Compile Include="Models\Entity\ResultEntity.cs" />

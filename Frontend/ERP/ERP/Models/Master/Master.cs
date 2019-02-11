@@ -56,6 +56,50 @@ namespace ERP.Models.Master
                 return result;
             }
         }
+        public ResultEntity AddActivity(ActivityEntity activityEntity)
+        {
+            ResultEntity result = new ResultEntity();
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[6];
+                sqlParameter[0] = new SqlParameter("@P_ACT_NAME", activityEntity.actName);
+                sqlParameter[1] = new SqlParameter("@P_ACT_STATUS", activityEntity.status);
+                sqlParameter[2] = new SqlParameter("@P_ACT_TYPE", activityEntity.actType);
+                sqlParameter[3] = new SqlParameter("@P_ACT_START", activityEntity.stDate);
+                sqlParameter[4] = new SqlParameter("@P_ACT_END", activityEntity.endDate);
+                sqlParameter[5] = new SqlParameter("@P_FLAG", activityEntity.flag);
+
+                sqlParameter[6] = new SqlParameter("@P_RSP_FLAG", System.Data.SqlDbType.NVarChar);
+                sqlParameter[6].Direction = ParameterDirection.Output;
+                sqlParameter[6].Size = 1;
+                sqlParameter[7] = new SqlParameter("@P_RSP_MSG", SqlDbType.NVarChar);
+                sqlParameter[7].Direction = ParameterDirection.Output;
+                sqlParameter[7].Size = 500;
+
+                DataSet ds = new DataSet();
+                ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_ADD_ACTIVITY", sqlParameter);
+                result.flag = sqlParameter[11].Value.ToString();
+                result.msg = sqlParameter[12].Value.ToString();
+
+                if (result.flag.ToUpper() == "S")
+                {
+                    if (ds != null)
+                    {
+                        if (ds.Tables[0].Rows.Count > 0)
+                        {
+                            result.addParams = CommonFunc.DtToJSON(ds.Tables[0]);
+                        }
+                    }
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Excep.WriteException(ex);
+                return result;
+            }
+        }
 
     }
 }
