@@ -33,7 +33,6 @@
                 className='registration-form-control' required={this.props.isrequired} onChange={this.handleChange} />
         }
         else if (this.props.type == 'ddl') {
-
             inputField = <select value={this.props.value} ref={this.props.name} name={this.props.name}
                 className='registration-form-control dropdown' required={this.props.isrequired} onChange={this.handleChange} />
         }
