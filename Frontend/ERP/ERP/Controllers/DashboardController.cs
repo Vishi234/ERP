@@ -1,5 +1,6 @@
 ﻿using ERP.Models.Entity;
 using ERP.Models.Login;
+using ERP.Models.Master;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,15 @@ namespace ERP.Controllers
         {
             CommonLogin objLogin = new CommonLogin();
             return Json(objLogin.RegisOrg(customer));
+        }
+
+        [HttpPost]
+        public ActionResult Activity(string yearCode,string academicYear,string wfDate,string wtDate,string flag)
+        {
+            CommonLogin objLogin = new CommonLogin();
+            return Json("hi");
+            //Master masActivity = new Master();
+            //return Json(objLogin.RegisOrg(customer));
 
 
         }

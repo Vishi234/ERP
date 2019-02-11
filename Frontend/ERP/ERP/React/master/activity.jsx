@@ -83,7 +83,6 @@
         });
     },
     onChangeactType: function (value) {
-
         this.setState({
             actType: value
         });
