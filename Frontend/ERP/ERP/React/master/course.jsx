@@ -1,9 +1,9 @@
 ﻿var CourseForm = React.createClass({
     getInitialState: function () {
         return {
-            yearCode: "",
+            courseCode: "",
             courseName: "",
-            noSem: "",
+            noOfSemester: "",
             Fields: [],
             ServerMessage: ''
         }
@@ -20,10 +20,9 @@
         //after validation complete post to server
         if (validForm) {
             var d = {
-                yearCode: this.state.yearCode,
-                academicYear: this.state.academicYear,
-                wfDate: this.state.wfDate,
-                wtDate: this.state.wtDate,
+                courseCode: this.state.courseCode,
+                courseName: this.state.courseName,
+                noOfSemester: this.state.noOfSemester,
                 flag: 'A'
 
             }
@@ -57,21 +56,7 @@
             })
         }
     },
-    onChangeCode: function (value) {
-        this.setState({
-            yearCode: value
-        });
-    },
-    onChangecourseName: function (value) {
-        this.setState({
-            courseName: value
-        });
-    }, 
-    onChangenoSem: function(value) {
-        this.setState({
-            noSem: value
-        });
-    }, 
+
     //register input controls
     register: function (field) {
         var s = this.state.Fields;
@@ -167,4 +152,4 @@
         );
     }
 });
-ReactDOM.render(<CourseForm />, document.getElementById('courseform'));
+ReactDOM.render(<CourseForm urlPost="/Master/Course" />, document.getElementById('courseform'));

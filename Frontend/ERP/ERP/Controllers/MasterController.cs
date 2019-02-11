@@ -30,6 +30,12 @@ namespace ERP.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult Course(CourseEntity courseEntity)
+        {
+            Master objMaster = new Master();
+            return Json(objMaster.AddCourse(courseEntity));
+        }
         public ActionResult Duration()
         {
             return View();
