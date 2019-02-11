@@ -23,15 +23,5 @@ namespace ERP.Controllers
             return Json(objLogin.RegisOrg(customer));
         }
 
-        [HttpPost]
-        public ActionResult Activity(string yearCode,string academicYear,string wfDate,string wtDate,string flag)
-        {
-            CommonLogin objLogin = new CommonLogin();
-            return Json("hi");
-            //Master masActivity = new Master();
-            //return Json(objLogin.RegisOrg(customer));
-
-
-        }
     }
 }
