@@ -6,11 +6,11 @@
 body {
     color: #333;
     /*font-family: 'Montserrat', sans-serif;*/
-    font: 12px 'Roboto', sans-serif;
+    font: 12px 'Montserrat', sans-serif;
     /*font-size: 12px;*/
     line-height: 1.42857;
     overflow-x: hidden;
-    letter-spacing: 0.9px;
+    /*letter-spacing: 0.9px;*/
     /*background: #EDF1F5;*/
 }
 
@@ -351,7 +351,7 @@ a {
 
 .input-validation-error {
     border-color: #f2545b !important;
-    box-shadow: 0 0 0 1px #f2545b !important;
+    /*box-shadow: 0 0 0 1px #f2545b !important;*/
 }
 
 .field-validation-error {
@@ -374,8 +374,8 @@ a {
 .header {
     width: 100%;
     background: #2E3F50;
-    height: 47px;
-    /* border-top: 3px solid #ea2330; */
+    height: 49px;
+    border-top: 3px solid #00887a;
     position: fixed;
     z-index: 999999;
 }
@@ -624,6 +624,7 @@ a {
             color: #fff;
             transition: all 0.4s ease-in-out;
             height: 45px;
+            border-left: 3px solid #2E3F50;
         }
 
             .navigation-menu > ul > li > a > p {
@@ -635,6 +636,7 @@ a {
             .navigation-menu > ul > li > a:hover {
                 background: rgba(255, 255, 255, .08);
                 cursor: pointer;
+                border-left: 3px solid #00887a;
             }
 
             .navigation-menu > ul > li > a svg {
@@ -656,6 +658,7 @@ a {
     border-bottom: 1px solid #19212B !important;
     background: #19212B !important;
     transition: all 0.4s ease-in-out;
+    border-left: 3px solid #00887a !important;
 }
 
     .click-remove > p {
@@ -817,7 +820,24 @@ a {
     margin-top: 47px;
     height: 100%;
     overflow: auto;
+    background: #fff;
 }
+
+    .conbse::-webkit-scrollbar {
+        width: 8px;
+        background-color: rgba(255,255,255,0.7);
+    }
+
+    .conbse::-webkit-scrollbar-track {
+        border-radius: 0px;
+        padding: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    }
+
+    .conbse::-webkit-scrollbar-thumb {
+        border-radius: 0px;
+        background: rgba(46, 63, 80,0.7);
+    }
 
 .Registrationform {
     display: block;
@@ -1372,14 +1392,22 @@ a {
 .acform {
     width: 100%;
     display: inline-block;
+    border: 1px solid #dee2e6;
+    margin-top: 15px;
+    background: #fff;
+    box-shadow: 0px 0px 8px rgba(203, 214, 226,0.5);
+    overflow: hidden;
+    padding: 12px;
+    transition: all 0.4s ease-in-out;
 }
+
 
     .acform > form > ul > li {
         display: inline-block;
-        width: 16%;
+        width: 14%;
     }
 
-        .acform > form > ul > li > .form-group > label {
+        .acform > form > ul > li > div > .form-group > label {
             font-weight: 500;
             float: left;
             margin-bottom: 3px;
@@ -1388,19 +1416,22 @@ a {
             margin-right: 5px;
         }
 
-        .acform > form > ul > li > .form-group > .form-control {
+        .acform > form > ul > li > div > .form-group > .form-control {
             background: #fff;
             border: 1px solid #999;
             border-radius: 4px;
             padding-left: 5px;
             font-size: 12px;
-            height: 25px;
-            width: 80%;
+            height: 26px;
+            width: 95%;
             box-shadow: none;
+            margin-bottom: 5px;
         }
 
-        .acform > form > ul > li > .form-group > .field-validation-error {
+        .acform > form > ul > li > div > .form-group > .field-validation-error {
             float: left;
+            margin-top: 0px !important;
+            height: 15px;
         }
 
     .acform .btn-success {
@@ -1409,6 +1440,7 @@ a {
         font-size: 12px;
         height: 27px;
         padding: 0px;
+        margin-top: -2px;
     }
 
 .modal-md {
@@ -1526,4 +1558,121 @@ a {
 
 .fbse {
     margin: 10px;
+}
+
+.modal {
+    background: rgba(46, 63, 80,0.9);
+}
+
+.loading-center {
+    z-index: 1000;
+    margin: 15% auto;
+    padding: 10px;
+    width: 55px;
+    background-color: White;
+    border-radius: 2px;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.4);
+    filter: alpha(opacity=100);
+    opacity: 1;
+}
+
+    .loading-center img {
+        height: 35px;
+        width: 35px;
+    }
+
+.date .calendarbase {
+    display: inline-block;
+}
+
+.calendarbase {
+    height: 15px;
+    overflow: hidden;
+    float: right;
+    width: 17px;
+    display: none;
+    /* position: absolute; */
+    margin-top: -37px;
+    margin-right: 15px;
+}
+
+    .calendarbase img {
+        width: 100%;
+        height: 100%;
+    }
+
+.dtlbse {
+    margin-top: 15px;
+}
+
+.acform .SumoSelect > .CaptionCont {
+    border-radius: 4px;
+    padding: 2px;
+    width: 95%;
+    font-size: 12px;
+    border: 1px solid #999;
+}
+
+    .acform .SumoSelect > .CaptionCont > span.placeholder {
+        color: #808080;
+        font-weight: 200;
+        font-style: inherit;
+        font-size: 11px;
+        padding-left: 4px;
+    }
+
+    .acform .SumoSelect > .CaptionCont > label {
+        margin-bottom: 2px;
+    }
+
+.acform .SumoSelect .search-txt {
+    padding: 1px 4px;
+    font-size: 11px;
+    font-weight: 200;
+}
+
+.acform .SumoSelect.open > .optWrapper {
+    top: 25px !important;
+    width: 80%;
+}
+
+.rttl {
+    display: inline-block;
+    width: 100%;
+}
+
+    .rttl > .lft {
+        height: 35px;
+        display: inline-block;
+        font-size: 14px;
+        border-bottom: 3px solid #00887a;
+        font-weight: 500;
+    }
+
+    .rttl hr {
+        margin-top: 35px;
+    }
+
+    .rttl .toptotal {
+        margin-top: 10px;
+        font-size: 12px;
+        font-weight: 100;
+    }
+
+
+.actionbse {
+    display: inline-block;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.acrght .form-control {
+    background: #fff;
+    border: 1px solid #999;
+    border-radius: 4px;
+    padding-left: 5px;
+    font-size: 12px;
+    height: 26px;
+    width: 100%;
+    box-shadow: none;
 }

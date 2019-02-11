@@ -1,4 +1,6 @@
-﻿var OrgList = React.createClass({
+﻿alert(window.dynamicData);
+var OrgList = React.createClass({
+   // alert(window.dynamicData)
     render: function () {
         //Render form
         return (
@@ -20,7 +22,7 @@
                                     <div className="rightoption">
                                         <ul>
                                             <li>
-                                                <a href="javascript:void(0)">
+                                                <a href="/Dashboard/Overview/">
                                                     <i className="fa fa-check"></i> Select
                                                 </a>
                                             </li>
@@ -30,7 +32,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="javascript:void(0)">
+                                                <a href="javascript:void(0)" data-target="#createorg" className="openmodal" href="javascript:void(0)">
                                                     <i className="fa fa-edit"></i> Modify
                                                 </a>
                                             </li>

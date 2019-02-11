@@ -134,6 +134,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\ag-grid.css" />
+    <Content Include="Content\ag-theme-balham.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\brands.css" />
@@ -157,11 +159,14 @@
     <Content Include="Content\v4-shims.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\admin_bg.jpg" />
+    <Content Include="Images\calendar.png" />
+    <Content Include="Images\loading.gif" />
     <Content Include="Licenses\clearscript-license.txt" />
     <Content Include="Licenses\v8-license.txt" />
     <Content Include="Logs\ExceptionLog.txt" />
     <Content Include="React\authorization\login.jsx" />
-    <Content Include="React\common\commonInputFields.jsx" />
+    <Content Include="React\common\AgGridReact.jsx" />
+    <Content Include="React\common\CommonInputFields.jsx" />
     <Content Include="React\configuration\createorg.jsx" />
     <Content Include="React\configuration\orglist.jsx" />
     <Content Include="React\master\academicyear.jsx" />
@@ -171,6 +176,7 @@
     <Content Include="React\master\mapping.jsx" />
     <Content Include="React\master\subject.jsx" />
     <Content Include="React\Registration\Registration.jsx" />
+    <Content Include="Scripts\ag-grid.min.js" />
     <Content Include="Scripts\AppConfig.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -260,6 +266,8 @@
     <Compile Include="Models\Common\Excep.cs" />
     <Compile Include="Models\Dal\SQLHelper.cs" />
     <Compile Include="Models\Dal\SqlHelper2.cs" />
+    <Compile Include="Models\Entity\CourseEntity.cs" />
+    <Compile Include="Models\Entity\ActivityEntity.cs" />
     <Compile Include="Models\Entity\CustomerEntity.cs" />
     <Compile Include="Models\Entity\MasterEntity.cs" />
     <Compile Include="Models\Entity\ResultEntity.cs" />

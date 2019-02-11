@@ -1,5 +1,6 @@
 ﻿using ERP.Models.Entity;
 using ERP.Models.Login;
+using ERP.Models.Master;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,7 @@ namespace ERP.Controllers
         {
             CommonLogin objLogin = new CommonLogin();
             return Json(objLogin.RegisOrg(customer));
-
-
         }
+
     }
 }
