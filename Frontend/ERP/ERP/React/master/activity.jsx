@@ -39,8 +39,8 @@
                 actName: this.state.actName,
                 status: this.state.status,
                 actType: this.state.actType,
-                stDate: this.state.stDate,
-                endDate: this.state.endDate,
+                stDate: this.state.wfDate,
+                endDate: this.state.wetDate,
                 flag: 'A'
             }
             $.ajax({
@@ -89,12 +89,12 @@
     },
     onBlurWefDate: function (value) {
         this.setState({
-            stDate: value
+            wfDate: value
         });
     },
     onBlurWetDate: function (value) {
         this.setState({
-            endDate: value
+            wetDate: value
         });
     },
     //register input controls
@@ -131,12 +131,12 @@
                                         onChange={this.onChangeactType} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
-                                    <CreateInput type={'date'} value={this.state.stDate} label={'Start Date'} name={'daterangepicker'} htmlFor={'stDate'} isrequired={true}
-                                        className={'form-control'} onBlur={this.onBlurWefDate} onComponentMounted={this.register} messageRequired={'required.'} />
+                                    <CreateInput type={'date'} value={this.state.wfDate} id={'wfDate'} label={'Start Date'} name={'daterangepicker'} htmlFor={'wfDate'} isrequired={true}
+                                        className={'startDate form-control'} onBlur={this.onBlurWefDate} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
-                                    <CreateInput type={'date'} value={this.state.endDate} label={'End Date'} name={'daterangepicker'} htmlFor={'endDate'} isrequired={true}
-                                        className={'form-control'} onBlur={this.onBlurWetDate} onComponentMounted={this.register} messageRequired={'required.'} />
+                                    <CreateInput type={'date'} value={this.state.wtDate} id={'wtDate'} label={'End Date'} name={'daterangepicker'} htmlFor={'wtDate'} isrequired={true}
+                                        className={'startDate form-control'} onBlur={this.onWetBlur} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
                                     <input type="submit" className="btn btn-success" value="Save" />

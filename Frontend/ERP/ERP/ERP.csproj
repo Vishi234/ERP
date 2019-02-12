@@ -270,6 +270,7 @@
     <Compile Include="Models\Entity\CourseEntity.cs" />
     <Compile Include="Models\Entity\ActivityEntity.cs" />
     <Compile Include="Models\Entity\CustomerEntity.cs" />
+    <Compile Include="Models\Entity\DurationEntity.cs" />
     <Compile Include="Models\Entity\MasterEntity.cs" />
     <Compile Include="Models\Entity\ResultEntity.cs" />
     <Compile Include="Models\Entity\UserEntity.cs" />

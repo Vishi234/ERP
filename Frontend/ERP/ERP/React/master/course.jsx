@@ -22,6 +22,13 @@
             ServerMessage: ''
         }
     },
+    resetData: function () {
+        this.setState({
+            courseCode: '',
+            courseName: '',
+            noOfSemester: '',
+        });
+    },
     handleSubmit: function (e) {
         e.preventDefault();
         var validForm = true;
@@ -52,7 +59,9 @@
                     $("#progress").hide();
                     console.log(data);
                     if (data.flag == "S") {
-                        window.location.href = "/Dashboard/Overview";
+                        alert("Course Added Successfully");
+                        { this.resetData() };
+                        e.preventDefault();
                     }
                     else if (data.flag == "D") {
                         $("#selectorg").modal("show");
@@ -94,6 +103,7 @@
             noOfSemester: value
         });
     },
+
     render: function () {
         //Render form
         return (

@@ -117,7 +117,7 @@
                                     <form name='AcademicYear' noValidate onSubmit={this.handleSubmit}>
                                         <ul>
                                             <li>
-                                                <CreateInput type={'text'} value={this.state.yearCode} label={'Enter Code'} name={'yearCode'} htmlFor={'yearCode'} isrequired={true}
+                                                <CreateInput type={'text'} value={this.state.yearCode} label={'Course Code'} name={'yearCode'} htmlFor={'yearCode'} isrequired={true}
                                                              onChange={this.onChangeCode} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                             </li>
                                             <li>
