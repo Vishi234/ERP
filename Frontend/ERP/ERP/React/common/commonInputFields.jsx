@@ -24,10 +24,26 @@
             return true;
         }
     },
-    componentDidMount: function () {
+    componentDidMount: function ()
+    {
         if (this.props.onComponentMounted) {
             this.props.onComponentMounted(this); //register this input in the form
         }
+        else if (this.props.type == "ddl")
+        {
+            fetch("/Master/Duration")
+                .then((response) => {
+                    alert(response.json());
+                    return response.json();
+                })
+                .then(data => {
+                    let teamsFromApi = data.map(team => { return { value: team, display: team } })
+                    this.setState({ teams: [{ value: '', display: '(Select your favourite team)' }].concat(teamsFromApi) });
+                }).catch(error => {
+                    console.log(error);
+                });
+        }
+        else
         InitializeDate("daterangepicker");
     },
     render: function () {

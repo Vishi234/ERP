@@ -19,6 +19,7 @@
             wefDate: "",
             wetDate: "",
             Fields: [],
+            optionData:[],
             columnDef: columnDefs,
             rowData: rowData,
             ServerMessage: ''
@@ -119,6 +120,7 @@
                         <form name='CourseForm' noValidate onSubmit={this.handleSubmit}>
                             <ul>
                                 <li>
+
                                     <CreateInput type={'ddl'} value={this.state.academicYear} label={'Academic Year'} name={'academicYear'} htmlFor={'academicYear'} isrequired={true}
                                         onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
