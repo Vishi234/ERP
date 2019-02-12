@@ -15,6 +15,7 @@ namespace ERP.Controllers
 
         public ActionResult Academic()
         {
+
             return View();
         }
 

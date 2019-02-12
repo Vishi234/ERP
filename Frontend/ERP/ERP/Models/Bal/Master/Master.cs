@@ -21,7 +21,7 @@ namespace ERP.Models.Bal.Master
             ResultEntity result = new ResultEntity();
             try
             {
-                SqlParameter[] sqlParameter = new SqlParameter[9];
+                SqlParameter[] sqlParameter = new SqlParameter[10];
                 sqlParameter[0] = new SqlParameter("@P_YEAR_CODE", masterEntity.yearCode);
                 sqlParameter[1] = new SqlParameter("@P_ACADEMIC_YEAR", masterEntity.academicYear);
                 sqlParameter[2] = new SqlParameter("@P_WFDATE", masterEntity.wfDate);
@@ -29,18 +29,18 @@ namespace ERP.Models.Bal.Master
                 sqlParameter[4] = new SqlParameter("@P_FLAG",masterEntity.flag);
                 sqlParameter[5] = new SqlParameter("@P_CUSTOMER_ID", customerId);
                 sqlParameter[6] = new SqlParameter("@P_USER_ID", userid);
-
-                sqlParameter[7] = new SqlParameter("@P_RSP_FLAG",SqlDbType.Char);
-                sqlParameter[7].Direction = ParameterDirection.Output;
-                sqlParameter[7].Size = 1;
-                sqlParameter[8] = new SqlParameter("@P_RSP_MSG", SqlDbType.NVarChar);
+                sqlParameter[7] = new SqlParameter("@P_REPORT_ID",Convert.ToInt32(masterEntity.reportId));
+                sqlParameter[8] = new SqlParameter("@P_RSP_FLAG",SqlDbType.Char);
                 sqlParameter[8].Direction = ParameterDirection.Output;
-                sqlParameter[8].Size = 500;
+                sqlParameter[8].Size = 1;
+                sqlParameter[9] = new SqlParameter("@P_RSP_MSG", SqlDbType.NVarChar);
+                sqlParameter[9].Direction = ParameterDirection.Output;
+                sqlParameter[9].Size = 500;
 
                 DataSet ds = new DataSet();
                 ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_ADD_ACADEMIC_YEAR", sqlParameter);
-                result.flag = sqlParameter[7].Value.ToString();
-                result.msg = sqlParameter[8].Value.ToString();
+                result.flag = sqlParameter[8].Value.ToString();
+                result.msg = sqlParameter[9].Value.ToString();
 
                 if (result.flag.ToUpper() == "S")
                 {

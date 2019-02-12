@@ -11,7 +11,7 @@ namespace ERP.Models.Entity
         public string academicYear { get; set; }
         public string wfDate { get; set; }
         public string wtDate { get; set; }
-
+        public string reportId { get; set; }
         public char flag { get; set; }
     }
     public class DurationEntity

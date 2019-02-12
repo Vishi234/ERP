@@ -1,4 +1,5 @@
 ﻿﻿var grdArray;
+var MyData = null;
 var AcademicYearForm = React.createClass({
     getInitialState: function () {
 
@@ -31,8 +32,8 @@ var AcademicYearForm = React.createClass({
                 academicYear: this.state.academicYear,
                 wfDate: this.state.wfDate,
                 wtDate: this.state.wtDate,
-                flag: 'A'
-
+                flag: 'A',
+                reportId: 1
             }
             $.ajax({
                 type: "POST",
@@ -45,12 +46,21 @@ var AcademicYearForm = React.createClass({
                 success: function (data) {
                     btnloading(e.target, 'hide');
                     CallToast(data.msg, data.flag);
+                    if (data.flag == "S") {
+                        MyData = JSON.parse(data.addParams);
+                       
+                    }
                 }.bind(this),
                 error: function (evt) {
                     btnloading(e.target, 'hide');
                     alert('Error! Please try again');
                 }
             })
+
+            this.setState({
+                rowData: MyData
+            });
+            
         }
     },
     onChangeCode: function (value) {
