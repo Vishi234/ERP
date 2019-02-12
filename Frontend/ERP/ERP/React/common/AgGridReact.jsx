@@ -10,11 +10,13 @@
             colResizeDefault: 'shift',
             enableColResize: true,
             pagination: true,
+            pinned:0,
             paginationPageSize: 20,
             paginationNumberFormatter: function (params) {
                 return '[' + params.value.toLocaleString() + ']';
             },
-            onGridReady: function (params) {
+            onGridReady: function (params)
+            {
                 var allColumnIds = [];
                 gridOptions.columnApi.getAllColumns().forEach(function (column) {
                     allColumnIds.push(column.colId);
