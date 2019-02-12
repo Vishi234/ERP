@@ -263,8 +263,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Common\CommonFunc.cs" />
-    <Compile Include="Models\Common\Excep.cs" />
+    <Compile Include="Models\Bal\Common\CommonFunc.cs" />
+    <Compile Include="Models\Bal\Common\Excep.cs" />
     <Compile Include="Models\Dal\SQLHelper.cs" />
     <Compile Include="Models\Dal\SqlHelper2.cs" />
     <Compile Include="Models\Entity\CourseEntity.cs" />
@@ -274,8 +274,8 @@
     <Compile Include="Models\Entity\MasterEntity.cs" />
     <Compile Include="Models\Entity\ResultEntity.cs" />
     <Compile Include="Models\Entity\UserEntity.cs" />
-    <Compile Include="Models\Login\Login.cs" />
-    <Compile Include="Models\Master\Master.cs" />
+    <Compile Include="Models\Bal\Login\Login.cs" />
+    <Compile Include="Models\Bal\Master\Master.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -303,8 +303,7 @@
   <ItemGroup>
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Bal\" />
-    <Folder Include="Models\Organization\" />
+    <Folder Include="Models\Bal\Organization\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
