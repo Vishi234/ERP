@@ -17,6 +17,7 @@ namespace Models.Entity
         }
         public string Status { get; set; }
         public string Userid { get; set; }
+        public string CustomerId { get; set; }
         public string countryID { get; set; }
         public string countryName { get; set; }
         public string CircleID { get; set; }

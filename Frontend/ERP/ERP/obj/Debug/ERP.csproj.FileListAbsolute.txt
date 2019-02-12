@@ -312,6 +312,7 @@ D:\Project\Github ERP\ERP\Frontend\ERP\ERP\obj\Debug\ERP.csproj.CoreCompileInput
 D:\Project\Github ERP\ERP\Frontend\ERP\ERP\obj\Debug\ERP.csproj.CopyComplete
 D:\Project\Github ERP\ERP\Frontend\ERP\ERP\obj\Debug\ERP.dll
 D:\Project\Github ERP\ERP\Frontend\ERP\ERP\obj\Debug\ERP.pdb
+C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.csprojResolveAssemblyReference.cache
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\x64\ClearScriptV8-64.dll
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\x64\v8-base-x64.dll
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\x64\v8-x64.dll
@@ -390,4 +391,3 @@ C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\ru-ru\JavaScript
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.dll
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.pdb
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.csprojResolveAssemblyReference.cache
-C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.csprojResolveAssemblyReference.cache

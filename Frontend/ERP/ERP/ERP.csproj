@@ -179,9 +179,10 @@
     <Content Include="React\master\subject.jsx" />
     <Content Include="React\Registration\Registration.jsx" />
     <Content Include="Scripts\ag-grid.min.js" />
-    <Content Include="Scripts\AppConfig.js" />
+    <Content Include="Scripts\appconfig.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\common.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\daterangepicker.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
@@ -270,10 +271,7 @@
     <Compile Include="Models\Cache\GlobalCache.cs" />
     <Compile Include="Models\Dal\SQLHelper.cs" />
     <Compile Include="Models\Dal\SqlHelper2.cs" />
-    <Compile Include="Models\Entity\CourseEntity.cs" />
-    <Compile Include="Models\Entity\ActivityEntity.cs" />
     <Compile Include="Models\Entity\CustomerEntity.cs" />
-    <Compile Include="Models\Entity\DurationEntity.cs" />
     <Compile Include="Models\Entity\MasterEntity.cs" />
     <Compile Include="Models\Entity\ResultEntity.cs" />
     <Compile Include="Models\Entity\UserEntity.cs" />
@@ -308,7 +306,7 @@
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\DynamicJs\" />
-    <Folder Include="Models\Organization\" />
+    <Folder Include="Models\Bal\Organization\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

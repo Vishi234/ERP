@@ -20,9 +20,12 @@ namespace ERP
                         "~/Scripts/jquery-isotope.min.js",
                         "~/Scripts/moment.min.js",
                         "~/Scripts/daterangepicker.js",
+                        "~/Scripts/appconfig.js",
+                        "~/Scripts/common.js",
                         "~/Scripts/custom.js",
                         "~/Scripts/ag-grid.min.js",
                         "~/Scripts/fontawesome/all.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/react").Include(
                          "~/Scripts/react.development.js",
                         "~/Scripts/react-dom.development.js",
@@ -31,8 +34,13 @@ namespace ERP
                         "~/React/common/CommonInputFields.jsx",
                         "~/React/common/AgGridReact.jsx"
                         ));
+
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
+
+            bundles.Add(new ScriptBundle("~/bundles/config")
+                        .IncludeDirectory("~/Content/DynamicJs", "*.js", true));
+
             bundles.Add(new StyleBundle("~/bundles/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/default.css",
