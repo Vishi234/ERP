@@ -147,13 +147,7 @@
 
                         </form>
                     </div>
-                    <div className="actionbse">
-                        <div className="aclft pull-left">
-                        </div>
-                        <div className="acrght pull-right">
-                            <input type="text" placeholder="Type here......" className="form-control"></input>
-                        </div>
-                    </div>
+                   
                     <AgGrid columnDef={this.state.columnDef} rowData={this.state.rowData} />
                 </div>
             </div>

@@ -61,6 +61,16 @@
         }
     })
 })
+function btnloading(evt, action) {
+    if (action == "show") {
+        $(evt).find(".inload").removeClass("hide")
+        $(evt).find(':button[type=submit]').prop('disabled', true);
+    }
+    else {
+        $(evt).find(".inload").addClass("hide")
+        $(evt).find(':button[type=submit]').prop('disabled', false);
+    }
+}
 function InitializeDate(name) {
     $('input[name=' + name + ']').daterangepicker({
         singleDatePicker: true,

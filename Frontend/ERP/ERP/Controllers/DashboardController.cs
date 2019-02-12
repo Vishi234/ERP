@@ -1,6 +1,5 @@
-﻿using ERP.Models.Entity;
-using ERP.Models.Login;
-using ERP.Models.Master;
+﻿using ERP.Models.Bal.Login;
+using ERP.Models.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;

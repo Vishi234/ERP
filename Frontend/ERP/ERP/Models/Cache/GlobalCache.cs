@@ -1,5 +1,5 @@
 ﻿using DaL;
-using ERP.Models.Common;
+using ERP.Models.Bal.Common;
 using System;
 using System.Collections;
 using System.Data;
@@ -29,10 +29,10 @@ namespace ERP.Models.Cache
                     htGridHeading.Add(Values[1].ToString(), Values[3].ToString());
                 }
             }
-           HttpContext.Current.Application["htGridHeading"] = htGridHeading;
+            HttpContext.Current.Application["htGridHeading"] = htGridHeading;
 
 
-   
+
             System.Xml.XmlDocument xmldoc = new System.Xml.XmlDocument();
             FileStream fs = new FileStream(HttpContext.Current.Server.MapPath("~/Content/ConfigFiles/GridHeaders.xml"), FileMode.Open, FileAccess.Read);
             xmldoc.Load(fs);
@@ -64,11 +64,11 @@ namespace ERP.Models.Cache
                         {
                             if (columnNode.Attributes["dbFieldAlias"].Value == null || columnNode.Attributes["dbFieldAlias"].Value == "")
                             {
-                                strReportColAlias += "\"" + columnNode.Attributes["dbFieldName"].Value + "\",";
+                                strReportColAlias += columnNode.Attributes["dbFieldAlias"].Value + ",";//"\"" + columnNode.Attributes["dbFieldName"].Value + "\",";
                             }
                             else
                             {
-                                strReportColAlias += "\"" + columnNode.Attributes["dbFieldAlias"].Value + "\",";
+                                strReportColAlias += columnNode.Attributes["dbFieldAlias"].Value + ",";//"\"" + columnNode.Attributes["dbFieldAlias"].Value + "\",";
                             }
                             strReportColumns += columnNode.Attributes["dbFieldName"].Value + ",";
                         }
@@ -153,7 +153,7 @@ namespace ERP.Models.Cache
 
                     if (strFileExportCaption.Length > 0)
                         strFile += "var " + reportNode.Attributes["name"].Value + "_ExportCaption" + " = [" + strFileExportCaption + "];\n";
-                    
+
                     strFile += "\n gridViewSettings['$" + reportNode.Attributes["name"].Value + "$'] =" + reportNode.Attributes["name"].Value + ";";
                     strFile += "\n gridViewSettings['$" + reportNode.Attributes["name"].Value + "_Export" + "$'] =" + reportNode.Attributes["name"].Value + "_Export" + ";";        //CR-27_Point 3
                     strFile += "\n gridViewSettings['$" + reportNode.Attributes["name"].Value + "_ExportCaption" + "$'] =" + reportNode.Attributes["name"].Value + "_ExportCaption" + ";\n";  //CR-27_Point 3
@@ -169,7 +169,7 @@ namespace ERP.Models.Cache
                 strFileExportCaption = string.Empty;
                 strFileExport = string.Empty;
             }
-            
+
         }
 
         private void GetReportColumns(string reportType, int formID, string reportName, string rptColumns, string rptColAlias)
@@ -194,7 +194,7 @@ namespace ERP.Models.Cache
                 sqlParameter[7].Size = 500;
                 SqlHelper.ExecuteNonQuery(sqlConn, CommandType.StoredProcedure, "SP_INSERT_REPORT_CONFIG", sqlParameter);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Excep.WriteException(ex);
             }

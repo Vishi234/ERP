@@ -1,6 +1,6 @@
 ﻿using DaL;
 using ERP.Controllers;
-using ERP.Models.Common;
+using ERP.Models.Bal.Common;
 using ERP.Models.Entity;
 using Models.Entity;
 using System;
@@ -10,35 +10,37 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace ERP.Models.Master
+namespace ERP.Models.Bal.Master
 {
     public class Master
     {
         string sqlConn =System.Configuration.ConfigurationManager.ConnectionStrings["CS"].ConnectionString;
         UserEntity objUserEntity = UserEntity.GetInstance();
-        public ResultEntity AddAcademicYear(MasterEntity masterEntity)
+        public ResultEntity AddAcademicYear(AcademicEntity masterEntity,string customerId,string userid)
         {
             ResultEntity result = new ResultEntity();
             try
             {
-                SqlParameter[] sqlParameter = new SqlParameter[7];
+                SqlParameter[] sqlParameter = new SqlParameter[9];
                 sqlParameter[0] = new SqlParameter("@P_YEAR_CODE", masterEntity.yearCode);
                 sqlParameter[1] = new SqlParameter("@P_ACADEMIC_YEAR", masterEntity.academicYear);
                 sqlParameter[2] = new SqlParameter("@P_WFDATE", masterEntity.wfDate);
                 sqlParameter[3] = new SqlParameter("@P_WTDATE", masterEntity.wtDate);
                 sqlParameter[4] = new SqlParameter("@P_FLAG",masterEntity.flag);
+                sqlParameter[5] = new SqlParameter("@P_CUSTOMER_ID", customerId);
+                sqlParameter[6] = new SqlParameter("@P_USER_ID", userid);
 
-                sqlParameter[5] = new SqlParameter("@P_RSP_FLAG", System.Data.SqlDbType.NVarChar);
-                sqlParameter[5].Direction = ParameterDirection.Output;
-                sqlParameter[5].Size = 1;
-                sqlParameter[6] = new SqlParameter("@P_RSP_MSG", SqlDbType.NVarChar);
-                sqlParameter[6].Direction = ParameterDirection.Output;
-                sqlParameter[6].Size = 500;
+                sqlParameter[7] = new SqlParameter("@P_RSP_FLAG",SqlDbType.Char);
+                sqlParameter[7].Direction = ParameterDirection.Output;
+                sqlParameter[7].Size = 1;
+                sqlParameter[8] = new SqlParameter("@P_RSP_MSG", SqlDbType.NVarChar);
+                sqlParameter[8].Direction = ParameterDirection.Output;
+                sqlParameter[8].Size = 500;
 
                 DataSet ds = new DataSet();
                 ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_ADD_ACADEMIC_YEAR", sqlParameter);
-                result.flag = sqlParameter[5].Value.ToString();
-                result.msg = sqlParameter[6].Value.ToString();
+                result.flag = sqlParameter[7].Value.ToString();
+                result.msg = sqlParameter[8].Value.ToString();
 
                 if (result.flag.ToUpper() == "S")
                 {

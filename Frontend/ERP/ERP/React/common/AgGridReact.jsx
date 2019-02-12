@@ -1,8 +1,11 @@
-﻿var AgGrid = React.createClass({
+﻿var gridOptions;
+var rowData;
+var AgGrid = React.createClass({
     componentDidMount: function () {
-        var gridOptions = {
+        rowData = this.props.rowData;
+        gridOptions = {
             columnDefs: this.props.columnDef,
-            rowData: this.props.rowData,
+            rowData: rowData,
             enableSorting: true,
             enableCellChangeFlash: true,
             refreshCells: true,
@@ -10,30 +13,41 @@
             colResizeDefault: 'shift',
             enableColResize: true,
             pagination: true,
-            pinned:0,
             paginationPageSize: 20,
             paginationNumberFormatter: function (params) {
                 return '[' + params.value.toLocaleString() + ']';
             },
-            onGridReady: function (params)
-            {
+            localeText: { noRowsToShow: 'No data found.' },
+            onGridReady: function (params) {
                 var allColumnIds = [];
                 gridOptions.columnApi.getAllColumns().forEach(function (column) {
                     allColumnIds.push(column.colId);
                 });
                 gridOptions.columnApi.autoSizeColumns(allColumnIds);
                 params.api.sizeColumnsToFit();
+                gridOptions.api.setRowData(rowData);
             },
         };
+
         var eGridDiv = document.querySelector('#myGrid');
         // create the grid passing in the div to use together with the columns & data we want to use
         new agGrid.Grid(eGridDiv, gridOptions);
+    },
+    onFilterChange: function (e) {
+        gridOptions.api.setQuickFilter(e.target.value);
     },
     render: function () {
         var grid;
         grid = <div id="myGrid" style={{ height: '300px', width: '100%' }} className="ag-theme-balham"></div>
         return (
             <div className="dtlbse">
+                <div className="actionbse">
+                    <div className="aclft pull-left">
+                    </div>
+                    <div className="acrght pull-right">
+                        <input type="text" onChange={this.onFilterChange} placeholder="Quick Search..." className="form-control"></input>
+                    </div>
+                </div>
                 {grid}
             </div>
 

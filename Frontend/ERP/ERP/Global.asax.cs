@@ -15,7 +15,7 @@ namespace ERP
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
 
-            string[] str = File.ReadAllLines(Server.MapPath("~/Scripts/AppConfig.js"));
+            string[] str = File.ReadAllLines(Server.MapPath("~/Scripts/appconfig.js"));
             Hashtable htLables = new Hashtable();
             for (int loopCounter = 2; loopCounter < str.Length; loopCounter++)
             {

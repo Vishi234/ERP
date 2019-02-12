@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
 
-namespace ERP.Models.Common
+namespace ERP.Models.Bal.Common
 {
     public class CommonFunc
     {

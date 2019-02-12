@@ -5,16 +5,43 @@ using System.Web;
 
 namespace ERP.Models.Entity
 {
-    public class MasterEntity
+    public class AcademicEntity
     {
-        public string  yearCode{get;set;}
+        public string yearCode { get; set; }
         public string academicYear { get; set; }
         public string wfDate { get; set; }
         public string wtDate { get; set; }
 
         public char flag { get; set; }
     }
+    public class DurationEntity
+    {
+        public string academicYear { get; set; }
+        public string course { get; set; }
+        public string semester { get; set; }
+        public string wefDate { get; set; }
+        public string wetDate { get; set; }
+
+        public char flag { get; set; }
+    }
+    public class CourseEntity
+    {
+        public string courseCode { get; set; }
+        public string courseName { get; set; }
+        public string noOfSemester { get; set; }
 
 
+        public char flag { get; set; }
+    }
+    public class ActivityEntity
+    {
+        public string actName { get; set; }
+        public string status { get; set; }
+        public string actType { get; set; }
+        public string stDate { get; set; }
+        public string endDate { get; set; }
+
+        public char flag { get; set; }
+    }
 
 }

@@ -1,5 +1,6 @@
-﻿using ERP.Models.Entity;
-using ERP.Models.Master;
+﻿using ERP.Models.Bal.Master;
+using ERP.Models.Entity;
+using Models.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,16 +15,17 @@ namespace ERP.Controllers
 
         public ActionResult Academic()
         {
-                return View();
+            return View();
         }
 
         [HttpPost]
-        public JsonResult Academic(MasterEntity masterEntity)
+        public JsonResult Academic(AcademicEntity masterEntity)
         {
             Master objMaster = new Master();
-            return Json(objMaster.AddAcademicYear(masterEntity));
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            return Json(objMaster.AddAcademicYear(masterEntity, objUserEntity.CustomerId, objUserEntity.Userid));
 
-         
+
         }
 
         public ActionResult Course()
