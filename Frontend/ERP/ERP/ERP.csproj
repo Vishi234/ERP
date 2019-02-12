@@ -140,6 +140,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\brands.css" />
     <Content Include="Content\brands.min.css" />
+    <Content Include="Content\ConfigFiles\GridHeaders.xml" />
     <Content Include="Content\daterangepicker.css" />
     <Content Include="Content\default.css" />
     <Content Include="Content\fontawesome-all.css" />
@@ -257,12 +258,14 @@
     <Compile Include="App_Start\ReactConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\CacheController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cache\GlobalCache.cs" />
     <Compile Include="Models\Common\CommonFunc.cs" />
     <Compile Include="Models\Common\Excep.cs" />
     <Compile Include="Models\Dal\SQLHelper.cs" />
@@ -270,6 +273,7 @@
     <Compile Include="Models\Entity\CourseEntity.cs" />
     <Compile Include="Models\Entity\ActivityEntity.cs" />
     <Compile Include="Models\Entity\CustomerEntity.cs" />
+    <Compile Include="Models\Entity\DurationEntity.cs" />
     <Compile Include="Models\Entity\MasterEntity.cs" />
     <Compile Include="Models\Entity\ResultEntity.cs" />
     <Compile Include="Models\Entity\UserEntity.cs" />
@@ -292,6 +296,7 @@
     <Content Include="Views\Master\Subject.cshtml" />
     <Content Include="Views\Master\Mapping.cshtml" />
     <Content Include="Views\Master\Section.cshtml" />
+    <Content Include="Views\Cache\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -302,6 +307,7 @@
   <ItemGroup>
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Content\DynamicJs\" />
     <Folder Include="Models\Bal\" />
     <Folder Include="Models\Organization\" />
   </ItemGroup>
