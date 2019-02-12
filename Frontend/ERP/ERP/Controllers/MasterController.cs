@@ -48,7 +48,7 @@ namespace ERP.Controllers
             return Json(objMaster.CourseDuration());
 
         }
-        [HttpGet]
+        [HttpPost]
         public ActionResult Duration(DurationEntity durationEntity)
         {
             Master objMaster = new Master();

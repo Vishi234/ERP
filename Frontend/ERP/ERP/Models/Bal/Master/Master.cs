@@ -115,20 +115,21 @@ namespace ERP.Models.Bal.Master
             {
                 objUserEntity = (UserEntity)HttpContext.Current.Session["UserDetails"];
 
-                SqlParameter[] sqlParameter = new SqlParameter[7];
+                SqlParameter[] sqlParameter = new SqlParameter[8];
                 sqlParameter[0] = new SqlParameter("@P_COURSE_CODE", courseEntity.courseCode);
                 sqlParameter[1] = new SqlParameter("@P_COURSE_NAME", courseEntity.courseName);
                 sqlParameter[2] = new SqlParameter("@P_NO_SEMESTER", courseEntity.noOfSemester);
                 sqlParameter[3] = new SqlParameter("@P_FLAG", courseEntity.flag);
                 sqlParameter[4] = new SqlParameter("@P_USER", objUserEntity.UserName);
-                
+                sqlParameter[5] = new SqlParameter("@P_COLLEGE_ID", objUserEntity.countryID);
 
-                sqlParameter[5] = new SqlParameter("@P_RSP_FLAG", System.Data.SqlDbType.NVarChar);
-                sqlParameter[5].Direction = ParameterDirection.Output;
-                sqlParameter[5].Size = 1;
-                sqlParameter[6] = new SqlParameter("@P_RSP_MSG", SqlDbType.NVarChar);
+
+                sqlParameter[6] = new SqlParameter("@P_RSP_FLAG", System.Data.SqlDbType.NVarChar);
                 sqlParameter[6].Direction = ParameterDirection.Output;
-                sqlParameter[6].Size = 500;
+                sqlParameter[6].Size = 1;
+                sqlParameter[7] = new SqlParameter("@P_RSP_MSG", SqlDbType.NVarChar);
+                sqlParameter[7].Direction = ParameterDirection.Output;
+                sqlParameter[7].Size = 500;
 
                 DataSet ds = new DataSet();
                 ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_ADD_COURSE", sqlParameter);

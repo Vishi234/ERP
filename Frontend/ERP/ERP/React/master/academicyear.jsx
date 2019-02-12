@@ -1,4 +1,4 @@
-﻿var grdArray;
+﻿﻿var grdArray;
 var AcademicYearForm = React.createClass({
     getInitialState: function () {
 

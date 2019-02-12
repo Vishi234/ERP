@@ -27,6 +27,7 @@
     componentDidMount: function ()
     {
         if (this.props.onComponentMounted) {
+            //alert(this.props.type);
             this.props.onComponentMounted(this); //register this input in the form
         }
         else if (this.props.type == "ddl") {
@@ -41,6 +42,7 @@
                 }).catch(error => {
                     console.log(error);
                 });
+
         }
         else { }
         InitializeDate("daterangepicker");
