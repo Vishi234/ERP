@@ -14,16 +14,17 @@ namespace ERP
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            //string[] str = File.ReadAllLines(Server.MapPath("~/Scripts/AppConfig.js"));
-            //Hashtable htLables = new Hashtable();
-            //for (int loopCounter = 2; loopCounter < str.Length; loopCounter++)
-            //{
-            //    string[] Values = str[loopCounter].Split('"');
-            //    if (Values.Length > 3)
-            //    {
-            //        htLables.Add(Values[1].ToString(), Values[3].ToString());
-            //    }
-            //}
+
+            string[] str = File.ReadAllLines(Server.MapPath("~/Scripts/AppConfig.js"));
+            Hashtable htLables = new Hashtable();
+            for (int loopCounter = 2; loopCounter < str.Length; loopCounter++)
+            {
+                string[] Values = str[loopCounter].Split('"');
+                if (Values.Length > 3)
+                {
+                    htLables.Add(Values[1].ToString(), Values[3].ToString());
+                }
+            }
 
         }
     }

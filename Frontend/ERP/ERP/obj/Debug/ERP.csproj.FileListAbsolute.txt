@@ -151,7 +151,6 @@ C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Helpers.xml
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Mvc.xml
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\ru-ru\JavaScriptEngineSwitcher.Core.resources.dll
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\ru-ru\JavaScriptEngineSwitcher.V8.resources.dll
-C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.csprojResolveAssemblyReference.cache
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.csproj.CoreCompileInputs.cache
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.dll
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.pdb
@@ -391,3 +390,4 @@ C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\ru-ru\JavaScript
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.dll
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.pdb
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.csprojResolveAssemblyReference.cache
+C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.csprojResolveAssemblyReference.cache
