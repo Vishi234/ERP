@@ -277,8 +277,8 @@
     <Compile Include="Models\Entity\MasterEntity.cs" />
     <Compile Include="Models\Entity\ResultEntity.cs" />
     <Compile Include="Models\Entity\UserEntity.cs" />
-    <Compile Include="Models\Login\Login.cs" />
-    <Compile Include="Models\Master\Master.cs" />
+    <Compile Include="Models\Bal\Login\Login.cs" />
+    <Compile Include="Models\Bal\Master\Master.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
