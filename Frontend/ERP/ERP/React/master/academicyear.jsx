@@ -1,4 +1,5 @@
 ﻿var AcademicYearForm = React.createClass({
+
     getInitialState: function () {
         var columnDefs = [
             { headerName: "Make", field: "make" },
@@ -117,6 +118,7 @@
                                     <form name='AcademicYear' noValidate onSubmit={this.handleSubmit}>
                                         <ul>
                                             <li>
+                                                
                                                 <CreateInput type={'text'} value={this.state.yearCode} label={'Course Code'} name={'yearCode'} htmlFor={'yearCode'} isrequired={true}
                                                              onChange={this.onChangeCode} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                             </li>

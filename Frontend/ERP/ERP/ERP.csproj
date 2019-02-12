@@ -265,9 +265,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Bal\Common\CommonFunc.cs" />
+    <Compile Include="Models\Bal\Common\Excep.cs" />
     <Compile Include="Models\Cache\GlobalCache.cs" />
-    <Compile Include="Models\Common\CommonFunc.cs" />
-    <Compile Include="Models\Common\Excep.cs" />
     <Compile Include="Models\Dal\SQLHelper.cs" />
     <Compile Include="Models\Dal\SqlHelper2.cs" />
     <Compile Include="Models\Entity\CourseEntity.cs" />
@@ -308,7 +308,6 @@
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\DynamicJs\" />
-    <Folder Include="Models\Bal\" />
     <Folder Include="Models\Organization\" />
   </ItemGroup>
   <ItemGroup>

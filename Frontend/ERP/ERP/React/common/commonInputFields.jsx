@@ -27,10 +27,12 @@
     componentDidMount: function ()
     {
         if (this.props.onComponentMounted) {
+            //alert(this.props.type);
             this.props.onComponentMounted(this); //register this input in the form
         }
         else if (this.props.type == "ddl")
         {
+            alert(this.props.type);
             fetch("/Master/Duration")
                 .then((response) => {
                     alert(response.json());
@@ -42,6 +44,7 @@
                 }).catch(error => {
                     console.log(error);
                 });
+
         }
         else
         InitializeDate("daterangepicker");

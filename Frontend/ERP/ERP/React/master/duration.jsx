@@ -12,6 +12,11 @@
             { make: "Ford", model: "Mondeo", price: 32000 },
             { make: "Porsche", model: "Boxter", price: 72000 }
         ];
+        state = {
+            teams: [],
+            selectedTeam: "",
+            validationError: ""
+        };
         return {
             academicYear: 0,
             course: 0,
