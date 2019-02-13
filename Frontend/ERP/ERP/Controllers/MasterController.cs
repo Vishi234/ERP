@@ -24,7 +24,7 @@ namespace ERP.Controllers
         {
             Master objMaster = new Master();
             UserEntity objUserEntity = UserEntity.GetInstance();
-            return Json(objMaster.AddAcademicYear(masterEntity, objUserEntity.CustomerId, objUserEntity.Userid));
+            return Json(objMaster.AddAcademicYear(masterEntity, objUserEntity.customerId, objUserEntity.userId));
 
 
         }
@@ -38,7 +38,7 @@ namespace ERP.Controllers
         {
             Master objMaster = new Master();
             UserEntity objUserEntity = UserEntity.GetInstance();
-            return Json(objMaster.AddCourse(courseEntity, objUserEntity.CustomerId,objUserEntity.Userid));
+            return Json(objMaster.AddCourse(courseEntity, objUserEntity.customerId,objUserEntity.userId));
         }
         //public ActionResult Duration()
         //{
@@ -55,7 +55,7 @@ namespace ERP.Controllers
         {
             Master objMaster = new Master();
             UserEntity objUserEntity = UserEntity.GetInstance();
-            return Json(objMaster.AddDuration(durationEntity, objUserEntity.CustomerId, objUserEntity.Userid));
+            return Json(objMaster.AddDuration(durationEntity, objUserEntity.customerId, objUserEntity.userId));
         }
         public ActionResult Activity()
         {
@@ -66,7 +66,7 @@ namespace ERP.Controllers
         {
             Master objMaster = new Master();
             UserEntity objUserEntity = UserEntity.GetInstance();
-            return Json(objMaster.AddActivity(activityEntity, objUserEntity.CustomerId, objUserEntity.Userid));
+            return Json(objMaster.AddActivity(activityEntity, objUserEntity.customerId, objUserEntity.userId));
         }
         public ActionResult Subject()
         {

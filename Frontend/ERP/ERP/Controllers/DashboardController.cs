@@ -12,8 +12,12 @@ namespace ERP.Controllers
     public class DashboardController : Controller
     {
         // GET: Dashboard
-        public ActionResult Overview(string custId)
+        public ActionResult Overview(string custId,string name)
         {
+            UserEntity objUserEntity = (UserEntity)Session["UserDetails"];
+            objUserEntity.customerId = custId;
+            objUserEntity.customerName = name;
+            Session["UserDetails"] = objUserEntity;
             return View();
         }
         [HttpPost]
@@ -21,7 +25,7 @@ namespace ERP.Controllers
         {
             CommonLogin objLogin = new CommonLogin();
             UserEntity objUserEntity = UserEntity.GetInstance();
-            return Json(objLogin.RegisOrg(customer, objUserEntity.Userid));
+            return Json(objLogin.RegisOrg(customer, objUserEntity.userId));
         }
 
     }

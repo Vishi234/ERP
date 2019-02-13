@@ -19,30 +19,6 @@ var OrgList = React.createClass({
                                             
                                         </ul>
                                     </div>
-                                    <div className="rightoption">
-                                        <ul>
-                                            <li>
-                                                <a href="/Dashboard/Overview/">
-                                                    <i className="fa fa-check"></i> Select
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a data-direction="top" data-target="#createorg" className="openmodal" href="javascript:void(0)">
-                                                    <i className="fa fa-plus"></i> Create
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0)" data-target="#createorg" className="openmodal" href="javascript:void(0)">
-                                                    <i className="fa fa-edit"></i> Modify
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0)">
-                                                    <i className="fa fa-times"></i> Remove
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
                                 </div>
                             </div>
                         </div>

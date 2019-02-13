@@ -7,7 +7,7 @@
     //validation function
     isValid: function (input) {
         //check required field
-       
+
         if (input.getAttribute('required') != null && input.value === "") {
             input.classList.add('input-validation-error'); //add class error
             input.nextSibling.classList.add('field-validation-error');
@@ -78,37 +78,21 @@ var LoginForm = React.createClass({
                 },
                 success: function (data) {
                     $("#progress").hide();
-
-                    if (data.flag == "S")
-                    {
-                        window.location.href = "/Dashboard/Overview";
+                    CallToast(data.msg, data.flag);
+                    if (data.flag == "S") {
+                        if (data.addParams != null) {
+                            var customerList = JSON.parse(data.addParams); var dynamicLi = ""; var dynamicData = "";
+                            $.each(customerList, function (i, data) {
+                                dynamicLi += '<li><a href="/Dashboard/Overview?custId=' + data.CUSTOMER_ID + '&name=' + data.CUSTOMER_NAME + '"><i className="fa fa-home" ></i> ' + ' ' + data.CUSTOMER_NAME + '</a></li>';
+                                dynamicData = data.CUSTOMER_ID + '~' + data.CUSTOMER_NAME + '~' + data.ADDRESS_PRIMARY + '~' + data.ADDRESS_SECONDRY + '~' + data.FAX_NO;
+                            });
+                            $('.leftlist ul').append(dynamicLi);
+                            $("#selectorg").modal("show");
+                        }
+                        else {
+                            window.location.href = "/Dashboard/Overview";
+                        }
                     }
-                    else if (data.flag == "D")
-                    {
-                        var customerList = JSON.parse(data.addParams); var dynamicLi = ""; var dynamicData = "";                     
-                        $.each(customerList, function (i, data)
-                        {
-                            dynamicLi += '<li><i className="fa fa-home" ></i> ' +' '+ data.CUSTOMER_NAME + '</li>';
-                            dynamicData = data.CUSTOMER_ID + '~' + data.CUSTOMER_NAME + '~' + data.ADDRESS_PRIMARY + '~' + data.ADDRESS_SECONDRY + '~' + data.FAX_NO;
-                        });
-                        $('.leftlist ul').append(dynamicLi);
-                        $("#selectorg").modal("show");
-                    }
-                    else {
-                        CallToast(data.msg, data.flag);
-                    }
-                    //if (data.flag == "S")
-                    //{
-                    //    window.location.href = "/Dashboard/Overview";
-                    //}
-                    //else if (data.msg == "Super Admin")
-                    //{
-                    //    $("#selectorg").modal("show");
-                    //}
-                    //else
-                    //{
-                    //    CallToast(data.msg, data.flag);
-                    //}
                 }.bind(this),
                 error: function (e) {
                     console.log(e);
