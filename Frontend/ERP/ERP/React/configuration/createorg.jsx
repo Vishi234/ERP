@@ -163,7 +163,7 @@ var CreateOrg = React.createClass({
         this.setState({
             orgPan: value
         });
-    }, 
+    },
     //register input controls
     register: function (field) {
         var s = this.state.Fields;
@@ -172,7 +172,7 @@ var CreateOrg = React.createClass({
             Fields: s
         })
     },
-   
+
     render: function () {
         //Render form
         return (
@@ -186,72 +186,59 @@ var CreateOrg = React.createClass({
                             </div>
                             <div className="modal-body">
                                 <div className="createorg">
-                                    <form noValidate onSubmit={this.handleSubmit}>
-                                        <div className="setupform">
-                                            <div className="form-group">
-                                                <CreateFields type={'text'} value={this.state.orgName} label={'Enter Name of Oraganization'} name={'orgName'} htmlFor={'orgName'} isrequired={true}
-                                                    onChange={this.onChangeorgName} className="form-control col-md-12" onComponentMounted={this.register} messageRequired={'Name of Oraganization required'} />
-                                            </div>
-                                            <div className="title">
-                                                <span><i className="fa fa-list"></i>Basic Details</span>
-                                            </div>
-                                            <div className="row">
-                                                <div className="col-lg-4 col-md-4 col-xs-12 col-sm-4">
-                                                    <div className="formbase">
-                                                        <div className="form-group">
-                                                            <CreateFields type={'text'} value={this.state.orgAdd1} label={'Address Line 1'} name={'orgAdd1'} htmlFor={'orgAdd1'} isrequired={true}
-                                                                onChange={this.onChangeorgAdd1} className="form-control" onComponentMounted={this.register} messageRequired={'Address Line 1 required'} />
-                                                        </div>
-                                                        <div className="form-group">
-                                                            <CreateFields type={'text'} value={this.state.orgCity} label={'City'} name={'orgCity'} htmlFor={'orgCity'} isrequired={true}
-                                                                onChange={this.onChangeorgCity} className="form-control" onComponentMounted={this.register} messageRequired={'City required'} />
-                                                        </div>
-                                                        <div className="form-group">
-                                                            <CreateFields type={'text'} value={this.state.orgPhone} label={'Phone'} name={'orgPhone'} htmlFor={'orgPhone'} isrequired={true}
-                                                                onChange={this.onChangeorgPhone} className="form-control" onComponentMounted={this.register} messageRequired={'Phone required'} />
-                                                        </div>
+                                    <div className="acform">
+                                        <form noValidate onSubmit={this.handleSubmit}>
+                                            <ul>
+                                                <li>
+                                                    <CreateInput type={'text'} value={this.state.orgName} label={'Enter Name of Oraganization'} name={'orgName'} htmlFor={'orgName'} isrequired={true}
+                                                        onChange={this.onChangeorgName} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                    <div className="title">
+                                                        <span><i className="fa fa-list"></i>Basic Details</span>
                                                     </div>
-                                                </div>
-                                                <div className="col-lg-4 col-md-4 col-xs-12 col-sm-4">
-                                                    <div className="formbase">
-                                                        <div className="form-group">
-                                                            <CreateFields type={'text'} value={this.state.orgAdd2} label={'Address Line 2'} name={'orgAdd2'} htmlFor={'orgAdd2'} isrequired={true}
-                                                                onChange={this.onChangeorgAdd2} className="form-control" onComponentMounted={this.register} messageRequired={'Address Line 2 required'} />
-
-                                                        </div>
-                                                        <div className="form-group">
-                                                            <CreateFields type={'text'} value={this.state.orgMobile} label={'Mobile'} name={'orgMobile'} htmlFor={'orgMobile'} isrequired={true}
-                                                                onChange={this.onChangeorgMobile} className="form-control" onComponentMounted={this.register} messageRequired={'Mobile required'} />
-                                                        </div>
-                                                        <div className="form-group">
-                                                            <CreateFields type={'text'} value={this.state.orgWebsite} label={'Website'} name={'orgWebsite'} htmlFor={'orgWebsite'}
-                                                                onChange={this.onChangeorgWebsite} className="form-control" onComponentMounted={this.register} />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="col-lg-4 col-md-4 col-xs-12 col-sm-4">
-                                                    <div className="formbase">
-                                                        <div className="form-group">
-                                                            <CreateFields type={'text'} value={this.state.orgFax} label={'Fax No.'} name={'orgFax'} htmlFor={'orgFax'}
-                                                                onChange={this.onChangeorgFax} className="form-control" onComponentMounted={this.register} />
-                                                        </div>
-                                                        <div className="form-group">
-                                                            <CreateFields type={'text'} value={this.state.orgEmail} label={'Email'} name={'orgEmail'} htmlFor={'orgEmail'} isrequired={true}
-                                                                onChange={this.onChangeorgEmail} className="form-control" onComponentMounted={this.register} messageRequired={'Email required'} />
-                                                        </div>
-                                                        <div className="form-group">
-                                                            <CreateFields type={'text'} value={this.state.orgPan} label={'Pan No.'} name={'orgPan'} htmlFor={'orgPan'}
-                                                                onChange={this.onChangeorgPan} className="form-control" onComponentMounted={this.register} />
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                </li>
+                                                <li>
+                                                    <CreateInput type={'text'} value={this.state.orgAdd1} label={'Address Line 1'} name={'orgAdd1'} htmlFor={'orgAdd1'} isrequired={true}
+                                                        onChange={this.onChangeorgAdd1} className="form-control" onComponentMounted={this.register} messageRequired={'Address Line 1 required'} />
+                                                </li>
+                                                <li>
+                                                    <CreateInput type={'text'} value={this.state.orgCity} label={'City'} name={'orgCity'} htmlFor={'orgCity'} isrequired={true}
+                                                        onChange={this.onChangeorgCity} className="form-control" onComponentMounted={this.register} messageRequired={'City required'} />
+                                                </li>
+                                                <li>
+                                                    <CreateInput type={'text'} value={this.state.orgPhone} label={'Phone'} name={'orgPhone'} htmlFor={'orgPhone'} isrequired={true}
+                                                        onChange={this.onChangeorgPhone} className="form-control" onComponentMounted={this.register} messageRequired={'Phone required'} />
+                                                </li>
+                                                <li>
+                                                    <CreateInput type={'text'} value={this.state.orgAdd2} label={'Address Line 2'} name={'orgAdd2'} htmlFor={'orgAdd2'} isrequired={false}
+                                                        onChange={this.onChangeorgAdd2} className="form-control" onComponentMounted={this.register} messageRequired={'Address Line 2 required'} />
+                                                </li>
+                                                <li>
+                                                    <CreateInput type={'text'} value={this.state.orgMobile} label={'Mobile'} name={'orgMobile'} htmlFor={'orgMobile'} isrequired={true}
+                                                        onChange={this.onChangeorgMobile} className="form-control" onComponentMounted={this.register} messageRequired={'Mobile required'} />
+                                                </li>
+                                                <li>
+                                                    <CreateInput type={'text'} value={this.state.orgWebsite} label={'Website'} name={'orgWebsite'} htmlFor={'orgWebsite'} isrequired={false}
+                                                        onChange={this.onChangeorgWebsite} className="form-control" onComponentMounted={this.register} />
+                                                </li>
+                                                <li>
+                                                    <CreateInput type={'text'} value={this.state.orgFax} label={'Fax No.'} name={'orgFax'} htmlFor={'orgFax'} isrequired={false}
+                                                        onChange={this.onChangeorgFax} className="form-control" onComponentMounted={this.register} />
+                                                </li>
+                                                <li>
+                                                    <CreateInput type={'text'} value={this.state.orgEmail} label={'Email'} name={'orgEmail'} htmlFor={'orgEmail'} isrequired={true}
+                                                        onChange={this.onChangeorgEmail} className="form-control" onComponentMounted={this.register} messageRequired={'Email required'} />
+                                                </li>
+                                                <li>
+                                                    <CreateInput type={'text'} value={this.state.orgPan} label={'Pan No.'} name={'orgPan'} htmlFor={'orgPan'} isrequired={false}
+                                                        onChange={this.onChangeorgPan} className="form-control" onComponentMounted={this.register} />
+                                                </li>
+                                            </ul>
+                                            <div className="btn-group">
+                                                <span className="pull-left"><a href="javascript:void(0)">I will do it later</a></span>
+                                                <span className="pull-right"><input type="submit" className="btn btn-success" value="Create" /></span>
                                             </div>
-                                        </div>
-                                        <div className="btn-group">
-                                            <span className="pull-left"><a href="javascript:void(0)">I will do it later</a></span>
-                                            <span className="pull-right"><input type="submit" className="btn btn-success" value="Create"  /></span>
-                                        </div>
-                                    </form>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -264,4 +251,4 @@ var CreateOrg = React.createClass({
 
 
 });
-ReactDOM.render(<CreateOrg urlPost="Dashboard/Overview" />, document.getElementById('create'));
+ReactDOM.render(<CreateOrg urlPost="/Dashboard/CreateOrganization" />, document.getElementById('create'));

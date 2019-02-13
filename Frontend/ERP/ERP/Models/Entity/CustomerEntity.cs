@@ -18,6 +18,7 @@ namespace ERP.Models.Entity
         public string orgFax { get; set; }
         public string orgEmail { get; set; }
         public string orgPan { get; set; }
+        public string status { get; set; }
         public string oper { get; set; }
     }
 }

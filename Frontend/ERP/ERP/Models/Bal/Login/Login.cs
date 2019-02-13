@@ -69,7 +69,7 @@ namespace ERP.Models.Bal.Login
                         if (ds.Tables[0].Rows.Count > 0)
                         {
                             HttpContext.Current.Session["ModuelInfo"] = ds.Tables[0];
-                           
+
                             // HttpContext.Current.Session["CustomerList"] = ds.Tables[0];
                         }
                         if (ds.Tables.Count > 1)
@@ -93,12 +93,12 @@ namespace ERP.Models.Bal.Login
 
         }
 
-        public ResultEntity RegisOrg(CustomerEntity customer)
+        public ResultEntity RegisOrg(CustomerEntity customer, string userId)
         {
             ResultEntity result = new ResultEntity();
             try
             {
-                SqlParameter[] sqlParameter = new SqlParameter[13];
+                SqlParameter[] sqlParameter = new SqlParameter[15];
                 sqlParameter[0] = new SqlParameter("@P_CUSTOMER_NAME", customer.orgName);
                 sqlParameter[1] = new SqlParameter("@P_ADD_1", customer.orgAdd1);
                 sqlParameter[2] = new SqlParameter("@P_ADD_2", customer.orgAdd2);
@@ -108,38 +108,29 @@ namespace ERP.Models.Bal.Login
                 sqlParameter[6] = new SqlParameter("@P_PHONE", customer.orgPhone);
                 sqlParameter[7] = new SqlParameter("@P_EMAIL", customer.orgEmail);
                 sqlParameter[8] = new SqlParameter("@P_WEBSITE", customer.orgWebsite);
-                sqlParameter[9] = new SqlParameter("@P_CUSTOMER_ID", customer.orgId);
-                sqlParameter[10] = new SqlParameter("@P_OPER_TYPE", customer.oper);
-                sqlParameter[11] = new SqlParameter("@P_FLAG", SqlDbType.Char);
-                sqlParameter[11].Direction = ParameterDirection.Output;
-                sqlParameter[11].Size = 1;
-                sqlParameter[12] = new SqlParameter("@P_RSP_MSG", SqlDbType.NVarChar);
-                sqlParameter[12].Direction = ParameterDirection.Output;
-                sqlParameter[12].Size = 500;
+                sqlParameter[9] = new SqlParameter("@P_STATUS", customer.status);
+                sqlParameter[10] = new SqlParameter("@P_CUSTOMER_ID", Convert.ToInt32(customer.orgId));
+                sqlParameter[11] = new SqlParameter("@P_USER_ID", Convert.ToInt32(userId));
+                sqlParameter[12] = new SqlParameter("@P_OPER_TYPE", customer.oper);
+                sqlParameter[13] = new SqlParameter("@P_FLAG", SqlDbType.Char);
+                sqlParameter[13].Direction = ParameterDirection.Output;
+                sqlParameter[13].Size = 1;
+                sqlParameter[14] = new SqlParameter("@P_RSP_MSG", SqlDbType.NVarChar);
+                sqlParameter[14].Direction = ParameterDirection.Output;
+                sqlParameter[14].Size = 500;
 
                 DataSet ds = new DataSet();
                 ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_ADD_CUSTOMER_AMD", sqlParameter);
-                result.flag = sqlParameter[11].Value.ToString();
-                result.msg = sqlParameter[12].Value.ToString();
+                result.flag = sqlParameter[13].Value.ToString();
+                result.msg = sqlParameter[14].Value.ToString();
 
                 if (result.flag.ToUpper() == "S")
                 {
-                    UserEntity objUserEntity = UserEntity.GetInstance();
-                    objUserEntity.UserName = sqlParameter[2].Value.ToString();
-                    objUserEntity.Userid = sqlParameter[3].Value.ToString();
-                    objUserEntity.RoleId = sqlParameter[4].Value.ToString();
-                    objUserEntity.userCategoryId = sqlParameter[5].Value.ToString();
+                    UserEntity objUserEntity = (UserEntity)HttpContext.Current.Session["UserDetails"];
+                    objUserEntity.customerName = sqlParameter[0].Value.ToString();
+                    objUserEntity.CustomerId = sqlParameter[10].Value.ToString();
                     HttpContext.Current.Session["UserDetails"] = objUserEntity;
-
-                    if (ds != null)
-                    {
-                        if (ds.Tables[0].Rows.Count > 0)
-                        {
-                            HttpContext.Current.Session["ModuelInfo"] = ds.Tables[0];
-                        }
-                    }
                 }
-
                 return result;
             }
             catch (Exception ex)
