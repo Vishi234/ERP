@@ -88,7 +88,7 @@ var LoginForm = React.createClass({
                         var customerList = JSON.parse(data.addParams); var dynamicLi = ""; var dynamicData = "";                     
                         $.each(customerList, function (i, data)
                         {
-                            dynamicLi += '<li><i className="fa fa-home" ></i> ' +' '+data.CUSTOMER_NAME + '</li>';
+                            dynamicLi += '<li><i className="fa fa-home" ></i> ' +' '+ data.CUSTOMER_NAME + '</li>';
                             dynamicData = data.CUSTOMER_ID + '~' + data.CUSTOMER_NAME + '~' + data.ADDRESS_PRIMARY + '~' + data.ADDRESS_SECONDRY + '~' + data.FAX_NO;
                         });
                         $('.leftlist ul').append(dynamicLi);
