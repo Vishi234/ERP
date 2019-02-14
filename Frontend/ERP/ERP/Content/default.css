@@ -1091,10 +1091,10 @@ a {
     margin-top: 5px;
     border-radius: 2px 0px 0px 2px;
     float: left;
-    width: 80%;
+    width: 100%;
     border: 1px solid #ccc;
     height: 200px;
-    border-right: none;
+    /* border-right: none; */
     overflow: auto;
 }
 
@@ -1209,23 +1209,29 @@ a {
     font-weight: 400;
 }
 
-.setupform > .form-group:nth-child(1) label {
-    font-size: 14px;
-    font-weight: 500;
+.createorg .acform > form > ul > li {
+    width: 33%;
 }
 
-.setupform .form-group:nth-child(1) .form-control {
-    font-size: 14px;
-    border-radius: 0px;
-    /* font-weight: 500; */
-    text-transform: uppercase;
-}
+    .createorg .acform > form > ul > li > div > .form-group > label {
+        margin-bottom: 5px;
+    }
+
+    .createorg .acform > form > ul > li:nth-child(1) {
+        width: 100%;
+    }
+
+        .createorg .acform > form > ul > li:nth-child(1) > div > .form-group .form-control {
+            width: 100%;
+            height: 35px;
+        }
 
 .title {
     background: #f4f4f4;
     padding: 10px;
     width: 100%;
     border: 1px solid #ccc;
+    margin-top:25px;
 }
 
     .title span {
@@ -1275,6 +1281,9 @@ a {
 
     .btn-group span:nth-child(2) input {
         font-size: 12px;
+        width: 100%;
+        padding: 8px;
+        height: 35px;
     }
 
 .modal.fade:not(.in).left .modal-dialog {
@@ -1685,6 +1694,6 @@ a {
 }
 
 .jq-toast-wrap.top-right {
-    top: 60px!important;
-    right: 20px!important;
+    top: 60px !important;
+    right: 20px !important;
 }

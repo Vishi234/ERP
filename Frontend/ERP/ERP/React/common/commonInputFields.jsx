@@ -66,7 +66,7 @@
                                 className={this.props.className} required={this.props.isrequired} onBlur={this.handleBlur} />
         }
         else {
-            inputField = <input type={this.props.type} value={this.props.value} ref={this.props.name} name={this.props.name}
+            inputField = <input type={this.props.type} value={this.props.value} ref={this.props.name} autoComplete="off" name={this.props.name}
                                 className={this.props.className} required={this.props.isrequired} onChange={this.handleChange} />
         }
         return (

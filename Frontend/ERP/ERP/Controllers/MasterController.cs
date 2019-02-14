@@ -1,6 +1,6 @@
 ﻿using ERP.Models.Bal.Master;
 using ERP.Models.Entity;
-using Models.Entity;
+using ERP.Models.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +15,7 @@ namespace ERP.Controllers
 
         public ActionResult Academic()
         {
+
             return View();
         }
 
@@ -23,7 +24,8 @@ namespace ERP.Controllers
         {
             Master objMaster = new Master();
             UserEntity objUserEntity = UserEntity.GetInstance();
-            return Json(objMaster.AddAcademicYear(masterEntity, objUserEntity.CustomerId, objUserEntity.Userid));
+            CustomerEntity objCustomer = new CustomerEntity();
+            return Json(objMaster.AddAcademicYear(masterEntity, objCustomer.customerId, objUserEntity.userId));
 
 
         }
@@ -36,7 +38,9 @@ namespace ERP.Controllers
         public ActionResult Course(CourseEntity courseEntity)
         {
             Master objMaster = new Master();
-            return Json(objMaster.AddCourse(courseEntity));
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            CustomerEntity objCustomer = new CustomerEntity();
+            return Json(objMaster.AddCourse(courseEntity, objCustomer.customerId,objUserEntity.userId));
         }
         //public ActionResult Duration()
         //{
@@ -52,7 +56,9 @@ namespace ERP.Controllers
         public ActionResult Duration(DurationEntity durationEntity)
         {
             Master objMaster = new Master();
-            return Json(objMaster.AddDuration(durationEntity));
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            CustomerEntity objCustomer = new CustomerEntity();
+            return Json(objMaster.AddDuration(durationEntity, objCustomer.customerId, objUserEntity.userId));
         }
         public ActionResult Activity()
         {
@@ -62,7 +68,9 @@ namespace ERP.Controllers
         public JsonResult Activity(ActivityEntity activityEntity)
         {
             Master objMaster = new Master();
-            return Json(objMaster.AddActivity(activityEntity));
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            CustomerEntity objCustomer = new CustomerEntity();
+            return Json(objMaster.AddActivity(activityEntity, objCustomer.customerId, objUserEntity.userId));
         }
         public ActionResult Subject()
         {

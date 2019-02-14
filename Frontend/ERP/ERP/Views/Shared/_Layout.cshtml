@@ -1,7 +1,13 @@
 ﻿@using System.Data;
 @using System.Configuration;
 @using ERP.Models.Bal.Common;
-
+@using ERP.Models.Entity
+@{
+    UserEntity user = UserEntity.GetInstance();
+    user = (UserEntity)Session["UserDetails"];
+    CustomerEntity customer = new CustomerEntity();
+    customer = (CustomerEntity)Session["CustomerDetails"];
+}
 <html>
 <head>
     <meta charset="utf-8" />
@@ -44,7 +50,7 @@
                             </li>
                             <li class="userinfo user-dtl">
                                 <a href="javascript:void(0)">
-                                    <span>Web Designers Hub<i class="fa fa-angle-down"></i></span>
+                                    <span>@user.firstName @user.lastName<i class="fa fa-angle-down"></i></span>
                                 </a>
                                 <div class="top-sub-menu">
                                     <div class="arrow_box"></div>
@@ -54,8 +60,8 @@
                                                 <img src="~/Images/user-img.png" />
                                             </div>
                                             <div class="pro-name">
-                                                <span class="pro-user-name">Vishal Singh</span>
-                                                <span class="pro-user-email">Web Designers hub</span>
+                                                <span class="pro-user-name">@user.role</span>
+                                                <span class="pro-user-email">@user.email</span>
                                                 <span class="pro-user-setting"><a href="javascript:void(0)">Profile & Preferences</a></span>
                                             </div>
                                         </div>
@@ -66,7 +72,7 @@
                                             </ul>
                                         </div>
                                         <div class="pro-footer">
-                                            <span class="pull-left"><a href="@Url.Action(" Logout","Auth")">Sign out</a></span>
+                                            <span class="pull-left"><a href="@Url.Action("Logout","Auth")">Sign out</a></span>
                                             <span class="pull-right"><a href="javascript:void(0)">Privacy policy</a></span>
                                         </div>
                                     </div>
@@ -94,6 +100,8 @@
                                     <li>
                                         <a href="javascript:void(0)">
                                             @dtRow["MODULE_NAME"]<i class="fa fa-angle-up"></i>
+
+                                            <p></p>
                                         </a>
                                         <div class="smenu" menu-level="hm5">
                                             <ul>
@@ -104,6 +112,7 @@
                                                         {
                                                             <li>
                                                                 <a href="@dtsubRow["LINK"]"><i class="fa fa-adjust"></i>@dtsubRow["CAPTION"]</a>
+
                                                             </li>
                                                         }
 
@@ -116,7 +125,6 @@
                             }
                         </ul>
                                                     }
-
                 }
             </div>
         </div>

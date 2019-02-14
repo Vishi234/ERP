@@ -7,17 +7,20 @@ namespace ERP.Models.Entity
 {
     public class CustomerEntity
     {
-        public string orgId { get; set; }
-        public string orgName { get; set; }
-        public string orgAdd1 { get; set; }
-        public string orgCity { get; set; }
-        public string orgPhone { get; set; }
-        public string orgAdd2 { get; set; }
-        public string orgMobile { get; set; }
-        public string orgWebsite { get; set; }
-        public string orgFax { get; set; }
-        public string orgEmail { get; set; }
-        public string orgPan { get; set; }
-        public string oper { get; set; }
+        public string customerId { get; set; }
+        public string customerCode { get; set; }
+        public string customerName { get; set; }
+        public string address { get; set; }
+        public string city { get; set; }
+        public string mobile { get; set; }
+        public string website { get; set; }
+        public string faxNo { get; set; }
+        public string cEmail { get; set; }
+        public string panNo { get; set; }
+        public string cActive { get; set; }
+        public string state { get; set; }
+        public string pinCode { get; set; }
+        public string cWef { get; set; }
+        public string cWet { get; set; }
     }
 }

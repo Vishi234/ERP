@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Models.Entity
+namespace ERP.Models.Entity
 {
 
     [Serializable()]
@@ -15,29 +15,21 @@ namespace Models.Entity
             if (_instance == null) _instance = new UserEntity();
             return _instance;
         }
-        public string Status { get; set; }
-        public string Userid { get; set; }
-        public string CustomerId { get; set; }
-        public string countryID { get; set; }
-        public string countryName { get; set; }
-        public string CircleID { get; set; }
-        public string CircleName { get; set; }
-        public string ZoneId { get; set; }
-        public string ZoneName { get; set; }
-        public string ClusterId { get; set; }
-        public string ClusterName { get; set; }
-        public string RoleId { get; set; }
-        public string UserName { get; set; }
-        public string userType { get; set; }
-        public string sessionID { get; set; }
-        public string passResetDate { get; set; }
-        public string flag { get; set; }
-        public string errorDesc { get; set; }
-        public string loginID { get; set; }
-        public string userDefaultPage { get; set; }
-        public string menuFlag { get; set; }
-        public string userCategory { get; set; }
-        public string userCategoryId { get; set; }
+        public string userId { get; set; }
+        public string firstName { get; set; }
+        public string middleName { get; set; }
+        public string lastName { get; set; }
+        public string isActive { get; set; }
+        public string catId { get; set; }
+        public string catName { get; set; }
+        public string subCatId { get; set; }
+        public string subCatName { get; set; }
+        public string defaultPage { get; set; }
+        public string wefDate { get; set; }
+        public string wetDate { get; set; }
+        public string email { get; set; }
+        public string accountLocked { get; set; }
+        public string role { get; set; }
     }
 
 }
