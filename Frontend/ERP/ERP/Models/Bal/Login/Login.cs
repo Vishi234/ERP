@@ -1,4 +1,4 @@
-﻿using Models.Entity;
+﻿using ERP.Models.Entity;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -55,31 +55,36 @@ namespace ERP.Models.Bal.Login
                     objUserEntity.defaultPage = ds.Tables[1].Rows[0]["DEFAULT_PAGE"].ToString();
                     objUserEntity.wefDate = ds.Tables[1].Rows[0]["WEF_DATE"].ToString();
                     objUserEntity.wetDate = ds.Tables[1].Rows[0]["WET_DATE"].ToString();
-
+                    objUserEntity.email = ds.Tables[1].Rows[0]["EMAIL_ADDRESS"].ToString();
+                    objUserEntity.accountLocked = ds.Tables[1].Rows[0]["ACCOUNT_LOCKED"].ToString();
+                    objUserEntity.role = ds.Tables[1].Rows[0]["ROLE"].ToString();
+                    HttpContext.Current.Session["UserDetails"] = objUserEntity;
                     if (ds.Tables[2].Rows.Count == 1)
                     {
-                        objUserEntity.customerId = ds.Tables[2].Rows[0]["CUSTOMER_ID"].ToString();
-                        objUserEntity.customerCode = ds.Tables[2].Rows[0]["CUSTOMER_CODE"].ToString();
-                        objUserEntity.customerName = ds.Tables[2].Rows[0]["CUSTOMER_NAME"].ToString();
-                        objUserEntity.address = ds.Tables[2].Rows[0]["ADDRESS"].ToString();
-                        objUserEntity.city = ds.Tables[2].Rows[0]["CITY"].ToString();
-                        objUserEntity.mobile = ds.Tables[2].Rows[0]["MOBILE"].ToString();
-                        objUserEntity.website = ds.Tables[2].Rows[0]["WEBSITE"].ToString();
-                        objUserEntity.faxNo = ds.Tables[2].Rows[0]["FAX_NO"].ToString();
-                        objUserEntity.cEmail = ds.Tables[2].Rows[0]["EMAIL_ADDRESS"].ToString();
-                        objUserEntity.panNo = ds.Tables[2].Rows[0]["PAN_NO"].ToString();
-                        objUserEntity.cActive = ds.Tables[2].Rows[0]["IS_ACTIVE"].ToString();
-                        objUserEntity.state = ds.Tables[2].Rows[0]["STATE"].ToString();
-                        objUserEntity.pinCode = ds.Tables[2].Rows[0]["PIN_CODE"].ToString();
-                        objUserEntity.cWef = ds.Tables[2].Rows[0]["WEF_DATE"].ToString();
-                        objUserEntity.cWet = ds.Tables[2].Rows[0]["WET_DATE"].ToString();
+                        CustomerEntity objCustomerEntity = new CustomerEntity();
+                        objCustomerEntity.customerId = ds.Tables[2].Rows[0]["CUSTOMER_ID"].ToString();
+                        objCustomerEntity.customerCode = ds.Tables[2].Rows[0]["CUSTOMER_CODE"].ToString();
+                        objCustomerEntity.customerName = ds.Tables[2].Rows[0]["CUSTOMER_NAME"].ToString();
+                        objCustomerEntity.address = ds.Tables[2].Rows[0]["ADDRESS"].ToString();
+                        objCustomerEntity.city = ds.Tables[2].Rows[0]["CITY"].ToString();
+                        objCustomerEntity.mobile = ds.Tables[2].Rows[0]["MOBILE"].ToString();
+                        objCustomerEntity.website = ds.Tables[2].Rows[0]["WEBSITE"].ToString();
+                        objCustomerEntity.faxNo = ds.Tables[2].Rows[0]["FAX_NO"].ToString();
+                        objCustomerEntity.cEmail = ds.Tables[2].Rows[0]["EMAIL_ADDRESS"].ToString();
+                        objCustomerEntity.panNo = ds.Tables[2].Rows[0]["PAN_NO"].ToString();
+                        objCustomerEntity.cActive = ds.Tables[2].Rows[0]["IS_ACTIVE"].ToString();
+                        objCustomerEntity.state = ds.Tables[2].Rows[0]["STATE"].ToString();
+                        objCustomerEntity.pinCode = ds.Tables[2].Rows[0]["PIN_CODE"].ToString();
+                        objCustomerEntity.cWef = ds.Tables[2].Rows[0]["WEF_DATE"].ToString();
+                        objCustomerEntity.cWet = ds.Tables[2].Rows[0]["WET_DATE"].ToString();
+                        HttpContext.Current.Session["CustomerDetails"] = objCustomerEntity;
                     }
                     else
                     {
                         result.addParams = CommonFunc.DtToJSON(ds.Tables[2]);
                     }
 
-                    HttpContext.Current.Session["UserDetails"] = objUserEntity;
+
                 }
                 return result;
             }
@@ -90,55 +95,6 @@ namespace ERP.Models.Bal.Login
             }
 
         }
-
-        public ResultEntity RegisOrg(CustomerEntity customer, string userId)
-        {
-            ResultEntity result = new ResultEntity();
-            try
-            {
-                SqlParameter[] sqlParameter = new SqlParameter[15];
-                sqlParameter[0] = new SqlParameter("@P_CUSTOMER_NAME", customer.orgName);
-                sqlParameter[1] = new SqlParameter("@P_ADD_1", customer.orgAdd1);
-                sqlParameter[2] = new SqlParameter("@P_ADD_2", customer.orgAdd2);
-                sqlParameter[3] = new SqlParameter("@P_FAX_NO", customer.orgFax);
-                sqlParameter[4] = new SqlParameter("@P_CITY", customer.orgCity);
-                sqlParameter[5] = new SqlParameter("@P_MOBILE", customer.orgMobile);
-                sqlParameter[6] = new SqlParameter("@P_PHONE", customer.orgPhone);
-                sqlParameter[7] = new SqlParameter("@P_EMAIL", customer.orgEmail);
-                sqlParameter[8] = new SqlParameter("@P_WEBSITE", customer.orgWebsite);
-                sqlParameter[9] = new SqlParameter("@P_STATUS", customer.status);
-                sqlParameter[10] = new SqlParameter("@P_CUSTOMER_ID", Convert.ToInt32(customer.orgId));
-                sqlParameter[11] = new SqlParameter("@P_USER_ID", Convert.ToInt32(userId));
-                sqlParameter[12] = new SqlParameter("@P_OPER_TYPE", customer.oper);
-                sqlParameter[13] = new SqlParameter("@P_FLAG", SqlDbType.Char);
-                sqlParameter[13].Direction = ParameterDirection.Output;
-                sqlParameter[13].Size = 1;
-                sqlParameter[14] = new SqlParameter("@P_RSP_MSG", SqlDbType.NVarChar);
-                sqlParameter[14].Direction = ParameterDirection.Output;
-                sqlParameter[14].Size = 500;
-
-                DataSet ds = new DataSet();
-                ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_ADD_CUSTOMER_AMD", sqlParameter);
-                result.flag = sqlParameter[13].Value.ToString();
-                result.msg = sqlParameter[14].Value.ToString();
-
-                if (result.flag.ToUpper() == "S")
-                {
-                    UserEntity objUserEntity = (UserEntity)HttpContext.Current.Session["UserDetails"];
-                    objUserEntity.customerName = sqlParameter[0].Value.ToString();
-                    objUserEntity.customerId = sqlParameter[10].Value.ToString();
-                    HttpContext.Current.Session["UserDetails"] = objUserEntity;
-                }
-                return result;
-            }
-            catch (Exception ex)
-            {
-                Excep.WriteException(ex);
-                return result;
-            }
-
-        }
-
         private string Encrypt(string clearText)
         {
             string EncryptionKey = "MAKV2SPBNI99212";
