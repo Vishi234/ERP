@@ -24,8 +24,7 @@
             return true;
         }
     },
-    componentDidMount: function ()
-    {
+    componentDidMount: function () {
         if (this.props.onComponentMounted) {
             //alert(this.props.type);
             this.props.onComponentMounted(this); //register this input in the form
@@ -66,8 +65,15 @@
                                 className={this.props.className} required={this.props.isrequired} onBlur={this.handleBlur} />
         }
         else {
-            inputField = <input type={this.props.type} value={this.props.value} ref={this.props.name} autoComplete="off" name={this.props.name}
-                                className={this.props.className} required={this.props.isrequired} onChange={this.handleChange} />
+            if (this.props.name == "academicYear") {
+                inputField = <input type={this.props.type} value={this.props.value} ref={this.props.name} autoComplete="off" name={this.props.name}
+                                    className={this.props.className} required={this.props.isrequired} onChange={this.handleChange} />
+            }
+            else {
+                inputField = <input type={this.props.type} value={this.props.value} ref={this.props.name} autoComplete="off" name={this.props.name}
+                                    className={this.props.className} required={this.props.isrequired} onChange={this.handleChange} />
+            }
+
         }
         return (
             <div className={this.props.type}>
