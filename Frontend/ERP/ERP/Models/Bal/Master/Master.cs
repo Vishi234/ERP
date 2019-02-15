@@ -2,7 +2,7 @@
 using ERP.Controllers;
 using ERP.Models.Bal.Common;
 using ERP.Models.Entity;
-using Models.Entity;
+using ERP.Models.Entity;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,31 +14,31 @@ namespace ERP.Models.Bal.Master
 {
     public class Master
     {
-        string sqlConn =System.Configuration.ConfigurationManager.ConnectionStrings["CS"].ConnectionString;
+        string sqlConn = System.Configuration.ConfigurationManager.ConnectionStrings["CS"].ConnectionString;
         UserEntity objUserEntity = UserEntity.GetInstance();
-        public ResultEntity AddAcademicYear(AcademicEntity masterEntity,string customerId,string userid)
+        public ResultEntity AddAcademicYear(AcademicEntity masterEntity, string customerId, string userid)
         {
             ResultEntity result = new ResultEntity();
             try
             {
                 SqlParameter[] sqlParameter = new SqlParameter[10];
-                sqlParameter[0] = new SqlParameter("@P_YEAR_CODE", masterEntity.yearCode);
-                sqlParameter[1] = new SqlParameter("@P_ACADEMIC_YEAR", masterEntity.academicYear);
-                sqlParameter[2] = new SqlParameter("@P_WFDATE", masterEntity.wfDate);
-                sqlParameter[3] = new SqlParameter("@P_WTDATE", masterEntity.wtDate);
-                sqlParameter[4] = new SqlParameter("@P_FLAG",masterEntity.flag);
-                sqlParameter[5] = new SqlParameter("@P_CUSTOMER_ID", customerId);
-                sqlParameter[6] = new SqlParameter("@P_USER_ID", userid);
-                sqlParameter[7] = new SqlParameter("@P_REPORT_ID",Convert.ToInt32(masterEntity.reportId));
-                sqlParameter[8] = new SqlParameter("@P_RSP_FLAG",SqlDbType.Char);
+                sqlParameter[0] = new SqlParameter("@COURSE_CODE", masterEntity.yearCode);
+                sqlParameter[1] = new SqlParameter("@ACADEMIC_YEAR", masterEntity.academicYear);
+                sqlParameter[2] = new SqlParameter("@START_DATE", masterEntity.wfDate);
+                sqlParameter[3] = new SqlParameter("@END_DATE", masterEntity.wtDate);
+                sqlParameter[4] = new SqlParameter("@OPER_TYPE", masterEntity.flag);
+                sqlParameter[5] = new SqlParameter("@CUSTOMER_ID", customerId);
+                sqlParameter[6] = new SqlParameter("@USER_ID", userid);
+                sqlParameter[7] = new SqlParameter("@REPORT_ID", Convert.ToInt32(masterEntity.reportId));
+                sqlParameter[8] = new SqlParameter("@FLAG", SqlDbType.Char);
                 sqlParameter[8].Direction = ParameterDirection.Output;
                 sqlParameter[8].Size = 1;
-                sqlParameter[9] = new SqlParameter("@P_RSP_MSG", SqlDbType.NVarChar);
+                sqlParameter[9] = new SqlParameter("@MSG", SqlDbType.NVarChar);
                 sqlParameter[9].Direction = ParameterDirection.Output;
                 sqlParameter[9].Size = 500;
 
                 DataSet ds = new DataSet();
-                ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_ADD_ACADEMIC_YEAR", sqlParameter);
+                ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_ACADEMIC_YEAR", sqlParameter);
                 result.flag = sqlParameter[8].Value.ToString();
                 result.msg = sqlParameter[9].Value.ToString();
 
@@ -48,9 +48,7 @@ namespace ERP.Models.Bal.Master
                     {
                         if (ds.Tables[0].Rows.Count > 0)
                         {
-
-                            
-                            result.addParams =CommonFunc.DtToJSON(ds.Tables[0]);
+                            result.addParams = CommonFunc.DtToJSON(ds.Tables[0]);
                         }
                     }
                 }
@@ -110,7 +108,7 @@ namespace ERP.Models.Bal.Master
             }
         }
 
-        public ResultEntity AddCourse(CourseEntity courseEntity,string customerId,string userId)
+        public ResultEntity AddCourse(CourseEntity courseEntity, string customerId, string userId)
         {
             ResultEntity result = new ResultEntity();
             try
@@ -207,8 +205,8 @@ namespace ERP.Models.Bal.Master
         {
             SqlDataReader dr;
             //SqlParameter[] sqlParameter = new SqlParameter[];
-           // sqlParameter[0] = new SqlParameter("@P_FLAG", 'A');
-            dr =SqlHelper.ExecuteReader(sqlConn, "SP_GET_COURSE_SEM_DETAILS");
+            // sqlParameter[0] = new SqlParameter("@P_FLAG", 'A');
+            dr = SqlHelper.ExecuteReader(sqlConn, "SP_GET_COURSE_SEM_DETAILS");
             string details = CommonFunc.RdrToJSON(dr);
             return details;
         }

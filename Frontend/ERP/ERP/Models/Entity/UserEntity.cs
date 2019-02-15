@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Models.Entity
+namespace ERP.Models.Entity
 {
 
     [Serializable()]
@@ -27,21 +27,9 @@ namespace Models.Entity
         public string defaultPage { get; set; }
         public string wefDate { get; set; }
         public string wetDate { get; set; }
-        public string customerId { get; set; }
-        public string customerCode { get; set; }
-        public string customerName { get; set; }
-        public string address { get; set; }
-        public string city { get; set; }
-        public string mobile { get; set; }
-        public string website { get; set; }
-        public string faxNo { get; set; }
-        public string cEmail { get; set; }
-        public string panNo { get; set; }
-        public string cActive { get; set; }
-        public string state { get; set; }
-        public string pinCode { get; set; }
-        public string cWef { get; set; }
-        public string cWet { get; set; }
+        public string email { get; set; }
+        public string accountLocked { get; set; }
+        public string role { get; set; }
     }
 
 }
