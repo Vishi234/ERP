@@ -72,9 +72,13 @@ function btnloading(evt, action) {
     }
 }
 function InitializeDate(name) {
+    var thisYear = (new Date()).getFullYear();
+    var start = new Date("1/1/" + thisYear);
+    var defaultStart = moment(start.valueOf());
     $('input[name=' + name + ']').daterangepicker({
         singleDatePicker: true,
-        startDate: moment(),
+        minDate: moment(start.valueOf()).format("DD-MMM-YYYY"),
+        startDate: moment(start.valueOf()).format("DD-MMM-YYYY"),
         locale: { format: 'DD-MMM-YYYY' }
     });
 }

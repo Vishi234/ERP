@@ -2,7 +2,6 @@
 var MyData = null;
 var AcademicYearForm = React.createClass({
     getInitialState: function () {
-
         grdArray = GetReportConfiguration("Master");
         var columnDefs = grdArray["$AcademicDetails$"];
         return {
@@ -12,7 +11,7 @@ var AcademicYearForm = React.createClass({
             wtDate: "",
             Fields: [],
             columnDef: columnDefs,
-            rowData: null,
+            rowData: MyData,
             ServerMessage: ''
         }
     },
@@ -39,7 +38,6 @@ var AcademicYearForm = React.createClass({
                 type: "POST",
                 url: this.props.urlPost,
                 data: d,
-                async: false,
                 beforeSend: function () {
                     btnloading(e.target, 'show');
                 },
@@ -48,7 +46,8 @@ var AcademicYearForm = React.createClass({
                     CallToast(data.msg, data.flag);
                     if (data.flag == "S") {
                         MyData = JSON.parse(data.addParams);
-                       
+                        this.setState({ rowData: MyData });
+                        console.log(this.state.rowData);
                     }
                 }.bind(this),
                 error: function (evt) {
@@ -56,11 +55,8 @@ var AcademicYearForm = React.createClass({
                     alert('Error! Please try again');
                 }
             })
-
-            this.setState({
-                rowData: MyData
-            });
-            
+           
+           
         }
     },
     onChangeCode: function (value) {
@@ -69,9 +65,22 @@ var AcademicYearForm = React.createClass({
         });
     },
     onChangeYear: function (value) {
-        this.setState({
-            academicYear: value
-        });
+        var validation = new RegExp("[0-9\-]", 'g');
+        var foo;
+        if (validation.test(value)) {
+            foo = value.split("-").join("");
+            if (foo.length > 0) {
+                foo = foo.match(new RegExp('.{1,4}', 'g')).join("-");
+            }
+            this.setState({
+                academicYear: foo
+            });
+        }
+        else if (value == "") {
+            this.setState({
+                academicYear: value
+            });
+        }
     },
     onWefBlur: function (value) {
         this.setState({
@@ -113,12 +122,12 @@ var AcademicYearForm = React.createClass({
                                         onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
-                                    <CreateInput type={'date'} value={this.state.wfDate} id={'wfDate'} label={'Start Date'} name={'daterangepicker'} htmlFor={'wfDate'} isrequired={true}
+                                    <CreateInput type={'date'} value={this.state.wfDate} id={'wfDate'} label={'Start Date'} name={'startDate'} htmlFor={'wfDate'} isrequired={true}
                                         className={'startDate form-control'} onBlur={this.onWefBlur} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
-                                    <CreateInput type={'date'} value={this.state.wtDate} id={'wtDate'} label={'End Date'} name={'daterangepicker'} htmlFor={'wtDate'} isrequired={true}
-                                        className={'startDate form-control'} onBlur={this.onWetBlur} onComponentMounted={this.register} messageRequired={'required.'} />
+                                    <CreateInput type={'date'} value={this.state.wtDate} id={'wtDate'} label={'End Date'} name={'endDate'} htmlFor={'wtDate'} isrequired={true}
+                                        className={'endDate form-control'} onBlur={this.onWetBlur} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
                                     <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>
