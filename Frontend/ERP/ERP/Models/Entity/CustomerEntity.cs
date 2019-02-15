@@ -7,6 +7,16 @@ namespace ERP.Models.Entity
 {
     public class CustomerEntity
     {
+        private static CustomerEntity _instance;
+        public CustomerEntity()
+        {
+
+        }
+        public static CustomerEntity GetInstance()
+        {
+            if (_instance == null) _instance = new CustomerEntity();
+            return _instance;
+        }
         public string customerId { get; set; }
         public string customerCode { get; set; }
         public string customerName { get; set; }
