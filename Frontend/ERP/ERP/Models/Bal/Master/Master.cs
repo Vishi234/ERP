@@ -21,26 +21,25 @@ namespace ERP.Models.Bal.Master
             ResultEntity result = new ResultEntity();
             try
             {
-                SqlParameter[] sqlParameter = new SqlParameter[10];
-                sqlParameter[0] = new SqlParameter("@COURSE_CODE", masterEntity.yearCode);
-                sqlParameter[1] = new SqlParameter("@ACADEMIC_YEAR", masterEntity.academicYear);
-                sqlParameter[2] = new SqlParameter("@START_DATE", masterEntity.wfDate);
-                sqlParameter[3] = new SqlParameter("@END_DATE", masterEntity.wtDate);
-                sqlParameter[4] = new SqlParameter("@OPER_TYPE", masterEntity.flag);
-                sqlParameter[5] = new SqlParameter("@CUSTOMER_ID", customerId);
-                sqlParameter[6] = new SqlParameter("@USER_ID", userid);
-                sqlParameter[7] = new SqlParameter("@REPORT_ID", Convert.ToInt32(masterEntity.reportId));
-                sqlParameter[8] = new SqlParameter("@FLAG", SqlDbType.Char);
+                SqlParameter[] sqlParameter = new SqlParameter[9];
+                sqlParameter[0] = new SqlParameter("@ACADEMIC_YEAR", masterEntity.academicYear);
+                sqlParameter[1] = new SqlParameter("@START_DATE", masterEntity.wfDate);
+                sqlParameter[2] = new SqlParameter("@END_DATE", masterEntity.wtDate);
+                sqlParameter[3] = new SqlParameter("@OPER_TYPE", masterEntity.flag);
+                sqlParameter[4] = new SqlParameter("@CUSTOMER_ID", customerId);
+                sqlParameter[5] = new SqlParameter("@USER_ID", userid);
+                sqlParameter[6] = new SqlParameter("@REPORT_ID", Convert.ToInt32(masterEntity.reportId));
+                sqlParameter[7] = new SqlParameter("@FLAG", SqlDbType.Char);
+                sqlParameter[7].Direction = ParameterDirection.Output;
+                sqlParameter[7].Size = 1;
+                sqlParameter[8] = new SqlParameter("@MSG", SqlDbType.NVarChar);
                 sqlParameter[8].Direction = ParameterDirection.Output;
-                sqlParameter[8].Size = 1;
-                sqlParameter[9] = new SqlParameter("@MSG", SqlDbType.NVarChar);
-                sqlParameter[9].Direction = ParameterDirection.Output;
-                sqlParameter[9].Size = 500;
+                sqlParameter[8].Size = 500;
 
                 DataSet ds = new DataSet();
                 ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_ACADEMIC_YEAR", sqlParameter);
-                result.flag = sqlParameter[8].Value.ToString();
-                result.msg = sqlParameter[9].Value.ToString();
+                result.flag = sqlParameter[7].Value.ToString();
+                result.msg = sqlParameter[8].Value.ToString();
 
                 if (result.flag.ToUpper() == "S")
                 {

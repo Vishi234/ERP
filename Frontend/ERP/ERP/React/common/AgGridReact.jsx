@@ -1,23 +1,21 @@
 ﻿var gridOptions;
-var rowData;
-var AgGrid = React.createClass({
-    componentDidUpdate: function () {
-        rowData = this.props.rowData;
+class AgGrid extends React.Component {
+    componentDidMount() {
         gridOptions = {
             columnDefs: this.props.columnDef,
-            rowData: rowData,
             enableSorting: true,
+            enableFilter: true,
+            rowData: ((this.props.rowData == null) ? null : this.props.rowData),
+            rowHeight: 33,
             enableCellChangeFlash: true,
             refreshCells: true,
             enableColResize: true,
             colResizeDefault: 'shift',
-            enableColResize: true,
             pagination: true,
             paginationPageSize: 20,
             paginationNumberFormatter: function (params) {
                 return '[' + params.value.toLocaleString() + ']';
             },
-            localeText: { noRowsToShow: 'No data found.' },
             onGridReady: function (params) {
                 var allColumnIds = [];
                 gridOptions.columnApi.getAllColumns().forEach(function (column) {
@@ -25,33 +23,26 @@ var AgGrid = React.createClass({
                 });
                 gridOptions.columnApi.autoSizeColumns(allColumnIds);
                 params.api.sizeColumnsToFit();
-                gridOptions.api.setRowData(rowData);
             },
-        };
-       $("#myGrid").empty();
-        var eGridDiv = document.querySelector('#myGrid');
-        // create the grid passing in the div to use together with the columns & data we want to use
-        new agGrid.Grid(eGridDiv, gridOptions);
-    },
-    onFilterChange: function (e) {
+        }
+        var gridDiv = document.querySelector('#myGrid');
+        new agGrid.Grid(gridDiv, gridOptions);
+    }
+    onFilterChange(e) {
         gridOptions.api.setQuickFilter(e.target.value);
-    },
-    render: function () {
-        var grid;
-        grid = <div id="myGrid" style={{ height: '300px', width: '100%' }} className="ag-theme-balham"></div>
-        return (
-            <div className="dtlbse">
-                <div className="actionbse">
-                    <div className="aclft pull-left">
-                    </div>
-                    <div className="acrght pull-right">
-                        <input type="text" onChange={this.onFilterChange} placeholder="Quick Search..." className="form-control"></input>
-                    </div>
+    }
+    componentDidUpdate() {
+        gridOptions.api.setRowData(this.props.rowData);
+    }
+    render() {
+        return (<div className="actionbse">
+                <div className="aclft pull-left">
                 </div>
-                {grid}
-            </div>
-
+                <div className="acrght pull-right">
+                    <input type="text" onChange={this.onFilterChange.bind(this)} placeholder="Quick Search..." className="form-control" />
+                </div>
+                <div id="myGrid" className="ag-theme-balham"></div>
+        </div>
         );
-    },
-
-})
+    }
+}

@@ -63,12 +63,12 @@
 })
 function btnloading(evt, action) {
     if (action == "show") {
-        $(evt).find(".inload").removeClass("hide")
-        $(evt).find(':button[type=submit]').prop('disabled', true);
+        $("#" + evt).find(".inload").removeClass("hide")
+        $("#" + evt).find(':button[type=submit]').prop('disabled', true);
     }
     else {
-        $(evt).find(".inload").addClass("hide")
-        $(evt).find(':button[type=submit]').prop('disabled', false);
+        $("#" + evt).find(".inload").addClass("hide")
+        $("#" + evt).find(':button[type=submit]').prop('disabled', false);
     }
 }
 function InitializeDate(name) {

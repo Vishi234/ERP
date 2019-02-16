@@ -1,15 +1,13 @@
-﻿var CreateInput = React.createClass({
-    //onchange event
-    handleChange: function (e) {
+﻿class CreateInput extends React.Component {
+    handleChange(e) {
         this.props.onChange(e.target.value);
         var isValidField = this.isValid(e.target);
-    },
-    handleBlur: function (e) {
+    }
+    handleBlur(e) {
         this.props.onBlur(e.target.value);
         var isValidField = this.isValid(e.target);
-    },
-    //validation function
-    isValid: function (input) {
+    }
+    isValid(input) {
         //check required field
         if (input.getAttribute('required') != null && input.value === "") {
             input.classList.add('input-validation-error'); //add class error
@@ -23,43 +21,46 @@
             input.nextSibling.textContent = "";
             return true;
         }
-    },
-    CheckDateDiff: function (startDate, endDate) {
+    }
+    CheckDateDiff(startDate, endDate) {
         var startDate = moment(startDate, "DD-MMM-YYYY");
         var endDate = moment(endDate, "DD-MMM-YYYY");
         return endDate.diff(startDate);
-    },
-    componentDidMount: function () {
-        if (this.props.onComponentMounted) {          
+    }
+    componentDidMount() {
+        if (this.props.onComponentMounted) {
             this.props.onComponentMounted(this); //register this input in the form
         }
-        
-        InitializeDate("daterangepicker");
-    },
-    render: function () {
+        if (this.props.type == "date") {
+            InitializeDate(this.props.name);
+        }
+
+    }
+    render() {
         var inputField;
         if (this.props.type == 'textarea') {
             inputField = <textarea value={this.props.value} ref={this.props.name} name={this.props.name}
-                className='registration-form-control' required={this.props.isrequired} onChange={this.handleChange} />
+                                   className='registration-form-control' required={this.props.isrequired} onChange={this.handleChange.bind(this)} />
         }
         else if (this.props.type == 'ddl') {
             inputField = <select value={this.props.value} ref={this.props.name} name={this.props.name}
-                className='registration-form-control dropdown' required={this.props.isrequired} onChange={this.handleChange} >
-                {this.props.value.map((obj) => <option key={obj[this.props.keyId]} value={obj[this.props.keyId]}>{obj[this.props.keyName]}</option>)}
-                </select>
-            
+                                 className='registration-form-control dropdown' required={this.props.isrequired} onChange={this.handleChange.bind(this)}>
+                {this.props.value.map((obj) =>
+                    <option key={obj[this.props.keyId]} value={obj[this.props.keyId] }>{obj[this.props.keyName]}</option>)}
+            </select>
+
         }
         else if (this.props.type == 'multiSelect') {
             inputField = <select value={this.props.value} ref={this.props.name} name={this.props.name}
-                className='registration-form-control' required={this.props.isrequired} onChange={this.handleChange} />
+                                 className='registration-form-control' required={this.props.isrequired} onChange={this.handleChange.bind(this)} />
         }
         else if (this.props.type == 'date') {
             inputField = <input type="text" id={this.props.id} value={this.props.value} ref={this.props.name} readOnly autoComplete="off" name={this.props.name}
-                className={this.props.className} required={this.props.isrequired} onBlur={this.handleBlur} />
+                                className={this.props.className} required={this.props.isrequired} onBlur={this.handleBlur.bind(this)} />
         }
         else {
             inputField = <input type={this.props.type} value={this.props.value} ref={this.props.name} autoComplete="off" name={this.props.name}
-                className={this.props.className} required={this.props.isrequired} onChange={this.handleChange} />
+                                className={this.props.className} required={this.props.isrequired} onChange={this.handleChange.bind(this)} />
 
         }
         return (
@@ -72,4 +73,4 @@
             </div>
         );
     }
-});
+}

@@ -2,6 +2,10 @@
     background-color: white;
     color: #000;
     font: 12px 'Montserrat', sans-serif;
+    height: 300px;
+    width: 100%;
+    display: inline-block;
+    margin-top: 10px;
 }
 
     .ag-theme-balham .ag-menu, .ag-theme-balham .ag-theme-balham.ag-dnd-ghost, .ag-theme-balham .ag-cell-inline-editing, .ag-theme-balham .ag-popup-editor, .ag-theme-balham .ag-select-agg-func-popup, .ag-theme-balham .ag-overlay-loading-center {
