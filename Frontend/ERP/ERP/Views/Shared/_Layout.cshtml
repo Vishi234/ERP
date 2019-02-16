@@ -5,7 +5,7 @@
 @{
     UserEntity user = UserEntity.GetInstance();
     user = (UserEntity)Session["UserDetails"];
-    CustomerEntity customer = CustomerEntity.GetInstance();
+    CustomerEntity customer = new CustomerEntity();
     customer = (CustomerEntity)Session["CustomerDetails"];
 }
 <html>

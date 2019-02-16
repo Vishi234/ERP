@@ -1,7 +1,7 @@
 ﻿var gridOptions;
 var rowData;
 var AgGrid = React.createClass({
-    componentDidMount: function () {
+    componentDidUpdate: function () {
         rowData = this.props.rowData;
         gridOptions = {
             columnDefs: this.props.columnDef,
@@ -28,7 +28,7 @@ var AgGrid = React.createClass({
                 gridOptions.api.setRowData(rowData);
             },
         };
-
+       $("#myGrid").empty();
         var eGridDiv = document.querySelector('#myGrid');
         // create the grid passing in the div to use together with the columns & data we want to use
         new agGrid.Grid(eGridDiv, gridOptions);
