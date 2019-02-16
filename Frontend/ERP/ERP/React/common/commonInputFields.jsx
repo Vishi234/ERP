@@ -24,6 +24,11 @@
             return true;
         }
     },
+    CheckDateDiff: function (startDate, endDate) {
+        var startDate = moment(startDate, "DD-MMM-YYYY");
+        var endDate = moment(endDate, "DD-MMM-YYYY");
+        return endDate.diff(startDate);
+    },
     componentDidMount: function () {
         if (this.props.onComponentMounted) {          
             this.props.onComponentMounted(this); //register this input in the form
@@ -34,7 +39,7 @@
         var inputField;
         if (this.props.type == 'textarea') {
             inputField = <textarea value={this.props.value} ref={this.props.name} name={this.props.name}
-                                   className='registration-form-control' required={this.props.isrequired} onChange={this.handleChange} />
+                className='registration-form-control' required={this.props.isrequired} onChange={this.handleChange} />
         }
         else if (this.props.type == 'ddl') {
             inputField = <select value={this.props.value} ref={this.props.name} name={this.props.name}
@@ -45,21 +50,15 @@
         }
         else if (this.props.type == 'multiSelect') {
             inputField = <select value={this.props.value} ref={this.props.name} name={this.props.name}
-                                 className='registration-form-control' required={this.props.isrequired} onChange={this.handleChange} />
+                className='registration-form-control' required={this.props.isrequired} onChange={this.handleChange} />
         }
         else if (this.props.type == 'date') {
             inputField = <input type="text" id={this.props.id} value={this.props.value} ref={this.props.name} readOnly autoComplete="off" name={this.props.name}
-                                className={this.props.className} required={this.props.isrequired} onBlur={this.handleBlur} />
+                className={this.props.className} required={this.props.isrequired} onBlur={this.handleBlur} />
         }
         else {
-            if (this.props.name == "academicYear") {
-                inputField = <input type={this.props.type} value={this.props.value} ref={this.props.name} autoComplete="off" name={this.props.name}
-                                    className={this.props.className} required={this.props.isrequired} onChange={this.handleChange} />
-            }
-            else {
-                inputField = <input type={this.props.type} value={this.props.value} ref={this.props.name} autoComplete="off" name={this.props.name}
-                                    className={this.props.className} required={this.props.isrequired} onChange={this.handleChange} />
-            }
+            inputField = <input type={this.props.type} value={this.props.value} ref={this.props.name} autoComplete="off" name={this.props.name}
+                className={this.props.className} required={this.props.isrequired} onChange={this.handleChange} />
 
         }
         return (

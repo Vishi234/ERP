@@ -61,7 +61,7 @@ namespace ERP.Models.Bal.Login
                     HttpContext.Current.Session["UserDetails"] = objUserEntity;
                     if (ds.Tables[2].Rows.Count == 1)
                     {
-                        CustomerEntity objCustomerEntity = new CustomerEntity();
+                        CustomerEntity objCustomerEntity = CustomerEntity.GetInstance();
                         objCustomerEntity.customerId = ds.Tables[2].Rows[0]["CUSTOMER_ID"].ToString();
                         objCustomerEntity.customerCode = ds.Tables[2].Rows[0]["CUSTOMER_CODE"].ToString();
                         objCustomerEntity.customerName = ds.Tables[2].Rows[0]["CUSTOMER_NAME"].ToString();
