@@ -43,14 +43,16 @@ namespace ERP.Controllers
             CustomerEntity objCustomer = CustomerEntity.GetInstance();
             return Json(objMaster.AddCourse(courseEntity, objCustomer.customerId,objUserEntity.userId));
         }
-        //public ActionResult Duration()
-        //{
-        //    return View();
-        //}
         public ActionResult Duration()
         {
+            return View();
+        }
+        [HttpGet]
+        public string Durationddl()
+        {
             Master objMaster = new Master();
-            return Json(objMaster.CourseDuration());
+            return (objMaster.CourseDuration());
+            //return objMaster.CourseDuration();
 
         }
         [HttpPost]

@@ -50,8 +50,6 @@ namespace ERP.Controllers
         {
             CommonLogin objLogin = new CommonLogin();
             return Json(objLogin.CheckLogin(email, password));
-
-
         }
     }
 }
