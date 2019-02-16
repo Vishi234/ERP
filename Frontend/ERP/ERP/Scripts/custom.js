@@ -31,7 +31,7 @@
         $(".top-sub-menu").toggleClass("show");
     });
 
-    $("select").SumoSelect({ search: true, searchText: 'Enter here.' });
+    //$("select").SumoSelect({ search: true, searchText: 'Enter here.' });
     $('.openmodal').click(function () {
         $(".modal").modal("hide");
         $($(this).attr("data-target"))

@@ -22,6 +22,8 @@ namespace ERP.Models.Entity
         public string wefDate { get; set; }
         public string wetDate { get; set; }
 
+        public string reportId { get; set; }
+
         public char flag { get; set; }
     }
     public class CourseEntity
@@ -29,8 +31,7 @@ namespace ERP.Models.Entity
         public string courseCode { get; set; }
         public string courseName { get; set; }
         public string noOfSemester { get; set; }
-
-
+        public string reportId { get; set; }
         public char flag { get; set; }
     }
     public class ActivityEntity

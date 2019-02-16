@@ -33,8 +33,10 @@
         if (this.props.onComponentMounted) {          
             this.props.onComponentMounted(this); //register this input in the form
         }
-        
-        InitializeDate("daterangepicker");
+        if (this.props.type == 'date') {
+            InitializeDate(this.props.name);
+        }
+
     },
     render: function () {
         var inputField;
@@ -43,11 +45,10 @@
                 className='registration-form-control' required={this.props.isrequired} onChange={this.handleChange} />
         }
         else if (this.props.type == 'ddl') {
-            inputField = <select value={this.props.value} ref={this.props.name} name={this.props.name}
-                className='registration-form-control dropdown' required={this.props.isrequired} onChange={this.handleChange} >
-                {this.props.value.map((obj) => <option key={obj[this.props.keyId]} value={obj[this.props.keyId]}>{obj[this.props.keyName]}</option>)}
+            inputField = <select value={this.props.value} ref={this.props.name} onChange={this.handleChange} name={this.props.name}
+                className='registration-form-control dropdown' required={this.props.isrequired}>
+                {this.props.data.map((obj) => <option key={obj[this.props.keyId]} value={obj[this.props.keyId]}>{obj[this.props.keyName]}</option>)}
                 </select>
-            
         }
         else if (this.props.type == 'multiSelect') {
             inputField = <select value={this.props.value} ref={this.props.name} name={this.props.name}

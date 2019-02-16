@@ -18,6 +18,9 @@
             course: this.getDDLData(),
             semester: this.getDDLData(),
             academicYear: this.getDDLData(),
+            selectedYear: 0,
+            selectedCourse: 0,
+            selectedSemester: 0,
             wefDate: "",
             wetDate: "",
             Fields: [],
@@ -55,9 +58,9 @@
         //after validation complete post to server
         if (validForm) {
             var d = {
-                academicYear: this.state.academicYear,
-                course: this.state.course,
-                semester: this.state.semester,
+                academicYear: this.state.selectedYear,
+                course: this.state.selectedCourse,
+                semester: this.state.selectedSemester,
                 wefDate: this.state.wefDate,
                 wetDate: this.state.wetDate,
                 flag: 'A'
@@ -71,25 +74,21 @@
                     $("#progress").show();
                 },
                 success: function (data) {
-                    $("#progress").hide();
-                    console.log(data);
+                    btnloading(e.target, 'hide');
+                    CallToast(data.msg, data.flag);
                     if (data.flag == "S") {
-                        window.location.href = "/Dashboard/Overview";
+                        MyData = JSON.parse(data.addParams);
+                        this.setState({ rowData: MyData });
+                        console.log(this.state.rowData);
                     }
-                    else if (data.flag == "D") {
-                        $("#selectorg").modal("show");
-                    }
-                    else {
-                        CallToast(data.msg, data.flag);
-                    }
-
                 }.bind(this),
-                error: function (e) {
-                    console.log(e);
-                    $("#progress").hide();
+                error: function (evt) {
+                    btnloading(e.target, 'hide');
                     alert('Error! Please try again');
                 }
             })
+
+            e.preventDefault();
         }
     },
     register: function (field) {
@@ -99,19 +98,21 @@
             Fields: s
         })
     },
-    onChangeYear: function (value) {
+
+    onChangeYear: function (value)
+    {     
         this.setState({
-            academicYear: value
+            selectedYear: value
         });
     },
     onChangeCourse: function (value) {
         this.setState({
-            course: value
+            selectedCourse: value
         });
     },
     onChangeSemester: function (value) {
         this.setState({
-            semester: value
+            selectedSemester: value
         });
     },
     onBlurWefDate: function (value) {
@@ -139,16 +140,16 @@
                             <ul>
                                 <li>
 
-                                    <CreateInput type={'ddl'} value={this.state.academicYear} label={'Academic Year'} name={'academicYear'} htmlFor={'academicYear'} isrequired={true}
-                                        keyId={'MODULE_ID'} keyName={'MODULE_NAME'}   onChange={this.onChangeYear}  className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                    <CreateInput type={'ddl'} value={this.state.selectedYear} data={this.state.academicYear} label={'Academic Year'} name={'academicYear'} htmlFor={'academicYear'} isrequired={true}
+                                        keyId={'ID'} keyName={'ACADEMIC_YEAR'} onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
-                                    <CreateInput type={'ddl'} value={this.state.course} label={'Course'} name={'course'} htmlFor={'course'} isrequired={true}
-                                        keyId={'MODULE_ID'} keyName={'MODULE_STATUS'}  onChange={this.onChangeCourse} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                    <CreateInput type={'ddl'} value={this.state.selectedCourse} data={this.state.course} label={'Course'} name={'course'} htmlFor={'course'} isrequired={true}
+                                        keyId={'ID'} keyName={'COURSE_NAME'}  onChange={this.onChangeCourse} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
-                                    <CreateInput type={'ddl'} value={this.state.semester} label={'Semester'} name={'semester'} htmlFor={'semester'} isrequired={true}
-                                        keyId={'MODULE_ID'} keyName={'MODULE_NAME'}  className={'form-control'} onChange={this.onChangeSemester} onComponentMounted={this.register} messageRequired={'required.'} />
+                                    <CreateInput type={'ddl'} value={this.state.selectedSemester} data={this.state.semester} label={'Semester'} name={'semester'} htmlFor={'semester'} isrequired={true}
+                                        keyId={'ID'} keyName={'NO_SEMESTER'}  className={'form-control'} onChange={this.onChangeSemester} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
                                     <CreateInput type={'date'} value={this.state.wefDate} label={'Start Date'} name={'daterangepicker'} htmlFor={'wefDate'} isrequired={true}

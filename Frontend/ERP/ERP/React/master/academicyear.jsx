@@ -125,7 +125,7 @@ var AcademicYearForm = React.createClass({
                                                  className={'startDate form-control'} onBlur={this.onWefBlur} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
-                                    <CreateInput type={'date'} value={this.state.wtDate} id={'wtDate'} label={'End Date'} name={'endDate'} htmlFor={'wtDate'} isrequired={true}
+                                    <CreateInput type={'date'} value={this.state.wtDate} id={'wtDate'} label={'End Date'} name={'endDate'} htmlFor={'wtDate'} isrequired={false}
                                                  className={'endDate form-control'} onBlur={this.onWetBlur} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
