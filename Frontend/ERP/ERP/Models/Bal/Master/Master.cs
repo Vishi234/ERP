@@ -204,8 +204,6 @@ namespace ERP.Models.Bal.Master
         public string CourseDuration()
         {
             SqlDataReader dr;
-            //SqlParameter[] sqlParameter = new SqlParameter[];
-            // sqlParameter[0] = new SqlParameter("@P_FLAG", 'A');
             dr = SqlHelper.ExecuteReader(sqlConn, "SP_GET_COURSE_SEM_DETAILS");
             string details = CommonFunc.RdrToJSON(dr);
             return details;

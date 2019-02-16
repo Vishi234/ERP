@@ -12,24 +12,37 @@
             { make: "Ford", model: "Mondeo", price: 32000 },
             { make: "Porsche", model: "Boxter", price: 72000 }
         ];
-        state = {
-            teams: [],
-            selectedTeam: "",
-            validationError: ""
-        };
+        this.state = {
+        }
         return {
-            academicYear: 0,
-            course: 0,
-            semester: 0,
+            course: this.getDDLData(),
+            semester: this.getDDLData(),
+            academicYear: this.getDDLData(),
             wefDate: "",
             wetDate: "",
             Fields: [],
-            optionData:[],
+            optionData: [],
             columnDef: columnDefs,
             rowData: rowData,
-            ServerMessage: ''
+            ServerMessage: '',
+            selectedTeam: "",
+            validationError: ""
+
         }
     },
+
+    getDDLData: function () {
+        $.ajax({
+            type: "GET",
+            url: "/Master/Durationddl",
+            async: false,
+            success: function (data) {
+                teamsFromApi = JSON.parse(data);
+            }
+        });
+          return teamsFromApi;
+    },
+
     handleSubmit: function (e) {
         e.preventDefault();
         var validForm = true;
@@ -127,15 +140,15 @@
                                 <li>
 
                                     <CreateInput type={'ddl'} value={this.state.academicYear} label={'Academic Year'} name={'academicYear'} htmlFor={'academicYear'} isrequired={true}
-                                        onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                        keyId={'MODULE_ID'} keyName={'MODULE_NAME'}   onChange={this.onChangeYear}  className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
                                     <CreateInput type={'ddl'} value={this.state.course} label={'Course'} name={'course'} htmlFor={'course'} isrequired={true}
-                                        onChange={this.onChangeCourse} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                        keyId={'MODULE_ID'} keyName={'MODULE_STATUS'}  onChange={this.onChangeCourse} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
                                     <CreateInput type={'ddl'} value={this.state.semester} label={'Semester'} name={'semester'} htmlFor={'semester'} isrequired={true}
-                                        className={'form-control'} onChange={this.onChangeSemester} onComponentMounted={this.register} messageRequired={'required.'} />
+                                        keyId={'MODULE_ID'} keyName={'MODULE_NAME'}  className={'form-control'} onChange={this.onChangeSemester} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
                                     <CreateInput type={'date'} value={this.state.wefDate} label={'Start Date'} name={'daterangepicker'} htmlFor={'wefDate'} isrequired={true}
@@ -152,7 +165,7 @@
 
                         </form>
                     </div>
-                   
+
                     <AgGrid columnDef={this.state.columnDef} rowData={this.state.rowData} />
                 </div>
             </div>
