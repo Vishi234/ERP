@@ -25,25 +25,9 @@
         }
     },
     componentDidMount: function () {
-        if (this.props.onComponentMounted) {
-            //alert(this.props.type);
+        if (this.props.onComponentMounted) {          
             this.props.onComponentMounted(this); //register this input in the form
         }
-        else if (this.props.type == "ddl") {
-            fetch("/Master/Duration")
-                .then((response) => {
-                    alert(response.json());
-                    return response.json();
-                })
-                .then(data => {
-                    let teamsFromApi = data.map(team => { return { value: team, display: team } })
-                    this.setState({ teams: [{ value: '', display: '(Select your favourite team)' }].concat(teamsFromApi) });
-                }).catch(error => {
-                    console.log(error);
-                });
-
-        }
-        else { }
         InitializeDate("daterangepicker");
     },
     render: function () {
@@ -54,7 +38,10 @@
         }
         else if (this.props.type == 'ddl') {
             inputField = <select value={this.props.value} ref={this.props.name} name={this.props.name}
-                                 className='registration-form-control dropdown' required={this.props.isrequired} onChange={this.handleChange} />
+                className='registration-form-control dropdown' required={this.props.isrequired} onChange={this.handleChange} >
+                {this.props.value.map((obj) => <option key={obj[this.props.keyId]} value={obj[this.props.keyId]}>{obj[this.props.keyName]}</option>)}
+                </select>
+            
         }
         else if (this.props.type == 'multiSelect') {
             inputField = <select value={this.props.value} ref={this.props.name} name={this.props.name}
