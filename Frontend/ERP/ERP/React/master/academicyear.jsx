@@ -60,6 +60,7 @@ class AcademicYearForm extends React.Component {
                                 wtDate: "",
                             })
                         this.setState({ rowData: MyData });
+                        this.setState({ records: MyData.length })
 
                     }
                 }.bind(this),
@@ -139,7 +140,6 @@ class AcademicYearForm extends React.Component {
                                 <CreateInput type={'date'} value={this.state.wtDate} id={'wtDate'} label={'End Date'} name={'endDate'} htmlFor={'wtDate'} isrequired={true}
                                              className={'endDate form-control'} onBlur={this.onWetBlur.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
-                                <li>
                                 <li>
                                     <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>
                                 </li>

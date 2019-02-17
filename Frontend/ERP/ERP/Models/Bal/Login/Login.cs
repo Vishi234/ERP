@@ -38,11 +38,10 @@ namespace ERP.Models.Bal.Login
                 ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_CHECK_LOGIN", sqlParameter);
                 result.flag = sqlParameter[3].Value.ToString();
                 result.msg = sqlParameter[4].Value.ToString();
-
+                UserEntity objUserEntity = UserEntity.GetInstance();
                 if (result.flag.ToUpper() == "S")
                 {
                     HttpContext.Current.Session["ModuelInfo"] = ds.Tables[0];
-                    UserEntity objUserEntity = UserEntity.GetInstance();
                     objUserEntity.userId = ds.Tables[1].Rows[0]["USER_ID"].ToString();
                     objUserEntity.firstName = ds.Tables[1].Rows[0]["FIRST_NAME"].ToString();
                     objUserEntity.middleName = ds.Tables[1].Rows[0]["MIDDLE_NAME"].ToString();
@@ -58,33 +57,30 @@ namespace ERP.Models.Bal.Login
                     objUserEntity.email = ds.Tables[1].Rows[0]["EMAIL_ADDRESS"].ToString();
                     objUserEntity.accountLocked = ds.Tables[1].Rows[0]["ACCOUNT_LOCKED"].ToString();
                     objUserEntity.role = ds.Tables[1].Rows[0]["ROLE"].ToString();
-                    HttpContext.Current.Session["UserDetails"] = objUserEntity;
                     if (ds.Tables[2].Rows.Count == 1)
                     {
-                        CustomerEntity objCustomerEntity = CustomerEntity.GetInstance();
-                        objCustomerEntity.customerId = ds.Tables[2].Rows[0]["CUSTOMER_ID"].ToString();
-                        objCustomerEntity.customerCode = ds.Tables[2].Rows[0]["CUSTOMER_CODE"].ToString();
-                        objCustomerEntity.customerName = ds.Tables[2].Rows[0]["CUSTOMER_NAME"].ToString();
-                        objCustomerEntity.address = ds.Tables[2].Rows[0]["ADDRESS"].ToString();
-                        objCustomerEntity.city = ds.Tables[2].Rows[0]["CITY"].ToString();
-                        objCustomerEntity.mobile = ds.Tables[2].Rows[0]["MOBILE"].ToString();
-                        objCustomerEntity.website = ds.Tables[2].Rows[0]["WEBSITE"].ToString();
-                        objCustomerEntity.faxNo = ds.Tables[2].Rows[0]["FAX_NO"].ToString();
-                        objCustomerEntity.cEmail = ds.Tables[2].Rows[0]["EMAIL_ADDRESS"].ToString();
-                        objCustomerEntity.panNo = ds.Tables[2].Rows[0]["PAN_NO"].ToString();
-                        objCustomerEntity.cActive = ds.Tables[2].Rows[0]["IS_ACTIVE"].ToString();
-                        objCustomerEntity.state = ds.Tables[2].Rows[0]["STATE"].ToString();
-                        objCustomerEntity.pinCode = ds.Tables[2].Rows[0]["PIN_CODE"].ToString();
-                        objCustomerEntity.cWef = ds.Tables[2].Rows[0]["WEF_DATE"].ToString();
-                        objCustomerEntity.cWet = ds.Tables[2].Rows[0]["WET_DATE"].ToString();
-                        HttpContext.Current.Session["CustomerDetails"] = objCustomerEntity;
+                        objUserEntity.customerId = ds.Tables[2].Rows[0]["CUSTOMER_ID"].ToString();
+                        objUserEntity.customerCode = ds.Tables[2].Rows[0]["CUSTOMER_CODE"].ToString();
+                        objUserEntity.customerName = ds.Tables[2].Rows[0]["CUSTOMER_NAME"].ToString();
+                        objUserEntity.address = ds.Tables[2].Rows[0]["ADDRESS"].ToString();
+                        objUserEntity.city = ds.Tables[2].Rows[0]["CITY"].ToString();
+                        objUserEntity.mobile = ds.Tables[2].Rows[0]["MOBILE"].ToString();
+                        objUserEntity.website = ds.Tables[2].Rows[0]["WEBSITE"].ToString();
+                        objUserEntity.faxNo = ds.Tables[2].Rows[0]["FAX_NO"].ToString();
+                        objUserEntity.cEmail = ds.Tables[2].Rows[0]["EMAIL_ADDRESS"].ToString();
+                        objUserEntity.panNo = ds.Tables[2].Rows[0]["PAN_NO"].ToString();
+                        objUserEntity.cActive = ds.Tables[2].Rows[0]["IS_ACTIVE"].ToString();
+                        objUserEntity.state = ds.Tables[2].Rows[0]["STATE"].ToString();
+                        objUserEntity.pinCode = ds.Tables[2].Rows[0]["PIN_CODE"].ToString();
+                        objUserEntity.cWef = ds.Tables[2].Rows[0]["WEF_DATE"].ToString();
+                        objUserEntity.cWet = ds.Tables[2].Rows[0]["WET_DATE"].ToString();
                     }
                     else
                     {
                         result.addParams = CommonFunc.DtToJSON(ds.Tables[2]);
                     }
 
-
+                    HttpContext.Current.Session["UserDetails"] = objUserEntity;
                 }
                 return result;
             }

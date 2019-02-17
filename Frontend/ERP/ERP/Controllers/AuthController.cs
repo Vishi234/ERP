@@ -24,8 +24,9 @@ namespace ERP.Controllers
         public ActionResult Redirect(string jsonData)
         {
             JavaScriptSerializer serializer = new JavaScriptSerializer();
-            CustomerEntity objCustomer = new CustomerEntity();
-            var model = serializer.Deserialize<CustomerEntity>(jsonData);
+            UserEntity objCustomer = new UserEntity();
+            objCustomer = (UserEntity)Session["UserDetails"];
+            var model = serializer.Deserialize<UserEntity>(jsonData);
             objCustomer.customerId = model.customerId;
             objCustomer.customerCode = model.customerCode;
             objCustomer.customerName = model.customerName;
@@ -41,7 +42,7 @@ namespace ERP.Controllers
             objCustomer.pinCode = model.pinCode;
             objCustomer.cWef = model.cWef;
             objCustomer.cWet = model.cWet;
-            Session["CustomerDetails"] = objCustomer;
+            Session["UserDetails"] = objCustomer;
             return RedirectToAction("Overview", "Dashboard");
         }
 

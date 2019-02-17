@@ -10,6 +10,28 @@ namespace ERP.Models.Bal.Common
 {
     public class CommonFunc
     {
+        public static List<Dictionary<string, object>> RdrToList(SqlDataReader datareader)
+        {
+            List<Dictionary<string, object>> rows = new List<Dictionary<string, object>>();
+            String str = "";
+            if (datareader.HasRows)
+            {
+                int id = 0;
+                Dictionary<string, object> row;
+                while (datareader.Read())
+                {
+                    row = new Dictionary<string, object>();
+                    for (int i = 0; i < datareader.FieldCount; i++)
+                    {
+                        row.Add(datareader.GetName(i), datareader[i]);
+                    }
+                    rows.Add(row);
+                    id++;
+                }
+                datareader.Close();
+            }
+            return rows;
+        }
         public static string RdrToJSON(SqlDataReader datareader)
         {
             List<Dictionary<string, object>> rows = new List<Dictionary<string, object>>();

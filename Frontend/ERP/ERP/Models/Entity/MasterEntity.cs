@@ -16,6 +16,7 @@ namespace ERP.Models.Entity
     }
     public class DurationEntity
     {
+        public string id { get; set; }
         public string academicYear { get; set; }
         public string course { get; set; }
         public string semester { get; set; }
@@ -28,7 +29,7 @@ namespace ERP.Models.Entity
     }
     public class CourseEntity
     {
-        public string courseCode { get; set; }
+        public string courserId { get; set; }
         public string courseName { get; set; }
         public string noOfSemester { get; set; }
         public string reportId { get; set; }

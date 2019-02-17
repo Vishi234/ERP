@@ -34,6 +34,9 @@
         if (this.props.type == "date") {
             InitializeDate(this.props.name);
         }
+        if (this.props.type == "ddl") {
+            //InitializeSelect(this.props.name);
+        }
 
     }
     render() {
@@ -44,10 +47,12 @@
                                    className='registration-form-control' required={this.props.isrequired} onChange={this.handleChange.bind(this)} />
         }
         else if (this.props.type == 'ddl') {
-            inputField = <select value={this.props.value} ref={this.props.name} onChange={this.handleChange} name={this.props.name}
-                className='registration-form-control dropdown' required={this.props.isrequired}>
-                {this.props.data.map((obj) => <option key={obj[this.props.keyId]} value={obj[this.props.keyId]}>{obj[this.props.keyName]}</option>)}
-                </select>
+            inputField = <select value={this.props.value} ref={this.props.name} onChange={this.handleChange.bind(this)} name={this.props.name}
+                                 className='registration-form-control dropdown' required={this.props.isrequired}>
+                            <option key="0" value="0">Select {this.props.label}</option>
+                {this.props.data.map((obj) =>
+                <option key={obj[this.props.keyId]} value={obj[this.props.keyId] }>{obj[this.props.keyName]}</option>)}
+            </select>
         }
         else if (this.props.type == 'multiSelect') {
             inputField = <select value={this.props.value} ref={this.props.name} name={this.props.name}

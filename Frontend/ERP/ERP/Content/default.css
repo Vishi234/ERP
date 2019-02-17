@@ -890,9 +890,9 @@ a {
 
 
 .dropdown {
-    width: 100px;
+    width: 95%;
     border-radius: 5px;
-    height: 20px;
+    height: 26px;
 }
 
 .slideInDown {

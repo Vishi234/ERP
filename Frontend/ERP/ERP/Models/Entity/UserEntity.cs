@@ -6,7 +6,7 @@ namespace ERP.Models.Entity
     public class UserEntity
     {
         private static UserEntity _instance;
-        protected UserEntity()
+        public UserEntity()
         {
 
         }
@@ -30,6 +30,21 @@ namespace ERP.Models.Entity
         public string email { get; set; }
         public string accountLocked { get; set; }
         public string role { get; set; }
+        public string customerId { get; set; }
+        public string customerCode { get; set; }
+        public string customerName { get; set; }
+        public string address { get; set; }
+        public string city { get; set; }
+        public string mobile { get; set; }
+        public string website { get; set; }
+        public string faxNo { get; set; }
+        public string cEmail { get; set; }
+        public string panNo { get; set; }
+        public string cActive { get; set; }
+        public string state { get; set; }
+        public string pinCode { get; set; }
+        public string cWef { get; set; }
+        public string cWet { get; set; }
     }
 
 }
