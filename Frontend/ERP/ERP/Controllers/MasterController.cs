@@ -44,7 +44,7 @@ namespace ERP.Controllers
         public ActionResult Course(CourseEntity courseEntity)
         {
             UserEntity objUserEntity = UserEntity.GetInstance();
-            return Json(new Master().AddCourse(masterEntity, objUserEntity.customerId, objUserEntity.userId));
+            return Json(new Master().AddCourse(courseEntity, objUserEntity.customerId, objUserEntity.userId));
         }
         public ActionResult Duration()
         {
@@ -67,7 +67,7 @@ namespace ERP.Controllers
         public ActionResult Duration(DurationEntity durationEntity)
         {
             UserEntity objUserEntity = UserEntity.GetInstance();
-            return Json(new Master().AddDuration(masterEntity, objUserEntity.customerId, objUserEntity.userId));
+            return Json(new Master().AddDuration(durationEntity, objUserEntity.customerId, objUserEntity.userId));
         }
         public ActionResult Activity()
         {
