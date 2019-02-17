@@ -56,27 +56,21 @@
                     $("#progress").show();
                 },
                 success: function (data) {
-                    $("#progress").hide();
-                    console.log(data);
-                    if (data.flag == "S") {
-                        alert("Course Added Successfully");
-                        { this.resetData() };
-                        e.preventDefault();
+                    btnloading(e.target, 'hide');
+                    CallToast(data.msg, data.flag);
+                    if (data.flag == "S") { 
+                        MyData = JSON.parse(data.addParams);
+                        this.setState({ rowData: MyData });
+                        console.log(this.state.rowData);
                     }
-                    else if (data.flag == "D") {
-                        $("#selectorg").modal("show");
-                    }
-                    else {
-                        CallToast(data.msg, data.flag);
-                    }
-
                 }.bind(this),
-                error: function (e) {
-                    console.log(e);
-                    $("#progress").hide();
+                error: function (evt) {
+                    btnloading(e.target, 'hide');
                     alert('Error! Please try again');
                 }
             })
+
+            e.preventDefault();
         }
     },
 

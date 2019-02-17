@@ -391,3 +391,4 @@ C:\Users\HP\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\ru-ru\JavaScriptEngineSwit
 C:\Users\HP\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.csprojResolveAssemblyReference.cache
 C:\Users\HP\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.dll
 C:\Users\HP\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.pdb
+C:\Users\HP\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\Newtonsoft.Json.pdb
