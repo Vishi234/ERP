@@ -1,4 +1,5 @@
-﻿using ERP.Models.Bal.Master;
+﻿using ERP.Models.Bal.Common;
+using ERP.Models.Bal.Master;
 using ERP.Models.Entity;
 using ERP.Models.Entity;
 using System;
@@ -88,5 +89,24 @@ namespace ERP.Controllers
             return View();
         }
 
+        [HttpGet]
+        public string GetCourseDDL(String ddlType)
+        {
+            Master objMaster = new Master();
+            return (objMaster.GetCourseDDL(ddlType));
+        }
+
+        [HttpGet]
+        public string GetParamList(string flag,string ddlType)
+        {
+           return CommonFunc.GetParamList(flag, ddlType);
+        }
+
+        [HttpPost]
+        public JsonResult SaveSectionDetails(SectionEntity sectionEntity)
+        {
+            Master objMaster = new Master();
+            return Json(objMaster.SaveSectionDetails(sectionEntity));
+        }
     }
 }
