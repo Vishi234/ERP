@@ -1,35 +1,33 @@
-﻿var ActivityForm = React.createClass({
-    getInitialState: function () {
-        var columnDefs = [
-            { headerName: "Make", field: "make" },
-            { headerName: "Model", field: "model" },
-            { headerName: "Price", field: "price" }
-        ];
-
-        // specify the data
-        var rowData = [
-            { make: "Toyota", model: "Celica", price: 35000 },
-            { make: "Ford", model: "Mondeo", price: 32000 },
-            { make: "Porsche", model: "Boxter", price: 72000 }
-        ];
-        return {
-            actName: "",
-            status: 0,
-            actType: 0,
-            stDate: "",
-            endDate: "",
-            Fields: [],
-            columnDef: columnDefs,
-            rowData: rowData,
-            ServerMessage: ''
-        }
-    },
-    handleSubmit: function (e) {
+﻿﻿var grdArray;
+var MyData = null;
+var fields = [];
+class ActivityForm extends React.Component {
+    constructor(props) {
+        super(props);
+        grdArray = GetReportConfiguration("Master");
+        var columnDefs = grdArray["$ActivityDetails$"];
+        //var records = JSON.parse(content.addParams);
+        this.state =
+            {
+                actName: "",
+                status: [],
+                actType: [],
+                selectedStatus: 0,
+                selectedType: 0,
+                stDate: "",
+                endDate: "",
+                Fields: [],
+                columnDef: columnDefs,
+                rowData: null,
+                ServerMessage: ''
+            };
+    }
+    handleSubmit(e) {
         e.preventDefault();
         var validForm = true;
-        this.state.Fields.forEach(function (field) {
-            if (typeof field.isValid === "function") {
-                var validField = field.isValid(field.refs[field.props.name]);
+        fields.forEach(function (field) {
+            if (typeof field[0].isValid === "function") {
+                var validField = field[0].isValid(field[0].refs[field[0].props.name]);
                 validForm = validForm && validField;
             }
         });
@@ -49,11 +47,10 @@
                 data: d,
                 async: false,
                 beforeSend: function () {
-                    $("#progress").show();
+                    btnloading("activityForm", 'show');
                 },
                 success: function (data) {
-                    $("#progress").hide();
-                    console.log(data);
+                    btnloading("activityForm", 'hide');
                     if (data.flag == "S") {
                         window.location.href = "/Dashboard/Overview";
                     }
@@ -65,47 +62,44 @@
                     }
                 }.bind(this),
                 error: function (e) {
-                    console.log(e);
-                    $("#progress").hide();
+                    btnloading("activityForm", 'hide');
                     alert('Error! Please try again');
                 }
             })
         }
-    },
-    onChangeactName: function (value) {
+    }
+    onChangeactName(value) {
         this.setState({
             actName: value
         });
-    },
-    onChangestatus: function (value) {
+    }
+    onChangestatus(value) {
         this.setState({
             status: value
         });
-    },
-    onChangeactType: function (value) {
+    }
+    onChangeactType(value) {
         this.setState({
             actType: value
         });
-    },
-    onBlurWefDate: function (value) {
+    }
+    onBlurWefDate(value) {
         this.setState({
             wfDate: value
         });
-    },
-    onBlurWetDate: function (value) {
+    }
+    onBlurWetDate(value) {
         this.setState({
             wetDate: value
         });
-    },
+    }
     //register input controls
-    register: function (field) {
-        var s = this.state.Fields;
+    register(field) {
+        var s = [];
         s.push(field);
-        this.setState({
-            Fields: s
-        })
-    },
-    render: function () {
+        fields.push(s);
+    }
+    render() {
         //Render form
         return (
             <div>
@@ -116,41 +110,40 @@
                         <hr />
                     </div>
                     <div className="acform">
-                        <form noValidate onSubmit={this.handleSubmit}>
-                            <ul>
-                                <li>
-                                    <CreateInput type={'text'} value={this.state.actName} label={'Activity Name'} name={'actName'} htmlFor={'actName'} isrequired={true}
-                                        onChange={this.onChangeactName} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                </li>
-                                <li>
-                                    <CreateInput type={'ddl'} value={this.state.status} label={'Status'} name={'status'} htmlFor={'status'} isrequired={true}
-                                        onChange={this.onChangestatus} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                </li>
-                                <li>
-                                    <CreateInput type={'ddl'} value={this.state.actType} label={'Activity Type'} name={'actType'} htmlFor={'actType'} isrequired={true}
-                                        onChange={this.onChangeactType} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                </li>
-                                <li>
-                                    <CreateInput type={'date'} value={this.state.wfDate} id={'wfDate'} label={'Start Date'} name={'daterangepicker'} htmlFor={'wfDate'} isrequired={true}
-                                        className={'startDate form-control'} onBlur={this.onBlurWefDate} onComponentMounted={this.register} messageRequired={'required.'} />
-                                </li>
-                                <li>
-                                    <CreateInput type={'date'} value={this.state.wtDate} id={'wtDate'} label={'End Date'} name={'daterangepicker'} htmlFor={'wtDate'} isrequired={true}
-                                        className={'startDate form-control'} onBlur={this.onWetBlur} onComponentMounted={this.register} messageRequired={'required.'} />
-                                </li>
-                                <li>
-                                    <input type="submit" className="btn btn-success" value="Save" />
-                                </li>
-                            </ul>
+                        <form noValidate onSubmit={this.handleSubmit.bind(this)}>
+                        <ul>
+                        <li>
+                        <CreateInput type={'text'} value={this.state.actName} label={'Activity Name'} name={'actName'} htmlFor={'actName'} isrequired={true}
+                                     onChange={this.onChangeactName.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                        </li>
+                        <li>
+                        <CreateInput type={'ddl'} value={this.state.selectedStatus} data={this.state.status} label={'Status'} name={'status'} htmlFor={'status'} isrequired={true}
+                                     onChange={this.onChangestatus.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                        </li>
+                        <li>
+                        <CreateInput type={'ddl'} value={this.state.selectedType} data={this.state.actType} label={'Activity Type'} name={'actType'} htmlFor={'actType'} isrequired={true}
+                                     onChange={this.onChangeactType.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                        </li>
+                        <li>
+                        <CreateInput type={'date'} value={this.state.wfDate} id={'wfDate'} label={'Start Date'} name={'startDate'} htmlFor={'wfDate'} isrequired={true}
+                                     className={'startDate form-control'} onBlur={this.onBlurWefDate.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
+                        </li>
+                        <li>
+                        <CreateInput type={'date'} value={this.state.wtDate} id={'wtDate'} label={'End Date'} name={'endDate'} htmlFor={'wtDate'} isrequired={true}
+                                     className={'endDate form-control'} onBlur={this.onBlurWetDate.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
+                        </li>
+                        <li>
+                        <input type="submit" className="btn btn-success" value="Save" />
+                        </li>
+                        </ul>
 
                         </form>
                     </div>
-                    
                     <AgGrid columnDef={this.state.columnDef} rowData={this.state.rowData} />
                 </div>
             </div>
         );
     }
-});
+}
 
 ReactDOM.render(<ActivityForm urlPost="/Master/Activity" />, document.getElementById('activityform'));

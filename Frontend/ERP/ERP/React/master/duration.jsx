@@ -1,14 +1,13 @@
-﻿var jsonData;
-var CourseDurationForm = React.createClass({
+﻿var CourseDurationForm = React.createClass({
     getInitialState: function () {
         grdArray = GetReportConfiguration("Master");
         var columnDefs = grdArray["$DurationDetails$"];
         var records = JSON.parse(content.addParams);
         jsonData = GetJsonData('../../Content/DynamicJs/DropdownData.json');
         return {
-            course: jsonData["Course"],
+            course: ReadDropDownData("Course", $("#hfCustomerId").val()),
             semester: [],
-            academicYear: jsonData["AcademicYear"],
+            academicYear: ReadDropDownData("AcademicYear", $("#hfCustomerId").val()),
             selectedYear: 0,
             selectedCourse: 0,
             selectedSemester: 0,
@@ -57,9 +56,9 @@ var CourseDurationForm = React.createClass({
                         MyData = JSON.parse(data.addParams);
                         this.setState
                             ({
-                                course: jsonData["Course"],
+                                course: ReadDropDownData("Course", $("#hfCustomerId").val()),
                                 semester: [],
-                                academicYear: jsonData["AcademicYear"],
+                                academicYear: ReadDropDownData("AcademicYear", $("#hfCustomerId").val()),
                                 selectedYear: 0,
                                 selectedCourse: 0,
                                 selectedSemester: 0,
@@ -95,9 +94,10 @@ var CourseDurationForm = React.createClass({
     onChangeCourse: function (value) {
         var obj = [];
         var semester = 0;
-        for (var i = 0; i < jsonData["Course"].length; i++) {
-            if (jsonData["Course"][i].ID == value) {
-                semester = jsonData["Course"][i].NO_SEMESTER;
+        var jsonData = ReadDropDownData("Course", $("#hfCustomerId").val());
+        for (var i = 0; i < jsonData.length; i++) {
+            if (jsonData[i].ID == value) {
+                semester = jsonData[i].NO_SEMESTER;
             }
         }
         for (var i = 1; i <= semester; i++) {

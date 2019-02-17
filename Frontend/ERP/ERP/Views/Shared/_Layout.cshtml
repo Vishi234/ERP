@@ -20,6 +20,9 @@
     @Scripts.Render("~/bundles/config")
 </head>
 <body class="dashbdy">
+    <input type="hidden" id="hfCustomerId" value="@user.customerId" />
+    <input type="hidden" id="hfUserId" value="@user.userId" />
+    <input type="hidden" id="hfRoleId" value="@user.role" />
     <div class="header">
         <div class="container-fluid">
             <div class="row">

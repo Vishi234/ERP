@@ -86,7 +86,6 @@ function InitializeDate(name) {
     var defaultStart = moment(start.valueOf());
     $('input[name=' + name + ']').daterangepicker({
         singleDatePicker: true,
-        showDropdowns: true,
         //minDate: moment(start.valueOf()).format("DD-MMM-YYYY"),
         //startDate: moment(start.valueOf()).format("DD-MMM-YYYY"),
         start:moment(),
