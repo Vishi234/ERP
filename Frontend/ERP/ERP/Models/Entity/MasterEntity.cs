@@ -46,4 +46,14 @@ namespace ERP.Models.Entity
         public char flag { get; set; }
     }
 
+    public class SectionEntity
+    {
+        public string course { get; set; }
+        public string semester { get; set; }
+        public string sectioin { get; set; }
+        public string customerId { get; set; }
+        public string userId { get; set; }
+        public char flag { get; set; }
+    }
+
 }

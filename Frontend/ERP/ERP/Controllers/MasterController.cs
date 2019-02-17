@@ -1,11 +1,12 @@
-﻿using ERP.Models.Bal.Master;
+﻿using ERP.Models.Bal.Common;
+using ERP.Models.Bal.Master;
+using ERP.Models.Entity;
 using ERP.Models.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
 
 namespace ERP.Controllers
 {
@@ -28,8 +29,6 @@ namespace ERP.Controllers
         {
             UserEntity objUserEntity = UserEntity.GetInstance();
             return Json(new Master().AddAcademicYear(academicEntity, objUserEntity.customerId, objUserEntity.userId));
-
-
         }
 
         public ActionResult Course()
@@ -42,11 +41,10 @@ namespace ERP.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Course(CourseEntity masterEntity)
+        public ActionResult Course(CourseEntity courseEntity)
         {
             UserEntity objUserEntity = UserEntity.GetInstance();
             return Json(new Master().AddCourse(masterEntity, objUserEntity.customerId, objUserEntity.userId));
-
         }
         public ActionResult Duration()
         {
@@ -66,7 +64,7 @@ namespace ERP.Controllers
 
         }
         [HttpPost]
-        public ActionResult Duration(DurationEntity masterEntity)
+        public ActionResult Duration(DurationEntity durationEntity)
         {
             UserEntity objUserEntity = UserEntity.GetInstance();
             return Json(new Master().AddDuration(masterEntity, objUserEntity.customerId, objUserEntity.userId));
@@ -94,5 +92,26 @@ namespace ERP.Controllers
             return View();
         }
 
+        [HttpGet]
+        public string GetCourseDDL(String ddlType)
+        {
+            Master objMaster = new Master();
+            return (objMaster.GetCourseDDL(ddlType));
+        }
+
+        [HttpGet]
+        public string GetParamList(string flag,string ddlType)
+        {
+           return CommonFunc.GetParamList(flag, ddlType);
+        }
+
+        [HttpPost]
+        public JsonResult SaveSectionDetails(SectionEntity sectionEntity)
+        {
+            Master objMaster = new Master();
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            CustomerEntity objCustomer = CustomerEntity.GetInstance();
+            return Json(objMaster.SaveSectionDetails(sectionEntity,objUserEntity.userId,objCustomer.customerId));
+        }
     }
 }

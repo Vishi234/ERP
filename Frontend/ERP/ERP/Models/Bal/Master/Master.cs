@@ -207,5 +207,70 @@ namespace ERP.Models.Bal.Master
             return details;
         }
 
+        public string GetCourseDDL(string ddlType)
+        {
+            try
+            {
+                SqlDataReader dr;
+                SqlParameter[] sqlParameter = new SqlParameter[2];
+                sqlParameter[0] = new SqlParameter("@P_FLAG", '2');
+                sqlParameter[1] = new SqlParameter("@DDL_TYPE", ddlType);
+                dr = SqlHelper.ExecuteReader(sqlConn, CommandType.StoredProcedure, "SP_GET_COURSE_SEM_DETAILS",sqlParameter);
+                string details = CommonFunc.RdrToJSON(dr);
+                return details;
+            }
+            catch (Exception ex)
+            {
+                Excep.WriteException(ex);
+                return "";
+            }
+        }
+
+        public ResultEntity SaveSectionDetails(SectionEntity sectionEntity,string customerId,string userId)
+        {
+            ResultEntity result = new ResultEntity();
+            try
+            {
+                SqlDataReader dr;
+                SqlParameter[] sqlParameter = new SqlParameter[7];
+                sqlParameter[0] = new SqlParameter("@P_COURSE", sectionEntity.course);
+                sqlParameter[1] = new SqlParameter("@P_SEMESTER", sectionEntity.semester);
+                sqlParameter[2] = new SqlParameter("@P_SECTION", sectionEntity.sectioin);
+                sqlParameter[3] = new SqlParameter("@P_CUSTOMER_ID", customerId);
+                sqlParameter[4] = new SqlParameter("@P_USER_ID", userId);
+
+                sqlParameter[5] = new SqlParameter("@FLAG", SqlDbType.Char);
+                sqlParameter[5].Direction = ParameterDirection.Output;
+                sqlParameter[5].Size = 1;
+                sqlParameter[6] = new SqlParameter("@MSG", SqlDbType.NVarChar);
+                sqlParameter[6].Direction = ParameterDirection.Output;
+                sqlParameter[6].Size = 500;
+
+                dr = SqlHelper.ExecuteReader(sqlConn, CommandType.StoredProcedure, "SP_SECTION_AMD", sqlParameter);
+                DataSet ds = new DataSet();
+                result.flag = sqlParameter[5].Value.ToString();
+                result.msg = sqlParameter[6].Value.ToString();
+
+                if (result.flag.ToUpper() == "S")
+                {
+                    if (ds != null)
+                    {
+                        if (ds.Tables[0].Rows.Count > 0)
+                        {
+                            result.addParams = CommonFunc.DtToJSON(ds.Tables[0]);
+                        }
+                    }
+                }
+
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                Excep.WriteException(ex);
+                return result;
+            }
+        }
+
     }
 }

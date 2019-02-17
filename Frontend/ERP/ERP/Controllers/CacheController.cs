@@ -27,6 +27,5 @@ namespace ERP.Controllers
             GlobalCache gcObj = new GlobalCache();
             gcObj.RefreshAllDropDown();
         }
-
     }
 }

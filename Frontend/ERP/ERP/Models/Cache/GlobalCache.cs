@@ -1,4 +1,5 @@
 ﻿using DaL;
+using System.Collections.Generic;
 using ERP.Models.Bal.Common;
 using System;
 using System.Collections;
@@ -8,6 +9,7 @@ using System.IO;
 using System.Web;
 using System.Web.Script.Serialization;
 using System.Xml;
+using System.Web.Script.Serialization;
 
 namespace ERP.Models.Cache
 {
@@ -259,14 +261,12 @@ namespace ERP.Models.Cache
             SqlDataReader dr = null;
             try
             {
-
                 string sqlConn = System.Configuration.ConfigurationManager.ConnectionStrings["CS"].ConnectionString;
                 SqlParameter[] sqlParameter = new SqlParameter[2];
 
                 sqlParameter[0] = new SqlParameter("@P_FLAG", "");
                 sqlParameter[1] = new SqlParameter("@DDL_TYPE", ddlType);
                 dr = SqlHelper.ExecuteReader(sqlConn, CommandType.StoredProcedure, "SP_GET_DROPDOWN_DATA", sqlParameter);
-
                 return dr;
             }
             catch (Exception ex)
@@ -274,6 +274,7 @@ namespace ERP.Models.Cache
                 Excep.WriteException(ex);
                 return dr;
             }
+
         }
 
     }
