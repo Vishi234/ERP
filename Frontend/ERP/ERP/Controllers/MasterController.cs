@@ -1,12 +1,12 @@
 ﻿using ERP.Models.Bal.Common;
 using ERP.Models.Bal.Master;
 using ERP.Models.Entity;
+using ERP.Models.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
 
 namespace ERP.Controllers
 {
@@ -16,14 +16,7 @@ namespace ERP.Controllers
 
         public ActionResult Academic()
         {
-            Master objMaster = new Master();
-            UserEntity objUserEntity = UserEntity.GetInstance();
-            CustomerEntity objCustomer = new CustomerEntity();
-            objCustomer = (CustomerEntity)Session["CustomerDetails"];
-            AcademicEntity masterEntity = new AcademicEntity();
-            masterEntity.flag = 'G';
-            masterEntity.reportId = "1";
-            TempData["AcademicData"] = objMaster.AddAcademicYear(masterEntity, objCustomer.customerId, objUserEntity.userId);
+
             return View();
         }
 
@@ -34,7 +27,6 @@ namespace ERP.Controllers
             UserEntity objUserEntity = UserEntity.GetInstance();
             CustomerEntity objCustomer = new CustomerEntity();
             objCustomer = (CustomerEntity)Session["CustomerDetails"];
-            masterEntity.flag = 'A';
             return Json(objMaster.AddAcademicYear(masterEntity, objCustomer.customerId, objUserEntity.userId));
 
 
@@ -45,13 +37,12 @@ namespace ERP.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Course(CourseEntity masterEntity)
+        public ActionResult Course(CourseEntity courseEntity)
         {
             Master objMaster = new Master();
             UserEntity objUserEntity = UserEntity.GetInstance();
             CustomerEntity objCustomer = CustomerEntity.GetInstance();
-            return Json(objMaster.AddCourse(courseEntity, objCustomer.customerId, objUserEntity.userId));
-
+            return Json(objMaster.AddCourse(courseEntity, objCustomer.customerId,objUserEntity.userId));
         }
         public ActionResult Duration()
         {
@@ -66,13 +57,12 @@ namespace ERP.Controllers
 
         }
         [HttpPost]
-        public ActionResult Duration(DurationEntity masterEntity)
+        public ActionResult Duration(DurationEntity durationEntity)
         {
             Master objMaster = new Master();
             UserEntity objUserEntity = UserEntity.GetInstance();
-            CustomerEntity objCustomer = new CustomerEntity();
-            objCustomer = (CustomerEntity)Session["CustomerDetails"];
-            return Json(objMaster.AddDuration(masterEntity, objCustomer.customerId, objUserEntity.userId));
+            CustomerEntity objCustomer = CustomerEntity.GetInstance();
+            return Json(objMaster.AddDuration(durationEntity, objCustomer.customerId, objUserEntity.userId));
         }
         public ActionResult Activity()
         {
@@ -116,7 +106,9 @@ namespace ERP.Controllers
         public JsonResult SaveSectionDetails(SectionEntity sectionEntity)
         {
             Master objMaster = new Master();
-            return Json(objMaster.SaveSectionDetails(sectionEntity));
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            CustomerEntity objCustomer = CustomerEntity.GetInstance();
+            return Json(objMaster.SaveSectionDetails(sectionEntity,objUserEntity.userId,objCustomer.customerId));
         }
     }
 }
