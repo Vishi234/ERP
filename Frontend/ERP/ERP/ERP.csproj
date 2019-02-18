@@ -144,6 +144,7 @@
     <Content Include="Content\ConfigFiles\GridHeaders.xml" />
     <Content Include="Content\daterangepicker.css" />
     <Content Include="Content\default.css" />
+    <Content Include="Content\DynamicJs\Master.js" />
     <Content Include="Content\fontawesome-all.css" />
     <Content Include="Content\fontawesome-all.min.css" />
     <Content Include="Content\fontawesome.css" />
@@ -296,6 +297,7 @@
     <Content Include="Views\Master\Mapping.cshtml" />
     <Content Include="Views\Master\Section.cshtml" />
     <Content Include="Views\Cache\Index.cshtml" />
+    <Content Include="Content\DynamicJs\DropdownData.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -306,7 +308,6 @@
   <ItemGroup>
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Content\DynamicJs\" />
     <Folder Include="Models\Bal\Organization\" />
   </ItemGroup>
   <ItemGroup>
