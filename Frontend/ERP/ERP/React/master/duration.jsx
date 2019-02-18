@@ -5,9 +5,9 @@
         var records = JSON.parse(content.addParams);
         jsonData = GetJsonData('../../Content/DynamicJs/DropdownData.json');
         return {
-            course: ReadDropDownData("Course", $("#hfCustomerId").val()),
+            course: ReadDropDownData("Course", $("#hfCustomerId").val(),false),
             semester: [],
-            academicYear: ReadDropDownData("AcademicYear", $("#hfCustomerId").val()),
+            academicYear: ReadDropDownData("AcademicYear", $("#hfCustomerId").val(),false),
             selectedYear: 0,
             selectedCourse: 0,
             selectedSemester: 0,
@@ -56,9 +56,9 @@
                         MyData = JSON.parse(data.addParams);
                         this.setState
                             ({
-                                course: ReadDropDownData("Course", $("#hfCustomerId").val()),
+                                course: ReadDropDownData("Course", $("#hfCustomerId").val(),false),
                                 semester: [],
-                                academicYear: ReadDropDownData("AcademicYear", $("#hfCustomerId").val()),
+                                academicYear: ReadDropDownData("AcademicYear", $("#hfCustomerId").val(), false),
                                 selectedYear: 0,
                                 selectedCourse: 0,
                                 selectedSemester: 0,
@@ -94,7 +94,7 @@
     onChangeCourse: function (value) {
         var obj = [];
         var semester = 0;
-        var jsonData = ReadDropDownData("Course", $("#hfCustomerId").val());
+        var jsonData = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
         for (var i = 0; i < jsonData.length; i++) {
             if (jsonData[i].ID == value) {
                 semester = jsonData[i].NO_SEMESTER;

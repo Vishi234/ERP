@@ -44,10 +44,18 @@ function GetJsonData(path) {
         })
     return resData;
 }
-function ReadDropDownData(key, customerId) {
+function ReadDropDownData(key, customerId, isParam) {
+    var MyData = null;
     var jsonData = GetJsonData('../../Content/DynamicJs/DropdownData.json');
-    var MyData = $.grep(jsonData[key], function (item, i) {
-        return item.CUSTOMER_ID == customerId
-    });
+    if (isParam == false) {
+        MyData = $.grep(jsonData[key], function (item, i) {
+            return item.CUSTOMER_ID == customerId
+        });
+    }
+    else {
+        MyData = $.grep(jsonData[key], function (item, i) {
+            return item.PARAM_TYPE == customerId
+        });
+    }
     return MyData;
 }
