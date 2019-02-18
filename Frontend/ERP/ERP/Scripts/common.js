@@ -44,3 +44,10 @@ function GetJsonData(path) {
         })
     return resData;
 }
+function ReadDropDownData(key, customerId) {
+    var jsonData = GetJsonData('../../Content/DynamicJs/DropdownData.json');
+    var MyData = $.grep(jsonData[key], function (item, i) {
+        return item.CUSTOMER_ID == customerId
+    });
+    return MyData;
+}
