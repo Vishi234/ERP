@@ -13,5 +13,11 @@
     Label_Header["$SECTION_NAME$"] = "Section Name";
     Label_Header["$SEMESTER$"] = "Semester";
 
+    Label_Header["$ACTIVITY_NAME$"] = "Activity Name";
+    Label_Header["$ACTIVITY_STATUS$"] = "Activity Status";
+    Label_Header["$ACTIVITY_TYPE$"] = "Activity Type";
+    Label_Header["$COURSE$"] = "Course";
+    Label_Header["$SUBJECT$"] = "Subject";
+    Label_Header["$SEMESTER$"] = "Semester";
     return Label_Header;
 }
