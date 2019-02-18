@@ -27,3 +27,27 @@ function GetReportConfiguration(module) {
     });
     return grdarray;
 }
+function GetJsonData(path) {
+    var resData = new Object();
+    $.ajax(
+        {
+            url: path,
+            type: 'get',
+            dataType: 'json',
+            async: false,
+            success: function (response) {
+                resData = response;
+            },
+            error: function (xhr, status, error) {
+
+            }
+        })
+    return resData;
+}
+function ReadDropDownData(key, customerId) {
+    var jsonData = GetJsonData('../../Content/DynamicJs/DropdownData.json');
+    var MyData = $.grep(jsonData[key], function (item, i) {
+        return item.CUSTOMER_ID == customerId
+    });
+    return MyData;
+}

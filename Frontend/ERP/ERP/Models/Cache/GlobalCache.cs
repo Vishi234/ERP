@@ -1,4 +1,5 @@
 ﻿using DaL;
+using System.Collections.Generic;
 using ERP.Models.Bal.Common;
 using System;
 using System.Collections;
@@ -6,7 +7,9 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Web;
+using System.Web.Script.Serialization;
 using System.Xml;
+using System.Web.Script.Serialization;
 
 namespace ERP.Models.Cache
 {
@@ -237,5 +240,42 @@ namespace ERP.Models.Cache
         //        throw (er);
         //    }
         //}
+        public void RefreshAllDropDown()
+        {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            string JsonData = serializer.Serialize(
+               new
+               {
+                   AcademicYear = CommonFunc.RdrToList(GetDropDownData("1", "")),
+                   Course = CommonFunc.RdrToList(GetDropDownData("2", "")),
+                   ActivityType = CommonFunc.RdrToList(GetDropDownData("3", "")),
+                   Section = CommonFunc.RdrToList(GetDropDownData("4", "")),
+               });
+            string path = HttpContext.Current.Server.MapPath("~/Content/DynamicJs/");
+            File.WriteAllText(path + "DropdownData.json", JsonData);
+
+        }
+        public SqlDataReader GetDropDownData(string ddlType, string flag)
+        {
+            string details = string.Empty;
+            SqlDataReader dr = null;
+            try
+            {
+                string sqlConn = System.Configuration.ConfigurationManager.ConnectionStrings["CS"].ConnectionString;
+                SqlParameter[] sqlParameter = new SqlParameter[2];
+
+                sqlParameter[0] = new SqlParameter("@P_FLAG", "");
+                sqlParameter[1] = new SqlParameter("@DDL_TYPE", ddlType);
+                dr = SqlHelper.ExecuteReader(sqlConn, CommandType.StoredProcedure, "SP_GET_DROPDOWN_DATA", sqlParameter);
+                return dr;
+            }
+            catch (Exception ex)
+            {
+                Excep.WriteException(ex);
+                return dr;
+            }
+
+        }
+
     }
 }

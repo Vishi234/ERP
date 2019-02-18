@@ -1,146 +1,130 @@
-﻿var CourseForm = React.createClass({
-    getInitialState: function () {
-        var columnDefs = [
-            { headerName: "Make", field: "make" },
-            { headerName: "Model", field: "model" },
-            { headerName: "Price", field: "price" }
-        ];
-
-        // specify the data
-        var rowData = [
-            { make: "Toyota", model: "Celica", price: 35000 },
-            { make: "Ford", model: "Mondeo", price: 32000 },
-            { make: "Porsche", model: "Boxter", price: 72000 }
-        ];
-        return {
-            courseCode: "",
-            courseName: "",
-            noOfSemester: "",
-            Fields: [],
-            columnDef: columnDefs,
-            rowData: rowData,
-            ServerMessage: ''
-        }
-    },
-    resetData: function () {
+﻿var grdArray;
+var MyData = null;
+var fields = [];
+class CourseForm extends React.Component {
+    constructor(props) {
+        super(props);
+        grdArray = GetReportConfiguration("Master");
+        var columnDefs = grdArray["$CourseDetails$"];
+        var records = JSON.parse(content.addParams);
+        this.state =
+            {
+                courserId: 0,
+                courseCode: "",
+                courseName: "",
+                noOfSemester: "",
+                Fields: [],
+                columnDef: columnDefs,
+                rowData: records,
+                records: ((records == null) ? 0 : records.length),
+                ServerMessage: ''
+            };
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    resetData() {
         this.setState({
             courseCode: '',
             courseName: '',
             noOfSemester: '',
         });
-    },
-    handleSubmit: function (e) {
+    }
+    register(field) {
+        var s = [];
+        s.push(field);
+        fields.push(s);
+    }
+    onChangeCode(value) {
+        this.setState({
+            courseCode: value
+        });
+    }
+    onChangeName(value) {
+        this.setState({
+            courseName: value
+        });
+    }
+    onChangeSemester(value) {
+        this.setState({
+            noOfSemester: value
+        });
+    }
+    handleSubmit(e) {
         e.preventDefault();
         var validForm = true;
-        this.state.Fields.forEach(function (field) {
-            if (typeof field.isValid === "function") {
-                var validField = field.isValid(field.refs[field.props.name]);
+        fields.forEach(function (field) {
+            if (typeof field[0].isValid === "function") {
+                var validField = field[0].isValid(field[0].refs[field[0].props.name]);
                 validForm = validForm && validField;
             }
         });
         //after validation complete post to server
         if (validForm) {
             var d = {
+                courserId: this.state.courserId,
                 courseCode: this.state.courseCode,
                 courseName: this.state.courseName,
                 noOfSemester: this.state.noOfSemester,
-                flag: 'A'
-
+                flag: 'A',
+                reportId: 2
             }
             $.ajax({
                 type: "POST",
                 url: this.props.urlPost,
                 data: d,
-                async: false,
                 beforeSend: function () {
-                    $("#progress").show();
+                    btnloading("CourseForm", 'show');
                 },
                 success: function (data) {
-                    $("#progress").hide();
-                    console.log(data);
+                    btnloading("CourseForm", 'hide');
+                    CallToast(data.msg, data.flag);
                     if (data.flag == "S") {
-                        alert("Course Added Successfully");
-                        { this.resetData() };
-                        e.preventDefault();
+                        MyData = JSON.parse(data.addParams);
+                        this.resetData();
+                        this.setState({ rowData: MyData });
+                        this.setState({ records: MyData.length })
                     }
-                    else if (data.flag == "D") {
-                        $("#selectorg").modal("show");
-                    }
-                    else {
-                        CallToast(data.msg, data.flag);
-                    }
-
                 }.bind(this),
-                error: function (e) {
-                    console.log(e);
-                    $("#progress").hide();
+                error: function (evt) {
+                    btnloading("CourseForm", 'hide');
                     alert('Error! Please try again');
                 }
             })
+
+            e.preventDefault();
         }
-    },
-
-    //register input controls
-    register: function (field) {
-        var s = this.state.Fields;
-        s.push(field);
-        this.setState({
-            Fields: s
-        })
-    },
-    onChangeCode: function (value) {
-        this.setState({
-            courseCode: value
-        });
-    },
-    onChangeName: function (value) {
-        this.setState({
-            courseName: value
-        });
-    },
-    onChangeSemester: function (value) {
-        this.setState({
-            noOfSemester: value
-        });
-    },
-
-    render: function () {
+    }
+    render() {
         //Render form
         return (
             <div>
                 <div className="fbse">
                     <div className="rttl">
                         <span className="pull-left lft">Courses Management</span>
-                        <span className="pull-right toptotal">2 Record(S)</span>
+                        <span className="pull-right toptotal">{this.state.records} Record(S)</span>
                         <hr />
                     </div>
                     <div className="acform">
-                        <form name='CourseForm' noValidate onSubmit={this.handleSubmit}>
+                        <form name='CourseForm' id="CourseForm" noValidate onSubmit={this.handleSubmit}>
                             <ul>
                                 <li>
-                                    <CreateInput type={'text'} value={this.state.courseCode} label={'Course Code'} name={'courseCode'} htmlFor={'courseCode'} isrequired={true}
-                                        onChange={this.onChangeCode} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                </li>
-                                <li>
                                     <CreateInput type={'text'} value={this.state.courseName} label={'Course Name'} name={'courseName'} htmlFor={'courseName'} isrequired={true}
-                                        onChange={this.onChangeName} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                 onChange={this.onChangeName.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
                                     <CreateInput type={'text'} value={this.state.noOfSemester} label={'No. Of Semester'} name={'noOfSemester'} htmlFor={'noOfSemester'} isrequired={true}
-                                        className={'form-control'} onChange={this.onChangeSemester} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                 className={'form-control'} onChange={this.onChangeSemester.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
-                                    <input type="submit" className="btn btn-success" value="Save" />
+                                    <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>
                                 </li>
                             </ul>
 
                         </form>
                     </div>
-                   
-                    <AgGrid columnDef={this.state.columnDef} rowData={this.state.rowData} />
+                        <AgGrid columnDef={this.state.columnDef} rowData={this.state.rowData} />
                 </div>
             </div>
         );
     }
-});
+}
 ReactDOM.render(<CourseForm urlPost="/Master/Course" />, document.getElementById('courseform'));

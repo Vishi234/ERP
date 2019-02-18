@@ -31,7 +31,7 @@
         $(".top-sub-menu").toggleClass("show");
     });
 
-    $("select").SumoSelect({ search: true, searchText: 'Enter here.' });
+
     $('.openmodal').click(function () {
         $(".modal").modal("hide");
         $($(this).attr("data-target"))
@@ -61,20 +61,34 @@
         }
     })
 })
+
 function btnloading(evt, action) {
     if (action == "show") {
-        $(evt).find(".inload").removeClass("hide")
-        $(evt).find(':button[type=submit]').prop('disabled', true);
+        $("#" + evt).find(".inload").removeClass("hide")
+        $("#" + evt).find(':button[type=submit]').prop('disabled', true);
     }
     else {
-        $(evt).find(".inload").addClass("hide")
-        $(evt).find(':button[type=submit]').prop('disabled', false);
+        $("#" + evt).find(".inload").addClass("hide")
+        $("#" + evt).find(':button[type=submit]').prop('disabled', false);
     }
 }
+function InitializeSelect(name) {
+    $('select[name=' + name + ']').SumoSelect(
+        {
+            forceCustomRendering: true,
+            search: true,
+            searchText: 'Enter here.'
+        });
+}
 function InitializeDate(name) {
+    var thisYear = (new Date()).getFullYear();
+    var start = new Date("1/1/" + thisYear);
+    var defaultStart = moment(start.valueOf());
     $('input[name=' + name + ']').daterangepicker({
         singleDatePicker: true,
-        startDate: moment(),
+        //minDate: moment(start.valueOf()).format("DD-MMM-YYYY"),
+        //startDate: moment(start.valueOf()).format("DD-MMM-YYYY"),
+        start:moment(),
         locale: { format: 'DD-MMM-YYYY' }
     });
 }

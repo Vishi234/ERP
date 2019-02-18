@@ -21,5 +21,11 @@ namespace ERP.Controllers
             GlobalCache gcObj = new GlobalCache();
             gcObj.CreateDynamicGridJS();
         }
+        public void RefreshAllDropDown()
+        {
+
+            GlobalCache gcObj = new GlobalCache();
+            gcObj.RefreshAllDropDown();
+        }
     }
 }

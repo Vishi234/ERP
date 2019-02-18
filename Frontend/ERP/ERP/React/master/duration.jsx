@@ -1,33 +1,23 @@
 ﻿var CourseDurationForm = React.createClass({
     getInitialState: function () {
-        var columnDefs = [
-            { headerName: "Make", field: "make" },
-            { headerName: "Model", field: "model" },
-            { headerName: "Price", field: "price" }
-        ];
-
-        // specify the data
-        var rowData = [
-            { make: "Toyota", model: "Celica", price: 35000 },
-            { make: "Ford", model: "Mondeo", price: 32000 },
-            { make: "Porsche", model: "Boxter", price: 72000 }
-        ];
-        state = {
-            teams: [],
-            selectedTeam: "",
-            validationError: ""
-        };
+        grdArray = GetReportConfiguration("Master");
+        var columnDefs = grdArray["$DurationDetails$"];
+        var records = JSON.parse(content.addParams);
+        jsonData = GetJsonData('../../Content/DynamicJs/DropdownData.json');
         return {
-            academicYear: 0,
-            course: 0,
-            semester: 0,
+            course: ReadDropDownData("Course", $("#hfCustomerId").val()),
+            semester: [],
+            academicYear: ReadDropDownData("AcademicYear", $("#hfCustomerId").val()),
+            selectedYear: 0,
+            selectedCourse: 0,
+            selectedSemester: 0,
+            semCount: 0,
             wefDate: "",
             wetDate: "",
             Fields: [],
-            optionData:[],
             columnDef: columnDefs,
-            rowData: rowData,
-            ServerMessage: ''
+            rowData: records,
+            records: ((records == null) ? 0 : records.length),
         }
     },
     handleSubmit: function (e) {
@@ -42,12 +32,14 @@
         //after validation complete post to server
         if (validForm) {
             var d = {
-                academicYear: this.state.academicYear,
-                course: this.state.course,
-                semester: this.state.semester,
+                academicYear: this.state.selectedYear,
+                course: this.state.selectedCourse,
+                semester: this.state.selectedSemester,
                 wefDate: this.state.wefDate,
                 wetDate: this.state.wetDate,
+                reportId: 3,
                 flag: 'A'
+
             }
             $.ajax({
                 type: "POST",
@@ -55,28 +47,35 @@
                 data: d,
                 async: false,
                 beforeSend: function () {
-                    $("#progress").show();
+                    btnloading("durationForm", 'show');
                 },
                 success: function (data) {
-                    $("#progress").hide();
-                    console.log(data);
+                    btnloading("durationForm", 'hide');
+                    CallToast(data.msg, data.flag);
                     if (data.flag == "S") {
-                        window.location.href = "/Dashboard/Overview";
+                        MyData = JSON.parse(data.addParams);
+                        this.setState
+                            ({
+                                course: ReadDropDownData("Course", $("#hfCustomerId").val()),
+                                semester: [],
+                                academicYear: ReadDropDownData("AcademicYear", $("#hfCustomerId").val()),
+                                selectedYear: 0,
+                                selectedCourse: 0,
+                                selectedSemester: 0,
+                                semCount: 0,
+                                wefDate: "",
+                                wetDate: "",
+                            })
+                        this.setState({ rowData: MyData });
                     }
-                    else if (data.flag == "D") {
-                        $("#selectorg").modal("show");
-                    }
-                    else {
-                        CallToast(data.msg, data.flag);
-                    }
-
                 }.bind(this),
-                error: function (e) {
-                    console.log(e);
-                    $("#progress").hide();
+                error: function (evt) {
+                    btnloading("durationForm", 'hide');
                     alert('Error! Please try again');
                 }
             })
+
+            e.preventDefault();
         }
     },
     register: function (field) {
@@ -86,25 +85,43 @@
             Fields: s
         })
     },
+
     onChangeYear: function (value) {
         this.setState({
-            academicYear: value
+            selectedYear: value
         });
     },
     onChangeCourse: function (value) {
+        var obj = [];
+        var semester = 0;
+        var jsonData = ReadDropDownData("Course", $("#hfCustomerId").val());
+        for (var i = 0; i < jsonData.length; i++) {
+            if (jsonData[i].ID == value) {
+                semester = jsonData[i].NO_SEMESTER;
+            }
+        }
+        for (var i = 1; i <= semester; i++) {
+            data = {};
+            data.ID = i;
+            data.NO_SEMESTER = i;
+            obj.push(data);
+        }
+        this.setState({ semester: obj });
         this.setState({
-            course: value
+            selectedCourse: value
         });
+
     },
     onChangeSemester: function (value) {
         this.setState({
-            semester: value
+            selectedSemester: value
         });
     },
     onBlurWefDate: function (value) {
         this.setState({
             wefDate: value
         });
+
     },
     onBlurWetDate: function (value) {
         this.setState({
@@ -118,41 +135,41 @@
                 <div className="fbse">
                     <div className="rttl">
                         <span className="pull-left lft">Courses Semester Duration</span>
-                        <span className="pull-right toptotal">2 Record(S)</span>
+                        <span className="pull-right toptotal">{this.state.records} Record(S)</span>
                         <hr />
                     </div>
                     <div className="acform">
-                        <form name='CourseForm' noValidate onSubmit={this.handleSubmit}>
+                        <form name='CourseForm' id="durationForm" noValidate onSubmit={this.handleSubmit}>
                             <ul>
                                 <li>
 
-                                    <CreateInput type={'ddl'} value={this.state.academicYear} label={'Academic Year'} name={'academicYear'} htmlFor={'academicYear'} isrequired={true}
-                                        onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                    <CreateInput type={'ddl'} value={this.state.selectedYear} data={this.state.academicYear} label={'Academic Year'} name={'academicYear'} htmlFor={'academicYear'} isrequired={true}
+                                                 keyId={'ID'} keyName={'ACADEMIC_YEAR'} onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
-                                    <CreateInput type={'ddl'} value={this.state.course} label={'Course'} name={'course'} htmlFor={'course'} isrequired={true}
-                                        onChange={this.onChangeCourse} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                    <CreateInput type={'ddl'} value={this.state.selectedCourse} data={this.state.course} label={'Course'} name={'course'} htmlFor={'course'} isrequired={true}
+                                                 keyId={'ID'} keyName={'COURSE_NAME'} onChange={this.onChangeCourse} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
-                                    <CreateInput type={'ddl'} value={this.state.semester} label={'Semester'} name={'semester'} htmlFor={'semester'} isrequired={true}
-                                        className={'form-control'} onChange={this.onChangeSemester} onComponentMounted={this.register} messageRequired={'required.'} />
+                                    <CreateInput type={'ddl'} value={this.state.selectedSemester} data={this.state.semester} label={'Semester'} name={'semester'} htmlFor={'semester'} isrequired={true}
+                                                 keyId={'ID'} keyName={'NO_SEMESTER'} className={'form-control'} onChange={this.onChangeSemester} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
                                     <CreateInput type={'date'} value={this.state.wefDate} label={'Start Date'} name={'daterangepicker'} htmlFor={'wefDate'} isrequired={true}
-                                        className={'form-control'} onBlur={this.onBlurWefDate} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                 className={'form-control'} onBlur={this.onBlurWefDate} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
                                     <CreateInput type={'date'} value={this.state.wetDate} label={'End Date'} name={'daterangepicker'} htmlFor={'wetDate'} isrequired={true}
-                                        className={'form-control'} onBlur={this.onBlurWetDate} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                 className={'form-control'} onBlur={this.onBlurWetDate} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
-                                    <input type="submit" className="btn btn-success" value="Save" />
+                                   <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>
                                 </li>
                             </ul>
 
                         </form>
                     </div>
-                   
+
                     <AgGrid columnDef={this.state.columnDef} rowData={this.state.rowData} />
                 </div>
             </div>

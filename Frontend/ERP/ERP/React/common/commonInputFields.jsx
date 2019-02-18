@@ -1,15 +1,13 @@
-﻿var CreateInput = React.createClass({
-    //onchange event
-    handleChange: function (e) {
+﻿class CreateInput extends React.Component {
+    handleChange(e) {
         this.props.onChange(e.target.value);
         var isValidField = this.isValid(e.target);
-    },
-    handleBlur: function (e) {
+    }
+    handleBlur(e) {
         this.props.onBlur(e.target.value);
         var isValidField = this.isValid(e.target);
-    },
-    //validation function
-    isValid: function (input) {
+    }
+    isValid(input) {
         //check required field
         if (input.getAttribute('required') != null && input.value === "") {
             input.classList.add('input-validation-error'); //add class error
@@ -23,51 +21,51 @@
             input.nextSibling.textContent = "";
             return true;
         }
-    },
-    componentDidMount: function ()
-    {
+    }
+    CheckDateDiff(startDate, endDate) {
+        var startDate = moment(startDate, "DD-MMM-YYYY");
+        var endDate = moment(endDate, "DD-MMM-YYYY");
+        return endDate.diff(startDate);
+    }
+    componentDidMount() {
         if (this.props.onComponentMounted) {
-            //alert(this.props.type);
             this.props.onComponentMounted(this); //register this input in the form
         }
-        else if (this.props.type == "ddl") {
-            fetch("/Master/Duration")
-                .then((response) => {
-                    alert(response.json());
-                    return response.json();
-                })
-                .then(data => {
-                    let teamsFromApi = data.map(team => { return { value: team, display: team } })
-                    this.setState({ teams: [{ value: '', display: '(Select your favourite team)' }].concat(teamsFromApi) });
-                }).catch(error => {
-                    console.log(error);
-                });
-
+        if (this.props.type == "date") {
+            InitializeDate(this.props.name);
         }
-        else { }
-        InitializeDate("daterangepicker");
-    },
-    render: function () {
+        if (this.props.type == "ddl") {
+            //InitializeSelect(this.props.name);
+        }
+
+    }
+    render() {
+
         var inputField;
         if (this.props.type == 'textarea') {
             inputField = <textarea value={this.props.value} ref={this.props.name} name={this.props.name}
-                                   className='registration-form-control' required={this.props.isrequired} onChange={this.handleChange} />
+                                   className='registration-form-control' required={this.props.isrequired} onChange={this.handleChange.bind(this)} />
         }
         else if (this.props.type == 'ddl') {
-            inputField = <select value={this.props.value} ref={this.props.name} name={this.props.name}
-                                 className='registration-form-control dropdown' required={this.props.isrequired} onChange={this.handleChange} />
+            inputField = <select value={this.props.value} ref={this.props.name} onChange={this.handleChange.bind(this)} name={this.props.name}
+                                 className='registration-form-control dropdown' required={this.props.isrequired}>
+                            <option key="0" value="0">Select {this.props.label}</option>
+                {this.props.data.map((obj) =>
+                <option key={obj[this.props.keyId]} value={obj[this.props.keyId] }>{obj[this.props.keyName]}</option>)}
+            </select>
         }
         else if (this.props.type == 'multiSelect') {
             inputField = <select value={this.props.value} ref={this.props.name} name={this.props.name}
-                                 className='registration-form-control' required={this.props.isrequired} onChange={this.handleChange} />
+                                 className='registration-form-control' required={this.props.isrequired} onChange={this.handleChange.bind(this)} />
         }
         else if (this.props.type == 'date') {
             inputField = <input type="text" id={this.props.id} value={this.props.value} ref={this.props.name} readOnly autoComplete="off" name={this.props.name}
-                                className={this.props.className} required={this.props.isrequired} onBlur={this.handleBlur} />
+                                className={this.props.className} required={this.props.isrequired} onBlur={this.handleBlur.bind(this)} />
         }
         else {
-            inputField = <input type={this.props.type} value={this.props.value} ref={this.props.name} name={this.props.name}
-                                className={this.props.className} required={this.props.isrequired} onChange={this.handleChange} />
+            inputField = <input type={this.props.type} value={this.props.value} ref={this.props.name} autoComplete="off" name={this.props.name}
+                                className={this.props.className} required={this.props.isrequired} onChange={this.handleChange.bind(this)} />
+
         }
         return (
             <div className={this.props.type}>
@@ -79,4 +77,4 @@
             </div>
         );
     }
-});
+}

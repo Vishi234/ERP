@@ -1,27 +1,32 @@
 ﻿﻿var grdArray;
 var MyData = null;
-var AcademicYearForm = React.createClass({
-    getInitialState: function () {
-
+var fields = [];
+class AcademicYearForm extends React.Component {
+    constructor(props) {
+        super(props);
         grdArray = GetReportConfiguration("Master");
         var columnDefs = grdArray["$AcademicDetails$"];
-        return {
-            yearCode: "",
-            academicYear: "",
-            wfDate: "",
-            wtDate: "",
-            Fields: [],
-            columnDef: columnDefs,
-            rowData: null,
-            ServerMessage: ''
-        }
-    },
-    handleSubmit: function (e) {
-        e.preventDefault();
+        var records = JSON.parse(content.addParams);
+        this.state =
+            {
+                yearCode: "",
+                academicYear: "",
+                wfDate: "",
+                wtDate: "",
+                Fields: [],
+                columnDef: columnDefs,
+                rowData: records,
+                records: ((records == null) ? 0 : records.length),
+                ServerMessage: ''
+            };
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    handleSubmit(e) {
         var validForm = true;
-        this.state.Fields.forEach(function (field) {
-            if (typeof field.isValid === "function") {
-                var validField = field.isValid(field.refs[field.props.name]);
+        e.preventDefault();
+        fields.forEach(function (field) {
+            if (typeof field[0].isValid === "function") {
+                var validField = field[0].isValid(field[0].refs[field[0].props.name]);
                 validForm = validForm && validField;
             }
         });
@@ -39,86 +44,101 @@ var AcademicYearForm = React.createClass({
                 type: "POST",
                 url: this.props.urlPost,
                 data: d,
-                async: false,
                 beforeSend: function () {
-                    btnloading(e.target, 'show');
+                    btnloading("academicYear", 'show');
                 },
                 success: function (data) {
-                    btnloading(e.target, 'hide');
+                    btnloading("academicYear", 'hide');
                     CallToast(data.msg, data.flag);
                     if (data.flag == "S") {
                         MyData = JSON.parse(data.addParams);
-                       
+                        this.setState
+                            ({
+                                yearCode: "",
+                                academicYear: "",
+                                wfDate: "",
+                                wtDate: "",
+                            })
+                        this.setState({ rowData: MyData });
+                        this.setState({ records: MyData.length })
+
                     }
                 }.bind(this),
                 error: function (evt) {
-                    btnloading(e.target, 'hide');
+                    btnloading("academicYear", 'hide');
                     alert('Error! Please try again');
                 }
             })
 
-            this.setState({
-                rowData: MyData
-            });
-            
+            e.preventDefault();
         }
-    },
-    onChangeCode: function (value) {
+    }
+    onChangeCode(value) {
         this.setState({
             yearCode: value
         });
-    },
-    onChangeYear: function (value) {
-        this.setState({
-            academicYear: value
-        });
-    },
-    onWefBlur: function (value) {
+    }
+    onChangeYear(value) {
+        var validation = new RegExp("[0-9\-]", 'g');
+        var foo;
+        if (validation.test(value)) {
+            foo = value.split("-").join("");
+            if (foo.length > 0) {
+                foo = foo.match(new RegExp('.{1,4}', 'g')).join("-");
+            }
+            this.setState({
+                academicYear: foo
+            });
+        }
+        else if (value == "") {
+            this.setState({
+                academicYear: value
+            });
+        }
+    }
+    onWefBlur(value) {
         this.setState({
             wfDate: value
         });
-    },
-    onWetBlur: function (value) {
+    }
+    onWetBlur(value) {
         this.setState({
             wtDate: value
         });
-    },
+    }
     //register input controls
-    register: function (field) {
-        var s = this.state.Fields;
+    register(field) {
+        var s = [];
         s.push(field);
-        this.setState({
-            Fields: s
-        })
-    },
-    render: function () {
+        fields.push(s);
+    }
+    GetData(data) {
+        this.setState({ rowData: data });
+    }
+    render() {
         //Render form
         return (
             <div>
                 <div className="fbse">
                     <div className="rttl">
                         <span className="pull-left lft">Academic Year</span>
-                        <span className="pull-right toptotal">2 Record(S)</span>
+                        <span className="pull-right toptotal">{this.state.records} Record(S)</span>
                         <hr />
                     </div>
                     <div className="acform">
-                        <form name='AcademicYear' noValidate onSubmit={this.handleSubmit}>
+                        <form name='AcademicYear' id="academicYear" noValidate onSubmit={this.handleSubmit}>
                             <ul>
                                 <li>
-                                    <CreateInput type={'text'} value={this.state.yearCode} label={'Course Code'} name={'yearCode'} htmlFor={'yearCode'} isrequired={true}
-                                        onChange={this.onChangeCode} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                <CreateInput type={'text'} value={this.state.academicYear} label={'Academic Year'} name={'academicYear'} htmlFor={'academicYear'} isrequired={true}
+                                             onChange={this.onChangeYear.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
-                                    <CreateInput type={'text'} value={this.state.academicYear} label={'Academic Year'} name={'academicYear'} htmlFor={'academicYear'} isrequired={true}
-                                        onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                <CreateInput type={'date'} value={this.state.wfDate} id={'wfDate'} label={'Start Date'} name={'startDate'} htmlFor={'wfDate'} isrequired={true}
+                                             className={'startDate form-control'} onBlur={this.onWefBlur.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
-                                    <CreateInput type={'date'} value={this.state.wfDate} id={'wfDate'} label={'Start Date'} name={'daterangepicker'} htmlFor={'wfDate'} isrequired={true}
-                                        className={'startDate form-control'} onBlur={this.onWefBlur} onComponentMounted={this.register} messageRequired={'required.'} />
-                                </li>
-                                <li>
-                                    <CreateInput type={'date'} value={this.state.wtDate} id={'wtDate'} label={'End Date'} name={'daterangepicker'} htmlFor={'wtDate'} isrequired={true}
-                                        className={'startDate form-control'} onBlur={this.onWetBlur} onComponentMounted={this.register} messageRequired={'required.'} />
+                                <CreateInput type={'date'} value={this.state.wtDate} id={'wtDate'} label={'End Date'} name={'endDate'} htmlFor={'wtDate'} isrequired={true}
+                                             className={'endDate form-control'} onBlur={this.onWetBlur.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
                                     <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>
@@ -132,5 +152,6 @@ var AcademicYearForm = React.createClass({
             </div>
         );
     }
-});
+}
+
 ReactDOM.render(<AcademicYearForm urlPost="/Master/Academic" />, document.getElementById('academicform'));

@@ -1,6 +1,7 @@
-﻿using ERP.Models.Bal.Master;
+﻿using ERP.Models.Bal.Common;
+using ERP.Models.Bal.Master;
 using ERP.Models.Entity;
-using Models.Entity;
+using ERP.Models.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,47 +16,58 @@ namespace ERP.Controllers
 
         public ActionResult Academic()
         {
-
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            AcademicEntity academicEntity = new AcademicEntity();
+            academicEntity.flag = 'G';
+            academicEntity.reportId = "1";
+            TempData["AcademicData"] = new Master().AddAcademicYear(academicEntity, objUserEntity.customerId, objUserEntity.userId);
             return View();
         }
 
         [HttpPost]
-        public JsonResult Academic(AcademicEntity masterEntity)
+        public JsonResult Academic(AcademicEntity academicEntity)
         {
-            Master objMaster = new Master();
             UserEntity objUserEntity = UserEntity.GetInstance();
-            return Json(objMaster.AddAcademicYear(masterEntity, objUserEntity.CustomerId, objUserEntity.Userid));
-
-
+            return Json(new Master().AddAcademicYear(academicEntity, objUserEntity.customerId, objUserEntity.userId));
         }
 
         public ActionResult Course()
         {
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            CourseEntity courseEntity = new CourseEntity();
+            courseEntity.flag = 'G';
+            courseEntity.reportId = "2";
+            TempData["CourseData"] = new Master().AddCourse(courseEntity, objUserEntity.customerId, objUserEntity.userId);
             return View();
         }
         [HttpPost]
         public ActionResult Course(CourseEntity courseEntity)
         {
-            Master objMaster = new Master();
             UserEntity objUserEntity = UserEntity.GetInstance();
-            return Json(objMaster.AddCourse(courseEntity, objUserEntity.CustomerId,objUserEntity.Userid));
+            return Json(new Master().AddCourse(courseEntity, objUserEntity.customerId, objUserEntity.userId));
         }
-        //public ActionResult Duration()
-        //{
-        //    return View();
-        //}
         public ActionResult Duration()
         {
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            DurationEntity durationEntity = new DurationEntity();
+            durationEntity.flag = 'G';
+            durationEntity.reportId = "3";
+            TempData["DurationData"] = new Master().AddDuration(durationEntity, objUserEntity.customerId, objUserEntity.userId);
+            return View();
+        }
+        [HttpGet]
+        public string Durationddl()
+        {
             Master objMaster = new Master();
-            return Json(objMaster.CourseDuration());
+            return (objMaster.CourseDuration());
+            //return objMaster.CourseDuration();
 
         }
         [HttpPost]
         public ActionResult Duration(DurationEntity durationEntity)
         {
-            Master objMaster = new Master();
             UserEntity objUserEntity = UserEntity.GetInstance();
-            return Json(objMaster.AddDuration(durationEntity, objUserEntity.CustomerId, objUserEntity.Userid));
+            return Json(new Master().AddDuration(durationEntity, objUserEntity.customerId, objUserEntity.userId));
         }
         public ActionResult Activity()
         {
@@ -64,9 +76,8 @@ namespace ERP.Controllers
         [HttpPost]
         public JsonResult Activity(ActivityEntity activityEntity)
         {
-            Master objMaster = new Master();
             UserEntity objUserEntity = UserEntity.GetInstance();
-            return Json(objMaster.AddActivity(activityEntity, objUserEntity.CustomerId, objUserEntity.Userid));
+            return Json(new Master().AddActivity(activityEntity, objUserEntity.customerId, objUserEntity.userId));
         }
         public ActionResult Subject()
         {
@@ -81,5 +92,26 @@ namespace ERP.Controllers
             return View();
         }
 
+        [HttpGet]
+        public string GetCourseDDL(String ddlType)
+        {
+            Master objMaster = new Master();
+            return (objMaster.GetCourseDDL(ddlType));
+        }
+
+        [HttpGet]
+        public string GetParamList(string flag,string ddlType)
+        {
+           return CommonFunc.GetParamList(flag, ddlType);
+        }
+
+        [HttpPost]
+        public JsonResult SaveSectionDetails(SectionEntity sectionEntity)
+        {
+            Master objMaster = new Master();
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            CustomerEntity objCustomer = CustomerEntity.GetInstance();
+            return Json(objMaster.SaveSectionDetails(sectionEntity,objUserEntity.userId,objCustomer.customerId));
+        }
     }
 }
