@@ -81,6 +81,11 @@ namespace ERP.Controllers
         }
         public ActionResult Subject()
         {
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            SubjectEntity subjectEntity = new SubjectEntity();
+            subjectEntity.flag = 'G';
+            subjectEntity.reportId = "4";
+            TempData["SubjectData"] = new Master().AddSubject(subjectEntity, objUserEntity.customerId, objUserEntity.userId);
             return View();
         }
         public ActionResult Mapping()

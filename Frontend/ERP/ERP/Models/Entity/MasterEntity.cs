@@ -55,5 +55,20 @@ namespace ERP.Models.Entity
         public string userId { get; set; }
         public char flag { get; set; }
     }
+    public class SubjectEntity
+    {
+        public string subCode { get; set; }
+        public string subName { get; set; }
+        public string subShortName { get; set; }
+        public string subMedium { get; set; }
+        public string subActivity { get; set; }
+        public string subType { get; set; }
+        public string customerId { get; set; }
+        public string userId { get; set; }
+        public string reportId { get; set; }
+        public char flag { get; set; }
+    }
+
+
 
 }

@@ -271,6 +271,53 @@ namespace ERP.Models.Bal.Master
                 return result;
             }
         }
+        public ResultEntity AddSubject(SubjectEntity subjectEntity, string customerId, string userid)
+        {
+            ResultEntity result = new ResultEntity();
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[12];
+                sqlParameter[0] = new SqlParameter("@P_SUBJECT_CODE", subjectEntity.subCode);
+                sqlParameter[1] = new SqlParameter("@P_SUBJECT_NAME", subjectEntity.subName);
+                sqlParameter[2] = new SqlParameter("@P_SUBJECT_SHORT_NAME", subjectEntity.subShortName);
+                sqlParameter[3] = new SqlParameter("@SUBJECT_MEDIUM", subjectEntity.subMedium);
+                sqlParameter[4] = new SqlParameter("@ACTIVITY_TYPE", subjectEntity.subActivity);
+                sqlParameter[5] = new SqlParameter("@SUBJECT_TYPE", subjectEntity.subType);
+                sqlParameter[6] = new SqlParameter("@OPER_TYPE", subjectEntity.flag);
+                sqlParameter[7] = new SqlParameter("@P_CUSTOMER_ID", customerId);
+                sqlParameter[8] = new SqlParameter("@P_USER_ID", userid);
+                sqlParameter[9] = new SqlParameter("@REPORT_ID", Convert.ToInt32(subjectEntity.reportId));
+                sqlParameter[10] = new SqlParameter("@FLAG", SqlDbType.Char);
+                sqlParameter[10].Direction = ParameterDirection.Output;
+                sqlParameter[10].Size = 1;
+                sqlParameter[11] = new SqlParameter("@MSG", SqlDbType.NVarChar);
+                sqlParameter[11].Direction = ParameterDirection.Output;
+                sqlParameter[11].Size = 500;
+
+                DataSet ds = new DataSet();
+                ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_SUBJECT", sqlParameter);
+                result.flag = sqlParameter[10].Value.ToString();
+                result.msg = sqlParameter[11].Value.ToString();
+
+                if (result.flag.ToUpper() == "S")
+                {
+                    if (ds != null)
+                    {
+                        if (ds.Tables[0].Rows.Count > 0)
+                        {
+                            result.addParams = CommonFunc.DtToJSON(ds.Tables[0]);
+                        }
+                    }
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Excep.WriteException(ex);
+                return result;
+            }
+        }
 
     }
 }
