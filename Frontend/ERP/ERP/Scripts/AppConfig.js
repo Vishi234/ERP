@@ -9,5 +9,9 @@
     Label_Header["$COURSE_CODE$"] = "Course Code";
     Label_Header["$COURSE_NAME$"] = "Course Name";
     Label_Header["$NO_OF_SEMESTER$"] = "No. Of Semester";
+
+    Label_Header["$SECTION_NAME$"] = "Section Name";
+    Label_Header["$SEMESTER$"] = "Semester";
+
     return Label_Header;
 }

@@ -87,11 +87,6 @@ namespace ERP.Controllers
         {
             return View();
         }
-        public ActionResult Section()
-        {
-            return View();
-        }
-
         [HttpGet]
         public string GetCourseDDL(String ddlType)
         {
@@ -112,6 +107,16 @@ namespace ERP.Controllers
             UserEntity objUserEntity = UserEntity.GetInstance();
             CustomerEntity objCustomer = CustomerEntity.GetInstance();
             return Json(objMaster.SaveSectionDetails(sectionEntity,objUserEntity.userId,objCustomer.customerId));
+        }
+
+        public ActionResult Section()
+        {
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            SectionEntity sectionEntity = new SectionEntity();
+            sectionEntity.flag = 'G';
+            sectionEntity.reportId = "4";
+            TempData["SectionData"] = new Master().SaveSectionDetails(sectionEntity, objUserEntity.customerId, objUserEntity.userId);
+            return View();
         }
     }
 }

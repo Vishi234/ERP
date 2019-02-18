@@ -232,24 +232,26 @@ namespace ERP.Models.Bal.Master
             try
             {
                 SqlDataReader dr;
-                SqlParameter[] sqlParameter = new SqlParameter[7];
-                sqlParameter[0] = new SqlParameter("@P_COURSE", sectionEntity.course);
-                sqlParameter[1] = new SqlParameter("@P_SEMESTER", sectionEntity.semester);
-                sqlParameter[2] = new SqlParameter("@P_SECTION", sectionEntity.sectioin);
-                sqlParameter[3] = new SqlParameter("@P_CUSTOMER_ID", customerId);
-                sqlParameter[4] = new SqlParameter("@P_USER_ID", userId);
+                SqlParameter[] sqlParameter = new SqlParameter[9];
+                sqlParameter[0] = new SqlParameter("@COURSE_NAME", sectionEntity.course);
+                sqlParameter[1] = new SqlParameter("@SEMESTER_NAME", sectionEntity.semester);
+                sqlParameter[2] = new SqlParameter("@SECTION", sectionEntity.sectionName);
+                sqlParameter[3] = new SqlParameter("@CUSTOMER_ID", customerId);
+                sqlParameter[4] = new SqlParameter("@USER_ID", sectionEntity.userId);
+                sqlParameter[5] = new SqlParameter("@REPORT_ID", sectionEntity.reportId);
+                sqlParameter[6] = new SqlParameter("@OPER_TYPE", sectionEntity.flag);
 
-                sqlParameter[5] = new SqlParameter("@FLAG", SqlDbType.Char);
-                sqlParameter[5].Direction = ParameterDirection.Output;
-                sqlParameter[5].Size = 1;
-                sqlParameter[6] = new SqlParameter("@MSG", SqlDbType.NVarChar);
-                sqlParameter[6].Direction = ParameterDirection.Output;
-                sqlParameter[6].Size = 500;
+                sqlParameter[7] = new SqlParameter("@FLAG", SqlDbType.Char);
+                sqlParameter[7].Direction = ParameterDirection.Output;
+                sqlParameter[7].Size = 1;
+                sqlParameter[8] = new SqlParameter("@MSG", SqlDbType.NVarChar);
+                sqlParameter[8].Direction = ParameterDirection.Output;
+                sqlParameter[8].Size = 500;
 
-                dr = SqlHelper.ExecuteReader(sqlConn, CommandType.StoredProcedure, "SP_SECTION_AMD", sqlParameter);
                 DataSet ds = new DataSet();
-                result.flag = sqlParameter[5].Value.ToString();
-                result.msg = sqlParameter[6].Value.ToString();
+                ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_SECTION_AMD", sqlParameter);              
+                result.flag = sqlParameter[7].Value.ToString();
+                result.msg = sqlParameter[8].Value.ToString();
 
                 if (result.flag.ToUpper() == "S")
                 {

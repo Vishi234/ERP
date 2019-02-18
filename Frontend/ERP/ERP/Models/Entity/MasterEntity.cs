@@ -50,10 +50,12 @@ namespace ERP.Models.Entity
     {
         public string course { get; set; }
         public string semester { get; set; }
-        public string sectioin { get; set; }
+        public string sectionName { get; set; }
         public string customerId { get; set; }
         public string userId { get; set; }
         public char flag { get; set; }
+
+        public string reportId { get; set; }
     }
 
 }
