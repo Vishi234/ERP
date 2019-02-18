@@ -263,7 +263,7 @@ namespace ERP.Models.Cache
                 string sqlConn = System.Configuration.ConfigurationManager.ConnectionStrings["CS"].ConnectionString;
                 SqlParameter[] sqlParameter = new SqlParameter[2];
 
-                sqlParameter[0] = new SqlParameter("@P_FLAG", flag);
+                sqlParameter[0] = new SqlParameter("@P_FLAG",flag);
                 sqlParameter[1] = new SqlParameter("@DDL_TYPE", ddlType);
                 dr = SqlHelper.ExecuteReader(sqlConn, CommandType.StoredProcedure, "SP_GET_DROPDOWN_DATA", sqlParameter);
                 return dr;

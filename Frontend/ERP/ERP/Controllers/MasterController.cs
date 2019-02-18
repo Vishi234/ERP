@@ -71,6 +71,11 @@ namespace ERP.Controllers
         }
         public ActionResult Activity()
         {
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            ActivityEntity activityEntity = new ActivityEntity();
+            activityEntity.flag = 'G';
+            activityEntity.reportId = "4";
+            TempData["ActivityData"] = new Master().AddActivity(activityEntity, objUserEntity.customerId, objUserEntity.userId);
             return View();
         }
         [HttpPost]
@@ -91,6 +96,12 @@ namespace ERP.Controllers
         public ActionResult Mapping()
         {
             return View();
+        }
+        [HttpPost]
+        public JsonResult Mapping(MappingEntity mapping)
+        {
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            return Json(new Master().AddMappingDetails(mapping, objUserEntity.customerId, objUserEntity.userId));
         }
         public ActionResult Section()
         {

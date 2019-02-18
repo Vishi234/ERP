@@ -56,5 +56,32 @@ var SubjectDetails_ExportCaption = ['SUBJECT_SHORT_NAME','SUBJECT_MEDIUM','ACTIV
  gridViewSettings['$SubjectDetails$'] =SubjectDetails;
  gridViewSettings['$SubjectDetails_Export$'] =SubjectDetails_Export;
  gridViewSettings['$SubjectDetails_ExportCaption$'] =SubjectDetails_ExportCaption;
+ var ActivityDetails = [
+{ headerName: labelArray['$ID$'], field: 'id', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$ACTIVITY_NAME$'], field: 'anm', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$ACTIVITY_STATUS$'], field: 'asta', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$ACTIVITY_TYPE$'], field: 'atyp', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
+{ headerName: labelArray['$START_DATE$'], field: 'sDt', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
+{ headerName: labelArray['$END_DATE$'], field: 'eDt', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true}
+ ];
+ var ActivityDetails_Export = ['atyp','sDt','eDt'];
+var ActivityDetails_ExportCaption = ['ACTIVITY_TYPE','START_DATE','END_DATE'];
+
+ gridViewSettings['$ActivityDetails$'] =ActivityDetails;
+ gridViewSettings['$ActivityDetails_Export$'] =ActivityDetails_Export;
+ gridViewSettings['$ActivityDetails_ExportCaption$'] =ActivityDetails_ExportCaption;
+
+ var MappingDetails = [
+{ headerName: labelArray['$ID$'], field: 'id', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$COURSE$'], field: 'cor', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$SEMESTER$'], field: 'sem', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$SUBJECT$'], field: 'sub', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true}
+ ];
+ var MappingDetails_Export = ['sub'];
+var MappingDetails_ExportCaption = ['SUBJECT'];
+
+ gridViewSettings['$MappingDetails$'] =MappingDetails;
+ gridViewSettings['$MappingDetails_Export$'] =MappingDetails_Export;
+ gridViewSettings['$MappingDetails_ExportCaption$'] =MappingDetails_ExportCaption;
   return gridViewSettings;
 }
