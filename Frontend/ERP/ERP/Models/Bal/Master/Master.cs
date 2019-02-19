@@ -325,12 +325,12 @@ namespace ERP.Models.Bal.Master
             try
             {
                 SqlParameter[] sqlParameter = new SqlParameter[12];
-                sqlParameter[0] = new SqlParameter("@P_SUBJECT_CODE", subjectEntity.subCode);
-                sqlParameter[1] = new SqlParameter("@P_SUBJECT_NAME", subjectEntity.subName);
-                sqlParameter[2] = new SqlParameter("@P_SUBJECT_SHORT_NAME", subjectEntity.subShortName);
-                sqlParameter[3] = new SqlParameter("@SUBJECT_MEDIUM", subjectEntity.subMedium);
-                sqlParameter[4] = new SqlParameter("@ACTIVITY_TYPE", subjectEntity.subActivity);
-                sqlParameter[5] = new SqlParameter("@SUBJECT_TYPE", subjectEntity.subType);
+                sqlParameter[0] = new SqlParameter("@P_SUBJECT_CODE", subjectEntity.subjectCode);
+                sqlParameter[1] = new SqlParameter("@P_SUBJECT_NAME", subjectEntity.subjectName);
+                sqlParameter[2] = new SqlParameter("@P_SUBJECT_SHORT_NAME", subjectEntity.shortName);
+                sqlParameter[3] = new SqlParameter("@SUBJECT_MEDIUM", subjectEntity.medium);
+                sqlParameter[4] = new SqlParameter("@ACTIVITY_TYPE", subjectEntity.activityType);
+                sqlParameter[5] = new SqlParameter("@SUBJECT_TYPE", subjectEntity.subjectType);
                 sqlParameter[6] = new SqlParameter("@OPER_TYPE", subjectEntity.flag);
                 sqlParameter[7] = new SqlParameter("@P_CUSTOMER_ID", customerId);
                 sqlParameter[8] = new SqlParameter("@P_USER_ID", userid);

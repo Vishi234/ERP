@@ -76,7 +76,6 @@ C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\ru-ru\JavaScriptEngineS
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.csproj.CoreCompileInputs.cache
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.dll
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.pdb
-C:\Users\jata.shankar\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.csprojResolveAssemblyReference.cache
 C:\Users\jata.shankar\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.dll
 C:\Users\jata.shankar\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.pdb
 C:\Users\jata.shankar\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\x64\ClearScriptV8-64.dll
@@ -394,3 +393,5 @@ C:\Users\HP\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.pdb
 C:\Users\HP\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\Newtonsoft.Json.pdb
 D:\Project\Github ERP\ERP\Frontend\ERP\ERP\bin\Newtonsoft.Json.pdb
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\Newtonsoft.Json.pdb
+C:\Users\jata.shankar\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\Newtonsoft.Json.pdb
+C:\Users\jata.shankar\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.csprojResolveAssemblyReference.cache

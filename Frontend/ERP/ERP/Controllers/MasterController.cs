@@ -89,9 +89,15 @@ namespace ERP.Controllers
             UserEntity objUserEntity = UserEntity.GetInstance();
             SubjectEntity subjectEntity = new SubjectEntity();
             subjectEntity.flag = 'G';
-            subjectEntity.reportId = "4";
+            subjectEntity.reportId = "5";
             TempData["SubjectData"] = new Master().AddSubject(subjectEntity, objUserEntity.customerId, objUserEntity.userId);
             return View();
+        }
+        [HttpPost]
+        public ActionResult Subject(SubjectEntity subjectEntity)
+        {
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            return Json(new Master().AddSubject(subjectEntity, objUserEntity.customerId, objUserEntity.userId));
         }
         public ActionResult Mapping()
         {
@@ -103,10 +109,7 @@ namespace ERP.Controllers
             UserEntity objUserEntity = UserEntity.GetInstance();
             return Json(new Master().AddMappingDetails(mapping, objUserEntity.customerId, objUserEntity.userId));
         }
-        public ActionResult Section()
-        {
-            return View();
-        }
+
 
         [HttpGet]
         public string GetCourseDDL(String ddlType)
@@ -129,6 +132,7 @@ namespace ERP.Controllers
             CustomerEntity objCustomer = CustomerEntity.GetInstance();
             return Json(objMaster.SaveSectionDetails(sectionEntity,objUserEntity.userId,objCustomer.customerId));
         }
+
 
         public ActionResult Section()
         {
