@@ -263,6 +263,7 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CacheController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Global.asax.cs">
@@ -298,6 +299,7 @@
     <Content Include="Views\Master\Section.cshtml" />
     <Content Include="Views\Cache\Index.cshtml" />
     <Content Include="Content\DynamicJs\DropdownData.json" />
+    <Content Include="Views\Employee\Registration.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

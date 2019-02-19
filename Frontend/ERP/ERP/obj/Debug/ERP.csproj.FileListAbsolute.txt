@@ -394,3 +394,4 @@ C:\Users\HP\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.pdb
 C:\Users\HP\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\Newtonsoft.Json.pdb
 D:\Project\Github ERP\ERP\Frontend\ERP\ERP\bin\Newtonsoft.Json.pdb
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\Newtonsoft.Json.pdb
+C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\Newtonsoft.Json.pdb

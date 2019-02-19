@@ -74,7 +74,7 @@ namespace ERP.Controllers
             UserEntity objUserEntity = UserEntity.GetInstance();
             ActivityEntity activityEntity = new ActivityEntity();
             activityEntity.flag = 'G';
-            activityEntity.reportId = "4";
+            activityEntity.reportId = "6";
             TempData["ActivityData"] = new Master().AddActivity(activityEntity, objUserEntity.customerId, objUserEntity.userId);
             return View();
         }
@@ -89,7 +89,7 @@ namespace ERP.Controllers
             UserEntity objUserEntity = UserEntity.GetInstance();
             SubjectEntity subjectEntity = new SubjectEntity();
             subjectEntity.flag = 'G';
-            subjectEntity.reportId = "4";
+            subjectEntity.reportId = "5";
             TempData["SubjectData"] = new Master().AddSubject(subjectEntity, objUserEntity.customerId, objUserEntity.userId);
             return View();
         }
@@ -105,6 +105,11 @@ namespace ERP.Controllers
         }
         public ActionResult Section()
         {
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            SectionEntity sectionEntity = new SectionEntity();
+            sectionEntity.flag = 'G';
+            sectionEntity.reportId = "4";
+            TempData["SectionData"] = new Master().SaveSectionDetails(sectionEntity, objUserEntity.customerId, objUserEntity.userId);
             return View();
         }
 
@@ -116,9 +121,9 @@ namespace ERP.Controllers
         }
 
         [HttpGet]
-        public string GetParamList(string flag,string ddlType)
+        public string GetParamList(string flag, string ddlType)
         {
-           return CommonFunc.GetParamList(flag, ddlType);
+            return CommonFunc.GetParamList(flag, ddlType);
         }
 
         [HttpPost]
@@ -127,17 +132,8 @@ namespace ERP.Controllers
             Master objMaster = new Master();
             UserEntity objUserEntity = UserEntity.GetInstance();
             CustomerEntity objCustomer = CustomerEntity.GetInstance();
-            return Json(objMaster.SaveSectionDetails(sectionEntity,objUserEntity.userId,objCustomer.customerId));
+            return Json(objMaster.SaveSectionDetails(sectionEntity, objUserEntity.userId, objCustomer.customerId));
         }
-
-        public ActionResult Section()
-        {
-            UserEntity objUserEntity = UserEntity.GetInstance();
-            SectionEntity sectionEntity = new SectionEntity();
-            sectionEntity.flag = 'G';
-            sectionEntity.reportId = "4";
-            TempData["SectionData"] = new Master().SaveSectionDetails(sectionEntity, objUserEntity.customerId, objUserEntity.userId);
-            return View();
-        }
+       
     }
 }

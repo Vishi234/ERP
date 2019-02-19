@@ -39,7 +39,7 @@
                 medium: this.state.selectedMedium,
                 activityType: this.state.selectedActivityType,
                 subjectType: this.state.selectedSubjectType,
-                reportId: 4,
+                reportId: "5",
                 flag: 'A'
 
             }

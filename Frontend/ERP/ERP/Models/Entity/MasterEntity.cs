@@ -66,6 +66,9 @@ namespace ERP.Models.Entity
         public string subMedium { get; set; }
         public string subActivity { get; set; }
         public string subType { get; set; }
+        public string reportId { get; set; }
+        public char flag { get; set; }
+    }
     public class MappingEntity
     {
         public string id { get; set; }
@@ -77,7 +80,6 @@ namespace ERP.Models.Entity
         public string reportId { get; set; }
         public char flag { get; set; }
     }
-
 
 
 }

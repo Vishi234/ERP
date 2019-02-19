@@ -14,7 +14,7 @@ body {
     /*background: #EDF1F5;*/
 }
 
-img {
+intopmenu img {
     height: auto;
     max-width: 100%;
 }
@@ -1231,7 +1231,7 @@ a {
     padding: 10px;
     width: 100%;
     border: 1px solid #ccc;
-    margin-top:25px;
+    margin-top: 25px;
 }
 
     .title span {
@@ -1696,4 +1696,111 @@ a {
 .jq-toast-wrap.top-right {
     top: 60px !important;
     right: 20px !important;
+}
+
+.intopmenu {
+    width: 100%;
+    display: inline-block;
+    border: 1px solid #dee2e6;
+    background: #fff;
+    box-shadow: 0px 0px 8px rgba(203, 214, 226,0.5);
+    overflow: hidden;
+    transition: all 0.4s ease-in-out;
+}
+
+    .intopmenu span {
+        display: block;
+        padding: 10px;
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+.infoblock {
+    display: inline-block;
+    width: 100%;
+}
+
+.lftttl {
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid;
+    font-size: 16px;
+    /* text-align: center; */
+    padding-top: 1%;
+    padding-left: 10px;
+    font-weight: 500;
+    /* text-decoration: underline; */
+}
+
+    .lftttl svg {
+        float: right;
+        margin-right: 25px;
+        cursor: pointer;
+    }
+
+.lst {
+    margin-bottom: 50px !important;
+}
+
+.fm4 .lftttl {
+    padding-top: 3% !important;
+}
+
+.cstform {
+    width: 100% !important;
+}
+
+.rgtfrm {
+    width: 100%;
+    padding-top: 1%;
+    transition: all 0.4s ease-in-out;
+    overflow: hidden;
+}
+
+.infoblock .acform {
+    border: 0px;
+    box-shadow: none;
+    padding: 0px;
+    margin: 0px;
+    width: 89%;
+    padding-left: 13px;
+}
+
+    .infoblock .acform > form > ul > li {
+        width: 16%;
+        margin-right: 0px;
+    }
+
+.f {
+    display: inline-block;
+    width: 100%;
+}
+
+.empbse {
+    float: right;
+    width: 10%;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.empimg {
+    height: 100px;
+    width: 100px;
+    overflow: hidden;
+    margin-top: 25px;
+    display: block;
+    margin: 5px auto;
+    margin-bottom: 0px;
+    border-radius: 4px;
+}
+
+    .empimg img {
+        height: 100%;
+        width: 100%;
+    }
+
+.empbse input {
+    margin-top: 5px;
+    width: 90px;
+    margin-left: 3px;
 }

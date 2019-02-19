@@ -40,7 +40,7 @@ class ActivityForm extends React.Component {
                 actType: this.state.actType,
                 stDate: this.state.wfDate,
                 endDate: this.state.wetDate,
-                reportId:'4',
+                reportId:'6',
                 flag: 'A'
             }
             $.ajax({

@@ -38,7 +38,7 @@ class MappingForm extends React.Component {
                 course: this.state.course,
                 semester: this.state.semester,
                 subject: this.state.subject,
-                reportId:'5',
+                reportId:'7',
                 flag: 'A'
             }
             $.ajax({

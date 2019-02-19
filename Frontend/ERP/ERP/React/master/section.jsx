@@ -46,7 +46,7 @@ var SectionForm = React.createClass({
                 course: this.state.selectCourse,
                 semester: this.state.selectSemester,
                 sectionName: this.state.selectSectionName,
-
+                reportId:"4",
                 flag: 'A'
             }
             $.ajax({
