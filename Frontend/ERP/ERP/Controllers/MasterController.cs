@@ -93,6 +93,12 @@ namespace ERP.Controllers
             TempData["SubjectData"] = new Master().AddSubject(subjectEntity, objUserEntity.customerId, objUserEntity.userId);
             return View();
         }
+        [HttpPost]
+        public ActionResult Subject(SubjectEntity subjectEntity)
+        {
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            return Json(new Master().AddSubject(subjectEntity, objUserEntity.customerId, objUserEntity.userId));
+        }
         public ActionResult Mapping()
         {
             return View();
@@ -102,15 +108,6 @@ namespace ERP.Controllers
         {
             UserEntity objUserEntity = UserEntity.GetInstance();
             return Json(new Master().AddMappingDetails(mapping, objUserEntity.customerId, objUserEntity.userId));
-        }
-        public ActionResult Section()
-        {
-            UserEntity objUserEntity = UserEntity.GetInstance();
-            SectionEntity sectionEntity = new SectionEntity();
-            sectionEntity.flag = 'G';
-            sectionEntity.reportId = "4";
-            TempData["SectionData"] = new Master().SaveSectionDetails(sectionEntity, objUserEntity.customerId, objUserEntity.userId);
-            return View();
         }
 
         [HttpGet]
@@ -132,7 +129,18 @@ namespace ERP.Controllers
             Master objMaster = new Master();
             UserEntity objUserEntity = UserEntity.GetInstance();
             CustomerEntity objCustomer = CustomerEntity.GetInstance();
-            return Json(objMaster.SaveSectionDetails(sectionEntity, objUserEntity.userId, objCustomer.customerId));
+            return Json(objMaster.SaveSectionDetails(sectionEntity,objUserEntity.userId,objCustomer.customerId));
+        }
+
+
+        public ActionResult Section()
+        {
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            SectionEntity sectionEntity = new SectionEntity();
+            sectionEntity.flag = 'G';
+            sectionEntity.reportId = "4";
+            TempData["SectionData"] = new Master().SaveSectionDetails(sectionEntity, objUserEntity.customerId, objUserEntity.userId);
+            return View();
         }
        
     }

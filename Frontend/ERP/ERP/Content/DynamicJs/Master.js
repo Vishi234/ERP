@@ -53,6 +53,7 @@ var SectionDetails_ExportCaption = ['SECTION_NAME'];
  gridViewSettings['$SectionDetails$'] =SectionDetails;
  gridViewSettings['$SectionDetails_Export$'] =SectionDetails_Export;
  gridViewSettings['$SectionDetails_ExportCaption$'] =SectionDetails_ExportCaption;
+
  var SubjectDetails = [
 { headerName: labelArray['$ID$'], field: 'id', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$SUBJECT_CODE$'], field: 'subCode', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
@@ -68,6 +69,7 @@ var SubjectDetails_ExportCaption = ['SUBJECT_SHORT_NAME','SUBJECT_MEDIUM','ACTIV
  gridViewSettings['$SubjectDetails$'] =SubjectDetails;
  gridViewSettings['$SubjectDetails_Export$'] =SubjectDetails_Export;
  gridViewSettings['$SubjectDetails_ExportCaption$'] =SubjectDetails_ExportCaption;
+
  var ActivityDetails = [
 { headerName: labelArray['$ID$'], field: 'id', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$ACTIVITY_NAME$'], field: 'anm', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
