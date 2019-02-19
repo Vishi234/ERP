@@ -71,6 +71,11 @@ namespace ERP.Controllers
         }
         public ActionResult Activity()
         {
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            ActivityEntity activityEntity = new ActivityEntity();
+            activityEntity.flag = 'G';
+            activityEntity.reportId = "4";
+            TempData["ActivityData"] = new Master().AddActivity(activityEntity, objUserEntity.customerId, objUserEntity.userId);
             return View();
         }
         [HttpPost]
@@ -81,11 +86,22 @@ namespace ERP.Controllers
         }
         public ActionResult Subject()
         {
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            SubjectEntity subjectEntity = new SubjectEntity();
+            subjectEntity.flag = 'G';
+            subjectEntity.reportId = "4";
+            TempData["SubjectData"] = new Master().AddSubject(subjectEntity, objUserEntity.customerId, objUserEntity.userId);
             return View();
         }
         public ActionResult Mapping()
         {
             return View();
+        }
+        [HttpPost]
+        public JsonResult Mapping(MappingEntity mapping)
+        {
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            return Json(new Master().AddMappingDetails(mapping, objUserEntity.customerId, objUserEntity.userId));
         }
         public ActionResult Section()
         {
@@ -112,6 +128,16 @@ namespace ERP.Controllers
             UserEntity objUserEntity = UserEntity.GetInstance();
             CustomerEntity objCustomer = CustomerEntity.GetInstance();
             return Json(objMaster.SaveSectionDetails(sectionEntity,objUserEntity.userId,objCustomer.customerId));
+        }
+
+        public ActionResult Section()
+        {
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            SectionEntity sectionEntity = new SectionEntity();
+            sectionEntity.flag = 'G';
+            sectionEntity.reportId = "4";
+            TempData["SectionData"] = new Master().SaveSectionDetails(sectionEntity, objUserEntity.customerId, objUserEntity.userId);
+            return View();
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using DaL;
-using System.Collections.Generic;
 using ERP.Models.Bal.Common;
 using System;
 using System.Collections;
@@ -9,7 +8,6 @@ using System.IO;
 using System.Web;
 using System.Web.Script.Serialization;
 using System.Xml;
-using System.Web.Script.Serialization;
 
 namespace ERP.Models.Cache
 {
@@ -246,16 +244,15 @@ namespace ERP.Models.Cache
             string JsonData = serializer.Serialize(
                new
                {
-                   AcademicYear = CommonFunc.RdrToList(GetDropDownData("1", "")),
-                   Course = CommonFunc.RdrToList(GetDropDownData("2", "")),
-                   ActivityType = CommonFunc.RdrToList(GetDropDownData("3", "")),
-                   Section = CommonFunc.RdrToList(GetDropDownData("4", "")),
+                   AcademicYear = CommonFunc.RdrToList(GetDropDownData("1", 'A')),
+                   Course = CommonFunc.RdrToList(GetDropDownData("2", 'A')),
+                   Param = CommonFunc.RdrToList(GetDropDownData("3", 'D')),
                });
             string path = HttpContext.Current.Server.MapPath("~/Content/DynamicJs/");
             File.WriteAllText(path + "DropdownData.json", JsonData);
 
         }
-        public SqlDataReader GetDropDownData(string ddlType, string flag)
+        public SqlDataReader GetDropDownData(string ddlType, char flag)
         {
             string details = string.Empty;
             SqlDataReader dr = null;
@@ -264,7 +261,7 @@ namespace ERP.Models.Cache
                 string sqlConn = System.Configuration.ConfigurationManager.ConnectionStrings["CS"].ConnectionString;
                 SqlParameter[] sqlParameter = new SqlParameter[2];
 
-                sqlParameter[0] = new SqlParameter("@P_FLAG", "");
+                sqlParameter[0] = new SqlParameter("@P_FLAG", flag);
                 sqlParameter[1] = new SqlParameter("@DDL_TYPE", ddlType);
                 dr = SqlHelper.ExecuteReader(sqlConn, CommandType.StoredProcedure, "SP_GET_DROPDOWN_DATA", sqlParameter);
                 return dr;

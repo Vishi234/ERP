@@ -65,27 +65,28 @@ namespace ERP.Models.Bal.Master
             ResultEntity result = new ResultEntity();
             try
             {
-                SqlParameter[] sqlParameter = new SqlParameter[10];
-                sqlParameter[0] = new SqlParameter("@P_ACT_NAME", activityEntity.actName);
-                sqlParameter[1] = new SqlParameter("@P_ACT_STATUS", activityEntity.status);
-                sqlParameter[2] = new SqlParameter("@P_ACT_TYPE", activityEntity.actType);
-                sqlParameter[3] = new SqlParameter("@P_ACT_START", activityEntity.stDate);
-                sqlParameter[4] = new SqlParameter("@P_ACT_END", activityEntity.endDate);
-                sqlParameter[5] = new SqlParameter("@P_FLAG", activityEntity.flag);
-                sqlParameter[6] = new SqlParameter("@P_CUSTOMER_ID", customerId);
-                sqlParameter[7] = new SqlParameter("@P_USER_ID", userid);
-
-                sqlParameter[8] = new SqlParameter("@P_RSP_FLAG", System.Data.SqlDbType.NVarChar);
-                sqlParameter[8].Direction = ParameterDirection.Output;
-                sqlParameter[8].Size = 1;
-                sqlParameter[9] = new SqlParameter("@P_RSP_MSG", SqlDbType.NVarChar);
-                sqlParameter[9].Direction = ParameterDirection.Output;
-                sqlParameter[9].Size = 500;
+                SqlParameter[] sqlParameter = new SqlParameter[12];
+                sqlParameter[0] = new SqlParameter("@ID", activityEntity.id);
+                sqlParameter[1] = new SqlParameter("@ACT_NAME", activityEntity.actName);
+                sqlParameter[2] = new SqlParameter("@ACT_STATUS", activityEntity.status);
+                sqlParameter[3] = new SqlParameter("@ACT_TYPE", activityEntity.actType);
+                sqlParameter[4] = new SqlParameter("@START_DATE", activityEntity.stDate);
+                sqlParameter[5] = new SqlParameter("@END_DATE", activityEntity.endDate);
+                sqlParameter[6] = new SqlParameter("@OPER_TYPE", activityEntity.flag);
+                sqlParameter[7] = new SqlParameter("@CUSTOMER_ID", customerId);
+                sqlParameter[8] = new SqlParameter("@USER_ID", userid);
+                sqlParameter[9] = new SqlParameter("@REPORT_ID", activityEntity.reportId);
+                sqlParameter[10] = new SqlParameter("@FLAG", System.Data.SqlDbType.NVarChar);
+                sqlParameter[10].Direction = ParameterDirection.Output;
+                sqlParameter[10].Size = 1;
+                sqlParameter[11] = new SqlParameter("@MSG", SqlDbType.NVarChar);
+                sqlParameter[11].Direction = ParameterDirection.Output;
+                sqlParameter[11].Size = 500;
 
                 DataSet ds = new DataSet();
-                ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_ADD_ACTIVITY", sqlParameter);
-                result.flag = sqlParameter[8].Value.ToString();
-                result.msg = sqlParameter[9].Value.ToString();
+                ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_ACTIVITY", sqlParameter);
+                result.flag = sqlParameter[10].Value.ToString();
+                result.msg = sqlParameter[11].Value.ToString();
 
                 if (result.flag.ToUpper() == "S")
                 {
@@ -199,6 +200,51 @@ namespace ERP.Models.Bal.Master
                 return result;
             }
         }
+        public ResultEntity AddMappingDetails(MappingEntity mapping, string customerId, string userid)
+        {
+            ResultEntity result = new ResultEntity();
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[10];
+                sqlParameter[0] = new SqlParameter("@ID", mapping.id);
+                sqlParameter[1] = new SqlParameter("@COURSE", mapping.course);
+                sqlParameter[2] = new SqlParameter("@SEMESTER", mapping.semester);
+                sqlParameter[3] = new SqlParameter("@SUBJECT", mapping.subject);
+                sqlParameter[4] = new SqlParameter("@OPER_TYPE", mapping.flag);
+                sqlParameter[5] = new SqlParameter("@CUSTOMER_ID", customerId);
+                sqlParameter[6] = new SqlParameter("@USER_ID", userid);
+                sqlParameter[7] = new SqlParameter("@REPORT_ID", mapping.reportId);
+                sqlParameter[8] = new SqlParameter("@FLAG", System.Data.SqlDbType.NVarChar);
+                sqlParameter[8].Direction = ParameterDirection.Output;
+                sqlParameter[8].Size = 1;
+                sqlParameter[9] = new SqlParameter("@MSG", SqlDbType.NVarChar);
+                sqlParameter[9].Direction = ParameterDirection.Output;
+                sqlParameter[9].Size = 500;
+
+                DataSet ds = new DataSet();
+                ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_COURSE_MAPPING", sqlParameter);
+                result.flag = sqlParameter[8].Value.ToString();
+                result.msg = sqlParameter[9].Value.ToString();
+
+                if (result.flag.ToUpper() == "S")
+                {
+                    if (ds != null)
+                    {
+                        if (ds.Tables[0].Rows.Count > 0)
+                        {
+                            result.addParams = CommonFunc.DtToJSON(ds.Tables[0]);
+                        }
+                    }
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Excep.WriteException(ex);
+                return result;
+            }
+        }
         public string CourseDuration()
         {
             SqlDataReader dr;
@@ -232,24 +278,26 @@ namespace ERP.Models.Bal.Master
             try
             {
                 SqlDataReader dr;
-                SqlParameter[] sqlParameter = new SqlParameter[7];
-                sqlParameter[0] = new SqlParameter("@P_COURSE", sectionEntity.course);
-                sqlParameter[1] = new SqlParameter("@P_SEMESTER", sectionEntity.semester);
-                sqlParameter[2] = new SqlParameter("@P_SECTION", sectionEntity.sectioin);
-                sqlParameter[3] = new SqlParameter("@P_CUSTOMER_ID", customerId);
-                sqlParameter[4] = new SqlParameter("@P_USER_ID", userId);
+                SqlParameter[] sqlParameter = new SqlParameter[9];
+                sqlParameter[0] = new SqlParameter("@COURSE_NAME", sectionEntity.course);
+                sqlParameter[1] = new SqlParameter("@SEMESTER_NAME", sectionEntity.semester);
+                sqlParameter[2] = new SqlParameter("@SECTION", sectionEntity.sectionName);
+                sqlParameter[3] = new SqlParameter("@CUSTOMER_ID", customerId);
+                sqlParameter[4] = new SqlParameter("@USER_ID", sectionEntity.userId);
+                sqlParameter[5] = new SqlParameter("@REPORT_ID", sectionEntity.reportId);
+                sqlParameter[6] = new SqlParameter("@OPER_TYPE", sectionEntity.flag);
 
-                sqlParameter[5] = new SqlParameter("@FLAG", SqlDbType.Char);
-                sqlParameter[5].Direction = ParameterDirection.Output;
-                sqlParameter[5].Size = 1;
-                sqlParameter[6] = new SqlParameter("@MSG", SqlDbType.NVarChar);
-                sqlParameter[6].Direction = ParameterDirection.Output;
-                sqlParameter[6].Size = 500;
+                sqlParameter[7] = new SqlParameter("@FLAG", SqlDbType.Char);
+                sqlParameter[7].Direction = ParameterDirection.Output;
+                sqlParameter[7].Size = 1;
+                sqlParameter[8] = new SqlParameter("@MSG", SqlDbType.NVarChar);
+                sqlParameter[8].Direction = ParameterDirection.Output;
+                sqlParameter[8].Size = 500;
 
-                dr = SqlHelper.ExecuteReader(sqlConn, CommandType.StoredProcedure, "SP_SECTION_AMD", sqlParameter);
                 DataSet ds = new DataSet();
-                result.flag = sqlParameter[5].Value.ToString();
-                result.msg = sqlParameter[6].Value.ToString();
+                ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_SECTION_AMD", sqlParameter);              
+                result.flag = sqlParameter[7].Value.ToString();
+                result.msg = sqlParameter[8].Value.ToString();
 
                 if (result.flag.ToUpper() == "S")
                 {
@@ -264,6 +312,53 @@ namespace ERP.Models.Bal.Master
 
                 return result;
 
+            }
+            catch (Exception ex)
+            {
+                Excep.WriteException(ex);
+                return result;
+            }
+        }
+        public ResultEntity AddSubject(SubjectEntity subjectEntity, string customerId, string userid)
+        {
+            ResultEntity result = new ResultEntity();
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[12];
+                sqlParameter[0] = new SqlParameter("@P_SUBJECT_CODE", subjectEntity.subCode);
+                sqlParameter[1] = new SqlParameter("@P_SUBJECT_NAME", subjectEntity.subName);
+                sqlParameter[2] = new SqlParameter("@P_SUBJECT_SHORT_NAME", subjectEntity.subShortName);
+                sqlParameter[3] = new SqlParameter("@SUBJECT_MEDIUM", subjectEntity.subMedium);
+                sqlParameter[4] = new SqlParameter("@ACTIVITY_TYPE", subjectEntity.subActivity);
+                sqlParameter[5] = new SqlParameter("@SUBJECT_TYPE", subjectEntity.subType);
+                sqlParameter[6] = new SqlParameter("@OPER_TYPE", subjectEntity.flag);
+                sqlParameter[7] = new SqlParameter("@P_CUSTOMER_ID", customerId);
+                sqlParameter[8] = new SqlParameter("@P_USER_ID", userid);
+                sqlParameter[9] = new SqlParameter("@REPORT_ID", Convert.ToInt32(subjectEntity.reportId));
+                sqlParameter[10] = new SqlParameter("@FLAG", SqlDbType.Char);
+                sqlParameter[10].Direction = ParameterDirection.Output;
+                sqlParameter[10].Size = 1;
+                sqlParameter[11] = new SqlParameter("@MSG", SqlDbType.NVarChar);
+                sqlParameter[11].Direction = ParameterDirection.Output;
+                sqlParameter[11].Size = 500;
+
+                DataSet ds = new DataSet();
+                ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_SUBJECT", sqlParameter);
+                result.flag = sqlParameter[10].Value.ToString();
+                result.msg = sqlParameter[11].Value.ToString();
+
+                if (result.flag.ToUpper() == "S")
+                {
+                    if (ds != null)
+                    {
+                        if (ds.Tables[0].Rows.Count > 0)
+                        {
+                            result.addParams = CommonFunc.DtToJSON(ds.Tables[0]);
+                        }
+                    }
+                }
+
+                return result;
             }
             catch (Exception ex)
             {

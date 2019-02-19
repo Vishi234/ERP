@@ -1,50 +1,34 @@
-﻿var SectionForm = React.createClass({
+﻿
+
+
+var SectionForm = React.createClass({
     getInitialState: function () {
-        var columnDefs = [
-            { headerName: "Make", field: "make" },
-            { headerName: "Model", field: "model" },
-            { headerName: "Price", field: "price" }
-        ];
-        var rowData = [
-            { make: "Toyota", model: "Celica", price: 35000 },
-            { make: "Ford", model: "Mondeo", price: 32000 },
-            { make: "Porsche", model: "Boxter", price: 72000 }
-        ];
-        this.state = {
-        }
+
+
+        grdArray = GetReportConfiguration("Master");
+        var columnDefs = grdArray["$SectionDetails$"];
+        var records = JSON.parse(content.addParams);
+        jsonData = GetJsonData('../../Content/DynamicJs/DropdownData.json');
         return {
-            course: this.getCourseDDL(),
-            semester : this.getCourseDDL(),
-            sectionName : this.getSectionDDL(),
+            course: ReadDropDownData("Course", $("#hfCustomerId").val(), false),
+            semester: [],
+            sectionName: ReadDropDownData("Param", '3', true),
             Fields: [],
+            selectCourse: 0,
+            selectSemester: 0,
+            selectSectionName:0,
             columnDef: columnDefs,
-            rowData: rowData,
-            ServerMessage: ''
+            rowData: records,
+            records: ((records == null) ? 0 : records.length),
         }
-    },
-   
-    getCourseDDL: function () {
-        $.ajax({
-            type: "GET",
-            url: "/Master/GetCourseDDL?ddlType=2",
-            async: false,
-            success: function (data) {
-                teamsFromApi = JSON.parse(data);
-            }
-        });
-        return teamsFromApi;
     },
 
-    getSectionDDL: function () {
-        $.ajax({
-            type: "GET",
-            url: "/Master/GetParamList?flag=S&ddlType=2",
-            async: false,
-            success: function (data) {
-                teamsFromApi = JSON.parse(data);
-            }
+    getSectionDDL: function (parId) {
+
+        var sectionddl = $.grep(jsonData.Param, function (data, index) {
+            return data.PARAM_TYPE == parId;
         });
-        return teamsFromApi;
+        return sectionddl;
     },
     handleSubmit: function (e) {
         e.preventDefault();
@@ -59,14 +43,15 @@
         if (validForm) {
             var d =
             {
-                course: this.state.course,
-                semester: this.state.semester,
-                sectionName: this.state.sectionName,
+                course: this.state.selectCourse,
+                semester: this.state.selectSemester,
+                sectionName: this.state.selectSectionName,
+
                 flag: 'A'
             }
             $.ajax({
                 type: "POST",
-                url: '/Master/GetParamList',
+                url: '/Master/SaveSectionDetails',
                 data: d,
                 async: false,
                 beforeSend: function () {
@@ -74,17 +59,20 @@
                 },
                 success: function (data) {
                     $("#progress").hide();
-                    console.log(data);
+                    CallToast(data.msg, data.flag);
                     if (data.flag == "S")
                     {
-                        alert('Save Success fully')
-                    }
-                    else if (data.flag == "D")
-                    {
-                        $("#selectorg").modal("show");
-                    }
-                    else {
-                        CallToast(data.msg, data.flag);
+                        MyData = JSON.parse(data.addParams);
+                        this.setState
+                            ({
+                                course: ReadDropDownData("Course", $("#hfCustomerId").val(), false),
+                                semester: [],
+                                sectionName: ReadDropDownData("Param", '3', true),
+                                selectCourse: 0,
+                                selectSemester: 0,
+                                selectSectionName: 0,
+                            })
+                        this.setState({ rowData: MyData });
                     }
 
                 }.bind(this),
@@ -109,19 +97,19 @@
             sectionCode: value
         });
     },
-    onChangeName: function (value) {
+    onChangSectioneName: function (value) {
         this.setState({
-            sectionName: value
+            selectSectionName: value
         });
     },
     onChangeCourse: function (value) {
         this.setState({
-            course: value
+            selectCourse: value
         });
     },
     onChangeSemester: function (value) {
         this.setState({
-            semester: value
+            selectSemester: value
         });
     },
     render: function () {
@@ -139,16 +127,18 @@
 
                             <ul>
                                 <li>
-                                    <CreateInput type={'ddl'} value={this.state.course} label={'Course'} name={'course'} htmlFor={'course'} isrequired={true}
-                                        onChange={this.onChangeCourse} keyName={'COURSE_NAME'} keyId={'COURSE_ID'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                    <CreateInput type={'ddl'} value={this.state.selectCourse} data={this.state.course} label={'Course'} name={'course'} htmlFor={'course'} isrequired={true}
+                                        onChange={this.onChangeCourse} keyName={'COURSE_NAME'} keyId={'COURSE_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+
+                                   
                                 </li>
                                 <li>
-                                    <CreateInput type={'ddl'} value={this.state.semester} label={'Semester'} name={'semester'} htmlFor={'semester'} isrequired={true}
-                                        onChange={this.onChangeSemester} keyName={'COURSE_NAME'} keyId={'COURSE_ID'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                    <CreateInput type={'ddl'} value={this.state.selectSemester} data={this.state.semester} label={'Semester'} name={'semester'} htmlFor={'semester'} isrequired={true}
+                                        onChange={this.onChangeSemester} keyName={'COURSE_NAME'} keyId={'COURSE_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
-                                    <CreateInput type={'ddl'} value={this.state.sectionName} label={'Section Name'} name={'sectionName'} htmlFor={'sectionName'} isrequired={true}
-                                        onChange={this.onChangeName} keyName={'PARAM_NAME'} keyId={'PARAM_ID'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                    <CreateInput type={'ddl'} value={this.state.selectSectionName} data={this.state.sectionName} label={'Section Name'} name={'sectionName'} htmlFor={'sectionName'} isrequired={true}
+                                        onChange={this.onChangSectioneName} keyName={'PARAM_NAME'} keyId={'PARAM_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                 </li>
                                 <li>
                                     <input type="submit" className="btn btn-success" value="Save" />

@@ -37,12 +37,13 @@ namespace ERP.Models.Entity
     }
     public class ActivityEntity
     {
+        public string id { get; set; }
         public string actName { get; set; }
         public string status { get; set; }
         public string actType { get; set; }
         public string stDate { get; set; }
         public string endDate { get; set; }
-
+        public string reportId { get; set; }
         public char flag { get; set; }
     }
 
@@ -50,10 +51,33 @@ namespace ERP.Models.Entity
     {
         public string course { get; set; }
         public string semester { get; set; }
-        public string sectioin { get; set; }
+        public string sectionName { get; set; }
         public string customerId { get; set; }
         public string userId { get; set; }
         public char flag { get; set; }
+
+        public string reportId { get; set; }
     }
+    public class SubjectEntity
+    {
+        public string subCode { get; set; }
+        public string subName { get; set; }
+        public string subShortName { get; set; }
+        public string subMedium { get; set; }
+        public string subActivity { get; set; }
+        public string subType { get; set; }
+    public class MappingEntity
+    {
+        public string id { get; set; }
+        public string course { get; set; }
+        public string semester { get; set; }
+        public string subject { get; set; }
+        public string customerId { get; set; }
+        public string userId { get; set; }
+        public string reportId { get; set; }
+        public char flag { get; set; }
+    }
+
+
 
 }
