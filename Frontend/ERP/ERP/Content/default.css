@@ -592,11 +592,36 @@ a {
     height: 100%;
     background: #2E3F50;
     width: 15%;
+    transition: all 0.4s ease-in-out;
 }
+
+.scol {
+    width: 0px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.rconcol {
+    width: 100% !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.ltopcon {
+    width: 17%;
+}
+
+    .ltopcon > a {
+        color: #fff;
+        font-size: 18px;
+        height: 100%;
+        display: inline-block;
+        padding: 12px;
+        background: #00887a;
+        float: right;
+    }
 
 .navigation-menu {
     height: 550px;
-    overflow: auto;
+    overflow: hidden;
     margin-right: 2px;
     /* box-shadow: 0px 0px 10px rgba(0,0,0,0.2); */
     margin-top: 50px;
@@ -619,6 +644,7 @@ a {
 
     .navigation-menu > ul > li {
         margin-bottom: -10px;
+        width: 228px;
     }
 
         .navigation-menu > ul > li > a {
@@ -820,6 +846,7 @@ a {
     float: right;
     height: 100%;
     overflow: hidden;
+    transition: all 0.4s ease-in-out;
 }
 
 .conbse {
@@ -1718,17 +1745,20 @@ a {
 .infoblock {
     display: inline-block;
     width: 100%;
+    padding: 10px;
+    padding-bottom: 0px;
+    padding-top: 5px;
 }
 
 .lftttl {
     display: block;
     width: 100%;
-    border-bottom: 1px solid;
-    font-size: 16px;
+    font-size: 15px;
     /* text-align: center; */
     padding-top: 1%;
     padding-left: 10px;
     font-weight: 500;
+    cursor: pointer;
     /* text-decoration: underline; */
 }
 
@@ -1742,10 +1772,6 @@ a {
     margin-bottom: 50px !important;
 }
 
-.fm4 .lftttl {
-    padding-top: 3% !important;
-}
-
 .cstform {
     width: 100% !important;
 }
@@ -1755,6 +1781,11 @@ a {
     padding-top: 1%;
     transition: all 0.4s ease-in-out;
     overflow: hidden;
+    height: 0px;
+}
+
+.rgtfrmexp {
+    height: 160px !important;
 }
 
 .infoblock .acform {
@@ -1771,9 +1802,20 @@ a {
         margin-right: 0px;
     }
 
+.infoblock .cstform > form > ul > li {
+    width: 14%;
+    margin-right: 0px;
+}
+
+
 .f {
-    display: inline-block;
     width: 100%;
+    display: inline-block;
+    border: 1px solid #dee2e6;
+    background: #fff;
+    box-shadow: 0px 0px 8px rgba(203, 214, 226,0.5);
+    overflow: hidden;
+    transition: all 0.4s ease-in-out;
 }
 
 .empbse {
@@ -1803,4 +1845,16 @@ a {
     margin-top: 5px;
     width: 90px;
     margin-left: 3px;
+}
+
+.cfm {
+    height: 0px;
+}
+
+.afm {
+    height: 0px;
+}
+
+.prfm {
+    height: 0px;
 }

@@ -79,6 +79,7 @@ var LoginForm = React.createClass({
                 success: function (data) {
                     $("#progress").hide();
                     if (data.flag == "S") {
+                        $('.leftlist ul').empty();
                         if (data.addParams != null) {
                             var customerList = JSON.parse(data.addParams); var dynamicLi = ""; var dynamicData = "";
                             var param;

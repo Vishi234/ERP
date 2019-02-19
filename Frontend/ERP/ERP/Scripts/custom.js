@@ -60,6 +60,32 @@
             $(".acform").removeClass("acformopen");
         }
     })
+    $(".hider").click(function () {
+        if ($(this).hasClass("op")) {
+            $(".sidebar").addClass("scol");
+            $(".rightcontentsec").addClass("rconcol");
+            $(this).removeClass("op");
+            $(this).addClass("cls");
+        }
+        else {
+            $(".sidebar").removeClass("scol");
+            $(".rightcontentsec").removeClass("rconcol");
+            $(this).addClass("op");
+            $(this).removeClass("cls");
+        }
+    });
+    $(".f>.lftttl").click(function () {
+        $(".rgtfrm").removeClass("rgtfrmexp");
+        if ($(this).hasClass("act")) {
+            $($(this)[0].parentNode).find(".rgtfrm").removeClass("rgtfrmexp");
+            $(this).removeClass("act")
+        }
+        else {
+            $($(this)[0].parentNode).find(".rgtfrm").addClass("rgtfrmexp");
+            $(".lftttl").removeClass("act");
+            $(this).addClass("act")
+        }
+    })
 })
 
 function btnloading(evt, action) {
@@ -88,7 +114,7 @@ function InitializeDate(name) {
         singleDatePicker: true,
         //minDate: moment(start.valueOf()).format("DD-MMM-YYYY"),
         //startDate: moment(start.valueOf()).format("DD-MMM-YYYY"),
-        start:moment(),
+        start: moment(),
         locale: { format: 'DD-MMM-YYYY' }
     });
 }
