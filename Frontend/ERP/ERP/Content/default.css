@@ -606,13 +606,14 @@ a {
 }
 
 .ltopcon {
-    width: 17%;
+    width: 18%;
 }
 
     .ltopcon > a {
         color: #fff;
         font-size: 18px;
         height: 100%;
+        margin-right: 12px;
         display: inline-block;
         padding: 12px;
         background: #00887a;
@@ -644,7 +645,7 @@ a {
 
     .navigation-menu > ul > li {
         margin-bottom: -10px;
-        width: 228px;
+        width: 203px;
     }
 
         .navigation-menu > ul > li > a {
@@ -1753,13 +1754,14 @@ a {
 .lftttl {
     display: block;
     width: 100%;
+    padding: 10px;
     font-size: 15px;
     /* text-align: center; */
-    padding-top: 1%;
-    padding-left: 10px;
+    /* padding-top: 1%; */
+    /* padding-left: 10px; */
     font-weight: 500;
     cursor: pointer;
-    /* text-decoration: underline; */
+    
 }
 
     .lftttl svg {
@@ -1778,7 +1780,6 @@ a {
 
 .rgtfrm {
     width: 100%;
-    padding-top: 1%;
     transition: all 0.4s ease-in-out;
     overflow: hidden;
     height: 0px;
