@@ -172,6 +172,7 @@
     <Content Include="React\common\CommonInputFields.jsx" />
     <Content Include="React\configuration\createorg.jsx" />
     <Content Include="React\configuration\orglist.jsx" />
+    <Content Include="React\Employee\employeeRegis.jsx" />
     <Content Include="React\master\academicyear.jsx" />
     <Content Include="React\master\activity.jsx" />
     <Content Include="React\master\course.jsx" />
