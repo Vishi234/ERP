@@ -116,40 +116,62 @@ var SectionForm = React.createClass({
         //Render form
         return (
             <div>
-                <div className="fbse">
-                    <div className="rttl">
-                        <span className="pull-left lft">Add/Update Section Management</span>
-                        <span className="pull-right toptotal">2 Record(S)</span>
-                        <hr />
+                <div className="block-header container-fluid">
+                    <div className="row clearfix">
+                        <div className="col-lg-6 col-xs-12 col-sm-4 col-md-6">
+                            <h1>Section Management</h1>
+                            <nav aria-label="breadcrumb">
+                                <ol className="breadcrumb">
+                                    <li className="breadcrumb-item">
+                                        <a href="javascript:void(0)">Master</a>
+                                    </li>
+                                    <li className="breadcrumb-item active" aria-current="page">
+                                        Section
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                        <div className="col-lg-6 col-xs-12 col-sm-8 col-md-6">
+                            <h4 className="text-right font-14">{this.state.records} Record(S)</h4>
+                        </div>
                     </div>
-                    <div className="acform">
-                        <form name='CourseForm' noValidate onSubmit={this.handleSubmit}>
+                </div>
+                <div className="block-body container-fluid">
+                    <div className="row clearfix">
+                        <div className="col-lg-12 col-xs-12 col-md-12 col-sm-12">
+                            <div className="card">
+                                <div className="body">
+                                    <div className="acform">
+                                        <form name='CourseForm' noValidate onSubmit={this.handleSubmit}>
+                                            <ul>
+                                                <li>
+                                                    <CreateInput type={'ddl'} value={this.state.selectCourse} data={this.state.course} label={'Course'} name={'course'} htmlFor={'course'} isrequired={true}
+                                                                 onChange={this.onChangeCourse} keyName={'COURSE_NAME'} keyId={'COURSE_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                </li>
+                                                <li>
+                                                    <CreateInput type={'ddl'} value={this.state.selectSemester} data={this.state.semester} label={'Semester'} name={'semester'} htmlFor={'semester'} isrequired={true}
+                                                                 onChange={this.onChangeSemester} keyName={'COURSE_NAME'} keyId={'COURSE_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                </li>
+                                                <li>
+                                                    <CreateInput type={'ddl'} value={this.state.selectSectionName} data={this.state.sectionName} label={'Section Name'} name={'sectionName'} htmlFor={'sectionName'} isrequired={true}
+                                                                 onChange={this.onChangSectioneName} keyName={'PARAM_NAME'} keyId={'PARAM_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                </li>
+                                                <li>
+                                                    <input type="submit" className="btn btn-success" value="Save" />
+                                                </li>
 
-                            <ul>
-                                <li>
-                                    <CreateInput type={'ddl'} value={this.state.selectCourse} data={this.state.course} label={'Course'} name={'course'} htmlFor={'course'} isrequired={true}
-                                        onChange={this.onChangeCourse} keyName={'COURSE_NAME'} keyId={'COURSE_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-
-                                   
-                                </li>
-                                <li>
-                                    <CreateInput type={'ddl'} value={this.state.selectSemester} data={this.state.semester} label={'Semester'} name={'semester'} htmlFor={'semester'} isrequired={true}
-                                        onChange={this.onChangeSemester} keyName={'COURSE_NAME'} keyId={'COURSE_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                </li>
-                                <li>
-                                    <CreateInput type={'ddl'} value={this.state.selectSectionName} data={this.state.sectionName} label={'Section Name'} name={'sectionName'} htmlFor={'sectionName'} isrequired={true}
-                                        onChange={this.onChangSectioneName} keyName={'PARAM_NAME'} keyId={'PARAM_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                </li>
-                                <li>
-                                    <input type="submit" className="btn btn-success" value="Save" />
-                                </li>
-
-                            </ul>
-
-                        </form>
+                                            </ul>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="card">
+                                <div className="body">
+                                    <AgGrid columnDef={this.state.columnDef} rowData={this.state.rowData} />
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                    <AgGrid columnDef={this.state.columnDef} rowData={this.state.rowData} />
                 </div>
             </div>
         );

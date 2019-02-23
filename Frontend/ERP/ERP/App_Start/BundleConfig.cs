@@ -44,6 +44,7 @@ namespace ERP
             bundles.Add(new StyleBundle("~/bundles/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/default.css",
+                      "~/Content/custom.css",
                       "~/Content/fontawesome-all.css",
                       "~/Content/jquery.toast.min.css",
                       "~/Content/daterangepicker.css",

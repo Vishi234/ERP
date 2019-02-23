@@ -414,9 +414,6 @@ a {
             cursor: pointer;
         }
 
-.dashbdy {
-    background: #F4F5F8;
-}
 
 .userinfo {
     margin: 0px !important;
@@ -442,10 +439,6 @@ a {
             float: right;
         }
 
-.userinfoactive {
-    background: #19212B;
-}
-
 .arrow_box {
     position: absolute;
     background: #fff;
@@ -470,24 +463,24 @@ a {
     .arrow_box:after {
         border-color: rgba(136, 183, 213, 0);
         border-bottom-color: #fff;
-        border-width: 13.2px;
+        border-width: 9.2px;
         margin-left: -30px;
     }
 
     .arrow_box:before {
         border-color: rgba(194, 225, 245, 0);
         border-bottom-color: #cbd6e2;
-        border-width: 15px;
+        border-width: 11px;
         margin-left: -31.4px;
     }
 
 .top-sub-menu {
     display: none;
-    margin-top: 10px;
+    margin-top: 53px;
     position: absolute;
-    /* width: 20%; */
+    width: 67%;
     z-index: 9999999;
-    right: 7px;
+    left: 13px;
 }
 
 .top-sub-menu-inner {
@@ -495,8 +488,29 @@ a {
     border: 1px solid #cbd6e2;
     margin-top: 10px;
     display: inline-block;
+    border-radius: .55rem;
+    box-shadow: 0px 1px 20px 0px rgba(23,25,28,0.1);
+    padding: 15px;
     width: 100%;
+    right: 0;
+    left: auto !important;
 }
+
+    .top-sub-menu-inner > ul > li > a {
+        color: #77797c;
+        padding: 10px;
+        font-size: 14px;
+        display: block;
+    }
+
+        .top-sub-menu-inner > ul > li > a:hover {
+            color: #000;
+        }
+
+        .top-sub-menu-inner > ul > li > a > img {
+            height: 15px;
+            width: 20px;
+        }
 
 .pro-base {
     display: inline-block;
@@ -620,226 +634,9 @@ a {
         float: right;
     }
 
-.navigation-menu {
-    height: 550px;
-    overflow: hidden;
-    margin-right: 2px;
-    /* box-shadow: 0px 0px 10px rgba(0,0,0,0.2); */
-    margin-top: 50px;
-}
 
-    .navigation-menu::-webkit-scrollbar {
-        width: 5px;
-    }
 
-    .navigation-menu::-webkit-scrollbar-track {
-        border-radius: 10px;
-        padding: 10px;
-        display: none;
-    }
 
-    .navigation-menu::-webkit-scrollbar-thumb {
-        border-radius: 10px;
-        background: rgba(255, 255, 255, .7);
-    }
-
-    .navigation-menu > ul > li {
-        margin-bottom: -10px;
-        width: 203px;
-    }
-
-        .navigation-menu > ul > li > a {
-            display: block;
-            padding: 15px 10px;
-            /* font-size: 1em; */
-            font-weight: 500;
-            border-bottom: 1px solid #404854;
-            color: #fff;
-            transition: all 0.4s ease-in-out;
-            height: 45px;
-            border-left: 3px solid #2E3F50;
-        }
-
-            .navigation-menu > ul > li > a > p {
-                line-height: 23px;
-                font-size: 0.9em;
-                margin: 0px;
-            }
-
-            .navigation-menu > ul > li > a:hover {
-                background: rgba(255, 255, 255, .08);
-                cursor: pointer;
-                border-left: 3px solid #00887a;
-            }
-
-            .navigation-menu > ul > li > a svg {
-                margin-right: 5px;
-                float: right;
-                -moz-transition: all 0.4s linear;
-                -webkit-transition: all 0.4s linear;
-                transition: all 0.4s linear;
-            }
-
-.navigation-menu-active {
-    background: rgba(255, 255, 255, .08) !important;
-}
-
-.down {
-}
-
-.click-remove {
-    border-bottom: 1px solid #19212B !important;
-    background: #19212B !important;
-    transition: all 0.4s ease-in-out;
-    border-left: 3px solid #00887a !important;
-}
-
-    .click-remove > p {
-        display: none;
-    }
-
-    .click-remove > svg {
-        -moz-transform: rotate(180deg) !important;
-        -webkit-transform: rotate(180deg) !important;
-        transform: rotate(180deg) !important;
-    }
-
-.hm3 {
-    height: 90px !important;
-    transition: all 0.4s ease-in-out;
-}
-
-.hm4 {
-    height: 120px !important;
-    transition: all 0.4s ease-in-out;
-}
-
-.hm5 {
-    height: 150px !important;
-    transition: all 0.4s ease-in-out;
-}
-
-.hm6 {
-    height: 180px !important;
-    transition: all 0.4s ease-in-out;
-}
-
-.hm7 {
-    height: 210px !important;
-    transition: all 0.4s ease-in-out;
-}
-
-.hm8 {
-    height: 245px !important;
-    transition: all 0.4s ease-in-out;
-}
-
-.hm9 {
-    height: 272px !important;
-    transition: all 0.4s ease-in-out;
-}
-
-.hm10 {
-    height: 300px !important;
-    transition: all 0.4s ease-in-out;
-}
-
-.hm11 {
-    height: 210px !important;
-    transition: all 0.4s ease-in-out;
-}
-
-.hm12 {
-    height: 210px !important;
-    transition: all 0.4s ease-in-out;
-}
-
-.hm13 {
-    height: 210px !important;
-    transition: all 0.4s ease-in-out;
-}
-
-.hm14 {
-    height: 210px !important;
-    transition: all 0.4s ease-in-out;
-}
-
-.hm15 {
-    height: 210px !important;
-    transition: all 0.4s ease-in-out;
-}
-
-.hm16 {
-    height: 210px !important;
-    transition: all 0.4s ease-in-out;
-}
-
-.hm17 {
-    height: 210px !important;
-    transition: all 0.4s ease-in-out;
-}
-
-.hm18 {
-    height: 210px !important;
-    transition: all 0.4s ease-in-out;
-}
-
-.hm19 {
-    height: 210px !important;
-    transition: all 0.4s ease-in-out;
-}
-
-.hm20 {
-    height: 210px !important;
-    transition: all 0.4s ease-in-out;
-}
-
-.smenu {
-    background: #19212B;
-    margin-bottom: 10px;
-    display: block;
-    height: 0px;
-    transition: all 0.4s ease-in-out;
-    overflow: auto;
-    width: 98%;
-}
-
-    .smenu::-webkit-scrollbar {
-        width: 5px;
-    }
-
-    .smenu::-webkit-scrollbar-track {
-        border-radius: 10px;
-        padding: 10px;
-        display: none;
-    }
-
-    .smenu::-webkit-scrollbar-thumb {
-        border-radius: 10px;
-        background: rgba(255, 255, 255, .7);
-    }
-
-    .smenu > ul > li {
-        display: inline-block;
-        width: 100%;
-    }
-
-        .smenu > ul > li > a {
-            padding: 5px 10px;
-            display: block;
-            width: 100%;
-            font-size: 1em;
-            color: rgba(255, 255, 255, .7);
-            font-weight: 400;
-        }
-
-            .smenu > ul > li > a > svg {
-                margin-right: 10px;
-            }
-
-            .smenu > ul > li > a:hover {
-                background: rgba(255, 255, 255, .08) !important;
-            }
 
 
 .rightcontentsec {
@@ -1432,59 +1229,42 @@ a {
     height: 30px !important;
 }
 
-.acform {
-    width: 100%;
+
+
+
+.acform > form > ul > li {
     display: inline-block;
-    border: 1px solid #dee2e6;
-    margin-top: 15px;
-    background: #fff;
-    box-shadow: 0px 0px 8px rgba(203, 214, 226,0.5);
-    overflow: hidden;
-    padding: 12px;
-    transition: all 0.4s ease-in-out;
+    width: 14%;
 }
 
 
-    .acform > form > ul > li {
-        display: inline-block;
-        width: 14%;
-    }
 
-        .acform > form > ul > li > div > .form-group > label {
-            font-weight: 500;
-            float: left;
-            margin-bottom: 3px;
-            margin-top: 4px;
-            letter-spacing: 1.1px;
-            margin-right: 5px;
-        }
-
-        .acform > form > ul > li > div > .form-group > .form-control {
-            background: #fff;
-            border: 1px solid #999;
-            border-radius: 4px;
-            padding-left: 5px;
-            font-size: 12px;
-            height: 26px;
-            width: 95%;
-            box-shadow: none;
-            margin-bottom: 5px;
-        }
-
-        .acform > form > ul > li > div > .form-group > .field-validation-error {
-            float: left;
-            margin-top: 0px !important;
-            height: 15px;
-        }
-
-    .acform .btn-success {
-        width: 40%;
-        border-radius: 3px;
+    .acform > form > ul > li > div > .form-group > .form-control {
+        background: #fff;
+        border: 1px solid #999;
+        border-radius: 4px;
+        padding-left: 5px;
         font-size: 12px;
-        height: 27px;
-        padding: 0px;
-        margin-top: -3px;
+        height: 26px;
+        width: 95%;
+        box-shadow: none;
+        margin-bottom: 5px;
     }
+
+    .acform > form > ul > li > div > .form-group > .field-validation-error {
+        float: left;
+        margin-top: 0px !important;
+        height: 15px;
+    }
+
+.acform .btn-success {
+    width: 40%;
+    border-radius: 3px;
+    font-size: 12px;
+    height: 27px;
+    padding: 0px;
+    margin-top: -3px;
+}
 
 .modal-md {
     max-width: 400px !important;
@@ -1635,7 +1415,7 @@ a {
     width: 17px;
     display: none;
     /* position: absolute; */
-    margin-top: -37px;
+    margin-top: -26px;
     margin-right: 15px;
 }
 
@@ -1723,7 +1503,7 @@ a {
 
 .jq-toast-wrap.top-right {
     top: 60px !important;
-    right: 20px !important;
+    right: 10px !important;
 }
 
 .intopmenu {
@@ -1761,7 +1541,6 @@ a {
     /* padding-left: 10px; */
     font-weight: 500;
     cursor: pointer;
-    
 }
 
     .lftttl svg {
