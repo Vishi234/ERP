@@ -54,14 +54,25 @@ class EmployeeForm extends React.Component {
                 SelectedAccStatus: [],
                 SelectedBank: [],
                 Fields: [],
+                mode:false,
                 //columnDef: columnDefs,
                 //rowData: records,
                 //records: ((records == null) ? 0 : records.length),
                 ServerMessage: ''
             };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handlePersSubmit = this.handlePersSubmit.bind(this);
+        this.handleContSubmit = this.handleContSubmit.bind(this);
+        this.handleAuthSubmit = this.handleAuthSubmit.bind(this);
+        //this.state = { genSubmit: true };
+        
+        this.setState({ genSubmit: true });
+        this.state = { perSubmit: false };
+        this.state = { contSubmit: false };
+        this.state = { authSubmit: false };
     }
     handleSubmit(e) {
+
         var validForm = true;
         e.preventDefault();
         fields.forEach(function (field) {
@@ -347,9 +358,6 @@ class EmployeeForm extends React.Component {
             e.preventDefault();
         }
     }
-
-
-
     onChangeCode(value) {
         this.setState({
             empCode: value
@@ -549,245 +557,260 @@ class EmployeeForm extends React.Component {
     //GetData(data) {
     //    this.setState({ rowData: data });
     //}
+    changeState() {
+        this.setState({
+            mode: this.state.mode
+        });
+    }
     render() {
-        return (
-            <div>
-            <div className="infoblock">
-                <div className="f">
-                    <div className="pull-left lftttl act">
-                        General Information
+        this.setState({ mode = true});
+        //this.props.mode = true;
+       // alert();
+        if (this.state.mode) {
+            return (
+                <div>
+                    <div className="infoblock">
+                        <div className="f">
+                            <div className="pull-left lftttl act">
+                                General Information
             <i className="fa fa-angle-down"></i>
-                    </div>
-                    <div className="pull-right rgtfrm rgtfrmexp">
-
-                        <div className="acform">
-                                <form name='GeneralForm' id="GeneralForm" noValidate onSubmit={this.handleSubmit}>
-                                <ul>
-                                    <li>
-                                        <CreateInput type={'text'} value={this.state.empCode} label={'Employee Code'} name={'empCode'} htmlFor={'empCode'}
-                                          isrequired={true} onChange={this.onChangeCode.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-   
-                                    </li>
-                                    <li>
-                                       <CreateInput type={'text'} value={this.state.empPunchCard} label={'Punch Card Number'} name={'empPunchCard'}
-                                           htmlFor={'empPunchCard'}
-                                           isrequired={true} onChange={this.onChangeCode.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                    </li>
-                                    <li>
-                                            <CreateInput type={'ddl'} value={this.state.selectedDepartment} data={this.state.empDepartment}  label={'Department'}
-                                                name={'empDepartment'} htmlFor={'empDepartment'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
-                                            onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />                                         
-                                    </li>
-                                    <li>
-                                            <CreateInput type={'ddl'} value={this.state.selectedDesignation} data={this.state.empDesignation} label={'Designation'}
-                                                name={'empDesignation'} htmlFor={'empDesignation'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
-                                             onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                    </li>
-                                    <li>
-                                          <CreateInput type={'text'} value={this.state.empSupervisior} label={'Supervisior Code'} name={'Supervisior Code'}
-                                              htmlFor={'empSupervisior'}
-                                              isrequired={true} onChange={this.onChangeCode.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                    </li>
-                                    <li>
-                                            <CreateInput type={'ddl'} value={this.state.selectedEmptType} data={this.state.empType} label={'Employee Type'}
-                                                name={'empType'} htmlFor={'empType'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
-                                              onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                    </li>
-                                    <li>
-                                            <CreateInput type={'ddl'} value={this.state.SelectedIsMember} data={this.state.empIsMember} label={'Employee Type'}
-                                                name={'empIsMember'} htmlFor={'empIsMember'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
-                                               onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                    </li>
-                                    <li>
-                                        <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>
-                                    </li>
-                                </ul>
-                            </form>
-                        </div>                          
-                        <div className="empbse">
-                            <div className="empimg">
-                                <img src="~/Images/admin_bg.jpg" />
                             </div>
-                            <a href="javascript:void(0)"></a>
-                            <input type="file" />
+                            <div className="pull-right rgtfrm rgtfrmexp">
+
+                                <div className="acform">
+                                    <form name='GeneralForm' id="GeneralForm" noValidate onSubmit={this.handleSubmit}>
+                                        <ul>
+                                            <li>
+                                                <CreateInput type={'text'} value={this.state.empCode} label={'Employee Code'} name={'empCode'} htmlFor={'empCode'}
+                                                    isrequired={true} onChange={this.onChangeCode.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+
+                                            </li>
+                                            <li>
+                                                <CreateInput type={'text'} value={this.state.empPunchCard} label={'Punch Card Number'} name={'empPunchCard'}
+                                                    htmlFor={'empPunchCard'}
+                                                    isrequired={true} onChange={this.onChangeCode.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
+                                                <CreateInput type={'ddl'} value={this.state.selectedDepartment} data={this.state.empDepartment} label={'Department'}
+                                                    name={'empDepartment'} htmlFor={'empDepartment'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
+                                                    onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
+                                                <CreateInput type={'ddl'} value={this.state.selectedDesignation} data={this.state.empDesignation} label={'Designation'}
+                                                    name={'empDesignation'} htmlFor={'empDesignation'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
+                                                    onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
+                                                <CreateInput type={'text'} value={this.state.empSupervisior} label={'Supervisior Code'} name={'Supervisior Code'}
+                                                    htmlFor={'empSupervisior'}
+                                                    isrequired={true} onChange={this.onChangeCode.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
+                                                <CreateInput type={'ddl'} value={this.state.selectedEmptType} data={this.state.empType} label={'Employee Type'}
+                                                    name={'empType'} htmlFor={'empType'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
+                                                    onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
+                                                <CreateInput type={'ddl'} value={this.state.SelectedIsMember} data={this.state.empIsMember} label={'Employee Type'}
+                                                    name={'empIsMember'} htmlFor={'empIsMember'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
+                                                    onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
+                                                <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>
+                                            </li>
+                                        </ul>
+                                    </form>
+                                </div>
+                                <div className="empbse">
+                                    <div className="empimg">
+                                        <img src="~/Images/admin_bg.jpg" />
+                                    </div>
+                                    <a href="javascript:void(0)"></a>
+                                    <input type="file" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                </div>
+            );
+        } else {
+            return (
+                <div>
 
-            <div className="infoblock">
-                <div className="f fm2">
-                    <div className="pull-left lftttl">
-                        Personal Information
+                    <div className="infoblock">
+                        <div className="f fm2">
+                            <div className="pull-left lftttl">
+                                Personal Information
                 <i className="fa fa-angle-down"></i>
-                    </div>
-                    <div className="pull-right rgtfrm">
-                        <div className="acform cstform">
-                                <form name='PersonalForm' id="PersonalForm" noValidate onSubmit={this.handlePersSubmit}>
-                                <ul>
-                                    <li>
-                                        <CreateInput type={'text'} value={this.state.empFirstName} label={'First Name'} name={'empFirstName'} htmlFor={'empFirstName'}
-                                            isrequired={true} onChange={this.onChangeFName.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                            </div>
+                            <div className="pull-right rgtfrm">
+                                <div className="acform cstform">
+                                    <form name='PersonalForm' id="PersonalForm" noValidate onSubmit={this.handlePersSubmit}>
+                                        <ul>
+                                            <li>
+                                                <CreateInput type={'text'} value={this.state.empFirstName} label={'First Name'} name={'empFirstName'} htmlFor={'empFirstName'}
+                                                    isrequired={true} onChange={this.onChangeFName.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
 
-                                    </li>
-                                    <li>
-                                         <CreateInput type={'text'} value={this.state.empMName} label={'Last Name'} name={'empMName'} htmlFor={'empMName'}
-                                             isrequired={true} onChange={this.onChangeFName.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                    </li>
-                                    <li>
-                                         <CreateInput type={'text'} value={this.state.empLastName} label={'Last Name'} name={'empLastName'} htmlFor={'empLastName'}
-                                             isrequired={true} onChange={this.onChangeFName.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                    </li>
-                                    <li>
-                                            <CreateInput type={'ddl'} value={this.state.SelectedGender} label={'Gender'} data={this.state.gender}
-                                                name={'gender'} htmlFor={'gender'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
-                                              onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                    </li>
-                                    <li>
-                                          <CreateInput type={'date'} value={this.state.SelectedDOB} id={'DOBDate'} label={'Date Of Birth'} name={'DOB'} htmlFor={'DOB'} isrequired={true}
-                                              className={'startDate form-control'} onBlur={this.onDOBBlur.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
-                                    </li>
-                                    <li>
-                                           <CreateInput type={'text'} value={this.state.addarCard} label={'Adhaar Card No.'} name={'addarCard'} htmlFor={'addarCard'}
-                                               isrequired={true} onChange={this.onChangeFName.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                    </li>
-                                    <li>
-                                            <CreateInput type={'ddl'} value={this.state.SelectedBloodG} label={'Blood Group'} data={this.state.bloodgrp}
-                                                name={'bloodgrp'} htmlFor={'bloodgrp'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
-                                               onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                    </li>
-                                    <li>
-                                            <CreateInput type={'ddl'} value={this.state.SelectedMarital} label={'Marital Status'} data={this.state.maritalst}
-                                                name={'maritalst'} htmlFor={'maritalst'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
-                                               onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                    </li>
-                                    <li>
-                                            <CreateInput type={'text'} value={this.state.nationality} label={'Nationality'} name={'nationality'} htmlFor={'nationality'}
-                                                isrequired={true} onChange={this.onChangeFName.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                    </li>
-                                    <li>
-                                            <CreateInput type={'date'} value={this.state.SelectedJoinDate} id={'JoinDate'} label={'Joining Date'} name={'joinDate'} htmlFor={'joinDate'} isrequired={true}
-                                                className={'startDate form-control'} onBlur={this.onJoinBlur.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
-                                    </li>
-                                    <li>
-                                        <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>
-                                    </li>
-                                </ul>
-                            </form>
+                                            </li>
+                                            <li>
+                                                <CreateInput type={'text'} value={this.state.empMName} label={'Last Name'} name={'empMName'} htmlFor={'empMName'}
+                                                    isrequired={true} onChange={this.onChangeFName.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
+                                                <CreateInput type={'text'} value={this.state.empLastName} label={'Last Name'} name={'empLastName'} htmlFor={'empLastName'}
+                                                    isrequired={true} onChange={this.onChangeFName.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
+                                                <CreateInput type={'ddl'} value={this.state.SelectedGender} label={'Gender'} data={this.state.gender}
+                                                    name={'gender'} htmlFor={'gender'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
+                                                    onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
+                                                <CreateInput type={'date'} value={this.state.SelectedDOB} id={'DOBDate'} label={'Date Of Birth'} name={'DOB'} htmlFor={'DOB'} isrequired={true}
+                                                    className={'startDate form-control'} onBlur={this.onDOBBlur.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
+                                                <CreateInput type={'text'} value={this.state.addarCard} label={'Adhaar Card No.'} name={'addarCard'} htmlFor={'addarCard'}
+                                                    isrequired={true} onChange={this.onChangeFName.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
+                                                <CreateInput type={'ddl'} value={this.state.SelectedBloodG} label={'Blood Group'} data={this.state.bloodgrp}
+                                                    name={'bloodgrp'} htmlFor={'bloodgrp'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
+                                                    onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
+                                                <CreateInput type={'ddl'} value={this.state.SelectedMarital} label={'Marital Status'} data={this.state.maritalst}
+                                                    name={'maritalst'} htmlFor={'maritalst'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
+                                                    onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
+                                                <CreateInput type={'text'} value={this.state.nationality} label={'Nationality'} name={'nationality'} htmlFor={'nationality'}
+                                                    isrequired={true} onChange={this.onChangeFName.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
+                                                <CreateInput type={'date'} value={this.state.SelectedJoinDate} id={'JoinDate'} label={'Joining Date'} name={'joinDate'} htmlFor={'joinDate'} isrequired={true}
+                                                    className={'startDate form-control'} onBlur={this.onJoinBlur.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
+                                                <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>
+                                            </li>
+                                        </ul>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                </div>
 
-            <div className="infoblock">
-                    <div className="f fm3">
-                        <div className="pull-left lftttl">
-                            Contact Information
+                    <div className="infoblock">
+                        <div className="f fm3">
+                            <div className="pull-left lftttl">
+                                Contact Information
                 <i className="fa fa-angle-down"></i>
-                        </div>
-                        <div className="pull-right rgtfrm">
-                            <div className="acform cstform">
-                                <form name='ContactForm' id="ContactForm" noValidate onSubmit={this.handleContSubmit}>
-                                    <ul>
-                                        <li>
-                                             <CreateInput type={'text'} value={this.state.address} label={'Address'} name={'address'} htmlFor={'address'}
-                                                 isrequired={true} onChange={this.onChangeAddress.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
-                                            <CreateInput type={'ddl'} value={this.state.SelectedCountry} label={'Country'} data={this.state.country}
-                                                name={'country'} htmlFor={'country'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
-                                                  onChange={this.onChangeCountry} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
-                                               <CreateInput type={'text'} value={this.state.city} label={'City'} name={'city'} htmlFor={'city'}
-                                                   isrequired={true} onChange={this.onChangeCity.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
-                                            <CreateInput type={'ddl'} value={this.state.SelectedState} label={'State'} data={this.state.state}
-                                                name={'state'} htmlFor={'state'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
-                                                   onChange={this.onChangeState} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
+                            </div>
+                            <div className="pull-right rgtfrm">
+                                <div className="acform cstform">
+                                    <form name='ContactForm' id="ContactForm" noValidate onSubmit={this.handleContSubmit}>
+                                        <ul>
+                                            <li>
+                                                <CreateInput type={'text'} value={this.state.address} label={'Address'} name={'address'} htmlFor={'address'}
+                                                    isrequired={true} onChange={this.onChangeAddress.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
+                                                <CreateInput type={'ddl'} value={this.state.SelectedCountry} label={'Country'} data={this.state.country}
+                                                    name={'country'} htmlFor={'country'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
+                                                    onChange={this.onChangeCountry} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
+                                                <CreateInput type={'text'} value={this.state.city} label={'City'} name={'city'} htmlFor={'city'}
+                                                    isrequired={true} onChange={this.onChangeCity.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
+                                                <CreateInput type={'ddl'} value={this.state.SelectedState} label={'State'} data={this.state.state}
+                                                    name={'state'} htmlFor={'state'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
+                                                    onChange={this.onChangeState} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
                                                 <CreateInput type={'text'} value={this.state.pinCode} label={'Pincode'} name={'pinCode'} htmlFor={'pinCode'}
                                                     isrequired={true} onChange={this.onChangePinCode.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
-                                                 <CreateInput type={'text'} value={this.state.phone} label={'Phone'} name={'phone'} htmlFor={'phone'}
-                                                     isrequired={true} onChange={this.onChangePhone.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
-                                                  <CreateInput type={'text'} value={this.state.mobile} label={'Mobile'} name={'mobile'} htmlFor={'mobile'}
-                                                      isrequired={true} onChange={this.onChangeMobile.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
-                                                  <CreateInput type={'text'} value={this.state.email} label={'Email Address'} name={'email'} htmlFor={'email '}
-                                                      isrequired={true} onChange={this.onChangeEmail.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
-                                            <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>
-                                        </li>
-                                    </ul>
-                                </form>
+                                            </li>
+                                            <li>
+                                                <CreateInput type={'text'} value={this.state.phone} label={'Phone'} name={'phone'} htmlFor={'phone'}
+                                                    isrequired={true} onChange={this.onChangePhone.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
+                                                <CreateInput type={'text'} value={this.state.mobile} label={'Mobile'} name={'mobile'} htmlFor={'mobile'}
+                                                    isrequired={true} onChange={this.onChangeMobile.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
+                                                <CreateInput type={'text'} value={this.state.email} label={'Email Address'} name={'email'} htmlFor={'email '}
+                                                    isrequired={true} onChange={this.onChangeEmail.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
+                                                <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>
+                                            </li>
+                                        </ul>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-            <div className="infoblock lst">
-                    <div className="f fm4">
-                        <div className="pull-left lftttl">
-                            Authentication Information
+                    <div className="infoblock lst">
+                        <div className="f fm4">
+                            <div className="pull-left lftttl">
+                                Authentication Information
                 <i className="fa fa-angle-down"></i>
-                        </div>
-                        <div className="pull-right rgtfrm">
-                            <div className="acform cstform">
-                                <form name='AuthenticationForm' id="AuthForm" noValidate onSubmit={this.handleAuthSubmit}>
-                                    <ul>
-                                        <li>
-                                             <CreateInput type={'text'} value={this.state.username} label={'Username'} name={'username'} htmlFor={'username'}
-                                                 isrequired={true} onChange={this.onChangeUsername.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
-                                              <CreateInput type={'text'} value={this.state.password} label={'Password'} name={'password'} htmlFor={'password'}
-                                                  isrequired={true} onChange={this.onChangePassword.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
-                                               <CreateInput type={'text'} value={this.state.conPassword} label={'Confirm Password'} name={'conPassword'} htmlFor={'conPassword'}
-                                                   isrequired={true} onChange={this.onChangeConPassword.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
-                                               <CreateInput type={'text'} value={this.state.defPage} label={'Default Page'} name={'defPage'} htmlFor={'defPage'}
-                                                   isrequired={true} onChange={this.onChangeDefPage.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
-                                            <CreateInput type={'ddl'} value={this.state.SelectedAccStatus} label={'Account Status'} data={this.state.accStatus}
-                                                name={'accStatus'} htmlFor={'accStatus'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
+                            </div>
+                            <div className="pull-right rgtfrm">
+                                <div className="acform cstform">
+                                    <form name='AuthenticationForm' id="AuthForm" noValidate onSubmit={this.handleAuthSubmit}>
+                                        <ul>
+                                            <li>
+                                                <CreateInput type={'text'} value={this.state.username} label={'Username'} name={'username'} htmlFor={'username'}
+                                                    isrequired={true} onChange={this.onChangeUsername.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
+                                                <CreateInput type={'text'} value={this.state.password} label={'Password'} name={'password'} htmlFor={'password'}
+                                                    isrequired={true} onChange={this.onChangePassword.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
+                                                <CreateInput type={'text'} value={this.state.conPassword} label={'Confirm Password'} name={'conPassword'} htmlFor={'conPassword'}
+                                                    isrequired={true} onChange={this.onChangeConPassword.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
+                                                <CreateInput type={'text'} value={this.state.defPage} label={'Default Page'} name={'defPage'} htmlFor={'defPage'}
+                                                    isrequired={true} onChange={this.onChangeDefPage.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
+                                                <CreateInput type={'ddl'} value={this.state.SelectedAccStatus} label={'Account Status'} data={this.state.accStatus}
+                                                    name={'accStatus'} htmlFor={'accStatus'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
                                                     onChange={this.onChangeAccStatus} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
+                                            </li>
+                                            <li>
                                                 <CreateInput type={'text'} value={this.state.panCard} label={'Pan Card Number'} name={'panCard'} htmlFor={'panCard'}
                                                     isrequired={true} onChange={this.onChangePanCard.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
-                                            <CreateInput type={'ddl'} value={this.state.SelectedBank} label={'Bank'} data={this.state.bank}
-                                                name={'bank'} htmlFor={'bank'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
-                                                     onChange={this.onChangeBank} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
-                                                 <CreateInput type={'text'} value={this.state.accNumber} label={'Bank Account Number'} name={'accNumber'} htmlFor={'accNumber'}
-                                                     isrequired={true} onChange={this.onChangeAccNumber.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
-                                            <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>
-                                        </li>
-                                    </ul>
-                                </form>
+                                            </li>
+                                            <li>
+                                                <CreateInput type={'ddl'} value={this.state.SelectedBank} label={'Bank'} data={this.state.bank}
+                                                    name={'bank'} htmlFor={'bank'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
+                                                    onChange={this.onChangeBank} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
+                                                <CreateInput type={'text'} value={this.state.accNumber} label={'Bank Account Number'} name={'accNumber'} htmlFor={'accNumber'}
+                                                    isrequired={true} onChange={this.onChangeAccNumber.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                            </li>
+                                            <li>
+                                                <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>
+                                            </li>
+                                        </ul>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-</div>
-        );
+            );
+        }
     }
 }
 ReactDOM.render(<EmployeeForm urlPost='' personalPost='' contactPost='' authPost=''/>, document.getElementById('employeeform'));
