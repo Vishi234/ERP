@@ -121,39 +121,65 @@ class MappingForm extends React.Component {
         //Render form
         return (
             <div>
-                <div className="fbse">
-                    <div className="rttl">
-                        <span className="pull-left lft">Courses Subject Mapping</span>
-                        <span className="pull-right toptotal">2 Record(S)</span>
-                        <hr />
+                <div className="block-header container-fluid">
+                    <div className="row clearfix">
+                        <div className="col-lg-6 col-xs-12 col-sm-4 col-md-6">
+                            <h1>Course Subject Mapping</h1>
+                            <nav aria-label="breadcrumb">
+                                <ol className="breadcrumb">
+                                    <li className="breadcrumb-item">
+                                        <a href="javascript:void(0)">Master</a>
+                                    </li>
+                                    <li className="breadcrumb-item active" aria-current="page">
+                                        Mapping
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                        <div className="col-lg-6 col-xs-12 col-sm-8 col-md-6">
+                            <h4 className="text-right font-14">{this.state.records} Record(S)</h4>
+                        </div>
                     </div>
-                    <div className="acform" id="mappingForm" onSubmit={this.handleSubmit.bind(this)}>
-                        <form>
-                            <ul>
-                                <li>
-                                    <CreateInput type={'ddl'} value={this.state.selectedCourse} data={this.state.course} label={'Course'} name={'course'} htmlFor={'course'} isrequired={true}
-                                                 onChange={this.onChangeCourse.bind(this)} keyId={'ID'} keyName={'COURSE_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                </li>
-                                <li>
-                                    <CreateInput type={'ddl'} value={this.state.selectedSemester} data={this.state.semester} label={'Semester'} name={'semester'} htmlFor={'semester'} isrequired={true}
-                                                 onChange={this.onChangeSemester.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                </li>
-                                <li>
-                                    <CreateInput type={'ddl'} value={this.state.selectedSubject} data={this.state.subject} label={'Subject'} name={'subject'} htmlFor={'subject'} isrequired={true}
-                                                 onChange={this.onChangeSubject.bind(this)} keyId={'ID'} keyName={'SUBJECT_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                </li>
-                                <li>
-                                    <CreateInput type={'ddl'} value={this.state.selectedType} data={this.state.type} label={'Subject Type'} name={'type'} htmlFor={'type'} isrequired={true}
-                                                 onChange={this.onChangeType.bind(this)} keyId={'PARAM_ID'} keyName={'PARAM_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                </li>
-                                <li>
-                                    <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>
-                                </li>
-                            </ul>
-
-                        </form>
+                 </div>
+                <div className="block-body container-fluid">
+                    <div className="row clearfix">
+                        <div className="col-lg-12 col-xs-12 col-md-12 col-sm-12">
+                            <div className="card">
+                                <div className="body">
+                                    <div className="acform">
+                                        <form>
+                                            <ul>
+                                                <li>
+                                                    <CreateInput type={'ddl'} value={this.state.selectedCourse} data={this.state.course} label={'Course'} name={'course'} htmlFor={'course'} isrequired={true}
+                                                                 onChange={this.onChangeCourse.bind(this)} keyId={'ID'} keyName={'COURSE_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                </li>
+                                                <li>
+                                                    <CreateInput type={'ddl'} value={this.state.selectedSemester} data={this.state.semester} label={'Semester'} name={'semester'} htmlFor={'semester'} isrequired={true}
+                                                                 onChange={this.onChangeSemester.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                </li>
+                                                <li>
+                                                    <CreateInput type={'ddl'} value={this.state.selectedSubject} data={this.state.subject} label={'Subject'} name={'subject'} htmlFor={'subject'} isrequired={true}
+                                                                 onChange={this.onChangeSubject.bind(this)} keyId={'ID'} keyName={'SUBJECT_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                </li>
+                                                <li>
+                                                    <CreateInput type={'ddl'} value={this.state.selectedType} data={this.state.type} label={'Subject Type'} name={'type'} htmlFor={'type'} isrequired={true}
+                                                                 onChange={this.onChangeType.bind(this)} keyId={'PARAM_ID'} keyName={'PARAM_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                </li>
+                                                <li>
+                                                    <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>
+                                                </li>
+                                            </ul>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="card">
+                                <div className="body">
+                                    <AgGrid columnDef={this.state.columnDef} rowData={this.state.rowData} />
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <AgGrid columnDef={this.state.columnDef} rowData={this.state.rowData} />
                 </div>
             </div>
        );

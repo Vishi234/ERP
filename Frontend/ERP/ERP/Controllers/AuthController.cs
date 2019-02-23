@@ -20,6 +20,11 @@ namespace ERP.Controllers
         {
             return View();
         }
+        public ActionResult Logout()
+        {
+            Session.Abandon();
+            return RedirectToAction("Login");
+        }
         [HttpGet]
         public ActionResult Redirect(string jsonData)
         {
