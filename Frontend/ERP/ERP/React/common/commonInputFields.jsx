@@ -90,7 +90,7 @@
         return (
             <div className={this.props.type}>
                 <div className="form-group">
-                    <label className="font-14" htmlFor={this.props.htmlFor}>{this.props.label}:</label>{inputField}
+                    <label htmlFor={this.props.htmlFor}>{this.props.label}:</label>{inputField}
                     <span className="field-validation-error"></span>
                 </div>
                 <span className="calendarbase"><img src="../../Images/calendar.png" /></span>
