@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ERP.Models.Bal.Employee;
+using ERP.Models.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +14,12 @@ namespace ERP.Controllers
         public ActionResult Registration()
         {
             return View();
+        }
+        [HttpPost]
+        public JsonResult AddContact(EmployeeEntity employeeEntity)
+        {
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            return Json(new Employee().AddUserContact(employeeEntity, objUserEntity.customerId, objUserEntity.userId));
         }
     }
 }

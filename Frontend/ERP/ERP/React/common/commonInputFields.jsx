@@ -36,6 +36,9 @@
         var endDate = moment(endDate, "DD-MMM-YYYY");
         return endDate.diff(startDate);
     }
+    //componentWillUnmount() {
+    //    this.setState({ mode: false })
+    //}
     componentDidMount() {
         if (this.props.onComponentMounted) {
             this.props.onComponentMounted(this); //register this input in the form
@@ -48,6 +51,9 @@
             $('select[name=' + this.props.name + ']').on('change', this.handleChange.bind(this));
             $('select[name=' + this.props.name + ']').trigger("chosen:updated")
         }
+        //this.setState({ mode: true })
+        //this.setState({ this.props.mode = true});
+        
 
     }
     componentDidUpdate() {
