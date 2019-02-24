@@ -620,3 +620,15 @@
 .rgtfrmexp ul {
     width: 90%;
 }
+
+form[name="ContactForm"] li:nth-child(1) {
+    width: 47%;
+}
+
+form[name="AcademicInfo"] li:nth-child(1) {
+    width: 49%;
+}
+
+form[name="AcademicInfo"] li:nth-child(2) {
+    width: 49%;
+}
