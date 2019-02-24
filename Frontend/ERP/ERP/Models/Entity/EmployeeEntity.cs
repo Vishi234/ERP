@@ -18,5 +18,13 @@ namespace ERP.Models.Entity
         public string flag { get; set; }
         public string reportId{ get; set; }
 
-}
+        public string Username { get; set; }
+        public string password { get; set; }
+        public string defPage { get; set; }
+        public string panCard { get; set; }
+        public string accNumber { get; set; }
+        public string accStatus { get; set; }
+        public string bank { get; set; }
+
+    }
 }

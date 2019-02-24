@@ -21,5 +21,12 @@ namespace ERP.Controllers
             UserEntity objUserEntity = UserEntity.GetInstance();
             return Json(new Employee().AddUserContact(employeeEntity, objUserEntity.customerId, objUserEntity.userId));
         }
+
+        [HttpPost]
+        public JsonResult AddAuth(EmployeeEntity employeeEntity)
+        {
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            return Json(new Employee().AddUserAuth(employeeEntity, objUserEntity.customerId, objUserEntity.userId));
+        }
     }
 }

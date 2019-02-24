@@ -301,27 +301,14 @@ var EmployeeForm = React.createClass({
                         MyData = JSON.parse(data.addParams);
                         this.setState
                             ({
-                                empCode: "",
-                                empPunchCard: "",
-                                empDepartment: "",
-                                empDesignation: "",
-                                empSupervisior: "",
-                                empType: "",
-                                empIsMember: "",
                                 Username: "",
                                 password: "",
                                 conPassword: "",
                                 defPage: "",
                                 panCard: "",
                                 accNumber: "",
-                                accStatus: "",
-                                bank: "",
-                                selectedDepartment: [],
-                                selectedDesignation: [],
-                                selectedEmptType: [],
-                                SelectedIsMember: [],
-                                SelectedAccStatus: [],
-                                SelectedBank: [],
+                                SelectedAccStatus: 0,
+                                SelectedBank: 0,                                
                             })
                         //this.setState({ rowData: MyData });
                         //this.setState({ records: MyData.length })
@@ -755,7 +742,7 @@ var EmployeeForm = React.createClass({
                                         </li>
                                         <li>
                                             <CreateInput type={'text'} value={this.state.conPassword} label={'Confirm Password'} name={'conPassword'} htmlFor={'conPassword'}
-                                                isrequired={true} onChange={this.onChangeConPassword.bind(this)} className={'form-control'} onComponentMounted={this.authregister} messageRequired={'required.'} />
+                                                isrequired={true} onChange={this.onChangeConPassword.bind(this)} className={'form-control '} onComponentMounted={this.authregister} messageRequired={'required.'} />
                                         </li>
                                         <li>
                                             <CreateInput type={'text'} value={this.state.defPage} label={'Default Page'} name={'defPage'} htmlFor={'defPage'}
@@ -792,4 +779,4 @@ var EmployeeForm = React.createClass({
         );
     }
 });
-ReactDOM.render(<EmployeeForm urlPost='' personalPost='' contactPost="/Employee/AddContact" authPost='' />, document.getElementById('employeeform'));
+ReactDOM.render(<EmployeeForm urlPost='' personalPost='' contactPost="/Employee/AddContact" authPost="/Employee/AddAuth" />, document.getElementById('employeeform'));
