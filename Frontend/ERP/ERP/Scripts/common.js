@@ -59,3 +59,25 @@ function ReadDropDownData(key, customerId, isParam) {
     }
     return MyData;
 }
+function ReadLocationData(key, locationType, selectedVal) {
+    debugger;
+    var MyData = null;
+    var jsonData = GetJsonData('../../Content/DynamicJs/DropdownData.json');
+
+    if (locationType == 1) {//1 return country name
+        MyData = $.grep(jsonData[key], function (item, i) {
+            return item.PARENT_ID == null;
+        });
+    }
+    else if (locationType == 2) {//1 return state name
+        MyData = $.grep(jsonData[key], function (item, i) {
+            return item.PARENT_ID == selectedVal;
+        });
+    }
+    else {//return city
+        MyData = $.grep(jsonData[key], function (item, i) {
+            return item.PARENT_ID == selectedVal
+        });
+    }
+    return MyData;
+}
