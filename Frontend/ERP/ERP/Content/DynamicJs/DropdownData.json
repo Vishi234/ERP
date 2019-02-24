@@ -1,1 +1,216 @@
-{"AcademicYear":[{"ID":1,"ACADEMIC_YEAR":"2012-2013","START_DATE":"01-Jan-2012","END_DATE":"17-Feb-2019","CUSTOMER_ID":"1"},{"ID":2,"ACADEMIC_YEAR":"2013-2014","START_DATE":"01-Jan-2013","END_DATE":"01-Jan-2014","CUSTOMER_ID":"1"},{"ID":3,"ACADEMIC_YEAR":"2012-2013","START_DATE":"01-Dec-2017","END_DATE":"28-Feb-2019","CUSTOMER_ID":"2"},{"ID":4,"ACADEMIC_YEAR":"2013-2014","START_DATE":"01-Feb-2019","END_DATE":"01-Mar-2019","CUSTOMER_ID":"2"},{"ID":5,"ACADEMIC_YEAR":"2014-2015","START_DATE":"01-Feb-2019","END_DATE":"01-Mar-2019","CUSTOMER_ID":"2"},{"ID":6,"ACADEMIC_YEAR":"2015-2016","START_DATE":"01-Feb-2019","END_DATE":"01-Mar-2019","CUSTOMER_ID":"2"},{"ID":7,"ACADEMIC_YEAR":"2016-2017","START_DATE":"01-Feb-2019","END_DATE":"01-Mar-2019","CUSTOMER_ID":"2"},{"ID":8,"ACADEMIC_YEAR":"2017-2018","START_DATE":"01-Feb-2019","END_DATE":"01-Mar-2019","CUSTOMER_ID":"2"},{"ID":9,"ACADEMIC_YEAR":"2018-2019","START_DATE":"01-Feb-2019","END_DATE":"01-Mar-2019","CUSTOMER_ID":"2"},{"ID":10,"ACADEMIC_YEAR":"2019-2020","START_DATE":"01-Feb-2019","END_DATE":"01-Mar-2019","CUSTOMER_ID":"2"}],"Course":[{"ID":1,"COURSE_NAME":"BBA","NO_SEMESTER":"6","CUSTOMER_ID":"1"},{"ID":2,"COURSE_NAME":"BCA","NO_SEMESTER":"5","CUSTOMER_ID":"1"},{"ID":3,"COURSE_NAME":"MCA","NO_SEMESTER":"4","CUSTOMER_ID":"1"},{"ID":4,"COURSE_NAME":"MBA","NO_SEMESTER":"4","CUSTOMER_ID":"1"},{"ID":5,"COURSE_NAME":"BCA","NO_SEMESTER":"6","CUSTOMER_ID":"2"},{"ID":6,"COURSE_NAME":"BBA","NO_SEMESTER":"6","CUSTOMER_ID":"2"},{"ID":7,"COURSE_NAME":"MCA","NO_SEMESTER":"6","CUSTOMER_ID":"2"},{"ID":8,"COURSE_NAME":"MBA","NO_SEMESTER":"4","CUSTOMER_ID":"2"}],"Param":[{"PARAM_ID":1,"PARAM_TYPE":1,"PARAM_NAME":"Active","PARAM_DESC":"ACTIVE"},{"PARAM_ID":2,"PARAM_TYPE":1,"PARAM_NAME":"In Active","PARAM_DESC":"IN_ACTIVE"},{"PARAM_ID":3,"PARAM_TYPE":2,"PARAM_NAME":"Temporary","PARAM_DESC":"TEMPORARY"},{"PARAM_ID":4,"PARAM_TYPE":2,"PARAM_NAME":"Permanent","PARAM_DESC":"PERMANENT"},{"PARAM_ID":5,"PARAM_TYPE":3,"PARAM_NAME":"A","PARAM_DESC":"A"},{"PARAM_ID":6,"PARAM_TYPE":3,"PARAM_NAME":"B","PARAM_DESC":"B"},{"PARAM_ID":7,"PARAM_TYPE":3,"PARAM_NAME":"C","PARAM_DESC":"C"},{"PARAM_ID":8,"PARAM_TYPE":3,"PARAM_NAME":"D","PARAM_DESC":"D"},{"PARAM_ID":9,"PARAM_TYPE":3,"PARAM_NAME":"E","PARAM_DESC":"E"},{"PARAM_ID":10,"PARAM_TYPE":3,"PARAM_NAME":"F","PARAM_DESC":"F"},{"PARAM_ID":11,"PARAM_TYPE":4,"PARAM_NAME":"English","PARAM_DESC":"ENGLISH"},{"PARAM_ID":12,"PARAM_TYPE":4,"PARAM_NAME":"Hindi","PARAM_DESC":"HINDI"},{"PARAM_ID":13,"PARAM_TYPE":5,"PARAM_NAME":"Theory","PARAM_DESC":"THEORY"},{"PARAM_ID":14,"PARAM_TYPE":5,"PARAM_NAME":"Practical","PARAM_DESC":"PRACTICAL"},{"PARAM_ID":15,"PARAM_TYPE":5,"PARAM_NAME":"TeamWork","PARAM_DESC":"TEAMWORK"}]}
+{
+  "AcademicYear": [
+    {
+      "ID": 1,
+      "ACADEMIC_YEAR": "2012-2013",
+      "START_DATE": "01-Jan-2012",
+      "END_DATE": "17-Feb-2019",
+      "CUSTOMER_ID": "1"
+    },
+    {
+      "ID": 2,
+      "ACADEMIC_YEAR": "2013-2014",
+      "START_DATE": "01-Jan-2013",
+      "END_DATE": "01-Jan-2014",
+      "CUSTOMER_ID": "1"
+    },
+    {
+      "ID": 3,
+      "ACADEMIC_YEAR": "2012-2013",
+      "START_DATE": "01-Dec-2017",
+      "END_DATE": "28-Feb-2019",
+      "CUSTOMER_ID": "2"
+    },
+    {
+      "ID": 4,
+      "ACADEMIC_YEAR": "2013-2014",
+      "START_DATE": "01-Feb-2019",
+      "END_DATE": "01-Mar-2019",
+      "CUSTOMER_ID": "2"
+    },
+    {
+      "ID": 5,
+      "ACADEMIC_YEAR": "2014-2015",
+      "START_DATE": "01-Feb-2019",
+      "END_DATE": "01-Mar-2019",
+      "CUSTOMER_ID": "2"
+    },
+    {
+      "ID": 6,
+      "ACADEMIC_YEAR": "2015-2016",
+      "START_DATE": "01-Feb-2019",
+      "END_DATE": "01-Mar-2019",
+      "CUSTOMER_ID": "2"
+    },
+    {
+      "ID": 7,
+      "ACADEMIC_YEAR": "2016-2017",
+      "START_DATE": "01-Feb-2019",
+      "END_DATE": "01-Mar-2019",
+      "CUSTOMER_ID": "2"
+    },
+    {
+      "ID": 8,
+      "ACADEMIC_YEAR": "2017-2018",
+      "START_DATE": "01-Feb-2019",
+      "END_DATE": "01-Mar-2019",
+      "CUSTOMER_ID": "2"
+    },
+    {
+      "ID": 9,
+      "ACADEMIC_YEAR": "2018-2019",
+      "START_DATE": "01-Feb-2019",
+      "END_DATE": "01-Mar-2019",
+      "CUSTOMER_ID": "2"
+    },
+    {
+      "ID": 10,
+      "ACADEMIC_YEAR": "2019-2020",
+      "START_DATE": "01-Feb-2019",
+      "END_DATE": "01-Mar-2019",
+      "CUSTOMER_ID": "2"
+    }
+  ],
+  "Course": [
+    {
+      "ID": 1,
+      "COURSE_NAME": "BBA",
+      "NO_SEMESTER": "6",
+      "CUSTOMER_ID": "1"
+    },
+    {
+      "ID": 2,
+      "COURSE_NAME": "BCA",
+      "NO_SEMESTER": "5",
+      "CUSTOMER_ID": "1"
+    },
+    {
+      "ID": 3,
+      "COURSE_NAME": "MCA",
+      "NO_SEMESTER": "4",
+      "CUSTOMER_ID": "1"
+    },
+    {
+      "ID": 4,
+      "COURSE_NAME": "MBA",
+      "NO_SEMESTER": "4",
+      "CUSTOMER_ID": "1"
+    },
+    {
+      "ID": 5,
+      "COURSE_NAME": "BCA",
+      "NO_SEMESTER": "6",
+      "CUSTOMER_ID": "2"
+    },
+    {
+      "ID": 6,
+      "COURSE_NAME": "BBA",
+      "NO_SEMESTER": "6",
+      "CUSTOMER_ID": "2"
+    },
+    {
+      "ID": 7,
+      "COURSE_NAME": "MCA",
+      "NO_SEMESTER": "6",
+      "CUSTOMER_ID": "2"
+    },
+    {
+      "ID": 8,
+      "COURSE_NAME": "MBA",
+      "NO_SEMESTER": "4",
+      "CUSTOMER_ID": "2"
+    }
+  ],
+  "Param": [
+    {
+      "PARAM_ID": 1,
+      "PARAM_TYPE": 1,
+      "PARAM_NAME": "Active",
+      "PARAM_DESC": "ACTIVE"
+    },
+    {
+      "PARAM_ID": 2,
+      "PARAM_TYPE": 1,
+      "PARAM_NAME": "In Active",
+      "PARAM_DESC": "IN_ACTIVE"
+    },
+    {
+      "PARAM_ID": 3,
+      "PARAM_TYPE": 2,
+      "PARAM_NAME": "Temporary",
+      "PARAM_DESC": "TEMPORARY"
+    },
+    {
+      "PARAM_ID": 4,
+      "PARAM_TYPE": 2,
+      "PARAM_NAME": "Permanent",
+      "PARAM_DESC": "PERMANENT"
+    },
+    {
+      "PARAM_ID": 5,
+      "PARAM_TYPE": 3,
+      "PARAM_NAME": "A",
+      "PARAM_DESC": "A"
+    },
+    {
+      "PARAM_ID": 6,
+      "PARAM_TYPE": 3,
+      "PARAM_NAME": "B",
+      "PARAM_DESC": "B"
+    },
+    {
+      "PARAM_ID": 7,
+      "PARAM_TYPE": 3,
+      "PARAM_NAME": "C",
+      "PARAM_DESC": "C"
+    },
+    {
+      "PARAM_ID": 8,
+      "PARAM_TYPE": 3,
+      "PARAM_NAME": "D",
+      "PARAM_DESC": "D"
+    },
+    {
+      "PARAM_ID": 9,
+      "PARAM_TYPE": 3,
+      "PARAM_NAME": "E",
+      "PARAM_DESC": "E"
+    },
+    {
+      "PARAM_ID": 10,
+      "PARAM_TYPE": 3,
+      "PARAM_NAME": "F",
+      "PARAM_DESC": "F"
+    },
+    {
+      "PARAM_ID": 11,
+      "PARAM_TYPE": 4,
+      "PARAM_NAME": "English",
+      "PARAM_DESC": "ENGLISH"
+    },
+    {
+      "PARAM_ID": 12,
+      "PARAM_TYPE": 4,
+      "PARAM_NAME": "Hindi",
+      "PARAM_DESC": "HINDI"
+    },
+    {
+      "PARAM_ID": 13,
+      "PARAM_TYPE": 5,
+      "PARAM_NAME": "Theory",
+      "PARAM_DESC": "THEORY"
+    },
+    {
+      "PARAM_ID": 14,
+      "PARAM_TYPE": 5,
+      "PARAM_NAME": "Practical",
+      "PARAM_DESC": "PRACTICAL"
+    },
+    {
+      "PARAM_ID": 15,
+      "PARAM_TYPE": 5,
+      "PARAM_NAME": "TeamWork",
+      "PARAM_DESC": "TEAMWORK"
+    }
+  ]
+}

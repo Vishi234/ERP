@@ -1,26 +1,35 @@
 ﻿class CreateInput extends React.Component {
     handleChange(e) {
         this.props.onChange(e.target.value);
-        var isValidField = this.isValid(e.target);
+        if (this.props.type != "ddl") {
+            var isValidField = this.isValid(e.target);
+        }
     }
     handleBlur(e) {
         this.props.onBlur(e.target.value);
         var isValidField = this.isValid(e.target);
     }
+    handleClick(e) {
+        this.props.onBlur(e.target.value);
+        var isValidField = this.isValid(e.target);
+    }
     isValid(input) {
         //check required field
-        if (input.getAttribute('required') != null && input.value === "") {
-            input.classList.add('input-validation-error'); //add class error
-            input.nextSibling.classList.add('field-validation-error');
-            input.nextSibling.textContent = this.props.messageRequired; // show error message
-            return false;
+        if (input != undefined) {
+            if (input.getAttribute('required') != null && input.value === "") {
+                input.classList.add('input-validation-error'); //add class error
+                input.nextSibling.classList.add('field-validation-error');
+                input.nextSibling.textContent = this.props.messageRequired; // show error message
+                return false;
+            }
+            else {
+                input.classList.remove('input-validation-error');
+                input.nextSibling.classList.remove('field-validation-error');
+                input.nextSibling.textContent = "";
+                return true;
+            }
         }
-        else {
-            input.classList.remove('input-validation-error');
-            input.nextSibling.classList.remove('field-validation-error');
-            input.nextSibling.textContent = "";
-            return true;
-        }
+
     }
     CheckDateDiff(startDate, endDate) {
         var startDate = moment(startDate, "DD-MMM-YYYY");
@@ -38,12 +47,17 @@
             InitializeDate(this.props.name);
         }
         if (this.props.type == "ddl") {
-            //InitializeSelect(this.props.name);
+            InitializeSelect(this.props.name);
+            $('select[name=' + this.props.name + ']').on('change', this.handleChange.bind(this));
+            $('select[name=' + this.props.name + ']').trigger("chosen:updated")
         }
         //this.setState({ mode: true })
         //this.setState({ this.props.mode = true});
         
 
+    }
+    componentDidUpdate() {
+        $('select[name=' + this.props.name + ']').trigger("chosen:updated")
     }
     render() {
 
@@ -53,14 +67,16 @@
                                    className='registration-form-control' required={this.props.isrequired} onChange={this.handleChange.bind(this)} />
         }
         else if (this.props.type == 'ddl') {
-            inputField = <select value={this.props.value} ref={this.props.name} onChange={this.handleChange.bind(this)} name={this.props.name}
+            inputField = <select value={this.props.value} ref='MySelect2' onChange={this.handleChange.bind(this)} name={this.props.name}
                                  className='registration-form-control dropdown' required={this.props.isrequired}>
                             <option key="0" value="0">Select {this.props.label}</option>
+                {this.props.data.map((obj) =>
+                <option key={obj[this.props.keyId]} onClick={this.handleClick.bind(this)} value={obj[this.props.keyId] }>{obj[this.props.keyName]}</option>)}
             </select>
         }
         else if (this.props.type == 'multiSelect') {
             inputField = <select value={this.props.value} ref={this.props.name} name={this.props.name}
-                                 className='registration-form-control' required={this.props.isrequired} onChange={this.handleChange.bind(this)} />
+                                 className='registration-form-control chosen-select' required={this.props.isrequired} onChange={this.handleChange.bind(this)} />
         }
         else if (this.props.type == 'date') {
             inputField = <input type="text" id={this.props.id} value={this.props.value} ref={this.props.name} readOnly autoComplete="off" name={this.props.name}
@@ -74,7 +90,7 @@
         return (
             <div className={this.props.type}>
                 <div className="form-group">
-                    <label htmlFor={this.props.htmlFor}>{this.props.label}:</label>{inputField}
+                    <label className="font-14" htmlFor={this.props.htmlFor}>{this.props.label}:</label>{inputField}
                     <span className="field-validation-error"></span>
                 </div>
                 <span className="calendarbase"><img src="../../Images/calendar.png" /></span>
