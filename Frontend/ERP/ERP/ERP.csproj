@@ -273,10 +273,12 @@
     </Compile>
     <Compile Include="Models\Bal\Common\CommonFunc.cs" />
     <Compile Include="Models\Bal\Common\Excep.cs" />
+    <Compile Include="Models\Bal\Employee\Employee.cs" />
     <Compile Include="Models\Cache\GlobalCache.cs" />
     <Compile Include="Models\Dal\SQLHelper.cs" />
     <Compile Include="Models\Dal\SqlHelper2.cs" />
     <Compile Include="Models\Entity\CustomerEntity.cs" />
+    <Compile Include="Models\Entity\EmployeeEntity.cs" />
     <Compile Include="Models\Entity\MasterEntity.cs" />
     <Compile Include="Models\Entity\ResultEntity.cs" />
     <Compile Include="Models\Entity\UserEntity.cs" />

@@ -56,14 +56,14 @@ var SectionDetails_ExportCaption = ['SECTION_NAME'];
 
  var SubjectDetails = [
 { headerName: labelArray['$ID$'], field: 'id', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
-{ headerName: labelArray['$SUBJECT_CODE$'], field: 'subCode', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
-{ headerName: labelArray['$SUBJECT_NAME$'], field: 'subName', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
-{ headerName: labelArray['$SUBJECT_SHORT_NAME$'], field: 'subShortName', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
-{ headerName: labelArray['$SUBJECT_MEDIUM$'], field: 'subMedium', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
-{ headerName: labelArray['$ACTIVITY_TYPE$'], field: 'subActivity', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
-{ headerName: labelArray['$SUBJECT_TYPE$'], field: 'subType', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true}
+{ headerName: labelArray['$SUBJECT_CODE$'], field: 'scde', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$SUBJECT_NAME$'], field: 'snm', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$SUBJECT_SHORT_NAME$'], field: 'ssnm', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
+{ headerName: labelArray['$SUBJECT_MEDIUM$'], field: 'smed', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
+{ headerName: labelArray['$ACTIVITY_TYPE$'], field: 'sact', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
+{ headerName: labelArray['$SUBJECT_TYPE$'], field: 'styp', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true}
  ];
- var SubjectDetails_Export = ['subShortName','subMedium','subActivity','subType'];
+ var SubjectDetails_Export = ['ssnm','smed','sact','styp'];
 var SubjectDetails_ExportCaption = ['SUBJECT_SHORT_NAME','SUBJECT_MEDIUM','ACTIVITY_TYPE','SUBJECT_TYPE'];
 
  gridViewSettings['$SubjectDetails$'] =SubjectDetails;
@@ -97,5 +97,38 @@ var MappingDetails_ExportCaption = ['SUBJECT'];
  gridViewSettings['$MappingDetails$'] =MappingDetails;
  gridViewSettings['$MappingDetails_Export$'] =MappingDetails_Export;
  gridViewSettings['$MappingDetails_ExportCaption$'] =MappingDetails_ExportCaption;
+
+ var EmployeeDetails = [
+{ headerName: labelArray['$ID$'], field: 'userId', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$FIRST_NAME$'], field: 'fname', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$MIDDLE_NAME$'], field: 'mname', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$LAST_NAME$'], field: 'lname', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$ADHAAR_NO$'], field: 'adhaarNo', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
+{ headerName: labelArray['$GENDER$'], field: 'gender', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$DOB$'], field: 'dob', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$BLOOD_GROUP$'], field: 'bldGrp', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$MARITAL_STATUS$'], field: 'mStatus', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
+{ headerName: labelArray['$DOJ$'], field: 'doj', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
+{ headerName: labelArray['$EMP_CODE$'], field: 'empCode', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$CARD_NO$'], field: 'cardNo', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$DEPT_ID$'], field: 'deptId', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$DESIG_ID$'], field: 'desigId', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
+{ headerName: labelArray['$EMP_TYPE_ID$'], field: 'bldGrp', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$IMG_PATH$'], field: 'imgPath', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
+{ headerName: labelArray['$COUNTRY$'], field: 'country', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$STATE$'], field: 'state', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
+{ headerName: labelArray['$CITY$'], field: 'city', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$MOBILE$'], field: 'mobile', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
+{ headerName: labelArray['$EMAIL$'], field: 'email', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
+{ headerName: labelArray['$LOGIN_ID$'], field: 'loginId', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$DEFAULT_PAGE$'], field: 'defaultPage', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
+{ headerName: labelArray['$ACCOUNT_STATUS$'], field: 'accountStatus', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false}
+ ];
+ var EmployeeDetails_Export = ['adhaarNo','mStatus','doj','desigId','imgPath','state','mobile','email','defaultPage'];
+var EmployeeDetails_ExportCaption = ['ADHAAR_NO','MARITAL_STATUS','DOJ','DESIG_ID','IMG_PATH','STATE','MOBILE','EMAIL','DEFAULT_PAGE'];
+
+ gridViewSettings['$EmployeeDetails$'] =EmployeeDetails;
+ gridViewSettings['$EmployeeDetails_Export$'] =EmployeeDetails_Export;
+ gridViewSettings['$EmployeeDetails_ExportCaption$'] =EmployeeDetails_ExportCaption;
   return gridViewSettings;
 }
