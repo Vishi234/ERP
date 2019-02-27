@@ -47,6 +47,7 @@ function GetJsonData(path) {
 function ReadDropDownData(key, customerId, isParam) {
     var MyData = null;
     var jsonData = GetJsonData('../../Content/DynamicJs/DropdownData.json');
+
     if (isParam == false) {
         MyData = $.grep(jsonData[key], function (item, i) {
             return item.CUSTOMER_ID == customerId

@@ -305,6 +305,7 @@
     <Compile Include="Models\Dal\SqlHelper2.cs" />
     <Compile Include="Models\Entity\EmployeeEntity.cs" />
     <Compile Include="Models\Entity\CustomerEntity.cs" />
+    <Compile Include="Models\Entity\EmployeeEntity.cs" />
     <Compile Include="Models\Entity\MasterEntity.cs" />
     <Compile Include="Models\Entity\ResultEntity.cs" />
     <Compile Include="Models\Entity\UserEntity.cs" />

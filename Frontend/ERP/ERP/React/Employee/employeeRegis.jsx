@@ -70,23 +70,36 @@ var EmployeeForm = React.createClass({
     handleSubmit(e) {
         var validForm = true;
         e.preventDefault();
-        fields.forEach(function (field) {
+
+        fieldsGenInfo.forEach(function (field) {
+
             if (typeof field[0].isValid === "function") {
+
                 var validField = field[0].isValid(field[0].refs[field[0].props.name]);
                 validForm = validForm && validField;
             }
         });
+
         //after validation complete post to server
         if (validForm) {
             var d = {
+                userId: "",
+                firstName: this.state.firstName,
+                middleName: this.state.middleName,
+                lastName: this.state.lastName,
+                adharNo: this.state.adharNo,
+                gender: this.state.SelectedGender,
+                DOB: this.state.SelectedDOB,
+                bloodgrp: this.state.SelectedBloodG,
+                maritalst: this.state.SelectedMarital,
+                joinDate: this.state.SelectedJoinDate,
+
                 empCode: this.state.empCode,
                 empPunchCard: this.state.empPunchCard,
                 empDepartment: this.state.selectedDepartment,
                 empDesignation: this.state.selectedDesignation,
-                empSupervisior: this.state.empSupervisior,
-                empType: this.state.selectedEmptType,
-                empIsMember: this.state.SelectedIsMember,
-                flag: 'A',
+                empType: this.state.selectedEmpType,
+                operType: 'A',
                 reportId: 8
             }
             $.ajax({
@@ -163,16 +176,14 @@ var EmployeeForm = React.createClass({
             }
             $.ajax({
                 type: "POST",
-                url: this.props.personalPost,
+                url: "/Employee/Registration",
                 data: d,
-                beforeSend: function () {
-                    btnloading("employeeGeneral", 'show');
-                },
                 success: function (data) {
                     btnloading("employeeGeneral", 'hide');
                     CallToast(data.msg, data.flag);
                     if (data.flag == "S") {
                         MyData = JSON.parse(data.addParams);
+                        newUserId = data.optionalVal;
                         this.setState
                             ({
                                 empCode: "",
@@ -191,7 +202,7 @@ var EmployeeForm = React.createClass({
                                 accStatus: "",
                                 bank: ""
                             })
-                        //this.setState({ rowData: MyData });
+                        this.setState({ rowData: MyData });
                         //this.setState({ records: MyData.length })
                     }
                 }.bind(this),
@@ -214,7 +225,7 @@ var EmployeeForm = React.createClass({
                 validForm = validForm && validField;
             }
         });
-        //after validation complete post to server
+
         if (validForm) {
             var d = {
                 email: this.state.email,
@@ -232,9 +243,6 @@ var EmployeeForm = React.createClass({
                 type: "POST",
                 url: this.props.contactPost,
                 data: d,
-                beforeSend: function () {
-                    btnloading("employeeGeneral", 'show');
-                },
                 success: function (data) {
                     btnloading("employeeGeneral", 'hide');
                     CallToast(data.msg, data.flag);
@@ -251,8 +259,7 @@ var EmployeeForm = React.createClass({
                                 mobile: "",
                                 email: "",
                             })
-                        //this.setState({ rowData: MyData });
-                        //this.setState({ records: MyData.length })
+   
                     }
                 }.bind(this),
                 error: function (evt) {
@@ -284,8 +291,9 @@ var EmployeeForm = React.createClass({
                 accNumber: this.state.accNumber,
                 accStatus: this.state.SelectedAccStatus,
                 bank: this.state.SelectedBank,
-                flag: 'A',
-                reportId: 11
+                operType: 'A',
+                reportId: 11,
+                userId: 11,
             }
             $.ajax({
                 type: "POST",
@@ -359,36 +367,34 @@ var EmployeeForm = React.createClass({
     },
     onChangeFName(value) {
         this.setState({
-            empFirstName: value
+            firstName: value
         });
     },
     onChangeMName(value) {
         this.setState({
-            empMName: value
+            middleName: value
         });
     },
     onChangeLName(value) {
         this.setState({
-            empLastName: value
+            lastName: value
         });
     },
     onChangeGender(value) {
         this.setState({
-            SelectedGender: value
+            adharNo: value
         });
     },
     onChangeAddar(value) {
         this.setState({
-            addarCard: value
+            SelectedGender: value
         });
     },
-
     onChangeBlood(value) {
         this.setState({
             SelectedBloodG: value
         });
     },
-
     onChangeMarital(value) {
         this.setState({
             SelectedMarital: value
@@ -396,34 +402,34 @@ var EmployeeForm = React.createClass({
     },
     onChangeNationality(value) {
         this.setState({
-            nationality: value
+            SelectedDOB: value
         });
     },
     onChangeGender(value) {
         this.setState({
-            SelectedGender: value
+            SelectedJoinDate: value
         });
     },
 
     onChangeAddar(value) {
         this.setState({
-            addarCard: value
+            empCode: value
         });
     },
 
     onChangeBlood(value) {
         this.setState({
-            SelectedBloodG: value
+            empPunchCard: value
         });
     },
     onJoinBlur(value) {
         this.setState({
-            DOBDate: value
+            selectedDepartment: value
         });
     },
     onDOBBlur(value) {
         this.setState({
-            JoinDate: value
+            selectedDesignation: value
         });
     },
     onChangeAddress(value) {
@@ -446,25 +452,45 @@ var EmployeeForm = React.createClass({
             phone: value
         });
     },
-
     onChangeMobile(value) {
         this.setState({
             mobile: value
         });
     },
-
     onChangeEmail(value) {
         this.setState({
             email: value
         });
     },
-
     onChangeState(value) {
+        debugger;
+        var obj = [];
+        var city = 2;
+        var jsonData = ReadLocationData("Location", 3, value);
+
+        for (var i = 0; i < jsonData.length; i++) {
+            data = {};
+            data.CITY_ID = jsonData[i].LOCATION_ID;
+            data.CITY_NAME = jsonData[i].LOCATION_NAME;
+            obj.push(data);
+        }
+        this.setState({ city: obj });
         this.setState({
             SelectedState: value
         });
     },
     onChangeCountry(value) {
+        var obj = [];
+        var state = 0;
+        var jsonData = ReadLocationData("Location", 2, value);
+
+        for (var i = 0; i < jsonData.length; i++) {
+            data = {};
+            data.STATE_ID = jsonData[i].LOCATION_ID;
+            data.STATE_NAME = jsonData[i].LOCATION_NAME;
+            obj.push(data);
+        }
+        this.setState({ state: obj });
         this.setState({
             SelectedCountry: value
         });
@@ -489,13 +515,11 @@ var EmployeeForm = React.createClass({
             defPage: value
         });
     },
-
     onChangePanCard(value) {
         this.setState({
             panCard: value
         });
     },
-
     onChangeAccNumber(value) {
         this.setState({
             accNumber: value
@@ -671,7 +695,7 @@ var EmployeeForm = React.createClass({
                     <div className="f fm3">
                         <div className="pull-left lftttl">
                             Contact Information
-                <i className="fa fa-angle-down"></i>
+                        <i className="fa fa-angle-down"></i>
                         </div>
                         <div className="pull-right rgtfrm">
                             <div className="acform cstform">
@@ -681,11 +705,13 @@ var EmployeeForm = React.createClass({
                                             <CreateInput type={'text'} value={this.state.address} label={'Address'} name={'address'} htmlFor={'address'}
                                                 isrequired={true} onChange={this.onChangeAddress.bind(this)} className={'form-control'} onComponentMounted={this.contregister} messageRequired={'required.'} />
                                         </li>
+
                                         <li>
                                             <CreateInput type={'ddl'} value={this.state.SelectedCountry} label={'Country'} data={this.state.country}
                                                 name={'country'} htmlFor={'country'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
                                                 onChange={this.onChangeCountry} className={'form-control'} onComponentMounted={this.contregister} messageRequired={'required.'} />
                                         </li>
+                                        
                                         <li>
                                             <CreateInput type={'ddl'} value={this.state.SelectedCity} label={'City'} data={this.state.city}
                                                 name={'city'} htmlFor={'city'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}

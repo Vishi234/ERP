@@ -25,6 +25,5 @@ namespace ERP.Models.Entity
         public string accNumber { get; set; }
         public string accStatus { get; set; }
         public string bank { get; set; }
-
     }
 }
