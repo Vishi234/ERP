@@ -150,7 +150,6 @@ D:\Project\Github ERP\ERP\Frontend\ERP\ERP\bin\System.Web.Helpers.xml
 D:\Project\Github ERP\ERP\Frontend\ERP\ERP\bin\System.Web.Mvc.xml
 D:\Project\Github ERP\ERP\Frontend\ERP\ERP\bin\ru-ru\JavaScriptEngineSwitcher.Core.resources.dll
 D:\Project\Github ERP\ERP\Frontend\ERP\ERP\bin\ru-ru\JavaScriptEngineSwitcher.V8.resources.dll
-D:\Project\Github ERP\ERP\Frontend\ERP\ERP\obj\Debug\ERP.csprojAssemblyReference.cache
 D:\Project\Github ERP\ERP\Frontend\ERP\ERP\obj\Debug\ERP.csproj.CoreCompileInputs.cache
 D:\Project\Github ERP\ERP\Frontend\ERP\ERP\obj\Debug\ERP.csproj.CopyComplete
 D:\Project\Github ERP\ERP\Frontend\ERP\ERP\obj\Debug\ERP.dll
@@ -406,3 +405,4 @@ C:\Users\HP\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Http.WebHost.dl
 C:\Users\HP\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Net.Http.Formatting.xml
 C:\Users\HP\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Http.xml
 C:\Users\HP\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Http.WebHost.xml
+D:\Project\Github ERP\ERP\Frontend\ERP\ERP\obj\Debug\ERP.csprojAssemblyReference.cache

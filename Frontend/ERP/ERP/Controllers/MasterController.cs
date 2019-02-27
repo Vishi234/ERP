@@ -15,12 +15,11 @@ namespace ERP.Controllers
         // GET: Master
 
         public ActionResult Academic()
-        {
-            UserEntity objUserEntity = UserEntity.GetInstance();
+        {           
             AcademicEntity academicEntity = new AcademicEntity();
             academicEntity.flag = 'G';
             academicEntity.reportId = "1";
-            TempData["AcademicData"] = new Master().AddAcademicYear(academicEntity, objUserEntity.customerId, objUserEntity.userId);
+            TempData["AcademicData"] = new Master().AddAcademicYear(academicEntity);
             return View();
         }
 
@@ -28,23 +27,21 @@ namespace ERP.Controllers
         public JsonResult Academic(AcademicEntity academicEntity)
         {
             UserEntity objUserEntity = UserEntity.GetInstance();
-            return Json(new Master().AddAcademicYear(academicEntity, objUserEntity.customerId, objUserEntity.userId));
+            return Json(new Master().AddAcademicYear(academicEntity));
         }
 
         public ActionResult Course()
         {
-            UserEntity objUserEntity = UserEntity.GetInstance();
             CourseEntity courseEntity = new CourseEntity();
             courseEntity.flag = 'G';
             courseEntity.reportId = "2";
-            TempData["CourseData"] = new Master().AddCourse(courseEntity, objUserEntity.customerId, objUserEntity.userId);
+            TempData["CourseData"] = new Master().AddCourse(courseEntity);
             return View();
         }
         [HttpPost]
         public ActionResult Course(CourseEntity courseEntity)
-        {
-            UserEntity objUserEntity = UserEntity.GetInstance();
-            return Json(new Master().AddCourse(courseEntity, objUserEntity.customerId, objUserEntity.userId));
+        {            
+            return Json(new Master().AddCourse(courseEntity));
         }
         public ActionResult Duration()
         {
@@ -52,7 +49,7 @@ namespace ERP.Controllers
             DurationEntity durationEntity = new DurationEntity();
             durationEntity.flag = 'G';
             durationEntity.reportId = "3";
-            TempData["DurationData"] = new Master().AddDuration(durationEntity, objUserEntity.customerId, objUserEntity.userId);
+            TempData["DurationData"] = new Master().AddDuration(durationEntity);
             return View();
         }
         [HttpGet]
@@ -67,7 +64,7 @@ namespace ERP.Controllers
         public ActionResult Duration(DurationEntity durationEntity)
         {
             UserEntity objUserEntity = UserEntity.GetInstance();
-            return Json(new Master().AddDuration(durationEntity, objUserEntity.customerId, objUserEntity.userId));
+            return Json(new Master().AddDuration(durationEntity));
         }
         public ActionResult Activity()
         {
@@ -107,7 +104,7 @@ namespace ERP.Controllers
         public JsonResult Mapping(MappingEntity mapping)
         {
             UserEntity objUserEntity = UserEntity.GetInstance();
-            return Json(new Master().AddMappingDetails(mapping, objUserEntity.customerId, objUserEntity.userId));
+            return Json(new Master().AddMappingDetails(mapping));
         }
 
         [HttpGet]

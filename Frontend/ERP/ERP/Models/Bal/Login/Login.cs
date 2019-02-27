@@ -26,8 +26,11 @@ namespace ERP.Models.Bal.Login
             try
             {
                 SqlParameter[] sqlParameter = new SqlParameter[5];
-                sqlParameter[0] = new SqlParameter("@EMAIL_ID", email);
+                sqlParameter[0] = new SqlParameter("@LOGIN_ID", email);
                 sqlParameter[1] = new SqlParameter("@PASSWORD", Encrypt(password));
+                sqlParameter[2] = new SqlParameter("@USER_TYPE", SqlDbType.Char);
+                sqlParameter[2].Direction = ParameterDirection.Output;
+                sqlParameter[2].Size = 1;
                 sqlParameter[3] = new SqlParameter("@FLAG", SqlDbType.Char);
                 sqlParameter[3].Direction = ParameterDirection.Output;
                 sqlParameter[3].Size = 1;

@@ -13,19 +13,21 @@ namespace ERP.Models.Entity
         public string wtDate { get; set; }
         public string reportId { get; set; }
         public char flag { get; set; }
+        public string active { get; set; }
+        public string yearId { get; set; }
     }
     public class DurationEntity
     {
         public string id { get; set; }
         public string academicYear { get; set; }
-        public string course { get; set; }
+        public string courseId { get; set; }
         public string semester { get; set; }
         public string wefDate { get; set; }
         public string wetDate { get; set; }
-
         public string reportId { get; set; }
-
         public char flag { get; set; }
+        public char durId { get; set; }
+        public string active { get; set; }
     }
     public class CourseEntity
     {
@@ -34,6 +36,8 @@ namespace ERP.Models.Entity
         public string noOfSemester { get; set; }
         public string reportId { get; set; }
         public char flag { get; set; }
+        public char courseType { get; set; }
+        public string active { get; set; }
     }
     public class ActivityEntity
     {
@@ -45,6 +49,7 @@ namespace ERP.Models.Entity
         public string endDate { get; set; }
         public string reportId { get; set; }
         public char flag { get; set; }
+        public string active { get; set; }
     }
 
     public class SectionEntity
@@ -55,8 +60,8 @@ namespace ERP.Models.Entity
         public string customerId { get; set; }
         public string userId { get; set; }
         public char flag { get; set; }
-
         public string reportId { get; set; }
+        public string active { get; set; }
     }
     public class SubjectEntity
     {
@@ -68,6 +73,7 @@ namespace ERP.Models.Entity
         public string subjectType { get; set; }
         public string reportId { get; set; }
         public char flag { get; set; }
+        public string active { get; set; }
     }
     public class MappingEntity
     {
@@ -79,6 +85,9 @@ namespace ERP.Models.Entity
         public string userId { get; set; }
         public string reportId { get; set; }
         public char flag { get; set; }
+        public string active { get; set; }
+        public string durId { get; set; }
+
     }
 
 
