@@ -1024,3 +1024,90 @@ Exception :System.IndexOutOfRangeException: There is no row at position 0.
 Time :27-Feb-2019 20:49:22
 
 ----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: There is no row at position 0.
+   at System.Data.RBTree`1.GetNodeByIndex(Int32 userIndex)
+   at System.Data.DataRowCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Login.CommonLogin.CheckLogin(String email, String password) in D:\Project\Github ERP\ERP\Frontend\ERP\ERP\Models\Bal\Login\Login.cs:line 48
+
+Time :28-Feb-2019 00:33:40
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: There is no row at position 0.
+   at System.Data.RBTree`1.GetNodeByIndex(Int32 userIndex)
+   at System.Data.DataRowCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Login.CommonLogin.CheckLogin(String email, String password) in D:\Project\Github ERP\ERP\Frontend\ERP\ERP\Models\Bal\Login\Login.cs:line 48
+
+Time :28-Feb-2019 00:41:18
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: There is no row at position 0.
+   at System.Data.RBTree`1.GetNodeByIndex(Int32 userIndex)
+   at System.Data.DataRowCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Login.CommonLogin.CheckLogin(String email, String password) in D:\Project\Github ERP\ERP\Frontend\ERP\ERP\Models\Bal\Login\Login.cs:line 48
+
+Time :28-Feb-2019 00:42:07
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: There is no row at position 0.
+   at System.Data.RBTree`1.GetNodeByIndex(Int32 userIndex)
+   at System.Data.DataRowCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Login.CommonLogin.CheckLogin(String email, String password) in D:\Project\Github ERP\ERP\Frontend\ERP\ERP\Models\Bal\Login\Login.cs:line 48
+
+Time :28-Feb-2019 00:43:40
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: There is no row at position 0.
+   at System.Data.RBTree`1.GetNodeByIndex(Int32 userIndex)
+   at System.Data.DataRowCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Login.CommonLogin.CheckLogin(String email, String password) in D:\Project\Github ERP\ERP\Frontend\ERP\ERP\Models\Bal\Login\Login.cs:line 48
+
+Time :28-Feb-2019 00:44:59
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: Cannot find table 1.
+   at System.Data.DataTableCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Login.CommonLogin.CheckLogin(String email, String password) in D:\Project\Github ERP\ERP\Frontend\ERP\ERP\Models\Bal\Login\Login.cs:line 48
+
+Time :28-Feb-2019 00:54:43
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: There is no row at position 0.
+   at System.Data.RBTree`1.GetNodeByIndex(Int32 userIndex)
+   at System.Data.DataRowCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Login.CommonLogin.CheckLogin(String email, String password) in D:\Project\Github ERP\ERP\Frontend\ERP\ERP\Models\Bal\Login\Login.cs:line 48
+
+Time :28-Feb-2019 01:09:34
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: There is no row at position 0.
+   at System.Data.RBTree`1.GetNodeByIndex(Int32 userIndex)
+   at System.Data.DataRowCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Login.CommonLogin.CheckLogin(String email, String password) in D:\Project\Github ERP\ERP\Frontend\ERP\ERP\Models\Bal\Login\Login.cs:line 48
+
+Time :28-Feb-2019 01:12:54
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: There is no row at position 0.
+   at System.Data.RBTree`1.GetNodeByIndex(Int32 userIndex)
+   at System.Data.DataRowCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Login.CommonLogin.CheckLogin(String email, String password) in D:\Project\Github ERP\ERP\Frontend\ERP\ERP\Models\Bal\Login\Login.cs:line 48
+
+Time :28-Feb-2019 01:15:19
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.ArgumentException: Column 'CAT_ID' does not belong to table Table1.
+   at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at ERP.Models.Bal.Login.CommonLogin.CheckLogin(String email, String password) in D:\Project\Github ERP\ERP\Frontend\ERP\ERP\Models\Bal\Login\Login.cs:line 53
+
+Time :28-Feb-2019 01:16:43
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.ArgumentException: Column 'CAT_ID' does not belong to table Table1.
+   at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at ERP.Models.Bal.Login.CommonLogin.CheckLogin(String email, String password) in D:\Project\Github ERP\ERP\Frontend\ERP\ERP\Models\Bal\Login\Login.cs:line 53
+
+Time :28-Feb-2019 01:24:01
+
+----------------------------------------------------------------------------------------------------------------------

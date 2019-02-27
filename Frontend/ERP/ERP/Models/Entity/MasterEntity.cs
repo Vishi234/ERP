@@ -86,7 +86,6 @@ namespace ERP.Models.Entity
         public string reportId { get; set; }
         public char flag { get; set; }
         public string active { get; set; }
-        public string durId { get; set; }
 
     }
 

@@ -6,7 +6,7 @@ using System.Web;
 namespace ERP.Models.Entity
 {
     public class EmployeeEntity
-    {        
+    {
         public string address { get; set; }
         public string country { get; set; }
         public string city { get; set; }
@@ -16,7 +16,7 @@ namespace ERP.Models.Entity
         public string mobile { get; set; }
         public string email { get; set; }
         public string flag { get; set; }
-        public string reportId{ get; set; }
+        public string reportId { get; set; }
 
         public string Username { get; set; }
         public string password { get; set; }

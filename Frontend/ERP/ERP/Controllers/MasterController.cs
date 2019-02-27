@@ -45,7 +45,6 @@ namespace ERP.Controllers
         }
         public ActionResult Duration()
         {
-            UserEntity objUserEntity = UserEntity.GetInstance();
             DurationEntity durationEntity = new DurationEntity();
             durationEntity.flag = 'G';
             durationEntity.reportId = "3";
