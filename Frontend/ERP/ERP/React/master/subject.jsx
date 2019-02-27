@@ -3,8 +3,6 @@
         grdArray = GetReportConfiguration("Master");
         var columnDefs = grdArray["$SubjectDetails$"];
         var records = JSON.parse(content.addParams);
-        jsonData = GetJsonData('../../Content/DynamicJs/DropdownData.json');
-        debugger;
         return {
             subjectCode: "",
             subjectName: "",

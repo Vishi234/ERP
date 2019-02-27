@@ -246,7 +246,7 @@ namespace ERP.Models.Cache
                {
                    AcademicYear = CommonFunc.RdrToList(GetDropDownData("1", 'A')),
                    Course = CommonFunc.RdrToList(GetDropDownData("2", 'A')),
-                   Location = CommonFunc.RdrToList(GetDropDownData("4", 'A')),
+                   Location= CommonFunc.RdrToList(GetDropDownData("4", 'A')),
                    Param = CommonFunc.RdrToList(GetDropDownData("3", 'D')),
                });
             string path = HttpContext.Current.Server.MapPath("~/Content/DynamicJs/");

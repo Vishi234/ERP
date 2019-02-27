@@ -19,6 +19,8 @@ intopmenu img {
     max-width: 100%;
 }
 
+
+
 h1,
 h2,
 h3,
@@ -1234,7 +1236,9 @@ a {
 
 .acform > form > ul > li {
     display: inline-block;
-    width: 14%;
+    width: 15%;
+    margin-bottom: 12px;
+    margin-right: 10px;
 }
 
 
@@ -1246,7 +1250,7 @@ a {
         padding-left: 5px;
         font-size: 12px;
         height: 26px;
-        width: 95%;
+        width: 100%;
         box-shadow: none;
         margin-bottom: 5px;
     }
@@ -1557,16 +1561,7 @@ a {
     width: 100% !important;
 }
 
-.rgtfrm {
-    width: 100%;
-    transition: all 0.4s ease-in-out;
-    overflow: hidden;
-    height: 0px;
-}
 
-.rgtfrmexp {
-    height: 210px !important;
-}
 
 .infoblock .acform {
     border: 0px;
@@ -1598,34 +1593,7 @@ a {
     transition: all 0.4s ease-in-out;
 }
 
-.empbse {
-    float: right;
-    width: 10%;
-    text-align: center;
-    margin-right: 10px;
-}
 
-.empimg {
-    height: 100px;
-    width: 100px;
-    overflow: hidden;
-    margin-top: 25px;
-    display: block;
-    margin: 5px auto;
-    margin-bottom: 0px;
-    border-radius: 4px;
-}
-
-    .empimg img {
-        height: 100%;
-        width: 100%;
-    }
-
-.empbse input {
-    margin-top: 5px;
-    width: 90px;
-    margin-left: 3px;
-}
 
 .cfm {
     height: 0px;

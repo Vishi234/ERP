@@ -60,7 +60,6 @@ function ReadDropDownData(key, customerId, isParam) {
     }
     return MyData;
 }
-
 function ReadLocationData(key, locationType, selectedVal) {
     debugger;
     var MyData = null;

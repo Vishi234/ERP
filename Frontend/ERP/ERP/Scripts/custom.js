@@ -31,7 +31,7 @@
         $(".top-sub-menu").toggleClass("show");
     });
 
-
+    $('.chosen-select').chosen();
     $('.openmodal').click(function () {
         $(".modal").modal("hide");
         $($(this).attr("data-target"))
@@ -86,6 +86,7 @@
             $(this).addClass("act")
         }
     })
+
 })
 
 function btnloading(evt, action) {
@@ -99,12 +100,14 @@ function btnloading(evt, action) {
     }
 }
 function InitializeSelect(name) {
-    $('select[name=' + name + ']').SumoSelect(
-        {
-            forceCustomRendering: true,
-            search: true,
-            searchText: 'Enter here.'
-        });
+    //$('select[name=' + name + ']').SumoSelect(
+    //    {
+    //        forceCustomRendering: true,
+    //        search: true,
+    //        searchText: 'Enter here.'
+    //    });
+    $('select[name=' + name + ']').chosen();
+    $('select[name=' + name + ']').trigger("chosen:updated");
 }
 function InitializeDate(name) {
     var thisYear = (new Date()).getFullYear();

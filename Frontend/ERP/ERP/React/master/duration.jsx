@@ -3,7 +3,6 @@
         grdArray = GetReportConfiguration("Master");
         var columnDefs = grdArray["$DurationDetails$"];
         var records = JSON.parse(content.addParams);
-        jsonData = GetJsonData('../../Content/DynamicJs/DropdownData.json');
         return {
             course: ReadDropDownData("Course", $("#hfCustomerId").val(),false),
             semester: [],

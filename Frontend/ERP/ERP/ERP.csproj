@@ -84,6 +84,10 @@
     <Reference Include="React.Web.Mvc4, Version=4.0.0.0, Culture=neutral, PublicKeyToken=9aed67b161f7db78, processorArchitecture=MSIL">
       <HintPath>..\packages\React.Web.Mvc4.4.0.0\lib\net40\React.Web.Mvc4.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -94,6 +98,12 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.4\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.4\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
@@ -141,6 +151,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\brands.css" />
     <Content Include="Content\brands.min.css" />
+    <Content Include="Content\chosen.css" />
     <Content Include="Content\ConfigFiles\GridHeaders.xml" />
     <Content Include="Content\custom.css" />
     <Content Include="Content\daterangepicker.css" />
@@ -164,7 +175,19 @@
     <Content Include="Global.asax" />
     <Content Include="Images\admin_bg.jpg" />
     <Content Include="Images\calendar.png" />
+    <Content Include="Images\chosen-sprite%402x.png" />
+    <Content Include="Images\chosen-sprite.png" />
+    <Content Include="Images\circle.svg" />
+    <Content Include="Images\icons\cap.svg" />
+    <Content Include="Images\icons\fog.svg" />
+    <Content Include="Images\icons\info.svg" />
+    <Content Include="Images\icons\mail.svg" />
+    <Content Include="Images\icons\notification.svg" />
+    <Content Include="Images\icons\settings.svg" />
+    <Content Include="Images\icons\turn-off.svg" />
+    <Content Include="Images\icons\user.svg" />
     <Content Include="Images\loading.gif" />
+    <Content Include="Images\user-img.png" />
     <Content Include="Licenses\clearscript-license.txt" />
     <Content Include="Licenses\v8-license.txt" />
     <Content Include="Logs\ExceptionLog.txt" />
@@ -173,7 +196,7 @@
     <Content Include="React\common\CommonInputFields.jsx" />
     <Content Include="React\configuration\createorg.jsx" />
     <Content Include="React\configuration\orglist.jsx" />
-    <Content Include="React\Employee\employeeRegis.jsx" />
+    <Content Include="React\employee\registration.jsx" />
     <Content Include="React\master\academicyear.jsx" />
     <Content Include="React\master\activity.jsx" />
     <Content Include="React\master\course.jsx" />
@@ -182,10 +205,12 @@
     <Content Include="React\master\section.jsx" />
     <Content Include="React\master\subject.jsx" />
     <Content Include="React\Registration\Registration.jsx" />
+    <Content Include="React\student\admission.jsx" />
     <Content Include="Scripts\ag-grid.min.js" />
     <Content Include="Scripts\appconfig.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\chosen.jquery.min.js" />
     <Content Include="Scripts\common.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\daterangepicker.js" />
@@ -268,6 +293,7 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -277,6 +303,7 @@
     <Compile Include="Models\Cache\GlobalCache.cs" />
     <Compile Include="Models\Dal\SQLHelper.cs" />
     <Compile Include="Models\Dal\SqlHelper2.cs" />
+    <Compile Include="Models\Entity\EmployeeEntity.cs" />
     <Compile Include="Models\Entity\CustomerEntity.cs" />
     <Compile Include="Models\Entity\EmployeeEntity.cs" />
     <Compile Include="Models\Entity\MasterEntity.cs" />
@@ -304,6 +331,7 @@
     <Content Include="Views\Cache\Index.cshtml" />
     <Content Include="Content\DynamicJs\DropdownData.json" />
     <Content Include="Views\Employee\Registration.cshtml" />
+    <Content Include="Views\Student\Admission.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -232,7 +232,7 @@
 
 .smenu {
     background: #fff;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     display: block;
     height: 0px;
     transition: all 0.4s ease-in-out;
@@ -252,7 +252,7 @@
 
     .smenu::-webkit-scrollbar-thumb {
         border-radius: 10px;
-        background: rgba(255, 255, 255, .7);
+        background: rgba(0, 0, 0, .7);
     }
 
     .smenu > ul > li {
@@ -477,6 +477,10 @@
     align-items: center;
 }
 
+    .card-value img {
+        height: 100%;
+    }
+
     .card-value h3 {
         font-weight: 500;
         font-size: 28px;
@@ -537,3 +541,94 @@
         color: #96989c;
         font-weight: 300;
     }
+
+.padding-0, .card .header .header-dropdown, .top-navbar #navbar-search, .top-navbar #navbar-search .btn, .sidebar-nav ul, .megamenu .q_links, .block-header .breadcrumb, .accordion .card-header, .accordion2, .chat-widget, .right_chat .media .status, .chatapp_body .chat-history .message_data, .timeline, .fc .fc-view-container .fc-view.fc-basic-view > table > thead tr th.fc-agenda-gutter, .fc .fc-view-container .fc-view.fc-basic-view > table > thead tr td.fc-agenda-gutter, .fc .fc-view-container .fc-view.fc-agenda > table > thead tr th.fc-agenda-gutter, .fc .fc-view-container .fc-view.fc-agenda > table > thead tr td.fc-agenda-gutter, .fc .fc-view-container .fc-view.fc-basic-view > table > thead tr td.fc-widget-header, .fc .fc-view-container .fc-view.fc-agenda > table > thead tr td.fc-widget-header {
+    padding: 0 !important;
+}
+
+.card-header:first-child {
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+    margin-bottom: 0;
+    background-color: rgba(0,0,0,.03);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.align-left, .accordion .card-header .btn, .chat-widget li.left .chat-info, .chatapp_body .chat-history .message_data li.left .message {
+    text-align: left;
+}
+
+.accordion .card-header .btn {
+    font-size: 15px;
+    color: #bbbec2;
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.m-b-5, ul.choose-skin li, .auth-main .btn-signin-social, .accordion > div {
+    margin-bottom: 5px;
+}
+
+.accordion > div {
+    background: #2f3338;
+    border-radius: .1875rem;
+}
+
+.accordion .card-header .btn {
+    text-decoration: none !important;
+}
+
+    .accordion .card-header .btn:hover {
+        text-decoration: none;
+    }
+
+.empbse {
+    float: right;
+    width: 10%;
+    text-align: center;
+    margin-right: 10px;
+    margin-top: -220px;
+}
+
+.empimg {
+    height: 100px;
+    width: 100px;
+    overflow: hidden;
+    margin-top: 25px;
+    display: block;
+    margin: 5px auto;
+    margin-bottom: 0px;
+    border-radius: 4px;
+}
+
+    .empimg img {
+        height: 100%;
+        width: 100%;
+    }
+
+.empbse input {
+    margin-top: 5px;
+    width: 90px;
+    margin-left: 3px;
+}
+
+/*.rgtfrm {
+    width: 100%;
+    transition: all 0.4s ease-in-out;
+    overflow: hidden;
+    height: 0px;
+}*/
+.rgtfrmexp ul {
+    width: 90%;
+}
+
+form[name="ContactForm"] li:nth-child(1) {
+    width: 47%;
+}
+
+form[name="AcademicInfo"] li:nth-child(1) {
+    width: 49%;
+}
+
+form[name="AcademicInfo"] li:nth-child(2) {
+    width: 49%;
+}

@@ -1,41 +1,72 @@
 ﻿var grdArray;
 var MyData = null;
 var fields = [];
-var fieldsGenInfo = [];
-var fieldsContInfo = [];
-var fieldsAuthInfo = [];
-var newUserId = "";
-
-
+var perfields = [];
+var contfields = [];
+var authfields = [];
 
 var EmployeeForm = React.createClass({
 
+        //grdArray = GetReportConfiguration("Employee");
+        //var columnDefs = grdArray["$EmployeeDetails$"];
+        //var records = JSON.parse(content.addParams);
     getInitialState: function () {
-   
-        grdArray = GetReportConfiguration("Master");
-        var columnDefs = grdArray["$EmployeeDetails$"];
-        var records = JSON.parse(content.addParams);
-        jsonData = GetJsonData('../../Content/DynamicJs/DropdownData.json');
         return {
-            gender: ReadDropDownData("Param", '12', true) ,
-            bloodgrp: ReadDropDownData("Param", '10', true),
-            maritalst: ReadDropDownData("Param", '11', true),
-            empDepartment: ReadDropDownData("Param", '7', true),
-            empDesignation: ReadDropDownData("Param", '8', true),
-            empType: ReadDropDownData("Param", '9', true),
-            accStatus: ReadDropDownData("Param", '1', true),
-            bank: ReadDropDownData("Param", '4', true),
-            country: ReadLocationData("Location", 1, ""),
-            state:[],
-            city: [],
-            Fields: [],
-            columnDef: columnDefs,
-            rowData: records,
-            records: ((records == null) ? 0 : records.length),
+                empCode: "",
+                empPunchCard: "",
+                empDepartment: ReadDropDownData("Param", '7', true),
+                empDesignation: ReadDropDownData("Param", '8', true),
+                empSupervisior: "",
+                empType: ReadDropDownData("Param", '9', true),
+                empIsMember: ReadDropDownData("Param", '12', true),
+                nationality: "",
+                addarCard: "",
+                empLastName: "",
+                empMName: "",
+                empFirstName: "",
+                gender: ReadDropDownData("Param", '13', true),
+                DOB: "",
+                bloodgrp: ReadDropDownData("Param", '10', true),
+                maritalst: ReadDropDownData("Param", '11', true),
+                joinDate: "",
+                address: "",
+                city: [],
+                pinCode: "",
+                phone: "",
+                mobile: "",
+                email: "",
+                state: [],
+                country: [],
+                Username: "",
+                password: "",
+                conPassword: "",
+                defPage: "",
+                panCard: "",
+                accNumber: "",
+                accStatus: "",
+                bank: "",
+                SelectedGender: 0,
+                SelectedMarital: 0,
+                SelectedBloodG: 0,
+                selectedDepartment: 0,
+                selectedDesignation: 0,
+                selectedEmptType: 0,
+                SelectedIsMember: 0,
+                SelectedState: 0,
+                SelectedCountry: 0,
+                SelectedCity: 0,
+                SelectedAccStatus: 0,
+                SelectedBank: 0,
+                Fields: [],
 
-        }
+
+                //columnDef: columnDefs,
+                //rowData: records,
+                //records: ((records == null) ? 0 : records.length),
+                ServerMessage: ''
+            }
+        // this.handleSubmit = this.handleSubmit.bind(this);
     },
-
     handleSubmit(e) {
         var validForm = true;
         e.preventDefault();
@@ -70,7 +101,78 @@ var EmployeeForm = React.createClass({
                 empType: this.state.selectedEmpType,
                 operType: 'A',
                 reportId: 8
+            }
+            $.ajax({
+                type: "POST",
+                url: this.props.urlPost,
+                data: d,
+                beforeSend: function () {
+                    btnloading("employeeGeneral", 'show');
+                },
+                success: function (data) {
+                    btnloading("employeeGeneral", 'hide');
+                    CallToast(data.msg, data.flag);
+                    if (data.flag == "S") {
+                        MyData = JSON.parse(data.addParams);
+                        this.setState
+                            ({
+                                empCode: "",
+                                empPunchCard: "",
+                                empDepartment: "",
+                                empDesignation: "",
+                                empSupervisior: "",
+                                empType: "",
+                                empIsMember: "",
+                                Username: "",
+                                password: "",
+                                conPassword: "",
+                                defPage: "",
+                                panCard: "",
+                                accNumber: "",
+                                accStatus: "",
+                                bank: "",
+                                selectedDepartment: [],
+                                selectedDesignation: [],
+                                selectedEmptType: [],
+                                SelectedIsMember: [],
+                                SelectedAccStatus: [],
+                                SelectedBank: [],
+                            })
+                        //this.setState({ rowData: MyData });
+                        //this.setState({ records: MyData.length })
+                    }
+                }.bind(this),
+                error: function (evt) {
+                    btnloading("employeeGeneral", 'hide');
+                    alert('Error! Please try again');
+                }
+            })
+            e.preventDefault();
+        }
+    },
 
+    handlePersSubmit(e) {
+        var validForm = true;
+        e.preventDefault();
+        perfields.forEach(function (field) {
+            if (typeof field[0].isValid === "function") {
+                var validField = field[0].isValid(field[0].refs[field[0].props.name]);
+                validForm = validForm && validField;
+            }
+        });
+        //after validation complete post to server
+        if (validForm) {
+            var d = {
+                empLastName: this.state.empLastName,
+                empMName: this.state.empMName,
+                empFirstName: this.state.empFirstName,
+                gender: this.state.SelectedGender,
+                DOB: this.state.DOB,
+                bloodgrp: this.state.SelectedBloodG,
+                maritalst: this.state.SelectedMarital,
+                joinDate: this.state.joinDate,
+                flag: 'A',
+                reportId: 9
             }
             $.ajax({
                 type: "POST",
@@ -83,20 +185,22 @@ var EmployeeForm = React.createClass({
                         MyData = JSON.parse(data.addParams);
                         newUserId = data.optionalVal;
                         this.setState
-                            ({                          
-                                gender: ReadDropDownData("Param", '12', true),
-                                bloodgrp: ReadDropDownData("Param", '10', true),
-                                maritalst: ReadDropDownData("Param", '11', true),
-                                empDepartment: ReadDropDownData("Param", '7', true),
-                                empDesignation: ReadDropDownData("Param", '8', true),
-                                empType: ReadDropDownData("Param", '9', true),
-                                firstName: '',
-                                middleName: '',
-                                lastName: '',
-                                adharNo: '',
-                                empCode: '',
-                                empPunchCard:''
-
+                            ({
+                                empCode: "",
+                                empPunchCard: "",
+                                empDepartment: "",
+                                empDesignation: "",
+                                empSupervisior: "",
+                                empType: "",
+                                empIsMember: "",
+                                Username: "",
+                                password: "",
+                                conPassword: "",
+                                defPage: "",
+                                panCard: "",
+                                accNumber: "",
+                                accStatus: "",
+                                bank: ""
                             })
                         this.setState({ rowData: MyData });
                         //this.setState({ records: MyData.length })
@@ -112,30 +216,28 @@ var EmployeeForm = React.createClass({
     },
 
     handleContSubmit(e) {
+        alert(11);
         var validForm = true;
         e.preventDefault();
-
-        fieldsContInfo.forEach(function (field) {
-            if (typeof field[0].isValid === "function") {
-                var validField = field[0].isValid(field[0].refs[field[0].props.name]);
+        contfields.forEach(function (contfield) {
+            if (typeof contfield[0].isValid === "function") {
+                var validField = contfield[0].isValid(contfield[0].refs[contfield[0].props.name]);
                 validForm = validForm && validField;
             }
         });
 
         if (validForm) {
             var d = {
-
                 email: this.state.email,
                 address: this.state.address,
-                country: ReadLocationData("Location", 1, ""),
+                country: this.state.SelectedCountry,
                 city: this.state.SelectedCity,
                 state: this.state.SelectedState,
                 pinCode: this.state.pinCode,
                 phone: this.state.phone,
                 mobile: this.state.mobile,
-                userId: newUserId,
-                operType: 'A',
-                reportId: '10'
+                flag: 'A',
+                reportId: 10
             }
             $.ajax({
                 type: "POST",
@@ -172,7 +274,7 @@ var EmployeeForm = React.createClass({
     handleAuthSubmit(e) {
         var validForm = true;
         e.preventDefault();
-        fieldsAuthInfo.forEach(function (field) {
+        authfields.forEach(function (field) {
             if (typeof field[0].isValid === "function") {
                 var validField = field[0].isValid(field[0].refs[field[0].props.name]);
                 validForm = validForm && validField;
@@ -214,7 +316,7 @@ var EmployeeForm = React.createClass({
                                 panCard: "",
                                 accNumber: "",
                                 SelectedAccStatus: 0,
-                                SelectedBank: 0,  
+                                SelectedBank: 0,                                
                             })
                         //this.setState({ rowData: MyData });
                         //this.setState({ records: MyData.length })
@@ -227,53 +329,6 @@ var EmployeeForm = React.createClass({
             })
             e.preventDefault();
         }
-    },
-
-
-    onChangeFName(value) {
-        this.setState({
-            firstName: value
-        });
-    },
-    onChangeMName(value) {
-        this.setState({
-            middleName: value
-        });
-    },
-    onChangeLName(value) {
-        this.setState({
-            lastName: value
-        });
-    },
-    onChangeAddar(value) {
-        this.setState({
-            adharNo: value
-        });
-    },
-    onChangeGender(value) {
-        this.setState({
-            SelectedGender: value
-        });
-    },
-    onChangeBlood(value) {
-        this.setState({
-            SelectedBloodG: value
-        });
-    },
-    onChangeMarital(value) {
-        this.setState({
-            SelectedMarital: value
-        });
-    },
-    onDOBBlur(value) {
-        this.setState({
-            SelectedDOB: value
-        });
-    },
-    onJoinBlur(value) {
-        this.setState({
-            SelectedJoinDate: value
-        });
     },
     onChangeCode(value) {
         this.setState({
@@ -295,15 +350,86 @@ var EmployeeForm = React.createClass({
             selectedDesignation: value
         });
     },
-    onChangeEmployeeType(value) {
+    onChangeSupervisior(value) {
         this.setState({
-            selectedEmpType: value
+            empSupervisior: value
         });
     },
-
+    onChangeType(value) {
+        this.setState({
+            selectedEmptType: value
+        });
+    },
     onChangeIsMember(value) {
         this.setState({
             SelectedIsMember: value
+        });
+    },
+    onChangeFName(value) {
+        this.setState({
+            firstName: value
+        });
+    },
+    onChangeMName(value) {
+        this.setState({
+            middleName: value
+        });
+    },
+    onChangeLName(value) {
+        this.setState({
+            lastName: value
+        });
+    },
+    onChangeGender(value) {
+        this.setState({
+            adharNo: value
+        });
+    },
+    onChangeAddar(value) {
+        this.setState({
+            SelectedGender: value
+        });
+    },
+    onChangeBlood(value) {
+        this.setState({
+            SelectedBloodG: value
+        });
+    },
+    onChangeMarital(value) {
+        this.setState({
+            SelectedMarital: value
+        });
+    },
+    onChangeNationality(value) {
+        this.setState({
+            SelectedDOB: value
+        });
+    },
+    onChangeGender(value) {
+        this.setState({
+            SelectedJoinDate: value
+        });
+    },
+
+    onChangeAddar(value) {
+        this.setState({
+            empCode: value
+        });
+    },
+
+    onChangeBlood(value) {
+        this.setState({
+            empPunchCard: value
+        });
+    },
+    onJoinBlur(value) {
+        this.setState({
+            selectedDepartment: value
+        });
+    },
+    onDOBBlur(value) {
+        this.setState({
+            selectedDesignation: value
         });
     },
     onChangeAddress(value) {
@@ -313,17 +439,12 @@ var EmployeeForm = React.createClass({
     },
     onChangeCity(value) {
         this.setState({
-            city: value
+            SelectedCity: value
         });
     },
     onChangePinCode(value) {
         this.setState({
             pinCode: value
-        });
-    },
-    onChangeNationality(value) {
-        this.setState({
-            nationality: value
         });
     },
     onChangePhone(value) {
@@ -412,27 +533,34 @@ var EmployeeForm = React.createClass({
     },
     onChangeBank(value) {
         this.setState({
-            SelectedCountry: value
+            SelectedBank: value
         });
     },
-
-
+    //register input controls
     register(field) {
         var s = [];
         s.push(field);
-        fieldsGenInfo.push(s);
-    },
-    AuthenticateRegister(field) {
-        var s = [];
-        s.push(field);
-        fieldsAuthInfo.push(s);
-    },
-    contactRegister(field) {
-        var s = [];
-        s.push(field);
-        fieldsContInfo.push(s);
+        fields.push(s);
     },
 
+    perregister(field) {
+        var s = [];
+        s.push(field);
+        perfields.push(s);
+    },
+    contregister(contfield) {
+        var s = [];
+        s.push(contfield);
+        contfields.push(s);
+    },
+    authregister(field) {
+        var s = [];
+        s.push(field);
+        authfields.push(s);
+    },
+    //GetData(data) {
+    //    this.setState({ rowData: data });
+    //}
     render() {
         return (
             <div>
@@ -440,7 +568,7 @@ var EmployeeForm = React.createClass({
                     <div className="f">
                         <div className="pull-left lftttl act">
                             General Information
-                    <i className="fa fa-angle-down"></i>
+            <i className="fa fa-angle-down"></i>
                         </div>
                         <div className="pull-right rgtfrm rgtfrmexp">
 
@@ -448,68 +576,39 @@ var EmployeeForm = React.createClass({
                                 <form name='GeneralForm' id="GeneralForm" noValidate onSubmit={this.handleSubmit}>
                                     <ul>
                                         <li>
-                                            <CreateInput type={'text'} value={this.state.firstName} label={'First Name'} name={'firstName'} htmlFor={'firstName'}
-                                                isrequired={true} onChange={this.onChangeFName.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-
-                                        </li>
-                                        <li>
-                                            <CreateInput type={'text'} value={this.state.middleName} label={'Middle Name'} name={'middleName'} htmlFor={'middleName'}
-                                                isrequired={true} onChange={this.onChangeMName.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
-                                            <CreateInput type={'text'} value={this.state.lastName} label={'Last Name'} name={'lastName'} htmlFor={'lastName'}
-                                                isrequired={true} onChange={this.onChangeLName.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
-                                            <CreateInput type={'text'} value={this.state.adharNo} label={'Adhaar Card No.'} name={'adharNo'} htmlFor={'adharNo'}
-                                                isrequired={true} onChange={this.onChangeAddar.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
-                                            <CreateInput type={'ddl'} value={this.state.SelectedGender} data={this.state.gender} label={'Gender'} name={'gender'} htmlFor={'gender'} isrequired={true}
-                                                keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeGender} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-
-                                            
-                                        </li>
-                                        <li>
-                                            <CreateInput type={'ddl'} value={this.state.SelectedBloodG} data={this.state.bloodgrp} label={'Blood Group'} name={'bloodgrp'} htmlFor={'bloodgrp'} isrequired={true}
-                                                keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeBlood} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-
-                                        </li>
-                                        <li>
-                                            <CreateInput type={'ddl'} value={this.state.SelectedMarital} data={this.state.maritalst} label={'Marital Status'} name={'maritalst'} htmlFor={'maritalst'} isrequired={true}
-                                                keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeMarital} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
-                                            <CreateInput type={'date'} value={this.state.SelectedDOB} data={this.state.DOB}  label={'Date Of Birth'} name={'DOB'} htmlFor={'DOB'} isrequired={true}
-                                                className={'startDate form-control'} onBlur={this.onDOBBlur.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
-                                            <CreateInput type={'date'} value={this.state.SelectedJoinDate} data={this.state.joinDate} id={'JoinDate'} label={'Joining Date'} name={'joinDate'} htmlFor={'joinDate'} isrequired={true}
-                                                className={'startDate form-control'} onBlur={this.onJoinBlur.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
                                             <CreateInput type={'text'} value={this.state.empCode} label={'Employee Code'} name={'empCode'} htmlFor={'empCode'}
                                                 isrequired={true} onChange={this.onChangeCode.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+
                                         </li>
                                         <li>
                                             <CreateInput type={'text'} value={this.state.empPunchCard} label={'Punch Card Number'} name={'empPunchCard'}
                                                 htmlFor={'empPunchCard'}
-                                                isrequired={true} onChange={this.onChangePunchCard.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                isrequired={true} onChange={this.onChangeCode.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                         </li>
                                         <li>
-                                                <CreateInput type={'ddl'} value={this.state.selectedDepartment} data={this.state.empDepartment} label={'Department'}
+                                            <CreateInput type={'ddl'} value={this.state.selectedDepartment} data={this.state.empDepartment} label={'Department'}
                                                 name={'empDepartment'} htmlFor={'empDepartment'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
-                                                onChange={this.onChangeDepartment} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                         </li>
                                         <li>
                                             <CreateInput type={'ddl'} value={this.state.selectedDesignation} data={this.state.empDesignation} label={'Designation'}
                                                 name={'empDesignation'} htmlFor={'empDesignation'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
-                                                onChange={this.onChangeDesignation} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                         </li>
                                         <li>
-                                            <CreateInput type={'ddl'} value={this.state.selectedEmpType} data={this.state.empType} label={'Employee Type'}
+                                            <CreateInput type={'text'} value={this.state.empSupervisior} label={'Supervisior Code'} name={'Supervisior Code'}
+                                                htmlFor={'empSupervisior'}
+                                                isrequired={true} onChange={this.onChangeCode.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                        </li>
+                                        <li>
+                                            <CreateInput type={'ddl'} value={this.state.selectedEmptType} data={this.state.empType} label={'Employee Type'}
                                                 name={'empType'} htmlFor={'empType'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
-                                                onChange={this.onChangeEmployeeType} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                        </li>
+                                        <li>
+                                            <CreateInput type={'ddl'} value={this.state.SelectedIsMember} data={this.state.empIsMember} label={'Is Member'}
+                                                name={'empIsMember'} htmlFor={'empIsMember'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
+                                                onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                         </li>
                                         <li>
                                             <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>
@@ -529,6 +628,70 @@ var EmployeeForm = React.createClass({
                 </div>
 
                 <div className="infoblock">
+                    <div className="f fm2">
+                        <div className="pull-left lftttl">
+                            Personal Information
+                <i className="fa fa-angle-down"></i>
+                        </div>
+                        <div className="pull-right rgtfrm">
+                            <div className="acform cstform">
+                                <form name='PersonalForm' id="PersonalForm" noValidate onSubmit={this.handlePersSubmit}>
+                                    <ul>
+                                        <li>
+                                            <CreateInput type={'text'} value={this.state.empFirstName} label={'First Name'} name={'empFirstName'} htmlFor={'empFirstName'}
+                                                isrequired={true} onChange={this.onChangeFName.bind(this)} className={'form-control'} onComponentMounted={this.perregister} messageRequired={'required.'} />
+
+                                        </li>
+                                        <li>
+                                            <CreateInput type={'text'} value={this.state.empMName} label={'Last Name'} name={'empMName'} htmlFor={'empMName'}
+                                                isrequired={true} onChange={this.onChangeFName.bind(this)} className={'form-control'} onComponentMounted={this.perregister} messageRequired={'required.'} />
+                                        </li>
+                                        <li>
+                                            <CreateInput type={'text'} value={this.state.empLastName} label={'Last Name'} name={'empLastName'} htmlFor={'empLastName'}
+                                                isrequired={true} onChange={this.onChangeFName.bind(this)} className={'form-control'} onComponentMounted={this.perregister} messageRequired={'required.'} />
+                                        </li>
+                                        <li>
+                                            <CreateInput type={'ddl'} value={this.state.SelectedGender} label={'Gender'} data={this.state.gender}
+                                                name={'gender'} htmlFor={'gender'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
+                                                onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.perregister} messageRequired={'required.'} />
+                                        </li>
+                                        <li>
+                                            <CreateInput type={'date'} value={this.state.SelectedDOB} id={'DOBDate'} label={'Date Of Birth'} name={'DOB'} htmlFor={'DOB'} isrequired={true}
+                                                className={'startDate form-control'} onBlur={this.onDOBBlur.bind(this)} onComponentMounted={this.perregister} messageRequired={'required.'} />
+                                        </li>
+                                        <li>
+                                            <CreateInput type={'text'} value={this.state.addarCard} label={'Adhaar Card No.'} name={'addarCard'} htmlFor={'addarCard'}
+                                                isrequired={true} onChange={this.onChangeFName.bind(this)} className={'form-control'} onComponentMounted={this.perregister} messageRequired={'required.'} />
+                                        </li>
+                                        <li>
+                                            <CreateInput type={'ddl'} value={this.state.SelectedBloodG} label={'Blood Group'} data={this.state.bloodgrp}
+                                                name={'bloodgrp'} htmlFor={'bloodgrp'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
+                                                onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.perregister} messageRequired={'required.'} />
+                                        </li>
+                                        <li>
+                                            <CreateInput type={'ddl'} value={this.state.SelectedMarital} label={'Marital Status'} data={this.state.maritalst}
+                                                name={'maritalst'} htmlFor={'maritalst'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
+                                                onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.perregister} messageRequired={'required.'} />
+                                        </li>
+                                        <li>
+                                            <CreateInput type={'text'} value={this.state.nationality} label={'Nationality'} name={'nationality'} htmlFor={'nationality'}
+                                                isrequired={true} onChange={this.onChangeFName.bind(this)} className={'form-control'} onComponentMounted={this.perregister} messageRequired={'required.'} />
+                                        </li>
+                                        <li>
+                                            <CreateInput type={'date'} value={this.state.SelectedJoinDate} id={'JoinDate'} label={'Joining Date'} name={'joinDate'} htmlFor={'joinDate'} isrequired={true}
+                                                className={'startDate form-control'} onBlur={this.onJoinBlur.bind(this)} onComponentMounted={this.perregister} messageRequired={'required.'} />
+                                        </li>
+                                        <li>
+                                            <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>
+                                        </li>
+                                    </ul>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="infoblock">
                     <div className="f fm3">
                         <div className="pull-left lftttl">
                             Contact Information
@@ -540,45 +703,40 @@ var EmployeeForm = React.createClass({
                                     <ul>
                                         <li>
                                             <CreateInput type={'text'} value={this.state.address} label={'Address'} name={'address'} htmlFor={'address'}
-                                                isrequired={true} onChange={this.onChangeAddress.bind(this)} className={'form-control'} onComponentMounted={this.contactRegister} messageRequired={'required.'} />
+                                                isrequired={true} onChange={this.onChangeAddress.bind(this)} className={'form-control'} onComponentMounted={this.contregister} messageRequired={'required.'} />
                                         </li>
 
                                         <li>
                                             <CreateInput type={'ddl'} value={this.state.SelectedCountry} label={'Country'} data={this.state.country}
-                                                name={'country'} htmlFor={'country'} isrequired={true} keyId={'LOCATION_ID'} keyName={'LOCATION_NAME'}
-                                                onChange={this.onChangeCountry.bind(this)} className={'form-control'} onComponentMounted={this.contactRegister} messageRequired={'required.'} />
+                                                name={'country'} htmlFor={'country'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
+                                                onChange={this.onChangeCountry} className={'form-control'} onComponentMounted={this.contregister} messageRequired={'required.'} />
                                         </li>
                                         
                                         <li>
-                                            <CreateInput type={'ddl'} value={this.state.SelectedState} label={'State'} data={this.state.state}
-                                                name={'state'} htmlFor={'state'} isrequired={true} keyId={'STATE_ID'} keyName={'STATE_NAME'}
-                                                onChange={this.onChangeState.bind(this)} className={'form-control'} onComponentMounted={this.contactRegister} messageRequired={'required.'} />
+                                            <CreateInput type={'ddl'} value={this.state.SelectedCity} label={'City'} data={this.state.city}
+                                                name={'city'} htmlFor={'city'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
+                                                onChange={this.onChangeCity} className={'form-control'} onComponentMounted={this.contregister} messageRequired={'required.'} />
                                         </li>
                                         <li>
-                                            <CreateInput type={'ddl'} value={this.state.SelectedCity} label={'City'} data={this.state.city}
-                                                name={'city'} htmlFor={'city'} isrequired={true} keyId={'CITY_ID'} keyName={'CITY_NAME'}
-                                                onChange={this.onChangeCity.bind(this)} className={'form-control'} onComponentMounted={this.contactRegister} messageRequired={'required.'} />
+                                            <CreateInput type={'ddl'} value={this.state.SelectedState} label={'State'} data={this.state.state}
+                                                name={'state'} htmlFor={'state'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
+                                                onChange={this.onChangeState} className={'form-control'} onComponentMounted={this.contregister} messageRequired={'required.'} />
                                         </li>
-
                                         <li>
                                             <CreateInput type={'text'} value={this.state.pinCode} label={'Pincode'} name={'pinCode'} htmlFor={'pinCode'}
-                                                isrequired={true} onChange={this.onChangePinCode.bind(this)} className={'form-control'} onComponentMounted={this.contactRegister} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
-                                            <CreateInput type={'text'} value={this.state.nationality} label={'Nationality'} name={'nationality'} htmlFor={'nationality'}
-                                                isrequired={true} onChange={this.onChangeNationality.bind(this)} className={'form-control'} onComponentMounted={this.contactRegister} messageRequired={'required.'} />
+                                                isrequired={true} onChange={this.onChangePinCode.bind(this)} className={'form-control'} onComponentMounted={this.contregister} messageRequired={'required.'} />
                                         </li>
                                         <li>
                                             <CreateInput type={'text'} value={this.state.phone} label={'Phone'} name={'phone'} htmlFor={'phone'}
-                                                isrequired={true} onChange={this.onChangePhone.bind(this)} className={'form-control'} onComponentMounted={this.contactRegister} messageRequired={'required.'} />
+                                                isrequired={true} onChange={this.onChangePhone.bind(this)} className={'form-control'} onComponentMounted={this.contregister} messageRequired={'required.'} />
                                         </li>
                                         <li>
                                             <CreateInput type={'text'} value={this.state.mobile} label={'Mobile'} name={'mobile'} htmlFor={'mobile'}
-                                                isrequired={true} onChange={this.onChangeMobile.bind(this)} className={'form-control'} onComponentMounted={this.contactRegister} messageRequired={'required.'} />
+                                                isrequired={true} onChange={this.onChangeMobile.bind(this)} className={'form-control'} onComponentMounted={this.contregister} messageRequired={'required.'} />
                                         </li>
                                         <li>
                                             <CreateInput type={'text'} value={this.state.email} label={'Email Address'} name={'email'} htmlFor={'email '}
-                                                isrequired={true} onChange={this.onChangeEmail.bind(this)} className={'form-control'} onComponentMounted={this.contactRegister} messageRequired={'required.'} />
+                                                isrequired={true} onChange={this.onChangeEmail.bind(this)} className={'form-control'} onComponentMounted={this.contregister} messageRequired={'required.'} />
                                         </li>
                                         <li>
                                             <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>
@@ -602,37 +760,37 @@ var EmployeeForm = React.createClass({
                                     <ul>
                                         <li>
                                             <CreateInput type={'text'} value={this.state.username} label={'Username'} name={'username'} htmlFor={'username'}
-                                                isrequired={true} onChange={this.onChangeUsername.bind(this)} className={'form-control'} onComponentMounted={this.AuthenticateRegister} messageRequired={'required.'} />
+                                                isrequired={true} onChange={this.onChangeUsername.bind(this)} className={'form-control'} onComponentMounted={this.authregister} messageRequired={'required.'} />
                                         </li>
                                         <li>
                                             <CreateInput type={'text'} value={this.state.password} label={'Password'} name={'password'} htmlFor={'password'}
-                                                isrequired={true} onChange={this.onChangePassword.bind(this)} className={'form-control'} onComponentMounted={this.AuthenticateRegister} messageRequired={'required.'} />
+                                                isrequired={true} onChange={this.onChangePassword.bind(this)} className={'form-control'} onComponentMounted={this.authregister} messageRequired={'required.'} />
                                         </li>
                                         <li>
                                             <CreateInput type={'text'} value={this.state.conPassword} label={'Confirm Password'} name={'conPassword'} htmlFor={'conPassword'}
-                                                isrequired={true} onChange={this.onChangeConPassword.bind(this)} className={'form-control'} onComponentMounted={this.AuthenticateRegister} messageRequired={'required.'} />
+                                                isrequired={true} onChange={this.onChangeConPassword.bind(this)} className={'form-control '} onComponentMounted={this.authregister} messageRequired={'required.'} />
                                         </li>
                                         <li>
                                             <CreateInput type={'text'} value={this.state.defPage} label={'Default Page'} name={'defPage'} htmlFor={'defPage'}
-                                                isrequired={true} onChange={this.onChangeDefPage.bind(this)} className={'form-control'} onComponentMounted={this.AuthenticateRegister} messageRequired={'required.'} />
+                                                isrequired={true} onChange={this.onChangeDefPage.bind(this)} className={'form-control'} onComponentMounted={this.authregister} messageRequired={'required.'} />
                                         </li>
                                         <li>
                                             <CreateInput type={'ddl'} value={this.state.SelectedAccStatus} label={'Account Status'} data={this.state.accStatus}
                                                 name={'accStatus'} htmlFor={'accStatus'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
-                                                onChange={this.onChangeAccStatus} className={'form-control'} onComponentMounted={this.AuthenticateRegister} messageRequired={'required.'} />
+                                                onChange={this.onChangeAccStatus} className={'form-control'} onComponentMounted={this.authregister} messageRequired={'required.'} />
                                         </li>
                                         <li>
                                             <CreateInput type={'text'} value={this.state.panCard} label={'Pan Card Number'} name={'panCard'} htmlFor={'panCard'}
-                                                isrequired={true} onChange={this.onChangePanCard.bind(this)} className={'form-control'} onComponentMounted={this.AuthenticateRegister} messageRequired={'required.'} />
+                                                isrequired={true} onChange={this.onChangePanCard.bind(this)} className={'form-control'} onComponentMounted={this.authregister} messageRequired={'required.'} />
                                         </li>
                                         <li>
                                             <CreateInput type={'ddl'} value={this.state.SelectedBank} label={'Bank'} data={this.state.bank}
                                                 name={'bank'} htmlFor={'bank'} isrequired={true} keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
-                                                onChange={this.onChangeBank} className={'form-control'} onComponentMounted={this.AuthenticateRegister} messageRequired={'required.'} />
+                                                onChange={this.onChangeBank} className={'form-control'} onComponentMounted={this.authregister} messageRequired={'required.'} />
                                         </li>
                                         <li>
                                             <CreateInput type={'text'} value={this.state.accNumber} label={'Bank Account Number'} name={'accNumber'} htmlFor={'accNumber'}
-                                                isrequired={true} onChange={this.onChangeAccNumber.bind(this)} className={'form-control'} onComponentMounted={this.AuthenticateRegister} messageRequired={'required.'} />
+                                                isrequired={true} onChange={this.onChangeAccNumber.bind(this)} className={'form-control'} onComponentMounted={this.authregister} messageRequired={'required.'} />
                                         </li>
                                         <li>
                                             <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>
@@ -647,5 +805,4 @@ var EmployeeForm = React.createClass({
         );
     }
 });
-
-ReactDOM.render(<EmployeeForm urlPost='' contactPost="/Employee/AddContact" authPost="/Employee/AddAuth" />, document.getElementById('employeeform'));
+ReactDOM.render(<EmployeeForm urlPost='' personalPost='' contactPost="/Employee/AddContact" authPost="/Employee/AddAuth" />, document.getElementById('employeeform'));
