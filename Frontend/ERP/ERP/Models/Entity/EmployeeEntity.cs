@@ -6,7 +6,28 @@ using System.Web;
 namespace ERP.Models.Entity
 {
     public class EmployeeEntity
-    {        
+    {
+        public string userId { get; set; }
+        public string firstName { get; set; }
+        public string middleName { get; set; }
+        public string lastName { get; set; }
+        public string adharNo { get; set; }
+        public string gender { get; set; }
+        public string bloodgrp { get; set; }
+        public string maritalst { get; set; }
+        public string dob { get; set; }
+        public string joinDate { get; set; }
+        public string empCode { get; set; }
+        public string empPunchCard { get; set; }
+        public string empDepartment { get; set; }
+        public string empDesignation { get; set; }
+        public string empType { get; set; }
+        public string imgPath { get; set; }
+        public string  customerId { get; set; }
+        public string operType { get; set; }
+        public char flag { get; set; }
+        public string reportId { get; set; }
+
         public string address { get; set; }
         public string country { get; set; }
         public string city { get; set; }
@@ -15,8 +36,6 @@ namespace ERP.Models.Entity
         public string phone { get; set; }
         public string mobile { get; set; }
         public string email { get; set; }
-        public string flag { get; set; }
-        public string reportId{ get; set; }
 
         public string Username { get; set; }
         public string password { get; set; }
@@ -25,5 +44,13 @@ namespace ERP.Models.Entity
         public string accNumber { get; set; }
         public string accStatus { get; set; }
         public string bank { get; set; }
+
+        //public string fatherName { get; set; }
+        //public string course { get; set; }
+        //public string semester { get; set; }
+        //public string category { get; set; }
+        //public string academicYear { get; set; }
+        //public string admissionDate { get; set; }
+
     }
 }

@@ -9,6 +9,7 @@ namespace ERP.Models.Entity
     {
         public string flag { get; set; }
         public string msg { get; set; }
+        public string userType { get; set; }
         public string optionalVal { get; set; }
         public string addParams { get; set; }
 

@@ -314,6 +314,19 @@ C:\Users\HP\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.pdb
 C:\Users\HP\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\Newtonsoft.Json.pdb
 D:\Project\Github ERP\ERP\Frontend\ERP\ERP\bin\Newtonsoft.Json.pdb
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\Newtonsoft.Json.pdb
+D:\Project\Github ERP\ERP\Frontend\ERP\ERP\bin\System.Net.Http.Formatting.dll
+D:\Project\Github ERP\ERP\Frontend\ERP\ERP\bin\System.Web.Http.dll
+D:\Project\Github ERP\ERP\Frontend\ERP\ERP\bin\System.Web.Http.WebHost.dll
+D:\Project\Github ERP\ERP\Frontend\ERP\ERP\bin\System.Net.Http.Formatting.xml
+D:\Project\Github ERP\ERP\Frontend\ERP\ERP\bin\System.Web.Http.xml
+D:\Project\Github ERP\ERP\Frontend\ERP\ERP\bin\System.Web.Http.WebHost.xml
+C:\Users\HP\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Net.Http.Formatting.dll
+C:\Users\HP\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Http.dll
+C:\Users\HP\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Http.WebHost.dll
+C:\Users\HP\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Net.Http.Formatting.xml
+C:\Users\HP\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Http.xml
+C:\Users\HP\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Http.WebHost.xml
+C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.csproj.CoreCompileInputs.cache
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\x64\ClearScriptV8-64.dll
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\x64\v8-base-x64.dll
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\x64\v8-x64.dll
@@ -361,7 +374,10 @@ C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\Newtonsoft.Json.dll
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\React.Core.dll
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\React.Web.dll
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\React.Web.Mvc4.dll
+C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Net.Http.Formatting.dll
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Helpers.dll
+C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Http.dll
+C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Http.WebHost.dll
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Mvc.dll
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Optimization.dll
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Razor.dll
@@ -381,6 +397,9 @@ C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\Newtonsoft.Json.xml
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\React.Core.xml
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\React.Web.xml
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\React.Web.Mvc4.xml
+C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Net.Http.Formatting.xml
+C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Http.xml
+C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Http.WebHost.xml
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Optimization.xml
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Razor.xml
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Webpages.xml
@@ -390,19 +409,6 @@ C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Helpers.xml
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Mvc.xml
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\ru-ru\JavaScriptEngineSwitcher.Core.resources.dll
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\ru-ru\JavaScriptEngineSwitcher.V8.resources.dll
-C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.csprojResolveAssemblyReference.cache
-C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.csproj.CoreCompileInputs.cache
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.dll
 C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.pdb
-D:\Project\Github ERP\ERP\Frontend\ERP\ERP\bin\System.Net.Http.Formatting.dll
-D:\Project\Github ERP\ERP\Frontend\ERP\ERP\bin\System.Web.Http.dll
-D:\Project\Github ERP\ERP\Frontend\ERP\ERP\bin\System.Web.Http.WebHost.dll
-D:\Project\Github ERP\ERP\Frontend\ERP\ERP\bin\System.Net.Http.Formatting.xml
-D:\Project\Github ERP\ERP\Frontend\ERP\ERP\bin\System.Web.Http.xml
-D:\Project\Github ERP\ERP\Frontend\ERP\ERP\bin\System.Web.Http.WebHost.xml
-C:\Users\HP\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Net.Http.Formatting.dll
-C:\Users\HP\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Http.dll
-C:\Users\HP\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Http.WebHost.dll
-C:\Users\HP\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Net.Http.Formatting.xml
-C:\Users\HP\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Http.xml
-C:\Users\HP\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Http.WebHost.xml
+C:\Users\sunil\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.csprojResolveAssemblyReference.cache

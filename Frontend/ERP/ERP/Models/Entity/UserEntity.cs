@@ -16,11 +16,14 @@ namespace ERP.Models.Entity
             return _instance;
         }
         public string userId { get; set; }
+        public string deptId { get; set; }
+        public string desigId { get; set; }
+        public string gender { get; set; }
         public string firstName { get; set; }
         public string middleName { get; set; }
         public string lastName { get; set; }
         public string isActive { get; set; }
-        public string catId { get; set; }
+        public string joinDate { get; set; }
         public string catName { get; set; }
         public string subCatId { get; set; }
         public string subCatName { get; set; }
@@ -45,6 +48,16 @@ namespace ERP.Models.Entity
         public string pinCode { get; set; }
         public string cWef { get; set; }
         public string cWet { get; set; }
+
+
+        public string fatherName { get; set; }
+        public string motherName { get; set; }
+        public string course { get; set; }
+        public string dob { get; set; }
+        public string semester { get; set; }
+        public string category { get; set; }
+        public string academicYear { get; set; }
+        public string admissionDate { get; set; }
     }
 
 }

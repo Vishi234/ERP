@@ -26,8 +26,12 @@ namespace ERP.Models.Bal.Login
             try
             {
                 SqlParameter[] sqlParameter = new SqlParameter[5];
-                sqlParameter[0] = new SqlParameter("@EMAIL_ID", email);
+                sqlParameter[0] = new SqlParameter("@LOGIN_ID", email);
                 sqlParameter[1] = new SqlParameter("@PASSWORD", Encrypt(password));
+
+                sqlParameter[2] = new SqlParameter("@USER_TYPE", SqlDbType.Char);
+                sqlParameter[2].Direction = ParameterDirection.Output;
+                sqlParameter[2].Size = 50;
                 sqlParameter[3] = new SqlParameter("@FLAG", SqlDbType.Char);
                 sqlParameter[3].Direction = ParameterDirection.Output;
                 sqlParameter[3].Size = 1;
@@ -38,29 +42,51 @@ namespace ERP.Models.Bal.Login
                 ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_CHECK_LOGIN", sqlParameter);
                 result.flag = sqlParameter[3].Value.ToString();
                 result.msg = sqlParameter[4].Value.ToString();
+                result.userType= sqlParameter[2].Value.ToString();
+
+
                 UserEntity objUserEntity = UserEntity.GetInstance();
+
                 if (result.flag.ToUpper() == "S")
                 {
                     HttpContext.Current.Session["ModuelInfo"] = ds.Tables[0];
-                    objUserEntity.userId = ds.Tables[1].Rows[0]["USER_ID"].ToString();
-                    objUserEntity.firstName = ds.Tables[1].Rows[0]["FIRST_NAME"].ToString();
-                    objUserEntity.middleName = ds.Tables[1].Rows[0]["MIDDLE_NAME"].ToString();
-                    objUserEntity.lastName = ds.Tables[1].Rows[0]["LAST_NAME"].ToString();
-                    objUserEntity.isActive = ds.Tables[1].Rows[0]["IS_ACTIVE"].ToString();
-                    objUserEntity.catId = ds.Tables[1].Rows[0]["CAT_ID"].ToString();
-                    objUserEntity.catName = ds.Tables[1].Rows[0]["CAT_NAME"].ToString();
-                    objUserEntity.subCatId = ds.Tables[1].Rows[0]["SUB_CAT_ID"].ToString();
-                    objUserEntity.subCatName = ds.Tables[1].Rows[0]["SUB_CAT_NAME"].ToString();
-                    objUserEntity.defaultPage = ds.Tables[1].Rows[0]["DEFAULT_PAGE"].ToString();
-                    objUserEntity.wefDate = ds.Tables[1].Rows[0]["WEF_DATE"].ToString();
-                    objUserEntity.wetDate = ds.Tables[1].Rows[0]["WET_DATE"].ToString();
-                    objUserEntity.email = ds.Tables[1].Rows[0]["EMAIL_ADDRESS"].ToString();
-                    objUserEntity.accountLocked = ds.Tables[1].Rows[0]["ACCOUNT_LOCKED"].ToString();
-                    objUserEntity.role = ds.Tables[1].Rows[0]["ROLE"].ToString();
+                    if (result.userType == "2")
+                    {
+                        objUserEntity.userId = ds.Tables[1].Rows[0]["USER_ID"].ToString();
+                        objUserEntity.deptId = ds.Tables[1].Rows[0]["DEPARTMENT"].ToString();
+                        objUserEntity.desigId = ds.Tables[1].Rows[0]["DESIGNATION"].ToString();
+                        objUserEntity.firstName = ds.Tables[1].Rows[0]["FIRST_NAME"].ToString();
+                        objUserEntity.middleName = ds.Tables[1].Rows[0]["MIDDLE_NAME"].ToString();
+                        objUserEntity.lastName = ds.Tables[1].Rows[0]["LAST_NAME"].ToString();
+                        objUserEntity.gender = ds.Tables[1].Rows[0]["GENDER"].ToString();
+                        objUserEntity.joinDate = ds.Tables[1].Rows[0]["JOINING_DATE"].ToString();
+                        objUserEntity.isActive = ds.Tables[1].Rows[0]["IS_ACTIVE"].ToString();
+                        objUserEntity.accountLocked = ds.Tables[1].Rows[0]["ACCOUNT_LOCKED"].ToString();
+                        objUserEntity.role = ds.Tables[1].Rows[0]["ROLE"].ToString();
+                    }
+                    else
+                    {
+                        objUserEntity.userId = ds.Tables[1].Rows[0]["USER_ID"].ToString();
+                        objUserEntity.firstName = ds.Tables[1].Rows[0]["FIRST_NAME"].ToString();
+                        objUserEntity.middleName = ds.Tables[1].Rows[0]["MIDDLE_NAME"].ToString();
+                        objUserEntity.lastName = ds.Tables[1].Rows[0]["LAST_NAME"].ToString();
+                        objUserEntity.fatherName = ds.Tables[1].Rows[0]["FATHER_NAME"].ToString();
+                        objUserEntity.motherName = ds.Tables[1].Rows[0]["MOTHER_NAME"].ToString();
+                        objUserEntity.gender = ds.Tables[1].Rows[0]["GENDER"].ToString();
+                        objUserEntity.dob = ds.Tables[1].Rows[0]["DATE_OF_BIRTH"].ToString();
+                        objUserEntity.course = ds.Tables[1].Rows[0]["COURSE"].ToString();                       
+                        objUserEntity.semester = ds.Tables[1].Rows[0]["SEMESTER"].ToString();
+                        objUserEntity.category = ds.Tables[1].Rows[0]["CATEGORY"].ToString();
+                        objUserEntity.academicYear = ds.Tables[1].Rows[0]["ACADEMIC_YEAR"].ToString();
+                        objUserEntity.admissionDate = ds.Tables[1].Rows[0]["ADMISSION_DATE"].ToString();
+                        objUserEntity.isActive = ds.Tables[1].Rows[0]["IS_ACTIVE"].ToString();
+                        objUserEntity.accountLocked = ds.Tables[1].Rows[0]["ACCOUNT_LOCKED"].ToString();
+                        //role should be there//gender
+                    }
+
                     if (ds.Tables[2].Rows.Count == 1)
                     {
                         objUserEntity.customerId = ds.Tables[2].Rows[0]["CUSTOMER_ID"].ToString();
-                        objUserEntity.customerCode = ds.Tables[2].Rows[0]["CUSTOMER_CODE"].ToString();
                         objUserEntity.customerName = ds.Tables[2].Rows[0]["CUSTOMER_NAME"].ToString();
                         objUserEntity.address = ds.Tables[2].Rows[0]["ADDRESS"].ToString();
                         objUserEntity.city = ds.Tables[2].Rows[0]["CITY"].ToString();
@@ -72,8 +98,7 @@ namespace ERP.Models.Bal.Login
                         objUserEntity.cActive = ds.Tables[2].Rows[0]["IS_ACTIVE"].ToString();
                         objUserEntity.state = ds.Tables[2].Rows[0]["STATE"].ToString();
                         objUserEntity.pinCode = ds.Tables[2].Rows[0]["PIN_CODE"].ToString();
-                        objUserEntity.cWef = ds.Tables[2].Rows[0]["WEF_DATE"].ToString();
-                        objUserEntity.cWet = ds.Tables[2].Rows[0]["WET_DATE"].ToString();
+ 
                     }
                     else
                     {
