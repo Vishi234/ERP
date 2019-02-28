@@ -15,7 +15,71 @@ namespace ERP.Models.Bal.Employee
         {
             string sqlConn = System.Configuration.ConfigurationManager.ConnectionStrings["CS"].ConnectionString;
             UserEntity objUserEntity = UserEntity.GetInstance();
-            public ResultEntity AddUserContact(EmployeeEntity employeeEntity, string customerId, string userid)
+
+     
+        public ResultEntity AddEmployee(EmployeeEntity employeeEntity)
+        {
+            ResultEntity result = new ResultEntity();
+            try
+            {
+                UserEntity objUserEntity = UserEntity.GetInstance();
+                SqlParameter[] sqlParameter = new SqlParameter[21];
+
+                sqlParameter[0] = new SqlParameter("@P_USER_FNAME", employeeEntity.firstName);
+                sqlParameter[1] = new SqlParameter("@P_USER_MNAME", employeeEntity.middleName);
+                sqlParameter[2] = new SqlParameter("@P_USER_LNAME", employeeEntity.lastName);
+                sqlParameter[3] = new SqlParameter("@P_USER_ADHAAR_NO", employeeEntity.adharNo);
+                sqlParameter[4] = new SqlParameter("@P_USER_GENDER", employeeEntity.gender);
+                sqlParameter[5] = new SqlParameter("@P_USER_BLOOD_GRP", employeeEntity.bloodgrp);
+                sqlParameter[6] = new SqlParameter("@P_USER_MARITAL", employeeEntity.maritalst);
+                sqlParameter[7] = new SqlParameter("@P_USER_DOB", employeeEntity.dob);
+                sqlParameter[8] = new SqlParameter("@P_USER_JOIN_DATE", employeeEntity.joinDate);
+                sqlParameter[9] = new SqlParameter("@P_USER_EMP_CODE", employeeEntity.empCode);
+                sqlParameter[10] = new SqlParameter("@P_USER_PUNCH_CARD", employeeEntity.empPunchCard);
+                sqlParameter[11] = new SqlParameter("@P_USER_DEPARTMENT", employeeEntity.empDepartment);
+                sqlParameter[12] = new SqlParameter("@P_USER_DESIGNATION", employeeEntity.empDesignation);
+                sqlParameter[13] = new SqlParameter("@P_EMPLOYEE_TYPE", employeeEntity.empType);
+                sqlParameter[14] = new SqlParameter("@P_CUSTOMER_ID", objUserEntity.customerId);
+                sqlParameter[15] = new SqlParameter("@REPORT_ID", Convert.ToInt32(employeeEntity.reportId));
+                sqlParameter[16] = new SqlParameter("@P_IMG_PATH", employeeEntity.imgPath);
+                sqlParameter[17] = new SqlParameter("@OPER_TYPE", employeeEntity.operType);
+
+                sqlParameter[18] = new SqlParameter("@FLAG", SqlDbType.Char);
+                sqlParameter[18].Direction = ParameterDirection.Output;
+                sqlParameter[18].Size = 1;
+                sqlParameter[19] = new SqlParameter("@P_USER_ID", SqlDbType.NVarChar);
+                sqlParameter[19].Direction = ParameterDirection.Output;
+                sqlParameter[19].Size = 100;
+                sqlParameter[20] = new SqlParameter("@MSG", SqlDbType.NVarChar);
+                sqlParameter[20].Direction = ParameterDirection.Output;
+                sqlParameter[20].Size = 500;
+
+                DataSet ds = new DataSet();
+                ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_USER_GEN_INFO", sqlParameter);
+                result.flag = sqlParameter[18].Value.ToString();
+                result.optionalVal = sqlParameter[19].Value.ToString();
+                result.msg = sqlParameter[20].Value.ToString();
+
+                if (result.flag.ToUpper() == "S")
+                {
+                    if (ds != null)
+                    {
+                        if (ds.Tables[0].Rows.Count > 0)
+                        {
+                            result.addParams = CommonFunc.DtToJSON(ds.Tables[0]);
+                        }
+                    }
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Excep.WriteException(ex);
+                return result;
+            }
+        }
+        public ResultEntity AddUserContact(EmployeeEntity employeeEntity, string customerId, string userid)
             {
                 ResultEntity result = new ResultEntity();
                 try
