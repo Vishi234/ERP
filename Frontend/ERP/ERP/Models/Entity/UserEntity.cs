@@ -49,7 +49,6 @@ namespace ERP.Models.Entity
         public string cWef { get; set; }
         public string cWet { get; set; }
 
-
         public string fatherName { get; set; }
         public string motherName { get; set; }
         public string course { get; set; }
