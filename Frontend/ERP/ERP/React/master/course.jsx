@@ -9,8 +9,11 @@ class CourseForm extends React.Component {
         var records = JSON.parse(content.addParams);
         this.state =
             {
-                courserId: 0,
-                courseCode: "",
+                courserType: ReadDropDownData("Param",17, true),
+                active: ReadDropDownData("Param",16, true),
+                selectedCourseType: 0,
+                selectedActive: 0,
+                courseId:0,
                 courseName: "",
                 noOfSemester: "",
                 Fields: [],
@@ -48,6 +51,16 @@ class CourseForm extends React.Component {
             noOfSemester: value
         });
     }
+    onChangeType(value) {
+        this.setState({
+            selectedCourseType: value
+        });
+    }
+    onChangeActive(value) {
+        this.setState({
+            selectedActive: value
+        });
+    }
     handleSubmit(e) {
         e.preventDefault();
         var validForm = true;
@@ -64,6 +77,8 @@ class CourseForm extends React.Component {
                 courseCode: this.state.courseCode,
                 courseName: this.state.courseName,
                 noOfSemester: this.state.noOfSemester,
+                courseType=this.state.selectedCourseType,
+                active: this.state.selectedActive,
                 flag: 'A',
                 reportId: 2
             }
@@ -126,12 +141,20 @@ class CourseForm extends React.Component {
                                         <form name='CourseForm' id="CourseForm" noValidate onSubmit={this.handleSubmit}>
                                             <ul>
                                                 <li>
+                                                    <CreateInput type={'ddl'} value={this.state.selectedCourseType} data={this.state.courseType} label={'Course Type'} name={'courseType'} htmlFor={'courseType'} isrequired={true}
+                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeType} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                </li>
+                                                <li>
                                                     <CreateInput type={'text'} value={this.state.courseName} label={'Course Name'} name={'courseName'} htmlFor={'courseName'} isrequired={true}
                                                                  onChange={this.onChangeName.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.noOfSemester} label={'No. Of Semester'} name={'noOfSemester'} htmlFor={'noOfSemester'} isrequired={true}
                                                                  className={'form-control'} onChange={this.onChangeSemester.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                </li>
+                                                <li>
+                                                    <CreateInput type={'ddl'} value={this.state.selectedActive} data={this.state.active} label={'Active'} name={'active'} htmlFor={'active'} isrequired={true}
+                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeActive} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>

@@ -9,6 +9,9 @@ class AcademicYearForm extends React.Component {
         var records = JSON.parse(content.addParams);
         this.state =
             {
+                yearId:0,
+                active: ReadDropDownData("Param", "16", true),
+                selectedActive:0,
                 yearCode: "",
                 academicYear: "",
                 wfDate: "",
@@ -33,6 +36,8 @@ class AcademicYearForm extends React.Component {
         //after validation complete post to server
         if (validForm) {
             var d = {
+                yearId: this.state.yearId,
+                active: this.state.selectedActive,
                 yearCode: this.state.yearCode,
                 academicYear: this.state.academicYear,
                 wfDate: this.state.wfDate,
@@ -58,6 +63,8 @@ class AcademicYearForm extends React.Component {
                                 academicYear: "",
                                 wfDate: "",
                                 wtDate: "",
+                                active: ReadDropDownData("Param",16, true),
+                                selectedActive: 0,
                             })
                         this.setState({ rowData: MyData });
                         this.setState({ records: MyData.length })
@@ -106,6 +113,12 @@ class AcademicYearForm extends React.Component {
             wtDate: value
         });
     }
+
+    onChangeActive(value) {
+    this.setState({
+        selectedActive: value
+    });
+},
     //register input controls
     register(field) {
         var s = [];
@@ -158,6 +171,10 @@ class AcademicYearForm extends React.Component {
                                                 <li>
                                                 <CreateInput type={'date'} value={this.state.wtDate} id={'wtDate'} label={'End Date'} name={'endDate'} htmlFor={'wtDate'} isrequired={true}
                                                              className={'endDate form-control'} onBlur={this.onWetBlur.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                </li>
+                                                <li>
+                                                    <CreateInput type={'ddl'} value={this.state.selectedActive} data={this.state.active} label={'Status'} name={'active'} htmlFor={'active'} isrequired={true}
+                                                    keyId={'PARAM_ID'} keyName={'PARAM_TYPE'} onChange={this.onChangeActive} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>

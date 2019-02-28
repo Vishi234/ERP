@@ -9,7 +9,10 @@ class MappingForm extends React.Component {
         //var records = JSON.parse(content.addParams);
         this.state =
             {
-                course: ReadDropDownData("Course", $("#hfCustomerId").val(),false),
+                id:0,
+                course: ReadDropDownData("Course", $("#hfCustomerId").val(), false),
+                active: ReadDropDownData("Param",16, true),
+                selectedCourseType: 0,
                 semester: [],
                 subject: [],
                 type: ReadDropDownData("Param", "4", true),
@@ -35,9 +38,11 @@ class MappingForm extends React.Component {
         //after validation complete post to server
         if (validForm) {
             var d = {
+                id:this.state.id,
                 course: this.state.course,
                 semester: this.state.semester,
                 subject: this.state.subject,
+                active: this.state.active,
                 reportId:'7',
                 flag: 'A'
             }
@@ -56,14 +61,16 @@ class MappingForm extends React.Component {
                         MyData = JSON.parse(data.addParams);
                         this.setState
                             ({
-                                course: [],
+                                course: ReadDropDownData("Course", $("#hfCustomerId").val(), false),
                                 semester: [],
                                 subject: [],
                                 type: [],
                                 selectedCourse:0,
                                 selectedSemester:0,
                                 selectedSubject:0,
-                                selectedType:0,
+                                selectedType: 0,
+                                active: ReadDropDownData("Param",16, true),
+                                selectedCourseType: 0,
                             })
                         this.setState({ rowData: MyData });
                         this.setState({ records: MyData.length })
@@ -117,6 +124,11 @@ class MappingForm extends React.Component {
             type: value
         });
     }
+    onChangeActive(value) {
+        this.setState({
+            selectedActive: value
+        });
+    }
     render() {
         //Render form
         return (
@@ -164,6 +176,10 @@ class MappingForm extends React.Component {
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedType} data={this.state.type} label={'Subject Type'} name={'type'} htmlFor={'type'} isrequired={true}
                                                                  onChange={this.onChangeType.bind(this)} keyId={'PARAM_ID'} keyName={'PARAM_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                </li>
+                                                <li>
+                                                    <CreateInput type={'ddl'} value={this.state.selectedActive} data={this.state.active} label={'Active'} name={'active'} htmlFor={'active'} isrequired={true}
+                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeActive} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>

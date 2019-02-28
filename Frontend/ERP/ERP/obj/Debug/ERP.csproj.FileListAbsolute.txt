@@ -150,7 +150,6 @@ D:\Project\Github ERP\ERP\Frontend\ERP\ERP\bin\System.Web.Helpers.xml
 D:\Project\Github ERP\ERP\Frontend\ERP\ERP\bin\System.Web.Mvc.xml
 D:\Project\Github ERP\ERP\Frontend\ERP\ERP\bin\ru-ru\JavaScriptEngineSwitcher.Core.resources.dll
 D:\Project\Github ERP\ERP\Frontend\ERP\ERP\bin\ru-ru\JavaScriptEngineSwitcher.V8.resources.dll
-D:\Project\Github ERP\ERP\Frontend\ERP\ERP\obj\Debug\ERP.csprojAssemblyReference.cache
 D:\Project\Github ERP\ERP\Frontend\ERP\ERP\obj\Debug\ERP.csproj.CoreCompileInputs.cache
 D:\Project\Github ERP\ERP\Frontend\ERP\ERP\obj\Debug\ERP.csproj.CopyComplete
 D:\Project\Github ERP\ERP\Frontend\ERP\ERP\obj\Debug\ERP.dll
