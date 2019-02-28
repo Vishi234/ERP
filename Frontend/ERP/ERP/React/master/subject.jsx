@@ -3,8 +3,6 @@
         grdArray = GetReportConfiguration("Master");
         var columnDefs = grdArray["$SubjectDetails$"];
         var records = JSON.parse(content.addParams);
-        jsonData = GetJsonData('../../Content/DynamicJs/DropdownData.json'); 
-        debugger;
         return {
             subjectCode: "",
             subjectName: "",
@@ -14,7 +12,7 @@
             subjectType: ReadDropDownData("Param", '5', true),
             selectedMedium: 0,
             selectedActivityType: 0,
-            selectedSubjectType:0,
+            selectedSubjectType: 0,
             Fields: [],
             columnDef: columnDefs,
             rowData: records,
@@ -32,7 +30,7 @@
         });
         //after validation complete post to server
         if (validForm) {
-            var d = {       
+            var d = {
                 subjectCode: this.state.subjectCode,
                 subjectName: this.state.subjectName,
                 shortName: this.state.shortName,
@@ -121,48 +119,74 @@
         //Render form
         return (
             <div>
-                <div className="fbse">
-                    <div className="rttl">
-                        <span className="pull-left lft">Subject Management</span>
-                        <span className="pull-right toptotal">{this.state.records} Record(S)</span>
-                        <hr />
+                 <div className="block-header container-fluid">
+                    <div className="row clearfix">
+                        <div className="col-lg-6 col-xs-12 col-sm-4 col-md-6">
+                            <h1>Subject Management</h1>
+                            <nav aria-label="breadcrumb">
+                                <ol className="breadcrumb">
+                                    <li className="breadcrumb-item">
+                                        <a href="javascript:void(0)">Master</a>
+                                    </li>
+                                    <li className="breadcrumb-item active" aria-current="page">
+                                        Subject
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                        <div className="col-lg-6 col-xs-12 col-sm-8 col-md-6">
+                            <h4 className="text-right font-14">{this.state.records} Record(S)</h4>
+                        </div>
                     </div>
-                    <div className="acform">
-                        <form name='SubjectForm' id="subjectForm" noValidate onSubmit={this.handleSubmit}>
-                            <ul>
-                                <li>
-                                    <CreateInput type={'text'} value={this.state.subjectCode} label={'Subject Code'} name={'subjectCode'} htmlFor={'subjectCode'} isrequired={true}
-                                        onChange={this.onChangeCode} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                </li>
-                                <li>
-                                    <CreateInput type={'text'} value={this.state.subjectName} label={'Subject Name'} name={'subjectName'} htmlFor={'subjectName'} isrequired={true}
-                                        onChange={this.onChangeName} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                </li>
-                                <li>
-                                    <CreateInput type={'text'} value={this.state.shortName} label={'Short Name'} name={'shortName'} htmlFor={'shortName'} isrequired={true}
-                                        onChange={this.onChangeShortName} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                </li>
-                                <li>
-                                    <CreateInput type={'ddl'} value={this.state.selectedMedium} data={this.state.medium} label={'Medium'} name={'medium'} htmlFor={'medium'} isrequired={true}
-                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeMedium} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                </li>
-                                <li>
-                                    <CreateInput type={'ddl'} value={this.state.selectedActivityType} data={this.state.activityType} label={'Activity Type'} name={'activityType'} htmlFor={'activityType'} isrequired={true}
-                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeType} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                </li>
-                                <li>
-                                    <CreateInput type={'ddl'} value={this.state.selectedSubjectType} data={this.state.subjectType} label={'Subject Type'} name={'subjectType'} htmlFor={'subjectType'} isrequired={true}
-                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeSubType} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                </li>
-                                <li>
-                                    <input type="submit" className="btn btn-success" value="Save" />
-                                </li>
-                            </ul>
+                 </div>
+                <div className="block-body container-fluid">
+                    <div className="row clearfix">
+                        <div className="col-lg-12 col-xs-12 col-md-12 col-sm-12">
+                            <div className="card">
+                                <div className="body">
+                                    <div className="acform">
+                                        <form name='SubjectForm' id="subjectForm" noValidate onSubmit={this.handleSubmit}>
+                                            <ul>
+                                                <li>
+                                                    <CreateInput type={'text'} value={this.state.subjectCode} label={'Subject Code'} name={'subjectCode'} htmlFor={'subjectCode'} isrequired={true}
+                                                                 onChange={this.onChangeCode} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                </li>
+                                                <li>
+                                                    <CreateInput type={'text'} value={this.state.subjectName} label={'Subject Name'} name={'subjectName'} htmlFor={'subjectName'} isrequired={true}
+                                                                 onChange={this.onChangeName} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                </li>
+                                                <li>
+                                                    <CreateInput type={'text'} value={this.state.shortName} label={'Short Name'} name={'shortName'} htmlFor={'shortName'} isrequired={true}
+                                                                 onChange={this.onChangeShortName} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                </li>
+                                                <li>
+                                                    <CreateInput type={'ddl'} value={this.state.selectedMedium} data={this.state.medium} label={'Medium'} name={'medium'} htmlFor={'medium'} isrequired={true}
+                                                                 keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeMedium} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                </li>
+                                                <li>
+                                                    <CreateInput type={'ddl'} value={this.state.selectedActivityType} data={this.state.activityType} label={'Activity Type'} name={'activityType'} htmlFor={'activityType'} isrequired={true}
+                                                                 keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeType} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                </li>
+                                                <li>
+                                                    <CreateInput type={'ddl'} value={this.state.selectedSubjectType} data={this.state.subjectType} label={'Subject Type'} name={'subjectType'} htmlFor={'subjectType'} isrequired={true}
+                                                                 keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeSubType} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                </li>
+                                                <li>
+                                                    <input type="submit" className="btn btn-success" value="Save" />
+                                                </li>
+                                            </ul>
 
-                        </form>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="card">
+                                <div className="body">
+                                    <AgGrid columnDef={this.state.columnDef} rowData={this.state.rowData} />
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                   
-                    <AgGrid columnDef={this.state.columnDef} rowData={this.state.rowData} />
                 </div>
             </div>
         );

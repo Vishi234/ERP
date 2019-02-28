@@ -16,7 +16,7 @@ namespace ERP
                         "~/Scripts/jquery.validate.unobtrusive.js",
                         "~/Scripts/jquery.unobtrusive-ajax.min.js",
                         "~/Scripts/jquery.toast.min.js",
-                        "~/Scripts/jquery.sumoselect.min.js",
+                        "~/Scripts/chosen.jquery.min.js",
                         "~/Scripts/jquery-isotope.min.js",
                         "~/Scripts/moment.min.js",
                         "~/Scripts/daterangepicker.js",
@@ -44,10 +44,11 @@ namespace ERP
             bundles.Add(new StyleBundle("~/bundles/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/default.css",
+                      "~/Content/custom.css",
                       "~/Content/fontawesome-all.css",
                       "~/Content/jquery.toast.min.css",
                       "~/Content/daterangepicker.css",
-                      "~/Content/sumoselect.min.css",
+                      "~/Content/chosen.css",
                       "~/Content/ag-grid.css",
                       "~/Content/ag-theme-balham.css"));
         }
