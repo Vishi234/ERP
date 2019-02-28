@@ -33,6 +33,7 @@
         });
         //after validation complete post to server
         if (validForm) {
+            debugger;
             var d = {
                 durId: this.state.durId,
                 academicYear: this.state.selectedYear,

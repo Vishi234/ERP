@@ -9,8 +9,8 @@ class AcademicYearForm extends React.Component {
         var records = JSON.parse(content.addParams);
         this.state =
             {
-                yearId:0,
-                active: ReadDropDownData("Param", "16", true),
+                yearId:1,
+                active: ReadDropDownData("Param", '16', true),
                 selectedActive:0,
                 yearCode: "",
                 academicYear: "",
@@ -29,19 +29,26 @@ class AcademicYearForm extends React.Component {
         e.preventDefault();
         fields.forEach(function (field) {
             if (typeof field[0].isValid === "function") {
-                var validField = field[0].isValid(field[0].refs[field[0].props.name]);
+                debugger;
+                var validField;
+                if (field[0].props.type == 'ddl') {
+                    validField = field[0].isValid(field[0].refs.MySelect2);
+                } else {
+                    validField = field[0].isValid(field[0].refs[field[0].props.name]);
+                }               
                 validForm = validForm && validField;
             }
         });
         //after validation complete post to server
         if (validForm) {
+            debugger;
             var d = {
-                yearId: this.state.yearId,
-                active: this.state.selectedActive,
                 yearCode: this.state.yearCode,
                 academicYear: this.state.academicYear,
                 wfDate: this.state.wfDate,
                 wtDate: this.state.wtDate,
+                yearId: this.state.yearId,
+                active: this.state.selectedActive,
                 flag: 'A',
                 reportId: 1
             }
@@ -114,11 +121,11 @@ class AcademicYearForm extends React.Component {
         });
     }
 
-    onChangeActive(value) {
+    onChangeActive(value){
     this.setState({
         selectedActive: value
     });
-},
+    }
     //register input controls
     register(field) {
         var s = [];
@@ -174,7 +181,7 @@ class AcademicYearForm extends React.Component {
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedActive} data={this.state.active} label={'Status'} name={'active'} htmlFor={'active'} isrequired={true}
-                                                    keyId={'PARAM_ID'} keyName={'PARAM_TYPE'} onChange={this.onChangeActive} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                    keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeActive.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>
@@ -197,5 +204,4 @@ class AcademicYearForm extends React.Component {
         );
     }
 }
-
 ReactDOM.render(<AcademicYearForm urlPost="/Master/Academic" />, document.getElementById('academicform'));

@@ -23,7 +23,7 @@ namespace ERP.Models.Bal.Master
             {
                 SqlParameter[] sqlParameter = new SqlParameter[11];
                 sqlParameter[0] = new SqlParameter("@YEAR_ID", academicEntity.yearId);
-                sqlParameter[1] = new SqlParameter("@CUSTOMER_ID", objUserEntity.customerId);
+                sqlParameter[1] = new SqlParameter("@CUSTOMER_ID", Convert.ToInt32(objUserEntity.customerId));
                 sqlParameter[2] = new SqlParameter("@USER_ID", objUserEntity.userId);
                 sqlParameter[3] = new SqlParameter("@YEAR", academicEntity.academicYear);
                 sqlParameter[4] = new SqlParameter("@START_DATE", academicEntity.wfDate);
