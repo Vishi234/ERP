@@ -1,12 +1,32 @@
 ﻿﻿var grdArray;
 var MyData = null;
 var fields = [];
-class AcademicYearForm extends React.Component {
+class AcademicYearForm extends React.Component
+{
     constructor(props) {
         super(props);
         grdArray = GetReportConfiguration("Master");
-        var columnDefs = grdArray["$AcademicDetails$"];
+
         var records = JSON.parse(content.addParams);
+        var columns = grdArray["$AcademicDetails$"];
+        for (var i = 0; i < columns.length; i++)
+        {
+            if (columns[i].cellRenderer) {
+                if (columns[i].cellRenderer == "CreateEdit")
+                {
+                    columns[i].cellRenderer = this.CreateEdit;
+                }
+                else if (columns[i].cellRenderer == "CreateActive")
+                {
+                    columns[i].cellRenderer = this.CreateActive;
+                }
+            }
+        }
+        var columnDefs = columns;
+
+      
+
+       
         this.state =
             {
                 yearId:1,
@@ -23,6 +43,10 @@ class AcademicYearForm extends React.Component {
                 ServerMessage: ''
             };
         this.handleSubmit = this.handleSubmit.bind(this);
+
+
+        
+
     }
     handleSubmit(e) {
         var validForm = true;
@@ -92,6 +116,36 @@ class AcademicYearForm extends React.Component {
             yearCode: value
         });
     }
+    CreateEdit(params)
+    {
+        var html = "";
+        var domElement = "";
+        html = '<div><a href="javascript:void(0)"><img style="height: 16px;margin-top: 5px;margin-left:5px;" dataAttr=' + JSON.stringify(params.data) + ' src="../images/icons/edit.png"></img></a></div>';
+        domElement = document.createElement("div");
+        domElement.innerHTML = html;
+        return domElement;
+    }
+    CreateActive(params) {
+        debugger;
+        var html = "";
+        var domElement = "";
+        if ((params.data.isActive).trim() == 70)
+        {
+            html ='<span style="margin-top: 5px;padding: 6px;" class="badge badge-pill badge-success">Active</span>'
+        }
+        else if ((params.data.isActive).trim() == 71)
+        {
+            html ='<span style="margin-top: 5px;padding: 6px;" class="badge badge-pill badge-danger">In-Active</span>'
+        }
+       else{
+            html = '<span style="margin-top: 5px;padding: 6px;" class="badge badge-pill badge-warning">Temporary</span>'
+        }
+      
+        domElement = document.createElement("div");
+        domElement.innerHTML = html;
+        return domElement;
+    }
+
     onChangeYear(value) {
         var validation = new RegExp("[0-9\-]", 'g');
         var foo;
@@ -135,6 +189,9 @@ class AcademicYearForm extends React.Component {
     GetData(data) {
         this.setState({ rowData: data });
     }
+
+
+
     render() {
         //Render form
         return (
