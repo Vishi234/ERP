@@ -5,7 +5,7 @@ class AgGrid extends React.Component {
             columnDefs: this.props.columnDef,
             enableSorting: true,
             enableFilter: true,
-            rowData: ((this.props.rowData == null) ? null : this.props.rowData),
+            rowData: null,
             rowHeight: 33,
             enableCellChangeFlash: true,
             refreshCells: true,
@@ -27,6 +27,9 @@ class AgGrid extends React.Component {
         }
         var gridDiv = document.querySelector('#myGrid');
         new agGrid.Grid(gridDiv, gridOptions);
+        //((this.props.rowData == null) ? null : this.props.rowData)
+        gridOptions.api.setRowData(((this.props.rowData == null) ? null : this.props.rowData));
+    
     }
     onFilterChange(e) {
         gridOptions.api.setQuickFilter(e.target.value);

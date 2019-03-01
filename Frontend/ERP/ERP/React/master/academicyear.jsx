@@ -1,37 +1,33 @@
 ﻿﻿var grdArray;
 var MyData = null;
 var fields = [];
-class AcademicYearForm extends React.Component
-{
+class AcademicYearForm extends React.Component {
     constructor(props) {
         super(props);
         grdArray = GetReportConfiguration("Master");
 
         var records = JSON.parse(content.addParams);
         var columns = grdArray["$AcademicDetails$"];
-        for (var i = 0; i < columns.length; i++)
-        {
+        for (var i = 0; i < columns.length; i++) {
             if (columns[i].cellRenderer) {
-                if (columns[i].cellRenderer == "CreateEdit")
-                {
+                if (columns[i].cellRenderer == "CreateEdit") {
                     columns[i].cellRenderer = this.CreateEdit;
                 }
-                else if (columns[i].cellRenderer == "CreateActive")
-                {
+                else if (columns[i].cellRenderer == "CreateActive") {
                     columns[i].cellRenderer = this.CreateActive;
                 }
             }
         }
         var columnDefs = columns;
 
-      
 
-       
+
+
         this.state =
             {
-                yearId:1,
+                yearId: 1,
                 active: ReadDropDownData("Param", '16', true),
-                selectedActive:0,
+                selectedActive: 0,
                 yearCode: "",
                 academicYear: "",
                 wfDate: "",
@@ -45,7 +41,7 @@ class AcademicYearForm extends React.Component
         this.handleSubmit = this.handleSubmit.bind(this);
 
         this.handleClick = this.handleClick.bind(this);
-        
+
 
     }
     handleSubmit(e) {
@@ -59,7 +55,7 @@ class AcademicYearForm extends React.Component
                     validField = field[0].isValid(field[0].refs.MySelect2);
                 } else {
                     validField = field[0].isValid(field[0].refs[field[0].props.name]);
-                }               
+                }
                 validForm = validForm && validField;
             }
         });
@@ -94,7 +90,7 @@ class AcademicYearForm extends React.Component
                                 academicYear: "",
                                 wfDate: "",
                                 wtDate: "",
-                                active: ReadDropDownData("Param",16, true),
+                                active: ReadDropDownData("Param", 16, true),
                                 selectedActive: 0,
                             })
                         this.setState({ rowData: MyData });
@@ -117,16 +113,16 @@ class AcademicYearForm extends React.Component
         });
     }
     handleClick(param) {
-        debugger;   
-        console.log(param);
-        // access to e.target here
-        //param.
-        //    this.setState(){
-
-        //}
+        var data = JSON.parse(param.currentTarget.getAttribute("dataattr"));
+        this.setState
+            ({
+                academicYear: data.acYear,
+                wfDate: data.wfDate,
+                wtDate: data.wtDate,
+                selectedActive: data.isActive,
+            })
     }
-    CreateEdit(params)
-    {
+    CreateEdit(params) {
         debugger;
         var html = "";
         var domElement = "";
@@ -135,7 +131,7 @@ class AcademicYearForm extends React.Component
         html = '<div><a class="testClass" href="javascript:void(0)" dataAttr=' + jsonObj + '><img style="height: 16px;margin-top: 5px;margin-left:5px;"  src="../images/icons/edit.png"></img></a></div>';
         domElement = document.createElement("div");
         domElement.innerHTML = html;
-        return domElement;  
+        return domElement;
     }
     componentDidMount() {
         $('.testClass').on("click", this.handleClick.bind(this));
@@ -144,18 +140,16 @@ class AcademicYearForm extends React.Component
         debugger;
         var html = "";
         var domElement = "";
-        if ((params.data.isActive).trim() == 70)
-        {
-            html ='<span style="margin-top: 5px;padding: 6px;" class="badge badge-pill badge-success">Active</span>'
+        if ((params.data.isActive).trim() == 70) {
+            html = '<span style="margin-top: 5px;padding: 6px;" class="badge badge-pill badge-success">Active</span>'
         }
-        else if ((params.data.isActive).trim() == 71)
-        {
-            html ='<span style="margin-top: 5px;padding: 6px;" class="badge badge-pill badge-danger">In-Active</span>'
+        else if ((params.data.isActive).trim() == 71) {
+            html = '<span style="margin-top: 5px;padding: 6px;" class="badge badge-pill badge-danger">In-Active</span>'
         }
-       else{
+        else {
             html = '<span style="margin-top: 5px;padding: 6px;" class="badge badge-pill badge-warning">Temporary</span>'
         }
-      
+
         domElement = document.createElement("div");
         domElement.innerHTML = html;
         return domElement;
@@ -190,10 +184,10 @@ class AcademicYearForm extends React.Component
         });
     }
 
-    onChangeActive(value){
-    this.setState({
-        selectedActive: value
-    });
+    onChangeActive(value) {
+        this.setState({
+            selectedActive: value
+        });
     }
     //register input controls
     register(field) {
