@@ -3248,3 +3248,9 @@ Error Number:245,State:1,Class:16
 Time :01-Mar-2019 23:45:16
 
 ----------------------------------------------------------------------------------------------------------------------
+Exception :System.NullReferenceException: Object reference not set to an instance of an object.
+   at ERP.Models.Bal.Master.Master.AddCourse(CourseEntity courseEntity) in D:\Project\Github ERP\ERP\Frontend\ERP\ERP\Models\Bal\Master\Master.cs:line 121
+
+Time :02-Mar-2019 00:56:15
+
+----------------------------------------------------------------------------------------------------------------------

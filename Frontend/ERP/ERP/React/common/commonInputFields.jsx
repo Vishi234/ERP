@@ -51,6 +51,7 @@
             $('select[name=' + this.props.name + ']').on('change', this.handleChange.bind(this));
             $('select[name=' + this.props.name + ']').trigger("chosen:updated")
         }
+ 
         //this.setState({ mode: true })
         //this.setState({ this.props.mode = true});
         
