@@ -23,7 +23,7 @@ namespace ERP.Models.Bal.Master
             {
                 SqlParameter[] sqlParameter = new SqlParameter[11];
                 sqlParameter[0] = new SqlParameter("@YEAR_ID", academicEntity.yearId);
-                sqlParameter[1] = new SqlParameter("@CUSTOMER_ID", objUserEntity.customerId);
+                sqlParameter[1] = new SqlParameter("@CUSTOMER_ID", Convert.ToInt32(objUserEntity.customerId));
                 sqlParameter[2] = new SqlParameter("@USER_ID", objUserEntity.userId);
                 sqlParameter[3] = new SqlParameter("@YEAR", academicEntity.academicYear);
                 sqlParameter[4] = new SqlParameter("@START_DATE", academicEntity.wfDate);
@@ -122,7 +122,7 @@ namespace ERP.Models.Bal.Master
                 sqlParameter[2] = new SqlParameter("@USER_ID", objUserEntity.userId);
                 sqlParameter[3] = new SqlParameter("@COURSE_TYPE", courseEntity.courseType);
                 sqlParameter[4] = new SqlParameter("@COURSE_NAME", courseEntity.courseName);
-                sqlParameter[5] = new SqlParameter("@NO_SEMESTER", courseEntity.noOfSemester);
+                sqlParameter[5] = new SqlParameter("@NO_OF_SEMESTER", courseEntity.noOfSemester);
                 sqlParameter[6] = new SqlParameter("@IS_ACTIVE", courseEntity.active);
                 sqlParameter[7] = new SqlParameter("@OPER_TYPE", courseEntity.flag);
                 sqlParameter[8] = new SqlParameter("@REPORT_ID", Convert.ToInt32(courseEntity.reportId));

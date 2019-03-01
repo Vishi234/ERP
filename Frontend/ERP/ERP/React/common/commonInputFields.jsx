@@ -15,7 +15,7 @@
     }
     isValid(input) {
         //check required field
-        if (input != undefined) {
+        if (input != undefined && input.getAttribute('type')!='ddl') {
             if (input.getAttribute('required') != null && input.value === "") {
                 input.classList.add('input-validation-error'); //add class error
                 input.nextSibling.classList.add('field-validation-error');
@@ -25,7 +25,7 @@
             else {
                 input.classList.remove('input-validation-error');
                 input.nextSibling.classList.remove('field-validation-error');
-                input.nextSibling.textContent = "";
+                input.nextSibling.value = "";
                 return true;
             }
         }

@@ -179,6 +179,7 @@
     <Content Include="Images\chosen-sprite.png" />
     <Content Include="Images\circle.svg" />
     <Content Include="Images\icons\cap.svg" />
+    <Content Include="Images\icons\edit.png" />
     <Content Include="Images\icons\fog.svg" />
     <Content Include="Images\icons\info.svg" />
     <Content Include="Images\icons\mail.svg" />

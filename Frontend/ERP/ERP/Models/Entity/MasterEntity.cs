@@ -11,10 +11,13 @@ namespace ERP.Models.Entity
         public string academicYear { get; set; }
         public string wfDate { get; set; }
         public string wtDate { get; set; }
-        public string reportId { get; set; }
-        public char flag { get; set; }
-        public string active { get; set; }
         public string yearId { get; set; }
+        public string active { get; set; }
+        public char flag { get; set; }
+        public string reportId { get; set; }
+
+       
+
     }
     public class DurationEntity
     {
@@ -36,7 +39,7 @@ namespace ERP.Models.Entity
         public string noOfSemester { get; set; }
         public string reportId { get; set; }
         public char flag { get; set; }
-        public char courseType { get; set; }
+        public string courseType { get; set; }
         public string active { get; set; }
     }
     public class ActivityEntity
