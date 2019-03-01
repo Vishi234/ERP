@@ -16,5 +16,7 @@
     Label_Header["$COURSE$"] = "Course";
     Label_Header["$SUBJECT$"] = "Subject";
 
+    Label_Header["$EDIT$"] = "Edit";
+
     return Label_Header;
 }

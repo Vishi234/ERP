@@ -9,8 +9,8 @@ class CourseForm extends React.Component {
         var records = JSON.parse(content.addParams);
         this.state =
             {
-                courserType: ReadDropDownData("Param",17, true),
-                active: ReadDropDownData("Param",16, true),
+                courserType: ReadDropDownData("Param",'17', true),
+                active: ReadDropDownData("Param",'16', true),
                 selectedCourseType: 0,
                 selectedActive: 0,
                 courseId:0,
@@ -72,9 +72,9 @@ class CourseForm extends React.Component {
         });
         //after validation complete post to server
         if (validForm) {
+            debugger;
             var d = {
                 courserId: this.state.courserId,
-                courseCode: this.state.courseCode,
                 courseName: this.state.courseName,
                 noOfSemester: this.state.noOfSemester,
                 courseType=this.state.selectedCourseType,
