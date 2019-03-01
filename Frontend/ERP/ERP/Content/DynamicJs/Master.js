@@ -6,10 +6,10 @@ function getMasterGridSettings() {
 { headerName: labelArray['$ACADEMIC_YEAR$'], field: 'acYear', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$START_DATE$'], field: 'wfDate', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
 { headerName: labelArray['$END_DATE$'], field: 'wtDate', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
-     { headerName: labelArray['$IS_ACTIVE$'], field: 'isActive', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateActive'},
-{ headerName: labelArray['$EDIT$'], field: 'edit', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateEdit'}
+{ headerName: labelArray['$IS_ACTIVE$'], field: 'isActive', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateActive'},
+{ headerName: labelArray['$EDIT$'], field: 'Edit', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateEdit'}
  ];
- var AcademicDetails_Export = ['wfDate', 'wtDate', 'isActive','edit'];
+ var AcademicDetails_Export = ['wfDate','wtDate','isActive','Edit'];
 var AcademicDetails_ExportCaption = ['START_DATE','END_DATE','IS_ACTIVE','EDIT'];
 
  gridViewSettings['$AcademicDetails$'] =AcademicDetails;
@@ -21,10 +21,11 @@ var AcademicDetails_ExportCaption = ['START_DATE','END_DATE','IS_ACTIVE','EDIT']
 { headerName: labelArray['$COURSE_TYPE$'], field: 'cType', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
 { headerName: labelArray['$COURSE_NAME$'], field: 'cnm', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$NO_OF_SEMESTER$'], field: 'nsem', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
-{ headerName: labelArray['$IS_ACTIVE$'], field: 'isActive', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true}
+{ headerName: labelArray['$IS_ACTIVE$'], field: 'isActive', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateActive'},
+{ headerName: labelArray['$EDIT$'], field: 'Edit', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateEdit'}
  ];
- var CourseDetails_Export = ['cType','nsem','isActive'];
-var CourseDetails_ExportCaption = ['COURSE_TYPE','NO_OF_SEMESTER','IS_ACTIVE'];
+ var CourseDetails_Export = ['cType','nsem','isActive','Edit'];
+var CourseDetails_ExportCaption = ['COURSE_TYPE','NO_OF_SEMESTER','IS_ACTIVE','EDIT'];
 
  gridViewSettings['$CourseDetails$'] =CourseDetails;
  gridViewSettings['$CourseDetails_Export$'] =CourseDetails_Export;

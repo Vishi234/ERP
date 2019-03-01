@@ -44,7 +44,7 @@ class AcademicYearForm extends React.Component
             };
         this.handleSubmit = this.handleSubmit.bind(this);
 
-
+        this.handleClick = this.handleClick.bind(this);
         
 
     }
@@ -116,14 +116,29 @@ class AcademicYearForm extends React.Component
             yearCode: value
         });
     }
+    handleClick(param) {
+        debugger;   
+        console.log(param);
+        // access to e.target here
+        //param.
+        //    this.setState(){
+
+        //}
+    }
     CreateEdit(params)
     {
+        debugger;
         var html = "";
         var domElement = "";
-        html = '<div><a href="javascript:void(0)"><img style="height: 16px;margin-top: 5px;margin-left:5px;" dataAttr=' + JSON.stringify(params.data) + ' src="../images/icons/edit.png"></img></a></div>';
+        var jsonObj = JSON.stringify(params.data);
+
+        html = '<div><a class="testClass" href="javascript:void(0)" dataAttr=' + jsonObj + '><img style="height: 16px;margin-top: 5px;margin-left:5px;"  src="../images/icons/edit.png"></img></a></div>';
         domElement = document.createElement("div");
         domElement.innerHTML = html;
-        return domElement;
+        return domElement;  
+    }
+    componentDidMount() {
+        $('.testClass').on("click", this.handleClick.bind(this));
     }
     CreateActive(params) {
         debugger;
