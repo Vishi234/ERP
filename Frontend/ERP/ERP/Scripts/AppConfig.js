@@ -15,6 +15,7 @@
     Label_Header["$ACTIVITY_TYPE$"] = "Activity Type";
     Label_Header["$COURSE$"] = "Course";
     Label_Header["$SUBJECT$"] = "Subject";
+    Label_Header["$COURSE_TYPE$"] = "Course Type";
 
     return Label_Header;
 }

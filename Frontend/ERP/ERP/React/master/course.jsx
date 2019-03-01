@@ -9,11 +9,11 @@ class CourseForm extends React.Component {
         var records = JSON.parse(content.addParams);
         this.state =
             {
-                courserType: ReadDropDownData("Param",'17', true),
-                active: ReadDropDownData("Param",'16', true),
+                courseType: ReadDropDownData("Param", '17', true),
+                active: ReadDropDownData("Param", '16', true),
                 selectedCourseType: 0,
                 selectedActive: 0,
-                courseId:0,
+                courseId: 0,
                 courseName: "",
                 noOfSemester: "",
                 Fields: [],
@@ -66,7 +66,12 @@ class CourseForm extends React.Component {
         var validForm = true;
         fields.forEach(function (field) {
             if (typeof field[0].isValid === "function") {
-                var validField = field[0].isValid(field[0].refs[field[0].props.name]);
+                var validField;
+                if (field[0].props.type == 'ddl') {
+                    validField = field[0].isValid(field[0].refs.MySelect2);
+                } else {
+                    validField = field[0].isValid(field[0].refs[field[0].props.name]);
+                }
                 validForm = validForm && validField;
             }
         });
@@ -77,7 +82,7 @@ class CourseForm extends React.Component {
                 courserId: this.state.courserId,
                 courseName: this.state.courseName,
                 noOfSemester: this.state.noOfSemester,
-                courseType=this.state.selectedCourseType,
+                courseType:this.state.selectedCourseType,
                 active: this.state.selectedActive,
                 flag: 'A',
                 reportId: 2
@@ -131,7 +136,7 @@ class CourseForm extends React.Component {
                             <h4 className="text-right font-14">{this.state.records} Record(S)</h4>
                         </div>
                     </div>
-                  </div>
+                </div>
                 <div className="block-body container-fluid">
                     <div className="row clearfix">
                         <div className="col-lg-12 col-xs-12 col-md-12 col-sm-12">
@@ -142,19 +147,19 @@ class CourseForm extends React.Component {
                                             <ul>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedCourseType} data={this.state.courseType} label={'Course Type'} name={'courseType'} htmlFor={'courseType'} isrequired={true}
-                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeType} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeType.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.courseName} label={'Course Name'} name={'courseName'} htmlFor={'courseName'} isrequired={true}
-                                                                 onChange={this.onChangeName.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeName.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.noOfSemester} label={'No. Of Semester'} name={'noOfSemester'} htmlFor={'noOfSemester'} isrequired={true}
-                                                                 className={'form-control'} onChange={this.onChangeSemester.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        className={'form-control'} onChange={this.onChangeSemester.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedActive} data={this.state.active} label={'Active'} name={'active'} htmlFor={'active'} isrequired={true}
-                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeActive} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeActive.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>
@@ -172,7 +177,7 @@ class CourseForm extends React.Component {
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         );
     }

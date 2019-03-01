@@ -25,7 +25,7 @@
             else {
                 input.classList.remove('input-validation-error');
                 input.nextSibling.classList.remove('field-validation-error');
-                input.nextSibling.textContent = "";
+                input.nextSibling.value = "";
                 return true;
             }
         }

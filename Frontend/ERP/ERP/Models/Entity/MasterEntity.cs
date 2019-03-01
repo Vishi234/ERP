@@ -39,7 +39,7 @@ namespace ERP.Models.Entity
         public string noOfSemester { get; set; }
         public string reportId { get; set; }
         public char flag { get; set; }
-        public char courseType { get; set; }
+        public string courseType { get; set; }
         public string active { get; set; }
     }
     public class ActivityEntity

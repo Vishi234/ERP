@@ -16,7 +16,7 @@ var AcademicDetails_ExportCaption = ['START_DATE','END_DATE','IS_ACTIVE'];
  gridViewSettings['$AcademicDetails_ExportCaption$'] =AcademicDetails_ExportCaption;
 
  var CourseDetails = [
-{ headerName: labelArray['$ID$'], field: 'id', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$COURSE_ID$'], field: 'id', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$COURSE_TYPE$'], field: 'cType', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
 { headerName: labelArray['$COURSE_NAME$'], field: 'cnm', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$NO_OF_SEMESTER$'], field: 'nsem', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
