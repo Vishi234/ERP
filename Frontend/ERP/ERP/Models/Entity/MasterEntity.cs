@@ -68,11 +68,11 @@ namespace ERP.Models.Entity
     }
     public class SubjectEntity
     {
+        public string subjectId { get; set; }
         public string subjectCode { get; set; }
         public string subjectName { get; set; }
         public string shortName { get; set; }
         public string medium { get; set; }
-        public string activityType { get; set; }
         public string subjectType { get; set; }
         public string reportId { get; set; }
         public char flag { get; set; }

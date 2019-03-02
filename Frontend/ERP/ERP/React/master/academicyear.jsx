@@ -18,6 +18,10 @@ class AcademicYearForm extends React.Component {
                 }
             }
         }
+       // var columnDefs = columns;
+
+
+
 
         this.state =
             {
@@ -32,9 +36,9 @@ class AcademicYearForm extends React.Component {
                 columnDef: columnDefs,
                 rowData: records,
                 records: ((records == null) ? 0 : records.length),
-            ServerMessage: '',
-            label: "Save",
-            flag:"A",
+                ServerMessage: '',
+                label: "Save",
+                flag:"A",
             };
         this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -149,13 +153,13 @@ class AcademicYearForm extends React.Component {
         var html = "";
         var domElement = "";
         if ((params.data.isActive).trim() == 70) {
-            html = '<span style="margin-top: 5px;padding: 6px;" class="badge badge-pill badge-success">Active</span>'
+            html = '<span style="margin-top: 5px;padding: 6px 20px;" class="badge badge-pill badge-success">Active</span>'
         }
         else if ((params.data.isActive).trim() == 71) {
-            html = '<span style="margin-top: 5px;padding: 6px;" class="badge badge-pill badge-danger">In-Active</span>'
+            html = '<span style="margin-top: 5px;padding: 6px 15px;" class="badge badge-pill badge-danger">In-Active</span>'
         }
         else {
-            html = '<span style="margin-top: 5px;padding: 6px;" class="badge badge-pill badge-warning">Temporary</span>'
+            html = '<span style="margin-top: 5px;padding: 6px 10px;" class="badge badge-pill badge-warning">Temporary</span>'
         }
 
         domElement = document.createElement("div");
