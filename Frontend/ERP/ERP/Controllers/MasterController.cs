@@ -86,14 +86,14 @@ namespace ERP.Controllers
             SubjectEntity subjectEntity = new SubjectEntity();
             subjectEntity.flag = 'G';
             subjectEntity.reportId = "5";
-            TempData["SubjectData"] = new Master().AddSubject(subjectEntity, objUserEntity.customerId, objUserEntity.userId);
+            TempData["SubjectData"] = new Master().AddSubject(subjectEntity);
             return View();
         }
         [HttpPost]
         public ActionResult Subject(SubjectEntity subjectEntity)
         {
             UserEntity objUserEntity = UserEntity.GetInstance();
-            return Json(new Master().AddSubject(subjectEntity, objUserEntity.customerId, objUserEntity.userId));
+            return Json(new Master().AddSubject(subjectEntity));
         }
         public ActionResult Mapping()
         {
