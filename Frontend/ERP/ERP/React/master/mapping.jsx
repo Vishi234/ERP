@@ -174,10 +174,6 @@ class MappingForm extends React.Component {
                                                                  onChange={this.onChangeSubject.bind(this)} keyId={'ID'} keyName={'SUBJECT_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
-                                                    <CreateInput type={'ddl'} value={this.state.selectedType} data={this.state.type} label={'Subject Type'} name={'type'} htmlFor={'type'} isrequired={true}
-                                                                 onChange={this.onChangeType.bind(this)} keyId={'PARAM_ID'} keyName={'PARAM_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                                </li>
-                                                <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedActive} data={this.state.active} label={'Active'} name={'active'} htmlFor={'active'} isrequired={true}
                                                         keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeActive} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>

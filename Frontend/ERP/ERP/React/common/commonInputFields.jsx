@@ -25,7 +25,7 @@
             else {
                 input.classList.remove('input-validation-error');
                 input.nextSibling.classList.remove('field-validation-error');
-                input.nextSibling.textContent = "";
+                input.nextSibling.value = "";
                 return true;
             }
         }
@@ -51,6 +51,7 @@
             $('select[name=' + this.props.name + ']').on('change', this.handleChange.bind(this));
             $('select[name=' + this.props.name + ']').trigger("chosen:updated")
         }
+ 
         //this.setState({ mode: true })
         //this.setState({ this.props.mode = true});
         
