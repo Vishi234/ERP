@@ -8,7 +8,7 @@
             courseId: ReadDropDownData("Course", $("#hfCustomerId").val(),false),
             semester: [],
             academicYear: ReadDropDownData("AcademicYear", $("#hfCustomerId").val(), false),
-            active: ReadDropDownData("Param",16, true),
+            active: ReadDropDownData("Param",'16', true),
             selectedActive: 0,
             selectedYear: 0,
             selectedCourse: 0,
@@ -70,7 +70,7 @@
                                 semCount: 0,
                                 wefDate: "",
                                 wetDate: "",
-                                active: ReadDropDownData("Param",16, true),
+                                active: ReadDropDownData("Param",'16', true),
                                 selectedActive: 0,
                             })
                         this.setState({ rowData: MyData });
@@ -103,8 +103,11 @@
         var semester = 0;
         var jsonData = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
         for (var i = 0; i < jsonData.length; i++) {
-            if (jsonData[i].ID == value) {
-                semester = jsonData[i].NO_SEMESTER;
+            if (jsonData[i].COURSE_NAME == value) {
+                data = {};
+                data.COURSE_ID = jsonData[i].COURSE_ID;
+                data.NO_SEMESTER = jsonData[i].NO_OF_SEMESTER;
+                obj.push(data);
             }
         }
         for (var i = 1; i <= semester; i++) {

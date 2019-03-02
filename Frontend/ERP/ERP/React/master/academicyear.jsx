@@ -7,21 +7,17 @@ class AcademicYearForm extends React.Component {
         grdArray = GetReportConfiguration("Master");
 
         var records = JSON.parse(content.addParams);
-        var columns = grdArray["$AcademicDetails$"];
-        for (var i = 0; i < columns.length; i++) {
-            if (columns[i].cellRenderer) {
-                if (columns[i].cellRenderer == "CreateEdit") {
-                    columns[i].cellRenderer = this.CreateEdit;
+        var columnDefs = grdArray["$AcademicDetails$"];
+        for (var i = 0; i < columnDefs.length; i++) {
+            if (columnDefs[i].cellRenderer) {
+                if (columnDefs[i].cellRenderer == "CreateEdit") {
+                    columnDefs[i].cellRenderer = this.CreateEdit;
                 }
-                else if (columns[i].cellRenderer == "CreateActive") {
-                    columns[i].cellRenderer = this.CreateActive;
+                else if (columnDefs[i].cellRenderer == "CreateActive") {
+                    columnDefs[i].cellRenderer = this.CreateActive;
                 }
             }
         }
-        var columnDefs = columns;
-
-
-
 
         this.state =
             {
@@ -36,7 +32,9 @@ class AcademicYearForm extends React.Component {
                 columnDef: columnDefs,
                 rowData: records,
                 records: ((records == null) ? 0 : records.length),
-                ServerMessage: ''
+            ServerMessage: '',
+            label: "Save",
+            flag:"A",
             };
         this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -69,7 +67,7 @@ class AcademicYearForm extends React.Component {
                 wtDate: this.state.wtDate,
                 yearId: this.state.yearId,
                 active: this.state.selectedActive,
-                flag: 'A',
+                flag: this.state.flag ,
                 reportId: 1
             }
             $.ajax({
@@ -92,6 +90,8 @@ class AcademicYearForm extends React.Component {
                                 wtDate: "",
                                 active: ReadDropDownData("Param", 16, true),
                                 selectedActive: 0,
+                                label: "Save",
+                                flag: "A"
                             })
                         this.setState({ rowData: MyData });
                         this.setState({ records: MyData.length })
@@ -113,13 +113,18 @@ class AcademicYearForm extends React.Component {
         });
     }
     handleClick(param) {
+        debugger;
         var data = JSON.parse(param.currentTarget.getAttribute("dataattr"));
         this.setState
             ({
+                yearId:data.id,
                 academicYear: data.acYear,
                 wfDate: data.wfDate,
                 wtDate: data.wtDate,
                 selectedActive: data.isActive,
+                label: "Update",
+                flag:"M"
+
             })
     }
     CreateEdit(params) {
@@ -134,6 +139,9 @@ class AcademicYearForm extends React.Component {
         return domElement;
     }
     componentDidMount() {
+        $('.testClass').on("click", this.handleClick.bind(this));
+    }
+    componentDidUpdate() {
         $('.testClass').on("click", this.handleClick.bind(this));
     }
     CreateActive(params) {
@@ -250,7 +258,8 @@ class AcademicYearForm extends React.Component {
                                                     keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeActive.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
-                                                    <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>
+                                                    <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span>{this.state.label}</button>
+
                                                 </li>
                                             </ul>
 
