@@ -32,9 +32,9 @@ class AcademicYearForm extends React.Component {
                 columnDef: columnDefs,
                 rowData: records,
                 records: ((records == null) ? 0 : records.length),
-            ServerMessage: '',
-            label: "Save",
-            flag:"A",
+                ServerMessage: '',
+                label: "Save",
+                flag:"A"
             };
         this.handleSubmit = this.handleSubmit.bind(this);
 
