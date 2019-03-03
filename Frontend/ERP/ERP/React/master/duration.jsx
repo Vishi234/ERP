@@ -243,7 +243,7 @@
                             <div className="card">
                                 <div className="body">
                                     <div className="acform">
-                                        <form name='CourseForm' id="durationForm" noValidate onSubmit={this.handleSubmit}>
+                                        <form name='durationForm' id="durationForm" noValidate onSubmit={this.handleSubmit}>
                                             <ul>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedYear} data={this.state.academicYear} label={'Academic Year'} name={'academicYear'} htmlFor={'academicYear'} isrequired={true}
