@@ -11,14 +11,14 @@ namespace ERP.Controllers
     public class EmployeeController : Controller
     {
         // GET: Employee
-        //public ActionResult Registration()
-        //{
-        //    EmployeeEntity employeeEntity = new EmployeeEntity();
-        //    employeeEntity.flag = 'G';
-        //    employeeEntity.reportId = "8";
-        //    TempData["EmployeeData"] = new Employee().AddEmployee(employeeEntity);
-        //    return View();
-        //}
+        public ActionResult Registration()
+        {
+            //EmployeeEntity employeeEntity = new EmployeeEntity();
+            //employeeEntity.flag = 'G';
+            //employeeEntity.reportId = "8";
+            //TempData["EmployeeData"] = new Employee().AddEmployee(employeeEntity);
+            return View();
+        }
         //[HttpPost]
         //public ActionResult Registration(EmployeeEntity employeeEntity)
         //{
