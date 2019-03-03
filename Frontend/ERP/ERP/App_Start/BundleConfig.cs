@@ -20,11 +20,13 @@ namespace ERP
                         "~/Scripts/jquery-isotope.min.js",
                         "~/Scripts/moment.min.js",
                         "~/Scripts/daterangepicker.js",
+                        "~/Scripts/jquery.lwMultiSelect.js",
                         "~/Scripts/appconfig.js",
                         "~/Scripts/common.js",
                         "~/Scripts/custom.js",
                         "~/Scripts/ag-grid.min.js",
-                        "~/Scripts/fontawesome/all.js"));
+                        "~/Scripts/fontawesome/all.js"
+                        ));
 
             bundles.Add(new ScriptBundle("~/bundles/react").Include(
                          "~/Scripts/react.development.js",
@@ -50,7 +52,8 @@ namespace ERP
                       "~/Content/daterangepicker.css",
                       "~/Content/chosen.css",
                       "~/Content/ag-grid.css",
-                      "~/Content/ag-theme-balham.css"));
+                      "~/Content/ag-theme-balham.css",
+                      "~/Content/jquery.lwMultiSelect.css"));
         }
     }
 }

@@ -18,11 +18,17 @@
     Label_Header["$ACTIVITY_TYPE$"] = "Activity Type";
     Label_Header["$COURSE$"] = "Course";
     Label_Header["$SUBJECT$"] = "Subject";
-    Label_Header["$COURSE_TYPE$"] = "Course Type";
-    Label_Header["$IS_ACTIVE$"] = "Status";
-
+    Label_Header["$COURSE_TYPE$"] = "Course Type"; 
+    Label_Header["$YEAR_ID$"]= "Academic Year",
+    Label_Header["$COURSE_ID$"]="Course",
     Label_Header["$EDIT$"] = "Edit";
-    Label_Header["$CREATED_BY$"] = "Created By";
-
+    Label_Header["$SUBJECT_CODE$"] = "Subject Code";
+    Label_Header["$SUBJECT_NAME$"] = "Subject Name";
+    Label_Header["$SUBJECT_SHORT_NAME$"] = "Short Name";
+    Label_Header["$SUBJECT_MEDIUM$"] = "Medium";
+    Label_Header["$SUBJECT_TYPE$"] = "Subject Type";
+    Label_Header["$IS_ACTIVE$"] = "Is Active";
+    Label_Header["$SEMESTER$"] = "Semester";
+    Label_Header["$SUBJECT_ID$"] = "Subject";
     return Label_Header;
 }

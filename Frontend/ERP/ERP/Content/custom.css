@@ -7,7 +7,7 @@
     float: right;
     right: 0;
     position: fixed;
-    z-index: 99999999999;
+    z-index: 9;
 }
 
 .rtbar {
@@ -631,4 +631,51 @@ form[name="AcademicInfo"] li:nth-child(1) {
 
 form[name="AcademicInfo"] li:nth-child(2) {
     width: 49%;
+}
+
+.btn.btn-default {
+    background: #fff;
+    border-color: #e1e8ed;
+    color: #4a4c4e;
+    font-weight: 400;
+    padding: 6px 18px;
+}
+
+.modal-lg {
+    max-width: 1100px;
+}
+
+.cust ul {
+    width: 90%;
+}
+
+.cust .empbse {
+    margin-top: -140px;
+}
+
+.nav-tabs > li > a > img {
+    width: 15px;
+    float: left;
+    margin-right: 5px;
+    margin-top: 1px;
+}
+
+.nav-tabs .nav-link {
+    color: #808080;
+    font-weight: 500;
+}
+
+.btn-group {
+    border-top: 1px solid #e1e8ed;
+    padding: 10px;
+    /* background: #fafafa; */
+    margin-bottom: -58px;
+}
+
+    .btn-group input {
+        margin-right: 10px;
+    }
+
+.aclft button {
+    margin-right: 10px;
 }

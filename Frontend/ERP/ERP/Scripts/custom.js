@@ -30,6 +30,17 @@
         $(this).toggleClass("userinfoactive");
         $(".top-sub-menu").toggleClass("show");
     });
+    $('.listbox').lwMultiSelect({
+        addAllText: "Select All",
+        removeAllText: "Remove All",
+        selectedLabel: "Values accepted",
+        maxSelect: 0, //0 = no restrictions
+        maxText: '',
+    });
+    //$('#selector').val();
+    //$('#selector').data('plugin_lwMultiSelect').updateList();
+    //$('#selector').data('plugin_lwMultiSelect').selectAll();
+    //$('#selector').data('plugin_lwMultiSelect').removeAll(); //remove all selected  items
 
     $('.chosen-select').chosen();
     $('.openmodal').click(function () {
@@ -40,7 +51,7 @@
         $($(this).attr("data-target")).modal('show');
     });
     $(".nav-tabs li").click(function () {
-        var tabId = $(this).find("a").attr("tab-id");
+        var tabId = $(this).find("a").attr("href");
         $(".nav-tabs>li").removeClass("active");
         $(".nav-tabs>li>a").removeClass("fade in active show");
         $(".tab-content").find("div").removeClass("in active show");

@@ -7,41 +7,60 @@ class ActivityForm extends React.Component {
         grdArray = GetReportConfiguration("Master");
         var columnDefs = grdArray["$ActivityDetails$"];
         var records = JSON.parse(content.addParams);
+        for (var i = 0; i < columnDefs.length; i++) {
+            if (columnDefs[i].cellRenderer) {
+                if (columnDefs[i].cellRenderer == "CreateEdit") {
+                    columnDefs[i].cellRenderer = this.CreateEdit;
+                }
+                else if (columnDefs[i].cellRenderer == "CreateActive") {
+                    columnDefs[i].cellRenderer = this.CreateActive;
+                }
+            }
+        }
         this.state =
             {
+                actId:1,
                 actName: "",
-                status: ReadDropDownData("Param", "2", true),
                 actType: ReadDropDownData("Param", "1", true),
-                selectedStatus: 0,
+                active: ReadDropDownData("Param", '16', true),
+                selectedActive: 0,
                 selectedType: 0,
-                stDate: "",
-                endDate: "",
+                wfDate: "",
+                wetDate: "",
                 Fields: [],
                 columnDef: columnDefs,
                 rowData: records,
                 records: ((records == null) ? 0 : records.length),
-                ServerMessage: ''
+                ServerMessage: '',
+                label: "Save",
+                flag: "A",
             };
     }
     handleSubmit(e) {
         e.preventDefault();
         var validForm = true;
+        var validField;
         fields.forEach(function (field) {
             if (typeof field[0].isValid === "function") {
-                var validField = field[0].isValid(field[0].refs[field[0].props.name]);
+                if (field[0].props.type == 'ddl') {
+                    validField = field[0].isValid(field[0].refs.MySelect2);
+                } else {
+                    validField = field[0].isValid(field[0].refs[field[0].props.name]);
+                }
                 validForm = validForm && validField;
             }
         });
         //after validation complete post to server
         if (validForm) {
             var d = {
+                actId: this.state.actId,
+                active: this.state.selectedActive,
                 actName: this.state.actName,
-                status: this.state.status,
-                actType: this.state.actType,
-                stDate: this.state.wfDate,
-                endDate: this.state.wetDate,
+                actType: this.state.selectedType,
+                wfDate: this.state.wfDate,
+                wetDate: this.state.wetDate,
                 reportId: '6',
-                flag: 'A'
+                flag: this.state.flag,
             }
             $.ajax({
                 type: "POST",
@@ -59,12 +78,12 @@ class ActivityForm extends React.Component {
                         this.setState
                             ({
                                 actName: "",
-                                status: ReadDropDownData("Param", "2", true),
-                                actType: ReadDropDownData("Param", "1", true),
-                                selectedStatus: 0,
+                                actType: ReadDropDownData("Param", "1", true),                              
                                 selectedType: 0,
-                                stDate: "",
-                                endDate: "",
+                                wfDate: "",
+                                wetDate: "",
+                                active: ReadDropDownData("Param", 16, true),
+                                selectedActive: 0,
                             })
                         this.setState({ rowData: MyData });
                         this.setState({ records: MyData.length })
@@ -83,14 +102,9 @@ class ActivityForm extends React.Component {
             actName: value
         });
     }
-    onChangestatus(value) {
-        this.setState({
-            status: value
-        });
-    }
     onChangeactType(value) {
         this.setState({
-            actType: value
+            selectedType: value
         });
     }
     onBlurWefDate(value) {
@@ -102,6 +116,62 @@ class ActivityForm extends React.Component {
         this.setState({
             wetDate: value
         });
+    }
+    onChangeActive(value) {
+        this.setState({
+            selectedActive: value
+        });
+    }
+    handleClick(param) {
+        debugger;
+        var data = JSON.parse(param.currentTarget.getAttribute("dataattr"));
+        this.setState
+            ({
+                actId: data.id,
+                actName: data.anm,
+                selectedType: data.atyp,
+                wfDate: data.sDt,
+                wetDate: data.eDt,
+                selectedActive: data.isActive,
+                label: "Update",
+                flag: "M"
+
+            })
+    }
+    CreateEdit(params) {
+        debugger;
+        var html = "";
+        var domElement = "";
+        var jsonObj = JSON.stringify(params.data);
+
+        html = '<div><a class="testClass" href="javascript:void(0)" dataAttr=' + jsonObj + '><img style="height: 16px;margin-top: 5px;margin-left:5px;"  src="../images/icons/edit.png"></img></a></div>';
+        domElement = document.createElement("div");
+        domElement.innerHTML = html;
+        return domElement;
+    }
+    componentDidMount() {
+        $('.testClass').on("click", this.handleClick.bind(this));
+    }
+    componentDidUpdate() {
+        $('.testClass').on("click", this.handleClick.bind(this));
+    }
+    CreateActive(params) {
+        debugger;
+        var html = "";
+        var domElement = "";
+        if ((params.data.isActive).trim() == 70) {
+            html = '<span style="margin-top: 5px;padding: 6px 20px;" class="badge badge-pill badge-success">Active</span>'
+        }
+        else if ((params.data.isActive).trim() == 71) {
+            html = '<span style="margin-top: 5px;padding: 6px 15px;" class="badge badge-pill badge-danger">In-Active</span>'
+        }
+        else {
+            html = '<span style="margin-top: 5px;padding: 6px 10px;" class="badge badge-pill badge-warning">Temporary</span>'
+        }
+
+        domElement = document.createElement("div");
+        domElement.innerHTML = html;
+        return domElement;
     }
     //register input controls
     register(field) {
@@ -145,10 +215,7 @@ class ActivityForm extends React.Component {
                                             <CreateInput type={'text'} value={this.state.actName} label={'Activity Name'} name={'actName'} htmlFor={'actName'} isrequired={true}
                                                          onChange={this.onChangeactName.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                             </li>
-                                            <li>
-                                            <CreateInput type={'ddl'} value={this.state.selectedStatus} data={this.state.status} label={'Status'} name={'status'} htmlFor={'status'} isrequired={true}
-                                                         onChange={this.onChangestatus.bind(this)} keyId={'PARAM_ID'} keyName={'PARAM_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                            </li>
+                                            
                                             <li>
                                             <CreateInput type={'ddl'} value={this.state.selectedType} data={this.state.actType} label={'Activity Type'} name={'actType'} htmlFor={'actType'} isrequired={true}
                                                          onChange={this.onChangeactType.bind(this)} keyId={'PARAM_ID'} keyName={'PARAM_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
@@ -160,9 +227,13 @@ class ActivityForm extends React.Component {
                                             <li>
                                             <CreateInput type={'date'} value={this.state.endDate} id={'wtDate'} label={'End Date'} name={'endDate'} htmlFor={'wtDate'} isrequired={true}
                                                          className={'endDate form-control'} onBlur={this.onBlurWetDate.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
-                                            </li>
-                                            <li>
-                                            <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>
+                                                </li>
+                                             <li>
+                                              <CreateInput type={'ddl'} value={this.state.selectedActive} data={this.state.active} label={'Status'} name={'active'} htmlFor={'active'} isrequired={true}
+                                                     keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeActive.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                             </li>
+                                                <li>
+                                                    <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> {this.state.label}</button>
                                             </li>
                                         </ul>
 

@@ -38,10 +38,11 @@ var CourseDetails_ExportCaption = ['COURSE_TYPE','NO_OF_SEMESTER','IS_ACTIVE','E
 { headerName: labelArray['$NO_OF_SEMESTER$'], field: 'nsem', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
 { headerName: labelArray['$START_DATE$'], field: 'sDt', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
 { headerName: labelArray['$END_DATE$'], field: 'eDt', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
-{ headerName: labelArray['$IS_ACTIVE$'], field: 'isActive', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true}
+{ headerName: labelArray['$IS_ACTIVE$'], field: 'isActive', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateActive'},
+{ headerName: labelArray['$EDIT$'], field: 'Edit', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateEdit'}
  ];
- var DurationDetails_Export = ['nsem','sDt','eDt','isActive'];
-var DurationDetails_ExportCaption = ['NO_OF_SEMESTER','START_DATE','END_DATE','IS_ACTIVE'];
+ var DurationDetails_Export = ['nsem','sDt','eDt','isActive','Edit'];
+var DurationDetails_ExportCaption = ['NO_OF_SEMESTER','START_DATE','END_DATE','IS_ACTIVE','EDIT'];
 
  gridViewSettings['$DurationDetails$'] =DurationDetails;
  gridViewSettings['$DurationDetails_Export$'] =DurationDetails_Export;
@@ -65,31 +66,33 @@ var SectionDetails_ExportCaption = ['SECTION_NAME','IS_ACTIVE','CREATED_BY','EDI
  gridViewSettings['$SectionDetails_ExportCaption$'] =SectionDetails_ExportCaption;
 
  var SubjectDetails = [
-{ headerName: labelArray['$ID$'], field: 'id', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$SUBJECT_ID$'], field: 'id', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$SUBJECT_CODE$'], field: 'scde', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$SUBJECT_NAME$'], field: 'snm', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$SUBJECT_SHORT_NAME$'], field: 'ssnm', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
 { headerName: labelArray['$SUBJECT_MEDIUM$'], field: 'smed', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
-{ headerName: labelArray['$ACTIVITY_TYPE$'], field: 'sact', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
-{ headerName: labelArray['$SUBJECT_TYPE$'], field: 'styp', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true}
+{ headerName: labelArray['$SUBJECT_TYPE$'], field: 'styp', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
+{ headerName: labelArray['$IS_ACTIVE$'], field: 'isActive', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateActive'},
+{ headerName: labelArray['$EDIT$'], field: 'Edit', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateEdit'}
  ];
- var SubjectDetails_Export = ['ssnm','smed','sact','styp'];
-var SubjectDetails_ExportCaption = ['SUBJECT_SHORT_NAME','SUBJECT_MEDIUM','ACTIVITY_TYPE','SUBJECT_TYPE'];
+ var SubjectDetails_Export = ['ssnm','smed','styp','isActive','Edit'];
+var SubjectDetails_ExportCaption = ['SUBJECT_SHORT_NAME','SUBJECT_MEDIUM','SUBJECT_TYPE','IS_ACTIVE','EDIT'];
 
  gridViewSettings['$SubjectDetails$'] =SubjectDetails;
  gridViewSettings['$SubjectDetails_Export$'] =SubjectDetails_Export;
  gridViewSettings['$SubjectDetails_ExportCaption$'] =SubjectDetails_ExportCaption;
 
  var ActivityDetails = [
-{ headerName: labelArray['$ID$'], field: 'id', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$ACTIVITY_ID$'], field: 'id', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$ACTIVITY_NAME$'], field: 'anm', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
-{ headerName: labelArray['$ACTIVITY_STATUS$'], field: 'asta', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$ACTIVITY_TYPE$'], field: 'atyp', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
 { headerName: labelArray['$START_DATE$'], field: 'sDt', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
-{ headerName: labelArray['$END_DATE$'], field: 'eDt', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true}
+{ headerName: labelArray['$END_DATE$'], field: 'eDt', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
+{ headerName: labelArray['$IS_ACTIVE$'], field: 'isActive', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateActive'},
+{ headerName: labelArray['$EDIT$'], field: 'Edit', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateEdit'}
  ];
- var ActivityDetails_Export = ['atyp','sDt','eDt'];
-var ActivityDetails_ExportCaption = ['ACTIVITY_TYPE','START_DATE','END_DATE'];
+ var ActivityDetails_Export = ['atyp','sDt','eDt','isActive','Edit'];
+var ActivityDetails_ExportCaption = ['ACTIVITY_TYPE','START_DATE','END_DATE','IS_ACTIVE','EDIT'];
 
  gridViewSettings['$ActivityDetails$'] =ActivityDetails;
  gridViewSettings['$ActivityDetails_Export$'] =ActivityDetails_Export;
@@ -97,13 +100,14 @@ var ActivityDetails_ExportCaption = ['ACTIVITY_TYPE','START_DATE','END_DATE'];
 
  var MappingDetails = [
 { headerName: labelArray['$ID$'], field: 'id', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
-{ headerName: labelArray['$COURSE$'], field: 'cor', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$COURSE_ID$'], field: 'cId', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$SEMESTER$'], field: 'sem', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
-{ headerName: labelArray['$SUBJECT$'], field: 'sub', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
-{ headerName: labelArray['$IS_ACTIVE$'], field: 'isActive', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true}
+{ headerName: labelArray['$SUBJECT_ID$'], field: 'subId', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
+{ headerName: labelArray['$IS_ACTIVE$'], field: 'isActive', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateActive'},
+{ headerName: labelArray['$EDIT$'], field: 'Edit', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateEdit'}
  ];
- var MappingDetails_Export = ['sub','isActive'];
-var MappingDetails_ExportCaption = ['SUBJECT','IS_ACTIVE'];
+ var MappingDetails_Export = ['subId','isActive','Edit'];
+var MappingDetails_ExportCaption = ['SUBJECT_ID','IS_ACTIVE','EDIT'];
 
  gridViewSettings['$MappingDetails$'] =MappingDetails;
  gridViewSettings['$MappingDetails_Export$'] =MappingDetails_Export;

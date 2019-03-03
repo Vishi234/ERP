@@ -3,12 +3,22 @@
         grdArray = GetReportConfiguration("Master");
         var columnDefs = grdArray["$DurationDetails$"];
         var records = JSON.parse(content.addParams);
+        for (var i = 0; i < columnDefs.length; i++) {
+            if (columnDefs[i].cellRenderer) {
+                if (columnDefs[i].cellRenderer == "CreateEdit") {
+                    columnDefs[i].cellRenderer = this.CreateEdit;
+                }
+                else if (columnDefs[i].cellRenderer == "CreateActive") {
+                    columnDefs[i].cellRenderer = this.CreateActive ;
+                }
+            }
+        }
         return {
             durId:0,
             courseId: ReadDropDownData("Course", $("#hfCustomerId").val(),false),
             semester: [],
             academicYear: ReadDropDownData("AcademicYear", $("#hfCustomerId").val(), false),
-            active: ReadDropDownData("Param",'16', true),
+            active: ReadDropDownData("Param", '16', true),
             selectedActive: 0,
             selectedYear: 0,
             selectedCourse: 0,
@@ -17,17 +27,25 @@
             wefDate: "",
             wetDate: "",
             Fields: [],
+            label: "Save",
+            flag: "A",
             columnDef: columnDefs,
             rowData: records,
             records: ((records == null) ? 0 : records.length),
         }
     },
     handleSubmit: function (e) {
+        debugger
         e.preventDefault();
         var validForm = true;
+        var validField;
         this.state.Fields.forEach(function (field) {
             if (typeof field.isValid === "function") {
-                var validField = field.isValid(field.refs[field.props.name]);
+                if (field.props.type == 'ddl') {
+                    validField = field.isValid(field.refs.MySelect2);
+                } else {
+                    validField = field.isValid(field.refs[field.props.name]);
+                }
                 validForm = validForm && validField;
             }
         });
@@ -43,7 +61,7 @@
                 wetDate: this.state.wetDate,
                 active: this.state.selectedActive,
                 reportId: 3,
-                flag: 'A'
+                flag: this.state.flag,
 
             }
             $.ajax({
@@ -70,7 +88,7 @@
                                 semCount: 0,
                                 wefDate: "",
                                 wetDate: "",
-                                active: ReadDropDownData("Param",'16', true),
+                                active: ReadDropDownData("Param", '16', true),
                                 selectedActive: 0,
                             })
                         this.setState({ rowData: MyData });
@@ -100,22 +118,22 @@
     },
     onChangeCourse: function (value) {
         var obj = [];
-        var semester = 0;
+        //var semester = 0;
         var jsonData = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
         for (var i = 0; i < jsonData.length; i++) {
-            if (jsonData[i].COURSE_NAME == value) {
+            if (jsonData[i].COURSE_ID == value) {
                 data = {};
                 data.COURSE_ID = jsonData[i].COURSE_ID;
-                data.NO_SEMESTER = jsonData[i].NO_OF_SEMESTER;
+                data.NO_OF_SEMESTER = jsonData[i].NO_OF_SEMESTER;
                 obj.push(data);
             }
         }
-        for (var i = 1; i <= semester; i++) {
-            data = {};
-            data.ID = i;
-            data.NO_SEMESTER = i;
-            obj.push(data);
-        }
+        //for (var i = 1; i <= semester; i++) {
+        //    data = {};
+        //    data.ID = i;
+        //    data.NO_SEMESTER = i;
+        //    obj.push(data);
+        //}
         this.setState({ semester: obj });
         this.setState({
             selectedCourse: value
@@ -142,6 +160,58 @@
         this.setState({
             selectedActive: value
         });
+    },
+    handleClick(param) {
+        debugger;
+        var data = JSON.parse(param.currentTarget.getAttribute("dataattr"));
+        this.setState
+            ({
+                durId: data.id,
+                selectedYear: data.acYear,
+                selectedCourse: data.cnm,
+                selectedSemester: data.nsem,
+                wefDate: data.sDt,
+                wetDate: data.eDt,
+                selectedActive: data.isActive,
+                label: "Update",
+                flag: "M"
+
+            })
+    },
+    CreateEdit(params) {
+        debugger;
+        var html = "";
+        var domElement = "";
+        var jsonObj = JSON.stringify(params.data);
+
+        html = '<div><a class="testClass" href="javascript:void(0)" dataAttr=' + jsonObj + '><img style="height: 16px;margin-top: 5px;margin-left:5px;"  src="../images/icons/edit.png"></img></a></div>';
+        domElement = document.createElement("div");
+        domElement.innerHTML = html;
+        return domElement;
+    },
+    componentDidMount() {
+        $('.testClass').on("click", this.handleClick.bind(this));
+    },
+    componentDidUpdate() {
+        $('.testClass').on("click", this.handleClick.bind(this));
+    },
+    CreateActive(params) {
+        debugger;
+        var html = "";
+        var domElement = "";
+        if ((params.data.isActive).trim() == 70) {
+            html = '<span style="margin-top: 5px;padding: 6px 20px;" class="badge badge-pill badge-success">Active</span>'
+        }
+        else if ((params.data.isActive).trim() == 71) {
+            html = '<span style="margin-top: 5px;padding: 6px 15px;" class="badge badge-pill badge-danger">In-Active</span>'
+        }
+        else {
+            html = '<span style="margin-top: 5px;padding: 6px 10px;" class="badge badge-pill badge-warning">Temporary</span>'
+        }
+
+        domElement = document.createElement("div");
+        domElement.innerHTML = html;
+        return domElement;
     },
     render: function () {
         //Render form
@@ -173,19 +243,19 @@
                             <div className="card">
                                 <div className="body">
                                     <div className="acform">
-                                        <form name='CourseForm' id="durationForm" noValidate onSubmit={this.handleSubmit}>
+                                        <form name='durationForm' id="durationForm" noValidate onSubmit={this.handleSubmit}>
                                             <ul>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedYear} data={this.state.academicYear} label={'Academic Year'} name={'academicYear'} htmlFor={'academicYear'} isrequired={true}
-                                                                 keyId={'ID'} keyName={'ACADEMIC_YEAR'} onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                                 keyId={'YEAR_ID'} keyName={'ACADEMIC_YEAR'} onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedCourse} data={this.state.courseId} label={'Course'} name={'courseId'} htmlFor={'courseId'} isrequired={true}
-                                                                 keyId={'ID'} keyName={'COURSE_NAME'} onChange={this.onChangeCourse} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                                 keyId={'COURSE_ID'} keyName={'COURSE_NAME'} onChange={this.onChangeCourse} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedSemester} data={this.state.semester} label={'Semester'} name={'semester'} htmlFor={'semester'} isrequired={true}
-                                                                 keyId={'ID'} keyName={'NO_SEMESTER'} className={'form-control'} onChange={this.onChangeSemester} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                                 keyId={'COURSE_ID'} keyName={'NO_OF_SEMESTER'} className={'form-control'} onChange={this.onChangeSemester} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'date'} value={this.state.wefDate} label={'Start Date'} name={'daterangepicker'} htmlFor={'wefDate'} isrequired={true}
@@ -197,10 +267,10 @@
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedActive} data={this.state.active} label={'Status'} name={'active'} htmlFor={'active'} isrequired={true}
-                                                        keyId={'PARAM_ID'} keyName={'PARAM_TYPE'} onChange={this.onChangeActive} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeActive} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
-                                                   <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>
+                                                    <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> {this.state.label}</button>
                                                 </li>
                                             </ul>
                                         </form>
