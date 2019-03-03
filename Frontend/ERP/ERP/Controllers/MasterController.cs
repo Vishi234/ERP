@@ -97,6 +97,10 @@ namespace ERP.Controllers
         }
         public ActionResult Mapping()
         {
+            MappingEntity mapping = new MappingEntity();
+            mapping.flag = 'G';
+            mapping.reportId = "7";
+            TempData["MappingData"] = new Master().AddMappingDetails(mapping);
             return View();
         }
         [HttpPost]

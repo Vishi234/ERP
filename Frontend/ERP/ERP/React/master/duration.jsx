@@ -38,9 +38,9 @@
         debugger
         e.preventDefault();
         var validForm = true;
+        var validField;
         this.state.Fields.forEach(function (field) {
             if (typeof field.isValid === "function") {
-                var validField;
                 if (field.props.type == 'ddl') {
                     validField = field.isValid(field.refs.MySelect2);
                 } else {

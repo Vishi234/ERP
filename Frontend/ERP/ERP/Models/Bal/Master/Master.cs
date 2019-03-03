@@ -68,15 +68,15 @@ namespace ERP.Models.Bal.Master
             try
             {
                 SqlParameter[] sqlParameter = new SqlParameter[12];
-                sqlParameter[0] = new SqlParameter("@ID", activityEntity.id);
-                sqlParameter[1] = new SqlParameter("@ACT_NAME", activityEntity.actName);
-                sqlParameter[2] = new SqlParameter("@ACT_STATUS", activityEntity.status);
-                sqlParameter[3] = new SqlParameter("@ACT_TYPE", activityEntity.actType);
-                sqlParameter[4] = new SqlParameter("@START_DATE", activityEntity.stDate);
-                sqlParameter[5] = new SqlParameter("@END_DATE", activityEntity.endDate);
-                sqlParameter[6] = new SqlParameter("@OPER_TYPE", activityEntity.flag);
-                sqlParameter[7] = new SqlParameter("@CUSTOMER_ID", customerId);
-                sqlParameter[8] = new SqlParameter("@USER_ID", userid);
+                sqlParameter[0] = new SqlParameter("@ACTIVITY_ID", activityEntity.actId);
+                sqlParameter[1] = new SqlParameter("@CUSTOMER_ID", objUserEntity.customerId);
+                sqlParameter[2] = new SqlParameter("@USER_ID", objUserEntity.userId);
+                sqlParameter[3] = new SqlParameter("@ACTIVITY_NAME", activityEntity.actName);               
+                sqlParameter[4] = new SqlParameter("@ACTIVITY_TYPE", activityEntity.actType);
+                sqlParameter[5] = new SqlParameter("@START_DATE", activityEntity.wfDate);
+                sqlParameter[6] = new SqlParameter("@END_DATE", activityEntity.wetDate);
+                sqlParameter[7] = new SqlParameter("@IS_ACTIVE", activityEntity.active);
+                sqlParameter[8] = new SqlParameter("@OPER_TYPE", activityEntity.flag);                              
                 sqlParameter[9] = new SqlParameter("@REPORT_ID", activityEntity.reportId);
                 sqlParameter[10] = new SqlParameter("@FLAG", System.Data.SqlDbType.NVarChar);
                 sqlParameter[10].Direction = ParameterDirection.Output;
@@ -211,13 +211,13 @@ namespace ERP.Models.Bal.Master
             ResultEntity result = new ResultEntity();
             try
             {
-                SqlParameter[] sqlParameter = new SqlParameter[10];
-                sqlParameter[0] = new SqlParameter("@ID", mapping.id);
+                SqlParameter[] sqlParameter = new SqlParameter[11];
+                sqlParameter[0] = new SqlParameter("@ID", mapping.mapId);
                 sqlParameter[1] = new SqlParameter("@CUSTOMER_ID", objUserEntity.customerId);
                 sqlParameter[2] = new SqlParameter("@USER_ID", objUserEntity.userId);
-                sqlParameter[3] = new SqlParameter("@COURSE_ID", mapping.course);
-                sqlParameter[4] = new SqlParameter("@SEMESTER", mapping.semester);
-                sqlParameter[5] = new SqlParameter("@SUBJECT_ID", mapping.subject);
+                sqlParameter[3] = new SqlParameter("@COURSE_ID", Convert.ToInt32(mapping.course));
+                sqlParameter[4] = new SqlParameter("@SEMESTER", Convert.ToInt32(mapping.semester));
+                sqlParameter[5] = new SqlParameter("@SUBJECT_ID", Convert.ToInt32(mapping.subject));
                 sqlParameter[6] = new SqlParameter("@IS_ACTIVE", mapping.active);
                 sqlParameter[7] = new SqlParameter("@OPER_TYPE", mapping.flag);
 

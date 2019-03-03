@@ -68,7 +68,7 @@
                                    className='registration-form-control' required={this.props.isrequired} onChange={this.handleChange.bind(this)} />
         }
         else if (this.props.type == 'ddl') {
-            inputField = <select value={this.props.value} ref='MySelect2' onChange={this.handleChange.bind(this)} name={this.props.name}
+            inputField = <select value={this.props.value} ref='MySelect2'  onChange={this.handleChange.bind(this)} name={this.props.name}
                                  className='registration-form-control dropdown' required={this.props.isrequired}>
                             <option key="0" value="0">Select {this.props.label}</option>
                 {this.props.data.map((obj) =>

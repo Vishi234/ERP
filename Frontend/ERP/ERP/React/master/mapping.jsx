@@ -6,45 +6,70 @@ class MappingForm extends React.Component {
         super(props);
         grdArray = GetReportConfiguration("Master");
         var columnDefs = grdArray["$MappingDetails$"];
-        //var records = JSON.parse(content.addParams);
+        var records = JSON.parse(content.addParams);
+        for (var i = 0; i < columnDefs.length; i++) {
+            if (columnDefs[i].cellRenderer) {
+                if (columnDefs[i].cellRenderer == "CreateEdit") {
+                    columnDefs[i].cellRenderer = this.CreateEdit;
+                }
+                else if (columnDefs[i].cellRenderer == "CreateActive") {
+                    columnDefs[i].cellRenderer = this.CreateActive;
+                }
+            }
+        }
         this.state =
             {
-                id:0,
+                mapId:0,
+                active: ReadDropDownData("Param", '16', true),
+                selectedActive: 0,
                 course: ReadDropDownData("Course", $("#hfCustomerId").val(), false),
                 active: ReadDropDownData("Param",16, true),
                 selectedCourseType: 0,
                 semester: [],
-                subject: [],
+                subject: ReadDropDownData("Subject", $("#hfCustomerId").val(), false),
                 type: ReadDropDownData("Param", "4", true),
                 selectedCourse:0,
                 selectedSemester:0,
                 selectedSubject:0,
                 selectedType:0,
                 Fields: [],
-                columnDef: columnDefs,
-                rowData: null,
-                ServerMessage: ''
+            columnDef: columnDefs,
+            rowData: records,
+            records: ((records == null) ? 0 : records.length),
+               // rowData: null,
+            ServerMessage: '',
+            label: "Save",
+            flag: "A",
             };
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
     handleSubmit(e) {
+        debugger;
         e.preventDefault();
         var validForm = true;
+        var validField;
         fields.forEach(function (field) {
             if (typeof field[0].isValid === "function") {
-                var validField = field[0].isValid(field[0].refs[field[0].props.name]);
+                if (field[0].props.type == 'ddl') {
+                    validField = field[0].isValid(field[0].refs.MySelect2);
+                } else {
+                    validField = field[0].isValid(field[0].refs[field[0].props.name]);
+                }
                 validForm = validForm && validField;
             }
         });
         //after validation complete post to server
         if (validForm) {
+            debugger;
             var d = {
-                id:this.state.id,
-                course: this.state.course,
-                semester: this.state.semester,
-                subject: this.state.subject,
-                active: this.state.active,
+                mapId: this.state.mapId,
+                course: this.state.selectedCourse,
+                semester: this.state.selectedSemester,
+                subject: this.state.selectedSubject,
+                active: this.state.selectedActive,
                 reportId:'7',
-                flag: 'A'
+                flag: this.state.flag,
             }
             $.ajax({
                 type: "POST",
@@ -63,7 +88,7 @@ class MappingForm extends React.Component {
                             ({
                                 course: ReadDropDownData("Course", $("#hfCustomerId").val(), false),
                                 semester: [],
-                                subject: [],
+                                subject: ReadDropDownData("Subject", $("#hfCustomerId").val(), false),
                                 type: [],
                                 selectedCourse:0,
                                 selectedSemester:0,
@@ -71,6 +96,7 @@ class MappingForm extends React.Component {
                                 selectedType: 0,
                                 active: ReadDropDownData("Param",16, true),
                                 selectedCourseType: 0,
+
                             })
                         this.setState({ rowData: MyData });
                         this.setState({ records: MyData.length })
@@ -90,17 +116,18 @@ class MappingForm extends React.Component {
         fields.push(s);
     }
     onChangeCourse(value) {
+        debugger;
         var obj = [];
         var semester = 0;
         var jsonData = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
         for (var i = 0; i < jsonData.length; i++) {
-            if (jsonData[i].ID == value) {
-                semester = jsonData[i].NO_SEMESTER;
+            if (jsonData[i].COURSE_ID == value) {
+                semester = jsonData[i].NO_OF_SEMESTER;
             }
         }
         for (var i = 1; i <= semester; i++) {
             data = {};
-            data.ID = i;
+            //data.ID = i;
             data.NO_SEMESTER = i;
             obj.push(data);
         }
@@ -111,12 +138,12 @@ class MappingForm extends React.Component {
     }
     onChangeSemester(value) {
         this.setState({
-            semester: value
+            selectedSemester: value
         });
     }
     onChangeSubject(value) {
         this.setState({
-            subject: value
+            selectedSubject: value
         });
     }
     onChangeType(value) {
@@ -128,6 +155,56 @@ class MappingForm extends React.Component {
         this.setState({
             selectedActive: value
         });
+    }
+    handleClick(param) {
+        debugger;
+        var data = JSON.parse(param.currentTarget.getAttribute("dataattr"));
+        this.setState
+            ({
+                mapId: data.id,
+                selectedCourse: data.cId,
+                selectedSemester: data.sem,
+                selectedSubject: data.subId,
+                selectedActive: data.isActive,
+                label: "Update",
+                flag: "M"
+
+            })
+    }
+    CreateEdit(params) {
+        debugger;
+        var html = "";
+        var domElement = "";
+        var jsonObj = JSON.stringify(params.data);
+
+        html = '<div><a class="testClass" href="javascript:void(0)" dataAttr=' + jsonObj + '><img style="height: 16px;margin-top: 5px;margin-left:5px;"  src="../images/icons/edit.png"></img></a></div>';
+        domElement = document.createElement("div");
+        domElement.innerHTML = html;
+        return domElement;
+    }
+    componentDidMount() {
+        $('.testClass').on("click", this.handleClick.bind(this));
+    }
+    componentDidUpdate() {
+        $('.testClass').on("click", this.handleClick.bind(this));
+    }
+    CreateActive(params) {
+        debugger;
+        var html = "";
+        var domElement = "";
+        if ((params.data.isActive).trim() == 70) {
+            html = '<span style="margin-top: 5px;padding: 6px 20px;" class="badge badge-pill badge-success">Active</span>'
+        }
+        else if ((params.data.isActive).trim() == 71) {
+            html = '<span style="margin-top: 5px;padding: 6px 15px;" class="badge badge-pill badge-danger">In-Active</span>'
+        }
+        else {
+            html = '<span style="margin-top: 5px;padding: 6px 10px;" class="badge badge-pill badge-warning">Temporary</span>'
+        }
+
+        domElement = document.createElement("div");
+        domElement.innerHTML = html;
+        return domElement;
     }
     render() {
         //Render form
@@ -159,26 +236,26 @@ class MappingForm extends React.Component {
                             <div className="card">
                                 <div className="body">
                                     <div className="acform">
-                                        <form>
+                                        <form name='MappingForm' id="MappingForm" noValidate onSubmit={this.handleSubmit}>
                                             <ul>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedCourse} data={this.state.course} label={'Course'} name={'course'} htmlFor={'course'} isrequired={true}
-                                                                 onChange={this.onChangeCourse.bind(this)} keyId={'ID'} keyName={'COURSE_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                                 onChange={this.onChangeCourse.bind(this)} keyId={'COURSE_ID'} keyName={'COURSE_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedSemester} data={this.state.semester} label={'Semester'} name={'semester'} htmlFor={'semester'} isrequired={true}
-                                                                 onChange={this.onChangeSemester.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeSemester.bind(this)} keyId={'NO_SEMESTER'} keyName={'NO_SEMESTER'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedSubject} data={this.state.subject} label={'Subject'} name={'subject'} htmlFor={'subject'} isrequired={true}
-                                                                 onChange={this.onChangeSubject.bind(this)} keyId={'ID'} keyName={'SUBJECT_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                                 onChange={this.onChangeSubject.bind(this)} keyId={'SUBJECT_ID'} keyName={'SUBJECT_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedActive} data={this.state.active} label={'Active'} name={'active'} htmlFor={'active'} isrequired={true}
-                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeActive} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeActive.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
-                                                    <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>
+                                                    <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> {this.state.label}</button>
                                                 </li>
                                             </ul>
                                         </form>

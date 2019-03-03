@@ -44,12 +44,12 @@ namespace ERP.Models.Entity
     }
     public class ActivityEntity
     {
-        public string id { get; set; }
+        public string actId { get; set; }
         public string actName { get; set; }
         public string status { get; set; }
         public string actType { get; set; }
-        public string stDate { get; set; }
-        public string endDate { get; set; }
+        public string wfDate { get; set; }
+        public string wetDate { get; set; }
         public string reportId { get; set; }
         public char flag { get; set; }
         public string active { get; set; }
@@ -80,7 +80,7 @@ namespace ERP.Models.Entity
     }
     public class MappingEntity
     {
-        public string id { get; set; }
+        public string mapId { get; set; }
         public string course { get; set; }
         public string semester { get; set; }
         public string subject { get; set; }

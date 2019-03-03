@@ -25,6 +25,7 @@
     Label_Header["$SUBJECT_MEDIUM$"] = "Medium";
     Label_Header["$SUBJECT_TYPE$"] = "Subject Type";
     Label_Header["$IS_ACTIVE$"] = "Is Active";
-
+    Label_Header["$SEMESTER$"] = "Semester";
+    Label_Header["$SUBJECT_ID$"] = "Subject";
     return Label_Header;
 }
