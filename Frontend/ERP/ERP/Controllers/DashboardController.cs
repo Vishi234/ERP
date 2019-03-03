@@ -1,4 +1,5 @@
-﻿using ERP.Models.Bal.Login;
+﻿using ERP.Models.Bal.Common;
+using ERP.Models.Bal.Login;
 using ERP.Models.Entity;
 using ERP.Models.Entity;
 using System;
@@ -12,6 +13,7 @@ namespace ERP.Controllers
     public class DashboardController : Controller
     {
         // GET: Dashboard
+        [SessionCheck]
         public ActionResult Overview()
         {
             return View();
