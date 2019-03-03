@@ -19,27 +19,27 @@ class MappingForm extends React.Component {
         }
         this.state =
             {
-                mapId:0,
+                mapId: 0,
                 active: ReadDropDownData("Param", '16', true),
                 selectedActive: 0,
                 course: ReadDropDownData("Course", $("#hfCustomerId").val(), false),
-                active: ReadDropDownData("Param",16, true),
+                active: ReadDropDownData("Param", 16, true),
                 selectedCourseType: 0,
                 semester: [],
                 subject: ReadDropDownData("Subject", $("#hfCustomerId").val(), false),
                 type: ReadDropDownData("Param", "4", true),
-                selectedCourse:0,
-                selectedSemester:0,
-                selectedSubject:0,
-                selectedType:0,
+                selectedCourse: 0,
+                selectedSemester: 0,
+                selectedSubject: 0,
+                selectedType: 0,
                 Fields: [],
-            columnDef: columnDefs,
-            rowData: records,
-            records: ((records == null) ? 0 : records.length),
-               // rowData: null,
-            ServerMessage: '',
-            label: "Save",
-            flag: "A",
+                columnDef: columnDefs,
+                rowData: records,
+                records: ((records == null) ? 0 : records.length),
+                // rowData: null,
+                ServerMessage: '',
+                label: "Save",
+                flag: "A",
             };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClick = this.handleClick.bind(this);
@@ -68,7 +68,7 @@ class MappingForm extends React.Component {
                 semester: this.state.selectedSemester,
                 subject: this.state.selectedSubject,
                 active: this.state.selectedActive,
-                reportId:'7',
+                reportId: '7',
                 flag: this.state.flag,
             }
             $.ajax({
@@ -90,11 +90,11 @@ class MappingForm extends React.Component {
                                 semester: [],
                                 subject: ReadDropDownData("Subject", $("#hfCustomerId").val(), false),
                                 type: [],
-                                selectedCourse:0,
-                                selectedSemester:0,
-                                selectedSubject:0,
+                                selectedCourse: 0,
+                                selectedSemester: 0,
+                                selectedSubject: 0,
                                 selectedType: 0,
-                                active: ReadDropDownData("Param",16, true),
+                                active: ReadDropDownData("Param", 16, true),
                                 selectedCourseType: 0,
 
                             })
@@ -158,14 +158,28 @@ class MappingForm extends React.Component {
     }
     handleClick(param) {
         debugger;
-        var data = JSON.parse(param.currentTarget.getAttribute("dataattr"));
+        var obj = [];
+        var gridData = JSON.parse(param.currentTarget.getAttribute("dataattr"));
+        courseEdit = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
+        for (var i = 0; i < courseEdit.length; i++) {
+            if (courseEdit[i].COURSE_ID == gridData.cId) {
+                semester = courseEdit[i].NO_OF_SEMESTER;
+            }
+        }
+        for (var i = 1; i <= semester; i++) {
+            data = {};
+            //data.ID = i;
+            data.NO_SEMESTER = i;
+            obj.push(data);
+        }
+        this.setState({ semester: obj });
         this.setState
             ({
-                mapId: data.id,
-                selectedCourse: data.cId,
-                selectedSemester: data.sem,
-                selectedSubject: data.subId,
-                selectedActive: data.isActive,
+                mapId: gridData.id,
+                selectedCourse: gridData.cId,
+                selectedSemester: gridData.sem,
+                selectedSubject: gridData.subId,
+                selectedActive: gridData.isActive,
                 label: "Update",
                 flag: "M"
 
@@ -229,7 +243,7 @@ class MappingForm extends React.Component {
                             <h4 className="text-right font-14">{this.state.records} Record(S)</h4>
                         </div>
                     </div>
-                 </div>
+                </div>
                 <div className="block-body container-fluid">
                     <div className="row clearfix">
                         <div className="col-lg-12 col-xs-12 col-md-12 col-sm-12">
@@ -240,7 +254,7 @@ class MappingForm extends React.Component {
                                             <ul>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedCourse} data={this.state.course} label={'Course'} name={'course'} htmlFor={'course'} isrequired={true}
-                                                                 onChange={this.onChangeCourse.bind(this)} keyId={'COURSE_ID'} keyName={'COURSE_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeCourse.bind(this)} keyId={'COURSE_ID'} keyName={'COURSE_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedSemester} data={this.state.semester} label={'Semester'} name={'semester'} htmlFor={'semester'} isrequired={true}
@@ -248,7 +262,7 @@ class MappingForm extends React.Component {
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedSubject} data={this.state.subject} label={'Subject'} name={'subject'} htmlFor={'subject'} isrequired={true}
-                                                                 onChange={this.onChangeSubject.bind(this)} keyId={'SUBJECT_ID'} keyName={'SUBJECT_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeSubject.bind(this)} keyId={'SUBJECT_ID'} keyName={'SUBJECT_NAME'} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedActive} data={this.state.active} label={'Active'} name={'active'} htmlFor={'active'} isrequired={true}
@@ -271,7 +285,7 @@ class MappingForm extends React.Component {
                     </div>
                 </div>
             </div>
-       );
+        );
     }
 }
 ReactDOM.render(<MappingForm />, document.getElementById('mappingform'));
