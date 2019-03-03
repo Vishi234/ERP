@@ -76,11 +76,11 @@
             </select>
         }
         else if (this.props.type == 'multiSelect') {
-            inputField =<select value={this.props.value} multiple={true} ref='MySelect2' onChange={this.handleChange.bind(this)} name={this.props.name}
-                    className='registration-form-control dropdown' required={this.props.isrequired}>
-                            <option key="0" value="0">Select {this.props.label}</option>
+            inputField = <select value={this.props.value}  ref='MySelect3' onChange={this.handleChange.bind(this)} name={this.props.name}
+                className='registration-form-control dropdown' required={this.props.isrequired}>
+                <option key="0" value="0">Select {this.props.label}</option>
                 {this.props.data.map((obj) =>
-                <option key={obj[this.props.keyId]} onClick={this.handleClick.bind(this)} value={obj[this.props.keyId] }>{obj[this.props.keyName]}</option>)}
+                    <option key={obj[this.props.keyId]} onClick={this.handleClick.bind(this)} value={obj[this.props.keyId]}>{obj[this.props.keyName]}</option>)}
             </select>
         }
         else if (this.props.type == 'date') {

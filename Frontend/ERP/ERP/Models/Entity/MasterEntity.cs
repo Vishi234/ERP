@@ -57,14 +57,20 @@ namespace ERP.Models.Entity
 
     public class SectionEntity
     {
-        public string course { get; set; }
-        public string semester { get; set; }
+
+
+        public string courseId { get; set; }
+        public string courseName { get; set; }
+        public string semesterName { get; set; }
+        public string semesterId { get; set; }
+        public string sectionId { get; set; }
         public string sectionName { get; set; }
         public string customerId { get; set; }
         public string userId { get; set; }
-        public char flag { get; set; }
+        public string isActive { get; set; }
+        public char operType { get; set; }
         public string reportId { get; set; }
-        public string active { get; set; }
+      
     }
     public class SubjectEntity
     {

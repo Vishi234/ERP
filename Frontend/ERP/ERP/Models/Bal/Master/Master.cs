@@ -280,32 +280,33 @@ namespace ERP.Models.Bal.Master
             }
         }
 
-        public ResultEntity SaveSectionDetails(SectionEntity sectionEntity,string customerId,string userId)
+        public ResultEntity SectionDetails(SectionEntity sectionEntity)
         {
             ResultEntity result = new ResultEntity();
+            UserEntity objUserEntity = UserEntity.GetInstance();
             try
             {
-                SqlDataReader dr;
-                SqlParameter[] sqlParameter = new SqlParameter[9];
-                sqlParameter[0] = new SqlParameter("@COURSE_NAME", sectionEntity.course);
-                sqlParameter[1] = new SqlParameter("@SEMESTER_NAME", sectionEntity.semester);
-                sqlParameter[2] = new SqlParameter("@SECTION", sectionEntity.sectionName);
-                sqlParameter[3] = new SqlParameter("@CUSTOMER_ID", customerId);
-                sqlParameter[4] = new SqlParameter("@USER_ID", sectionEntity.userId);
-                sqlParameter[5] = new SqlParameter("@REPORT_ID", sectionEntity.reportId);
-                sqlParameter[6] = new SqlParameter("@OPER_TYPE", sectionEntity.flag);
-
-                sqlParameter[7] = new SqlParameter("@FLAG", SqlDbType.Char);
-                sqlParameter[7].Direction = ParameterDirection.Output;
-                sqlParameter[7].Size = 1;
-                sqlParameter[8] = new SqlParameter("@MSG", SqlDbType.NVarChar);
-                sqlParameter[8].Direction = ParameterDirection.Output;
-                sqlParameter[8].Size = 500;
+                SqlParameter[] sqlParameter = new SqlParameter[11];
+                sqlParameter[0] = new SqlParameter("@SECTION_ID", sectionEntity.sectionId);
+                sqlParameter[1] = new SqlParameter("@COURSE_ID",Convert.ToInt32(sectionEntity.courseId));
+                sqlParameter[2] = new SqlParameter("@SEMESTER_ID", sectionEntity.semesterId);
+                sqlParameter[3] = new SqlParameter("@SECTION_NAME", sectionEntity.sectionName);
+                sqlParameter[4] = new SqlParameter("@CUSTOMER_ID", objUserEntity.customerId);
+                sqlParameter[5] = new SqlParameter("@USER_ID", objUserEntity.userId);
+                sqlParameter[6] = new SqlParameter("@IS_ACTIVE", sectionEntity.isActive);
+                sqlParameter[7] = new SqlParameter("@REPORT_ID", Convert.ToInt32(sectionEntity.reportId));
+                sqlParameter[8] = new SqlParameter("@OPER_TYPE", sectionEntity.operType);
+                sqlParameter[9] = new SqlParameter("@FLAG", SqlDbType.Char);
+                sqlParameter[9].Direction = ParameterDirection.Output;
+                sqlParameter[9].Size = 1;
+                sqlParameter[10] = new SqlParameter("@MSG", SqlDbType.NVarChar);
+                sqlParameter[10].Direction = ParameterDirection.Output;
+                sqlParameter[10].Size = 200;
 
                 DataSet ds = new DataSet();
-                ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_SECTION_AMD", sqlParameter);              
-                result.flag = sqlParameter[7].Value.ToString();
-                result.msg = sqlParameter[8].Value.ToString();
+                ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_SECTION", sqlParameter);              
+                result.flag = sqlParameter[9].Value.ToString();
+                result.msg = sqlParameter[10].Value.ToString();
 
                 if (result.flag.ToUpper() == "S")
                 {
