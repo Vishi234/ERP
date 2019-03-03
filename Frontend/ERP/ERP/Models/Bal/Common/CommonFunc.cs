@@ -5,6 +5,9 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Http.Filters;
+using System.Web.Mvc;
+using System.Web.Routing;
 using System.Web.Script.Serialization;
 
 namespace ERP.Models.Bal.Common
@@ -100,5 +103,18 @@ namespace ERP.Models.Bal.Common
             }
         }
 
+    }
+
+    public class SessionCheck : System.Web.Mvc.ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            HttpSessionStateBase session = filterContext.HttpContext.Session;
+
+            if (session["UserDetails"] != null)
+                base.OnActionExecuting(filterContext);
+            else
+                filterContext.Result = new RedirectResult("~/Auth/Login");
+        }
     }
 }

@@ -13,9 +13,9 @@ namespace ERP.Controllers
     public class MasterController : Controller
     {
         // GET: Master
-
+        [SessionCheck]
         public ActionResult Academic()
-        {           
+        {
             AcademicEntity academicEntity = new AcademicEntity();
             academicEntity.flag = 'G';
             academicEntity.reportId = "1";
@@ -23,13 +23,14 @@ namespace ERP.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost, SessionCheck]
         public JsonResult Academic(AcademicEntity academicEntity)
         {
             UserEntity objUserEntity = UserEntity.GetInstance();
             return Json(new Master().AddAcademicYear(academicEntity));
         }
 
+        [SessionCheck]
         public ActionResult Course()
         {
             CourseEntity courseEntity = new CourseEntity();
@@ -38,11 +39,12 @@ namespace ERP.Controllers
             TempData["CourseData"] = new Master().AddCourse(courseEntity);
             return View();
         }
-        [HttpPost]
+        [HttpPost, SessionCheck]
         public ActionResult Course(CourseEntity courseEntity)
         {            
             return Json(new Master().AddCourse(courseEntity));
         }
+        [SessionCheck]
         public ActionResult Duration()
         {
             DurationEntity durationEntity = new DurationEntity();
@@ -51,7 +53,7 @@ namespace ERP.Controllers
             TempData["DurationData"] = new Master().AddDuration(durationEntity);
             return View();
         }
-        [HttpGet]
+        [SessionCheck]
         public string Durationddl()
         {
             Master objMaster = new Master();
@@ -59,12 +61,13 @@ namespace ERP.Controllers
             //return objMaster.CourseDuration();
 
         }
-        [HttpPost]
+        [HttpPost, SessionCheck]
         public ActionResult Duration(DurationEntity durationEntity)
         {
             UserEntity objUserEntity = UserEntity.GetInstance();
             return Json(new Master().AddDuration(durationEntity));
         }
+        [SessionCheck]
         public ActionResult Activity()
         {
             UserEntity objUserEntity = UserEntity.GetInstance();
@@ -74,12 +77,13 @@ namespace ERP.Controllers
             TempData["ActivityData"] = new Master().AddActivity(activityEntity, objUserEntity.customerId, objUserEntity.userId);
             return View();
         }
-        [HttpPost]
+        [HttpPost, SessionCheck]
         public JsonResult Activity(ActivityEntity activityEntity)
         {
             UserEntity objUserEntity = UserEntity.GetInstance();
             return Json(new Master().AddActivity(activityEntity, objUserEntity.customerId, objUserEntity.userId));
         }
+        [SessionCheck]
         public ActionResult Subject()
         {
             UserEntity objUserEntity = UserEntity.GetInstance();
@@ -89,12 +93,13 @@ namespace ERP.Controllers
             TempData["SubjectData"] = new Master().AddSubject(subjectEntity);
             return View();
         }
-        [HttpPost]
+        [HttpPost,SessionCheck]
         public ActionResult Subject(SubjectEntity subjectEntity)
         {
             UserEntity objUserEntity = UserEntity.GetInstance();
             return Json(new Master().AddSubject(subjectEntity));
         }
+        [SessionCheck]
         public ActionResult Mapping()
         {
             MappingEntity mapping = new MappingEntity();
@@ -103,27 +108,27 @@ namespace ERP.Controllers
             TempData["MappingData"] = new Master().AddMappingDetails(mapping);
             return View();
         }
-        [HttpPost]
+        [HttpPost, SessionCheck]
         public JsonResult Mapping(MappingEntity mapping)
         {
             UserEntity objUserEntity = UserEntity.GetInstance();
             return Json(new Master().AddMappingDetails(mapping));
         }
 
-        [HttpGet]
+        [SessionCheck]
         public string GetCourseDDL(String ddlType)
         {
             Master objMaster = new Master();
             return (objMaster.GetCourseDDL(ddlType));
         }
 
-        [HttpGet]
+        [ SessionCheck]
         public string GetParamList(string flag, string ddlType)
         {
             return CommonFunc.GetParamList(flag, ddlType);
         }
 
-        [HttpPost]
+        [HttpPost, SessionCheck]
         public JsonResult SaveSectionDetails(SectionEntity sectionEntity)
         {
             Master objMaster = new Master();
@@ -131,7 +136,7 @@ namespace ERP.Controllers
             return Json(objMaster.SectionDetails(sectionEntity));
         }
 
-
+        [SessionCheck]
         public ActionResult Section()
         {
             SectionEntity sectionEntity = new SectionEntity();

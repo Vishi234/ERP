@@ -16,7 +16,6 @@ namespace ERP.Controllers
     {
         // GET: Auth
         public ActionResult Login()
-
         {
             return View();
         }
