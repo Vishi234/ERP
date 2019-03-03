@@ -188,7 +188,8 @@ class CourseForm extends React.Component {
         domElement.innerHTML = html;
         return domElement;
     }
-    render() {
+    render()
+    {
         //Render form
         return (
             <div>
