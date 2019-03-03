@@ -20,7 +20,6 @@
     Label_Header["$SUBJECT$"] = "Subject";
     Label_Header["$COURSE_TYPE$"] = "Course Type"; 
     Label_Header["$YEAR_ID$"]= "Academic Year",
-    Label_Header["$COURSE_ID$"]="Course",
     Label_Header["$EDIT$"] = "Edit";
     Label_Header["$SUBJECT_CODE$"] = "Subject Code";
     Label_Header["$SUBJECT_NAME$"] = "Subject Name";
