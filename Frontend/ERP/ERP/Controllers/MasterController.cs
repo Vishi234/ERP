@@ -123,19 +123,17 @@ namespace ERP.Controllers
         public JsonResult SaveSectionDetails(SectionEntity sectionEntity)
         {
             Master objMaster = new Master();
-            UserEntity objUserEntity = UserEntity.GetInstance();
-            CustomerEntity objCustomer = CustomerEntity.GetInstance();
-            return Json(objMaster.SaveSectionDetails(sectionEntity,objUserEntity.userId,objCustomer.customerId));
+
+            return Json(objMaster.SectionDetails(sectionEntity));
         }
 
 
         public ActionResult Section()
         {
-            UserEntity objUserEntity = UserEntity.GetInstance();
             SectionEntity sectionEntity = new SectionEntity();
-            sectionEntity.flag = 'G';
+            sectionEntity.operType = 'G';
             sectionEntity.reportId = "4";
-            TempData["SectionData"] = new Master().SaveSectionDetails(sectionEntity, objUserEntity.customerId, objUserEntity.userId);
+            TempData["SectionData"] = new Master().SectionDetails(sectionEntity);
             return View();
         }
        

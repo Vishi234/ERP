@@ -10,14 +10,19 @@
     Label_Header["$COURSE_NAME$"] = "Course Name";
     Label_Header["$NO_OF_SEMESTER$"] = "No. Of Semester";
     Label_Header["$SECTION_NAME$"] = "Section Name";
+    Label_Header["$SECTION_ID$"] = "Section Name";
+    Label_Header["$COURSE_ID$"] = "Course Name";
+    Label_Header["$SEMESTER_ID$"] = "Semester Name";
     Label_Header["$ACTIVITY_NAME$"] = "Activity Name";
     Label_Header["$ACTIVITY_STATUS$"] = "Activity Status";
     Label_Header["$ACTIVITY_TYPE$"] = "Activity Type";
     Label_Header["$COURSE$"] = "Course";
     Label_Header["$SUBJECT$"] = "Subject";
     Label_Header["$COURSE_TYPE$"] = "Course Type";
+    Label_Header["$IS_ACTIVE$"] = "Status";
 
     Label_Header["$EDIT$"] = "Edit";
+    Label_Header["$CREATED_BY$"] = "Created By";
 
     return Label_Header;
 }

@@ -37,7 +37,7 @@ namespace ERP.Models.Bal.Login
                 sqlParameter[3].Size = 1;
                 sqlParameter[4] = new SqlParameter("@MSG", SqlDbType.NVarChar);
                 sqlParameter[4].Direction = ParameterDirection.Output;
-                sqlParameter[4].Size = 500;
+                sqlParameter[4].Size = 200;
                 DataSet ds = new DataSet();
                 ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_CHECK_LOGIN", sqlParameter);
                 result.flag = sqlParameter[3].Value.ToString();
