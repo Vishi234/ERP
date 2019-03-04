@@ -21,6 +21,7 @@ namespace ERP.Models.Bal.Master
             ResultEntity result = new ResultEntity();
             try
             {
+
                 SqlParameter[] sqlParameter = new SqlParameter[11];
                 sqlParameter[0] = new SqlParameter("@YEAR_ID", academicEntity.yearId);
                 sqlParameter[1] = new SqlParameter("@CUSTOMER_ID", Convert.ToInt32(objUserEntity.customerId));

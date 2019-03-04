@@ -16,69 +16,93 @@ namespace ERP.Models.Bal.Employee
             string sqlConn = System.Configuration.ConfigurationManager.ConnectionStrings["CS"].ConnectionString;
             UserEntity objUserEntity = UserEntity.GetInstance();
 
-     
-        //public ResultEntity AddEmployee(EmployeeEntity employeeEntity)
-        //{
-        //    ResultEntity result = new ResultEntity();
-        //    try
-        //    {
-        //        UserEntity objUserEntity = UserEntity.GetInstance();
-        //        SqlParameter[] sqlParameter = new SqlParameter[21];
 
-        //        sqlParameter[0] = new SqlParameter("@P_USER_FNAME", employeeEntity.firstName);
-        //        sqlParameter[1] = new SqlParameter("@P_USER_MNAME", employeeEntity.middleName);
-        //        sqlParameter[2] = new SqlParameter("@P_USER_LNAME", employeeEntity.lastName);
-        //        sqlParameter[3] = new SqlParameter("@P_USER_ADHAAR_NO", employeeEntity.adharNo);
-        //        sqlParameter[4] = new SqlParameter("@P_USER_GENDER", employeeEntity.gender);
-        //        sqlParameter[5] = new SqlParameter("@P_USER_BLOOD_GRP", employeeEntity.bloodgrp);
-        //        sqlParameter[6] = new SqlParameter("@P_USER_MARITAL", employeeEntity.maritalst);
-        //        sqlParameter[7] = new SqlParameter("@P_USER_DOB", employeeEntity.dob);
-        //        sqlParameter[8] = new SqlParameter("@P_USER_JOIN_DATE", employeeEntity.joinDate);
-        //        sqlParameter[9] = new SqlParameter("@P_USER_EMP_CODE", employeeEntity.empCode);
-        //        sqlParameter[10] = new SqlParameter("@P_USER_PUNCH_CARD", employeeEntity.empPunchCard);
-        //        sqlParameter[11] = new SqlParameter("@P_USER_DEPARTMENT", employeeEntity.empDepartment);
-        //        sqlParameter[12] = new SqlParameter("@P_USER_DESIGNATION", employeeEntity.empDesignation);
-        //        sqlParameter[13] = new SqlParameter("@P_EMPLOYEE_TYPE", employeeEntity.empType);
-        //        sqlParameter[14] = new SqlParameter("@P_CUSTOMER_ID", objUserEntity.customerId);
-        //        sqlParameter[15] = new SqlParameter("@REPORT_ID", Convert.ToInt32(employeeEntity.reportId));
-        //        sqlParameter[16] = new SqlParameter("@P_IMG_PATH", employeeEntity.imgPath);
-        //        sqlParameter[17] = new SqlParameter("@OPER_TYPE", employeeEntity.operType);
+        public ResultEntity AddEmployee(EmployeeEntity employeeEntity)
+        {
+            ResultEntity result = new ResultEntity();
+            try
+            {
+                UserEntity objUserEntity = UserEntity.GetInstance();
+                SqlParameter[] sqlParameter = new SqlParameter[47];
 
-        //        sqlParameter[18] = new SqlParameter("@FLAG", SqlDbType.Char);
-        //        sqlParameter[18].Direction = ParameterDirection.Output;
-        //        sqlParameter[18].Size = 1;
-        //        sqlParameter[19] = new SqlParameter("@P_USER_ID", SqlDbType.NVarChar);
-        //        sqlParameter[19].Direction = ParameterDirection.Output;
-        //        sqlParameter[19].Size = 100;
-        //        sqlParameter[20] = new SqlParameter("@MSG", SqlDbType.NVarChar);
-        //        sqlParameter[20].Direction = ParameterDirection.Output;
-        //        sqlParameter[20].Size = 500;
+                sqlParameter[0] =  new SqlParameter("@EMP_CODE", employeeEntity.empCode);
+                sqlParameter[1] =  new SqlParameter("@FIRST_NAME", employeeEntity.empFirst);
+                sqlParameter[2] =  new SqlParameter("@LAST_NAME", employeeEntity.empLast);
+                sqlParameter[3] =  new SqlParameter("@QUALIFICATION", employeeEntity.empQuali);
+                sqlParameter[4] =  new SqlParameter("@DEPARTMENT", employeeEntity.empDept);
+                sqlParameter[5] =  new SqlParameter("@DESIGNATION", employeeEntity.empDesig);
+                sqlParameter[6] =  new SqlParameter("@EMPLOYEE_TYPE", employeeEntity.empType);
+                sqlParameter[7] =  new SqlParameter("@JOB_TYPE", employeeEntity.empJType);
+                sqlParameter[8] =  new SqlParameter("@FATHER_NAME", employeeEntity.empFather);
+                sqlParameter[9] =  new SqlParameter("@MOTHER_NAME", employeeEntity.empMother);
+                sqlParameter[10] = new SqlParameter("@SEX", employeeEntity.empSex);
+                sqlParameter[11] = new SqlParameter("@DATE_OF_BIRTH", employeeEntity.empDOB);
+                sqlParameter[12] = new SqlParameter("@DATE_OF_JOINING", employeeEntity.empDOJ);
+                sqlParameter[13] = new SqlParameter("@SPOOUSE_NAME", employeeEntity.empSpoou);
+                sqlParameter[14] = new SqlParameter("@BLOOD_GROUP", employeeEntity.empBGrp);
+                sqlParameter[15] = new SqlParameter("@MARITAL_STATUS", employeeEntity.empMStat);
+                sqlParameter[16] = new SqlParameter("@NATIONALITY", employeeEntity.empNation);
+                sqlParameter[17] = new SqlParameter("@ADDRESS_LINE_1", employeeEntity.empAdres);
+                sqlParameter[18] = new SqlParameter("@ADDRESS_LINE_2", employeeEntity.empAdres2);
+                sqlParameter[19] = new SqlParameter("@MOBILE_NO", employeeEntity.empMobile);
+                sqlParameter[20] = new SqlParameter("@PHONE_NO", employeeEntity.empPhone);
+                sqlParameter[21] = new SqlParameter("@STATE", employeeEntity.empState);
+                sqlParameter[22] = new SqlParameter("@CITY", employeeEntity.empCity);
+                sqlParameter[23] = new SqlParameter("@ZIPCODE", employeeEntity.empZip);
+                sqlParameter[24] = new SqlParameter("@L_EMPLOYER_NAME", employeeEntity.preEmp);
+                sqlParameter[25] = new SqlParameter("@L_DATE_OF_JOINING", employeeEntity.preDOJ);
+                sqlParameter[26] = new SqlParameter("@L_DATE_OF_LEAVING", employeeEntity.preDOL);
+                sqlParameter[27] = new SqlParameter("@L_PHONE", employeeEntity.prePhone);
+                sqlParameter[28] = new SqlParameter("@L_EXPERIENCE", employeeEntity.empExpre);
+                sqlParameter[29] = new SqlParameter("@L_REASON", employeeEntity.empResLeav);
+                sqlParameter[30] = new SqlParameter("@L_SALARY", employeeEntity.preSal);
+                sqlParameter[31] = new SqlParameter("@SUBJECTS", employeeEntity.empSub);
+                sqlParameter[32] = new SqlParameter("@BANK_NAME", employeeEntity.empBank);
+                sqlParameter[33] = new SqlParameter("@BANK_ACCOUNT", employeeEntity.empAccNo);
+                sqlParameter[34] = new SqlParameter("@IFSC_CODE", employeeEntity.empIFSC);
+                sqlParameter[35] = new SqlParameter("@ADDHAR_NO", employeeEntity.empAdhar);
+                sqlParameter[36] = new SqlParameter("@PF_NUMBER", employeeEntity.empPF);
+                sqlParameter[37] = new SqlParameter("@SALARY", employeeEntity.empSalary);
+                sqlParameter[38] = new SqlParameter("@LOGIN_ID", employeeEntity.empLogin);
+                sqlParameter[39] = new SqlParameter("@PASSWORD", employeeEntity.empPwd);
+                sqlParameter[40] = new SqlParameter("@ROLE_ID", employeeEntity.empRole);
+                sqlParameter[41] = new SqlParameter("@ACCOUNT_STATUS", employeeEntity.empAccStat);
+                sqlParameter[42] = new SqlParameter("@CUSTOMER_ID", Convert.ToInt32(objUserEntity.customerId));
+                sqlParameter[43] = new SqlParameter("@USER_ID", objUserEntity.userId);
+                //sqlParameter[16] = new SqlParameter("@P_IMG_PATH", employeeEntity.imgPath);
+                sqlParameter[44] = new SqlParameter("@OPER_TYPE", employeeEntity.flag);
 
-        //        DataSet ds = new DataSet();
-        //        ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_USER_GEN_INFO", sqlParameter);
-        //        result.flag = sqlParameter[18].Value.ToString();
-        //        result.optionalVal = sqlParameter[19].Value.ToString();
-        //        result.msg = sqlParameter[20].Value.ToString();
+                sqlParameter[45] = new SqlParameter("@FLAG", SqlDbType.Char);
+                sqlParameter[45].Direction = ParameterDirection.Output;
+                sqlParameter[45].Size = 1;
+                sqlParameter[46] = new SqlParameter("@MSG", SqlDbType.NVarChar);
+                sqlParameter[46].Direction = ParameterDirection.Output;
+                sqlParameter[46].Size = 500;
 
-        //        if (result.flag.ToUpper() == "S")
-        //        {
-        //            if (ds != null)
-        //            {
-        //                if (ds.Tables[0].Rows.Count > 0)
-        //                {
-        //                    result.addParams = CommonFunc.DtToJSON(ds.Tables[0]);
-        //                }
-        //            }
-        //        }
+                DataSet ds = new DataSet();
+                int count=SqlHelper.ExecuteNonQuery(sqlConn, CommandType.StoredProcedure, "SP_MANAGE_EMPLOYEE", sqlParameter);             
+                result.flag = sqlParameter[45].Value.ToString();
+                result.msg = sqlParameter[46].Value.ToString();
 
-        //        return result;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Excep.WriteException(ex);
-        //        return result;
-        //    }
-        //}
+                //if (result.flag.ToUpper() == "S")
+                //{
+                //    if (count >0)
+                //    {
+                //        if (ds.Tables[0].Rows.Count > 0)
+                //        {
+                //            result.addParams = CommonFunc.DtToJSON(ds.Tables[0]);
+                //        }
+                //    }
+                //}
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Excep.WriteException(ex);
+                return result;
+            }
+        }
         //public ResultEntity AddUserContact(EmployeeEntity employeeEntity, string customerId, string userid)
         //    {
         //        ResultEntity result = new ResultEntity();
@@ -141,7 +165,7 @@ namespace ERP.Models.Bal.Employee
         //        sqlParameter[4] = new SqlParameter("@P_USER_PANCARD", employeeEntity.panCard);
         //        sqlParameter[5] = new SqlParameter("@P_USER_BANK", employeeEntity.bank);
         //        sqlParameter[6] = new SqlParameter("@P_USER_ACC_NO", employeeEntity.accNumber);
-               
+
         //        sqlParameter[7] = new SqlParameter("@OPER_TYPE", employeeEntity.flag);
         //        sqlParameter[8] = new SqlParameter("@P_CUSTOMER_ID", customerId);
         //        sqlParameter[9] = new SqlParameter("@P_USER_ID", userid);

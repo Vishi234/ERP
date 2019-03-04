@@ -19,13 +19,11 @@ namespace ERP.Controllers
             //TempData["EmployeeData"] = new Employee().AddEmployee(employeeEntity);
             return View();
         }
-        //[HttpPost]
-        //public ActionResult Registration(EmployeeEntity employeeEntity)
-        //{
-
-        //    return Json(new Employee().AddEmployee(employeeEntity));
-
-        //}
+        [HttpPost]
+        public ActionResult Registration(EmployeeEntity employeeEntity)
+        {
+            return Json(new Employee().AddEmployee(employeeEntity));
+        }
         //[HttpPost]
         //public JsonResult AddContact(EmployeeEntity employeeEntity)
         //{
