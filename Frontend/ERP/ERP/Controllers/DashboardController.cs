@@ -10,10 +10,11 @@ using System.Web.Mvc;
 
 namespace ERP.Controllers
 {
+    [SessionCheck]
     public class DashboardController : Controller
     {
         // GET: Dashboard
-        [SessionCheck]
+      
         public ActionResult Overview()
         {
             return View();
