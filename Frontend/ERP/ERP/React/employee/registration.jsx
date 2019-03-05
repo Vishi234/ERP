@@ -29,7 +29,7 @@ class EmployeeForm extends React.Component {
             empAdres2: "",
             empMobile: "",
             empPhone: "",
-            empCount: [],
+            empCount: ReadLocationData("Location", 1, ""),
             empState: [],
             empCity: [],
             empZip: "",
@@ -40,6 +40,7 @@ class EmployeeForm extends React.Component {
             empExpre: "",
             empResLeav: "",
             preSal: "",
+            empSub: ReadDropDownData("Subject", $("#hfCustomerId").val(), false),
             empBank: "",
             empAccNo: "",
             empIFSC: "",
@@ -63,6 +64,7 @@ class EmployeeForm extends React.Component {
             selectedCity: 0,
             selectedRole: 0,
             selectedAccStat: 0,
+            selectedSubject:0,
             Fields: [],
             //columnDef: columnDefs,
             //rowData: null,
@@ -82,6 +84,7 @@ class EmployeeForm extends React.Component {
                 if (field[0].props.type == 'ddl') {
                     validField = field[0].isValid(field[0].refs.MySelect2);
                 } else {
+                    debugger;
                     validField = field[0].isValid(field[0].refs[field[0].props.name]);
                 }
                 validForm = validForm && validField;
@@ -121,7 +124,8 @@ class EmployeeForm extends React.Component {
                 prePhone         :this.state.prePhone  ,
                 empExpre         :this.state.empExpre  ,
                 empResLeav       :this.state.empResLeav,
-                preSal           :this.state.preSal    ,
+                preSal           :this.state.preSal,
+                empSub           :this.state.selectedSubject,
                 empBank          :this.state.empBank   ,
                 empAccNo         :this.state.empAccNo  ,
                 empIFSC          :this.state.empIFSC   ,
@@ -171,7 +175,7 @@ class EmployeeForm extends React.Component {
                                 empAdres2: "",
                                 empMobile: "",
                                 empPhone: "",
-                                empCount: [],
+                                empCount: ReadLocationData("Location", 1, ""),
                                 empState: [],
                                 empCity: [],
                                 empZip: "",
@@ -182,6 +186,7 @@ class EmployeeForm extends React.Component {
                                 empExpre: "",
                                 empResLeav: "",
                                 preSal: "",
+                                empSub: ReadDropDownData("Subject", $("#hfCustomerId").val(), false),
                                 empBank: "",
                                 empAccNo: "",
                                 empIFSC: "",
@@ -256,11 +261,33 @@ class EmployeeForm extends React.Component {
         });
     }
     onChangeCount(value) {
+        var obj = [];
+        var empState = 0;
+        var jsonData = ReadLocationData("Location", 2, value);
+
+        for (var i = 0; i < jsonData.length; i++) {
+            data = {};
+            data.STATE_ID = jsonData[i].LOCATION_ID;
+            data.STATE_NAME = jsonData[i].LOCATION_NAME;
+            obj.push(data);
+        }
+        this.setState({ empState: obj });
         this.setState({
             selectedCount: value
         });
     }
     onChangeState(value) {
+        var obj = [];
+        var empCity = 2;
+        var jsonData = ReadLocationData("Location", 3, value);
+
+        for (var i = 0; i < jsonData.length; i++) {
+            data = {};
+            data.CITY_ID = jsonData[i].LOCATION_ID;
+            data.CITY_NAME = jsonData[i].LOCATION_NAME;
+            obj.push(data);
+        }
+        this.setState({ empCity: obj });
         this.setState({
             selectedState: value
         });
@@ -426,8 +453,15 @@ class EmployeeForm extends React.Component {
         });
     }
     onChangePwd(value) {
+        debugger;
         this.setState({
             empPwd: value
+        });
+        var self = this;
+        window.setTimeout(function () {
+            if (self.state.empCPwd && self.state.empCPwd.length) {
+                self.refs.empCPwd.validate(self.state.empCPwd);
+            }
         });
     }
     onChangeCPwd(value) {
@@ -435,11 +469,23 @@ class EmployeeForm extends React.Component {
             empCPwd: value
         });
     }
+    isConfirmedPassword(value) {
+        debugger;
+        console.log(value, this.state.empPwd, value === this.state.empPwd);
+        return (value === this.state.empPwd)
+
+    }
+    onChangeSubject(value) {
+        this.setState({
+            selectedSubject: value
+        });
+    }
     register(field) {
         var s = [];
         s.push(field);
         fields.push(s);
     }
+
     render() {
         return (
             <div>
@@ -521,7 +567,7 @@ class EmployeeForm extends React.Component {
                                                         keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeDesig.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
-                                                    <CreateInput type={'ddl'} value={this.state.selectedType} data={this.state.empType} label={'Department'} name={'empType'} htmlFor={'empType'} isrequired={true}
+                                                    <CreateInput type={'ddl'} value={this.state.selectedType} data={this.state.empType} label={'Employee Type'} name={'empType'} htmlFor={'empType'} isrequired={true}
                                                         keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeType.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
@@ -610,31 +656,31 @@ class EmployeeForm extends React.Component {
                                                         <li>
                                                             <CreateInput type={'text'} value={this.state.empAdres2} label={'Address Line 2'} name={'empAdres2'} htmlFor={'empAdres2'} isrequired={true}
                                                                 onChange={this.onChangeAdres2.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                            </li>                                                       
+                                                        <li>
+                                                            <CreateInput type={'ddl'} value={this.state.selectedCount} data={this.state.empCount} label={'Country'} name={'empCount'} htmlFor={'empCount'} isrequired={true}
+                                                                keyId={'LOCATION_ID'} keyName={'LOCATION_NAME'} onChange={this.onChangeCount.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        </li>
+                                                        <li>
+                                                            <CreateInput type={'ddl'} value={this.state.selectedState} data={this.state.empState} label={'State'} name={'empState'} htmlFor={'empState'} isrequired={true} keyId={'STATE_ID'} keyName={'STATE_NAME'}
+                                                                onChange={this.onChangeState.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        </li>
+                                                        <li>
+                                                            <CreateInput type={'ddl'} value={this.state.selectedCity} data={this.state.empCity} label={'City'} name={'empCity'} htmlFor={'empCity'} isrequired={true} keyId={'CITY_ID'} keyName={'CITY_NAME'}
+                                                                 onChange={this.onChangeCity.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                             </li>
+                                                        <li>
+                                                            <CreateInput type={'text'} value={this.state.empZip} label={'Zip Code'} name={'empZip'} htmlFor={'empZip'} isrequired={true}
+                                                                onChange={this.onChangeZip.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        </li>
                                                         <li>
                                                             <CreateInput type={'text'} value={this.state.empMobile} label={'Mobile No'} name={'empMobile'} htmlFor={'empMobile'} isrequired={true}
                                                                 onChange={this.onChangeMobile.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                                            </li>
+                                                        </li>
                                                         <li>
                                                             <CreateInput type={'text'} value={this.state.empPhone} label={'Phone No'} name={'empPhone'} htmlFor={'empPhone'} isrequired={true}
                                                                 onChange={this.onChangePhone.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                                            </li>
-                                                        <li>
-                                                            <CreateInput type={'ddl'} value={this.state.selectedCount} data={this.state.empCount} label={'Country'} name={'empCount'} htmlFor={'empCount'} isrequired={true}
-                                                                keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeCount.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                         </li>
-                                                        <li>
-                                                            <CreateInput type={'ddl'} value={this.state.selectedState} data={this.state.empCount} label={'State'} name={'empState'} htmlFor={'empState'} isrequired={true}
-                                                                keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeState.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                                        </li>
-                                                        <li>
-                                                            <CreateInput type={'ddl'} value={this.state.selectedCity} data={this.state.empCity} label={'City'} name={'empCity'} htmlFor={'empCity'} isrequired={true}
-                                                                keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeCity.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                                            </li>
-                                                        <li>
-                                                            <CreateInput type={'text'} value={this.state.empZip} label={'Phone No'} name={'empZip'} htmlFor={'empZip'} isrequired={true}
-                                                                onChange={this.onChangeZip.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                                            </li>
                                                    </ul>
                                                 </div>
                                             </div>
@@ -646,7 +692,7 @@ class EmployeeForm extends React.Component {
                                                                 onChange={this.onChangePreEmp.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                         </li>                            
                                                         <li>
-                                                            <CreateInput type={'date'} value={this.state.preDOJ} id={'empDOJ'} label={'Date Of Joining'} name={'preDOJ'} htmlFor={'preDOJ'} isrequired={true}
+                                                            <CreateInput type={'date'} value={this.state.preDOJ} id={'preDOJ'} label={'Date Of Joining'} name={'preDOJ'} htmlFor={'preDOJ'} isrequired={true}
                                                                 className={'startDate form-control'} onBlur={this.onPreDOJBlur.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
                                                         </li>
                                                         <li>
@@ -673,16 +719,8 @@ class EmployeeForm extends React.Component {
                                                 </div>
                                             </div>
                                             <div className="tab-pane" id="subject">
-                                                <select className="listbox">
-                                                    <option>1</option>
-                                                    <option>1</option>
-                                                    <option>1</option>
-                                                    <option>1</option>
-                                                    <option>1</option>
-                                                    <option>1</option>
-                                                    <option>1</option>
-                                                    <option>1</option>
-                                                </select>
+                                                    <CreateInput type={'ddl'} value={this.state.selectedSubject} data={this.state.empSub} label={'Subject'} name={'empSub'} htmlFor={'empSub'} isrequired={true}
+                                                        onChange={this.onChangeSubject.bind(this)} keyId={'SUBJECT_ID'} keyName={'SUBJECT_NAME'} className={'listbox'} onComponentMounted={this.register} messageRequired={'required.'} />
                                             </div>
                                             <div className="tab-pane" id="account">
                                                 <div className="acform">
@@ -722,12 +760,12 @@ class EmployeeForm extends React.Component {
                                                                 onChange={this.onChangeLogin.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                         </li>
                                                         <li>
-                                                            <CreateInput type={'text'} value={this.state.empPwd} label={'Password'} name={'empPwd'} htmlFor={'empPwd'} isrequired={true}
+                                                            <CreateInput type={'password'} value={this.state.empPwd}  label={'Password'} name={'empPwd'} htmlFor={'empPwd'} isrequired={true}
                                                                 onChange={this.onChangePwd.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                         </li>
                                                         <li>
-                                                            <CreateInput type={'text'} value={this.state.empCPwd} label={'Confirm Password'} name={'empCPwd'} htmlFor={'empCPwd'} isrequired={true}
-                                                                onChange={this.onChangeCPwd.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                            <CreateInput type={'password'} value={this.state.empCPwd}  label={'Confirm Password'} name={'empCPwd'} htmlFor={'empCPwd'} isrequired={true}
+                                                                onChange={this.onChangeCPwd.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'}  validate={this.isConfirmedPassword} />
                                                         </li>
                                                         <li>
                                                             <CreateInput type={'ddl'} value={this.state.selectedRole} data={this.state.empRole} label={'Role'} name={'empRole'} htmlFor={'empRole'} isrequired={true}
