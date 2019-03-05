@@ -310,11 +310,6 @@ class EmployeeForm extends React.Component {
             empMother: value
         });
     }
-    onChangeSex(value) {
-        this.setState({
-            empSex: value
-        });
-    }
     onDOBBlur(value) {
         this.setState({
             empDOB: value
@@ -502,7 +497,7 @@ class EmployeeForm extends React.Component {
                                         <div className="acform cust">
                                             <ul>
                                                 <li>
-                                                    <CreateInput type={'text'} value={this.state.empCode} label={'Employee Code'} name={'empCode'} htmlFor={'empCode'} isrequired={true}
+                                                    <CreateInput type={'text'} value={this.state.empCode} label={'Employee Code'} name={'empCode'} htmlFor={'empCode'}
                                                         onChange={this.onChangeCode.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />                                               
                                                 </li>
                                                 <li>
@@ -735,7 +730,7 @@ class EmployeeForm extends React.Component {
                                                                 onChange={this.onChangeCPwd.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                         </li>
                                                         <li>
-                                                            <CreateInput type={'ddl'} value={this.state.selectedRole} data={this.state.empRole} label={'Role'} name={'empCity'} htmlFor={'empCity'} isrequired={true}
+                                                            <CreateInput type={'ddl'} value={this.state.selectedRole} data={this.state.empRole} label={'Role'} name={'empRole'} htmlFor={'empRole'} isrequired={true}
                                                                 keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeRole.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                         </li>
                                                         <li>
