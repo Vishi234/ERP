@@ -679,3 +679,14 @@ form[name="AcademicInfo"] li:nth-child(2) {
 .aclft button {
     margin-right: 10px;
 }
+
+.daterangepicker {
+    z-index: 9999999999 !important;
+}
+
+.chosen-container .chosen-results li {
+    width: 100%;
+}
+.jq-toast-wrap {
+    z-index: 90000 !important;
+}
