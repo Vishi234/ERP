@@ -72,6 +72,7 @@ class EmployeeForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleSubmit(e) {
+        debugger;
         var validForm = true;
         e.preventDefault();
         fields.forEach(function (field) {
@@ -497,7 +498,7 @@ class EmployeeForm extends React.Component {
                             </div>
                             <div className="modal-body">
                                 <div className="card">
-                                    <form>
+                                    <form name='EmpRegis' id="EmpRegis" noValidate onSubmit={this.handleSubmit}>
                                         <div className="acform cust">
                                             <ul>
                                                 <li>
@@ -586,7 +587,7 @@ class EmployeeForm extends React.Component {
                                                                 className={'startDate form-control'} onBlur={this.onDOJBlur.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} /> 
                                                         </li>
                                                         <li>
-                                                            <CreateInput type={'text'} value={this.state.empSpoou} label={'Mother Name'} name={'empSpoou'} htmlFor={'empSpoou'} isrequired={true}
+                                                            <CreateInput type={'text'} value={this.state.empSpoou} label={'Spouse Name'} name={'empSpoou'} htmlFor={'empSpoou'} isrequired={true}
                                                                 onChange={this.onChangeSpoou.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} /> 
                                                         </li>
                                                         <li>
@@ -759,4 +760,4 @@ class EmployeeForm extends React.Component {
         );
     }
 }
-ReactDOM.render(<EmployeeForm urlPost='' personalPost='' contactPost='' authPost='' />, document.getElementById('employeeform'));
+ReactDOM.render(<EmployeeForm urlPost="/Employee/Registration" personalPost='' contactPost='' authPost='' />, document.getElementById('employeeform'));
