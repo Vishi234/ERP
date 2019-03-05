@@ -4,6 +4,23 @@
         if (this.props.type != "ddl") {
             var isValidField = this.isValid(e.target);
         }
+        if (this.props.validate) {
+            this.validate(event.target.value);
+        }
+    }
+    validate(value) {
+        debugger;
+        if (this.props.validate && this.props.validate(value)) {
+            this.setState({
+                valid: true,
+                errorVisible: false
+            });
+        } else {
+            this.setState({
+                valid: false,
+                errorVisible: true
+            });
+        }
     }
     handleBlur(e) {
         this.props.onBlur(e.target.value);
@@ -92,6 +109,10 @@
         else if (this.props.type == 'date') {
             inputField = <input type="text" id={this.props.id} value={this.props.value} ref={this.props.name} readOnly autoComplete="off" name={this.props.name}
                                 className={this.props.className} required={this.props.isrequired} onBlur={this.handleBlur.bind(this)} />
+        }
+        else if (this.props.type == 'password') {
+            inputField = <input type="password" value={this.props.value} ref={this.props.name}  autoComplete="off" name={this.props.name}
+                className={this.props.className} required={this.props.isrequired} onChange={this.handleChange.bind(this)} validate={this.handleChange.bind(this)}/>
         }
         else {
             inputField = <input type={this.props.type} value={this.props.value} ref={this.props.name} autoComplete="off" name={this.props.name}
