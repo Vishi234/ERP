@@ -15,7 +15,7 @@
     }
     isValid(input) {
         //check required field
-        if (input != undefined && input.getAttribute('type')!='ddl') {
+        if (input != undefined && input.getAttribute('type') != 'ddl') {
             if (input.getAttribute('required') != null && input.value === "") {
                 input.classList.add('input-validation-error'); //add class error
                 input.nextSibling.classList.add('field-validation-error');
@@ -25,7 +25,7 @@
             else {
                 input.classList.remove('input-validation-error');
                 input.nextSibling.classList.remove('field-validation-error');
-                input.nextSibling.value = "";
+                input.nextSibling.textContent = "";
                 return true;
             }
         }
@@ -51,14 +51,20 @@
             $('select[name=' + this.props.name + ']').on('change', this.handleChange.bind(this));
             $('select[name=' + this.props.name + ']').trigger("chosen:updated")
         }
- 
+
         //this.setState({ mode: true })
         //this.setState({ this.props.mode = true});
-        
+
 
     }
     componentDidUpdate() {
-        $('select[name=' + this.props.name + ']').trigger("chosen:updated")
+        if (this.props.type == "ddl")
+        {
+            $('select[name=' + this.props.name + ']').trigger("chosen:updated")
+        }
+        if (this.props.type == "date") {
+            InitializeDate(this.props.name);
+        }
     }
     render() {
 
@@ -68,7 +74,7 @@
                                    className='registration-form-control' required={this.props.isrequired} onChange={this.handleChange.bind(this)} />
         }
         else if (this.props.type == 'ddl') {
-            inputField = <select value={this.props.value} ref='MySelect2'  onChange={this.handleChange.bind(this)} name={this.props.name}
+            inputField = <select value={this.props.value} ref='MySelect2' onChange={this.handleChange.bind(this)} name={this.props.name}
                                  className='registration-form-control dropdown' required={this.props.isrequired}>
                             <option key="0" value="0">Select {this.props.label}</option>
                 {this.props.data.map((obj) =>
@@ -76,8 +82,8 @@
             </select>
         }
         else if (this.props.type == 'multiSelect') {
-            inputField = <select value={this.props.value}  ref='MySelect3' onChange={this.handleChange.bind(this)} name={this.props.name}
-                className='registration-form-control dropdown' required={this.props.isrequired}>
+            inputField = <select value={this.props.value} ref='MySelect3' onChange={this.handleChange.bind(this)} name={this.props.name}
+                                 className='registration-form-control dropdown' required={this.props.isrequired}>
                 <option key="0" value="0">Select {this.props.label}</option>
                 {this.props.data.map((obj) =>
                     <option key={obj[this.props.keyId]} onClick={this.handleClick.bind(this)} value={obj[this.props.keyId]}>{obj[this.props.keyName]}</option>)}
