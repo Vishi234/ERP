@@ -248,6 +248,7 @@ namespace ERP.Models.Cache
                    Course = CommonFunc.RdrToList(GetDropDownData("2", 'A')),
                    Subject= CommonFunc.RdrToList(GetDropDownData("4", 'A')),
                    Param = CommonFunc.RdrToList(GetDropDownData("3", 'D')),
+                   Location = CommonFunc.RdrToList(GetDropDownData("5", 'A')),
                });
             string path = HttpContext.Current.Server.MapPath("~/Content/DynamicJs/");
             File.WriteAllText(path + "DropdownData.json", JsonData);
