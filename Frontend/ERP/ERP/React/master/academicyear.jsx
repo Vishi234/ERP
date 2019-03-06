@@ -19,10 +19,6 @@ class AcademicYearForm extends React.Component {
             }
         }
        // var columnDefs = columns;
-
-
-
-
         this.state =
             {
                 yearId: 1,

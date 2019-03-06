@@ -253,6 +253,18 @@ namespace ERP.Models.Cache
             File.WriteAllText(path + "DropdownData.json", JsonData);
 
         }
+        public string GetCommonDDL()
+        {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            string JsonData = serializer.Serialize(
+               new
+               {
+                   AcademicYear = CommonFunc.RdrToList(GetDropDownData("1", 'A')),
+                   Course = CommonFunc.RdrToList(GetDropDownData("2", 'A')),
+                   Subject = CommonFunc.RdrToList(GetDropDownData("4", 'A')),
+               });
+            return JsonData;
+        }
         public SqlDataReader GetDropDownData(string ddlType, char flag)
         {
             string details = string.Empty;

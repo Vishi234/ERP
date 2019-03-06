@@ -27,5 +27,10 @@ namespace ERP.Controllers
             GlobalCache gcObj = new GlobalCache();
             gcObj.RefreshAllDropDown();
         }
+        public string GetCommonDDL()
+        {
+            GlobalCache gcObj = new GlobalCache();
+            return (gcObj.GetCommonDDL());
+        }
     }
 }
