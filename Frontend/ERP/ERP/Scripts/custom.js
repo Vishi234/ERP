@@ -30,13 +30,7 @@
         $(this).toggleClass("userinfoactive");
         $(".top-sub-menu").toggleClass("show");
     });
-    $('.listbox').lwMultiSelect({
-        addAllText: "Select All",
-        removeAllText: "Remove All",
-        selectedLabel: "Values accepted",
-        maxSelect: 0, //0 = no restrictions
-        maxText: '',
-    });
+
     //$('#selector').val();
     //$('#selector').data('plugin_lwMultiSelect').updateList();
     //$('#selector').data('plugin_lwMultiSelect').selectAll();
@@ -130,6 +124,15 @@ function InitializeDate(name) {
         //startDate: moment(start.valueOf()).format("DD-MMM-YYYY"),
         start: moment(),
         locale: { format: 'DD-MMM-YYYY' }
+    });
+}
+function InitializeSelectList(name) {
+    $('select[name=' + name + ']').lwMultiSelect({
+        addAllText: "Select All",
+        removeAllText: "Remove All",
+        selectedLabel: "Values accepted",
+        maxSelect: 0, //0 = no restrictions
+        maxText: '',
     });
 }
 function ShowCreate() {

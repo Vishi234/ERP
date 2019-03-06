@@ -64,9 +64,13 @@
             InitializeDate(this.props.name);
         }
         if (this.props.type == "ddl") {
-            InitializeSelect(this.props.name);
-            $('select[name=' + this.props.name + ']').on('change', this.handleChange.bind(this));
+                InitializeSelect(this.props.name);
+                $('select[name=' + this.props.name + ']').on('change', this.handleChange.bind(this));
             $('select[name=' + this.props.name + ']').trigger("chosen:updated")
+
+        }
+        if (this.props.type =='selectBox') {
+            InitializeSelectList(this.props.name);
         }
 
         //this.setState({ mode: true })
@@ -77,7 +81,7 @@
     componentDidUpdate() {
         if (this.props.type == "ddl")
         {
-            $('select[name=' + this.props.name + ']').trigger("chosen:updated")
+                $('select[name=' + this.props.name + ']').trigger("chosen:updated")      
         }
         if (this.props.type == "date") {
             InitializeDate(this.props.name);
@@ -113,6 +117,12 @@
         else if (this.props.type == 'password') {
             inputField = <input type="password" value={this.props.value} ref={this.props.name}  autoComplete="off" name={this.props.name}
                 className={this.props.className} required={this.props.isrequired} onChange={this.handleChange.bind(this)} validate={this.handleChange.bind(this)}/>
+        } else if (this.props.type == 'selectBox') {
+            inputField = <select value={this.props.value}  onChange={this.handleChange.bind(this)} name={this.props.name}
+                 required={this.props.isrequired}>              
+                {this.props.data.map((obj) =>
+                    <option key={obj[this.props.keyId]} onClick={this.handleClick.bind(this)} value={obj[this.props.keyId]}>{obj[this.props.keyName]}</option>)}
+            </select>
         }
         else {
             inputField = <input type={this.props.type} value={this.props.value} ref={this.props.name} autoComplete="off" name={this.props.name}

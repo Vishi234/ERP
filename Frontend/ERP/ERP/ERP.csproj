@@ -156,6 +156,7 @@
     <Content Include="Content\custom.css" />
     <Content Include="Content\daterangepicker.css" />
     <Content Include="Content\default.css" />
+    <Content Include="Content\DynamicJs\Employee.js" />
     <Content Include="Content\DynamicJs\Master.js" />
     <Content Include="Content\fontawesome-all.css" />
     <Content Include="Content\fontawesome-all.min.css" />

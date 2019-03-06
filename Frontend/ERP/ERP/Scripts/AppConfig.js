@@ -29,5 +29,6 @@
     Label_Header["$IS_ACTIVE$"] = "Is Active";
     Label_Header["$SEMESTER$"] = "Semester";
     Label_Header["$SUBJECT_ID$"] = "Subject";
+
     return Label_Header;
 }

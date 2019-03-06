@@ -4,9 +4,10 @@ var fields = [];
 class EmployeeForm extends React.Component {
     constructor(props) {
         super(props);
-        //grdArray = GetReportConfiguration("Employee");
-        //var records = JSON.parse(content.addParams);
-        //var columnDefs = grdArray["$EmployeeDetails$"];
+        debugger;
+        grdArray = GetReportConfiguration("Employee");
+        var records = JSON.parse(content.addParams);
+        var columnDefs = grdArray["$EmployeeDetails$"];
         this.state = {
             empCode: "",
             empFirst: "",
@@ -66,9 +67,9 @@ class EmployeeForm extends React.Component {
             selectedAccStat: 0,
             selectedSubject:0,
             Fields: [],
-            //columnDef: columnDefs,
-            //rowData: null,
-            //records: ((records == null) ? 0 : records.length),
+            columnDef: columnDefs,
+            rowData: records,
+            records: ((records == null) ? 0 : records.length),
             ServerMessage: '',
         };
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -524,7 +525,7 @@ class EmployeeForm extends React.Component {
                                 </div>
                             </div>
                             <div className="body">
-
+                                            <AgGrid columnDef={this.state.columnDef} rowData={this.state.rowData} />
                             </div>
                         </div>
                     </div>
@@ -719,8 +720,8 @@ class EmployeeForm extends React.Component {
                                                 </div>
                                             </div>
                                             <div className="tab-pane" id="subject">
-                                                    <CreateInput type={'ddl'} value={this.state.selectedSubject} data={this.state.empSub} label={'Subject'} name={'empSub'} htmlFor={'empSub'} isrequired={true}
-                                                        onChange={this.onChangeSubject.bind(this)} keyId={'SUBJECT_ID'} keyName={'SUBJECT_NAME'} className={'listbox'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                    <CreateInput type={'selectBox'} value={this.state.selectedSubject} data={this.state.empSub} label={''} name={'empSub'} htmlFor={'empSub'} isrequired={true}
+                                                    onChange={this.onChangeSubject.bind(this)} keyId={'SUBJECT_ID'} keyName={'SUBJECT_NAME'} className={'listbox'} onComponentMounted={this.register} messageRequired={'required.'} />
                                             </div>
                                             <div className="tab-pane" id="account">
                                                 <div className="acform">
@@ -785,7 +786,8 @@ class EmployeeForm extends React.Component {
                                         </div>
                                     </form>
                                 </div>
-                            </div>
+                                
+                            </div>                           
                         </div>
                     </div>
                </div>
