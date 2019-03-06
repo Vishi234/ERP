@@ -1,5 +1,22 @@
 {
-
+  "AcademicYear": [
+    {
+      "YEAR_ID": 2,
+      "ACADEMIC_YEAR": "2013-15",
+      "START_DATE": "03-Mar-2019",
+      "END_DATE": "14-Mar-2019",
+      "CUSTOMER_ID": 101,
+      "IS_ACTIVE": "70"
+    },
+    {
+      "YEAR_ID": 3,
+      "ACADEMIC_YEAR": "2012-15",
+      "START_DATE": "04-Mar-2019",
+      "END_DATE": "16-Mar-2019",
+      "CUSTOMER_ID": 101,
+      "IS_ACTIVE": "72"
+    }
+  ],
   "Course": [
     {
       "COURSE_ID": 1,
@@ -370,6 +387,43 @@
       "PARAM_TYPE": 19,
       "PARAM_NAME": "Elective",
       "PARAM_DESC": "Subject Type"
+    }
+  ],
+  "Location": [
+    {
+      "LOCATION_ID": "1",
+      "LOCATION_NAME": "INDIA",
+      "PARENT_ID": null
+    },
+    {
+      "LOCATION_ID": "2",
+      "LOCATION_NAME": "UTTAR PARDESH",
+      "PARENT_ID": "1"
+    },
+    {
+      "LOCATION_ID": "3",
+      "LOCATION_NAME": "UTTRAKHAD",
+      "PARENT_ID": "1"
+    },
+    {
+      "LOCATION_ID": "4",
+      "LOCATION_NAME": "GAJIABAD",
+      "PARENT_ID": "2"
+    },
+    {
+      "LOCATION_ID": "5",
+      "LOCATION_NAME": "LUCKNOW",
+      "PARENT_ID": "2"
+    },
+    {
+      "LOCATION_ID": "6",
+      "LOCATION_NAME": "KANPUR",
+      "PARENT_ID": "2"
+    },
+    {
+      "LOCATION_ID": "7",
+      "LOCATION_NAME": "DEHRADUN",
+      "PARENT_ID": "3"
     }
   ]
 }

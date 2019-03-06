@@ -103,6 +103,7 @@ function GetCommonDDL() {
     return resData;
 }
 function ReadLocationData(key, locationType, selectedVal) {
+    debugger;
     var MyData = null;
     var jsonData = GetJsonData('../../Content/DynamicJs/DropdownData.json');
 
