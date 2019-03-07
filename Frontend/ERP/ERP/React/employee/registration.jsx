@@ -8,6 +8,16 @@ class EmployeeForm extends React.Component {
         grdArray = GetReportConfiguration("Employee");
         var records = JSON.parse(content.addParams);
         var columnDefs = grdArray["$EmployeeDetails$"];
+        for (var i = 0; i < columnDefs.length; i++) {
+            if (columnDefs[i].cellRenderer) {
+                if (columnDefs[i].cellRenderer == "CreateEdit") {
+                    columnDefs[i].cellRenderer = this.CreateEdit;
+                }
+                //else if (columnDefs[i].cellRenderer == "CreateActive") {
+                //    columnDefs[i].cellRenderer = this.CreateActive;
+                //}
+            }
+        }
         this.state = {
             empCode: "",
             empFirst: "",
@@ -71,26 +81,27 @@ class EmployeeForm extends React.Component {
             rowData: records,
             records: ((records == null) ? 0 : records.length),
             ServerMessage: '',
+            label: "Save",
+            flag: "A",
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleSubmit(e) {
-        debugger;
         var validForm = true;
         e.preventDefault();
         fields.forEach(function (field) {
             if (typeof field[0].isValid === "function") {
-                debugger;
                 var validField;
                 if (field[0].props.type == 'ddl') {
+                    debugger;
                     validField = field[0].isValid(field[0].refs.MySelect2);
                 } else {
-                    debugger;
                     validField = field[0].isValid(field[0].refs[field[0].props.name]);
                 }
                 validForm = validForm && validField;
             }
         });
+        debugger;
         //after validation complete post to server
         if (validForm) {              
             var d = {
@@ -138,7 +149,7 @@ class EmployeeForm extends React.Component {
                 empCPwd          :this.state.empCPwd   ,
                 empRole          :this.state.selectedRole   ,
                 empAccStat       :this.state.selectedAccStat,
-                flag: 'A',
+                flag             :this.state.flag,
                 reportId: 1
             }
             $.ajax({
@@ -458,16 +469,17 @@ class EmployeeForm extends React.Component {
         this.setState({
             empPwd: value
         });
-        //var self = this;
-        //window.setTimeout(function () {
-        //    if (self.state.empCPwd && self.state.empCPwd.length) {
-        //        self.refs.empCPwd.validate(self.state.empCPwd);
-        //    }
+        var self = this;
         window.setTimeout(function () {
-            if (this.state.empCPwd && this.state.empCPwd.length) {
-                this.refs.empCPwd.validate(this.state.empCPwd);
+            if (self.state.empCPwd && self.state.empCPwd.length) {
+                self.refs.empCPwd.validate(self.state.empCPwd);
             }
-        }.bind(this));
+        });
+        //window.setTimeout(function () {
+        //    if (this.state.empCPwd && this.state.empCPwd.length) {
+        //        this.refs.empCPwd.validate(this.state.empCPwd);
+        //    }
+        //}.bind(this));
     }
     onChangeCPwd(value) {
         this.setState({
@@ -475,8 +487,6 @@ class EmployeeForm extends React.Component {
         });
     }
     isConfirmedPassword(value) {
-        debugger;
-        console.log(value, this.state.empPwd, value === this.state.empPwd);
         return (value === this.state.empPwd)
 
     }
@@ -490,16 +500,17 @@ class EmployeeForm extends React.Component {
     handleClick(param) {
         debugger;
         var data = JSON.parse(param.currentTarget.getAttribute("dataattr"));
+
         this.setState
             ({
                 empCode: data.empCode,
                 empFirst: data.empfname,
                 empLast: data.lname,
                 empQuali: data.qual,
-                selectedDept: data.deptNm,
-                selectedDesig: data.desigNm,
-                selectedType: data.empType,
-                selectedJType: data.jbType,
+                selectedDept: data.deptId,
+                selectedDesig: data.desigId,
+                selectedType: data.empTpId,
+                selectedJType: data.empJTpId,
                 empFather: data.fName,
                 empMother: data.mName,
                 selectedSex: data.sex,
@@ -517,13 +528,13 @@ class EmployeeForm extends React.Component {
                 selectedCity: data.city,
                 empZip: data.zpCode,
 
-                //preEmp: data.,
-                //preDOJ: data.,
-                //preDOL: data.,
-                //prePhone: data.,
-                //empExpre: data.,
-                //empResLeav: data.,
-                //preSal: data.,
+                preEmp: data.employer,
+                preDOJ: data.lDOJ,
+                preDOL: data.lDOL,
+                prePhone: data.lPhoneNo,
+                empExpre: data.totalExp,
+                empResLeav: data.resLeaving,
+                preSal: data.lastSalary,
                 selectedSubject: data.sbjct,
 
                 empBank: data.bankName,
@@ -531,16 +542,18 @@ class EmployeeForm extends React.Component {
                 empIFSC: data.ifsCode,
                 empAdhar: data.adNo,
 
-                //empPF: data.,
+                empPF: data.pfNumber,
 
                 empSalary: data.anPckg,
                 empLogin: data.loginId,
                 empPwd: data.pass,
+                empCPwd: data.pass,
 
                 //selectedRole: ReadDropDownData("Param", '8', true),
                 //selectedAccStat: ReadDropDownData("Param", '1', true),
 
             })
+        $("#employee").modal("show");
     }
     CreateEdit(params) {
         debugger;
@@ -548,7 +561,7 @@ class EmployeeForm extends React.Component {
         var domElement = "";
         var jsonObj = JSON.stringify(params.data);
 
-        html = '<div><a class="testClass" href="javascript:void(0)" dataAttr=' + jsonObj + '><img style="height: 16px;margin-top: 5px;margin-left:5px;"  src="../images/icons/edit.png"></img></a></div>';
+        html = "<div><a class='testClass' href='javascript:void(0)' dataAttr= '" + jsonObj + "'><img style='height: 16px;margin-top: 5px;margin-left:5px;'  src='../images/icons/edit.png'></img></a></div>";
         domElement = document.createElement("div");
         domElement.innerHTML = html;
         return domElement;
@@ -559,24 +572,24 @@ class EmployeeForm extends React.Component {
     componentDidUpdate() {
         $('.testClass').on("click", this.handleClick.bind(this));
     }
-    CreateActive(params) {
-        debugger;
-        var html = "";
-        var domElement = "";
-        if ((params.data.isActive).trim() == 70) {
-            html = '<span style="margin-top: 5px;padding: 6px 20px;" class="badge badge-pill badge-success">Active</span>'
-        }
-        else if ((params.data.isActive).trim() == 71) {
-            html = '<span style="margin-top: 5px;padding: 6px 15px;" class="badge badge-pill badge-danger">In-Active</span>'
-        }
-        else {
-            html = '<span style="margin-top: 5px;padding: 6px 10px;" class="badge badge-pill badge-warning">Temporary</span>'
-        }
+    //CreateActive(params) {
+    //    debugger;
+    //    var html = "";
+    //    var domElement = "";
+    //    if ((params.data.isActive).trim() == 70) {
+    //        html = '<span style="margin-top: 5px;padding: 6px 20px;" class="badge badge-pill badge-success">Active</span>'
+    //    }
+    //    else if ((params.data.isActive).trim() == 71) {
+    //        html = '<span style="margin-top: 5px;padding: 6px 15px;" class="badge badge-pill badge-danger">In-Active</span>'
+    //    }
+    //    else {
+    //        html = '<span style="margin-top: 5px;padding: 6px 10px;" class="badge badge-pill badge-warning">Temporary</span>'
+    //    }
 
-        domElement = document.createElement("div");
-        domElement.innerHTML = html;
-        return domElement;
-    }
+    //    domElement = document.createElement("div");
+    //    domElement.innerHTML = html;
+    //    return domElement;
+    //}
 
 
 
@@ -619,9 +632,7 @@ class EmployeeForm extends React.Component {
                                         <i className="fa fa-download"></i> Export
                                     </button>
                                 </div>
-                                <div className="acrght pull-right">
-                                    <input type="text" placeholder="Quick Search..." className="form-control" />
-                                </div>
+
                             </div>
                             <div className="body">
                                             <AgGrid columnDef={this.state.columnDef} rowData={this.state.rowData} />
@@ -644,7 +655,7 @@ class EmployeeForm extends React.Component {
                                             <ul>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.empCode} label={'Employee Code'} name={'empCode'} htmlFor={'empCode'}
-                                                        onChange={this.onChangeCode.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />                                               
+                                                        onChange={this.onChangeCode.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} disabled="true"/>                                               
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.empFirst} label={'First Name'} name={'empFirst'} htmlFor={'empFirst'} isrequired={true}
@@ -864,8 +875,8 @@ class EmployeeForm extends React.Component {
                                                                 onChange={this.onChangePwd.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                         </li>
                                                         <li>
-                                                            <CreateInput type={'password'} value={this.state.empCPwd}  label={'Confirm Password'} name={'empCPwd'} htmlFor={'empCPwd'} isrequired={true}
-                                                                onChange={this.onChangeCPwd.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} invalidPassword={'Password is not match.'}  validate={this.isConfirmedPassword.bind(this)} />
+                                                            <CreateInput type={'password'} value={this.state.empCPwd}  label={'Confirm Password'} name={'empCPwd'} htmlFor={'empCPwd'}
+                                                                onChange={this.onChangeCPwd.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} invalidPassword={'Password is not match.'}  validate={this.isConfirmedPassword} />
                                                         </li>
                                                         <li>
                                                             <CreateInput type={'ddl'} value={this.state.selectedRole} data={this.state.empRole} label={'Role'} name={'empRole'} htmlFor={'empRole'} isrequired={true}
@@ -880,7 +891,7 @@ class EmployeeForm extends React.Component {
                                             </div>
                                         </div>
                                         <div className="btn-group">
-                                            <input type="submit" className="btn btn-success" value="Save" />
+                                            <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span>{this.state.label}</button>
                                             <input type="submit" className="btn btn-danger" value="Reset" />
                                         </div>
                                     </form>

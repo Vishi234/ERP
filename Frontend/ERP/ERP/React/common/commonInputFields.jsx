@@ -1,11 +1,13 @@
 ﻿class CreateInput extends React.Component {
     handleChange(e) {
+        debugger;
         this.props.onChange(e.target.value);
         if (this.props.type != "ddl") {
             var isValidField = this.isValid(e.target);
         }
         if (this.props.validate) {
-            this.validate(e.target);
+            debugger;
+                this.validate(e.target);
         }
     }
     validate(input) {
@@ -32,7 +34,7 @@
     }
     isValid(input) {
         //check required field
-        if (input != undefined && input.getAttribute('type') != 'ddl') {
+        if (input != undefined && input.tagName != 'SELECT') {
             if (input.getAttribute('required') != null && input.value === "") {
                 input.classList.add('input-validation-error'); //add class error
                 input.nextSibling.classList.add('field-validation-error');
@@ -44,10 +46,9 @@
                 input.nextSibling.classList.remove('field-validation-error');
                 input.nextSibling.textContent = "";
                 return true;
-            }
-            
+            }          
         }
-
+        return true;
     }
     CheckDateDiff(startDate, endDate) {
         var startDate = moment(startDate, "DD-MMM-YYYY");
@@ -117,7 +118,7 @@
         }
         else if (this.props.type == 'password') {
             inputField = <input type="password" value={this.props.value} ref={this.props.name}  autoComplete="off" name={this.props.name}
-                className={this.props.className} required={this.props.isrequired} onChange={this.handleChange.bind(this)} validate={this.handleChange.bind(this)}/>
+                className={this.props.className} required={this.props.isrequired} onChange={this.handleChange.bind(this)} validate={this.handleChange.bind(this)} />
         } else if (this.props.type == 'selectBox') {
             inputField = <select value={this.props.value}  onChange={this.handleChange.bind(this)} name={this.props.name}
                  required={this.props.isrequired}>              
@@ -127,7 +128,7 @@
         }
         else {
             inputField = <input type={this.props.type} value={this.props.value} ref={this.props.name} autoComplete="off" name={this.props.name}
-                                className={this.props.className} required={this.props.isrequired} onChange={this.handleChange.bind(this)} />
+                className={this.props.className} required={this.props.isrequired} onChange={this.handleChange.bind(this)} disabled={this.props.disabled} />
 
         }
         return (
