@@ -13,10 +13,10 @@ namespace ERP.Controllers
         // GET: Employee
         public ActionResult Registration()
         {
-            //EmployeeEntity employeeEntity = new EmployeeEntity();
-            //employeeEntity.flag = 'G';
-            //employeeEntity.reportId = "8";
-            //TempData["EmployeeData"] = new Employee().AddEmployee(employeeEntity);
+            EmployeeEntity employeeEntity = new EmployeeEntity();
+            employeeEntity.flag = 'G';
+            employeeEntity.reportId = "8";
+            TempData["EmployeeData"] = new Employee().GetEmployee(employeeEntity);
             return View();
         }
         [HttpPost]

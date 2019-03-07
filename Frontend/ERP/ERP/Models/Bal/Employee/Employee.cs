@@ -12,9 +12,9 @@ using System.Web;
 namespace ERP.Models.Bal.Employee
 {
     public class Employee
-        {
-            string sqlConn = System.Configuration.ConfigurationManager.ConnectionStrings["CS"].ConnectionString;
-            UserEntity objUserEntity = UserEntity.GetInstance();
+    {
+        string sqlConn = System.Configuration.ConfigurationManager.ConnectionStrings["CS"].ConnectionString;
+        UserEntity objUserEntity = UserEntity.GetInstance();
 
 
         public ResultEntity AddEmployee(EmployeeEntity employeeEntity)
@@ -25,16 +25,16 @@ namespace ERP.Models.Bal.Employee
                 UserEntity objUserEntity = UserEntity.GetInstance();
                 SqlParameter[] sqlParameter = new SqlParameter[47];
 
-                sqlParameter[0] =  new SqlParameter("@EMP_CODE", employeeEntity.empCode);
-                sqlParameter[1] =  new SqlParameter("@FIRST_NAME", employeeEntity.empFirst);
-                sqlParameter[2] =  new SqlParameter("@LAST_NAME", employeeEntity.empLast);
-                sqlParameter[3] =  new SqlParameter("@QUALIFICATION", employeeEntity.empQuali);
-                sqlParameter[4] =  new SqlParameter("@DEPARTMENT", employeeEntity.empDept);
-                sqlParameter[5] =  new SqlParameter("@DESIGNATION", employeeEntity.empDesig);
-                sqlParameter[6] =  new SqlParameter("@EMPLOYEE_TYPE", employeeEntity.empType);
-                sqlParameter[7] =  new SqlParameter("@JOB_TYPE", employeeEntity.empJType);
-                sqlParameter[8] =  new SqlParameter("@FATHER_NAME", employeeEntity.empFather);
-                sqlParameter[9] =  new SqlParameter("@MOTHER_NAME", employeeEntity.empMother);
+                sqlParameter[0] = new SqlParameter("@EMP_CODE", employeeEntity.empCode);
+                sqlParameter[1] = new SqlParameter("@FIRST_NAME", employeeEntity.empFirst);
+                sqlParameter[2] = new SqlParameter("@LAST_NAME", employeeEntity.empLast);
+                sqlParameter[3] = new SqlParameter("@QUALIFICATION", employeeEntity.empQuali);
+                sqlParameter[4] = new SqlParameter("@DEPARTMENT", employeeEntity.empDept);
+                sqlParameter[5] = new SqlParameter("@DESIGNATION", employeeEntity.empDesig);
+                sqlParameter[6] = new SqlParameter("@EMPLOYEE_TYPE", employeeEntity.empType);
+                sqlParameter[7] = new SqlParameter("@JOB_TYPE", employeeEntity.empJType);
+                sqlParameter[8] = new SqlParameter("@FATHER_NAME", employeeEntity.empFather);
+                sqlParameter[9] = new SqlParameter("@MOTHER_NAME", employeeEntity.empMother);
                 sqlParameter[10] = new SqlParameter("@SEX", employeeEntity.empSex);
                 sqlParameter[11] = new SqlParameter("@DATE_OF_BIRTH", employeeEntity.empDOB);
                 sqlParameter[12] = new SqlParameter("@DATE_OF_JOINING", employeeEntity.empDOJ);
@@ -80,7 +80,7 @@ namespace ERP.Models.Bal.Employee
                 sqlParameter[46].Size = 500;
 
                 DataSet ds = new DataSet();
-                int count=SqlHelper.ExecuteNonQuery(sqlConn, CommandType.StoredProcedure, "SP_MANAGE_EMPLOYEE", sqlParameter);             
+                int count = SqlHelper.ExecuteNonQuery(sqlConn, CommandType.StoredProcedure, "SP_MANAGE_EMPLOYEE", sqlParameter);
                 result.flag = sqlParameter[45].Value.ToString();
                 result.msg = sqlParameter[46].Value.ToString();
 
@@ -95,6 +95,43 @@ namespace ERP.Models.Bal.Employee
                 //    }
                 //}
 
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Excep.WriteException(ex);
+                return result;
+            }
+        }
+        public ResultEntity GetEmployee(EmployeeEntity employeeEntity)
+        {
+            ResultEntity result = new ResultEntity();
+            try
+            {
+                UserEntity objUserEntity = UserEntity.GetInstance();
+
+                SqlParameter[] sqlParameter = new SqlParameter[11];
+                string empFullName = employeeEntity.empFirst + employeeEntity.empLast;
+                sqlParameter[0] = new SqlParameter("@EMP_CODE", employeeEntity.empCode);
+                sqlParameter[1] = new SqlParameter("@EMPLOYEE_NAME", empFullName);
+                sqlParameter[2] = new SqlParameter("@DEPARTMENT", employeeEntity.empDept);
+                sqlParameter[3] = new SqlParameter("@DESIGNATION", employeeEntity.empDesig);
+                sqlParameter[4] = new SqlParameter("@EMPLOYEE_TYPE", employeeEntity.empType);
+                sqlParameter[5] = new SqlParameter("@STATE", employeeEntity.empState);
+                sqlParameter[6] = new SqlParameter("@CITY", employeeEntity.empCity);
+                sqlParameter[7] = new SqlParameter("@LOGIN_ID", employeeEntity.empLogin);
+                sqlParameter[8] = new SqlParameter("@ROLE", employeeEntity.empRole);
+                sqlParameter[9] = new SqlParameter("@CUSTOMER_ID", Convert.ToInt32(objUserEntity.customerId));
+                sqlParameter[10] = new SqlParameter("@REPORT_ID", Convert.ToInt32(employeeEntity.reportId));
+                DataSet ds = new DataSet();
+                ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_GET_EMPLOYEE_DETAILS", sqlParameter);
+                if (ds != null)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        result.addParams = CommonFunc.DtToJSON(ds.Tables[0]);
+                    }
+                }
                 return result;
             }
             catch (Exception ex)
