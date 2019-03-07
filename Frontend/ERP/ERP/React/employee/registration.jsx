@@ -458,12 +458,16 @@ class EmployeeForm extends React.Component {
         this.setState({
             empPwd: value
         });
-        var self = this;
+        //var self = this;
+        //window.setTimeout(function () {
+        //    if (self.state.empCPwd && self.state.empCPwd.length) {
+        //        self.refs.empCPwd.validate(self.state.empCPwd);
+        //    }
         window.setTimeout(function () {
-            if (self.state.empCPwd && self.state.empCPwd.length) {
-                self.refs.empCPwd.validate(self.state.empCPwd);
+            if (this.state.empCPwd && this.state.empCPwd.length) {
+                this.refs.empCPwd.validate(this.state.empCPwd);
             }
-        });
+        }.bind(this));
     }
     onChangeCPwd(value) {
         this.setState({
@@ -481,6 +485,101 @@ class EmployeeForm extends React.Component {
             selectedSubject: value
         });
     }
+
+
+    handleClick(param) {
+        debugger;
+        var data = JSON.parse(param.currentTarget.getAttribute("dataattr"));
+        this.setState
+            ({
+                empCode: data.empCode,
+                empFirst: data.empfname,
+                empLast: data.lname,
+                empQuali: data.qual,
+                selectedDept: data.deptNm,
+                selectedDesig: data.desigNm,
+                selectedType: data.empType,
+                selectedJType: data.jbType,
+                empFather: data.fName,
+                empMother: data.mName,
+                selectedSex: data.sex,
+                empDOB: data.dob,
+                empDOJ: data.doj,
+                empSpoou: data.spName,
+                selectedBGrp: data.bldGrp,
+                selectedMat: data.mStatus,
+                empNation: data.nationality,
+                empAdres: data.addressLine1,
+                empAdres2: data.addressLine2,
+                empMobile: data.mobile,
+                empPhone: data.pnNo,
+                selectedState: data.state,
+                selectedCity: data.city,
+                empZip: data.zpCode,
+
+                //preEmp: data.,
+                //preDOJ: data.,
+                //preDOL: data.,
+                //prePhone: data.,
+                //empExpre: data.,
+                //empResLeav: data.,
+                //preSal: data.,
+                selectedSubject: data.sbjct,
+
+                empBank: data.bankName,
+                empAccNo: data.accNo,
+                empIFSC: data.ifsCode,
+                empAdhar: data.adNo,
+
+                //empPF: data.,
+
+                empSalary: data.anPckg,
+                empLogin: data.loginId,
+                empPwd: data.pass,
+
+                //selectedRole: ReadDropDownData("Param", '8', true),
+                //selectedAccStat: ReadDropDownData("Param", '1', true),
+
+            })
+    }
+    CreateEdit(params) {
+        debugger;
+        var html = "";
+        var domElement = "";
+        var jsonObj = JSON.stringify(params.data);
+
+        html = '<div><a class="testClass" href="javascript:void(0)" dataAttr=' + jsonObj + '><img style="height: 16px;margin-top: 5px;margin-left:5px;"  src="../images/icons/edit.png"></img></a></div>';
+        domElement = document.createElement("div");
+        domElement.innerHTML = html;
+        return domElement;
+    }
+    componentDidMount() {
+        $('.testClass').on("click", this.handleClick.bind(this));
+    }
+    componentDidUpdate() {
+        $('.testClass').on("click", this.handleClick.bind(this));
+    }
+    CreateActive(params) {
+        debugger;
+        var html = "";
+        var domElement = "";
+        if ((params.data.isActive).trim() == 70) {
+            html = '<span style="margin-top: 5px;padding: 6px 20px;" class="badge badge-pill badge-success">Active</span>'
+        }
+        else if ((params.data.isActive).trim() == 71) {
+            html = '<span style="margin-top: 5px;padding: 6px 15px;" class="badge badge-pill badge-danger">In-Active</span>'
+        }
+        else {
+            html = '<span style="margin-top: 5px;padding: 6px 10px;" class="badge badge-pill badge-warning">Temporary</span>'
+        }
+
+        domElement = document.createElement("div");
+        domElement.innerHTML = html;
+        return domElement;
+    }
+
+
+
     register(field) {
         var s = [];
         s.push(field);
@@ -766,7 +865,7 @@ class EmployeeForm extends React.Component {
                                                         </li>
                                                         <li>
                                                             <CreateInput type={'password'} value={this.state.empCPwd}  label={'Confirm Password'} name={'empCPwd'} htmlFor={'empCPwd'} isrequired={true}
-                                                                onChange={this.onChangeCPwd.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'}  validate={this.isConfirmedPassword} />
+                                                                onChange={this.onChangeCPwd.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} invalidPassword={'Password is not match.'}  validate={this.isConfirmedPassword.bind(this)} />
                                                         </li>
                                                         <li>
                                                             <CreateInput type={'ddl'} value={this.state.selectedRole} data={this.state.empRole} label={'Role'} name={'empRole'} htmlFor={'empRole'} isrequired={true}

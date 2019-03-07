@@ -5,21 +5,21 @@
             var isValidField = this.isValid(e.target);
         }
         if (this.props.validate) {
-            this.validate(event.target.value);
+            this.validate(e.target);
         }
     }
-    validate(value) {
+    validate(input) {
         debugger;
-        if (this.props.validate && this.props.validate(value)) {
-            this.setState({
-                valid: true,
-                errorVisible: false
-            });
+        if (this.props.validate && this.props.validate(input.value)) {
+            input.classList.remove('input-validation-error');
+            input.nextSibling.classList.remove('field-validation-error');
+            input.nextSibling.textContent = "";
+            return true;
         } else {
-            this.setState({
-                valid: false,
-                errorVisible: true
-            });
+            input.classList.add('input-validation-error'); //add class error
+            input.nextSibling.classList.add('field-validation-error');
+            input.nextSibling.textContent = this.props.invalidPassword; // show error message
+            return false;
         }
     }
     handleBlur(e) {
@@ -45,6 +45,7 @@
                 input.nextSibling.textContent = "";
                 return true;
             }
+            
         }
 
     }
