@@ -164,65 +164,10 @@ class EmployeeForm extends React.Component {
                     CallToast(data.msg, data.flag);
                     if (data.flag == "S") {
                         MyData = JSON.parse(data.addParams);
-                        this.setState
-                            ({
-                                empCode: "",
-                                empFirst: "",
-                                empLast: "",
-                                empQuali: "",
-                                empDept: ReadDropDownData("Param", '7', true),
-                                empDesig: [],
-                                empType: ReadDropDownData("Param", '9', true),
-                                empJType: [],
-                                empFather: "",
-                                empMother: "",
-                                empSex: ReadDropDownData("Param", '12', true),
-                                empDOB: "",
-                                empDOJ: "",
-                                empSpoou: "",
-                                empBGrp: ReadDropDownData("Param", '10', true),
-                                empMStat: ReadDropDownData("Param", '11', true),
-                                empNation: "",
-                                empAdres: "",
-                                empAdres2: "",
-                                empMobile: "",
-                                empPhone: "",
-                                empCount: ReadLocationData("Location", 1, ""),
-                                empState: [],
-                                empCity: [],
-                                empZip: "",
-                                preEmp: "",
-                                preDOJ: "",
-                                preDOL: "",
-                                prePhone: "",
-                                empExpre: "",
-                                empResLeav: "",
-                                preSal: "",
-                                empSub: ReadDropDownData("Subject", $("#hfCustomerId").val(), false),
-                                empBank: "",
-                                empAccNo: "",
-                                empIFSC: "",
-                                empAdhar: "",
-                                empPF: "",
-                                empSalary: "",
-                                empLogin: "",
-                                empPwd: "",
-                                empCPwd: "",
-                                empRole: ReadDropDownData("Param", '8', true),
-                                empAccStat: ReadDropDownData("Param", '1', true),
-                                selectedDept: 0,
-                                selectedDesig: 0,
-                                selectedType: 0,
-                                selectedJType: 0,
-                                selectedSex: 0,
-                                selectedBGrp: 0,
-                                selectedMat: 0,
-                                selectedCount: 0,
-                                selectedState: 0,
-                                selectedCity: 0,
-                                selectedRole: 0,
-                                selectedAccStat: 0,
-                            })
+                        $.get("/Employee/Registration", function (data, status) {
+                            alert(JSON.parse(content.addParams));
+                        });
+                        this.resetData();
                         this.setState({ rowData: MyData });
                         this.setState({ records: MyData.length })
 
@@ -236,6 +181,68 @@ class EmployeeForm extends React.Component {
 
             e.preventDefault();
         }
+    }
+    resetData = () => {
+        debugger;
+        this.setState
+            ({
+                empCode: "",
+                empFirst: "",
+                empLast: "",
+                empQuali: "",
+                empDept: ReadDropDownData("Param", '7', true),
+                empDesig: [],
+                empType: ReadDropDownData("Param", '9', true),
+                empJType: [],
+                empFather: "",
+                empMother: "",
+                empSex: ReadDropDownData("Param", '12', true),
+                empDOB: "",
+                empDOJ: "",
+                empSpoou: "",
+                empBGrp: ReadDropDownData("Param", '10', true),
+                empMStat: ReadDropDownData("Param", '11', true),
+                empNation: "",
+                empAdres: "",
+                empAdres2: "",
+                empMobile: "",
+                empPhone: "",
+                empCount: ReadLocationData("Location", 1, ""),
+                empState: [],
+                empCity: [],
+                empZip: "",
+                preEmp: "",
+                preDOJ: "",
+                preDOL: "",
+                prePhone: "",
+                empExpre: "",
+                empResLeav: "",
+                preSal: "",
+                empSub: ReadDropDownData("Subject", $("#hfCustomerId").val(), false),
+                empBank: "",
+                empAccNo: "",
+                empIFSC: "",
+                empAdhar: "",
+                empPF: "",
+                empSalary: "",
+                empLogin: "",
+                empPwd: "",
+                empCPwd: "",
+                empRole: ReadDropDownData("Param", '8', true),
+                empAccStat: ReadDropDownData("Param", '1', true),
+                selectedDept: 0,
+                selectedDesig: 0,
+                selectedType: 0,
+                selectedJType: 0,
+                selectedSex: 0,
+                selectedBGrp: 0,
+                selectedMat: 0,
+                selectedCount: 0,
+                selectedState: 0,
+                selectedCity: 0,
+                selectedRole: 0,
+                selectedAccStat: 0,
+            })
     }
     onChangeDept(value) {
         this.setState({
@@ -646,7 +653,7 @@ class EmployeeForm extends React.Component {
                         <div className="modal-content">
                             <div className="modal-header">
                                 <h4 className="modal-title">Add/Edit Employee</h4>
-                                <button type="button" className="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span className="sr-only">Close</span></button>
+                                <button type="button" className="close" data-dismiss="modal" onClick={this.resetData}><span aria-hidden="true">&times;</span><span className="sr-only">Close</span></button>
                             </div>
                             <div className="modal-body">
                                 <div className="card">
