@@ -1,0 +1,30 @@
+﻿@{
+    Layout = null;
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    @Styles.Render("~/bundles/css")
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
+    @*<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" />*@
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/react")
+</head>
+<body>
+    <div id="logincontent"></div>
+    <script src="@Url.Content("../../React/authorization/login.jsx")"></script>
+
+    <div id="orglist"></div><!-- /.modal -->
+    <script src="@Url.Content("../../React/configuration/orglist.jsx")"></script>
+
+    <div id="create"></div><!-- /.modal -->
+    <script src="@Url.Content("../../React/configuration/createorg.jsx")"></script>
+    <div id="progress" class="modal">
+        <div class="loading-center">
+            <img src="~/Images/loading.gif" class="centerimg" />
+        </div>
+    </div>
+</body>
+</html>
