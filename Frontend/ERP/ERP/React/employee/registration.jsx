@@ -494,6 +494,7 @@ class EmployeeForm extends React.Component {
         });
     }
     isConfirmedPassword(value) {
+        debugger;
         return (value === this.state.empPwd)
 
     }

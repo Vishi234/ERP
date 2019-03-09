@@ -10,7 +10,7 @@ class EmployeeForm extends React.Component {
         for (var i = 0; i < columnDefs.length; i++) {
             if (columnDefs[i].cellRenderer) {
                 if (columnDefs[i].cellRenderer == "CreateEdit") {
-                    columnDefs[i].cellRenderer = this.CreateEdit;
+                    columnDefs[i].cellRenderer = this.CreateEdit ;
                 }
             }
         }
@@ -81,9 +81,9 @@ class EmployeeForm extends React.Component {
             flag: "A",
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
     handleSubmit(e) {
-
         var validForm = true;
         e.preventDefault();
         fields.forEach(function (field) {
@@ -490,6 +490,7 @@ class EmployeeForm extends React.Component {
         });
     }
     handleClick(param) {
+        debugger;
     var data = JSON.parse(param.currentTarget.getAttribute("dataattr"));
     this.setState
         ({
@@ -538,10 +539,11 @@ class EmployeeForm extends React.Component {
     $("#employee").modal("show");
     }
     CreateEdit(params) {
+        debugger;
         var html = "";
         var domElement = "";
         var jsonObj = JSON.stringify(params.data);
-        html = "<div><a class='testClass' href='javascript:void(0)' dataAttr='" + jsonObj + "'><img style='height: 16px;margin-top: 5px;margin-left:5px;' src='../images/icons/edit.png'/></a></div>";
+        html = "<div><a class='testClass' href='javascript:void(0)' dataAttr= '" + jsonObj + "'><img style='height: 16px;margin-top: 5px;margin-left:5px;'  src='../images/icons/edit.png'></img></a></div>";
         domElement = document.createElement("div");
         domElement.innerHTML = html;
         return domElement;
@@ -584,7 +586,7 @@ class EmployeeForm extends React.Component {
                                 <li>
                                     <a href="javascript:void(0)" data-toggle="modal" data-target="#employee" className="btn btn-secondary">
                                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                             width="357px" height="357px" viewBox="0 0 357 357" style={{enableBackground:'new 0 0 357 357;' }} xmlSpace="preserve">
+                                             width="357px" height="357px" viewBox="0 0 357 357" style={{enableBackground:'new 0 0 357 357' }} xmlSpace="preserve">
                                         <g>
                                         <g id="add">
                                         <path d="M357,204H204v153h-51V204H0v-51h153V0h51v153h153V204z" />
@@ -611,7 +613,7 @@ class EmployeeForm extends React.Component {
                                 <li>
                                     <a href="javascript:void(0)" className="btn btn-secondary">
                                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                             viewBox="0 0 512 512" style={{enableBackground:'new 0 0 512 512;'}} xmlSpace="preserve">
+                                             viewBox="0 0 512 512" style={{enableBackground:'new 0 0 512 512'}} xmlSpace="preserve">
                                         <g>
                                         <g>
                                         <path d="M382.56,233.376C379.968,227.648,374.272,224,368,224h-64V16c0-8.832-7.168-16-16-16h-64c-8.832,0-16,7.168-16,16v208h-64 c-6.272,0-11.968,3.68-14.56,9.376c-2.624,5.728-1.6,12.416,2.528,17.152l112,128c3.04,3.488,7.424,5.472,12.032,5.472 c4.608,0,8.992-2.016,12.032-5.472l112-128C384.192,245.824,385.152,239.104,382.56,233.376z" />
@@ -735,7 +737,7 @@ class EmployeeForm extends React.Component {
                                                                  onChange={this.onChangeMother.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
-                                                    <CreateInput type={'ddl'} value={this.state.selectedSex} data={this.state.empSex} label={'Sex'} name={'empSex'} htmlFor={'empSex'} isrequired={true}
+                                                    <CreateInput type={'ddl'} value={this.state.selectedSex} data={this.state.empSex} label={'Gender'} name={'empSex'} htmlFor={'empSex'} isrequired={true}
                                                                  keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeSex.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
@@ -876,7 +878,7 @@ class EmployeeForm extends React.Component {
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'password'} value={this.state.empCPwd} label={'Confirm Password'} name={'empCPwd'} htmlFor={'empCPwd'} isrequired={true}
-                                                                 onChange={this.onChangeCPwd.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} validate={this.isConfirmedPassword} />
+                                                        onChange={this.onChangeCPwd.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} invalidPassword={'Password not match'} validate={this.isConfirmedPassword.bind(this)} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedRole} data={this.state.empRole} label={'Role'} name={'empRole'} htmlFor={'empRole'} isrequired={true}

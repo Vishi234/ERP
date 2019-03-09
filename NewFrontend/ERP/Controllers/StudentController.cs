@@ -1,4 +1,6 @@
 ﻿using ERP.Models.Bal.Common;
+using ERP.Models.Bal.Employee;
+using ERP.Models.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +13,10 @@ namespace ERP.Controllers
     public class StudentController : Controller
     {
         // GET: Student
-        public ActionResult Admission()
+        [HttpPost]
+        public ActionResult Admission(StudentEntity studentEntity)
         {
-            return View();
+            return Json(new Student().AddStudent(studentEntity));
         }
         public ActionResult Manage()
         {

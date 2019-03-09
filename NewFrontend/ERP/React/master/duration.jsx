@@ -119,7 +119,6 @@
     },
     onChangeCourse: function (value) {
         var obj = [];
-        //var semester = 0;
         var jsonData = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
         for (var i = 0; i < jsonData.length; i++) {
             if (jsonData[i].COURSE_ID == value) {
@@ -129,12 +128,6 @@
                 obj.push(data);
             }
         }
-        //for (var i = 1; i <= semester; i++) {
-        //    data = {};
-        //    data.ID = i;
-        //    data.NO_SEMESTER = i;
-        //    obj.push(data);
-        //}
         this.setState({ semester: obj });
         this.setState({
             selectedCourse: value
