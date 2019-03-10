@@ -39,7 +39,6 @@
         var isValidField = this.isValid(e.target);
     }
     isValid(input) {
-        debugger;
         //check required field
         if (input != undefined) {
             if (input.tagName == "INPUT") {

@@ -164,12 +164,9 @@ class EmployeeForm extends React.Component {
                 success: function (data) {
                     btnloading("EmpRegis", 'hide');
                     CallToast(data.msg, data.flag);
-                    if (data.flag == "S") {
-                        MyData = JSON.parse(data.addParams);
+                    if (data.flag == "S") { 
+                        this.getEmployeeDetails();
                         this.resetData();
-                        this.setState({ rowData: MyData });
-                        this.setState({ records: MyData.length })
-
                     }
                 }.bind(this),
                 error: function (evt) {
@@ -180,6 +177,13 @@ class EmployeeForm extends React.Component {
 
             e.preventDefault();
         }
+    }
+    getEmployeeDetails = () => {
+        $.get("/Employee/GetEmployeeDetails", function (data) {
+            MyData = JSON.parse(data.addParams);
+            this.setState({ rowData: MyData });
+            this.setState({ records: MyData.length })
+        });    
     }
     resetData = () => {
         debugger;
