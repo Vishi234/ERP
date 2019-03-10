@@ -264,6 +264,7 @@
     <Compile Include="Controllers\CacheController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\HRController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
@@ -318,6 +319,7 @@
     <Content Include="Views\Student\Admission.cshtml" />
     <Content Include="Views\Employee\Manage.cshtml" />
     <Content Include="Views\Student\Manage.cshtml" />
+    <Content Include="Views\HR\Enquiry.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

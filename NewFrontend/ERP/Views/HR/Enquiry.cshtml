@@ -1,0 +1,189 @@
+﻿
+@{
+    ViewBag.Title = "Enquiry";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="esubmenu">
+    <ul class="breadcrumb float-left">
+        <li><a href="#">Home /</a></li>
+        <li><a href="#">Pictures /</a></li>
+        <li><a href="#">Summer 15 /</a></li>
+        <li><a href="#" class="active">Summer 15</a></li>
+    </ul>
+    <div class="ever float-right">
+        <span>Version : 0.0.1</span>
+    </div>
+</div>
+<div class="pagebody">
+    <div class="einrformbase card p-4">
+        <div class="card-title">
+            Manage Placements
+        </div>
+        <div class="card-body">
+            <div class="efltrform"></div>
+            <div class="action">
+                <ul>
+                    <li>
+                        <a href="javascript:void(0)" data-toggle="modal" data-target="#enquiry" class="btn btn-secondary">
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns-xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                 width="357px" height="357px" viewBox="0 0 357 357" style="enable-background:new 0 0 357 357" xml-space="preserve">
+                                <g>
+                                    <g id="add">
+                                        <path d="M357,204H204v153h-51V204H0v-51h153V0h51v153h153V204z" />
+                                    </g>
+                                </g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="btn btn-secondary">
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns-xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml-space="preserve">
+                                <g>
+                                    <g>
+                                        <path d="M382.56,233.376C379.968,227.648,374.272,224,368,224h-64V16c0-8.832-7.168-16-16-16h-64c-8.832,0-16,7.168-16,16v208h-64 c-6.272,0-11.968,3.68-14.56,9.376c-2.624,5.728-1.6,12.416,2.528,17.152l112,128c3.04,3.488,7.424,5.472,12.032,5.472 c4.608,0,8.992-2.016,12.032-5.472l112-128C384.192,245.824,385.152,239.104,382.56,233.376z" />
+                                    </g>
+                                </g>
+                                <g>
+                                    <g>
+                                        <path d="M432,352v96H80v-96H16v128c0,17.696,14.336,32,32,32h416c17.696,0,32-14.304,32-32V352H432z" />
+                                    </g>
+                                </g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                                <g></g>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="btn btn-secondary">
+                            Status
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="enquiry" class="modal fade">
+    <div class="modal-dialog modal-dialog-vertical-center modal-lg" role="document">
+        <div class="modal-content bd-0 tx-14">
+            <form name='StudentAdmi' id="StudentAdmi">
+                <div class="modal-header pd-y-20 pd-x-25">
+                    <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Add/Edit Placements</h6>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                </div>
+                <div class="modal-body pd-25">
+                    <div class="einrformbase">
+
+                        <ul class="einrform cstmform">
+                            <li>
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <label>Date</label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <label>Father Name</label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <label>Gender</label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <label>Mobile</label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <label>Qualification</label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <label>Designation</label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <label>Experience(years)</label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <label>Area</label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    <textarea rows="5" cols="20"></textarea>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    <textarea rows="5" cols="20"></textarea>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-info pd-x-20"><span class="inload hide"><i class="fa fa-spinner fa-spin"></i></span> Save</button>
+                    <button type="button" class="btn btn-secondary pd-x-20" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
