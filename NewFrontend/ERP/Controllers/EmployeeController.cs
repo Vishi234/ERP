@@ -20,11 +20,17 @@ namespace ERP.Controllers
         }
         public ActionResult Manage()
         {
+            GetEmployeeDetails();
+            return View();
+        }
+        [HttpGet]
+        public JsonResult GetEmployeeDetails()
+        {
             EmployeeEntity employeeEntity = new EmployeeEntity();
             employeeEntity.flag = 'G';
             employeeEntity.reportId = "8";
             TempData["EmployeeData"] = new Employee().GetEmployee(employeeEntity);
-            return View();
+            return Json(TempData["EmployeeData"],JsonRequestBehavior.AllowGet);
         }
        
     }

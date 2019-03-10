@@ -5965,3 +5965,442 @@ Error Number:53,State:0,Class:20
 Time :09-Mar-2019 10:47:55
 
 ----------------------------------------------------------------------------------------------------------------------
+Exception :System.Data.SqlClient.SqlException (0x80131904): Procedure or function 'SP_MANAGE_EMPLOYEE' expects parameter '@EMAIL_ADDRESS', which was not supplied.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DaL.SqlHelper.ExecuteNonQuery(SqlConnection connection, CommandType commandType, String commandText, SqlParameter[] commandParameters) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Dal\SqlHelper.cs:line 307
+   at DaL.SqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Dal\SqlHelper.cs:line 224
+   at ERP.Models.Bal.Employee.Employee.AddEmployee(EmployeeEntity employeeEntity) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Employee\Employee.cs:line 83
+ClientConnectionId:5d7eb310-9695-4778-9450-d343bb139949
+Error Number:201,State:4,Class:16
+
+Time :10-Mar-2019 11:41:47
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.Data.SqlClient.SqlException (0x80131904): Procedure or function 'SP_MANAGE_EMPLOYEE' expects parameter '@EMAIL_ADDRESS', which was not supplied.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DaL.SqlHelper.ExecuteNonQuery(SqlConnection connection, CommandType commandType, String commandText, SqlParameter[] commandParameters) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Dal\SqlHelper.cs:line 307
+   at DaL.SqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Dal\SqlHelper.cs:line 224
+   at ERP.Models.Bal.Employee.Employee.AddEmployee(EmployeeEntity employeeEntity) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Employee\Employee.cs:line 83
+ClientConnectionId:5d7eb310-9695-4778-9450-d343bb139949
+Error Number:201,State:4,Class:16
+
+Time :10-Mar-2019 11:42:35
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.Data.SqlClient.SqlException (0x80131904): Procedure or function 'SP_MANAGE_EMPLOYEE' expects parameter '@EMAIL_ADDRESS', which was not supplied.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DaL.SqlHelper.ExecuteNonQuery(SqlConnection connection, CommandType commandType, String commandText, SqlParameter[] commandParameters) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Dal\SqlHelper.cs:line 307
+   at DaL.SqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Dal\SqlHelper.cs:line 224
+   at ERP.Models.Bal.Employee.Employee.AddEmployee(EmployeeEntity employeeEntity) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Employee\Employee.cs:line 83
+ClientConnectionId:5d7eb310-9695-4778-9450-d343bb139949
+Error Number:201,State:4,Class:16
+
+Time :10-Mar-2019 11:43:23
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at ERP.Models.Bal.Employee.Student.AddStudent(StudentEntity studentEntity) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Student\Student.cs:line 73
+
+Time :10-Mar-2019 11:48:15
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.Data.SqlClient.SqlException (0x80131904): Procedure or function 'SP_MANAGE_STUDENT' expects parameter '@USER_ID', which was not supplied.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DaL.SqlHelper.ExecuteNonQuery(SqlConnection connection, CommandType commandType, String commandText, SqlParameter[] commandParameters) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Dal\SqlHelper.cs:line 307
+   at DaL.SqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Dal\SqlHelper.cs:line 224
+   at ERP.Models.Bal.Employee.Student.AddStudent(StudentEntity studentEntity) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Student\Student.cs:line 78
+ClientConnectionId:8ebe0824-cf13-40a4-b1a8-a6766aa4feca
+Error Number:201,State:4,Class:16
+
+Time :10-Mar-2019 11:54:18
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.Data.SqlClient.SqlException (0x80131904): Invalid object name 'MST_USER_PROFILE_PIC'.
+Transaction count after EXECUTE indicates a mismatching number of BEGIN and COMMIT statements. Previous count = 0, current count = 1.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DaL.SqlHelper.ExecuteNonQuery(SqlConnection connection, CommandType commandType, String commandText, SqlParameter[] commandParameters) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Dal\SqlHelper.cs:line 307
+   at DaL.SqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Dal\SqlHelper.cs:line 224
+   at ERP.Models.Bal.Employee.Employee.AddEmployee(EmployeeEntity employeeEntity) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Employee\Employee.cs:line 84
+ClientConnectionId:c4bdf29e-8467-4399-8cb3-9800b01fc003
+Error Number:208,State:1,Class:16
+
+Time :10-Mar-2019 12:29:57
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.Data.SqlClient.SqlException (0x80131904): Invalid object name 'MST_USER_PROFILE_PIC'.
+Transaction count after EXECUTE indicates a mismatching number of BEGIN and COMMIT statements. Previous count = 0, current count = 1.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DaL.SqlHelper.ExecuteNonQuery(SqlConnection connection, CommandType commandType, String commandText, SqlParameter[] commandParameters) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Dal\SqlHelper.cs:line 307
+   at DaL.SqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Dal\SqlHelper.cs:line 224
+   at ERP.Models.Bal.Employee.Employee.AddEmployee(EmployeeEntity employeeEntity) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Employee\Employee.cs:line 84
+ClientConnectionId:c4bdf29e-8467-4399-8cb3-9800b01fc003
+Error Number:208,State:1,Class:16
+
+Time :10-Mar-2019 12:30:57
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The network path was not found
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling, SqlAuthenticationProviderManager sqlAuthProviderManager)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at DaL.SqlHelper.ExecuteDataset(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Dal\SqlHelper.cs:line 485
+   at ERP.Models.Bal.Employee.Employee.GetEmployee(EmployeeEntity employeeEntity) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Employee\Employee.cs:line 128
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:53,State:0,Class:20
+
+Time :10-Mar-2019 14:45:37
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.Data.SqlClient.SqlException (0x80131904): The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DaL.SqlHelper.ExecuteNonQuery(SqlConnection connection, CommandType commandType, String commandText, SqlParameter[] commandParameters)
+   at DaL.SqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters)
+   at ERP.Models.Bal.Employee.Student.AddStudent(StudentEntity studentEntity)
+ClientConnectionId:471ef68d-8c0f-460d-8436-d0d8145dea53
+Error Number:3902,State:1,Class:16
+
+Time :10-Mar-2019 15:18:48
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.Data.SqlClient.SqlException (0x80131904): The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DaL.SqlHelper.ExecuteNonQuery(SqlConnection connection, CommandType commandType, String commandText, SqlParameter[] commandParameters)
+   at DaL.SqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters)
+   at ERP.Models.Bal.Employee.Student.AddStudent(StudentEntity studentEntity)
+ClientConnectionId:917e981e-af20-4155-8837-2355dc0c1c1b
+Error Number:3902,State:1,Class:16
+
+Time :10-Mar-2019 15:23:19
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.Data.SqlClient.SqlException (0x80131904): The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DaL.SqlHelper.ExecuteNonQuery(SqlConnection connection, CommandType commandType, String commandText, SqlParameter[] commandParameters)
+   at DaL.SqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters)
+   at ERP.Models.Bal.Employee.Student.AddStudent(StudentEntity studentEntity)
+ClientConnectionId:917e981e-af20-4155-8837-2355dc0c1c1b
+Error Number:3902,State:1,Class:16
+
+Time :10-Mar-2019 15:24:30
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.Data.SqlClient.SqlException (0x80131904): Invalid object name 'MST_USER_PROFILE_PIC'.
+Transaction count after EXECUTE indicates a mismatching number of BEGIN and COMMIT statements. Previous count = 0, current count = 1.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DaL.SqlHelper.ExecuteNonQuery(SqlConnection connection, CommandType commandType, String commandText, SqlParameter[] commandParameters)
+   at DaL.SqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters)
+   at ERP.Models.Bal.Employee.Employee.AddEmployee(EmployeeEntity employeeEntity)
+ClientConnectionId:917e981e-af20-4155-8837-2355dc0c1c1b
+Error Number:208,State:1,Class:16
+
+Time :10-Mar-2019 15:32:02
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.Data.SqlClient.SqlException (0x80131904): Invalid object name 'MST_USER_PROFILE_PIC'.
+Transaction count after EXECUTE indicates a mismatching number of BEGIN and COMMIT statements. Previous count = 0, current count = 1.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DaL.SqlHelper.ExecuteNonQuery(SqlConnection connection, CommandType commandType, String commandText, SqlParameter[] commandParameters)
+   at DaL.SqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters)
+   at ERP.Models.Bal.Employee.Employee.AddEmployee(EmployeeEntity employeeEntity)
+ClientConnectionId:5864e773-2ef5-42ad-9df0-8dcf20d9b2f7
+Error Number:208,State:1,Class:16
+
+Time :10-Mar-2019 16:27:02
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.NullReferenceException: Object reference not set to an instance of an object.
+   at ERP.Models.Bal.Employee.Student.AddStudent(StudentEntity studentEntity)
+
+Time :10-Mar-2019 16:41:57
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.NullReferenceException: Object reference not set to an instance of an object.
+   at ERP.Models.Bal.Employee.Student.AddStudent(StudentEntity studentEntity)
+
+Time :10-Mar-2019 16:42:17
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.NullReferenceException: Object reference not set to an instance of an object.
+   at ERP.Models.Bal.Employee.Student.AddStudent(StudentEntity studentEntity)
+
+Time :10-Mar-2019 16:43:50
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.Data.SqlClient.SqlException (0x80131904): Invalid object name 'DEBUG_SQL'.
+Transaction count after EXECUTE indicates a mismatching number of BEGIN and COMMIT statements. Previous count = 0, current count = 1.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DaL.SqlHelper.ExecuteNonQuery(SqlConnection connection, CommandType commandType, String commandText, SqlParameter[] commandParameters) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Dal\SqlHelper.cs:line 307
+   at DaL.SqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Dal\SqlHelper.cs:line 224
+   at ERP.Models.Bal.Employee.Student.AddStudent(StudentEntity studentEntity) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Student\Student.cs:line 79
+ClientConnectionId:9dcf408b-97fd-4a27-bb94-63994821b15e
+Error Number:208,State:1,Class:16
+
+Time :10-Mar-2019 17:07:00
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.Data.SqlClient.SqlException (0x80131904): Transaction count after EXECUTE indicates a mismatching number of BEGIN and COMMIT statements. Previous count = 0, current count = 1.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DaL.SqlHelper.ExecuteNonQuery(SqlConnection connection, CommandType commandType, String commandText, SqlParameter[] commandParameters) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Dal\SqlHelper.cs:line 307
+   at DaL.SqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Dal\SqlHelper.cs:line 224
+   at ERP.Models.Bal.Employee.Student.AddStudent(StudentEntity studentEntity) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Student\Student.cs:line 79
+ClientConnectionId:9dcf408b-97fd-4a27-bb94-63994821b15e
+Error Number:266,State:2,Class:16
+
+Time :10-Mar-2019 17:11:36
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: Cannot find table 0.
+   at System.Data.DataTableCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Employee.Student.GetStudent(StudentEntity studentEntity) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Student\Student.cs:line 124
+
+Time :10-Mar-2019 19:25:01
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: Cannot find table 0.
+   at System.Data.DataTableCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Employee.Student.GetStudent(StudentEntity studentEntity) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Student\Student.cs:line 124
+
+Time :10-Mar-2019 19:25:42
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: Cannot find table 0.
+   at System.Data.DataTableCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Employee.Student.GetStudent(StudentEntity studentEntity) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Student\Student.cs:line 124
+
+Time :10-Mar-2019 19:29:45
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: Cannot find table 0.
+   at System.Data.DataTableCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Employee.Student.GetStudent(StudentEntity studentEntity) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Student\Student.cs:line 124
+
+Time :10-Mar-2019 19:29:57
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: Cannot find table 0.
+   at System.Data.DataTableCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Employee.Student.GetStudent(StudentEntity studentEntity) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Student\Student.cs:line 124
+
+Time :10-Mar-2019 19:37:00
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: Cannot find table 0.
+   at System.Data.DataTableCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Employee.Student.GetStudent(StudentEntity studentEntity) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Student\Student.cs:line 124
+
+Time :10-Mar-2019 19:49:01
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: Cannot find table 0.
+   at System.Data.DataTableCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Employee.Student.GetStudent(StudentEntity studentEntity) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Student\Student.cs:line 124
+
+Time :10-Mar-2019 19:54:26
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: Cannot find table 0.
+   at System.Data.DataTableCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Employee.Employee.GetEmployee(EmployeeEntity employeeEntity) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Employee\Employee.cs:line 131
+
+Time :10-Mar-2019 23:26:58
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: Cannot find table 0.
+   at System.Data.DataTableCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Employee.Employee.GetEmployee(EmployeeEntity employeeEntity) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Employee\Employee.cs:line 131
+
+Time :10-Mar-2019 23:27:06
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: Cannot find table 0.
+   at System.Data.DataTableCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Employee.Student.GetStudent(StudentEntity studentEntity) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Student\Student.cs:line 124
+
+Time :10-Mar-2019 23:27:21
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: Cannot find table 0.
+   at System.Data.DataTableCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Employee.Student.GetStudent(StudentEntity studentEntity) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Student\Student.cs:line 124
+
+Time :10-Mar-2019 23:27:24
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: Cannot find table 0.
+   at System.Data.DataTableCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Employee.Employee.GetEmployee(EmployeeEntity employeeEntity) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Employee\Employee.cs:line 131
+
+Time :10-Mar-2019 23:27:41
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: Cannot find table 0.
+   at System.Data.DataTableCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Employee.Employee.GetEmployee(EmployeeEntity employeeEntity) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Employee\Employee.cs:line 131
+
+Time :10-Mar-2019 23:29:09
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: Cannot find table 0.
+   at System.Data.DataTableCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Employee.Employee.GetEmployee(EmployeeEntity employeeEntity) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Employee\Employee.cs:line 131
+
+Time :10-Mar-2019 23:29:56
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: Cannot find table 0.
+   at System.Data.DataTableCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Employee.Employee.GetEmployee(EmployeeEntity employeeEntity) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Employee\Employee.cs:line 131
+
+Time :10-Mar-2019 23:30:36
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: Cannot find table 0.
+   at System.Data.DataTableCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Employee.Employee.GetEmployee(EmployeeEntity employeeEntity) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Employee\Employee.cs:line 131
+
+Time :10-Mar-2019 23:31:07
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: Cannot find table 0.
+   at System.Data.DataTableCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Employee.Employee.GetEmployee(EmployeeEntity employeeEntity) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Employee\Employee.cs:line 131
+
+Time :10-Mar-2019 23:32:06
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The network path was not found
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling, SqlAuthenticationProviderManager sqlAuthProviderManager)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at DaL.SqlHelper.ExecuteDataset(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Dal\SqlHelper.cs:line 485
+   at ERP.Models.Bal.Login.CommonLogin.CheckLogin(String email, String password) in D:\Project\Github ERP\ERP\NewFrontend\ERP\Models\Bal\Login\Login.cs:line 42
+ClientConnectionId:26948587-8d24-4ba0-b75d-0297d5d97a58
+Error Number:53,State:0,Class:20
+
+Time :11-Mar-2019 00:36:03
+
+----------------------------------------------------------------------------------------------------------------------

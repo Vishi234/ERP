@@ -51,7 +51,7 @@ function ReadDropDownData(key, customerId, isParam) {
 
     if (isParam == false)
     {
-        if (key == "Course" || key == "AcademicYear" || key == "Subject")
+        if (key == "Course" || key == "AcademicYear" || key == "Subject" || key == "Department" || key == "Designation")
         {
             MyData = jsonData["" + key + ""];
 

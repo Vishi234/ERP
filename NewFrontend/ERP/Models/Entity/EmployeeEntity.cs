@@ -51,6 +51,8 @@ namespace ERP.Models.Entity
         public string empCPwd { get; set; }
         public string empRole { get; set; }
         public string empAccStat { get; set; }
+        public string empImage { get; set; }
+        public string empEmail { get; set; }
         public char flag { get; set; }
         public string reportId { get; set; }
         public string operType { get; set; }

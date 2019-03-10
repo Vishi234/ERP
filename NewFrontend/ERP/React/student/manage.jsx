@@ -4,20 +4,22 @@ var fields = [];
 class AdmissionForm extends React.Component {
     constructor(props) {
         super(props);
-        //grdArray = GetReportConfiguration("Student");
-        //var records = JSON.parse(content.addParams);
-        //var columnDefs = grdArray["$StudentDetails$"];
-        //for (var i = 0; i < columnDefs.length; i++) {
-        //    if (columnDefs[i].cellRenderer) {
-        //        if (columnDefs[i].cellRenderer == "CreateEdit") {
-        //            columnDefs[i].cellRenderer = this.CreateEdit;
-        //        }
-        //    }
-        //}
+        grdArray = GetReportConfiguration("Student");
+        var records = JSON.parse(content.addParams);
+        var columnDefs = grdArray["$StudentDetails$"];
+        for (var i = 0; i < columnDefs.length; i++) {
+            if (columnDefs[i].cellRenderer) {
+                if (columnDefs[i].cellRenderer == "CreateEdit") {
+                    columnDefs[i].cellRenderer = this.CreateEdit;
+                }
+            }
+        }
         this.state = {
+            imgSrc: "",
             stuImage:"",
             stuCode: "",
             stuFirst: "",
+            stuLast:"",
             stuCourse: ReadDropDownData("Course", $("#hfCustomerId").val(), false),
             stuSemester: [],
             stuCategory: ReadDropDownData("Param", '13', true),
@@ -52,10 +54,25 @@ class AdmissionForm extends React.Component {
             stuPwd: "",
             stuCPwd: "",
             stuAccStat: ReadDropDownData("Param", '1', true),
+            selectedCourse: 0,
+            selectedSemester: 0,
+            selectedCate: 0,
+            selectedAcademic: 0,
+            selectedSex: 0,
+            selectedBGrp: 0,
+            selectedHandicap: 0,
+            selectedCount: 0,
+            selectedState: 0,
+            selectedCity: 0,
+            selectedBoard: 0,
+            selectedPreCourse: 0,
+            selectedSubject: 0,
+            selectedMTongue: 0,
+            selectedPreCourse: 0,
             Fields: [],
-            //columnDef: columnDefs,
-            rowData: null,
-            // records: ((records == null) ? 0 : records.length),
+            columnDef: columnDefs,
+            rowData: records,
+            records: ((records == null) ? 0 : records.length),
             ServerMessage: '',
             label: "Save",
             flag: "A",
@@ -85,6 +102,7 @@ class AdmissionForm extends React.Component {
                 stuImage      :this.state.stuImage,
                 stuCode       :this.state.stuCode,
                 stuFirst      :this.state.stuFirst,
+                stuLast       :this.state.stuLast,
                 stuCourse     :this.state.selectedCourse,
                 stuSemester   :this.state.selectedSemester,
                 stuCategory   :this.state.selectedCate,
@@ -133,66 +151,8 @@ class AdmissionForm extends React.Component {
                     btnloading("StuRegis", 'hide');
                     CallToast(data.msg, data.flag);
                     if (data.flag == "S") {
-                        MyData = JSON.parse(data.addParams);
-                        this.setState
-                            ({
-                                stuImage:"",
-                                stuCode: "",
-                                stuFirst: "",
-                                stuCourse: ReadDropDownData("Course", $("#hfCustomerId").val(), false),
-                                stuSemester: [],
-                                stuCategory: ReadDropDownData("Param", '13', true),
-                                stuAcade: ReadDropDownData("AcademicYear", $("#hfCustomerId").val(), false),
-                                stuFather: "",
-                                stuMother: "",
-                                stuSex: ReadDropDownData("Param", '12', true),
-                                stuDOB: "",
-                                stuBGrp: ReadDropDownData("Param", '10', true),
-                                stuNation: "",
-                                stuMTongue: [],
-                                stuBirPlace: "",
-                                stuHandi: ReadDropDownData("Param", '15', true),
-                                stuPIncome: "",
-                                stuAdres: "",
-                                stuAdres2: "",
-                                stuCount: ReadLocationData("Location", 1, ""),
-                                stuState: [],
-                                stuCity: [],
-                                stuZip: "",
-                                stuMobile: "",
-                                stuPhone: "",
-                                stuEmail: "",
-                                stuSub: ReadDropDownData("Subject", $("#hfCustomerId").val(), false),
-                                stuInst: "",
-                                stuBoard: [],
-                                stuPreCourse: ReadDropDownData("Course", $("#hfCustomerId").val(), false),
-                                couCompli: "",
-                                stuMarks: "",
-                                stuPercent: "",
-                                stuLogin: "",
-                                stuPwd: "",
-                                stuCPwd: "",
-                                stuAccStat: ReadDropDownData("Param", '1', true),
-                                selectedCourse: 0,
-                                selectedSemester: 0,
-                                selectedCate: 0,
-                                selectedAcademic: 0,
-                                selectedSex: 0,
-                                selectedBGrp: 0,
-                                selectedHandicap: 0,
-                                selectedCount: 0,
-                                selectedState: 0,
-                                selectedCity: 0,
-                                selectedBoard: 0,
-                                selectedPreCourse: 0,
-                                selectedSubject: 0,
-                                selectedMTongue: 0,
-                                selectedPreCourse: 0,
-                                label: "Save",
-                                flag: "A",
-                            })
-                        this.setState({ rowData: MyData });
-                        this.setState({ records: MyData.length })
+                        this.getStudentDetails();  
+                        this.resetData();
                     }
                 }.bind(this),
                 error: function (evt) {
@@ -203,6 +163,76 @@ class AdmissionForm extends React.Component {
             e.preventDefault();
         }
     }
+    getStudentDetails = () => {
+        $.get("/Employee/GetStudentDetails", function (data) {
+            MyData = JSON.parse(data.addParams);
+            this.setState({ rowData: MyData });
+            this.setState({ records: MyData.length })
+        });
+    }
+
+    resetData = () =>  {
+    this.setState
+        ({
+            imgSrc: "",
+            stuImage: "",
+            stuCode: "",
+            stuFirst: "",
+            stuLast: "",
+            stuCourse: ReadDropDownData("Course", $("#hfCustomerId").val(), false),
+            stuSemester: [],
+            stuCategory: ReadDropDownData("Param", '13', true),
+            stuAcade: ReadDropDownData("AcademicYear", $("#hfCustomerId").val(), false),
+            stuFather: "",
+            stuMother: "",
+            stuSex: ReadDropDownData("Param", '12', true),
+            stuDOB: "",
+            stuBGrp: ReadDropDownData("Param", '10', true),
+            stuNation: "",
+            stuMTongue: [],
+            stuBirPlace: "",
+            stuHandi: ReadDropDownData("Param", '15', true),
+            stuPIncome: "",
+            stuAdres: "",
+            stuAdres2: "",
+            stuCount: ReadLocationData("Location", 1, ""),
+            stuState: [],
+            stuCity: [],
+            stuZip: "",
+            stuMobile: "",
+            stuPhone: "",
+            stuEmail: "",
+            stuSub: ReadDropDownData("Subject", $("#hfCustomerId").val(), false),
+            stuInst: "",
+            stuBoard: [],
+            stuPreCourse: ReadDropDownData("Course", $("#hfCustomerId").val(), false),
+            couCompli: "",
+            stuMarks: "",
+            stuPercent: "",
+            stuLogin: "",
+            stuPwd: "",
+            stuCPwd: "",
+            stuAccStat: ReadDropDownData("Param", '1', true),
+            selectedCourse: 0,
+            selectedSemester: 0,
+            selectedCate: 0,
+            selectedAcademic: 0,
+            selectedSex: 0,
+            selectedBGrp: 0,
+            selectedHandicap: 0,
+            selectedCount: 0,
+            selectedState: 0,
+            selectedCity: 0,
+            selectedBoard: 0,
+            selectedPreCourse: 0,
+            selectedSubject: 0,
+            selectedMTongue: 0,
+            selectedPreCourse: 0,
+            label: "Save",
+            flag: "A",
+        })
+}
+
     onChangeCode(value) {
         this.setState({
             stuCode: value
@@ -434,6 +464,102 @@ class AdmissionForm extends React.Component {
         this.setState({
             selectedAccStat: value
         });
+    } 
+    handleClick(param) {
+        var data = JSON.parse(param.currentTarget.getAttribute("dataattr"));
+        stuCount = ReadLocationData("Location", 1, "");
+        var jsonData = ReadLocationData("Location", 2, 1);
+        obj = [];
+        for (var i = 0; i < jsonData.length; i++) {
+            if (jsonData[i].LOCATION_ID == data.state) {
+                gridData = {};
+                gridData.STATE_ID = jsonData[i].LOCATION_ID;
+                gridData.STATE_NAME = jsonData[i].LOCATION_NAME;
+                obj.push(gridData);
+            }
+        }
+        this.setState({ stuState: obj });
+        debugger;
+        var jsonData = ReadLocationData("Location", 3, data.state);
+        for (var i = 0; i < jsonData.length; i++) {
+            if (jsonData[i].LOCATION_ID == data.city) {
+                gridData = {};
+                gridData.CITY_ID = jsonData[i].LOCATION_ID;
+                gridData.CITY_NAME = jsonData[i].LOCATION_NAME;
+                obj.push(gridData);
+            }
+        }
+        debugger;
+            this.setState({ stuCity: obj });            
+        this.setState
+            ({
+                selectedCount:1,
+                stuCode: data.stuCode,
+                stuFirst: data.stufname,
+                stuLast: data.lname,
+                selectedCourse: data.courseId,
+                selectedSemester: data.semester,
+                selectedCate: data.categoryID,
+                selectedAcademic: data.acedeYearID,
+                stuFather: data.fName,
+                stuMother: data.mName,
+                selectedSex: data.genderID,
+                stuDOB: data.dob,
+                selectedBGrp: data.bldGrpID,
+                stuNation: data.nation,
+                selectedMTongue: data.mTongue,
+                stuBirPlace: data.placeBirth,
+                selectedHandicap: data.handicapID,
+                selectedState: data.state,
+                selectedCity:data.city,
+                stuPIncome: data.pIncome,
+                stuAdres: data.addressLine1,
+                stuAdres2: data.addressLine2,
+                stuZip: data.zpCode,
+                stuMobile: data.mobile,
+                stuPhone: data.pnNo,
+                stuEmail: data.email,
+                selectedSubject: data.subject,
+                stuInst: data.instName,
+                selectedBoard: data.BOARD,
+                selectedPreCourse: data.preCourse,
+                couCompli: data.YEAR,
+                stuMarks: data.MARKS,
+                stuPercent: data.percentage,
+                stuLogin: data.login,
+                stuPwd: data.password,     
+                stuCPwd: data.password,   
+            })
+        $("#student").modal("show");
+    }
+    CreateEdit(params) {
+        debugger;
+        var html = "";
+        var domElement = "";
+        var jsonObj = JSON.stringify(params.data);
+        html = "<div><a class='testClass' href='javascript:void(0)' dataAttr= '" + jsonObj + "'><img style='height: 16px;margin-top: 5px;margin-left:5px;'  src='../images/icons/edit.png'></img></a></div>";
+        domElement = document.createElement("div");
+        domElement.innerHTML = html;
+        return domElement;
+    }
+    componentDidMount() {
+        $('.testClass').on("click", this.handleClick.bind(this));
+    }
+    componentDidUpdate() {
+        $('.testClass').on("click", this.handleClick.bind(this));
+    }
+    onChangeImage=(value)=>{
+        debugger;
+        var file = value.files[0];
+        var reader = new FileReader();
+        var url = reader.readAsDataURL(file);
+        reader.onloadend = function (e) {
+            this.setState({
+                imgSrc: [reader.result],
+                stuImage: value.files[0].name,
+            })
+        }.bind(this);
+
     }
     register(field) {
         var s = [];
@@ -531,10 +657,10 @@ class AdmissionForm extends React.Component {
                 <div id="student" className="modal fade">
                     <div className="modal-dialog modal-dialog-vertical-center modal-lg" role="document">
                         <div className="modal-content bd-0 tx-14">
-                            <form name='StudentAdmi' id="StudentAdmi">
+                            <form name='StudentAdmi' id="StudentAdmi" noValidate onSubmit={this.handleSubmit}>
                                 <div className="modal-header pd-y-20 pd-x-25">
                                     <h6 className="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Add/Edit Student</h6>
-                                    <button type="button" className="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span className="sr-only">Close</span></button>
+                                    <button type="button" className="close" data-dismiss="modal" onClick={this.resetData}><span aria-hidden="true">&times;</span><span className="sr-only">Close</span></button>
                                 </div>
                                 <div className="modal-body pd-25">
                                     <div className="einrformbase">
@@ -542,7 +668,7 @@ class AdmissionForm extends React.Component {
                                         <ul className="einrform ecustform">
                                             <li>
                                                 <CreateInput type={'text'} value={this.state.stuCode} label={'Student Code'} name={'stuCode'} htmlFor={'stuCode'}
-                                                    onChange={this.onChangeCode.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                    onChange={this.onChangeCode.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} disabled="true"/>
                                             </li>
                                             <li>
                                                 <CreateInput type={'text'} value={this.state.stuFirst} label={'First Name'} name={'stuFirst'} htmlFor={'stuFirst'} isrequired={true}
@@ -571,12 +697,10 @@ class AdmissionForm extends React.Component {
                                         </ul>
                                         <div className="empbse">
                                             <div className="empimg">
-                                                <img src="/Images/user-img.png" />
+                                                <img src={this.state.imgSrc} />
                                             </div>
-                                            <div className="efinput">
-                                                Choose File
-                                                <input type="file" className="hide_file" />
-                                            </div>
+                                                <CreateInput type={'file'} name={'stuImage'} htmlFor={'stuImage'}
+                                                    onChange={this.onChangeImage.bind(this)} className={'efinput'}  messageRequired={'required.'}/>
                                         </div>
 
                                     </div>
@@ -614,7 +738,7 @@ class AdmissionForm extends React.Component {
                                                         keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeSex.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
-                                                    <CreateInput type={'date'} value={this.state.stuDOB} id={'empDOB'} label={'Date Of Birth'} name={'stuDOB'} htmlFor={'stuDOB'} isrequired={true}
+                                                    <CreateInput type={'date'} value={this.state.stuDOB} id={'stuDOB'} label={'Date Of Birth'} name={'stuDOB'} htmlFor={'stuDOB'} isrequired={true}
                                                         className={'startDate form-control'} onBlur={this.onDOBBlur.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
@@ -703,7 +827,7 @@ class AdmissionForm extends React.Component {
                                                         keyId={'COURSE_ID'} keyName={'COURSE_NAME'} onChange={this.onChangePreCourse.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
-                                                    <CreateInput type={'date'} value={this.state.stuDOB} id={'empDOB'} label={'Year Of Compilation'} name={'couCompli'} htmlFor={'couCompli'} isrequired={true}
+                                                    <CreateInput type={'date'} value={this.state.couCompli} id={'couCompli'} label={'Year Of Compilation'} name={'couCompli'} htmlFor={'couCompli'} isrequired={true}
                                                         className={'startDate form-control'} onBlur={this.onCouCompli.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
@@ -740,7 +864,7 @@ class AdmissionForm extends React.Component {
                                 </div>
                                 <div className="modal-footer">
                                     <button type="submit" className="btn btn-info pd-x-20"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> Save</button>
-                                    <button type="button" className="btn btn-secondary pd-x-20" data-dismiss="modal">Cancel</button>
+                                    <button type="button" className="btn btn-secondary pd-x-20" data-dismiss="modal" onClick={this.resetData}>Cancel</button>
                                 </div>
                             </form>
                         </div>
@@ -750,4 +874,4 @@ class AdmissionForm extends React.Component {
             )
     }
 }
-ReactDOM.render(<AdmissionForm urlPost="/Employee/Registration" personalPost='' contactPost='' authPost='' />, document.getElementById('studentform'));
+ReactDOM.render(<AdmissionForm urlPost="/Student/Admission" personalPost='' contactPost='' authPost='' />, document.getElementById('studentform'));

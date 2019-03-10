@@ -15,11 +15,14 @@ class EmployeeForm extends React.Component {
             }
         }
         this.state = {
+            imgSrc:"",
+            empImage:"",
             empCode: "",
             empFirst: "",
             empLast: "",
             empQuali: "",
-            empDept: ReadDropDownData("Param", '7', true),
+            empEmail:"",
+            empDept: ReadDropDownData("Department", $("#hfCustomerId").val(), false),
             empDesig: [],
             empType: ReadDropDownData("Param", '9', true),
             empJType: [],
@@ -102,6 +105,7 @@ class EmployeeForm extends React.Component {
         //after validation complete post to server
         if (validForm) {
             var d = {
+                empImage: this.state.empImage,
                 empCode: this.state.empCode,
                 empFirst: this.state.empFirst,
                 empLast: this.state.empLast,
@@ -109,6 +113,7 @@ class EmployeeForm extends React.Component {
                 empDept: this.state.selectedDept,
                 empDesig: this.state.selectedDesig,
                 empType: this.state.selectedType,
+                empEmail: this.state.empEmail,
                 empJType: this.state.selectedJType,
                 empFather: this.state.empFather,
                 empMother: this.state.empMother,
@@ -159,70 +164,9 @@ class EmployeeForm extends React.Component {
                 success: function (data) {
                     btnloading("EmpRegis", 'hide');
                     CallToast(data.msg, data.flag);
-                    if (data.flag == "S") {
-                        MyData = JSON.parse(data.addParams);
-                        this.setState
-                            ({
-                                empCode: "",
-                                empFirst: "",
-                                empLast: "",
-                                empQuali: "",
-                                empDept: ReadDropDownData("Param", '7', true),
-                                empDesig: [],
-                                empType: ReadDropDownData("Param", '9', true),
-                                empJType: [],
-                                empFather: "",
-                                empMother: "",
-                                empSex: ReadDropDownData("Param", '12', true),
-                                empDOB: "",
-                                empDOJ: "",
-                                empSpoou: "",
-                                empBGrp: ReadDropDownData("Param", '10', true),
-                                empMStat: ReadDropDownData("Param", '11', true),
-                                empNation: "",
-                                empAdres: "",
-                                empAdres2: "",
-                                empMobile: "",
-                                empPhone: "",
-                                empCount: ReadLocationData("Location", 1, ""),
-                                empState: [],
-                                empCity: [],
-                                empZip: "",
-                                preEmp: "",
-                                preDOJ: "",
-                                preDOL: "",
-                                prePhone: "",
-                                empExpre: "",
-                                empResLeav: "",
-                                preSal: "",
-                                empSub: ReadDropDownData("Subject", $("#hfCustomerId").val(), false),
-                                empBank: "",
-                                empAccNo: "",
-                                empIFSC: "",
-                                empAdhar: "",
-                                empPF: "",
-                                empSalary: "",
-                                empLogin: "",
-                                empPwd: "",
-                                empCPwd: "",
-                                empRole: ReadDropDownData("Param", '8', true),
-                                empAccStat: ReadDropDownData("Param", '1', true),
-                                selectedDept: 0,
-                                selectedDesig: 0,
-                                selectedType: 0,
-                                selectedJType: 0,
-                                selectedSex: 0,
-                                selectedBGrp: 0,
-                                selectedMat: 0,
-                                selectedCount: 0,
-                                selectedState: 0,
-                                selectedCity: 0,
-                                selectedRole: 0,
-                                selectedAccStat: 0,
-                            })
-                        this.setState({ rowData: MyData });
-                        this.setState({ records: MyData.length })
-
+                    if (data.flag == "S") { 
+                        this.getEmployeeDetails();
+                        this.resetData();
                     }
                 }.bind(this),
                 error: function (evt) {
@@ -234,9 +178,95 @@ class EmployeeForm extends React.Component {
             e.preventDefault();
         }
     }
+    getEmployeeDetails = () => {
+        $.get("/Employee/GetEmployeeDetails", function (data) {
+            MyData = JSON.parse(data.addParams);
+            this.setState({ rowData: MyData });
+            this.setState({ records: MyData.length })
+        });    
+    }
+    resetData = () => {
+        debugger;
+        this.setState
+            ({
+                empCode: "",
+                empFirst: "",
+                empLast: "",
+                empQuali: "",
+                empDept: ReadDropDownData("Param", '7', true),
+                empDesig: [],
+                empType: ReadDropDownData("Param", '9', true),
+                empJType: [],
+                empFather: "",
+                empMother: "",
+                empSex: ReadDropDownData("Param", '12', true),
+                empDOB: "",
+                empDOJ: "",
+                empSpoou: "",
+                empBGrp: ReadDropDownData("Param", '10', true),
+                empMStat: ReadDropDownData("Param", '11', true),
+                empNation: "",
+                empAdres: "",
+                empAdres2: "",
+                empMobile: "",
+                empPhone: "",
+                empCount: ReadLocationData("Location", 1, ""),
+                empState: [],
+                empCity: [],
+                empZip: "",
+                preEmp: "",
+                preDOJ: "",
+                preDOL: "",
+                prePhone: "",
+                empExpre: "",
+                empResLeav: "",
+                preSal: "",
+                empSub: ReadDropDownData("Subject", $("#hfCustomerId").val(), false),
+                empBank: "",
+                empAccNo: "",
+                empIFSC: "",
+                empAdhar: "",
+                empPF: "",
+                empSalary: "",
+                empLogin: "",
+                empPwd: "",
+                empCPwd: "",
+                empRole: ReadDropDownData("Param", '8', true),
+                empAccStat: ReadDropDownData("Param", '1', true),
+                selectedDept: 0,
+                selectedDesig: 0,
+                selectedType: 0,
+                selectedJType: 0,
+                selectedSex: 0,
+                selectedBGrp: 0,
+                selectedMat: 0,
+                selectedCount: 0,
+                selectedState: 0,
+                selectedCity: 0,
+                selectedRole: 0,
+                selectedAccStat: 0,
+            })
+    }
     onChangeDept(value) {
+        var jsonData = ReadDropDownData("Designation", $("#hfCustomerId").val(), false);
+        debugger;
+        obj = [];
+        for (var i = 0; i < jsonData.length; i++) {
+            if (jsonData[i].DESG_ID == value) {
+                data = {};
+                data.DESG_ID = jsonData[i].DESG_ID;
+                data.DESG_NAME = jsonData[i].DESG_NAME;
+                obj.push(data);
+            }
+        }
+        this.setState({ empDesig: obj });
         this.setState({
             selectedDept: value
+        });
+    }
+    onChangeEmail(value) {
+        this.setState({
+            empEmail: value
         });
     }
     onChangeDesig(value) {
@@ -490,10 +520,35 @@ class EmployeeForm extends React.Component {
         });
     }
     handleClick(param) {
+        var data = JSON.parse(param.currentTarget.getAttribute("dataattr"));
+        stuCount = ReadLocationData("Location", 1, "");
+        var jsonData = ReadLocationData("Location", 2, 1);
+        obj = [];
+        for (var i = 0; i < jsonData.length; i++) {
+            if (jsonData[i].LOCATION_ID == data.state) {
+                gridData = {};
+                gridData.STATE_ID = jsonData[i].LOCATION_ID;
+                gridData.STATE_NAME = jsonData[i].LOCATION_NAME;
+                obj.push(gridData);
+            }
+        }
+        this.setState({ empState: obj });
         debugger;
-    var data = JSON.parse(param.currentTarget.getAttribute("dataattr"));
+        var jsonData = ReadLocationData("Location", 3, data.state);
+        for (var i = 0; i < jsonData.length; i++) {
+            if (jsonData[i].LOCATION_ID == data.city) {
+                gridData = {};
+                gridData.CITY_ID = jsonData[i].LOCATION_ID;
+                gridData.CITY_NAME = jsonData[i].LOCATION_NAME;
+                obj.push(gridData);
+            }
+        }
+        debugger;
+        this.setState({ empCity: obj }); 
     this.setState
         ({
+            selectedCount: 1,
+            empEmail:data.email,
             empCode: data.empCode,
             empFirst: data.empfname,
             empLast: data.lname,
@@ -553,6 +608,20 @@ class EmployeeForm extends React.Component {
     }
     componentDidUpdate() {
         $('.testClass').on("click", this.handleClick.bind(this));
+    }
+    onChangeImage=(value)=> {
+        debugger;
+        var file = value.files[0];
+        var reader = new FileReader();
+        var url = reader.readAsDataURL(file);
+
+        reader.onloadend = function (e) {
+            this.setState({
+                imgSrc: [reader.result],
+                empImage: value.files[0].name,
+            })
+        }.bind(this);
+        console.log(url)
     }
     register(field) {
         var s = [];
@@ -654,7 +723,7 @@ class EmployeeForm extends React.Component {
                             <form name='EmpRegis' id="EmpRegis" noValidate onSubmit={this.handleSubmit}>
                                 <div className="modal-header pd-y-20 pd-x-25">
                                     <h6 className="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Add/Edit Employee</h6>
-                                    <button type="button" className="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span className="sr-only">Close</span></button>
+                                    <button type="button" className="close" data-dismiss="modal" onClick={this.resetData}><span aria-hidden="true">&times;</span><span className="sr-only">Close</span></button>
                                 </div>
                                 <div className="modal-body pd-25">
                                     <div className="einrformbase">
@@ -678,11 +747,11 @@ class EmployeeForm extends React.Component {
                                             </li>
                                             <li>
                                                 <CreateInput type={'ddl'} value={this.state.selectedDept} data={this.state.empDept} label={'Department'} name={'empDept'} htmlFor={'empDept'} isrequired={true}
-                                                             keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeDept.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                    keyId={'DEPT_ID'} keyName={'DEPT_NAME'} onChange={this.onChangeDept.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                             </li>
                                             <li>
                                                 <CreateInput type={'ddl'} value={this.state.selectedDesig} data={this.state.empDesig} label={'Designation'} name={'empDesig'} htmlFor={'empDesig'} isrequired={true}
-                                                             keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeDesig.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                    keyId={'DESG_ID'} keyName={'DESG_NAME'} onChange={this.onChangeDesig.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                             </li>
                                             <li>
                                                 <CreateInput type={'ddl'} value={this.state.selectedType} data={this.state.empType} label={'Employee Type'} name={'empType'} htmlFor={'empType'} isrequired={true}
@@ -695,12 +764,10 @@ class EmployeeForm extends React.Component {
                                         </ul>
                                         <div className="empbse">
                                             <div className="empimg">
-                                                <img src="/Images/user-img.png" />
+                                                <img src={this.state.imgSrc} />
                                             </div>
-                                            <div className="efinput">
-                                                Choose File
-                                                <input type="file" className="hide_file" />
-                                            </div>
+                                            <CreateInput type={'file'} name={'empImage'} htmlFor={'empImage'}
+                                                onChange={this.onChangeImage.bind(this)} className={'efinput'} messageRequired={'required.'} />
                                         </div>
 
                                     </div>
@@ -800,6 +867,10 @@ class EmployeeForm extends React.Component {
                                                     <CreateInput type={'text'} value={this.state.empPhone} label={'Phone No'} name={'empPhone'} htmlFor={'empPhone'} isrequired={true}
                                                                  onChange={this.onChangePhone.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
+                                                <li>
+                                                    <CreateInput type={'text'} value={this.state.empEmail} label={'Email'} name={'empEmail'} htmlFor={'empEmail'} isrequired={true}
+                                                        onChange={this.onChangeEmail.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                </li>
                                             </ul>
                                         </div>
                                         <div className="tab-pane" id="experience">
@@ -894,7 +965,7 @@ class EmployeeForm extends React.Component {
                                 </div>
                                 <div className="modal-footer">
                                     <button type="submit" className="btn btn-info pd-x-20"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span> {this.state.label}</button>
-                                    <button type="button" className="btn btn-secondary pd-x-20" data-dismiss="modal">Cancel</button>
+                                    <button type="button" className="btn btn-secondary pd-x-20" data-dismiss="modal" onClick={this.resetData}>Cancel</button>
                                 </div>
                             </form>
                         </div>
