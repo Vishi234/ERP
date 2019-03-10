@@ -151,10 +151,8 @@ class AdmissionForm extends React.Component {
                     btnloading("StuRegis", 'hide');
                     CallToast(data.msg, data.flag);
                     if (data.flag == "S") {
-                        MyData = JSON.parse(data.addParams);
+                        this.getStudentDetails();  
                         this.resetData();
-                        this.setState({ rowData: MyData });
-                        this.setState({ records: MyData.length })
                     }
                 }.bind(this),
                 error: function (evt) {
@@ -164,6 +162,13 @@ class AdmissionForm extends React.Component {
             })
             e.preventDefault();
         }
+    }
+    getStudentDetails = () => {
+        $.get("/Employee/GetStudentDetails", function (data) {
+            MyData = JSON.parse(data.addParams);
+            this.setState({ rowData: MyData });
+            this.setState({ records: MyData.length })
+        });
     }
 
     resetData = () =>  {

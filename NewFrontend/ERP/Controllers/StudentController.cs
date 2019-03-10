@@ -20,11 +20,17 @@ namespace ERP.Controllers
         }
         public ActionResult Manage()
         {
+            GetStudentDetails();
+            return View();
+        }
+        [HttpGet]
+        public JsonResult GetStudentDetails()
+        {
             StudentEntity studentEntity = new StudentEntity();
             studentEntity.flag = 'G';
             studentEntity.reportId = "9";
             TempData["StudentData"] = new Student().GetStudent(studentEntity);
-            return View();
+            return Json(TempData["StudentData"], JsonRequestBehavior.AllowGet);
         }
          
     }
