@@ -20,7 +20,12 @@ namespace ERP.Controllers
         }
         public ActionResult Manage()
         {
+            StudentEntity studentEntity = new StudentEntity();
+            studentEntity.flag = 'G';
+            studentEntity.reportId = "9";
+            TempData["StudentData"] = new Student().GetStudent(studentEntity);
             return View();
         }
+         
     }
 }

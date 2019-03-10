@@ -249,6 +249,8 @@ namespace ERP.Models.Cache
                    Subject= CommonFunc.RdrToList(GetDropDownData("4", 'A')),
                    Param = CommonFunc.RdrToList(GetDropDownData("3", 'D')),
                    Location = CommonFunc.RdrToList(GetDropDownData("5", 'A')),
+                   Department = CommonFunc.RdrToList(GetDropDownData("6", 'A')),
+                   Designation = CommonFunc.RdrToList(GetDropDownData("7", 'A')),
                });
             string path = HttpContext.Current.Server.MapPath("~/Content/DynamicJs/");
             File.WriteAllText(path + "DropdownData.json", JsonData);
@@ -263,6 +265,8 @@ namespace ERP.Models.Cache
                    AcademicYear = CommonFunc.RdrToList(GetDropDownData("1", 'A')),
                    Course = CommonFunc.RdrToList(GetDropDownData("2", 'A')),
                    Subject = CommonFunc.RdrToList(GetDropDownData("4", 'A')),
+                   Department = CommonFunc.RdrToList(GetDropDownData("6", 'A')),
+                   Designation = CommonFunc.RdrToList(GetDropDownData("7", 'A')),
                });
             return JsonData;
         }

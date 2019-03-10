@@ -46,10 +46,11 @@ function getEmployeeGridSettings() {
 { headerName: labelArray['$SUBJECTS$'], field: 'sbjct', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
 { headerName: labelArray['$LOGIN_ID$'], field: 'loginId', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$PASSWORD$'], field: 'pass', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
+{ headerName: labelArray['$EMAIL$'], field: 'email', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
 { headerName: labelArray['$EDIT$'], field: 'Edit', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateEdit'}
  ];
- var EmployeeDetails_Export = ['qual','desigId','desigNm','doj','mStatus','state','lPhoneNo','adNo','anPckg','sbjct','pass','Edit'];
-var EmployeeDetails_ExportCaption = ['QUALIFICATION','DESIG_ID','DESIG_NAME','DOJ','MARITAL_STATUS','STATE','L_PHONE','ADHAAR_NO','ANNUAL_PACK','SUBJECTS','PASSWORD','EDIT'];
+ var EmployeeDetails_Export = ['qual','desigId','desigNm','doj','mStatus','state','lPhoneNo','adNo','anPckg','sbjct','pass','email','Edit'];
+var EmployeeDetails_ExportCaption = ['QUALIFICATION','DESIG_ID','DESIG_NAME','DOJ','MARITAL_STATUS','STATE','L_PHONE','ADHAAR_NO','ANNUAL_PACK','SUBJECTS','PASSWORD','EMAIL','EDIT'];
 
  gridViewSettings['$EmployeeDetails$'] =EmployeeDetails;
  gridViewSettings['$EmployeeDetails_Export$'] =EmployeeDetails_Export;

@@ -1,12 +1,21 @@
 ﻿class CreateInput extends React.Component {
     handleChange(e) {
-        this.props.onChange(e.target.value);
+        if (this.props.type == "file") {
+            debugger;
+            this.props.onChange(e.target);
+        } else {
+            this.props.onChange(e.target.value);
+        }
+
         if (this.props.type != "ddl") {
             var isValidField = this.isValid(e.target);
         }
         if (this.props.validate) {
             this.validate(e.target);
         }
+        //if (this.props.type == "file") {
+        //    this.onChangeImage(e);
+        //}
     }
     validate(input) {
         if (this.props.validate && this.props.validate(input.value)) {
@@ -30,36 +39,40 @@
         var isValidField = this.isValid(e.target);
     }
     isValid(input) {
+        debugger;
         //check required field
-        if (input.tagName == 'INPUT') {
-            if (input.getAttribute('required') != null && input.value === "") {
-                input.classList.add('input-validation-error'); //add class error
-                input.nextSibling.classList.add('field-validation-error');
-                input.nextSibling.textContent = this.props.messageRequired; // show error message
-                return false;
+        if (input != undefined) {
+            if (input.tagName == "INPUT") {
+                if (input.getAttribute('required') != null && input.value === "") {
+                    input.classList.add('input-validation-error'); //add class error
+                    input.nextSibling.classList.add('field-validation-error');
+                    input.nextSibling.textContent = this.props.messageRequired; // show error message
+                    return false;
+                }
+                else {
+                    input.classList.remove('input-validation-error');
+                    input.nextSibling.classList.remove('field-validation-error');
+                    input.nextSibling.textContent = "";
+                    return true;
+                }
             }
-            else {
-                input.classList.remove('input-validation-error');
-                input.nextSibling.classList.remove('field-validation-error');
-                input.nextSibling.textContent = "";
+            else if (input.tagName == "SELECT") {
                 return true;
+                //if (input.getAttribute('required') != null && input.value == "0") {
+                //    input.classList.add('input-validation-error'); //add class error
+                //    input.nextSibling.classList.add('field-validation-error');
+                //    input.nextSibling.textContent = this.props.messageRequired; // show error message
+                //    return false;
+                //}
+                //else {
+                //    input.classList.remove('input-validation-error');
+                //    input.nextSibling.classList.remove('field-validation-error');
+                //    input.nextSibling.textContent = "";
+                //    return true;
+                //}
             }
-        }
-        else if (input.tagName == "SELECT")
-        {
+        }else {
             return true;
-            //if (input.getAttribute('required') != null && input.value == "0") {
-            //    input.classList.add('input-validation-error'); //add class error
-            //    input.nextSibling.classList.add('field-validation-error');
-            //    input.nextSibling.textContent = this.props.messageRequired; // show error message
-            //    return false;
-            //}
-            //else {
-            //    input.classList.remove('input-validation-error');
-            //    input.nextSibling.classList.remove('field-validation-error');
-            //    input.nextSibling.textContent = "";
-            //    return true;
-            //}
         }
 
     }
@@ -138,11 +151,13 @@
                 {this.props.data.map((obj) =>
                     <option key={obj[this.props.keyId]} onClick={this.handleClick.bind(this)} value={obj[this.props.keyId]}>{obj[this.props.keyName]}</option>)}
             </select>
+        } else if (this.props.type == 'file') {
+            inputField = <input type={this.props.type} value={this.props.value} ref={this.props.name}  name={this.props.name}
+                className={this.props.className} required={this.props.isrequired} onChange={this.handleChange.bind(this)} />
         }
         else {
             inputField = <input type={this.props.type} value={this.props.value} ref={this.props.name} autoComplete="off" name={this.props.name}
-                                className={this.props.className} required={this.props.isrequired} onChange={this.handleChange.bind(this)} />
-
+                className={this.props.className} required={this.props.isrequired} onChange={this.handleChange.bind(this)} disabled={this.props.disabled} />
         }
         return (
             <div className={this.props.type}>
