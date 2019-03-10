@@ -15,7 +15,7 @@ class EmployeeForm extends React.Component {
             }
         }
         this.state = {
-            imgSrc:"",
+            imgSrc:"/images/user-img.png",
             empImage:"",
             empCode: "",
             empFirst: "",
@@ -610,17 +610,25 @@ class EmployeeForm extends React.Component {
         $('.testClass').on("click", this.handleClick.bind(this));
     }
     onChangeImage=(value)=> {
-        debugger;
-        var file = value.files[0];
-        var reader = new FileReader();
-        var url = reader.readAsDataURL(file);
+        if(value.target.files.length > 0)
+        {
+            var file = value.target.files[0];
+            var reader = new FileReader();
+            var url = reader.readAsDataURL(file);
 
-        reader.onloadend = function (e) {
+            reader.onloadend = function (e) {
+                this.setState({
+                    imgSrc: [reader.result],
+                    empImage: value.target.files[0].name,
+                })
+            }.bind(this);    
+        }
+        else
+        {
             this.setState({
-                imgSrc: [reader.result],
-                empImage: value.files[0].name,
+                    imgSrc: "/images/user-img.png"
             })
-        }.bind(this);
+        }
         console.log(url)
     }
     register(field) {
@@ -766,8 +774,11 @@ class EmployeeForm extends React.Component {
                                             <div className="empimg">
                                                 <img src={this.state.imgSrc} />
                                             </div>
-                                            <CreateInput type={'file'} name={'empImage'} htmlFor={'empImage'}
-                                                onChange={this.onChangeImage.bind(this)} className={'efinput'} messageRequired={'required.'} />
+                                            <div className="efinput">
+                                                Choose File
+                                                <input type="file" onChange={this.onChangeImage.bind(this)}  messageRequired={'required.'} className="hide_file" />
+                                            </div>
+                                            
                                         </div>
 
                                     </div>

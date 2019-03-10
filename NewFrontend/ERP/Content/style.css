@@ -557,7 +557,7 @@ textarea {
             }
 
 .pagebody {
-    padding: 30px;
+    padding: 10px;
 }
 
 .card {
@@ -594,7 +594,7 @@ textarea {
     width: 14%;
     margin-right: 10px;
     float: left;
-    font-size:12px;
+    font-size: 12px;
 }
 
     .einrform > li:last-child {
@@ -665,8 +665,8 @@ textarea {
 }
 
     .btn-secondary svg {
-        width: 14px;
-        height: 14px;
+        width: 12px;
+        height: 12px;
         fill: #fff;
         float: left;
     }
@@ -677,9 +677,17 @@ textarea {
     margin-right: 10px;
 }
 
-.modal .modal-body {
-    background-color: #f8f9fa;
+    .action > ul > li > a {
+        padding: 6px;
+    }
+
+.modal {
+    background: rgba(0,0,0,0.7);
 }
+
+    .modal .modal-body {
+        background-color: #f8f9fa;
+    }
 
 .tx-14 {
     font-size: 14px;
@@ -857,7 +865,7 @@ txtarea label {
 .txtarea textarea {
     width: 100%;
 }
-.modal .modal-body
-{
-    display:inline-block;
+
+.modal .modal-body {
+    display: inline-block;
 }
