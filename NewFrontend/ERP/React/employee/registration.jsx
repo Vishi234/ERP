@@ -729,8 +729,8 @@ class EmployeeForm extends React.Component {
                     <div className="modal-dialog modal-dialog-vertical-center modal-lg" role="document">
                         <div className="modal-content bd-0 tx-14">
                             <form name='EmpRegis' id="EmpRegis" noValidate onSubmit={this.handleSubmit}>
-                                <div className="modal-header pd-y-20 pd-x-25">
-                                    <h6 className="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Add/Edit Employee</h6>
+                                <div className="modal-header">
+                                    <h6 className="tx-14 tx-uppercase tx-inverse tx-bold">Add/Edit Employee</h6>
                                     <button type="button" className="close" data-dismiss="modal" onClick={this.resetData}><span aria-hidden="true">&times;</span><span className="sr-only">Close</span></button>
                                 </div>
                                 <div className="modal-body pd-25">

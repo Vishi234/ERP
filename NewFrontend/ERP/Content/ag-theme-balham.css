@@ -915,16 +915,16 @@
         }
 
     .ag-theme-balham .ag-row-odd {
-        background-color: #fcfdfe;
+        background-color: #f9f9f9;
     }
 
     .ag-theme-balham .ag-row-even {
         background-color: white;
     }
 
-    .ag-theme-balham .ag-row-hover {
+    /*.ag-theme-balham .ag-row-hover {
         background-color: #ECF0F1;
-    }
+    }*/
 
     .ag-theme-balham .ag-numeric-cell {
         text-align: right;
@@ -981,7 +981,7 @@
 
     .ag-theme-balham .ag-header-cell,
     .ag-theme-balham .ag-header-group-cell {
-        line-height: 32px;
+        line-height: 30px;
         padding-left: 12px;
         padding-right: 12px;
     }
@@ -998,6 +998,7 @@
         border: 1px solid transparent;
         padding-left: 11px;
         padding-right: 11px;
+        padding-top: 1px;
     }
 
     .ag-theme-balham .ag-row-drag {
@@ -1043,15 +1044,15 @@
         z-index: 10000;
     }
 
-    .ag-theme-balham .ag-ltr .ag-cell-focus {
-        border: 1px solid #0091EA;
+    /*.ag-theme-balham .ag-ltr .ag-cell-focus {
+        border: none;
         outline: initial;
     }
 
     .ag-theme-balham .ag-rtl .ag-cell-focus {
         border: 1px solid #0091EA;
         outline: initial;
-    }
+    }*/
 
     .ag-theme-balham .ag-header-cell-resize {
         width: 8px;
@@ -2889,6 +2890,8 @@
 
     .ag-theme-balham .ag-root {
         border: 1px solid #BDC3C7;
+        border-top: none;
+        border-bottom: none;
     }
 
     .ag-theme-balham .ag-tab {
@@ -3034,3 +3037,15 @@
     .ag-theme-balham .ag-filter-toolpanel-body {
         background-color: white;
     }
+
+.grid-center {
+    text-align: center;
+}
+
+.grid-left {
+    text-align: left;
+}
+
+.grid-right {
+    text-align: right;
+}
