@@ -418,3 +418,11 @@ C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Http.
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Net.Http.Formatting.xml
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Http.xml
 C:\Users\vishal.singh\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Http.WebHost.xml
+C:\Users\jata.shankar\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Net.Http.Formatting.dll
+C:\Users\jata.shankar\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Http.dll
+C:\Users\jata.shankar\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Http.WebHost.dll
+C:\Users\jata.shankar\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\Newtonsoft.Json.pdb
+C:\Users\jata.shankar\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Net.Http.Formatting.xml
+C:\Users\jata.shankar\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Http.xml
+C:\Users\jata.shankar\Documents\GitHub\ERP\Frontend\ERP\ERP\bin\System.Web.Http.WebHost.xml
+C:\Users\jata.shankar\Documents\GitHub\ERP\Frontend\ERP\ERP\obj\Debug\ERP.csprojResolveAssemblyReference.cache

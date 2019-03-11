@@ -4,9 +4,20 @@ var fields = [];
 class EmployeeForm extends React.Component {
     constructor(props) {
         super(props);
-        //grdArray = GetReportConfiguration("Employee");
-        //var records = JSON.parse(content.addParams);
-        //var columnDefs = grdArray["$EmployeeDetails$"];
+        debugger;
+        grdArray = GetReportConfiguration("Employee");
+        var records = JSON.parse(content.addParams);
+        var columnDefs = grdArray["$EmployeeDetails$"];
+        for (var i = 0; i < columnDefs.length; i++) {
+            if (columnDefs[i].cellRenderer) {
+                if (columnDefs[i].cellRenderer == "CreateEdit") {
+                    columnDefs[i].cellRenderer = this.CreateEdit;
+                }
+                //else if (columnDefs[i].cellRenderer == "CreateActive") {
+                //    columnDefs[i].cellRenderer = this.CreateActive;
+                //}
+            }
+        }
         this.state = {
             empCode: "",
             empFirst: "",
@@ -66,30 +77,31 @@ class EmployeeForm extends React.Component {
             selectedAccStat: 0,
             selectedSubject:0,
             Fields: [],
-            //columnDef: columnDefs,
-            //rowData: null,
-            //records: ((records == null) ? 0 : records.length),
+            columnDef: columnDefs,
+            rowData: records,
+            records: ((records == null) ? 0 : records.length),
             ServerMessage: '',
+            label: "Save",
+            flag: "A",
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleSubmit(e) {
-        debugger;
         var validForm = true;
         e.preventDefault();
         fields.forEach(function (field) {
             if (typeof field[0].isValid === "function") {
-                debugger;
                 var validField;
                 if (field[0].props.type == 'ddl') {
+                    debugger;
                     validField = field[0].isValid(field[0].refs.MySelect2);
                 } else {
-                    debugger;
                     validField = field[0].isValid(field[0].refs[field[0].props.name]);
                 }
                 validForm = validForm && validField;
             }
         });
+        debugger;
         //after validation complete post to server
         if (validForm) {              
             var d = {
@@ -137,7 +149,7 @@ class EmployeeForm extends React.Component {
                 empCPwd          :this.state.empCPwd   ,
                 empRole          :this.state.selectedRole   ,
                 empAccStat       :this.state.selectedAccStat,
-                flag: 'A',
+                flag             :this.state.flag,
                 reportId: 1
             }
             $.ajax({
@@ -152,65 +164,10 @@ class EmployeeForm extends React.Component {
                     CallToast(data.msg, data.flag);
                     if (data.flag == "S") {
                         MyData = JSON.parse(data.addParams);
-                        this.setState
-                            ({
-                                empCode: "",
-                                empFirst: "",
-                                empLast: "",
-                                empQuali: "",
-                                empDept: ReadDropDownData("Param", '7', true),
-                                empDesig: [],
-                                empType: ReadDropDownData("Param", '9', true),
-                                empJType: [],
-                                empFather: "",
-                                empMother: "",
-                                empSex: ReadDropDownData("Param", '12', true),
-                                empDOB: "",
-                                empDOJ: "",
-                                empSpoou: "",
-                                empBGrp: ReadDropDownData("Param", '10', true),
-                                empMStat: ReadDropDownData("Param", '11', true),
-                                empNation: "",
-                                empAdres: "",
-                                empAdres2: "",
-                                empMobile: "",
-                                empPhone: "",
-                                empCount: ReadLocationData("Location", 1, ""),
-                                empState: [],
-                                empCity: [],
-                                empZip: "",
-                                preEmp: "",
-                                preDOJ: "",
-                                preDOL: "",
-                                prePhone: "",
-                                empExpre: "",
-                                empResLeav: "",
-                                preSal: "",
-                                empSub: ReadDropDownData("Subject", $("#hfCustomerId").val(), false),
-                                empBank: "",
-                                empAccNo: "",
-                                empIFSC: "",
-                                empAdhar: "",
-                                empPF: "",
-                                empSalary: "",
-                                empLogin: "",
-                                empPwd: "",
-                                empCPwd: "",
-                                empRole: ReadDropDownData("Param", '8', true),
-                                empAccStat: ReadDropDownData("Param", '1', true),
-                                selectedDept: 0,
-                                selectedDesig: 0,
-                                selectedType: 0,
-                                selectedJType: 0,
-                                selectedSex: 0,
-                                selectedBGrp: 0,
-                                selectedMat: 0,
-                                selectedCount: 0,
-                                selectedState: 0,
-                                selectedCity: 0,
-                                selectedRole: 0,
-                                selectedAccStat: 0,
-                            })
+                        $.get("/Employee/Registration", function (data, status) {
+                            alert(JSON.parse(content.addParams));
+                        });
+                        this.resetData();
                         this.setState({ rowData: MyData });
                         this.setState({ records: MyData.length })
 
@@ -224,6 +181,68 @@ class EmployeeForm extends React.Component {
 
             e.preventDefault();
         }
+    }
+    resetData = () => {
+        debugger;
+        this.setState
+            ({
+                empCode: "",
+                empFirst: "",
+                empLast: "",
+                empQuali: "",
+                empDept: ReadDropDownData("Param", '7', true),
+                empDesig: [],
+                empType: ReadDropDownData("Param", '9', true),
+                empJType: [],
+                empFather: "",
+                empMother: "",
+                empSex: ReadDropDownData("Param", '12', true),
+                empDOB: "",
+                empDOJ: "",
+                empSpoou: "",
+                empBGrp: ReadDropDownData("Param", '10', true),
+                empMStat: ReadDropDownData("Param", '11', true),
+                empNation: "",
+                empAdres: "",
+                empAdres2: "",
+                empMobile: "",
+                empPhone: "",
+                empCount: ReadLocationData("Location", 1, ""),
+                empState: [],
+                empCity: [],
+                empZip: "",
+                preEmp: "",
+                preDOJ: "",
+                preDOL: "",
+                prePhone: "",
+                empExpre: "",
+                empResLeav: "",
+                preSal: "",
+                empSub: ReadDropDownData("Subject", $("#hfCustomerId").val(), false),
+                empBank: "",
+                empAccNo: "",
+                empIFSC: "",
+                empAdhar: "",
+                empPF: "",
+                empSalary: "",
+                empLogin: "",
+                empPwd: "",
+                empCPwd: "",
+                empRole: ReadDropDownData("Param", '8', true),
+                empAccStat: ReadDropDownData("Param", '1', true),
+                selectedDept: 0,
+                selectedDesig: 0,
+                selectedType: 0,
+                selectedJType: 0,
+                selectedSex: 0,
+                selectedBGrp: 0,
+                selectedMat: 0,
+                selectedCount: 0,
+                selectedState: 0,
+                selectedCity: 0,
+                selectedRole: 0,
+                selectedAccStat: 0,
+            })
     }
     onChangeDept(value) {
         this.setState({
@@ -463,6 +482,11 @@ class EmployeeForm extends React.Component {
                 self.refs.empCPwd.validate(self.state.empCPwd);
             }
         });
+        //window.setTimeout(function () {
+        //    if (this.state.empCPwd && this.state.empCPwd.length) {
+        //        this.refs.empCPwd.validate(this.state.empCPwd);
+        //    }
+        //}.bind(this));
     }
     onChangeCPwd(value) {
         this.setState({
@@ -471,7 +495,6 @@ class EmployeeForm extends React.Component {
     }
     isConfirmedPassword(value) {
         debugger;
-        console.log(value, this.state.empPwd, value === this.state.empPwd);
         return (value === this.state.empPwd)
 
     }
@@ -480,6 +503,104 @@ class EmployeeForm extends React.Component {
             selectedSubject: value
         });
     }
+
+
+    handleClick(param) {
+        debugger;
+        var data = JSON.parse(param.currentTarget.getAttribute("dataattr"));
+
+        this.setState
+            ({
+                empCode: data.empCode,
+                empFirst: data.empfname,
+                empLast: data.lname,
+                empQuali: data.qual,
+                selectedDept: data.deptId,
+                selectedDesig: data.desigId,
+                selectedType: data.empTpId,
+                selectedJType: data.empJTpId,
+                empFather: data.fName,
+                empMother: data.mName,
+                selectedSex: data.sex,
+                empDOB: data.dob,
+                empDOJ: data.doj,
+                empSpoou: data.spName,
+                selectedBGrp: data.bldGrp,
+                selectedMat: data.mStatus,
+                empNation: data.nationality,
+                empAdres: data.addressLine1,
+                empAdres2: data.addressLine2,
+                empMobile: data.mobile,
+                empPhone: data.pnNo,
+                selectedState: data.state,
+                selectedCity: data.city,
+                empZip: data.zpCode,
+
+                preEmp: data.employer,
+                preDOJ: data.lDOJ,
+                preDOL: data.lDOL,
+                prePhone: data.lPhoneNo,
+                empExpre: data.totalExp,
+                empResLeav: data.resLeaving,
+                preSal: data.lastSalary,
+                selectedSubject: data.sbjct,
+
+                empBank: data.bankName,
+                empAccNo: data.accNo,
+                empIFSC: data.ifsCode,
+                empAdhar: data.adNo,
+
+                empPF: data.pfNumber,
+
+                empSalary: data.anPckg,
+                empLogin: data.loginId,
+                empPwd: data.pass,
+                empCPwd: data.pass,
+
+                //selectedRole: ReadDropDownData("Param", '8', true),
+                //selectedAccStat: ReadDropDownData("Param", '1', true),
+
+            })
+        $("#employee").modal("show");
+    }
+    CreateEdit(params) {
+        debugger;
+        var html = "";
+        var domElement = "";
+        var jsonObj = JSON.stringify(params.data);
+
+        html = "<div><a class='testClass' href='javascript:void(0)' dataAttr= '" + jsonObj + "'><img style='height: 16px;margin-top: 5px;margin-left:5px;'  src='../images/icons/edit.png'></img></a></div>";
+        domElement = document.createElement("div");
+        domElement.innerHTML = html;
+        return domElement;
+    }
+    componentDidMount() {
+        $('.testClass').on("click", this.handleClick.bind(this));
+    }
+    componentDidUpdate() {
+        $('.testClass').on("click", this.handleClick.bind(this));
+    }
+    //CreateActive(params) {
+    //    debugger;
+    //    var html = "";
+    //    var domElement = "";
+    //    if ((params.data.isActive).trim() == 70) {
+    //        html = '<span style="margin-top: 5px;padding: 6px 20px;" class="badge badge-pill badge-success">Active</span>'
+    //    }
+    //    else if ((params.data.isActive).trim() == 71) {
+    //        html = '<span style="margin-top: 5px;padding: 6px 15px;" class="badge badge-pill badge-danger">In-Active</span>'
+    //    }
+    //    else {
+    //        html = '<span style="margin-top: 5px;padding: 6px 10px;" class="badge badge-pill badge-warning">Temporary</span>'
+    //    }
+
+    //    domElement = document.createElement("div");
+    //    domElement.innerHTML = html;
+    //    return domElement;
+    //}
+
+
+
     register(field) {
         var s = [];
         s.push(field);
@@ -519,12 +640,10 @@ class EmployeeForm extends React.Component {
                                         <i className="fa fa-download"></i> Export
                                     </button>
                                 </div>
-                                <div className="acrght pull-right">
-                                    <input type="text" placeholder="Quick Search..." className="form-control" />
-                                </div>
+
                             </div>
                             <div className="body">
-
+                                            <AgGrid columnDef={this.state.columnDef} rowData={this.state.rowData} />
                             </div>
                         </div>
                     </div>
@@ -535,7 +654,7 @@ class EmployeeForm extends React.Component {
                         <div className="modal-content">
                             <div className="modal-header">
                                 <h4 className="modal-title">Add/Edit Employee</h4>
-                                <button type="button" className="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span className="sr-only">Close</span></button>
+                                <button type="button" className="close" data-dismiss="modal" onClick={this.resetData}><span aria-hidden="true">&times;</span><span className="sr-only">Close</span></button>
                             </div>
                             <div className="modal-body">
                                 <div className="card">
@@ -544,7 +663,7 @@ class EmployeeForm extends React.Component {
                                             <ul>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.empCode} label={'Employee Code'} name={'empCode'} htmlFor={'empCode'}
-                                                        onChange={this.onChangeCode.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />                                               
+                                                        onChange={this.onChangeCode.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} disabled="true"/>                                               
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.empFirst} label={'First Name'} name={'empFirst'} htmlFor={'empFirst'} isrequired={true}
@@ -719,8 +838,8 @@ class EmployeeForm extends React.Component {
                                                 </div>
                                             </div>
                                             <div className="tab-pane" id="subject">
-                                                    <CreateInput type={'ddl'} value={this.state.selectedSubject} data={this.state.empSub} label={'Subject'} name={'empSub'} htmlFor={'empSub'} isrequired={true}
-                                                        onChange={this.onChangeSubject.bind(this)} keyId={'SUBJECT_ID'} keyName={'SUBJECT_NAME'} className={'listbox'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                    <CreateInput type={'selectBox'} value={this.state.selectedSubject} data={this.state.empSub} label={''} name={'empSub'} htmlFor={'empSub'} isrequired={true}
+                                                    onChange={this.onChangeSubject.bind(this)} keyId={'SUBJECT_ID'} keyName={'SUBJECT_NAME'} className={'listbox'} onComponentMounted={this.register} messageRequired={'required.'} />
                                             </div>
                                             <div className="tab-pane" id="account">
                                                 <div className="acform">
@@ -764,8 +883,8 @@ class EmployeeForm extends React.Component {
                                                                 onChange={this.onChangePwd.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                         </li>
                                                         <li>
-                                                            <CreateInput type={'password'} value={this.state.empCPwd}  label={'Confirm Password'} name={'empCPwd'} htmlFor={'empCPwd'} isrequired={true}
-                                                                onChange={this.onChangeCPwd.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'}  validate={this.isConfirmedPassword} />
+                                                            <CreateInput type={'password'} value={this.state.empCPwd}  label={'Confirm Password'} name={'empCPwd'} htmlFor={'empCPwd'}
+                                                                onChange={this.onChangeCPwd.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} invalidPassword={'Password is not match.'}  validate={this.isConfirmedPassword} />
                                                         </li>
                                                         <li>
                                                             <CreateInput type={'ddl'} value={this.state.selectedRole} data={this.state.empRole} label={'Role'} name={'empRole'} htmlFor={'empRole'} isrequired={true}
@@ -780,12 +899,13 @@ class EmployeeForm extends React.Component {
                                             </div>
                                         </div>
                                         <div className="btn-group">
-                                            <input type="submit" className="btn btn-success" value="Save" />
+                                            <button type="submit" className="btn btn-success"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span>{this.state.label}</button>
                                             <input type="submit" className="btn btn-danger" value="Reset" />
                                         </div>
                                     </form>
                                 </div>
-                            </div>
+                                
+                            </div>                           
                         </div>
                     </div>
                </div>

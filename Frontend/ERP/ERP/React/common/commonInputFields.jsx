@@ -1,25 +1,27 @@
 ﻿class CreateInput extends React.Component {
     handleChange(e) {
+        debugger;
         this.props.onChange(e.target.value);
         if (this.props.type != "ddl") {
             var isValidField = this.isValid(e.target);
         }
         if (this.props.validate) {
-            this.validate(event.target.value);
+            debugger;
+                this.validate(e.target);
         }
     }
-    validate(value) {
+    validate(input) {
         debugger;
-        if (this.props.validate && this.props.validate(value)) {
-            this.setState({
-                valid: true,
-                errorVisible: false
-            });
+        if (this.props.validate && this.props.validate(input.value)) {
+            input.classList.remove('input-validation-error');
+            input.nextSibling.classList.remove('field-validation-error');
+            input.nextSibling.textContent = "";
+            return true;
         } else {
-            this.setState({
-                valid: false,
-                errorVisible: true
-            });
+            input.classList.add('input-validation-error'); //add class error
+            input.nextSibling.classList.add('field-validation-error');
+            input.nextSibling.textContent = this.props.invalidPassword; // show error message
+            return false;
         }
     }
     handleBlur(e) {
@@ -32,7 +34,7 @@
     }
     isValid(input) {
         //check required field
-        if (input != undefined && input.getAttribute('type') != 'ddl') {
+        if (input != undefined && input.tagName != 'SELECT') {
             if (input.getAttribute('required') != null && input.value === "") {
                 input.classList.add('input-validation-error'); //add class error
                 input.nextSibling.classList.add('field-validation-error');
@@ -44,9 +46,9 @@
                 input.nextSibling.classList.remove('field-validation-error');
                 input.nextSibling.textContent = "";
                 return true;
-            }
+            }          
         }
-
+        return true;
     }
     CheckDateDiff(startDate, endDate) {
         var startDate = moment(startDate, "DD-MMM-YYYY");
@@ -64,9 +66,13 @@
             InitializeDate(this.props.name);
         }
         if (this.props.type == "ddl") {
-            InitializeSelect(this.props.name);
-            $('select[name=' + this.props.name + ']').on('change', this.handleChange.bind(this));
+                InitializeSelect(this.props.name);
+                $('select[name=' + this.props.name + ']').on('change', this.handleChange.bind(this));
             $('select[name=' + this.props.name + ']').trigger("chosen:updated")
+
+        }
+        if (this.props.type =='selectBox') {
+            InitializeSelectList(this.props.name);
         }
 
         //this.setState({ mode: true })
@@ -77,7 +83,7 @@
     componentDidUpdate() {
         if (this.props.type == "ddl")
         {
-            $('select[name=' + this.props.name + ']').trigger("chosen:updated")
+                $('select[name=' + this.props.name + ']').trigger("chosen:updated")      
         }
         if (this.props.type == "date") {
             InitializeDate(this.props.name);
@@ -112,11 +118,17 @@
         }
         else if (this.props.type == 'password') {
             inputField = <input type="password" value={this.props.value} ref={this.props.name}  autoComplete="off" name={this.props.name}
-                className={this.props.className} required={this.props.isrequired} onChange={this.handleChange.bind(this)} validate={this.handleChange.bind(this)}/>
+                className={this.props.className} required={this.props.isrequired} onChange={this.handleChange.bind(this)} validate={this.handleChange.bind(this)} />
+        } else if (this.props.type == 'selectBox') {
+            inputField = <select value={this.props.value}  onChange={this.handleChange.bind(this)} name={this.props.name}
+                 required={this.props.isrequired}>              
+                {this.props.data.map((obj) =>
+                    <option key={obj[this.props.keyId]} onClick={this.handleClick.bind(this)} value={obj[this.props.keyId]}>{obj[this.props.keyName]}</option>)}
+            </select>
         }
         else {
             inputField = <input type={this.props.type} value={this.props.value} ref={this.props.name} autoComplete="off" name={this.props.name}
-                                className={this.props.className} required={this.props.isrequired} onChange={this.handleChange.bind(this)} />
+                className={this.props.className} required={this.props.isrequired} onChange={this.handleChange.bind(this)} disabled={this.props.disabled} />
 
         }
         return (
