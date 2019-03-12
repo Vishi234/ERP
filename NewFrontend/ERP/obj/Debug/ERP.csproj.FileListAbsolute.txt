@@ -539,3 +539,4 @@ C:\Users\jata.shankar\Documents\GitHub\ERP\NewFrontend\ERP\bin\ru-ru\JavaScriptE
 C:\Users\jata.shankar\Documents\GitHub\ERP\NewFrontend\ERP\obj\Debug\ERP.csprojResolveAssemblyReference.cache
 C:\Users\jata.shankar\Documents\GitHub\ERP\NewFrontend\ERP\obj\Debug\ERP.dll
 C:\Users\jata.shankar\Documents\GitHub\ERP\NewFrontend\ERP\obj\Debug\ERP.pdb
+D:\Project\Github ERP\ERP\NewFrontend\ERP\obj\Debug\ERP.csprojAssemblyReference.cache
