@@ -226,7 +226,6 @@ class AdmissionForm extends React.Component {
             selectedPreCourse: 0,
             selectedSubject: 0,
             selectedMTongue: 0,
-            selectedPreCourse: 0,
             label: "Save",
             flag: "A",
         })
