@@ -191,7 +191,7 @@
     <Content Include="React\common\AgGridReact.jsx" />
     <Content Include="React\common\CommonInputFields.jsx" />
     <Content Include="React\configuration\createorg.jsx" />
-    <Content Include="React\configuration\orglist.jsx" />
+    <Content Include="React\fee\type.jsx" />
     <Content Include="React\employee\registration.jsx" />
     <Content Include="React\master\academicyear.jsx" />
     <Content Include="React\master\activity.jsx" />
@@ -265,6 +265,7 @@
     <Compile Include="Controllers\CacheController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\FeeController.cs" />
     <Compile Include="Controllers\HRController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
@@ -321,6 +322,8 @@
     <Content Include="Views\Employee\Manage.cshtml" />
     <Content Include="Views\Student\Manage.cshtml" />
     <Content Include="Views\HR\Enquiry.cshtml" />
+    <Content Include="Views\Fee\Type.cshtml" />
+    <Content Include="Views\Fee\Payments.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -362,7 +365,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>59606</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

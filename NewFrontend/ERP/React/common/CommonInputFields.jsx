@@ -49,10 +49,21 @@
                     return false;
                 }
                 else {
-                    input.classList.remove('input-validation-error');
-                    input.nextSibling.classList.remove('field-validation-error');
-                    input.nextSibling.textContent = "";
-                    return true;
+                    debugger;
+                    if (input.getAttribute("name") === "email" && input.value !== "") {
+                        debugger;
+                        if (!this.validateEmail(input.value)) {
+                            input.classList.add('input-validation-error'); //add class error
+                            input.nextSibling.classList.add('field-validation-error');
+                            input.nextSibling.textContent = this.props.emailValidation; // show error message
+                            return false;
+                        } else {
+                            input.classList.remove('input-validation-error');
+                            input.nextSibling.classList.remove('field-validation-error');
+                            input.nextSibling.textContent = "";
+                            return true;
+                        }
+                    }
                 }
             }
             else if (input.tagName == "SELECT") {
@@ -75,6 +86,10 @@
         }
 
     }
+    validateEmail = (value) => {
+        let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(value);
+    };
     CheckDateDiff(startDate, endDate) {
         var startDate = moment(startDate, "DD-MMM-YYYY");
         var endDate = moment(endDate, "DD-MMM-YYYY");

@@ -729,8 +729,8 @@ class EmployeeForm extends React.Component {
                     <div className="modal-dialog modal-dialog-vertical-center modal-lg" role="document">
                         <div className="modal-content bd-0 tx-14">
                             <form name='EmpRegis' id="EmpRegis" noValidate onSubmit={this.handleSubmit}>
-                                <div className="modal-header pd-y-20 pd-x-25">
-                                    <h6 className="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Add/Edit Employee</h6>
+                                <div className="modal-header">
+                                    <h6 className="tx-14 tx-uppercase tx-inverse tx-bold">Add/Edit Employee</h6>
                                     <button type="button" className="close" data-dismiss="modal" onClick={this.resetData}><span aria-hidden="true">&times;</span><span className="sr-only">Close</span></button>
                                 </div>
                                 <div className="modal-body pd-25">
@@ -739,7 +739,7 @@ class EmployeeForm extends React.Component {
                                         <ul className="einrform ecustform">
                                             <li>
                                                     <CreateInput type={'text'} value={this.state.empCode} label={'Employee Code'} name={'empCode'} htmlFor={'empCode'}
-                                                                 onChange={this.onChangeCode.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                    onChange={this.onChangeCode.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} disabled="true"/>
                                             </li>
                                             <li>
                                                 <CreateInput type={'text'} value={this.state.empFirst} label={'First Name'} name={'empFirst'} htmlFor={'empFirst'} isrequired={true}
@@ -879,7 +879,7 @@ class EmployeeForm extends React.Component {
                                                                  onChange={this.onChangePhone.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
-                                                    <CreateInput type={'text'} value={this.state.empEmail} label={'Email'} name={'empEmail'} htmlFor={'empEmail'} isrequired={true}
+                                                    <CreateInput type={'text'} value={this.state.empEmail} label={'Email'} name={'email'} emailValidation={'Please enter valid email address'} htmlFor={'empEmail'} isrequired={true}
                                                         onChange={this.onChangeEmail.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                             </ul>
