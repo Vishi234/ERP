@@ -907,3 +907,90 @@ txtarea label {
     margin: 0px;
     width: 100%;
 }
+
+.card .body {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    font-weight: 400;
+    color: #a5a8ad;
+    background: #282b2f;
+    padding: 22px;
+    background: #fff;
+    color: #17191c;
+}
+
+.font-30 {
+    font-size: 30px;
+}
+
+.font-14 {
+    font-size: 14px;
+}
+
+.progress-bar {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    background-color: rgba(23,25,28,0.1);
+    transition: width .6s ease;
+}
+
+.progress .progress-bar {
+    -webkit-transition: width 3s ease;
+    -moz-transition: width 3s ease;
+    -ms-transition: width 3s ease;
+    -o-transition: width 3s ease;
+    transition: width 3s ease;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.progress .progress-bar {
+    font-size: 10px;
+}
+
+.progress.progress-xxs {
+    height: 1px;
+}
+
+.progress-bar-warning {
+    background-color: #FFA117;
+}
+
+.progress-bar-success {
+    background-color: #5CB65F;
+}
+
+.progress-bar-info {
+    background-color: #3C89DA;
+}
+
+.progress-bar-danger {
+    background-color: #E15858;
+}
+
+.progress-bar-primary {
+    background: #9367B4;
+    color: rgba(255,255,255,0.7);
+}
+
+.text-green {
+    color: green;
+}
+
+.font-15 {
+    font-size: 15px;
+}
+
+.card-value svg {
+    height: 55px;
+    width: 90px;
+}
