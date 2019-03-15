@@ -739,7 +739,7 @@ class EmployeeForm extends React.Component {
                                         <ul className="einrform ecustform">
                                             <li>
                                                     <CreateInput type={'text'} value={this.state.empCode} label={'Employee Code'} name={'empCode'} htmlFor={'empCode'}
-                                                                 onChange={this.onChangeCode.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                    onChange={this.onChangeCode.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} disabled="true"/>
                                             </li>
                                             <li>
                                                 <CreateInput type={'text'} value={this.state.empFirst} label={'First Name'} name={'empFirst'} htmlFor={'empFirst'} isrequired={true}
@@ -879,7 +879,7 @@ class EmployeeForm extends React.Component {
                                                                  onChange={this.onChangePhone.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
-                                                    <CreateInput type={'text'} value={this.state.empEmail} label={'Email'} name={'empEmail'} htmlFor={'empEmail'} isrequired={true}
+                                                    <CreateInput type={'text'} value={this.state.empEmail} label={'Email'} name={'email'} emailValidation={'Please enter valid email address'} htmlFor={'empEmail'} isrequired={true}
                                                         onChange={this.onChangeEmail.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                             </ul>

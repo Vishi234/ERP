@@ -68,7 +68,6 @@ class AdmissionForm extends React.Component {
             selectedPreCourse: 0,
             selectedSubject: 0,
             selectedMTongue: 0,
-            selectedPreCourse: 0,
             Fields: [],
             columnDef: columnDefs,
             rowData: records,
@@ -227,7 +226,6 @@ class AdmissionForm extends React.Component {
             selectedPreCourse: 0,
             selectedSubject: 0,
             selectedMTongue: 0,
-            selectedPreCourse: 0,
             label: "Save",
             flag: "A",
         })
@@ -815,7 +813,7 @@ class AdmissionForm extends React.Component {
                                                         onChange={this.onChangePhone.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
-                                                    <CreateInput type={'text'} value={this.state.stuEmail} label={'Email'} name={'stuEmail'} htmlFor={'stuEmail'} isrequired={true}
+                                                    <CreateInput type={'text'} value={this.state.stuEmail} label={'Email'} name={'email'} emailValidation={'Please enter valid email address'} htmlFor={'stuEmail'} isrequired={true}
                                                         onChange={this.onChangeEmail.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                             </ul>
