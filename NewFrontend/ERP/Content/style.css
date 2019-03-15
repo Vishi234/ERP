@@ -242,7 +242,7 @@ textarea {
     display: inline-block;
     text-align: center;
     width: 100%;
-    height: 400px;
+    height: 550px;
     z-index: 1;
 }
 
@@ -250,7 +250,7 @@ textarea {
     background-image: url(../Images/circle.svg);
     background-size: cover;
     background-repeat: repeat-y;
-    background-position: 50%;
+    background-position: 80%;
     position: relative;
     top: 0;
     left: 0;
@@ -266,21 +266,21 @@ textarea {
 
 @-webkit-keyframes floatCircle {
     0% {
-        background-position: 0% -100%;
+        background-position: 0% -1000%;
     }
 
     100% {
-        background-position: 0% 200%;
+        background-position: 0% 2000%;
     }
 }
 
 @keyframes floatCircle {
     0% {
-        background-position: 0% -100%;
+        background-position: 0% -1000%;
     }
 
     100% {
-        background-position: 0% 200%;
+        background-position: 0% 2000%;
     }
 }
 
@@ -526,11 +526,10 @@ textarea {
 
     .esidemenu > ul > li > a {
         font-size: 14.6px;
-        display: flex;
+        display: inline-block;
         align-items: center;
         width: 100%;
-        height: 40px;
-        padding: 0;
+        padding: 10px 0px;
         color: #868e96;
         font-weight: 400;
         letter-spacing: 0.3px;
@@ -540,11 +539,8 @@ textarea {
     }
 
         .esidemenu > ul > li > a > svg {
-            width: 9%;
             fill: #868e96;
-            float: left;
-            margin-right: 10px;
-            margin-top: -3px;
+            float: right;
             transition: all 0.4s ease-in-out;
         }
 
@@ -993,4 +989,9 @@ txtarea label {
 .card-value svg {
     height: 55px;
     width: 90px;
+}
+
+.editbtn {
+    height: 20px;
+    width: 20px;
 }
