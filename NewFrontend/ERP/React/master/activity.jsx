@@ -131,7 +131,7 @@ class ActivityForm extends React.Component {
             ({
                 actId: data.id,
                 actName: data.anm,
-                selectedType: data.atyp,
+                selectedType: data.atypID,
                 stDate: data.sDt,
                 endDate: data.eDt,
                 selectedActive: data.isActive,

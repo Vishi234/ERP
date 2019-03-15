@@ -152,10 +152,10 @@ class AcademicYearForm extends React.Component {
             html = '<span style="margin-top: 5px;padding: 6px 20px;" class="badge badge-success">Active</span>'
         }
         else if ((params.data.isActive).trim() == 71) {
-            html = '<span style="margin-top: 5px;padding: 6px 15px;" class="badge badge-danger">In-Active</span>'
+            html = '<span style="margin-top: 5px;padding: 6px 20px;" class="badge badge-danger">In-Active</span>'
         }
         else {
-            html = '<span style="margin-top: 5px;padding: 6px 10px;" class="badge badge-warning">Temporary</span>'
+            html = '<span style="margin-top: 5px;padding: 6px 20px;" class="badge badge-warning">Temporary</span>'
         }
 
         domElement = document.createElement("div");
