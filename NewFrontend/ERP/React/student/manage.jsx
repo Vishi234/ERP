@@ -86,7 +86,7 @@ class AdmissionForm extends React.Component {
 
                 var validField;
                 if (field[0].props.type == 'ddl') {
-                    debugger;
+                    
                     validField = field[0].isValid(field[0].refs.MySelect2);
                 } else {
 
@@ -454,7 +454,7 @@ class AdmissionForm extends React.Component {
         });
     }
     isConfirmedPassword(value) {
-        debugger;
+        
         console.log(value, this.state.stuPwd, value === this.state.stuPwd);
         return (value === this.state.stuPwd)
     }
@@ -477,7 +477,7 @@ class AdmissionForm extends React.Component {
             }
         }
         this.setState({ stuState: obj });
-        debugger;
+        
         var jsonData = ReadLocationData("Location", 3, data.state);
         for (var i = 0; i < jsonData.length; i++) {
             if (jsonData[i].LOCATION_ID == data.city) {
@@ -487,7 +487,7 @@ class AdmissionForm extends React.Component {
                 obj.push(gridData);
             }
         }
-        debugger;
+        
             this.setState({ stuCity: obj });            
         this.setState
             ({
@@ -531,7 +531,7 @@ class AdmissionForm extends React.Component {
         $("#student").modal("show");
     }
     CreateEdit(params) {
-        debugger;
+        
         var html = "";
         var domElement = "";
         var jsonObj = JSON.stringify(params.data);

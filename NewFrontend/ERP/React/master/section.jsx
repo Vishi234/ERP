@@ -66,13 +66,13 @@ class SectionForm extends React.Component {
         var html = "";
         var domElement = "";
         var jsonObj = JSON.stringify(params.data);
-        html = '<div><a class="testClass" href="javascript:void(0)" dataAttr=' + jsonObj + '><img style="height: 16px;margin-top: 5px;margin-left:5px;"  src="../images/icons/edit.png"></img></a></div>';
+        html = "<div><a class='testClass' href='javascript:void(0)' dataAttr='" + jsonObj + "'><img class='editbtn' src='/Images/icons/edit.svg'/></a></div>";
         domElement = document.createElement("div");
         domElement.innerHTML = html;
         return domElement;
     }
     handleSubmit(e) {
-        debugger;
+        
         e.preventDefault();
         var validForm = true;
         this.state.Fields.forEach(function (field) {
@@ -104,7 +104,7 @@ class SectionForm extends React.Component {
                     btnloading("SectionForm", 'hide');
                     CallToast(data.msg, data.flag);
                     if (data.flag == "S") {
-                        debugger;
+                        
                         MyData = JSON.parse(data.addParams);
                         operationFlag = "A";
                         this.setState
@@ -135,7 +135,7 @@ class SectionForm extends React.Component {
     }
     onChangeCourse(value)
     {
-        debugger;
+        
         var obj = [];
         var semester = 0;
         var jsonData = ReadDropDownData("Course", $("#hfCustomerId").val(), false);

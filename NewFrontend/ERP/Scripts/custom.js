@@ -4,7 +4,7 @@
         $(this).addClass("top-menu-active");
     });
 
-    $(".navigation-menu > ul > li").click(function () {
+    $(".esidemenu > ul > li").click(function () {
         if ($(this).find(".smenu>ul>li").length > 0) {
             if ($(this).find("a").first().hasClass("click-remove")) {
                 var level = $(this).find(".smenu").attr("menu-level");
@@ -12,7 +12,7 @@
                 $(this).find("a").first().removeClass("click-remove");
             }
             else {
-                $(".navigation-menu > ul > li").each(function () {
+                $(".esidemenu > ul > li").each(function () {
                     var level = $(this).find(".smenu").attr("menu-level");
                     $(this).find(".smenu").removeClass(level)
                     $(this).find("a").first().removeClass("click-remove");

@@ -5,24 +5,6 @@ html {
     box-sizing: border-box;
     font-family: sans-serif;
     line-height: 1.15;
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    -ms-overflow-style: scrollbar;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
-}
-
-@-ms-viewport {
-    width: device-width;
-}
-
-article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, section {
-    display: block;
 }
 
 body {
@@ -403,25 +385,38 @@ textarea {
     height: 100%;
     position: fixed;
     bottom: 0;
-    width: 15%;
+    width: 16%;
+    z-index: 9999;
     background-color: #fff;
     transition: all 0.2s ease-in-out;
 }
 
 .elogo {
     background: #232e40;
-    padding: 10px;
+    padding: 0px;
     height: 95px;
+    overflow: hidden;
+    text-align: center;
 }
+
+    .elogo img {
+        height: 95px;
+        width: 95px;
+    }
 
 .elogohome {
     background: #232e40;
-    padding: 10px;
+    margin: -15px 0px;
 }
+
+    .elogohome img {
+        height: 51px;
+        width: 55px;
+    }
 
 .ebody {
     position: relative;
-    width: 85%;
+    width: 84%;
     display: block;
     float: right;
     height: 100%;
@@ -524,8 +519,27 @@ textarea {
     padding: 10px 20px;
 }
 
+    .esidemenu > ul > li {
+        border-bottom: 1px solid #eee;
+    }
+
+    .esidemenu::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    .esidemenu::-webkit-scrollbar-track {
+        border-radius: 10px;
+        padding: 10px;
+        display: none;
+    }
+
+    .esidemenu::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background: rgba(255, 255, 255, .7);
+    }
+
     .esidemenu > ul > li > a {
-        font-size: 14.6px;
+        font-size: 13px;
         display: inline-block;
         align-items: center;
         width: 100%;
@@ -534,14 +548,23 @@ textarea {
         font-weight: 400;
         letter-spacing: 0.3px;
         position: relative;
-        border-bottom: 1px solid #eee;
         transition: all 0.4s ease-in-out;
     }
+
+        .esidemenu > ul > li > a > svg:nth-child(1) {
+            float: left;
+            height: 19px;
+            width: 20px;
+            margin-right: 10px;
+            margin-top: -2px;
+        }
 
         .esidemenu > ul > li > a > svg {
             fill: #868e96;
             float: right;
-            transition: all 0.4s ease-in-out;
+            -moz-transition: all 0.4s linear;
+            -webkit-transition: all 0.4s linear;
+            transition: all 0.4s linear;
         }
 
         .esidemenu > ul > li > a:hover {
@@ -550,6 +573,188 @@ textarea {
 
             .esidemenu > ul > li > a:hover svg {
                 fill: #495057;
+            }
+
+.down {
+}
+
+.click-remove {
+    color: #495057 !important;
+    cursor: pointer !important;
+    transition: all 0.4s ease-in-out;
+}
+
+    .click-remove > p {
+        display: none;
+    }
+
+    .click-remove > svg:nth-child(1) {
+        fill: #FB9337 !important;
+    }
+
+    .click-remove > svg:nth-child(2) {
+        -moz-transform: rotate(180deg) !important;
+        -webkit-transform: rotate(180deg) !important;
+        transform: rotate(180deg) !important;
+    }
+
+.hm3 {
+    height: 90px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm4 {
+    height: 120px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm5 {
+    height: 150px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm6 {
+    height: 180px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm7 {
+    height: 210px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm8 {
+    height: 245px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm9 {
+    height: 272px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm10 {
+    height: 300px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm11 {
+    height: 210px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm12 {
+    height: 210px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm13 {
+    height: 210px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm14 {
+    height: 210px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm15 {
+    height: 210px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm16 {
+    height: 210px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm17 {
+    height: 210px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm18 {
+    height: 210px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm19 {
+    height: 210px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm20 {
+    height: 210px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.smenu {
+    background: #fff;
+    margin-bottom: 0px;
+    display: block;
+    height: 0px;
+    transition: all 0.4s ease-in-out;
+    overflow: auto;
+    width: 109%;
+}
+
+    .smenu::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    .smenu::-webkit-scrollbar-track {
+        border-radius: 10px;
+        padding: 10px;
+        display: none;
+    }
+
+    .smenu::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background: rgba(0, 0, 0, .1);
+    }
+
+    .smenu > ul > li {
+        display: inline-block;
+        width: 100%;
+    }
+
+        .smenu > ul > li > a {
+            padding: 5px 32px;
+            display: block;
+            width: 100%;
+            font-size: 1em;
+            color: #868e96;
+            font-weight: 400;
+        }
+
+            .smenu > ul > li > a:hover {
+                color: #FB9337 !important;
+            }
+
+            .smenu > ul > li > a > svg {
+                margin-right: 10px;
+            }
+
+            .smenu > ul > li > a:before {
+                left: -2.5px;
+            }
+
+            .smenu > ul > li > a:after {
+                right: 2.5px;
+                background: #fff;
+                transition: width 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+            }
+
+            .smenu > ul > li > a:hover:before {
+                background: #fff;
+                width: 100%;
+                transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+            }
+
+            .smenu > ul > li > a:hover:after {
+                background: transparent;
+                width: 100%;
+                transition: 0s;
             }
 
 .pagebody {
@@ -994,4 +1199,7 @@ txtarea label {
 .editbtn {
     height: 20px;
     width: 20px;
+}
+.badge {
+    width:77px;
 }

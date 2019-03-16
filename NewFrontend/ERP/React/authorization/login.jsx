@@ -151,7 +151,9 @@ var LoginForm = React.createClass({
             <div>
                 <div className="eheader">
                     <div className="container-fluid">
-                        <div className="elogohome float-left"></div>
+                        <div className="elogohome float-left">
+                            <img src="/Images/customerlogo/graphicera.svg" />
+                        </div>
                         <div className="etopmenu float-right">
                             <ul>
                                 <li>
@@ -184,7 +186,11 @@ var LoginForm = React.createClass({
                     <div className="banner">
                         <div className="banner-circle">
                             <div className="container-fluid">
-                                <div className="col-lg-4 col-xs-12 col-sm-6 col-md-4 float-left"></div>
+                                <div className="col-lg-4 col-xs-12 col-sm-6 col-md-4 float-left">
+                                    <div className="bannertxt">
+
+                                    </div>
+                                </div>
                                 <div className="col-lg-8 col-xs-12 col-sm-6 col-md-8 float-right">
                                     <div className="elgnbase">
                                         <div className="elgnuser">
