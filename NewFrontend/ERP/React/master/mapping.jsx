@@ -45,7 +45,7 @@ class MappingForm extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
     handleSubmit(e) {
-        debugger;
+        
         e.preventDefault();
         var validForm = true;
         var validField;
@@ -61,7 +61,7 @@ class MappingForm extends React.Component {
         });
         //after validation complete post to server
         if (validForm) {
-            debugger;
+            
             var d = {
                 mapId: this.state.mapId,
                 course: this.state.selectedCourse,
@@ -118,7 +118,7 @@ class MappingForm extends React.Component {
         fields.push(s);
     }
     onChangeCourse(value) {
-        debugger;
+        
         var obj = [];
         var semester = 0;
         var jsonData = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
@@ -159,7 +159,7 @@ class MappingForm extends React.Component {
         });
     }
     handleClick(param) {
-        debugger;
+        
         var obj = [];
         var gridData = JSON.parse(param.currentTarget.getAttribute("dataattr"));
         courseEdit = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
@@ -188,7 +188,7 @@ class MappingForm extends React.Component {
             })
     }
     CreateEdit(params) {
-        debugger;
+        
         var html = "";
         var domElement = "";
         var jsonObj = JSON.stringify(params.data);
@@ -205,7 +205,7 @@ class MappingForm extends React.Component {
         $('.testClass').on("click", this.handleClick.bind(this));
     }
     CreateActive(params) {
-        debugger;
+        
         var html = "";
         var domElement = "";
         if ((params.data.isActive).trim() == 70) {

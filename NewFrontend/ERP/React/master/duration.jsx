@@ -51,7 +51,7 @@
         });
         //after validation complete post to server
         if (validForm) {
-            debugger;
+            
             var d = {
                 durId: this.state.durId,
                 academicYear: this.state.selectedYear,
@@ -156,7 +156,7 @@
         });
     },
     handleClick(param) {
-        debugger;
+        
         var data = JSON.parse(param.currentTarget.getAttribute("dataattr"));
         this.setState
             ({
@@ -173,7 +173,7 @@
             })
     },
     CreateEdit(params) {
-        debugger;
+        
         var html = "";
         var domElement = "";
         var jsonObj = JSON.stringify(params.data);
@@ -190,7 +190,7 @@
         $('.testClass').on("click", this.handleClick.bind(this));
     },
     CreateActive(params) {
-        debugger;
+        
         var html = "";
         var domElement = "";
         if ((params.data.isActive).trim() == 70) {

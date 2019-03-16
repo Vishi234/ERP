@@ -416,8 +416,13 @@ textarea {
 
 .elogohome {
     background: #232e40;
-    padding: 10px;
+    margin: -15px 0px;
 }
+
+    .elogohome img {
+        height: 51px;
+        width: 55px;
+    }
 
 .ebody {
     position: relative;

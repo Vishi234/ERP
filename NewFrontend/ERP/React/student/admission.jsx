@@ -267,7 +267,7 @@ class AdmissionForm extends React.Component {
 
   
     onChangeCourse = (value) => {   
-        debugger;
+        
         var obj = [];
         var jsonData = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
         for (var i = 0; i < jsonData.length; i++) {

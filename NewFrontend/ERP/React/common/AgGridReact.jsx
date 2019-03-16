@@ -4,14 +4,14 @@ class AgGrid extends React.Component {
         gridOptions = {
             columnDefs: this.props.columnDef,
             enableSorting: true,
-            enableFilter: false,
+            enableFilter: true,
             rowData: null,
             rowHeight: 30,
             enableCellChangeFlash: true,
             refreshCells: true,
             enableColResize: true,
             headerHeight: 30,
-            suppressHorizontalScroll: true,
+
             colResizeDefault: 'shift',
             pagination: true,
             paginationPageSize: 20,
@@ -19,19 +19,18 @@ class AgGrid extends React.Component {
                 return '[' + params.value.toLocaleString() + ']';
             },
             onGridReady: function (params) {
-                //var allColumnIds = [];
-                //gridOptions.columnApi.getAllColumns().forEach(function (column) {
-                //    allColumnIds.push(column.colId);
-                //});
-                //gridOptions.columnApi.autoSizeColumns(allColumnIds);
-                //params.api.sizeColumnsToFit();
+                var allColumnIds = [];
+                gridOptions.columnApi.getAllColumns().forEach(function (column) {
+                    allColumnIds.push(column.colId);
+                });
+                gridOptions.columnApi.autoSizeColumns(allColumnIds);
+                params.api.sizeColumnsToFit();
             },
         }
         var gridDiv = document.querySelector('#myGrid');
         new agGrid.Grid(gridDiv, gridOptions);
         //((this.props.rowData == null) ? null : this.props.rowData)
         gridOptions.api.setRowData(((this.props.rowData == null) ? null : this.props.rowData));
-    
     }
     onFilterChange(e) {
         gridOptions.api.setQuickFilter(e.target.value);

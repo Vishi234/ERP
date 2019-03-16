@@ -143,7 +143,7 @@ class CourseForm extends React.Component {
         var data = JSON.parse(param.currentTarget.getAttribute("dataattr"));
         this.setState
             ({
-                selectedCourseType: data.cTypeID,
+                selectedCourseType: data.cType,
                 courseName: data.cnm,
                 noOfSemester: data.nsem,
                 courserId: data.id,
