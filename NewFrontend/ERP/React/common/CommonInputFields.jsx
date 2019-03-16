@@ -64,6 +64,10 @@
                             return true;
                         }
                     }
+                    input.classList.remove('input-validation-error');
+                    input.nextSibling.classList.remove('field-validation-error');
+                    input.nextSibling.textContent = "";
+                    return true;
                 }
             }
             else if (input.tagName == "SELECT") {
