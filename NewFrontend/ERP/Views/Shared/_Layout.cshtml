@@ -23,7 +23,7 @@
     <input type="hidden" id="hfRoleId" value="@user.role" />
     <div class="esidebar">
         <div class="elogo">
-
+            <img src="/Images/customerlogo/graphicera.svg" />
         </div>
         <div class="esidemenu">
             @{
@@ -38,8 +38,26 @@
                             {
                                 <li>
                                     <a href="javascript:void(0)">
-                                        @dtRow["MODULE_NAME"]<i class="fa fa-angle-down"></i>
+                                        @Html.Raw(dtRow["MENU_NAME"]) @dtRow["MODULE_NAME"]<i class="fa fa-angle-down"></i>
                                     </a>
+                                    <div class="smenu" menu-level="hm5">
+                                        <ul>
+                                            @{
+                                                foreach (DataRow dtsubRow in dt.Rows)
+                                                {
+                                                    if (dtRow["FORM_ID"].Equals(dtsubRow["PARENT_ID"]))
+                                                    {
+                                                        <li>
+                                                            <a href="@dtsubRow["LINK"]">@dtsubRow["CAPTION"]</a>
+
+                                                        </li>
+                                                    }
+
+                                                }
+                                            }
+                                        </ul>
+                                    </div>
+
                                 </li>
 
                             }

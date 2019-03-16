@@ -11,7 +11,7 @@ class AgGrid extends React.Component {
             refreshCells: true,
             enableColResize: true,
             headerHeight: 30,
-
+            suppressHorizontalScroll: true,
             colResizeDefault: 'shift',
             pagination: true,
             paginationPageSize: 20,
@@ -24,7 +24,6 @@ class AgGrid extends React.Component {
                     allColumnIds.push(column.colId);
                 });
                 gridOptions.columnApi.autoSizeColumns(allColumnIds);
-                params.api.sizeColumnsToFit();
             },
         }
         var gridDiv = document.querySelector('#myGrid');
@@ -40,7 +39,7 @@ class AgGrid extends React.Component {
     }
     render() {
         return (<div className="actionbse">
-                <div id="myGrid" className="ag-theme-balham"></div>
+            <div id="myGrid" style={{ height: '450px'}} className="ag-theme-balham"></div>
         </div>
         );
     }
