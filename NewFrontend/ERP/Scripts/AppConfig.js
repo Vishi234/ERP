@@ -19,7 +19,7 @@
     Label_Header["$COURSE$"] = "Course";
     Label_Header["$SUBJECT$"] = "Subject";
     Label_Header["$COURSE_TYPE$"] = "Course Type";
-    Label_Header["$YEAR_ID$"] = "Academic Year",
+    Label_Header["$YEAR_NAME$"] = "Academic Year",
     Label_Header["$EDIT$"] = "Edit";
     Label_Header["$SUBJECT_CODE$"] = "Subject Code";
     Label_Header["$SUBJECT_NAME$"] = "Subject Name";
@@ -28,7 +28,6 @@
     Label_Header["$SUBJECT_TYPE$"] = "Subject Type";
     Label_Header["$IS_ACTIVE$"] = "Is Active";
     Label_Header["$SEMESTER$"] = "Semester";
-    Label_Header["$SUBJECT_ID$"] = "Subject";
    //Employee Details	
     Label_Header["$ID$"] = "EMP Code";
     Label_Header["$FIRST_NAME$"] = "First Name";

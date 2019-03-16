@@ -146,8 +146,8 @@
                 subjectCode: data.scde,
                 subjectName: data.snm,
                 shortName: data.ssnm,
-                selectedMedium: data.smed,
-                selectedSubjectType: data.styp,
+                selectedMedium: data.smedID,
+                selectedSubjectType: data.stypId,
                 selectedActive: data.isActive,
                 label: "Update",
                 flag: "M"

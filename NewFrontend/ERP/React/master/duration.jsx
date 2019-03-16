@@ -161,8 +161,8 @@
         this.setState
             ({
                 durId: data.id,
-                selectedYear: data.acYear,
-                selectedCourse: data.cnm,
+                selectedYear: data.acYearid,
+                selectedCourse: data.cnmId,
                 selectedSemester: data.nsem,
                 wefDate: data.sDt,
                 wetDate: data.eDt,

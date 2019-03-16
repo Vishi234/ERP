@@ -242,7 +242,7 @@ textarea {
     display: inline-block;
     text-align: center;
     width: 100%;
-    height: 400px;
+    height: 550px;
     z-index: 1;
 }
 
@@ -250,7 +250,7 @@ textarea {
     background-image: url(../Images/circle.svg);
     background-size: cover;
     background-repeat: repeat-y;
-    background-position: 50%;
+    background-position: 80%;
     position: relative;
     top: 0;
     left: 0;
@@ -266,21 +266,21 @@ textarea {
 
 @-webkit-keyframes floatCircle {
     0% {
-        background-position: 0% -100%;
+        background-position: 0% -1000%;
     }
 
     100% {
-        background-position: 0% 200%;
+        background-position: 0% 2000%;
     }
 }
 
 @keyframes floatCircle {
     0% {
-        background-position: 0% -100%;
+        background-position: 0% -1000%;
     }
 
     100% {
-        background-position: 0% 200%;
+        background-position: 0% 2000%;
     }
 }
 
@@ -526,11 +526,10 @@ textarea {
 
     .esidemenu > ul > li > a {
         font-size: 14.6px;
-        display: flex;
+        display: inline-block;
         align-items: center;
         width: 100%;
-        height: 40px;
-        padding: 0;
+        padding: 10px 0px;
         color: #868e96;
         font-weight: 400;
         letter-spacing: 0.3px;
@@ -540,11 +539,8 @@ textarea {
     }
 
         .esidemenu > ul > li > a > svg {
-            width: 9%;
             fill: #868e96;
-            float: left;
-            margin-right: 10px;
-            margin-top: -3px;
+            float: right;
             transition: all 0.4s ease-in-out;
         }
 
@@ -906,4 +902,96 @@ txtarea label {
     float: none;
     margin: 0px;
     width: 100%;
+}
+
+.card .body {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    font-weight: 400;
+    color: #a5a8ad;
+    background: #282b2f;
+    padding: 22px;
+    background: #fff;
+    color: #17191c;
+}
+
+.font-30 {
+    font-size: 30px;
+}
+
+.font-14 {
+    font-size: 14px;
+}
+
+.progress-bar {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    background-color: rgba(23,25,28,0.1);
+    transition: width .6s ease;
+}
+
+.progress .progress-bar {
+    -webkit-transition: width 3s ease;
+    -moz-transition: width 3s ease;
+    -ms-transition: width 3s ease;
+    -o-transition: width 3s ease;
+    transition: width 3s ease;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.progress .progress-bar {
+    font-size: 10px;
+}
+
+.progress.progress-xxs {
+    height: 1px;
+}
+
+.progress-bar-warning {
+    background-color: #FFA117;
+}
+
+.progress-bar-success {
+    background-color: #5CB65F;
+}
+
+.progress-bar-info {
+    background-color: #3C89DA;
+}
+
+.progress-bar-danger {
+    background-color: #E15858;
+}
+
+.progress-bar-primary {
+    background: #9367B4;
+    color: rgba(255,255,255,0.7);
+}
+
+.text-green {
+    color: green;
+}
+
+.font-15 {
+    font-size: 15px;
+}
+
+.card-value svg {
+    height: 55px;
+    width: 90px;
+}
+
+.editbtn {
+    height: 20px;
+    width: 20px;
 }
