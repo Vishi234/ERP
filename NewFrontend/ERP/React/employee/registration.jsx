@@ -187,6 +187,7 @@ class EmployeeForm extends React.Component {
     }
     resetData = () => {
         debugger;
+        getEmployeeDetails();
         this.setState
             ({
                 empCode: "",
@@ -520,6 +521,7 @@ class EmployeeForm extends React.Component {
         });
     }
     handleClick(param) {
+        debugger;
         var data = JSON.parse(param.currentTarget.getAttribute("dataattr"));
         stuCount = ReadLocationData("Location", 1, "");
         var jsonData = ReadLocationData("Location", 2, 1);
@@ -533,7 +535,6 @@ class EmployeeForm extends React.Component {
             }
         }
         this.setState({ empState: obj });
-        debugger;
         var jsonData = ReadLocationData("Location", 3, data.state);
         for (var i = 0; i < jsonData.length; i++) {
             if (jsonData[i].LOCATION_ID == data.city) {
@@ -543,7 +544,6 @@ class EmployeeForm extends React.Component {
                 obj.push(gridData);
             }
         }
-        debugger;
         this.setState({ empCity: obj }); 
     this.setState
         ({
@@ -593,7 +593,7 @@ class EmployeeForm extends React.Component {
         })
     $("#employee").modal("show");
     }
-    CreateEdit(params) {
+    CreateEdit=(params)=> {
         debugger;
         var html = "";
         var domElement = "";

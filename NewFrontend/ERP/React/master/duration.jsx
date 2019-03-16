@@ -178,7 +178,7 @@
         var domElement = "";
         var jsonObj = JSON.stringify(params.data);
 
-        html = '<div><a class="testClass" href="javascript:void(0)" dataAttr=' + jsonObj + '><img style="height: 16px;margin-top: 5px;margin-left:5px;"  src="../images/icons/edit.png"></img></a></div>';
+        html = "<div><a class='testClass' href='javascript:void(0)' dataAttr='" + jsonObj + "'><img class='editbtn' src='/Images/icons/edit.svg'/></a></div>";
         domElement = document.createElement("div");
         domElement.innerHTML = html;
         return domElement;

@@ -64,10 +64,12 @@
                             return true;
                         }
                     }
+
                     else
                     {
                         return true;
                     }
+
                 }
             }
             else if (input.tagName == "SELECT") {
