@@ -640,91 +640,91 @@ class EmployeeForm extends React.Component {
     render() {
         return (
             <div>
-              <div className="esubmenu">
-                <ul className="breadcrumb float-left">
-                    <li><a href="#">Home /</a></li>
-                    <li><a href="#">Pictures /</a></li>
-                    <li><a href="#">Summer 15 /</a></li>
-                    <li><a href="#" className="active">Summer 15</a></li>
-                </ul>
-                <div className="ever float-right">
-                    <span>Version : 0.0.1</span>
-                </div>
-              </div>
-            <div className="pagebody">
-                <div className="einrformbase card p-4">
-                    <div className="card-title">
-                        Employee Management
+                <div className="esubmenu">
+                    <ul className="breadcrumb float-left">
+                        <li><a href="#">Home /</a></li>
+                        <li><a href="#">Pictures /</a></li>
+                        <li><a href="#">Summer 15 /</a></li>
+                        <li><a href="#" className="active">Summer 15</a></li>
+                    </ul>
+                    <div className="ever float-right">
+                        <span>Version : 0.0.1</span>
                     </div>
-                    <div className="card-body">
-                        <div className="efltrform"></div>
-                        <div className="action">
-                            <ul>
-                                <li>
-                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#employee" className="btn btn-secondary">
-                                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                             width="357px" height="357px" viewBox="0 0 357 357" style={{enableBackground:'new 0 0 357 357' }} xmlSpace="preserve">
-                                        <g>
-                                        <g id="add">
-                                        <path d="M357,204H204v153h-51V204H0v-51h153V0h51v153h153V204z" />
-                                        </g>
-                                        </g>
-                                        <g></g>
-                                        <g></g>
-                                        <g></g>
-                                        <g></g>
-                                        <g></g>
-                                        <g></g>
-                                        <g></g>
-                                        <g></g>
-                                        <g></g>
-                                        <g></g>
-                                        <g></g>
-                                        <g></g>
-                                        <g></g>
-                                        <g></g>
-                                        <g></g>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" className="btn btn-secondary">
-                                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                             viewBox="0 0 512 512" style={{enableBackground:'new 0 0 512 512'}} xmlSpace="preserve">
-                                        <g>
-                                        <g>
-                                        <path d="M382.56,233.376C379.968,227.648,374.272,224,368,224h-64V16c0-8.832-7.168-16-16-16h-64c-8.832,0-16,7.168-16,16v208h-64 c-6.272,0-11.968,3.68-14.56,9.376c-2.624,5.728-1.6,12.416,2.528,17.152l112,128c3.04,3.488,7.424,5.472,12.032,5.472 c4.608,0,8.992-2.016,12.032-5.472l112-128C384.192,245.824,385.152,239.104,382.56,233.376z" />
-                                        </g>
-                                        </g>
-                                        <g>
-                                        <g>
-                                        <path d="M432,352v96H80v-96H16v128c0,17.696,14.336,32,32,32h416c17.696,0,32-14.304,32-32V352H432z" />
-                                        </g>
-                                        </g>
-            	                        <g></g>
-            	                        <g></g>
-            	                        <g></g>
-            	                        <g></g>
-            	                        <g></g>
-            	                        <g></g>
-            	                        <g></g>
-            	                        <g></g>
-            	                        <g></g>
-            	                        <g></g>
-            	                        <g></g>
-            	                        <g></g>
-            	                        <g></g>
-            	                        <g></g>
-            	                        <g></g>
-                                        </svg>
-                                    </a>
-                                </li>
-                            </ul>
+                </div>
+                <div className="pagebody">
+                    <div className="einrformbase card p-4">
+                        <div className="card-title">
+                            Employee Management
+                    </div>
+                        <div className="card-body">
+                            <div className="efltrform"></div>
+                            <div className="action">
+                                <ul>
+                                    <li>
+                                        <a href="javascript:void(0)" data-toggle="modal" data-target="#employee" className="btn btn-secondary">
+                                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                width="357px" height="357px" viewBox="0 0 357 357" style={{ enableBackground: 'new 0 0 357 357' }} xmlSpace="preserve">
+                                                <g>
+                                                    <g id="add">
+                                                        <path d="M357,204H204v153h-51V204H0v-51h153V0h51v153h153V204z" />
+                                                    </g>
+                                                </g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)" className="btn btn-secondary">
+                                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                viewBox="0 0 512 512" style={{ enableBackground: 'new 0 0 512 512' }} xmlSpace="preserve">
+                                                <g>
+                                                    <g>
+                                                        <path d="M382.56,233.376C379.968,227.648,374.272,224,368,224h-64V16c0-8.832-7.168-16-16-16h-64c-8.832,0-16,7.168-16,16v208h-64 c-6.272,0-11.968,3.68-14.56,9.376c-2.624,5.728-1.6,12.416,2.528,17.152l112,128c3.04,3.488,7.424,5.472,12.032,5.472 c4.608,0,8.992-2.016,12.032-5.472l112-128C384.192,245.824,385.152,239.104,382.56,233.376z" />
+                                                    </g>
+                                                </g>
+                                                <g>
+                                                    <g>
+                                                        <path d="M432,352v96H80v-96H16v128c0,17.696,14.336,32,32,32h416c17.696,0,32-14.304,32-32V352H432z" />
+                                                    </g>
+                                                </g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <AgGrid columnDef={this.state.columnDef} rowData={this.state.rowData} />
                         </div>
-                        <AgGrid columnDef={this.state.columnDef} rowData={this.state.rowData} />
                     </div>
                 </div>
-            </div>
                 <div id="employee" className="modal fade">
                     <div className="modal-dialog modal-dialog-vertical-center modal-lg" role="document">
                         <div className="modal-content bd-0 tx-14">
@@ -738,20 +738,20 @@ class EmployeeForm extends React.Component {
 
                                         <ul className="einrform ecustform">
                                             <li>
-                                                    <CreateInput type={'text'} value={this.state.empCode} label={'Employee Code'} name={'empCode'} htmlFor={'empCode'}
-                                                    onChange={this.onChangeCode.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} disabled="true"/>
+                                                <CreateInput type={'text'} value={this.state.empCode} label={'Employee Code'} name={'empCode'} htmlFor={'empCode'}
+                                                    onChange={this.onChangeCode.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} disabled="true" />
                                             </li>
                                             <li>
                                                 <CreateInput type={'text'} value={this.state.empFirst} label={'First Name'} name={'empFirst'} htmlFor={'empFirst'} isrequired={true}
-                                                             onChange={this.onChangeFirst.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                    onChange={this.onChangeFirst.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                             </li>
                                             <li>
                                                 <CreateInput type={'text'} value={this.state.empLast} label={'Last Name'} name={'empLast'} htmlFor={'empLast'} isrequired={true}
-                                                             onChange={this.onChangeLast.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                    onChange={this.onChangeLast.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                             </li>
                                             <li>
                                                 <CreateInput type={'text'} value={this.state.empQuali} label={'Qualification'} name={'empQuali'} htmlFor={'empQuali'} isrequired={true}
-                                                             onChange={this.onChangeQuali.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                    onChange={this.onChangeQuali.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                             </li>
                                             <li>
                                                 <CreateInput type={'ddl'} value={this.state.selectedDept} data={this.state.empDept} label={'Department'} name={'empDept'} htmlFor={'empDept'} isrequired={true}
@@ -763,11 +763,11 @@ class EmployeeForm extends React.Component {
                                             </li>
                                             <li>
                                                 <CreateInput type={'ddl'} value={this.state.selectedType} data={this.state.empType} label={'Employee Type'} name={'empType'} htmlFor={'empType'} isrequired={true}
-                                                             keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeType.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                    keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeType.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                             </li>
                                             <li>
                                                 <CreateInput type={'ddl'} value={this.state.selectedJType} data={this.state.empJType} label={'Job Type'} name={'empJType'} htmlFor={'empJType'} isrequired={true}
-                                                             keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeJType.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                    keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeJType.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                             </li>
                                         </ul>
                                         <div className="empbse">
@@ -776,199 +776,199 @@ class EmployeeForm extends React.Component {
                                             </div>
                                             <div className="efinput">
                                                 Choose File
-                                                <input type="file" onChange={this.onChangeImage.bind(this)}  messageRequired={'required.'} className="hide_file" />
+                                                <input type="file" onChange={this.onChangeImage.bind(this)} messageRequired={'required.'} className="hide_file" />
                                             </div>
-                                            
+
                                         </div>
 
                                     </div>
                                     <hr />
                                     <ul className="nav nav-tabs">
                                         <li className="nav-item">
-                                            <a className="nav-link active show" data-toggle="tab" href="#personal">Personal Details</a>
+                                            <a className="nav-link active show personalEmp" data-toggle="tab" href="#personal">Personal Details</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" data-toggle="tab" href="#address">Address Details</a>
+                                            <a className="nav-link addressEmp" data-toggle="tab" href="#address">Address Details</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" data-toggle="tab" href="#experience">Last Employer Details</a>
+                                            <a className="nav-link experienceEmp" data-toggle="tab" href="#experience">Last Employer Details</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" data-toggle="tab" href="#subject">Subject Details</a>
+                                            <a className="nav-link subjectEmp" data-toggle="tab" href="#subject">Subject Details</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" data-toggle="tab" href="#account">Account Details</a>
+                                            <a className="nav-link accountEmp" data-toggle="tab" href="#account">Account Details</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" data-toggle="tab" href="#authentication">Authentication Details</a>
+                                            <a className="nav-link authenticationEmp" data-toggle="tab" href="#authentication">Authentication Details</a>
                                         </li>
                                     </ul>
                                     <div className="tab-content">
                                         <div className="tab-pane active show" id="personal">
-                                           <ul className="einrform">
-                                               <li>
-                                                            <CreateInput type={'text'} value={this.state.empFather} label={'Father Name'} name={'empFather'} htmlFor={'empFather'} isrequired={true}
-                                                                         onChange={this.onChangeFather.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                               </li>
+                                            <ul className="einrform">
+                                                <li>
+                                                    <CreateInput type={'text'} value={this.state.empFather} label={'Father Name'} name={'empFather'} htmlFor={'empFather'} isrequired={true}
+                                                        onChange={this.onChangeFather.bind(this)} className={'form-control personalEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.empMother} label={'Mother Name'} name={'empMother'} htmlFor={'empMother'} isrequired={true}
-                                                                 onChange={this.onChangeMother.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeMother.bind(this)} className={'form-control personalEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedSex} data={this.state.empSex} label={'Gender'} name={'empSex'} htmlFor={'empSex'} isrequired={true}
-                                                                 keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeSex.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeSex.bind(this)} className={'form-control personalEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'date'} value={this.state.empDOB} id={'empDOB'} label={'Date Of Birth'} name={'empDOB'} htmlFor={'empDOB'} isrequired={true}
-                                                                 className={'startDate form-control'} onBlur={this.onDOBBlur.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        className={'startDate form-control personalEmp'} onBlur={this.onDOBBlur.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'date'} value={this.state.empDOJ} id={'empDOJ'} label={'Date Of Joining'} name={'empDOJ'} htmlFor={'empDOJ'} isrequired={true}
-                                                                 className={'startDate form-control'} onBlur={this.onDOJBlur.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        className={'startDate form-control personalEmp'} onBlur={this.onDOJBlur.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.empSpoou} label={'Spouse Name'} name={'empSpoou'} htmlFor={'empSpoou'} isrequired={true}
-                                                                 onChange={this.onChangeSpoou.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeSpoou.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedBGrp} data={this.state.empBGrp} label={'Blood Group'} name={'empBGrp'} htmlFor={'empBGrp'} isrequired={true}
-                                                                 keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeBGrp.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeBGrp.bind(this)} className={'form-control personalEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedMat} data={this.state.empMStat} label={'Marital Status'} name={'empMStat'} htmlFor={'empMStat'} isrequired={true}
-                                                                 keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeMStat.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeMStat.bind(this)} className={'form-control personalEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.empNation} label={'Nationality'} name={'empNation'} htmlFor={'empNation'} isrequired={true}
-                                                                 onChange={this.onChangeNation.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeNation.bind(this)} className={'form-control personalEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
-                                           </ul>
+                                            </ul>
                                         </div>
                                         <div className="tab-pane" id="address">
                                             <ul className="einrform">
                                                 <li>
-                                                            <CreateInput type={'text'} value={this.state.empAdres} label={'Address Line 1'} name={'empAdres'} htmlFor={'empAdres'} isrequired={true}
-                                                                         onChange={this.onChangeAdres.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                    <CreateInput type={'text'} value={this.state.empAdres} label={'Address Line 1'} name={'empAdres'} htmlFor={'empAdres'} isrequired={true}
+                                                        onChange={this.onChangeAdres.bind(this)} className={'form-control addressEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.empAdres2} label={'Address Line 2'} name={'empAdres2'} htmlFor={'empAdres2'} isrequired={true}
-                                                                 onChange={this.onChangeAdres2.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeAdres2.bind(this)} className={'form-control addressEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedCount} data={this.state.empCount} label={'Country'} name={'empCount'} htmlFor={'empCount'} isrequired={true}
-                                                                 keyId={'LOCATION_ID'} keyName={'LOCATION_NAME'} onChange={this.onChangeCount.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        keyId={'LOCATION_ID'} keyName={'LOCATION_NAME'} onChange={this.onChangeCount.bind(this)} className={'form-control addressEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedState} data={this.state.empState} label={'State'} name={'empState'} htmlFor={'empState'} isrequired={true} keyId={'STATE_ID'} keyName={'STATE_NAME'}
-                                                                 onChange={this.onChangeState.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeState.bind(this)} className={'form-control addressEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedCity} data={this.state.empCity} label={'City'} name={'empCity'} htmlFor={'empCity'} isrequired={true} keyId={'CITY_ID'} keyName={'CITY_NAME'}
-                                                                 onChange={this.onChangeCity.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeCity.bind(this)} className={'form-control addressEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.empZip} label={'Zip Code'} name={'empZip'} htmlFor={'empZip'} isrequired={true}
-                                                                 onChange={this.onChangeZip.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeZip.bind(this)} className={'form-control addressEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.empMobile} label={'Mobile No'} name={'empMobile'} htmlFor={'empMobile'} isrequired={true}
-                                                                 onChange={this.onChangeMobile.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeMobile.bind(this)} className={'form-control addressEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.empPhone} label={'Phone No'} name={'empPhone'} htmlFor={'empPhone'} isrequired={true}
-                                                                 onChange={this.onChangePhone.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangePhone.bind(this)} className={'form-control addressEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.empEmail} label={'Email'} name={'email'} emailValidation={'Please enter valid email address'} htmlFor={'empEmail'} isrequired={true}
-                                                        onChange={this.onChangeEmail.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeEmail.bind(this)} className={'form-control addressEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                             </ul>
                                         </div>
                                         <div className="tab-pane" id="experience">
                                             <ul className="einrform">
                                                 <li>
-                                                            <CreateInput type={'text'} value={this.state.preEmp} label={'Employer Name'} name={'preEmp'} htmlFor={'preEmp'} isrequired={true}
-                                                                         onChange={this.onChangePreEmp.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                    <CreateInput type={'text'} value={this.state.preEmp} label={'Employer Name'} name={'preEmp'} htmlFor={'preEmp'} isrequired={true}
+                                                        onChange={this.onChangePreEmp.bind(this)} className={'form-control experienceEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'date'} value={this.state.preDOJ} id={'preDOJ'} label={'Date Of Joining'} name={'preDOJ'} htmlFor={'preDOJ'} isrequired={true}
-                                                                 className={'startDate form-control'} onBlur={this.onPreDOJBlur.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        className={'startDate form-control experienceEmp'} onBlur={this.onPreDOJBlur.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'date'} value={this.state.preDOL} id={'empDOL'} label={'Date Of Leaving'} name={'preDOL'} htmlFor={'preDOL'} isrequired={true}
-                                                                 className={'startDate form-control'} onBlur={this.onPreDOLBlur.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        className={'startDate form-control experienceEmp'} onBlur={this.onPreDOLBlur.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.prePhone} label={'Phone No'} name={'prePhone'} htmlFor={'prePhone'} isrequired={true}
-                                                                 onChange={this.onChangePrePhone.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangePrePhone.bind(this)} className={'form-control experienceEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.empExpre} label={'Total Experience'} name={'empExpre'} htmlFor={'empExpre'} isrequired={true}
-                                                                 onChange={this.onChangeExpre.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeExpre.bind(this)} className={'form-control experienceEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.empResLeav} label={'Reason Of Leaving'} name={'empResLeav'} htmlFor={'empResLeav'} isrequired={true}
-                                                                 onChange={this.onChangeLeave.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeLeave.bind(this)} className={'form-control experienceEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.preSal} label={'Last Salary'} name={'preSal'} htmlFor={'preSal'} isrequired={true}
-                                                                 onChange={this.onChangePreSal.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangePreSal.bind(this)} className={'form-control experienceEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                             </ul>
                                         </div>
                                         <div className="tab-pane" id="subject">
                                             <CreateInput type={'selectBox'} value={this.state.selectedSubject} data={this.state.empSub} label={''} name={'empSub'} htmlFor={'empSub'} isrequired={true}
-                                                         onChange={this.onChangeSubject.bind(this)} keyId={'SUBJECT_ID'} keyName={'SUBJECT_NAME'} className={'listbox'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                onChange={this.onChangeSubject.bind(this)} keyId={'SUBJECT_ID'} keyName={'SUBJECT_NAME'} className={'listbox subjectEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                         </div>
                                         <div className="tab-pane" id="account">
                                             <ul className="einrform">
                                                 <li>
-                                                            <CreateInput type={'text'} value={this.state.empBank} label={'Bank Name'} name={'empBank'} htmlFor={'empBank'} isrequired={true}
-                                                                         onChange={this.onChangeBank.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                    <CreateInput type={'text'} value={this.state.empBank} label={'Bank Name'} name={'empBank'} htmlFor={'empBank'} isrequired={true}
+                                                        onChange={this.onChangeBank.bind(this)} className={'form-control accountEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.empAccNo} label={'Bank Account No'} name={'empAccNo'} htmlFor={'empAccNo'} isrequired={true}
-                                                                 onChange={this.onChangeAccNo.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeAccNo.bind(this)} className={'form-control accountEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.empIFSC} label={'IFSC Code'} name={'empIFSC'} htmlFor={'empIFSC'} isrequired={true}
-                                                                 onChange={this.onChangeIFSC.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeIFSC.bind(this)} className={'form-control accountEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.empAdhar} label={'Adhaar Number'} name={'empAdhar'} htmlFor={'empAdhar'} isrequired={true}
-                                                                 onChange={this.onChangeAdhar.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeAdhar.bind(this)} className={'form-control accountEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.empPF} label={'PF Number'} name={'empPF'} htmlFor={'empPF'} isrequired={true}
-                                                                 onChange={this.onChangePF.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangePF.bind(this)} className={'form-control accountEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.empSalary} label={'Current Salary'} name={'empSalary'} htmlFor={'empSalary'} isrequired={true}
-                                                                 onChange={this.onChangeSalary.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeSalary.bind(this)} className={'form-control accountEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                             </ul>
                                         </div>
                                         <div className="tab-pane" id="authentication">
                                             <ul className="einrform">
                                                 <li>
-                                                            <CreateInput type={'text'} value={this.state.empLogin} label={'Login Id'} name={'empLogin'} htmlFor={'empLogin'} isrequired={true}
-                                                                         onChange={this.onChangeLogin.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                    <CreateInput type={'text'} value={this.state.empLogin} label={'Login Id'} name={'empLogin'} htmlFor={'empLogin'} isrequired={true}
+                                                        onChange={this.onChangeLogin.bind(this)} className={'form-control authenticationEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'password'} value={this.state.empPwd} label={'Password'} name={'empPwd'} htmlFor={'empPwd'} isrequired={true}
-                                                                 onChange={this.onChangePwd.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangePwd.bind(this)} className={'form-control authenticationEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'password'} value={this.state.empCPwd} label={'Confirm Password'} name={'empCPwd'} htmlFor={'empCPwd'} isrequired={true}
-                                                        onChange={this.onChangeCPwd.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} invalidPassword={'Password not match'} validate={this.isConfirmedPassword.bind(this)} />
+                                                        onChange={this.onChangeCPwd.bind(this)} className={'form-control authenticationEmp'} onComponentMounted={this.register} messageRequired={'required.'} invalidPassword={'Password not match'} validate={this.isConfirmedPassword.bind(this)} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedRole} data={this.state.empRole} label={'Role'} name={'empRole'} htmlFor={'empRole'} isrequired={true}
-                                                                 keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeRole.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeRole.bind(this)} className={'form-control authenticationEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedAccStat} data={this.state.empAccStat} label={'Account Status'} name={'empAccStat'} htmlFor={'empAccStat'} isrequired={true}
-                                                                 keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeAccStat.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeAccStat.bind(this)} className={'form-control authenticationEmp'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                             </ul>
                                         </div>

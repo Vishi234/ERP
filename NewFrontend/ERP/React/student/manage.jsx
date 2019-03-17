@@ -1,6 +1,7 @@
 ﻿var grdArray;
 var MyData = null;
 var fields = [];
+var test = "";
 class AdmissionForm extends React.Component {
     constructor(props) {
         super(props);
@@ -16,10 +17,11 @@ class AdmissionForm extends React.Component {
         }
         this.state = {
             imgSrc: "/images/user-img.png",
-            stuImage:"",
+            //     postedFile:"",
+            stuImage: "",
             stuCode: "",
             stuFirst: "",
-            stuLast:"",
+            stuLast: "",
             stuCourse: ReadDropDownData("Course", $("#hfCustomerId").val(), false),
             stuSemester: [],
             stuCategory: ReadDropDownData("Param", '13', true),
@@ -86,7 +88,7 @@ class AdmissionForm extends React.Component {
 
                 var validField;
                 if (field[0].props.type == 'ddl') {
-                    
+
                     validField = field[0].isValid(field[0].refs.MySelect2);
                 } else {
 
@@ -98,47 +100,51 @@ class AdmissionForm extends React.Component {
         //after validation complete post to server
         if (validForm) {
             var d = {
-                stuImage      :this.state.stuImage,
-                stuCode       :this.state.stuCode,
-                stuFirst      :this.state.stuFirst,
-                stuLast       :this.state.stuLast,
-                stuCourse     :this.state.selectedCourse,
-                stuSemester   :this.state.selectedSemester,
-                stuCategory   :this.state.selectedCate,
-                stuAcade      :this.state.selectedAcademic,
-                stuFather     :this.state.stuFather,
-                stuMother     :this.state.stuMother,
-                stuSex        :this.state.selectedSex,
-                stuDOB        :this.state.stuDOB,
-                stuBGrp       :this.state.selectedBGrp,
-                stuNation     :this.state.stuNation,
-                stuMTongue    : this.state.selectedMTongue,
-                stuBirPlace   :this.state.stuBirPlace,
-                stuHandi      :this.state.selectedHandicap,
-                stuPIncome    :this.state.stuPIncome,
-                stuAdres      :this.state.stuAdres,
-                stuAdres2     :this.state.stuAdres2,
-                stuCount      :this.state.selectedCount,
-                stuState      :this.state.selectedState,
-                stuCity       :this.state.selectedCity,
-                stuZip        :this.state.stuZip,
-                stuMobile     :this.state.stuMobile,
-                stuPhone      :this.state.stuPhone,
-                stuEmail      :this.state.stuEmail,
-                stuSub        :this.state.selectedSubject,
-                stuInst       :this.state.stuInst,
-                stuBoard      :this.state.selectedBoard,
-                stuPreCourse  :this.state.selectedPreCourse,
-                couCompli     :this.state.couCompli,
-                stuMarks      :this.state.stuMarks,
-                stuPercent    :this.state.stuPercent,
-                stuLogin      :this.state.stuLogin,
-                stuPwd        :this.state.stuPwd,
-                stuCPwd       :this.state.stuCPwd,
+                stuImage: this.state.stuImage,
+                stuCode: this.state.stuCode,
+                stuFirst: this.state.stuFirst,
+                stuLast: this.state.stuLast,
+                stuCourse: this.state.selectedCourse,
+                stuSemester: this.state.selectedSemester,
+                stuCategory: this.state.selectedCate,
+                stuAcade: this.state.selectedAcademic,
+                stuFather: this.state.stuFather,
+                stuMother: this.state.stuMother,
+                stuSex: this.state.selectedSex,
+                stuDOB: this.state.stuDOB,
+                stuBGrp: this.state.selectedBGrp,
+                stuNation: this.state.stuNation,
+                stuMTongue: this.state.selectedMTongue,
+                stuBirPlace: this.state.stuBirPlace,
+                stuHandi: this.state.selectedHandicap,
+                stuPIncome: this.state.stuPIncome,
+                stuAdres: this.state.stuAdres,
+                stuAdres2: this.state.stuAdres2,
+                stuCount: this.state.selectedCount,
+                stuState: this.state.selectedState,
+                stuCity: this.state.selectedCity,
+                stuZip: this.state.stuZip,
+                stuMobile: this.state.stuMobile,
+                stuPhone: this.state.stuPhone,
+                stuEmail: this.state.stuEmail,
+                stuSub: this.state.selectedSubject,
+                stuInst: this.state.stuInst,
+                stuBoard: this.state.selectedBoard,
+                stuPreCourse: this.state.selectedPreCourse,
+                couCompli: this.state.couCompli,
+                stuMarks: this.state.stuMarks,
+                stuPercent: this.state.stuPercent,
+                stuLogin: this.state.stuLogin,
+                stuPwd: this.state.stuPwd,
+                stuCPwd: this.state.stuCPwd,
+                //   postedFile: this.state.postedFile,
                 stuAccStat: this.state.selectedPreCourse,
                 flag: this.state.flag,
                 reportId: 1
             }
+
+            //   d.apppend(postedFile);
+
             $.ajax({
                 type: "POST",
                 url: this.props.urlPost,
@@ -150,7 +156,8 @@ class AdmissionForm extends React.Component {
                     btnloading("StuRegis", 'hide');
                     CallToast(data.msg, data.flag);
                     if (data.flag == "S") {
-                        this.getStudentDetails();  
+                        this.uploadImages();
+                        this.getStudentDetails();
                         this.resetData();
                     }
                 }.bind(this),
@@ -163,73 +170,95 @@ class AdmissionForm extends React.Component {
         }
     }
     getStudentDetails = () => {
-        $.get("/Employee/GetStudentDetails", function (data) {
+        $.get("/Student/GetStudentDetails", function (data) {
             MyData = JSON.parse(data.addParams);
             this.setState({ rowData: MyData });
             this.setState({ records: MyData.length })
         });
     }
 
-    resetData = () =>  {
-    this.setState
-        ({
-            imgSrc: "",
-            stuImage: "",
-            stuCode: "",
-            stuFirst: "",
-            stuLast: "",
-            stuCourse: ReadDropDownData("Course", $("#hfCustomerId").val(), false),
-            stuSemester: [],
-            stuCategory: ReadDropDownData("Param", '13', true),
-            stuAcade: ReadDropDownData("AcademicYear", $("#hfCustomerId").val(), false),
-            stuFather: "",
-            stuMother: "",
-            stuSex: ReadDropDownData("Param", '12', true),
-            stuDOB: "",
-            stuBGrp: ReadDropDownData("Param", '10', true),
-            stuNation: "",
-            stuMTongue: [],
-            stuBirPlace: "",
-            stuHandi: ReadDropDownData("Param", '15', true),
-            stuPIncome: "",
-            stuAdres: "",
-            stuAdres2: "",
-            stuCount: ReadLocationData("Location", 1, ""),
-            stuState: [],
-            stuCity: [],
-            stuZip: "",
-            stuMobile: "",
-            stuPhone: "",
-            stuEmail: "",
-            stuSub: ReadDropDownData("Subject", $("#hfCustomerId").val(), false),
-            stuInst: "",
-            stuBoard: [],
-            stuPreCourse: ReadDropDownData("Course", $("#hfCustomerId").val(), false),
-            couCompli: "",
-            stuMarks: "",
-            stuPercent: "",
-            stuLogin: "",
-            stuPwd: "",
-            stuCPwd: "",
-            stuAccStat: ReadDropDownData("Param", '1', true),
-            selectedCourse: 0,
-            selectedSemester: 0,
-            selectedCate: 0,
-            selectedAcademic: 0,
-            selectedSex: 0,
-            selectedBGrp: 0,
-            selectedHandicap: 0,
-            selectedCount: 0,
-            selectedState: 0,
-            selectedCity: 0,
-            selectedBoard: 0,
-            selectedPreCourse: 0,
-            selectedSubject: 0,
-            selectedMTongue: 0,
-            label: "Save",
-            flag: "A",
+    uploadImages = () => {
+        $.ajax({
+            type: "POST",
+            url: "../../Handlers/UploadImages.ashx",
+            dataType: "json",
+            contentType: false,
+            processData: false,
+            data: test,
+            async: false,
+            success: function (data)
+            {
+                alert("done");
+            },
+            error: function (evt) {
+                btnloading("StuRegis", 'hide');
+                alert('Error! Please try again');
+            }
         })
-}
+
+
+    }
+
+    resetData = () => {
+        this.setState
+            ({
+                imgSrc: "",
+                stuImage: "",
+                stuCode: "",
+                stuFirst: "",
+                stuLast: "",
+                stuCourse: ReadDropDownData("Course", $("#hfCustomerId").val(), false),
+                stuSemester: [],
+                stuCategory: ReadDropDownData("Param", '13', true),
+                stuAcade: ReadDropDownData("AcademicYear", $("#hfCustomerId").val(), false),
+                stuFather: "",
+                stuMother: "",
+                stuSex: ReadDropDownData("Param", '12', true),
+                stuDOB: "",
+                stuBGrp: ReadDropDownData("Param", '10', true),
+                stuNation: "",
+                stuMTongue: [],
+                stuBirPlace: "",
+                stuHandi: ReadDropDownData("Param", '15', true),
+                stuPIncome: "",
+                stuAdres: "",
+                stuAdres2: "",
+                stuCount: ReadLocationData("Location", 1, ""),
+                stuState: [],
+                stuCity: [],
+                stuZip: "",
+                stuMobile: "",
+                stuPhone: "",
+                stuEmail: "",
+                stuSub: ReadDropDownData("Subject", $("#hfCustomerId").val(), false),
+                stuInst: "",
+                stuBoard: [],
+                stuPreCourse: ReadDropDownData("Course", $("#hfCustomerId").val(), false),
+                couCompli: "",
+                stuMarks: "",
+                stuPercent: "",
+                stuLogin: "",
+                stuPwd: "",
+                stuCPwd: "",
+                stuAccStat: ReadDropDownData("Param", '1', true),
+                selectedCourse: 0,
+                selectedSemester: 0,
+                selectedCate: 0,
+                selectedAcademic: 0,
+                selectedSex: 0,
+                selectedBGrp: 0,
+                selectedHandicap: 0,
+                selectedCount: 0,
+                selectedState: 0,
+                selectedCity: 0,
+                selectedBoard: 0,
+                selectedPreCourse: 0,
+                selectedSubject: 0,
+                selectedMTongue: 0,
+                label: "Save",
+                flag: "A",
+            })
+    }
 
     onChangeCode(value) {
         this.setState({
@@ -321,12 +350,12 @@ class AdmissionForm extends React.Component {
     }
     onChangeHandi(value) {
         this.setState({
-            selectedHandicap : value
+            selectedHandicap: value
         });
     }
     onChangePIncom(value) {
         this.setState({
-            stuPIncome : value
+            stuPIncome: value
         });
     }
     onChangeAdres(value) {
@@ -442,7 +471,7 @@ class AdmissionForm extends React.Component {
         this.setState({
             stuPwd: value
         });
-        window.setTimeout( ()=> {
+        window.setTimeout(() => {
             if (this.state.stuCPwd && this.state.stuCPwd.length) {
                 this.refs.stuCPwd.validate(this.state.stuCPwd);
             }
@@ -454,7 +483,7 @@ class AdmissionForm extends React.Component {
         });
     }
     isConfirmedPassword(value) {
-        
+
         console.log(value, this.state.stuPwd, value === this.state.stuPwd);
         return (value === this.state.stuPwd)
     }
@@ -462,7 +491,7 @@ class AdmissionForm extends React.Component {
         this.setState({
             selectedAccStat: value
         });
-    } 
+    }
     handleClick(param) {
         var data = JSON.parse(param.currentTarget.getAttribute("dataattr"));
         stuCount = ReadLocationData("Location", 1, "");
@@ -477,7 +506,7 @@ class AdmissionForm extends React.Component {
             }
         }
         this.setState({ stuState: obj });
-        
+
         var jsonData = ReadLocationData("Location", 3, data.state);
         for (var i = 0; i < jsonData.length; i++) {
             if (jsonData[i].LOCATION_ID == data.city) {
@@ -487,11 +516,11 @@ class AdmissionForm extends React.Component {
                 obj.push(gridData);
             }
         }
-        
-            this.setState({ stuCity: obj });            
+
+        this.setState({ stuCity: obj });
         this.setState
             ({
-                selectedCount:1,
+                selectedCount: 1,
                 stuCode: data.stuCode,
                 stuFirst: data.stufname,
                 stuLast: data.lname,
@@ -509,7 +538,7 @@ class AdmissionForm extends React.Component {
                 stuBirPlace: data.placeBirth,
                 selectedHandicap: data.handicapID,
                 selectedState: data.state,
-                selectedCity:data.city,
+                selectedCity: data.city,
                 stuPIncome: data.pIncome,
                 stuAdres: data.addressLine1,
                 stuAdres2: data.addressLine2,
@@ -525,13 +554,13 @@ class AdmissionForm extends React.Component {
                 stuMarks: data.MARKS,
                 stuPercent: data.percentage,
                 stuLogin: data.login,
-                stuPwd: data.password,     
-                stuCPwd: data.password,   
+                stuPwd: data.password,
+                stuCPwd: data.password,
             })
         $("#student").modal("show");
     }
     CreateEdit(params) {
-        
+
         var html = "";
         var domElement = "";
         var jsonObj = JSON.stringify(params.data);
@@ -546,25 +575,39 @@ class AdmissionForm extends React.Component {
     componentDidUpdate() {
         $('.testClass').on("click", this.handleClick.bind(this));
     }
-    onChangeImage=(value)=>{
-        if(value.target.files.length > 0)
-        {
+    onChangeImage = (value) => {
+        if (value.target.files.length > 0) {
             var file = value.target.files[0];
             var reader = new FileReader();
             var url = reader.readAsDataURL(file);
 
-            reader.onloadend = function (e) {
-                this.setState({
+
+            //var formData = new FormData();
+            //formData.append('file', $('#uploadedImg')[0].files[0]);
+
+
+
+            test = new FormData();
+            test.append('file', $('#uploadedImg')[0].files[0]);
+
+            this.setState
+                ({
                     imgSrc: [reader.result],
-                    empImage: value.target.files[0].name,
-                })
-            }.bind(this);
+                    stuImage: value.target.files[0].name,
+                    // postedFile: test
+                    // stuImage: file
+                });
+            //reader.onloadend = function (e) {
+            //    this.setState({
+            //        imgSrc: [reader.result],
+            //        stuImage: value.target.files[0].name,
+            //    })
+            //}.bind(this);
         }
-        else
-        {
+        else {
             this.setState({
-                    imgSrc: "/images/user-img.png"
-            })
+                imgSrc: "/images/user-img.png"
+            });
         }
 
     }
@@ -599,7 +642,7 @@ class AdmissionForm extends React.Component {
                                     <li>
                                         <a href="javascript:void(0)" data-toggle="modal" data-target="#student" className="btn btn-secondary">
                                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                 width="357px" height="357px" viewBox="0 0 357 357" style={{enableBackground:'new 0 0 357 357'}} xmlSpace="preserve">
+                                                width="357px" height="357px" viewBox="0 0 357 357" style={{ enableBackground: 'new 0 0 357 357' }} xmlSpace="preserve">
                                                 <g>
                                                     <g id="add">
                                                         <path d="M357,204H204v153h-51V204H0v-51h153V0h51v153h153V204z" />
@@ -626,7 +669,7 @@ class AdmissionForm extends React.Component {
                                     <li>
                                         <a href="javascript:void(0)" className="btn btn-secondary">
                                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                 viewBox="0 0 512 512" style={{enableBackground:'new 0 0 512 512'}} xmlSpace="preserve">
+                                                viewBox="0 0 512 512" style={{ enableBackground: 'new 0 0 512 512' }} xmlSpace="preserve">
                                                 <g>
                                                     <g>
                                                         <path d="M382.56,233.376C379.968,227.648,374.272,224,368,224h-64V16c0-8.832-7.168-16-16-16h-64c-8.832,0-16,7.168-16,16v208h-64 c-6.272,0-11.968,3.68-14.56,9.376c-2.624,5.728-1.6,12.416,2.528,17.152l112,128c3.04,3.488,7.424,5.472,12.032,5.472 c4.608,0,8.992-2.016,12.032-5.472l112-128C384.192,245.824,385.152,239.104,382.56,233.376z" />
@@ -674,8 +717,8 @@ class AdmissionForm extends React.Component {
 
                                         <ul className="einrform ecustform">
                                             <li>
-                                                <CreateInput type={'text'} value={this.state.stuCode} label={'Student Code'} name={'stuCode'} htmlFor={'stuCode'}
-                                                    onChange={this.onChangeCode.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} disabled="true"/>
+                                                <CreateInput type={'text'} value={this.state.stuCode} label={'Student Code'} name={'stuCode '} htmlFor={'stuCode'}
+                                                    onChange={this.onChangeCode.bind(this)} className={'form-control '} onComponentMounted={this.register} messageRequired={'required.'} disabled="true" />
                                             </li>
                                             <li>
                                                 <CreateInput type={'text'} value={this.state.stuFirst} label={'First Name'} name={'stuFirst'} htmlFor={'stuFirst'} isrequired={true}
@@ -700,7 +743,7 @@ class AdmissionForm extends React.Component {
                                             <li>
                                                 <CreateInput type={'ddl'} value={this.state.selectedCate} data={this.state.stuCategory} label={'Category'} name={'stuCategory'} htmlFor={'stuCategory'} isrequired={true}
                                                     keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeCategory.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                            </li>                                           
+                                            </li>
                                         </ul>
                                         <div className="empbse">
                                             <div className="empimg">
@@ -717,19 +760,19 @@ class AdmissionForm extends React.Component {
                                     <hr />
                                     <ul className="nav nav-tabs">
                                         <li className="nav-item">
-                                            <a className="nav-link active show" data-toggle="tab" href="#personal">Personal Information</a>
+                                            <a className="nav-link active show personal" data-toggle="tab" href="#personal">Personal Information</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" data-toggle="tab" href="#contact">Contact Information</a>
+                                            <a className="nav-link contact" data-toggle="tab" href="#contact">Contact Information</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" data-toggle="tab" href="#subject">Subject Information</a>
+                                            <a className="nav-link subject" data-toggle="tab" href="#subject">Subject Information</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" data-toggle="tab" href="#academic">Academic Information</a>
+                                            <a className="nav-link academic" data-toggle="tab" href="#academic">Academic Information</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" data-toggle="tab" href="#account">Account Information</a>
+                                            <a className="nav-link account" data-toggle="tab" href="#account">Account Information</a>
                                         </li>
                                     </ul>
                                     <div className="tab-content">
@@ -737,43 +780,43 @@ class AdmissionForm extends React.Component {
                                             <ul className="einrform">
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.stuFather} label={'Father Name'} name={'stuFather'} htmlFor={'stuFather'} isrequired={true}
-                                                        onChange={this.onChangeFather.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeFather.bind(this)} className={'form-control personal'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.stuMother} label={'Mother Name'} name={'stuMother'} htmlFor={'stuMother'} isrequired={true}
-                                                        onChange={this.onChangeMother.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeMother.bind(this)} className={'form-control personal'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedSex} data={this.state.stuSex} label={'Gender'} name={'stuSex'} htmlFor={'stuSex'} isrequired={true}
-                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeSex.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeSex.bind(this)} className={'form-control personal'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'date'} value={this.state.stuDOB} id={'stuDOB'} label={'Date Of Birth'} name={'stuDOB'} htmlFor={'stuDOB'} isrequired={true}
-                                                        className={'startDate form-control'} onBlur={this.onDOBBlur.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        className={'startDate form-control personal'} onBlur={this.onDOBBlur.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedBGrp} data={this.state.stuBGrp} label={'Blood Group'} name={'stuBGrp'} htmlFor={'stuBGrp'} isrequired={true}
-                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeBGrp.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeBGrp.bind(this)} className={'form-control personal'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.stuNation} label={'Nationality'} name={'stuNation'} htmlFor={'stuNation'} isrequired={true}
-                                                        onChange={this.onChangeNation.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeNation.bind(this)} className={'form-control personal'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedMTongue} data={this.state.stuMTongue} label={'Mother Tongue'} name={'stuMTongue'} htmlFor={'stuMTongue'} isrequired={true}
-                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeMTongue.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeMTongue.bind(this)} className={'form-control personal'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.stuBirPlace} label={'Place Of Birth'} name={'stuBirPlace'} htmlFor={'stuBirPlace'} isrequired={true}
-                                                        onChange={this.onChangePlace.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangePlace.bind(this)} className={'form-control personal'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedHandicap} data={this.state.stuHandi} label={'Are You Handicap?'} name={'stuHandi'} htmlFor={'stuHandi'} isrequired={true}
-                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeHandi.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeHandi.bind(this)} className={'form-control personal'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.stuPIncome} label={'Parent Income(Annually)'} name={'stuPIncome'} htmlFor={'stuPIncome'} isrequired={true}
-                                                        onChange={this.onChangePIncom.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangePIncom.bind(this)} className={'form-control personal'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                             </ul>
                                         </div>
@@ -781,40 +824,40 @@ class AdmissionForm extends React.Component {
                                             <ul className="einrform">
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.stuAdres} label={'Address Line 1'} name={'stuAdres'} htmlFor={'stuAdres'} isrequired={true}
-                                                        onChange={this.onChangeAdres.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeAdres.bind(this)} className={'form-control contact'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.stuAdres2} label={'Address Line 2'} name={'stuAdres2'} htmlFor={'stuAdres2'} isrequired={true}
-                                                        onChange={this.onChangeAdres2.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeAdres2.bind(this)} className={'form-control contact'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
 
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedCount} data={this.state.stuCount} label={'Country'} name={'stuCount'} htmlFor={'stuCount'} isrequired={true}
-                                                        keyId={'LOCATION_ID'} keyName={'LOCATION_NAME'} onChange={this.onChangeCount.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        keyId={'LOCATION_ID'} keyName={'LOCATION_NAME'} onChange={this.onChangeCount.bind(this)} className={'form-control contact'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedState} data={this.state.stuState} label={'State'} name={'stuState'} htmlFor={'stuState'} isrequired={true} keyId={'STATE_ID'} keyName={'STATE_NAME'}
-                                                        onChange={this.onChangeState.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeState.bind(this)} className={'form-control contact'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedCity} data={this.state.stuCity} label={'City'} name={'stuCity'} htmlFor={'stuCity'} isrequired={true} keyId={'CITY_ID'} keyName={'CITY_NAME'}
-                                                        onChange={this.onChangeCity.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeCity.bind(this)} className={'form-control contact'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.stuZip} label={'Zip Code'} name={'stuZip'} htmlFor={'stuZip'} isrequired={true}
-                                                        onChange={this.onChangeZip.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeZip.bind(this)} className={'form-control contact'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.stuMobile} label={'Mobile No'} name={'stuMobile'} htmlFor={'stuMobile'} isrequired={true}
-                                                        onChange={this.onChangeMobile.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeMobile.bind(this)} className={'form-control contact'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.stuPhone} label={'Phone No'} name={'stuPhone'} htmlFor={'stuPhone'} isrequired={true}
-                                                        onChange={this.onChangePhone.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangePhone.bind(this)} className={'form-control contact'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.stuEmail} label={'Email'} name={'email'} emailValidation={'Please enter valid email address'} htmlFor={'stuEmail'} isrequired={true}
-                                                        onChange={this.onChangeEmail.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeEmail.bind(this)} className={'form-control contact'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                             </ul>
                                         </div>
@@ -826,27 +869,27 @@ class AdmissionForm extends React.Component {
                                             <ul className="einrform">
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.stuInst} label={'Institute Name'} name={'stuInst'} htmlFor={'stuInst'} isrequired={true}
-                                                        onChange={this.onChangeInsti.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeInsti.bind(this)} className={'form-control academic'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedBoard} data={this.state.stuBoard} label={'University/Board'} name={'stuBoard'} htmlFor={'stuBoard'} isrequired={true}
-                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeBoard.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeBoard.bind(this)} className={'form-control academic'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedPreCourse} data={this.state.stuPreCourse} label={'Course'} name={'stuPreCourse'} htmlFor={'stuPreCourse'} isrequired={true}
-                                                        keyId={'COURSE_ID'} keyName={'COURSE_NAME'} onChange={this.onChangePreCourse.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        keyId={'COURSE_ID'} keyName={'COURSE_NAME'} onChange={this.onChangePreCourse.bind(this)} className={'form-control academic'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'date'} value={this.state.couCompli} id={'couCompli'} label={'Year Of Compilation'} name={'couCompli'} htmlFor={'couCompli'} isrequired={true}
-                                                        className={'startDate form-control'} onBlur={this.onCouCompli.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        className={'startDate form-control academic'} onBlur={this.onCouCompli.bind(this)} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.stuMarks} label={'Obtained Marks'} name={'stuMarks'} htmlFor={'stuMarks'} isrequired={true}
-                                                        onChange={this.onChangeMarks.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeMarks.bind(this)} className={'form-control academic'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.stuPercent} label={'Percentage(%)'} name={'stuPercent'} htmlFor={'stuPercent'} isrequired={true}
-                                                        onChange={this.onChangePercent.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangePercent.bind(this)} className={'form-control academic'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                             </ul>
                                         </div>
@@ -854,19 +897,19 @@ class AdmissionForm extends React.Component {
                                             <ul className="einrform">
                                                 <li>
                                                     <CreateInput type={'text'} value={this.state.stuLogin} label={'Login Id'} name={'stuLogin'} htmlFor={'stuLogin'} isrequired={true}
-                                                        onChange={this.onChangeLogin.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangeLogin.bind(this)} className={'form-control account'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'password'} value={this.state.stuPwd} label={'Password'} name={'stuPwd'} htmlFor={'stuPwd'} isrequired={true}
-                                                        onChange={this.onChangePwd.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        onChange={this.onChangePwd.bind(this)} className={'form-control account'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                                 <li>
                                                     <CreateInput type={'password'} value={this.state.stuCPwd} label={'Confirm Password'} name={'stuCPwd'} htmlFor={'stuCPwd'} isrequired={true}
-                                                        onChange={this.onChangeCPwd.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} invalidPassword={'Password not match'} validate={this.isConfirmedPassword.bind(this)}  />
-                                                </li>                                              
+                                                        onChange={this.onChangeCPwd.bind(this)} className={'form-control account'} onComponentMounted={this.register} messageRequired={'required.'} invalidPassword={'Password not match'} validate={this.isConfirmedPassword.bind(this)} />
+                                                </li>
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedAccStat} data={this.state.stuAccStat} label={'Account Status'} name={'stuAccStat'} htmlFor={'stuAccStat'} isrequired={true}
-                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeAccStat.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeAccStat.bind(this)} className={'form-control account'} onComponentMounted={this.register} messageRequired={'required.'} />
                                                 </li>
                                             </ul>
                                         </div>
@@ -881,7 +924,7 @@ class AdmissionForm extends React.Component {
                     </div>
                 </div>
             </div>
-            )
+        )
     }
 }
 ReactDOM.render(<AdmissionForm urlPost="/Student/Admission" personalPost='' contactPost='' authPost='' />, document.getElementById('studentform'));

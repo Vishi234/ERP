@@ -20,6 +20,15 @@ namespace ERP.Models.Bal.Employee
         public ResultEntity AddStudent(StudentEntity studentEntity)
         {
             ResultEntity result = new ResultEntity();
+
+           // var file= studentEntity.postedFile[0];
+
+            String timeStamp = DateTime.Now.ToString();
+
+          //  string  filename = pfile + timeStamp +studentEntity.stuImage;
+            //string filePath = Path.Combine(HttpContext Server.MapPath("~/Content/Images"), filename);
+            //file.SaveAs(fname);
+
             try
             {
                 SqlParameter[] sqlParameter = new SqlParameter[40];

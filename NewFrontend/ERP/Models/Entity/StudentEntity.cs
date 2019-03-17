@@ -7,7 +7,6 @@ namespace ERP.Models.Entity
 {
     public class StudentEntity
     {
-        
             public string stuImage { get; set; }
             public string stuCode      { get; set; }
             public string stuFirst     {get;set;}
@@ -49,6 +48,5 @@ namespace ERP.Models.Entity
             public char flag { get; set; }
             public string reportId { get; set; }
             public string operType { get; set; }
-
     }
 }
