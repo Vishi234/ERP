@@ -166,6 +166,7 @@ class EmployeeForm extends React.Component {
                     CallToast(data.msg, data.flag);
                     if (data.flag == "S") { 
                         this.getEmployeeDetails();
+                        this.uploadImages();
                         this.resetData();
                     }
                 }.bind(this),
@@ -185,9 +186,27 @@ class EmployeeForm extends React.Component {
             this.setState({ records: MyData.length })
         });    
     }
+    uploadImages = () => {
+        $.ajax({
+            type: "POST",
+            url: "../../Handlers/UploadImages.ashx",
+            dataType: "json",
+            contentType: false,
+            processData: false,
+            data: test,
+            async: false,
+            success: function (data) {
+                alert("done");
+            },
+            error: function (evt) {
+                btnloading("StuRegis", 'hide');
+                alert('Error! Please try again');
+            }
+        })
+    }
     resetData = () => {
         debugger;
-        getEmployeeDetails();
+        this.getEmployeeDetails();
         this.setState
             ({
                 empCode: "",
@@ -609,28 +628,27 @@ class EmployeeForm extends React.Component {
     componentDidUpdate() {
         $('.testClass').on("click", this.handleClick.bind(this));
     }
-    onChangeImage=(value)=> {
-        if(value.target.files.length > 0)
-        {
-            var file = value.target.files[0];
-            var reader = new FileReader();
-            var url = reader.readAsDataURL(file);
-
-            reader.onloadend = function (e) {
+    onChangeImage = (value) => {
+            debugger;
+            if (value.target.files.length > 0) {
+                var file = value.target.files[0];
+                var reader = new FileReader();
+                var url = reader.readAsDataURL(file);
+                test = new FormData();
+                test.append('file', $('#uploadedImg')[0].files[0]);
+                imgSrc = [reader.result];
+                this.setState
+                    ({
+                        imgSrc: [reader.result],
+                        empImage: value.target.files[0].name,
+                    });
+            }
+            else {
                 this.setState({
-                    imgSrc: [reader.result],
-                    empImage: value.target.files[0].name,
-                })
-            }.bind(this);    
-        }
-        else
-        {
-            this.setState({
                     imgSrc: "/images/user-img.png"
-            })
+                });
+            }
         }
-        console.log(url)
-    }
     register(field) {
         var s = [];
         s.push(field);
@@ -776,7 +794,7 @@ class EmployeeForm extends React.Component {
                                             </div>
                                             <div className="efinput">
                                                 Choose File
-                                                <input type="file" onChange={this.onChangeImage.bind(this)} messageRequired={'required.'} className="hide_file" />
+                                                <input type="file" onChange={this.onChangeImage.bind(this)} id="uploadedImg" messageRequired={'required.'} className="hide_file" />
                                             </div>
 
                                         </div>
@@ -785,19 +803,19 @@ class EmployeeForm extends React.Component {
                                     <hr />
                                     <ul className="nav nav-tabs">
                                         <li className="nav-item">
-                                            <a className="nav-link active show personalEmp" data-toggle="tab" href="#personal">Personal Details</a>
+                                            <a className="nav-link active show personalEmp"   data-toggle="tab" href="#personal">Personal Details</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link addressEmp" data-toggle="tab" href="#address">Address Details</a>
+                                            <a className="nav-link addressEmp"  data-toggle="tab" href="#address">Address Details</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link experienceEmp" data-toggle="tab" href="#experience">Last Employer Details</a>
+                                            <a className="nav-link experienceEmp"  data-toggle="tab" href="#experience">Last Employer Details</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link subjectEmp" data-toggle="tab" href="#subject">Subject Details</a>
+                                            <a className="nav-link subjectEmp"  data-toggle="tab" href="#subject">Subject Details</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link accountEmp" data-toggle="tab" href="#account">Account Details</a>
+                                            <a className="nav-link accountEmp"  data-toggle="tab" href="#account">Account Details</a>
                                         </li>
                                         <li className="nav-item">
                                             <a className="nav-link authenticationEmp" data-toggle="tab" href="#authentication">Authentication Details</a>

@@ -483,8 +483,6 @@ class AdmissionForm extends React.Component {
         });
     }
     isConfirmedPassword(value) {
-
-        console.log(value, this.state.stuPwd, value === this.state.stuPwd);
         return (value === this.state.stuPwd)
     }
     onChangeAccStat(value) {
@@ -560,7 +558,6 @@ class AdmissionForm extends React.Component {
         $("#student").modal("show");
     }
     CreateEdit(params) {
-
         var html = "";
         var domElement = "";
         var jsonObj = JSON.stringify(params.data);
@@ -576,40 +573,25 @@ class AdmissionForm extends React.Component {
         $('.testClass').on("click", this.handleClick.bind(this));
     }
     onChangeImage = (value) => {
+        debugger;
         if (value.target.files.length > 0) {
             var file = value.target.files[0];
             var reader = new FileReader();
             var url = reader.readAsDataURL(file);
-
-
-            //var formData = new FormData();
-            //formData.append('file', $('#uploadedImg')[0].files[0]);
-
-
-
             test = new FormData();
             test.append('file', $('#uploadedImg')[0].files[0]);
-
+            imgSrc= [reader.result];
             this.setState
                 ({
                     imgSrc: [reader.result],
                     stuImage: value.target.files[0].name,
-                    // postedFile: test
-                    // stuImage: file
                 });
-            //reader.onloadend = function (e) {
-            //    this.setState({
-            //        imgSrc: [reader.result],
-            //        stuImage: value.target.files[0].name,
-            //    })
-            //}.bind(this);
         }
         else {
             this.setState({
                 imgSrc: "/images/user-img.png"
             });
         }
-
     }
     register(field) {
         var s = [];
@@ -751,7 +733,7 @@ class AdmissionForm extends React.Component {
                                             </div>
                                             <div className="efinput">
                                                 Choose File
-                                                <input type="file" onChange={this.onChangeImage.bind(this)} messageRequired={'required.'} className="hide_file" />
+                                                <input type="file" id="uploadedImg" onChange={this.onChangeImage.bind(this)} messageRequired={'required.'} className="hide_file" />
                                             </div>
 
                                         </div>
