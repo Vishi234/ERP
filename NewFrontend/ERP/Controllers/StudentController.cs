@@ -32,6 +32,25 @@ namespace ERP.Controllers
             TempData["StudentData"] = new Student().GetStudent(studentEntity);
             return Json(TempData["StudentData"], JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public ActionResult UploadImages(HttpPostedFile postedFile)
+        {
+            //HttpContext context
          
+
+
+            if (postedFile != null)
+            {
+                string pic = System.IO.Path.GetFileName(postedFile.FileName);
+                string path = System.IO.Path.Combine(
+                                       Server.MapPath("~/Content/images/"), pic);
+                // file is uploaded
+                postedFile.SaveAs(path);
+            }
+
+            return View();
+        }
     }
+
 }
