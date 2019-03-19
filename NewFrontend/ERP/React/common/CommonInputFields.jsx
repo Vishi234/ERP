@@ -1,9 +1,16 @@
-﻿var x = 1;
+﻿var boolflag = 1;
+
+//$('.nav-link').click(function () {
+//    alert("test");
+//    x = 0;
+//});
 class CreateInput extends React.Component {
     handleChange(e) {
+     
         if (this.props.type == "file") {           
             this.props.onChange(e.target);
         } else {
+            boolflag = 1;
             this.props.onChange(e.target.value);
         }
 
@@ -38,63 +45,65 @@ class CreateInput extends React.Component {
         this.props.onBlur(e.target.value);
         var isValidField = this.isValid(e.target);
     }
+    changeTab(e) {
+        alert("tab");
+    }
     isValid(input) {
         //check required field
-        if (input != undefined) {                       
-            if (input.tagName == "INPUT" ) {    
-                if (input.getAttribute('required') != null && input.value === "" ) { 
+        if (input != undefined) {
+                if (input.tagName == "INPUT") {
+                    if (input.getAttribute('required') != null && input.value === "") {
                         input.classList.add('input-validation-error'); //add class error
                         input.nextSibling.classList.add('field-validation-error');
                         input.nextSibling.textContent = this.props.messageRequired; // show error message
-
-                        if ((input.className).indexOf("personal") > -1 && x) {
+                        if ((input.className).indexOf("personal") > -1 && boolflag) {
                             $('.personal').trigger("click");
-                            x = 0;
-                            //return false;
+                            boolflag = 0;
+                            return false;
                         }
-                        else if ((input.className).indexOf("contact") > -1 && x) {
+                        else if ((input.className).indexOf("contact") > -1 && boolflag) {
                             $('.contact').trigger("click");
-                            x = 0;
-                            //return false;
+                            boolflag = 0;
+                            return false;
                         }
-                        else if ((input.className).indexOf("subject") > -1 && x) {
+                        else if ((input.className).indexOf("subject") > -1 && boolflag) {
                             $('.subject').trigger("click");
-                            x = 0;
-                            //return false;
+                            boolflag = 0;
+                            return false;
                         }
-                        else if ((input.className).indexOf("account") > -1 && x) {
+                        else if ((input.className).indexOf("account") > -1 && boolflag) {
                             $('.account').trigger("click");
-                            x = 0;
-                            //return false;
+                            boolflag = 0;
+                           return false;
                         }
-                        else if ((input.className).indexOf("academic") > -1 && x) {
-                            x = 0;
+                        else if ((input.className).indexOf("academic") > -1 && boolflag) {
+                            boolflag = 0;
                             $('.academic').trigger("click");
-                            //return false;
+                           return false;
                         }
-                        else if ((input.className).indexOf("personalEmp") > -1) {
+                        else if ((input.className).indexOf("personalEmp") > -1 && boolflag) {
                             $('.personalEmp').trigger("click");
-                            x = 0;
+                            boolflag = 0;
                             return false;
                         }
-                        else if ((input.className).indexOf("addressEmp") > -1) {
+                        else if ((input.className).indexOf("addressEmp") > -1 && boolflag) {
                             $('.addressEmp').trigger("click");
-                            x = 0;
+                            boolflag = 0;
                             return false;
                         }
-                        else if ((input.className).indexOf("experienceEmp") > -1) {
+                        else if ((input.className).indexOf("experienceEmp") > -1 && boolflag) {
                             $('.experienceEmp').trigger("click");
-                            x = 0;
+                            boolflag = 0;
                             return false;
                         }
-                        else if ((input.className).indexOf("accountEmp") > -1) {
+                        else if ((input.className).indexOf("accountEmp") > -1 && boolflag) {
                             $('.accountEmp').trigger("click");
-                            x = 0;
+                            boolflag = 0;
                             return false;
                         }
-                        else if ((input.className).indexOf("authenticationEmp") > -1) {
+                        else if ((input.className).indexOf("authenticationEmp") > -1 && boolflag) {
                             $('.authenticationEmp').trigger("click");
-                            x = 0;
+                            boolflag = 0;
                             return false;
                         }
                         return false;
@@ -124,10 +133,11 @@ class CreateInput extends React.Component {
                 }
                 else if (input.tagName == "SELECT") {
                     return true;
-                }       
-        } else {
-            return true;
-        }
+
+                }
+            } else {
+                return true;
+            }
     }
     validateEmail = (value) => {
         let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
