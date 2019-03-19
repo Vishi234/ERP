@@ -4,14 +4,15 @@ class AgGrid extends React.Component {
         gridOptions = {
             columnDefs: this.props.columnDef,
             enableSorting: true,
-            enableFilter: true,
+            //enableFilter: true,
             rowData: null,
-            rowHeight: 30,
+            rowHeight: 25,
+            suppressRowClickSelection: false,
             enableCellChangeFlash: true,
             refreshCells: true,
             enableColResize: true,
-            headerHeight: 30,
-            suppressHorizontalScroll: true,
+            headerHeight: 35,
+            suppressHorizontalScroll: false,
             colResizeDefault: 'shift',
             pagination: true,
             paginationPageSize: 20,
@@ -39,7 +40,7 @@ class AgGrid extends React.Component {
     }
     render() {
         return (<div className="actionbse">
-            <div id="myGrid" style={{ height: '450px'}} className="ag-theme-balham"></div>
+            <div id="myGrid" style={{ height: '390px'}} className="ag-theme-balham"></div>
         </div>
         );
     }

@@ -224,7 +224,7 @@ textarea {
     display: inline-block;
     text-align: center;
     width: 100%;
-    height: 550px;
+    height: 500px;
     z-index: 1;
 }
 
@@ -242,27 +242,27 @@ textarea {
     z-index: 1;
     padding: 4em;
     display: inline-block;
-    -webkit-animation: floatCircle 10s linear infinite;
-    animation: floatCircle 10s linear infinite;
+    -webkit-animation: floatCircle 15s linear infinite;
+    animation: floatCircle 15s linear infinite;
 }
 
 @-webkit-keyframes floatCircle {
     0% {
-        background-position: 0% -1000%;
+        background-position: 0% -2000%;
     }
 
     100% {
-        background-position: 0% 2000%;
+        background-position: 0% 1000%;
     }
 }
 
 @keyframes floatCircle {
     0% {
-        background-position: 0% -1000%;
+        background-position: 0% -2000%;
     }
 
     100% {
-        background-position: 0% 2000%;
+        background-position: 0% 1000%;
     }
 }
 
@@ -271,11 +271,11 @@ textarea {
     width: 40%;
     box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.21);
     float: right;
-    margin-top: 10%;
+    margin-top: 5%;
 }
 
     .elgnbase svg {
-        width: 30%;
+        width: 20%;
     }
 
 .elgnttl {
@@ -328,6 +328,15 @@ textarea {
 
     .elgnform > ul > li {
         text-align: left;
+        margin-bottom: 16px;
+    }
+
+        .elgnform > ul > li label {
+            margin-bottom: 2px;
+        }
+
+    .elgnform .form-group {
+        margin-bottom: 5px !important;
     }
 
 .elgnuser {
@@ -335,7 +344,7 @@ textarea {
 }
 
     .elgnuser svg {
-        margin-top: -70px;
+        margin-top: -35px;
         border-radius: 80px;
         box-shadow: 0px -2px 4px rgba(0,0,0,0.3);
     }
@@ -385,7 +394,7 @@ textarea {
     height: 100%;
     position: fixed;
     bottom: 0;
-    width: 16%;
+    width: 18%;
     z-index: 9999;
     background-color: #fff;
     transition: all 0.2s ease-in-out;
@@ -394,7 +403,7 @@ textarea {
 .elogo {
     background: #232e40;
     padding: 0px;
-    height: 95px;
+    height: 80px;
     overflow: hidden;
     text-align: center;
 }
@@ -416,7 +425,7 @@ textarea {
 
 .ebody {
     position: relative;
-    width: 84%;
+    width: 82%;
     display: block;
     float: right;
     height: 100%;
@@ -486,6 +495,7 @@ textarea {
     width: 100%;
     border-bottom: 1px solid #ddd;
     padding-left: 10px;
+    height: 30px;
 }
 
     .esubmenu > .breadcrumb {
@@ -495,7 +505,7 @@ textarea {
     }
 
         .esubmenu > .breadcrumb > li > a {
-            padding: 12.5px 3px;
+            padding: 5px 3px;
             display: block;
             color: #555;
         }
@@ -511,7 +521,7 @@ textarea {
 
 .ever {
     display: block;
-    padding: 12px;
+    padding: 5px 15px;
 }
 
 .esidemenu {
@@ -539,7 +549,7 @@ textarea {
     }
 
     .esidemenu > ul > li > a {
-        font-size: 13px;
+        font-size: 12px;
         display: inline-block;
         align-items: center;
         width: 100%;
@@ -782,12 +792,12 @@ textarea {
 }
 
 .einrform .form-control {
-    height: 32px;
+    height: 26px;
     border-radius: 3px;
 }
 
 .einrform .form-group {
-    height: 61px;
+    height: 53px;
 }
 
 .einrform > li {
@@ -821,7 +831,7 @@ textarea {
 
 .field-validation-error {
     color: red;
-    font-size: 12px !important;
+    font-size: 11px !important;
     font-weight: 300;
     float: left;
 }
@@ -837,8 +847,8 @@ textarea {
     width: 17px;
     display: none;
     /* position: absolute; */
-    margin-top: -40px;
-    margin-right: 10px;
+    margin-top: -38px;
+    margin-right: 5px;
 }
 
     .calendarbase img {
@@ -858,8 +868,8 @@ textarea {
 .chosen-container-single .chosen-single {
     border: 1px solid rgba(0, 0, 0, 0.3) !important;
     border-radius: 3px !important;
-    height: 32px !important;
-    line-height: 30px !important;
+    height: 26px !important;
+    line-height: 24px !important;
 }
 
 .card-body {
@@ -889,6 +899,7 @@ textarea {
 
 .modal {
     background: rgba(0,0,0,0.7);
+    z-index: 999999;
 }
 
     .modal .modal-body {
@@ -1200,6 +1211,13 @@ txtarea label {
     height: 20px;
     width: 20px;
 }
+
 .badge {
-    width:77px;
+    width: 77px;
+}
+
+.action {
+    margin-bottom: 10px;
+    display: inline-block;
+    width: 100%;
 }
