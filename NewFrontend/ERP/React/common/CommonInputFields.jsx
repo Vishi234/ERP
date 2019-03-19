@@ -129,6 +129,7 @@ class CreateInput extends React.Component {
                             return true;
                         }
                     }
+                    
                 }
                 else if (input.tagName == "SELECT") {
                     return true;
