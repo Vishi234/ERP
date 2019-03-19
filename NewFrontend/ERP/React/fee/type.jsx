@@ -187,6 +187,9 @@ class FeeStructure extends React.Component {
                                 <a className="nav-link active show" data-toggle="tab" href="#type">Fee Type</a>
                             </li>
                             <li className="nav-item">
+                                <a className="nav-link" data-toggle="tab" href="#mapping">Course Fee Mapping</a>
+                            </li>
+                            <li className="nav-item">
                                 <a className="nav-link" data-toggle="tab" href="#details">Fee Details</a>
                             </li>
                             <li className="nav-item">
@@ -198,10 +201,8 @@ class FeeStructure extends React.Component {
                                 <div className="einrformbase">
                                     <ul className="einrform">
                                         <li>
-                                            <li>
-                                                <CreateInput type={'text'} value={this.state.feeName} label={'Fee Name'} name={'feeName'} htmlFor={'feeName'} isrequired={true}
-                                                    onChange={this.onChangeFeeName.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                            </li>                                       
+                                            <CreateInput type={'text'} value={this.state.feeName} label={'Fee Name'} name={'feeName'} htmlFor={'feeName'} isrequired={true}
+                                                         onChange={this.onChangeFeeName.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />                                       
                                         </li>
                                         <li>
                                             <CreateInput type={'ddl'} value={this.state.selectedPayType} data={this.state.payType} label={'Payment Type'} name={'payType'} htmlFor={'payType'} isrequired={true} keyId={'CITY_ID'} keyName={'CITY_NAME'}
@@ -226,6 +227,38 @@ class FeeStructure extends React.Component {
                                     <hr />
                                     @*Ag grid code go here*@
                     </div>
+
+                            </div>
+                            <div className="tab-pane" id="mapping">
+                                <div className="einrformbase">
+                                    <ul className="einrform">
+                                        <li>
+                                            <div className="form-group">
+                                                <label>Academic Year</label>
+                                                <input type="text" className="form-control" placeholder="" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div className="form-group">
+                                                <label>Course Type</label>
+                                                <input type="text" className="form-control" placeholder="" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div className="form-group">
+                                                <label>Fee Type</label>
+                                                <input type="text" className="form-control" placeholder="" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <button type="submit" className="btn btn-info">Save</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div className="row cstdown clearfix">
+                                    <hr />
+                                    @*Ag grid code go here*@
+                                </div>
 
                             </div>
                             <div className="tab-pane" id="details">
