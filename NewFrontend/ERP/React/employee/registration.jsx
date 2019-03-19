@@ -166,6 +166,7 @@ class EmployeeForm extends React.Component {
                     CallToast(data.msg, data.flag);
                     if (data.flag == "S") { 
                         this.getEmployeeDetails();
+                        this.uploadImages();
                         this.resetData();
                     }
                 }.bind(this),
@@ -185,9 +186,27 @@ class EmployeeForm extends React.Component {
             this.setState({ records: MyData.length })
         });    
     }
+    uploadImages = () => {
+        $.ajax({
+            type: "POST",
+            url: "../../Handlers/UploadImages.ashx",
+            dataType: "json",
+            contentType: false,
+            processData: false,
+            data: test,
+            async: false,
+            success: function (data) {
+                alert("done");
+            },
+            error: function (evt) {
+                btnloading("StuRegis", 'hide');
+                alert('Error! Please try again');
+            }
+        })
+    }
     resetData = () => {
         debugger;
-        getEmployeeDetails();
+        this.getEmployeeDetails();
         this.setState
             ({
                 empCode: "",
@@ -609,28 +628,27 @@ class EmployeeForm extends React.Component {
     componentDidUpdate() {
         $('.testClass').on("click", this.handleClick.bind(this));
     }
-    onChangeImage=(value)=> {
-        if(value.target.files.length > 0)
-        {
-            var file = value.target.files[0];
-            var reader = new FileReader();
-            var url = reader.readAsDataURL(file);
-
-            reader.onloadend = function (e) {
+    onChangeImage = (value) => {
+            debugger;
+            if (value.target.files.length > 0) {
+                var file = value.target.files[0];
+                var reader = new FileReader();
+                var url = reader.readAsDataURL(file);
+                test = new FormData();
+                test.append('file', $('#uploadedImg')[0].files[0]);
+                imgSrc = [reader.result];
+                this.setState
+                    ({
+                        imgSrc: [reader.result],
+                        empImage: value.target.files[0].name,
+                    });
+            }
+            else {
                 this.setState({
-                    imgSrc: [reader.result],
-                    empImage: value.target.files[0].name,
-                })
-            }.bind(this);    
-        }
-        else
-        {
-            this.setState({
                     imgSrc: "/images/user-img.png"
-            })
+                });
+            }
         }
-        console.log(url)
-    }
     register(field) {
         var s = [];
         s.push(field);
@@ -652,7 +670,7 @@ class EmployeeForm extends React.Component {
                     </div>
                 </div>
                 <div className="pagebody">
-                    <div className="einrformbase card p-4">
+                    <div className="einrformbase card pt-2 pl-2 pr-2">
                         <div className="card-title">
                             Employee Management
                     </div>
@@ -730,7 +748,7 @@ class EmployeeForm extends React.Component {
                         <div className="modal-content bd-0 tx-14">
                             <form name='EmpRegis' id="EmpRegis" noValidate onSubmit={this.handleSubmit}>
                                 <div className="modal-header">
-                                    <h6 className="tx-14 tx-uppercase tx-inverse tx-bold">Add/Edit Employee</h6>
+                                    <h6 className="tx-14 tx-uppercase tx-inverse tx-bold">Profile Details</h6>
                                     <button type="button" className="close" data-dismiss="modal" onClick={this.resetData}><span aria-hidden="true">&times;</span><span className="sr-only">Close</span></button>
                                 </div>
                                 <div className="modal-body pd-25">
@@ -776,7 +794,7 @@ class EmployeeForm extends React.Component {
                                             </div>
                                             <div className="efinput">
                                                 Choose File
-                                                <input type="file" onChange={this.onChangeImage.bind(this)} messageRequired={'required.'} className="hide_file" />
+                                                <input type="file" onChange={this.onChangeImage.bind(this)} id="uploadedImg" messageRequired={'required.'} className="hide_file" />
                                             </div>
 
                                         </div>
@@ -785,19 +803,19 @@ class EmployeeForm extends React.Component {
                                     <hr />
                                     <ul className="nav nav-tabs">
                                         <li className="nav-item">
-                                            <a className="nav-link active show personalEmp" data-toggle="tab" href="#personal">Personal Details</a>
+                                            <a className="nav-link active show personalEmp"   data-toggle="tab" href="#personal">Personal Details</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link addressEmp" data-toggle="tab" href="#address">Address Details</a>
+                                            <a className="nav-link addressEmp"  data-toggle="tab" href="#address">Address Details</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link experienceEmp" data-toggle="tab" href="#experience">Last Employer Details</a>
+                                            <a className="nav-link experienceEmp"  data-toggle="tab" href="#experience">Last Employer Details</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link subjectEmp" data-toggle="tab" href="#subject">Subject Details</a>
+                                            <a className="nav-link subjectEmp"  data-toggle="tab" href="#subject">Subject Details</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link accountEmp" data-toggle="tab" href="#account">Account Details</a>
+                                            <a className="nav-link accountEmp"  data-toggle="tab" href="#account">Account Details</a>
                                         </li>
                                         <li className="nav-item">
                                             <a className="nav-link authenticationEmp" data-toggle="tab" href="#authentication">Authentication Details</a>
