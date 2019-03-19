@@ -394,7 +394,7 @@ textarea {
     height: 100%;
     position: fixed;
     bottom: 0;
-    width: 18%;
+    width: 16%;
     z-index: 9999;
     background-color: #fff;
     transition: all 0.2s ease-in-out;
@@ -425,7 +425,7 @@ textarea {
 
 .ebody {
     position: relative;
-    width: 82%;
+    width: 84%;
     display: block;
     float: right;
     height: 100%;
@@ -526,7 +526,7 @@ textarea {
 
 .esidemenu {
     flex-direction: column;
-    padding: 10px 20px;
+    padding: 10px;
 }
 
     .esidemenu > ul > li {
@@ -564,7 +564,7 @@ textarea {
         .esidemenu > ul > li > a > svg:nth-child(1) {
             float: left;
             height: 19px;
-            width: 20px;
+            width: 17px;
             margin-right: 10px;
             margin-top: -2px;
         }
@@ -705,7 +705,7 @@ textarea {
     height: 0px;
     transition: all 0.4s ease-in-out;
     overflow: auto;
-    width: 109%;
+    width: 103%;
 }
 
     .smenu::-webkit-scrollbar {
@@ -729,10 +729,10 @@ textarea {
     }
 
         .smenu > ul > li > a {
-            padding: 5px 32px;
+            padding: 5px 20px;
             display: block;
             width: 100%;
-            font-size: 1em;
+            font-size: 11px;
             color: #868e96;
             font-weight: 400;
         }
