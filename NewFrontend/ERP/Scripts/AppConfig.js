@@ -66,5 +66,9 @@
     Label_Header["$LOGIN_ID$"] = "Login ID";
     Label_Header["$PASSWORD$"] = "Password";
 
+    Label_Header["$FEE_NAME$"] = "Fee Name";
+    Label_Header["$PAYMENT_TYPE$"] = "Payment Type";
+    Label_Header["$DESCRIPTION$"] = "Description";
+
     return Label_Header;
 }

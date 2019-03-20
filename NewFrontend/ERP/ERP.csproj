@@ -276,6 +276,7 @@
     <Compile Include="Handlers\UploadImages.ashx.cs">
       <DependentUpon>UploadImages.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Bal\Accounts\Account.cs" />
     <Compile Include="Models\Bal\Common\CommonFunc.cs" />
     <Compile Include="Models\Bal\Common\Excep.cs" />
     <Compile Include="Models\Bal\Student\Student.cs" />
@@ -285,6 +286,7 @@
     <Compile Include="Models\Cache\GlobalCache.cs" />
     <Compile Include="Models\Dal\SqlHelper.cs" />
     <Compile Include="Models\Dal\SqlHelper2.cs" />
+    <Compile Include="Models\Entity\AccountEntity.cs" />
     <Compile Include="Models\Entity\CustomerEntity.cs" />
     <Compile Include="Models\Entity\StudentEntity.cs" />
     <Compile Include="Models\Entity\EmployeeEntity.cs" />

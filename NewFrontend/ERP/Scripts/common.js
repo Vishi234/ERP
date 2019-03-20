@@ -45,7 +45,6 @@ function GetJsonData(path) {
     return resData;
 }
 function ReadDropDownData(key, customerId, isParam) {
-
     var MyData = null;
     var jsonData = GetJsonData('../../Content/DynamicJs/DropdownData.json');
 

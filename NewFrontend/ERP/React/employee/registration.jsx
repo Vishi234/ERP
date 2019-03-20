@@ -622,7 +622,8 @@ class EmployeeForm extends React.Component {
         domElement.innerHTML = html;
         return domElement;
     }
-    componentDidMount() {
+    componentDidMount()
+    {
         $('.testClass').on("click", this.handleClick.bind(this));
     }
     componentDidUpdate() {

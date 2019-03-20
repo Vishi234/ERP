@@ -40,7 +40,7 @@ class AgGrid extends React.Component {
     }
     render() {
         return (<div className="actionbse">
-            <div id="myGrid" style={{ height: '390px'}} className="ag-theme-balham"></div>
+            <div id="myGrid" style={{ height: '350px'}} className="ag-theme-balham"></div>
         </div>
         );
     }

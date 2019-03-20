@@ -1,24 +1,26 @@
-﻿//alert(window.dynamicData);
+﻿
 class FeeStructure extends React.Component {
     constructor(props) {
         super(props);
-        //grdArray = GetReportConfiguration("Master");
-        //var columnDefs = grdArray["$SubjectDetails$"];
-        //var records = JSON.parse(content.addParams);
-        //for (var i = 0; i < columnDefs.length; i++) {
-        //    if (columnDefs[i].cellRenderer) {
-        //        if (columnDefs[i].cellRenderer == "CreateEdit") {
-        //            columnDefs[i].cellRenderer = this.CreateEdit;
-        //        }
-        //        else if (columnDefs[i].cellRenderer == "CreateActive") {
-        //            columnDefs[i].cellRenderer = this.CreateActive;
-        //        }
-        //    }
-        //}
+        grdArray = GetReportConfiguration("FeeManagement");
+        var columnDefs = grdArray["$FeeType$"];
+        var records = JSON.parse(content.addParams);
+        for (var i = 0; i < columnDefs.length; i++) {
+            if (columnDefs[i].cellRenderer) {
+                if (columnDefs[i].cellRenderer == "CreateEdit") {
+                    columnDefs[i].cellRenderer = this.CreateEdit;
+                }
+                else if (columnDefs[i].cellRenderer == "CreateActive") {
+                    columnDefs[i].cellRenderer = this.CreateActive;
+                }
+            }
+        }
         this.state = {
             feeName: "",
-            payType: [],
+            payType: ReadDropDownData("Param", '20', true),
             feeDescrep: "",
+            month: ReadDropDownData("Param", '21', true),
+            active: ReadDropDownData("Param", '16', true),         
             feeAcadeDet: [],
             CourseDet: [],
             mediumDet: [],
@@ -33,12 +35,13 @@ class FeeStructure extends React.Component {
             selectedCourseStruct: 0,
             selectedMedStruct: 0,
             Fields: [],
-            //columnDef: columnDefs,
-            //rowData: records,
-           // records: ((records == null) ? 0 : records.length),
+            columnDef: columnDefs,
+            rowData: records,
+            records: ((records == null) ? 0 : records.length),
             label: "Save",
             flag: "A",
         };
+
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleSubmit(e) {
@@ -58,28 +61,25 @@ class FeeStructure extends React.Component {
         //after validation complete post to server
         if (validForm) {
             var d = {
+                id:"",
                 feeName: this.state.feeName,
-                payType: this.state.selectedPayType,
-                feeDescrep: this.state.feeDescrep,
-                feeAcadeDet: this.state.selectedAcadDet,
-                CourseDet: this.state.selectedCourseDet,
-                mediumDet: this.state.selectedMediumDet,
-                feeAcadeStruct: this.state.selectedAcadStruct,
-                CourseStruct: this.state.selectedCourseStruct,
-                mediumStruct    : this.state.selectedMedStruct,
-                reportId: "5",
-                flag: this.state.flag,
-
+                paymentType: this.state.selectedPayType,
+                feeDesc: this.state.feeDescrep,
+                feeMonth: this.state.selectedMonth,
+                isActive: this.state.selectedActive,
+                terms: "",  
+                reportId:"9",
+                flag: "A"
             }
             $.ajax({
                 type: "POST",
-                url: this.props.urlPost,
+                url: '/Fee/AddFeeType',
                 data: d,
                 beforeSend: function () {
-                    btnloading("SubjectForm", 'show');
+                    btnloading("FeeType", 'show');
                 },
                 success: function (data) {
-                    btnloading("SubjectForm", 'hide');
+                    btnloading("FeeType", 'hide');
                     CallToast(data.msg, data.flag);
                     if (data.flag == "S") {
                         MyData = JSON.parse(data.addParams);
@@ -163,7 +163,46 @@ class FeeStructure extends React.Component {
             selectedMedStruct: value
         });
     }
-   
+    onChangeActive(value) {
+        this.setState({
+            selectedActive: value
+        });
+    }
+    onChangeMonth(value) {
+        this.setState({
+            selectedMonth: value
+        });
+    }
+    CreateActive(params) {
+
+        var html = "";
+        var domElement = "";
+        if ((params.data.isActive).trim() == 70) {
+            html = '<span style="margin-top: 5px;padding: 6px 20px;" class="badge badge-success">Active</span>'
+        }
+        else if ((params.data.isActive).trim() == 71) {
+            html = '<span style="margin-top: 5px;padding: 6px 20px;" class="badge badge-danger">In-Active</span>'
+        }
+        else {
+            html = '<span style="margin-top: 5px;padding: 6px 20px;" class="badge badge-warning">Temporary</span>'
+        }
+
+        domElement = document.createElement("div");
+        domElement.innerHTML = html;
+        return domElement;
+    }
+
+    CreateEdit(params) {
+        var html = "";
+        var domElement = "";
+        var jsonObj = JSON.stringify(params.data);
+
+        html = "<div><a class='testClass' href='javascript:void(0)' dataAttr='" + jsonObj + "'><img class='editbtn' src='/Images/icons/edit.svg'/></a></div>";
+        domElement = document.createElement("div");
+        domElement.innerHTML = html;
+        return domElement;
+    }
+
    // alert(window.dynamicData)
     render() {
         //Render form
@@ -181,7 +220,7 @@ class FeeStructure extends React.Component {
                     </div>
                 </div>
                 <div className="pagebody">
-                    <div className="einrformbase p-4">
+                    <div className="einrformbase">
                         <ul className="nav nav-tabs">
                             <li className="nav-item">
                                 <a className="nav-link active show" data-toggle="tab" href="#type">Fee Type</a>
@@ -195,6 +234,7 @@ class FeeStructure extends React.Component {
                         </ul>
                         <div className="tab-content">
                             <div className="tab-pane active show" id="type">
+                              <form name='FeeType' className="tab-pane active show" id="FeeType" noValidate onSubmit={this.handleSubmit}>
                                 <div className="einrformbase">
                                     <ul className="einrform">
                                         <li>
@@ -204,30 +244,36 @@ class FeeStructure extends React.Component {
                                             </li>                                       
                                         </li>
                                         <li>
-                                            <CreateInput type={'ddl'} value={this.state.selectedPayType} data={this.state.payType} label={'Payment Type'} name={'payType'} htmlFor={'payType'} isrequired={true} keyId={'CITY_ID'} keyName={'CITY_NAME'}
+                                            <CreateInput type={'ddl'} value={this.state.selectedPayType} data={this.state.payType} label={'Payment Type'} name={'payType'} htmlFor={'payType'} isrequired={true}
+                                                keyId={'PARAM_ID'} keyName={'PARAM_NAME'}
                                                 onChange={this.onChangePayType.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />                                         
                                         </li>
                                         <li>
-                                            <div className="form-group">
-                                                <label>Month</label>
-                                                <input type="text" className="form-control" placeholder="default disable. enable when user select fee collection month wise list of month show here with multiselect dropdown" />
-                                            </div>
+                                            <CreateInput type={'ddl'} value={this.state.selectedMonth} data={this.state.month} label={'Month'} name={'month'} htmlFor={'month'} isrequired={true}
+                                                    keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeMonth.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
                                         </li>
                                         <li>
                                             <CreateInput type={'text'} value={this.state.feeDescrep} label={'Description'} name={'feeDescrep'} htmlFor={'feeDescrep'} isrequired={true}
                                                 onChange={this.onChangeFeeDesc.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />                                         
                                         </li>
                                         <li>
-                                            <button type="submit" className="btn btn-info">Save</button>
+                                            <CreateInput type={'ddl'} value={this.state.selectedActive} data={this.state.active} label={'Status'} name={'active'} htmlFor={'active'} isrequired={true}
+                                                keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeActive.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                        </li>
+                                        <li>
+                                                <button type="submit" className="btn btn-info"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span>{this.state.label}</button>
                                         </li>
                                     </ul>
-                                </div>
+                                   </div>
+                                </form>
                                 <div className="row cstdown clearfix">
-                                    <hr />
-                                    @*Ag grid code go here*@
-                    </div>
+                                            <hr />
+                                            <AgGrid columnDef={this.state.columnDef} rowData={this.state.rowData} />
+                                </div>
+                                </div>
 
-                            </div>
+
+
                             <div className="tab-pane" id="details">
                                 <div className="einrformbase">
                                     <ul className="einrform">

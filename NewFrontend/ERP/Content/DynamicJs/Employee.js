@@ -2,6 +2,7 @@ function getEmployeeGridSettings() {
  var gridViewSettings = new Array();
  var labelArray = getLabel_Header();
  var EmployeeDetails = [
+{ headerName: labelArray['$EDIT$'], field: 'Edit', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateEdit'},
 { headerName: labelArray['$ID$'], field: 'empCode', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$FIRST_NAME$'], field: 'empfname', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$LAST_NAME$'], field: 'lname', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
@@ -46,11 +47,10 @@ function getEmployeeGridSettings() {
 { headerName: labelArray['$SUBJECTS$'], field: 'sbjct', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
 { headerName: labelArray['$LOGIN_ID$'], field: 'loginId', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$PASSWORD$'], field: 'pass', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
-{ headerName: labelArray['$EMAIL$'], field: 'email', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
-{ headerName: labelArray['$EDIT$'], field: 'Edit', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateEdit'}
+{ headerName: labelArray['$EMAIL$'], field: 'email', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true}
  ];
- var EmployeeDetails_Export = ['qual','desigId','desigNm','doj','mStatus','state','lPhoneNo','adNo','anPckg','sbjct','pass','email','Edit'];
-var EmployeeDetails_ExportCaption = ['QUALIFICATION','DESIG_ID','DESIG_NAME','DOJ','MARITAL_STATUS','STATE','L_PHONE','ADHAAR_NO','ANNUAL_PACK','SUBJECTS','PASSWORD','EMAIL','EDIT'];
+ var EmployeeDetails_Export = ['Edit','qual','desigId','desigNm','doj','mStatus','state','lPhoneNo','adNo','anPckg','sbjct','pass','email'];
+var EmployeeDetails_ExportCaption = ['EDIT','QUALIFICATION','DESIG_ID','DESIG_NAME','DOJ','MARITAL_STATUS','STATE','L_PHONE','ADHAAR_NO','ANNUAL_PACK','SUBJECTS','PASSWORD','EMAIL'];
 
  gridViewSettings['$EmployeeDetails$'] =EmployeeDetails;
  gridViewSettings['$EmployeeDetails_Export$'] =EmployeeDetails_Export;

@@ -540,6 +540,7 @@ C:\Users\jata.shankar\Documents\GitHub\ERP\NewFrontend\ERP\obj\Debug\ERP.csprojR
 C:\Users\jata.shankar\Documents\GitHub\ERP\NewFrontend\ERP\obj\Debug\ERP.dll
 C:\Users\jata.shankar\Documents\GitHub\ERP\NewFrontend\ERP\obj\Debug\ERP.pdb
 D:\Project\Github ERP\ERP\NewFrontend\ERP\obj\Debug\ERP.csprojAssemblyReference.cache
+C:\Users\sunil\Documents\GitHub\ERP\NewFrontend\ERP\obj\Debug\ERP.csproj.CoreCompileInputs.cache
 C:\Users\sunil\Documents\GitHub\ERP\NewFrontend\ERP\bin\x64\ClearScriptV8-64.dll
 C:\Users\sunil\Documents\GitHub\ERP\NewFrontend\ERP\bin\x64\v8-base-x64.dll
 C:\Users\sunil\Documents\GitHub\ERP\NewFrontend\ERP\bin\x64\v8-x64.dll
@@ -616,6 +617,5 @@ C:\Users\sunil\Documents\GitHub\ERP\NewFrontend\ERP\bin\System.Web.Mvc.xml
 C:\Users\sunil\Documents\GitHub\ERP\NewFrontend\ERP\bin\ru-ru\JavaScriptEngineSwitcher.Core.resources.dll
 C:\Users\sunil\Documents\GitHub\ERP\NewFrontend\ERP\bin\ru-ru\JavaScriptEngineSwitcher.V8.resources.dll
 C:\Users\sunil\Documents\GitHub\ERP\NewFrontend\ERP\obj\Debug\ERP.csprojResolveAssemblyReference.cache
-C:\Users\sunil\Documents\GitHub\ERP\NewFrontend\ERP\obj\Debug\ERP.csproj.CoreCompileInputs.cache
 C:\Users\sunil\Documents\GitHub\ERP\NewFrontend\ERP\obj\Debug\ERP.dll
 C:\Users\sunil\Documents\GitHub\ERP\NewFrontend\ERP\obj\Debug\ERP.pdb

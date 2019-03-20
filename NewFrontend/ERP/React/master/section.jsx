@@ -239,7 +239,7 @@ class SectionForm extends React.Component {
                     </div>
                 </div>
                 <div className="pagebody">
-                    <div className="einrformbase card p-4">
+                    <div className="einrformbase card pt-2 pl-2 pr-2">
                         <div className="card-title">
                             Academic Year
                         </div>

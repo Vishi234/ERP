@@ -818,10 +818,10 @@ textarea {
     }
 
     .einrform > li > .btn {
-        padding: 6px 15px;
+        padding: 4px 15px;
         margin-bottom: 3px;
         border-radius: 3px;
-        margin-top: 27px;
+        margin-top: 25px;
     }
 
 .input-validation-error {
@@ -1208,8 +1208,9 @@ txtarea label {
 }
 
 .editbtn {
-    height: 20px;
-    width: 20px;
+    height: 18px;
+    width: 18px;
+    margin: 1.4px;
 }
 
 .badge {
@@ -1220,4 +1221,16 @@ txtarea label {
     margin-bottom: 10px;
     display: inline-block;
     width: 100%;
+}
+.grid-center
+{
+    text-align:center;
+}
+.grid-left
+{
+    text-align:left;
+}
+.grid.right
+{
+    text-align:right;
 }

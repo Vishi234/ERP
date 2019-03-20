@@ -2,6 +2,7 @@ function getStudentGridSettings() {
  var gridViewSettings = new Array();
  var labelArray = getLabel_Header();
  var StudentDetails = [
+{ headerName: labelArray['$EDIT$'], field: 'Edit', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateEdit'},
 { headerName: labelArray['$STU_CODE$'], field: 'stuCode', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$FIRST_NAME$'], field: 'stufname', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$LAST_NAME$'], field: 'lname', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
@@ -41,11 +42,10 @@ function getStudentGridSettings() {
 { headerName: labelArray['$PERCENTAGE$'], field: 'percentage', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$SUBJECTS$'], field: 'subject', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$LOGIN_ID$'], field: 'login', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
-{ headerName: labelArray['$PASSWORD$'], field: 'password', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
-{ headerName: labelArray['$EDIT$'], field: 'Edit', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateEdit'}
+{ headerName: labelArray['$PASSWORD$'], field: 'password', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false}
  ];
- var StudentDetails_Export = ['courseId','courseName','acedeYearID','acedeYear','nation','state','email','YEAR','Edit'];
-var StudentDetails_ExportCaption = ['COURSE_ID','COURSE_NAME','ACADEMIC_ID','ACADEMIC_YEAR','NATIONALITY','STATE','EMAIL','YEAR','EDIT'];
+ var StudentDetails_Export = ['Edit','courseId','courseName','acedeYearID','acedeYear','nation','state','email','YEAR'];
+var StudentDetails_ExportCaption = ['EDIT','COURSE_ID','COURSE_NAME','ACADEMIC_ID','ACADEMIC_YEAR','NATIONALITY','STATE','EMAIL','YEAR'];
 
  gridViewSettings['$StudentDetails$'] =StudentDetails;
  gridViewSettings['$StudentDetails_Export$'] =StudentDetails_Export;
