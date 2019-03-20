@@ -47,6 +47,7 @@ class CourseForm extends React.Component {
     //}
   
     handleSubmit(e) {
+        debugger;
         e.preventDefault();
         var validForm = true;
         fields.forEach(function (field) {

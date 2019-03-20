@@ -5,11 +5,11 @@
 //    x = 0;
 //});
 class CreateInput extends React.Component {
-    handleChange(e) {
-     
+    handleChange(e) {    
         if (this.props.type == "file") {           
             this.props.onChange(e.target);
         } else {
+            debugger;
             boolflag = 1;
             this.props.onChange(e.target.value);
         }
@@ -51,7 +51,8 @@ class CreateInput extends React.Component {
     isValid(input) {
         //check required field
         if (input != undefined) {
-                if (input.tagName == "INPUT") {
+            if (input.tagName == "INPUT") {
+                debugger;
                     if (input.getAttribute('required') != null && input.value === "") {
                         input.classList.add('input-validation-error'); //add class error
                         input.nextSibling.classList.add('field-validation-error');
@@ -191,7 +192,7 @@ class CreateInput extends React.Component {
         }
         else if (this.props.type == 'ddl') {
             inputField = <select value={this.props.value} ref='MySelect2' onChange={this.handleChange.bind(this)} name={this.props.name}
-                                 className='registration-form-control dropdown' required={this.props.isrequired}>
+                className='registration-form-control dropdown' required={this.props.isrequired} disabled={this.props.disabled}>
                             <option key="0" value="0">Select {this.props.label}</option>
                 {this.props.data.map((obj) =>
                 <option key={obj[this.props.keyId]} onClick={this.handleClick.bind(this)} value={obj[this.props.keyId] }>{obj[this.props.keyName]}</option>)}

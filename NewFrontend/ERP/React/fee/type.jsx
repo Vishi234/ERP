@@ -1,4 +1,7 @@
-﻿
+﻿var grdArray;
+var MyData = null;
+var fields = [];
+var feeMap = [];
 class FeeStructure extends React.Component {
     constructor(props) {
         super(props);
@@ -20,7 +23,10 @@ class FeeStructure extends React.Component {
             payType: ReadDropDownData("Param", '20', true),
             feeDescrep: "",
             month: ReadDropDownData("Param", '21', true),
-            active: ReadDropDownData("Param", '16', true),         
+            active: ReadDropDownData("Param", '16', true),     
+            academicYear: ReadDropDownData("AcademicYear", $("#hfCustomerId").val(), false),
+            courseId: ReadDropDownData("Course", $("#hfCustomerId").val(), false),
+            feeType:[],
             feeAcadeDet: [],
             CourseDet: [],
             mediumDet: [],
@@ -34,7 +40,12 @@ class FeeStructure extends React.Component {
             selectedAcadStruct: 0,
             selectedCourseStruct: 0,
             selectedMedStruct: 0,
+            selectedYear:0,
+            selectedCourse:0,
+            SelectedFeeType: 0,
+            monthActive:true,
             Fields: [],
+            feeMap:[],
             columnDef: columnDefs,
             rowData: records,
             records: ((records == null) ? 0 : records.length),
@@ -45,15 +56,16 @@ class FeeStructure extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleSubmit(e) {
+        debugger;
         e.preventDefault();
         var validForm = true;
-        var validField;
-        this.state.Fields.forEach(function (field) {
-            if (typeof field.isValid === "function") {
-                if (field.props.type == 'ddl') {
-                    validField = field.isValid(field.refs.MySelect2);
+        fields.forEach(function (field) {
+            if (typeof field[0].isValid === "function") {
+                var validField;
+                if (field[0].props.type == 'ddl') {
+                    validField = field[0].isValid(field[0].refs.MySelect2);
                 } else {
-                    validField = field.isValid(field.refs[field.props.name]);
+                    validField = field[0].isValid(field[0].refs[field[0].props.name]);
                 }
                 validForm = validForm && validField;
             }
@@ -121,11 +133,23 @@ class FeeStructure extends React.Component {
     }
 
     onChangePayType(value) {
+        debugger
+        jsonData = ReadDropDownData("Param", '20', true);
+        if (value === "82") {
+            this.setState({
+                monthActive: false
+            });
+        } else {
+            this.setState({
+                monthActive: true
+            });
+        }
         this.setState({
             selectedPayType: value
         });
     }
     onChangeFeeName(value) {
+        debugger;
         this.setState({
             feeName: value
         });
@@ -174,6 +198,31 @@ class FeeStructure extends React.Component {
     onChangeMonth(value) {
         this.setState({
             selectedMonth: value
+        });
+    }
+    register(field) {
+        var s = [];
+        s.push(field);
+        fields.push(s); 
+    }
+    registerMapping(field) {
+        var s = [];
+        s.push(field);
+        feeMap.push(s); 
+    }
+    onChangeYear(value) {
+        this.setState({
+            selectedYear: value
+        });
+    }
+    onChangeCourse(value) {
+        this.setState({
+            selectedCourse: value
+        });
+    }
+    onChangeFeeType(value) {
+        this.setState({
+            SelectedFeeType: value
         });
     }
 
@@ -233,8 +282,7 @@ class FeeStructure extends React.Component {
     componentDidUpdate() {
         $('.testClass').on("click", this.handleClick.bind(this));
     }
-
-   // alert(window.dynamicData)
+      // alert(window.dynamicData)
     render() {
         //Render form
         return (
@@ -281,8 +329,8 @@ class FeeStructure extends React.Component {
                                                 onChange={this.onChangePayType.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />                                         
                                         </li>
                                         <li>
-                                            <CreateInput type={'ddl'} value={this.state.selectedMonth} data={this.state.month} label={'Month'} name={'month'} htmlFor={'month'} isrequired={true}
-                                                    keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeMonth.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                <CreateInput type={'ddl'} value={this.state.selectedMonth} data={this.state.month} label={'Month'} name={'month'} htmlFor={'month'} isrequired={true}
+                                                    keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeMonth.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} disabled={this.state.monthActive} />
                                         </li>
                                         <li>
                                             <CreateInput type={'text'} value={this.state.feeDescrep} label={'Description'} name={'feeDescrep'} htmlFor={'feeDescrep'} isrequired={true}
@@ -304,25 +352,20 @@ class FeeStructure extends React.Component {
                                 </div>
                             </div>
                             <div className="tab-pane" id="mapping">
+                                <form name='FeeType' className="tab-pane active show" id="FeeMapping" noValidate onSubmit={this.handleMapping}>
                                 <div className="einrformbase">
-                                    <ul className="einrform">
+                                    <ul className="einrform">   
                                         <li>
-                                            <div className="form-group">
-                                                <label>Academic Year</label>
-                                                <input type="text" className="form-control" placeholder="" />
-                                            </div>
+                                            <CreateInput type={'ddl'} value={this.state.selectedYear} data={this.state.academicYear} label={'Academic Year'} name={'academicYear'} htmlFor={'academicYear'} isrequired={true}
+                                                    keyId={'YEAR_ID'} keyName={'ACADEMIC_YEAR'} onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.registerMapping} messageRequired={'required.'} />
                                         </li>
                                         <li>
-                                            <div className="form-group">
-                                                <label>Course Type</label>
-                                                <input type="text" className="form-control" placeholder="" />
-                                            </div>
+                                            <CreateInput type={'ddl'} value={this.state.selectedCourse} data={this.state.courseId} label={'Course'} name={'courseId'} htmlFor={'courseId'} isrequired={true}
+                                                    keyId={'COURSE_ID'} keyName={'COURSE_NAME'} onChange={this.onChangeCourse} className={'form-control'} onComponentMounted={this.registerMapping} messageRequired={'required.'} />
                                         </li>
                                         <li>
-                                            <div className="form-group">
-                                                <label>Fee Type</label>
-                                                <input type="text" className="form-control" placeholder="" />
-                                            </div>
+                                            <CreateInput type={'ddl'} value={this.state.SelectedFeeType} data={this.state.feeType} label={'Fee Type'} name={'feeType'} htmlFor={'feeType'} isrequired={true}
+                                                    keyId={'COURSE_ID'} keyName={'COURSE_NAME'} onChange={this.onChangeFeeType.bind(this)} className={'form-control'} onComponentMounted={this.registerMapping} messageRequired={'required.'} />
                                         </li>
                                         <li>
                                             <button type="submit" className="btn btn-info">Save</button>
@@ -331,10 +374,10 @@ class FeeStructure extends React.Component {
                                 </div>
                                 <div className="row cstdown clearfix">
                                     <hr />
-                                    @*Ag grid code go here*@
                                 </div>
-
+                                </form> 
                             </div>
+
                             <div className="tab-pane" id="details">
                                 <div className="einrformbase">
                                     <ul className="einrform">
@@ -357,7 +400,6 @@ class FeeStructure extends React.Component {
                                 </div>
                                 <div className="row cstdown clearfix">
                                     <hr />
-                                    @*Ag grid code go here*@
                         <div className="text-center">
                                         <button type="submit" className="btn btn-info">Save</button>
                                     </div>
@@ -385,8 +427,7 @@ class FeeStructure extends React.Component {
                                     </ul>
                                 </div>
                                 <div className="row cstdown clearfix">
-                                    <hr />
-                                    @*Ag grid code go here*@
+                                    <hr/>
                     </div>
                             </div>
                         </div>

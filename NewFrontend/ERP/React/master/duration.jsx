@@ -35,16 +35,16 @@
         }
     },
     handleSubmit: function (e) {
-        debugger
+        debugger;
         e.preventDefault();
         var validForm = true;
-        var validField;
-        this.state.Fields.forEach(function (field) {
-            if (typeof field.isValid === "function") {
-                if (field.props.type == 'ddl') {
-                    validField = field.isValid(field.refs.MySelect2);
+        fields.forEach(function (field) {
+            if (typeof field[0].isValid === "function") {
+                var validField;
+                if (field[0].props.type == 'ddl') {
+                    validField = field[0].isValid(field[0].refs.MySelect2);
                 } else {
-                    validField = field.isValid(field.refs[field.props.name]);
+                    validField = field[0].isValid(field[0].refs[field[0].props.name]);
                 }
                 validForm = validForm && validField;
             }
