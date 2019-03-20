@@ -69,7 +69,7 @@ class FeeStructure extends React.Component {
                 isActive: this.state.selectedActive,
                 terms: "",  
                 reportId:"9",
-                flag: "A"
+                flag: this.state.flag
             }
             $.ajax({
                 type: "POST",
@@ -85,9 +85,12 @@ class FeeStructure extends React.Component {
                         MyData = JSON.parse(data.addParams);
                         this.setState
                             ({
+
                                 feeName: "",
-                                payType: [],
+                                payType: ReadDropDownData("Param", '20', true),
                                 feeDescrep: "",
+                                month: ReadDropDownData("Param", '21', true),
+                                active: ReadDropDownData("Param", '16', true),         
                                 feeAcadeDet: [],
                                 CourseDet: [],
                                 mediumDet: [],
@@ -173,6 +176,26 @@ class FeeStructure extends React.Component {
             selectedMonth: value
         });
     }
+
+    handleClick(param)
+    {
+        var data = JSON.parse(param.currentTarget.getAttribute("dataattr"));
+        this.setState
+            ({
+                feeName: data.feeName,
+                feeDescrep: data.descrip,
+                selectedPayType: data.pType,
+                selectedMonth: data.month,
+                selectedActive: data.isActive,
+                flag: "M",
+                label: "Update",
+                terms: "",
+                reportId: "9",
+
+            });
+      
+    }
+
     CreateActive(params) {
 
         var html = "";
@@ -201,6 +224,14 @@ class FeeStructure extends React.Component {
         domElement = document.createElement("div");
         domElement.innerHTML = html;
         return domElement;
+    }
+
+    componentDidMount()
+    {
+        $('.testClass').on("click", this.handleClick.bind(this));
+    }
+    componentDidUpdate() {
+        $('.testClass').on("click", this.handleClick.bind(this));
     }
 
    // alert(window.dynamicData)
