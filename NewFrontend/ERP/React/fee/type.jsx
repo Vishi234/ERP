@@ -268,13 +268,9 @@ class FeeStructure extends React.Component {
                                    </div>
                                 </form>
                                 <div className="row cstdown clearfix">
-                                            <hr />
-                                            <AgGrid columnDef={this.state.columnDef} rowData={this.state.rowData} />
+                                     <hr />
+                                     <AgGrid columnDef={this.state.columnDef} rowData={this.state.rowData} />
                                 </div>
-                                </div>
-
-
-
                             </div>
                             <div className="tab-pane" id="mapping">
                                 <div className="einrformbase">
