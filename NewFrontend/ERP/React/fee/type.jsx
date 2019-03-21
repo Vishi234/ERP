@@ -26,7 +26,7 @@ class FeeStructure extends React.Component {
             active: ReadDropDownData("Param", '16', true),     
             academicYear: ReadDropDownData("AcademicYear", $("#hfCustomerId").val(), false),
             courseId: ReadDropDownData("Course", $("#hfCustomerId").val(), false),
-            feeType:[],
+            feeType: ReadDropDownData("FeeName", $("#hfCustomerId").val(), false),
             feeAcadeDet: [],
             CourseDet: [],
             mediumDet: [],
@@ -54,6 +54,7 @@ class FeeStructure extends React.Component {
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleMapping = this.handleMapping.bind(this);
     }
     handleSubmit(e) {
         debugger;
@@ -132,9 +133,93 @@ class FeeStructure extends React.Component {
         }
     }
 
+    handleMapping(e) {
+        debugger;
+        e.preventDefault();
+        var validForm = true;
+        feeMap.forEach(function (field) {
+            if (typeof field[0].isValid === "function") {
+                var validField;
+                if (field[0].props.type == 'ddl') {
+                    validField = field[0].isValid(field[0].refs.MySelect2);
+                } else {
+                    validField = field[0].isValid(field[0].refs[field[0].props.name]);
+                }
+                validForm = validForm && validField;
+            }
+        });
+        //after validation complete post to server
+        if (validForm) {
+            var d = {
+                id: "",
+                academicYear: this.state.selectedYear,
+                courseId: this.state.selectedCourse,
+                feeType: this.state.SelectedFeeType,              
+                flag: this.state.flag
+            }
+            $.ajax({
+                type: "POST",
+                url: '/Fee/AddFeeMapping',
+                data: d,
+                beforeSend: function () {
+                    btnloading("FeeType", 'show');
+                },
+                success: function (data) {
+                    btnloading("FeeType", 'hide');
+                    CallToast(data.msg, data.flag);
+                    if (data.flag == "S") {
+                        MyData = JSON.parse(data.addParams);
+                        this.setState
+                            ({
+
+                                feeName: "",
+                                payType: ReadDropDownData("Param", '20', true),
+                                feeDescrep: "",
+                                month: ReadDropDownData("Param", '21', true),
+                                active: ReadDropDownData("Param", '16', true),
+                                feeAcadeDet: [],
+                                CourseDet: [],
+                                mediumDet: [],
+                                feeAcadeStruct: [],
+                                CourseStruct: [],
+                                mediumStruct: ReadDropDownData("Param", '18', true),
+                                selectedPayType: 0,
+                                selectedAcadDet: 0,
+                                selectedCourseDet: 0,
+                                selectedMediumDet: 0,
+                                selectedAcadStruct: 0,
+                                selectedCourseStruct: 0,
+                                selectedMedStruct: 0,
+                                label: "Save",
+                                flag: "A",
+                            })
+                        this.setState({ rowData: MyData });
+                    }
+                }.bind(this),
+                error: function (evt) {
+                    btnloading("subjectForm", 'hide');
+                    alert('Error! Please try again');
+                }
+            })
+
+            e.preventDefault();
+        }
+    }
+
     onChangePayType(value) {
-        debugger
-        jsonData = ReadDropDownData("Param", '20', true);
+        //var jsonData = ReadDropDownData("Param", '20', true);
+        //for (var i = 0; i < jsonData.length; i++) {
+        //    if (jsonData[i].PARAM_ID==value) {
+        //        this.setState({
+        //            monthActive: false
+        //        });
+        //        break;
+        //    } else {
+        //        this.setState({
+        //            monthActive: true
+        //        });
+        //    }
+        //}     
         if (value === "82") {
             this.setState({
                 monthActive: false
@@ -149,7 +234,6 @@ class FeeStructure extends React.Component {
         });
     }
     onChangeFeeName(value) {
-        debugger;
         this.setState({
             feeName: value
         });
@@ -205,12 +289,8 @@ class FeeStructure extends React.Component {
         s.push(field);
         fields.push(s); 
     }
-    registerMapping(field) {
-        var s = [];
-        s.push(field);
-        feeMap.push(s); 
-    }
-    onChangeYear(value) {
+
+    onChangeYear(value){
         this.setState({
             selectedYear: value
         });
@@ -224,6 +304,11 @@ class FeeStructure extends React.Component {
         this.setState({
             SelectedFeeType: value
         });
+    }
+    registerMapping(field) {
+        var s = [];
+        s.push(field);
+        feeMap.push(s);
     }
 
     handleClick(param)
@@ -357,15 +442,15 @@ class FeeStructure extends React.Component {
                                     <ul className="einrform">   
                                         <li>
                                             <CreateInput type={'ddl'} value={this.state.selectedYear} data={this.state.academicYear} label={'Academic Year'} name={'academicYear'} htmlFor={'academicYear'} isrequired={true}
-                                                    keyId={'YEAR_ID'} keyName={'ACADEMIC_YEAR'} onChange={this.onChangeYear} className={'form-control'} onComponentMounted={this.registerMapping} messageRequired={'required.'} />
+                                                    keyId={'YEAR_ID'} keyName={'ACADEMIC_YEAR'} onChange={this.onChangeYear.bind(this)} className={'form-control'} onComponentMounted={this.registerMapping} messageRequired={'required.'} />
                                         </li>
                                         <li>
                                             <CreateInput type={'ddl'} value={this.state.selectedCourse} data={this.state.courseId} label={'Course'} name={'courseId'} htmlFor={'courseId'} isrequired={true}
-                                                    keyId={'COURSE_ID'} keyName={'COURSE_NAME'} onChange={this.onChangeCourse} className={'form-control'} onComponentMounted={this.registerMapping} messageRequired={'required.'} />
+                                                    keyId={'COURSE_ID'} keyName={'COURSE_NAME'} onChange={this.onChangeCourse.bind(this)} className={'form-control'} onComponentMounted={this.registerMapping} messageRequired={'required.'} />
                                         </li>
                                         <li>
                                             <CreateInput type={'ddl'} value={this.state.SelectedFeeType} data={this.state.feeType} label={'Fee Type'} name={'feeType'} htmlFor={'feeType'} isrequired={true}
-                                                    keyId={'COURSE_ID'} keyName={'COURSE_NAME'} onChange={this.onChangeFeeType.bind(this)} className={'form-control'} onComponentMounted={this.registerMapping} messageRequired={'required.'} />
+                                                    keyId={'ID'} keyName={'FEE_NAME'} onChange={this.onChangeFeeType.bind(this)} className={'form-control'} onComponentMounted={this.registerMapping} messageRequired={'required.'} />
                                         </li>
                                         <li>
                                             <button type="submit" className="btn btn-info">Save</button>
@@ -373,7 +458,8 @@ class FeeStructure extends React.Component {
                                     </ul>
                                 </div>
                                 <div className="row cstdown clearfix">
-                                    <hr />
+                                        <hr />
+                                      
                                 </div>
                                 </form> 
                             </div>

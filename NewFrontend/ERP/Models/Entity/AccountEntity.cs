@@ -19,6 +19,11 @@ namespace ERP.Models.Entity
         public string userId { get; set; }
         public string reportId { get; set; }
         public string customerId { get; set; }
+        public string academicYear { get; set; }
+        public string courseId { get; set; }
+        public string feeType { get; set; }
+
+
 
         //     public string cWet { get; set; }
     }

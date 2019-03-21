@@ -30,6 +30,14 @@ namespace ERP.Controllers
             return Json(accountObj.AddFeeDetails(accountEntity));
 
         }
+        [HttpPost]
+        public JsonResult AddFeeMapping(AccountEntity accountEntity)
+        {
+            Account accountObj = new Account();
+            //  UserEntity objUserEntity = UserEntity.GetInstance();
+            return Json(accountObj.AddFeeMapping(accountEntity));
+
+        }
         public ActionResult Payments()
         {
             return View();
