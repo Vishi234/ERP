@@ -74,36 +74,36 @@ namespace ERP.Models.Bal.Accounts
             try
             {
                 //  UserEntity objUserEntity = UserEntity.GetInstance();
-                SqlParameter[] sqlParameter = new SqlParameter[7];
+                SqlParameter[] sqlParameter = new SqlParameter[9];
                 sqlParameter[0] = new SqlParameter("@ID", accountEntity.id);
                 sqlParameter[1] = new SqlParameter("@ACADEMIC_YEAR", accountEntity.academicYear);
                 sqlParameter[2] = new SqlParameter("@COURSE", accountEntity.courseId);
                 sqlParameter[3] = new SqlParameter("@FEE_TYPE", accountEntity.feeType);
-                sqlParameter[4] = new SqlParameter("@OPER_TYPE", accountEntity.flag);
-                //sqlParameter[10] = new SqlParameter("@REPORT_ID", accountEntity.reportId);
-
-                sqlParameter[5] = new SqlParameter("@FLAG", SqlDbType.Char);
-                sqlParameter[5].Direction = ParameterDirection.Output;
-                sqlParameter[5].Size = 1;
-                sqlParameter[6] = new SqlParameter("@MSG", SqlDbType.NVarChar);
-                sqlParameter[6].Direction = ParameterDirection.Output;
-                sqlParameter[6].Size = 500;
+                sqlParameter[4] = new SqlParameter("@CUSTOMER_ID", objUserEntity.customerId);
+                sqlParameter[5] = new SqlParameter("@USER_ID", objUserEntity.userId);
+                sqlParameter[6] = new SqlParameter("@OPER_TYPE", accountEntity.flag);
+                sqlParameter[7] = new SqlParameter("@FLAG", SqlDbType.Char);
+                sqlParameter[7].Direction = ParameterDirection.Output;
+                sqlParameter[7].Size = 1;
+                sqlParameter[8] = new SqlParameter("@MSG", SqlDbType.NVarChar);
+                sqlParameter[8].Direction = ParameterDirection.Output;
+                sqlParameter[8].Size = 500;
 
                 DataSet ds = new DataSet();
                 ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_COURSE_FEE_MAPPING", sqlParameter);
-                result.flag = sqlParameter[5].Value.ToString();
-                result.msg = sqlParameter[6].Value.ToString();
+                result.flag = sqlParameter[7].Value.ToString();
+                result.msg = sqlParameter[8].Value.ToString();
 
-                if (result.flag.ToUpper() == "S")
-                {
-                    if (ds != null)
-                    {
-                        if (ds.Tables[0].Rows.Count > 0)
-                        {
-                            result.addParams = CommonFunc.DtToJSON(ds.Tables[0]);
-                        }
-                    }
-                }
+                //if (result.flag.ToUpper() == "S")
+                //{
+                //    if (ds != null)
+                //    {
+                //        if (ds.Tables[0].Rows.Count > 0)
+                //        {
+                //            result.addParams = CommonFunc.DtToJSON(ds.Tables[0]);
+                //        }
+                //    }
+                //}
                 return result;
             }
             catch (Exception ex)

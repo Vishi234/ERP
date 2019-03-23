@@ -162,10 +162,10 @@ class FeeStructure extends React.Component {
                 url: '/Fee/AddFeeMapping',
                 data: d,
                 beforeSend: function () {
-                    btnloading("FeeType", 'show');
+                    btnloading("FeeMapping", 'show');
                 },
                 success: function (data) {
-                    btnloading("FeeType", 'hide');
+                    btnloading("FeeMapping", 'hide');
                     CallToast(data.msg, data.flag);
                     if (data.flag == "S") {
                         MyData = JSON.parse(data.addParams);
@@ -197,7 +197,7 @@ class FeeStructure extends React.Component {
                     }
                 }.bind(this),
                 error: function (evt) {
-                    btnloading("subjectForm", 'hide');
+                    btnloading("FeeMapping", 'hide');
                     alert('Error! Please try again');
                 }
             })
@@ -453,7 +453,7 @@ class FeeStructure extends React.Component {
                                                     keyId={'ID'} keyName={'FEE_NAME'} onChange={this.onChangeFeeType.bind(this)} className={'form-control'} onComponentMounted={this.registerMapping} messageRequired={'required.'} />
                                         </li>
                                         <li>
-                                            <button type="submit" className="btn btn-info">Save</button>
+                                            <button type="submit" className="btn btn-info"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span>{this.state.label}</button>
                                         </li>
                                     </ul>
                                 </div>
