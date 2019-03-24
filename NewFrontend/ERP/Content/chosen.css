@@ -10,7 +10,7 @@
     user-select: none;
     border-radius: 5px;
     height: 26px;
-    width: 100%!important;
+    width: 100% !important;
 }
 
 
@@ -230,11 +230,12 @@
     padding: 0 5px;
     width: 100%;
     height: auto;
-    border: 1px solid #aaa;
     background-color: #fff;
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #eee), color-stop(15%, #fff));
-    background-image: linear-gradient(#eee 1%, #fff 15%);
     cursor: text;
+    border: 1px solid rgba(0, 0, 0, 0.3) !important;
+    border-radius: 3px !important;
+    height: 26px !important;
+    line-height: 24px !important;
 }
 
     .chosen-container-multi .chosen-choices li {
@@ -249,38 +250,36 @@
         }
 
             .chosen-container-multi .chosen-choices li.search-field input[type="text"] {
-                margin: 1px 0;
                 padding: 0;
-                height: 25px;
+                height: 24px;
                 outline: 0;
                 border: 0 !important;
                 background: transparent !important;
                 -webkit-box-shadow: none;
                 box-shadow: none;
                 color: #999;
-                font-size: 100%;
-                font-family: sans-serif;
-                line-height: normal;
-                border-radius: 0;
+                /* font-size: 100%; */
+                /* line-height: normal; */
+                /* border-radius: 0; */
                 width: 25px;
             }
 
         .chosen-container-multi .chosen-choices li.search-choice {
             position: relative;
-            margin: 3px 5px 3px 0;
-            padding: 3px 20px 3px 5px;
-            border: 1px solid #aaa;
-            max-width: 100%;
-            border-radius: 3px;
-            background-color: #eeeeee;
-            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(20%, #f4f4f4), color-stop(50%, #f0f0f0), color-stop(52%, #e8e8e8), to(#eee));
-            background-image: linear-gradient(#f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eee 100%);
-            background-size: 100% 19px;
-            background-repeat: repeat-x;
-            background-clip: padding-box;
-            -webkit-box-shadow: 0 0 2px #fff inset, 0 1px 0 rgba(0, 0, 0, 0.05);
-            box-shadow: 0 0 2px #fff inset, 0 1px 0 rgba(0, 0, 0, 0.05);
-            color: #333;
+            margin: 1px 0px;
+            padding: 3px 20px 3px 0px;
+            /* border: 1px solid #aaa; */
+            /* max-width: 100%; */
+            /* border-radius: 3px; */
+            /* background-color: #eeeeee; */
+            /* background-image: -webkit-gradient(linear, left top, left bottom, color-stop(20%, #f4f4f4), color-stop(50%, #f0f0f0), color-stop(52%, #e8e8e8), to(#eee)); */
+            /* background-image: linear-gradient(#f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eee 100%); */
+            /* background-size: 100% 19px; */
+            /* background-repeat: repeat-x; */
+            /* background-clip: padding-box; */
+            /* -webkit-box-shadow: 0 0 2px #fff inset, 0 1px 0 rgba(0, 0, 0, 0.05); */
+            /* box-shadow: 0 0 2px #fff inset, 0 1px 0 rgba(0, 0, 0, 0.05); */
+            /* color: #333; */
             line-height: 13px;
             cursor: default;
         }
@@ -296,8 +295,8 @@
                 display: block;
                 width: 12px;
                 height: 12px;
-                background: url("../Images/chosen-sprite.png") -42px 1px no-repeat;
-                font-size: 1px;
+                background: url(../Images/chosen-sprite.png) -42px 1px no-repeat;
+                /* font-size: 1px; */
             }
 
                 .chosen-container-multi .chosen-choices li.search-choice .search-choice-close:hover {
@@ -350,14 +349,16 @@
         }
 
 .chosen-container-active .chosen-choices {
-    border: 1px solid #5897fb;
-    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    border: 1px solid #999;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 
-    .chosen-container-active .chosen-choices li.search-field input[type="text"] {
+/*.chosen-container-active .chosen-choices li.search-field input[type="text"] {
         color: #222 !important;
-    }
+    }*/
 
 /* @end */
 /* @group Disabled Support */

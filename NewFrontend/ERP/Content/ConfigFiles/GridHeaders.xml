@@ -178,6 +178,7 @@
   <module name="FeeManagement" id ="2">
     <report name="FeeType" id="9" page-size="1500" alternate-row-css="" export="Y">
       <column name="" id="1" headerName="$EDIT$" dbFieldName="Edit" dbFieldAlias="Edit"  hide="false" headerTooltip="" width="115" cellClass="grid-center" cellStyle="" suppressMenu="false" export="true" wrapHeaderText="true" dataType="string"  cellRenderer="CreateEdit"></column>
+      <column name="ID" id="2" headerName="$FEE_NAME$" dbFieldName="ID" dbFieldAlias="id"  hide="true" headerTooltip="" width="150" cellClass="grid-center" cellStyle="" suppressMenu="false" export="false" wrapHeaderText="true" dataType="string" cellRenderer=""></column>
       <column name="FEE_NAME" id="2" headerName="$FEE_NAME$" dbFieldName="FEE_NAME" dbFieldAlias="feeName"  hide="false" headerTooltip="" width="150" cellClass="grid-center" cellStyle="" suppressMenu="false" export="false" wrapHeaderText="true" dataType="string" cellRenderer=""></column>
       <column name="PAYMENT_TYPE" id="3" headerName="$PAYMENT_TYPE$" dbFieldName="PAYMENT_TYPE" dbFieldAlias="pType"  hide="false" headerTooltip="" width="150" cellClass="grid-center" cellStyle="" suppressMenu="false" export="false" wrapHeaderText="true" dataType="string" cellRenderer=""></column>
       <column name="PAYMENT_MONTH" id="4" headerName="$MONTH$" dbFieldName="PAYMENT_MONTH" dbFieldAlias="month"  hide="false" headerTooltip="" width="150" cellClass="grid-center" cellStyle="" suppressMenu="false" export="false" wrapHeaderText="true" dataType="string" cellRenderer=""></column>

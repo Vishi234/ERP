@@ -19,6 +19,7 @@ class FeeStructure extends React.Component {
             }
         }
         this.state = {
+            typeId:"",
             feeName: "",
             payType: ReadDropDownData("Param", '20', true),
             feeDescrep: "",
@@ -74,13 +75,13 @@ class FeeStructure extends React.Component {
         //after validation complete post to server
         if (validForm) {
             var d = {
-                id:"",
+                id:this.state.typeId,
                 feeName: this.state.feeName,
                 paymentType: this.state.selectedPayType,
                 feeDesc: this.state.feeDescrep,
-                feeMonth: this.state.selectedMonth,
+                feeMonth: ((this.state.selectedMonth!=null && this.state.selectedMonth.indexOf(",")==-1) ? this.state.selectedMonth.join(",") : this.state.selectedMonth),
                 isActive: this.state.selectedActive,
-                terms: "",  
+                terms: ((this.state.selectedMonth!=null) ? this.state.selectedMonth.length : "1"),  
                 reportId:"9",
                 flag: this.state.flag
             }
@@ -98,7 +99,7 @@ class FeeStructure extends React.Component {
                         MyData = JSON.parse(data.addParams);
                         this.setState
                             ({
-
+                                typeId:"",
                                 feeName: "",
                                 payType: ReadDropDownData("Param", '20', true),
                                 feeDescrep: "",
@@ -117,6 +118,7 @@ class FeeStructure extends React.Component {
                                 selectedAcadStruct: 0,
                                 selectedCourseStruct: 0,
                                 selectedMedStruct: 0,
+                                selectedMonth:0,
                                 label: "Save",
                                 flag: "A",
                             })
@@ -154,7 +156,7 @@ class FeeStructure extends React.Component {
                 id: "",
                 academicYear: this.state.selectedYear,
                 courseId: this.state.selectedCourse,
-                feeType: this.state.SelectedFeeType,              
+                feeType: ((this.state.SelectedFeeType!=null && this.state.SelectedFeeType.indexOf(",")==-1)? this.state.SelectedFeeType.join(",") : this.state.SelectedFeeType),              
                 flag: this.state.flag
             }
             $.ajax({
@@ -316,6 +318,7 @@ class FeeStructure extends React.Component {
         var data = JSON.parse(param.currentTarget.getAttribute("dataattr"));
         this.setState
             ({
+                typeId : data.id,
                 feeName: data.feeName,
                 feeDescrep: data.descrip,
                 selectedPayType: data.pType,
@@ -414,7 +417,7 @@ class FeeStructure extends React.Component {
                                                 onChange={this.onChangePayType.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />                                         
                                         </li>
                                         <li>
-                                                <CreateInput type={'ddl'} value={this.state.selectedMonth} data={this.state.month} label={'Month'} name={'month'} htmlFor={'month'} isrequired={true}
+                                                <CreateInput type={'multiSelect'} value={this.state.selectedMonth} data={this.state.month} label={'Month'} name={'month'} htmlFor={'month'} isrequired={true}
                                                     keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeMonth.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} disabled={this.state.monthActive} />
                                         </li>
                                         <li>
@@ -449,7 +452,7 @@ class FeeStructure extends React.Component {
                                                     keyId={'COURSE_ID'} keyName={'COURSE_NAME'} onChange={this.onChangeCourse.bind(this)} className={'form-control'} onComponentMounted={this.registerMapping} messageRequired={'required.'} />
                                         </li>
                                         <li>
-                                            <CreateInput type={'ddl'} value={this.state.SelectedFeeType} data={this.state.feeType} label={'Fee Type'} name={'feeType'} htmlFor={'feeType'} isrequired={true}
+                                            <CreateInput type={'multiSelect'} value={this.state.SelectedFeeType} data={this.state.feeType} label={'Fee Type'} name={'feeType'} htmlFor={'feeType'} isrequired={true}
                                                     keyId={'ID'} keyName={'FEE_NAME'} onChange={this.onChangeFeeType.bind(this)} className={'form-control'} onComponentMounted={this.registerMapping} messageRequired={'required.'} />
                                         </li>
                                         <li>

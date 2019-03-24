@@ -4,7 +4,6 @@ class CreateInput extends React.Component {
         if (this.props.type == "file") {           
             this.props.onChange(e.target);
         } else {
-            
             boolflag = 1;
             this.props.onChange(e.target.value);
         }
@@ -19,6 +18,20 @@ class CreateInput extends React.Component {
         //    this.onChangeImage(e);
         //}
     }
+    handleMultiSelect(e) {    
+        var options = e.target.options;
+        var value = [];
+        for (var i = 0, l = options.length; i < l; i++) {
+            if (options[i].selected) {
+                value.push(options[i].value);
+            }
+        }
+        this.props.onChange(value);
+    }
+    handleMaxSelect(e)
+    {
+        debugger;
+    }
     validate(input) {
         if (this.props.validate && this.props.validate(input.value)) {
             input.classList.remove('input-validation-error');
@@ -32,6 +45,7 @@ class CreateInput extends React.Component {
             return false;
         }
     }
+    
     handleBlur(e) {
         this.props.onBlur(e.target.value);
         var isValidField = this.isValid(e.target);
@@ -154,11 +168,18 @@ class CreateInput extends React.Component {
         if (this.props.type == "date") {
             InitializeDate(this.props.name);
         }
-        if (this.props.type == "ddl" || this.props.type == "multiSelect") {
+        if (this.props.type == "ddl") {
                 InitializeSelect(this.props.name);
                 $('select[name=' + this.props.name + ']').on('change', this.handleChange.bind(this));
             $('select[name=' + this.props.name + ']').trigger("chosen:updated")
 
+        }
+        if(this.props.type == "multiSelect")
+        {
+            InitializeSelect(this.props.name);
+            $('select[name=' + this.props.name + ']').on('change', this.handleMultiSelect.bind(this));
+            //$('select[name=' + this.props.name + ']').bind("chosen:maxselected", this.handleMaxSelect.bind(this)); 
+            $('select[name=' + this.props.name + ']').trigger("chosen:updated")
         }
         if (this.props.type =='selectBox') {
             InitializeSelectList(this.props.name);
@@ -194,9 +215,8 @@ class CreateInput extends React.Component {
             </select>
         }
         else if (this.props.type == 'multiSelect') {
-            inputField = <select value={[this.props.value]} ref='MySelect2' multiple={true} onChange={this.handleChange.bind(this)} name={this.props.name}
+            inputField = <select value={this.props.value} ref='MySelect2' multiple={true} onChange={this.handleMultiSelect.bind(this)} name={this.props.name}
                         className='registration-form-control dropdown' required={this.props.isrequired} disabled={this.props.disabled}>
-                        <option key="0" value="0">Select {this.props.label}</option>
             {this.props.data.map((obj) =>
                 <option key={obj[this.props.keyId]} onClick={this.handleClick.bind(this)} value={obj[this.props.keyId] }>{obj[this.props.keyName]}</option>)}
         </select>
@@ -209,7 +229,7 @@ class CreateInput extends React.Component {
             inputField = <input type="password" value={this.props.value} ref={this.props.name}  autoComplete="off" name={this.props.name}
                 className={this.props.className} required={this.props.isrequired} onChange={this.handleChange.bind(this)} validate={this.handleChange.bind(this)}/>
         } else if (this.props.type == 'selectBox') {
-            inputField = <select value={[this.props.value]}  onChange={this.handleChange.bind(this)} name={this.props.name}
+            inputField = <select value={this.props.value}  onChange={this.handleChange.bind(this)} name={this.props.name}
                  required={this.props.isrequired}>              
                 {this.props.data.map((obj) =>
                     <option key={obj[this.props.keyId]} onClick={this.handleClick.bind(this)} value={obj[this.props.keyId]}>{obj[this.props.keyName]}</option>)}
