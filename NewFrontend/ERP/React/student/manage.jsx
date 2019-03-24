@@ -139,6 +139,19 @@ class AdmissionForm extends React.Component {
                 stuCPwd: this.state.stuCPwd,
                 //   postedFile: this.state.postedFile,
                 stuAccStat: this.state.selectedPreCourse,
+                stuTran:"",
+                route:"",
+                vType:"",
+                vehicle:"",
+                tranAmt:"",
+                stopNm:"",
+                hostel:"",
+                hstlNm:"",
+                floor:"",
+                roomType:"",
+                roomNo:"",
+                bedNo:"",
+                hostPrice:"",
                 flag: this.state.flag,
                 reportId: 1
             }
@@ -202,7 +215,7 @@ class AdmissionForm extends React.Component {
     resetData = () => {
         this.setState
             ({
-                imgSrc: "",
+                imgSrc: "/images/user-img.png",
                 stuImage: "",
                 stuCode: "",
                 stuFirst: "",
@@ -742,19 +755,25 @@ class AdmissionForm extends React.Component {
                                     <hr />
                                     <ul className="nav nav-tabs">
                                         <li className="nav-item">
-                                            <a className="nav-link active show personal" data-toggle="tab" href="#personal">Personal Information</a>
+                                            <a className="nav-link active show personal" data-toggle="tab" href="#personal">Personal Details</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link contact" data-toggle="tab" href="#contact">Contact Information</a>
+                                            <a className="nav-link contact" data-toggle="tab" href="#contact">Contact Details</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link subject" data-toggle="tab" href="#subject">Subject Information</a>
+                                            <a className="nav-link subject" data-toggle="tab" href="#subject">Subject Details</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link academic" data-toggle="tab" href="#academic">Academic Information</a>
+                                            <a className="nav-link academic" data-toggle="tab" href="#academic">Academic Details</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link account" data-toggle="tab" href="#account">Account Information</a>
+                                            <a className="nav-link account" data-toggle="tab" href="#account">Account Details</a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a className="nav-link account" data-toggle="tab" href="#transport">Transport Details</a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a className="nav-link account" data-toggle="tab" href="#hostel">Hostel Details</a>
                                         </li>
                                     </ul>
                                     <div className="tab-content">
@@ -892,6 +911,118 @@ class AdmissionForm extends React.Component {
                                                 <li>
                                                     <CreateInput type={'ddl'} value={this.state.selectedAccStat} data={this.state.stuAccStat} label={'Account Status'} name={'stuAccStat'} htmlFor={'stuAccStat'} isrequired={true}
                                                         keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeAccStat.bind(this)} className={'form-control account'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div className="tab-pane" id="transport">
+                                            <ul className="einrform">
+                                                <li>
+                                                    <div>
+                                                        <div className="form-group">
+                                                            <label>Transport</label>
+                                                            <input type="text" className="form-control" placeholder="should be ddl value yes or no" />
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <div className="form-group">
+                                                            <label>Route Name</label>
+                                                            <input type="text" className="form-control" placeholder="should be ddl" />
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <div className="form-group">
+                                                            <label>Vehicle Type</label>
+                                                            <input type="text" className="form-control" placeholder="should be ddl" />
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <div className="form-group">
+                                                            <label>Vehicle</label>
+                                                            <input type="text" className="form-control" placeholder="should be ddl" />
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <div className="form-group">
+                                                            <label>Amount</label>
+                                                            <input type="text" className="form-control" placeholder="textbox" />
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <div className="form-group">
+                                                            <label>Stop Name</label>
+                                                            <input type="text" className="form-control" placeholder="should be ddl" />
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div className="tab-pane" id="hostel">
+                                            <ul className="einrform">
+                                                <li>
+                                                    <div>
+                                                        <div className="form-group">
+                                                            <label>Hostel</label>
+                                                            <input type="text" className="form-control" placeholder="should be ddl value yes or no" />
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <div className="form-group">
+                                                            <label>Hostel Name</label>
+                                                            <input type="text" className="form-control" placeholder="should be ddl" />
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <div className="form-group">
+                                                            <label>Floor</label>
+                                                            <input type="text" className="form-control" placeholder="should be ddl" />
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <div className="form-group">
+                                                            <label>Room Type</label>
+                                                            <input type="text" className="form-control" placeholder="should be ddl" />
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <div className="form-group">
+                                                            <label>Room No.</label>
+                                                            <input type="text" className="form-control" placeholder="should be ddl" />
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <div className="form-group">
+                                                            <label>Bed No.</label>
+                                                            <input type="text" className="form-control" placeholder="should be ddl" />
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <div className="form-group">
+                                                            <label>Price</label>
+                                                            <input type="text" className="form-control" placeholder="textbox" />
+                                                        </div>
+                                                    </div>
                                                 </li>
                                             </ul>
                                         </div>

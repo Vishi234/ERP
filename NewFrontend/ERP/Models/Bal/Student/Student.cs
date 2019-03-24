@@ -24,16 +24,10 @@ namespace ERP.Models.Bal.Employee
            // var file= studentEntity.postedFile[0];
 
             String timeStamp = DateTime.Now.ToString();
-
-          //  string  filename = pfile + timeStamp +studentEntity.stuImage;
-            //string filePath = Path.Combine(HttpContext Server.MapPath("~/Content/Images"), filename);
-            //file.SaveAs(fname);
-
+            
             try
             {
-                SqlParameter[] sqlParameter = new SqlParameter[40];
-
-              
+                SqlParameter[] sqlParameter = new SqlParameter[53];
                 sqlParameter[0] = new SqlParameter("@STU_CODE", studentEntity.stuCode);
                 sqlParameter[1] = new SqlParameter("@FIRST_NAME", studentEntity.stuFirst);
                 sqlParameter[2] = new SqlParameter("@LAST_NAME", studentEntity.stuLast);
@@ -53,7 +47,6 @@ namespace ERP.Models.Bal.Employee
                 sqlParameter[16] = new SqlParameter("@PARENT_INCOME", studentEntity.stuPIncome);
                 sqlParameter[17] = new SqlParameter("@ADDRESS_LINE_1", studentEntity.stuAdres);
                 sqlParameter[18] = new SqlParameter("@ADDRESS_LINE_2", studentEntity.stuAdres2);
-                              
                 sqlParameter[19] = new SqlParameter("@STATE", studentEntity.stuState);
                 sqlParameter[20] = new SqlParameter("@CITY", studentEntity.stuCity);
                 sqlParameter[21] = new SqlParameter("@ZIP_CODE", studentEntity.stuZip);
@@ -73,21 +66,30 @@ namespace ERP.Models.Bal.Employee
                 sqlParameter[35] = new SqlParameter("@CUSTOMER_ID", Convert.ToInt32(objUserEntity.customerId));
                 sqlParameter[36] = new SqlParameter("@USER_ID", objUserEntity.userId);
                 sqlParameter[37] = new SqlParameter("@IMAGE", (studentEntity.stuImage));
-                // sqlParameter[0] = new SqlParameter("@EMP_CODE", studentEntity.stuImage);
-                //sqlParameter[16] = new SqlParameter("@P_IMG_PATH", employeeEntity.imgPath);
-                ///sqlParameter[37] = new SqlParameter("@OPER_TYPE", studentEntity.flag);
-
-                sqlParameter[38] = new SqlParameter("@FLAG", SqlDbType.Char);
-                sqlParameter[38].Direction = ParameterDirection.Output;
-                sqlParameter[38].Size = 1;
-                sqlParameter[39] = new SqlParameter("@MSG", SqlDbType.NVarChar);
-                sqlParameter[39].Direction = ParameterDirection.Output;
-                sqlParameter[39].Size = 500;
+                sqlParameter[38] = new SqlParameter("@TRANSPORT", (studentEntity.stuTran));
+                sqlParameter[39] = new SqlParameter("@ROUTE_NAME", (studentEntity.route));
+                sqlParameter[40] = new SqlParameter("@VEHICLE_TYPE", (studentEntity.vType));
+                sqlParameter[41] = new SqlParameter("@VEHICLE", (studentEntity.vehicle));
+                sqlParameter[42] = new SqlParameter("@TRAN_AMT", (studentEntity.tranAmt));
+                sqlParameter[43] = new SqlParameter("@STOP_NAME", (studentEntity.stopNm));
+                sqlParameter[44] = new SqlParameter("@HOSTEL", (studentEntity.hostel));
+                sqlParameter[45] = new SqlParameter("@HOSTEL_NAME", (studentEntity.hstlNm));
+                sqlParameter[46] = new SqlParameter("@FLOOR", (studentEntity.floor));
+                sqlParameter[47] = new SqlParameter("@ROOM_TYPE", (studentEntity.roomType));
+                sqlParameter[48] = new SqlParameter("@ROOM_NO", (studentEntity.roomNo));
+                sqlParameter[49] = new SqlParameter("@BED_NO", (studentEntity.bedNo));
+                sqlParameter[50] = new SqlParameter("@HOST_PRICE", (studentEntity.hostPrice));
+                sqlParameter[51] = new SqlParameter("@FLAG", SqlDbType.Char);
+                sqlParameter[51].Direction = ParameterDirection.Output;
+                sqlParameter[51].Size = 1;
+                sqlParameter[52] = new SqlParameter("@MSG", SqlDbType.NVarChar);
+                sqlParameter[52].Direction = ParameterDirection.Output;
+                sqlParameter[52].Size = 500;
 
                 DataSet ds = new DataSet();
                 int count = SqlHelper.ExecuteNonQuery(sqlConn, CommandType.StoredProcedure, "SP_MANAGE_STUDENT", sqlParameter);
-                result.flag = sqlParameter[38].Value.ToString();
-                result.msg = sqlParameter[39].Value.ToString();
+                result.flag = sqlParameter[51].Value.ToString();
+                result.msg = sqlParameter[52].Value.ToString();
 
                 //if (result.flag.ToUpper() == "S")
                 //{
@@ -128,7 +130,7 @@ namespace ERP.Models.Bal.Employee
                 sqlParameter[8] = new SqlParameter("@REPORT_ID", Convert.ToInt32(studentEntity.reportId));
                 DataSet ds = new DataSet();
                 ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_GET_STUDENT_DETAILS", sqlParameter);
-                if (ds != null)
+                if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
