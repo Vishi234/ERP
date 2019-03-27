@@ -18,8 +18,10 @@ namespace ERP.Controllers
             AccountEntity accountEntity = new AccountEntity();
             Account accountObj = new Account();
             accountEntity.flag = 'G';
-            accountEntity.reportId = "9";
+            accountEntity.reportId = "10";
+            accountEntity.reportMapId = "11";
             TempData["FeeType"] = accountObj.AddFeeDetails(accountEntity);
+            TempData["FeeMapping"] = accountObj.AddFeeMapping(accountEntity);
             return View();
         }
         [HttpPost]
