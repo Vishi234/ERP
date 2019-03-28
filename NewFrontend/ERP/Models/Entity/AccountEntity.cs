@@ -23,7 +23,7 @@ namespace ERP.Models.Entity
         public string courseId { get; set; }
         public string feeType { get; set; }
 
-
+        public string reportMapId { get; set; }
 
         //     public string cWet { get; set; }
     }

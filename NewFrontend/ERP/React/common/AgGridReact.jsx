@@ -1,4 +1,5 @@
 ﻿var gridOptions;
+var gridName = "mygrid";
 class AgGrid extends React.Component {
     componentDidMount() {
         gridOptions = {
@@ -27,10 +28,19 @@ class AgGrid extends React.Component {
                 gridOptions.columnApi.autoSizeColumns(allColumnIds);
             },
         }
-        var gridDiv = document.querySelector('#myGrid');
+        if (this.props.name != undefined) {
+            gridName = this.props.name;
+        }
+        var gridDiv = document.querySelector('#' + gridName);
         new agGrid.Grid(gridDiv, gridOptions);
         //((this.props.rowData == null) ? null : this.props.rowData)
         gridOptions.api.setRowData(((this.props.rowData == null) ? null : this.props.rowData));
+    }
+    componentWillMount()
+    {
+        if (this.props.name != undefined) {
+            gridName = this.props.name;
+        }
     }
     onFilterChange(e) {
         gridOptions.api.setQuickFilter(e.target.value);
@@ -40,7 +50,7 @@ class AgGrid extends React.Component {
     }
     render() {
         return (<div className="actionbse">
-            <div id="myGrid" style={{ height: '350px'}} className="ag-theme-balham"></div>
+            <div id={gridName} style={{ height: '350px' }} className="ag-theme-balham"></div>
         </div>
         );
     }

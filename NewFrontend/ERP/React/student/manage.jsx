@@ -56,6 +56,21 @@ class AdmissionForm extends React.Component {
             stuPwd: "",
             stuCPwd: "",
             stuAccStat: ReadDropDownData("Param", '1', true),
+            stuTrans: ReadDropDownData("Param", '15', true),
+            stuRoute       :[],
+            stuVehTyp      :[],
+            stuVehNo       :[],
+            stuVecAmt      :"",
+            stuVehStop     :[],
+            stuHostel: ReadDropDownData("Param", '15', true),
+            stuHostelName  :[],
+            stuHostelFlr   :[],
+            stuRoomTyp     :[],
+            stuRoomNo      :"",
+            stuBedNo       :"",
+            stuHostPrc: "",
+            hostelActive: true,
+            transActive: true,
             selectedCourse: 0,
             selectedSemester: 0,
             selectedCate: 0,
@@ -70,6 +85,15 @@ class AdmissionForm extends React.Component {
             selectedPreCourse: 0,
             selectedSubject: 0,
             selectedMTongue: 0,
+            selectedTrans     :0,
+            selectedRoute     :0,
+            selectedVehTyp    :0,
+            selectedVehNo     :0,
+            selectedStop      :0,
+            selectedHostel    :0,
+            selectedHostelName:0,
+            selectedHostelFlr :0,
+            selectedRoomTyp   :0,
             Fields: [],
             columnDef: columnDefs,
             rowData: records,
@@ -139,19 +163,19 @@ class AdmissionForm extends React.Component {
                 stuCPwd: this.state.stuCPwd,
                 //   postedFile: this.state.postedFile,
                 stuAccStat: this.state.selectedPreCourse,
-                stuTran:"",
-                route:"",
-                vType:"",
-                vehicle:"",
-                tranAmt:"",
-                stopNm:"",
-                hostel:"",
-                hstlNm:"",
-                floor:"",
-                roomType:"",
-                roomNo:"",
-                bedNo:"",
-                hostPrice:"",
+                stuTran: this.state.selectedTrans,
+                stuRoute: this.state.selectedRoute,
+                stuVehTyp: this.state.selectedVehTyp,
+                vehicle: this.state.selectedVehNo,
+                tranAmt: this.state.stuVecAmt,
+                stopNm: this.state.selectedStop,
+                hostel: this.state.selectedHostel,
+                hstlNm: this.state.selectedHostelName,
+                floor: this.state.selectedHostelFlr,
+                roomType: this.state.selectedRoomTyp,
+                roomNo: this.state.stuRoomNo,
+                bedNo: this.state.stuBedNo,
+                hostPrice: this.state.stuHostPrc,
                 flag: this.state.flag,
                 reportId: 1
             }
@@ -254,6 +278,21 @@ class AdmissionForm extends React.Component {
                 stuPwd: "",
                 stuCPwd: "",
                 stuAccStat: ReadDropDownData("Param", '1', true),
+                stuTrans: ReadDropDownData("Param", '15', true),
+                stuRoute: [],
+                stuVehTyp: [],
+                stuVehNo: [],
+                stuVecAmt: "",
+                stuVehStop: [],
+                stuHostel: ReadDropDownData("Param", '15', true),
+                stuHostelName: [],
+                stuHostelFlr: [],
+                stuRoomTyp: [],
+                stuRoomNo: "",
+                stuBedNo: "",
+                stuHostPrc: "",
+                hostelActive: true,
+                transActive: true,
                 selectedCourse: 0,
                 selectedSemester: 0,
                 selectedCate: 0,
@@ -268,6 +307,15 @@ class AdmissionForm extends React.Component {
                 selectedPreCourse: 0,
                 selectedSubject: 0,
                 selectedMTongue: 0,
+                selectedTrans: 0,
+                selectedRoute: 0,
+                selectedVehTyp: 0,
+                selectedVehNo: 0,
+                selectedStop: 0,
+                selectedHostel: 0,
+                selectedHostelName: 0,
+                selectedHostelFlr: 0,
+                selectedRoomTyp: 0,
                 label: "Save",
                 flag: "A",
             })
@@ -478,6 +526,94 @@ class AdmissionForm extends React.Component {
     onChangeLogin(value) {
         this.setState({
             stuLogin: value
+        });
+    }
+    onChangeTrans(value) {
+        if (value === "68") {
+            this.setState({
+                transActive: false
+            });
+        } else {
+            this.setState({
+                transActive: true
+            });
+        }
+        this.setState({
+            selectedTrans: value
+        });
+
+    }
+
+    onChangeRoute(value) {
+        this.setState({
+            selectedRoute: value
+        });
+    }
+    onChangeVehTyp(value) {
+        this.setState({
+            selectedVehTyp: value
+        });
+    }
+    onChangeVehNo(value) {
+        this.setState({
+            selectedVehNo: value
+        });
+    }
+    onChangeVecAmt(value) {
+        this.setState({
+            stuVecAmt: value
+        });
+    }
+    onChangeVehStop(value) {
+        this.setState({
+            selectedStop: value
+        });
+    }
+    onChangeHostel(value) {
+        if (value === "68") {
+            this.setState({
+                hostelActive: false
+            });
+        } else {
+            this.setState({
+                hostelActive: true
+            });
+        }
+        this.setState({
+            selectedHostel: value
+        });
+    }
+    onChangeHstName(value) {
+        this.setState({
+            selectedHostelName: value
+        });
+    }
+    onChangeHstFlr(value) {
+        this.setState({
+            selectedHostelFlr: value
+        });
+    }
+
+
+
+    onChangeRoomTyp(value) {
+        this.setState({
+            selectedRoomTyp: value
+        });
+    }
+    onChangeRoomNo(value) {
+        this.setState({
+            stuRoomNo: value
+        });
+    }
+    onChangeBedNo(value) {
+        this.setState({
+            stuBedNo: value
+        });
+    }
+    onChangeHostPrc(value) {
+        this.setState({
+            stuHostPrc: value
         });
     }
     onChangePwd(value) {
@@ -917,113 +1053,63 @@ class AdmissionForm extends React.Component {
                                         <div className="tab-pane" id="transport">
                                             <ul className="einrform">
                                                 <li>
-                                                    <div>
-                                                        <div className="form-group">
-                                                            <label>Transport</label>
-                                                            <input type="text" className="form-control" placeholder="should be ddl value yes or no" />
-                                                        </div>
-                                                    </div>
+                                                    <CreateInput type={'ddl'} value={this.state.selectedTrans} data={this.state.stuTrans} label={'Transport'} name={'stuTrans'} htmlFor={'stuTrans'} isrequired={true}
+                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeTrans.bind(this)} className={'form-control account'} onComponentMounted={this.register} messageRequired={'required.'}  />
+                                                </li> 
+                                                <li>
+                                                    <CreateInput type={'ddl'} value={this.state.selectedRoute} data={this.state.stuRoute} label={'Route Name'} name={'stuRoute'} htmlFor={'stuRoute'} isrequired={true}
+                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeRoute.bind(this)} className={'form-control account'} onComponentMounted={this.register} messageRequired={'required.'} disabled={this.state.transActive} />
+                                                </li>   
+                                                <li>
+                                                    <CreateInput type={'ddl'} value={this.state.selectedVehTyp} data={this.state.stuVehTyp} label={'Vehicle Type'} name={'stuVehTyp'} htmlFor={'stuVehTyp'} isrequired={true}
+                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeVehTyp.bind(this)} className={'form-control account'} onComponentMounted={this.register} messageRequired={'required.'} disabled={this.state.transActive} />
                                                 </li>
                                                 <li>
-                                                    <div>
-                                                        <div className="form-group">
-                                                            <label>Route Name</label>
-                                                            <input type="text" className="form-control" placeholder="should be ddl" />
-                                                        </div>
-                                                    </div>
-                                                </li>
+                                                    <CreateInput type={'ddl'} value={this.state.selectedVehNo} data={this.state.stuVehNo} label={'Vehicle Number'} name={'stuVehNo'} htmlFor={'stuVehNo'} isrequired={true}
+                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeVehNo.bind(this)} className={'form-control account'} onComponentMounted={this.register} messageRequired={'required.'} disabled={this.state.transActive}/>
+                                                </li> 
+
                                                 <li>
-                                                    <div>
-                                                        <div className="form-group">
-                                                            <label>Vehicle Type</label>
-                                                            <input type="text" className="form-control" placeholder="should be ddl" />
-                                                        </div>
-                                                    </div>
+                                                    <CreateInput type={'text'} value={this.state.stuVecAmt} label={'Amount'} name={'stuVecAmt'} htmlFor={'stuVecAmt'} isrequired={true}
+                                                        onChange={this.onChangeVecAmt.bind(this)} className={'form-control account'} onComponentMounted={this.register} messageRequired={'required.'}  disabled={this.state.transActive}/>
                                                 </li>
+                                                
                                                 <li>
-                                                    <div>
-                                                        <div className="form-group">
-                                                            <label>Vehicle</label>
-                                                            <input type="text" className="form-control" placeholder="should be ddl" />
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div>
-                                                        <div className="form-group">
-                                                            <label>Amount</label>
-                                                            <input type="text" className="form-control" placeholder="textbox" />
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div>
-                                                        <div className="form-group">
-                                                            <label>Stop Name</label>
-                                                            <input type="text" className="form-control" placeholder="should be ddl" />
-                                                        </div>
-                                                    </div>
-                                                </li>
+                                                    <CreateInput type={'ddl'} value={this.state.selectedStop} data={this.state.stuVehStop} label={'Stop Name'} name={'stuVehStop'} htmlFor={'stuVehStop'} isrequired={true}
+                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeVehStop.bind(this)} className={'form-control account'} onComponentMounted={this.register} messageRequired={'required.'} disabled={this.state.transActive} />
+                                                </li>                                             
                                             </ul>
                                         </div>
                                         <div className="tab-pane" id="hostel">
                                             <ul className="einrform">
                                                 <li>
-                                                    <div>
-                                                        <div className="form-group">
-                                                            <label>Hostel</label>
-                                                            <input type="text" className="form-control" placeholder="should be ddl value yes or no" />
-                                                        </div>
-                                                    </div>
+                                                    <CreateInput type={'ddl'} value={this.state.selectedHostel} data={this.state.stuHostel} label={'Hostel'} name={'stuHostel'} htmlFor={'stuHostel'} isrequired={true}
+                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeHostel.bind(this)} className={'form-control account'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                                </li>  
+                                                <li>
+                                                    <CreateInput type={'ddl'} value={this.state.selectedHostelName} data={this.state.stuHostelName} label={'Hostel Name'} name={'stuHostelName'} htmlFor={'stuHostelName'} isrequired={true}
+                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeHstName.bind(this)} className={'form-control account'} onComponentMounted={this.register} messageRequired={'required.'} disabled={this.state.hostelActive}/>
+                                                </li> 
+                                                <li>
+                                                    <CreateInput type={'ddl'} value={this.state.selectedHostelFlr} data={this.state.stuHostelFlr} label={'Floor'} name={'stuHostelFlr'} htmlFor={'stuHostelFlr'} isrequired={true}
+                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeHstFlr.bind(this)} className={'form-control account'} onComponentMounted={this.register} messageRequired={'required.'} disabled={this.state.hostelActive} />
+                                                </li>   
+                                                <li>
+                                                    <CreateInput type={'ddl'} value={this.state.selectedRoomTyp} data={this.state.stuRoomTyp} label={'Floor'} name={'stuRoomTyp'} htmlFor={'stuRoomTyp'} isrequired={true}
+                                                        keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeRoomTyp.bind(this)} className={'form-control account'} onComponentMounted={this.register} messageRequired={'required.'} disabled={this.state.hostelActive}/>
                                                 </li>
                                                 <li>
-                                                    <div>
-                                                        <div className="form-group">
-                                                            <label>Hostel Name</label>
-                                                            <input type="text" className="form-control" placeholder="should be ddl" />
-                                                        </div>
-                                                    </div>
+                                                    <CreateInput type={'text'} value={this.state.stuRoomNo} label={'Room Number'} name={'stuRoomNo'} htmlFor={'stuRoomNo'} isrequired={true}
+                                                        onChange={this.onChangeRoomNo.bind(this)} className={'form-control account'} onComponentMounted={this.register} messageRequired={'required.'} disabled={this.state.hostelActive}/>
                                                 </li>
                                                 <li>
-                                                    <div>
-                                                        <div className="form-group">
-                                                            <label>Floor</label>
-                                                            <input type="text" className="form-control" placeholder="should be ddl" />
-                                                        </div>
-                                                    </div>
+                                                    <CreateInput type={'text'} value={this.state.stuBedNo} label={'Bed Number'} name={'stuBedNo'} htmlFor={'stuBedNo'} isrequired={true}
+                                                        onChange={this.onChangeBedNo.bind(this)} className={'form-control account'} onComponentMounted={this.register} messageRequired={'required.'} disabled={this.state.hostelActive}/>
                                                 </li>
                                                 <li>
-                                                    <div>
-                                                        <div className="form-group">
-                                                            <label>Room Type</label>
-                                                            <input type="text" className="form-control" placeholder="should be ddl" />
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div>
-                                                        <div className="form-group">
-                                                            <label>Room No.</label>
-                                                            <input type="text" className="form-control" placeholder="should be ddl" />
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div>
-                                                        <div className="form-group">
-                                                            <label>Bed No.</label>
-                                                            <input type="text" className="form-control" placeholder="should be ddl" />
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div>
-                                                        <div className="form-group">
-                                                            <label>Price</label>
-                                                            <input type="text" className="form-control" placeholder="textbox" />
-                                                        </div>
-                                                    </div>
-                                                </li>
+                                                    <CreateInput type={'text'} value={this.state.stuHostPrc} label={'Price'} name={'stuHostPrc'} htmlFor={'stuHostPrc'} isrequired={true}
+                                                        onChange={this.onChangeHostPrc.bind(this)} className={'form-control account'} onComponentMounted={this.register} messageRequired={'required.'} disabled={this.state.hostelActive}/>
+                                                </li>                               
                                             </ul>
                                         </div>
                                     </div>

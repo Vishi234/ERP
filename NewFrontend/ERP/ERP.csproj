@@ -144,6 +144,7 @@
     <Content Include="Content\ConfigFiles\GridHeaders.xml" />
     <Content Include="Content\daterangepicker.css" />
     <Content Include="Content\DynamicJs\Employee.js" />
+    <Content Include="Content\DynamicJs\FeeManagement.js" />
     <Content Include="Content\DynamicJs\Master.js" />
     <Content Include="Content\DynamicJs\Student.js" />
     <Content Include="Content\fontawesome-all.css" />

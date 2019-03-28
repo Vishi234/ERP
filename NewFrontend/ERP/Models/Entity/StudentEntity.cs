@@ -61,5 +61,19 @@ namespace ERP.Models.Entity
         public char flag { get; set; }
         public string reportId { get; set; }
         public string operType { get; set; }
+
+        public string stuTrans        {get;set;}
+        public string stuRoute        {get;set;}
+        public string stuVehTyp       {get;set;}
+        public string stuVehNo        {get;set;}
+        public string stuVecAmt       {get;set;}
+        public string stuVehStop      {get;set;}
+        public string stuHostel       {get;set;}
+        public string stuHostelName   {get;set;}
+        public string stuHostelFlr    {get;set;}
+        public string stuRoomTyp      {get;set;}
+        public string stuRoomNo       {get;set;}
+        public string stuBedNo        {get;set;}
+        public string stuHostPrc { get; set; }
     }
 }

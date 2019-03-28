@@ -1,13 +1,18 @@
 ﻿var grdArray;
+var grdFeeArray;
 var MyData = null;
 var fields = [];
 var feeMap = [];
 class FeeStructure extends React.Component {
     constructor(props) {
         super(props);
-        grdArray = GetReportConfiguration("FeeManagement");
+        grdArray = GetReportConfiguration("FeeManagement"); 
+        //grdFeeArray = GetReportConfiguration("FeeMapping");
         var columnDefs = grdArray["$FeeType$"];
+        var columnFeeDefs = grdArray["$FeeMapping$"];
+        //var records;
         var records = JSON.parse(content.addParams);
+        var mappingRecords = JSON.parse(mappingContent.addParams);
         for (var i = 0; i < columnDefs.length; i++) {
             if (columnDefs[i].cellRenderer) {
                 if (columnDefs[i].cellRenderer == "CreateEdit") {
@@ -16,6 +21,13 @@ class FeeStructure extends React.Component {
                 else if (columnDefs[i].cellRenderer == "CreateActive") {
                     columnDefs[i].cellRenderer = this.CreateActive;
                 }
+            }
+        }
+        for (var i = 0; i < columnFeeDefs.length; i++) {
+            if (columnFeeDefs[i].cellRenderer) {
+                if (columnFeeDefs[i].cellRenderer == "CreateEdit") {
+                    columnFeeDefs[i].cellRenderer = this.CreateFeeEdit;
+                }                
             }
         }
         this.state = {
@@ -48,8 +60,11 @@ class FeeStructure extends React.Component {
             Fields: [],
             feeMap:[],
             columnDef: columnDefs,
+            columnFeeDef: columnFeeDefs,
             rowData: records,
+            mappingrowData:mappingRecords,
             records: ((records == null) ? 0 : records.length),
+            mappingRecords: ((mappingRecords == null) ? 0 : mappingRecords.length),
             label: "Save",
             flag: "A",
         };
@@ -57,8 +72,8 @@ class FeeStructure extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleMapping = this.handleMapping.bind(this);
     }
-    handleSubmit(e) {
-        debugger;
+    handleSubmit(e)
+    {
         e.preventDefault();
         var validForm = true;
         fields.forEach(function (field) {
@@ -82,7 +97,7 @@ class FeeStructure extends React.Component {
                 feeMonth: ((this.state.selectedMonth!=null && this.state.selectedMonth.indexOf(",")==-1) ? this.state.selectedMonth.join(",") : this.state.selectedMonth),
                 isActive: this.state.selectedActive,
                 terms: ((this.state.selectedMonth!=null) ? this.state.selectedMonth.length : "1"),  
-                reportId:"9",
+                reportId:"10",
                 flag: this.state.flag
             }
             $.ajax({
@@ -157,7 +172,8 @@ class FeeStructure extends React.Component {
                 academicYear: this.state.selectedYear,
                 courseId: this.state.selectedCourse,
                 feeType: ((this.state.SelectedFeeType!=null && this.state.SelectedFeeType.indexOf(",")==-1)? this.state.SelectedFeeType.join(",") : this.state.SelectedFeeType),              
-                flag: this.state.flag
+                flag: this.state.flag,
+                reportMapId: "11",
             }
             $.ajax({
                 type: "POST",
@@ -195,7 +211,7 @@ class FeeStructure extends React.Component {
                                 label: "Save",
                                 flag: "A",
                             })
-                        this.setState({ rowData: MyData });
+                        this.setState({ mappingrowData: MyData });
                     }
                 }.bind(this),
                 error: function (evt) {
@@ -327,7 +343,7 @@ class FeeStructure extends React.Component {
                 flag: "M",
                 label: "Update",
                 terms: "",
-                reportId: "9",
+                reportId: "10",
 
             });
       
@@ -353,6 +369,16 @@ class FeeStructure extends React.Component {
     }
 
     CreateEdit(params) {
+        var html = "";
+        var domElement = "";
+        var jsonObj = JSON.stringify(params.data);
+
+        html = "<div><a class='testClass' href='javascript:void(0)' dataAttr='" + jsonObj + "'><img class='editbtn' src='/Images/icons/edit.svg'/></a></div>";
+        domElement = document.createElement("div");
+        domElement.innerHTML = html;
+        return domElement;
+    }
+    CreateFeeEdit(params) {
         var html = "";
         var domElement = "";
         var jsonObj = JSON.stringify(params.data);
@@ -436,7 +462,7 @@ class FeeStructure extends React.Component {
                                 </form>
                                 <div className="row cstdown clearfix">
                                      <hr />
-                                     <AgGrid columnDef={this.state.columnDef} rowData={this.state.rowData} />
+                                    <AgGrid columnDef={this.state.columnDef} name={'TypeGrid'} rowData={this.state.rowData} />
                                 </div>
                             </div>
                             <div className="tab-pane" id="mapping">
@@ -458,12 +484,13 @@ class FeeStructure extends React.Component {
                                         <li>
                                             <button type="submit" className="btn btn-info"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span>{this.state.label}</button>
                                         </li>
-                                    </ul>
-                                </div>
-                                <div className="row cstdown clearfix">
+                                        </ul>
+                                         <div className="row cstdown clearfix">
                                         <hr />
-                                      
+                                            <AgGrid columnDef={this.state.columnFeeDef} name={'MappingGrid'} mappingrowData={this.state.mappingrowData} />
+                                        </div>
                                 </div>
+                               
                                 </form> 
                             </div>
 
@@ -477,10 +504,6 @@ class FeeStructure extends React.Component {
                                         <li>
                                             <CreateInput type={'ddl'} value={this.state.selectedCourseDet} data={this.state.CourseDet} label={'Course Name'} name={'CourseDet'} htmlFor={'CourseDet'} isrequired={true}
                                                 keyId={'COURSE_ID'} keyName={'COURSE_NAME'} onChange={this.onChangeCourseDet.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />                                          
-                                        </li>
-                                        <li>
-                                            <CreateInput type={'ddl'} value={this.state.selectedMediumDet} data={this.state.mediumDet} label={'Medium'} name={'mediumDet'} htmlFor={'mediumDet'} isrequired={true}
-                                                keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeMediumDet} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />                                        
                                         </li>
                                         <li>
                                             <button type="submit" className="btn btn-info">Show</button>
