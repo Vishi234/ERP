@@ -69,6 +69,13 @@
     Label_Header["$FEE_NAME$"] = "Fee Name";
     Label_Header["$PAYMENT_TYPE$"] = "Payment Type";
     Label_Header["$DESCRIPTION$"] = "Description";
+    Label_Header["$STU_CODE$"] = "Student Code";
+    Label_Header["$CATEGORY_NAME$"] = "Category Name";
+    Label_Header["$MMOTHER_TONGUE$"] = "Mother Tongue";
+    Label_Header["$PLACE_OF_BIRTH$"] = "Birth Place";
+    Label_Header["$IS_HANDICAP$"] = "Handicap";
+    Label_Header["$PARENT_INCOME$"] = "Parent Income";
+    Label_Header["$EMAIL$"] = "Email";
 
     return Label_Header;
 }
