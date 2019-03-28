@@ -9,7 +9,9 @@ class FeeStructure extends React.Component {
         grdArray = GetReportConfiguration("FeeManagement"); 
         //grdFeeArray = GetReportConfiguration("FeeMapping");
         var columnDefs = grdArray["$FeeType$"];
+
         var columnFeeDefs = grdArray["$FeeMapping$"];
+        console.log(columnFeeDefs)
         //var records;
         var records = JSON.parse(content.addParams);
         var mappingRecords = JSON.parse(mappingContent.addParams);
@@ -486,8 +488,8 @@ class FeeStructure extends React.Component {
                                         </li>
                                         </ul>
                                          <div className="row cstdown clearfix">
-                                        <hr />
-                                            <AgGrid columnDef={this.state.columnFeeDef} name={'MappingGrid'} mappingrowData={this.state.mappingrowData} />
+                                            <hr />
+                                            <AgGrid columnDef={this.state.columnFeeDef} name={'MappingGrid'} rowData={this.state.mappingrowData} />
                                         </div>
                                 </div>
                                

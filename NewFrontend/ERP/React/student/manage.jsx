@@ -2,12 +2,14 @@
 var MyData = null;
 var fields = [];
 var test = "";
+var columnDefs = "";
+var records = "";
 class AdmissionForm extends React.Component {
     constructor(props) {
         super(props);
         grdArray = GetReportConfiguration("Student");
-        var records = JSON.parse(content.addParams);
-        var columnDefs = grdArray["$StudentDetails$"];
+        records = JSON.parse(content.addParams);
+        columnDefs = grdArray["$StudentDetails$"];
         for (var i = 0; i < columnDefs.length; i++) {
             if (columnDefs[i].cellRenderer) {
                 if (columnDefs[i].cellRenderer == "CreateEdit") {
@@ -717,10 +719,9 @@ class AdmissionForm extends React.Component {
     }
     componentDidMount() {
         $('.testClass').on("click", this.handleClick.bind(this));
+        $('.exportToExcel').on("click", this.onExportClick.bind(this));
     }
-    componentDidUpdate() {
-        $('.testClass').on("click", this.handleClick.bind(this));
-    }
+    componentDidUpdate() {  $('.testClass').on("click", this.handleClick.bind(this));    }
     onChangeImage = (value) => {
         debugger;
         if (value.target.files.length > 0) {
@@ -747,6 +748,11 @@ class AdmissionForm extends React.Component {
         s.push(field);
         fields.push(s);
     }
+    onExportClick()
+    {
+        exportToExcel(records, "StudentExport", columnDefs)       
+    }
+
     render() {
         return (
             <div>
@@ -798,7 +804,7 @@ class AdmissionForm extends React.Component {
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)" className="btn btn-secondary">
+                                        <a href="javascript:void(0)" className="btn btn-secondary exportToExcel"  >
                                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                                 viewBox="0 0 512 512" style={{ enableBackground: 'new 0 0 512 512' }} xmlSpace="preserve">
                                                 <g>
@@ -1126,4 +1132,7 @@ class AdmissionForm extends React.Component {
         )
     }
 }
+
+
+
 ReactDOM.render(<AdmissionForm urlPost="/Student/Admission" personalPost='' contactPost='' authPost='' />, document.getElementById('studentform'));

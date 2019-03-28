@@ -182,8 +182,9 @@ class EmployeeForm extends React.Component {
             e.preventDefault();
         }
     }
-    getEmployeeDetails = () => {
-        $.get("/Employee/GetEmployeeDetails", function (data) {
+    getEmployeeDetails = () =>
+    {
+        $.get("/Employee/GetEmployeeDetails?empId="+empId+"&empName="+empName, function (data) {
             MyData = JSON.parse(data.addParams);
             this.setState({ rowData: MyData });
             this.setState({ records: MyData.length })
