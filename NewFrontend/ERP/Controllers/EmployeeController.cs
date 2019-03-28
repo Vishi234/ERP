@@ -32,6 +32,17 @@ namespace ERP.Controllers
             TempData["EmployeeData"] = new Employee().GetEmployee(employeeEntity);
             return Json(TempData["EmployeeData"],JsonRequestBehavior.AllowGet);
         }
-       
+        [HttpGet]
+        public JsonResult GetEmployeeFilter(string empCode,int empType)
+        {
+            EmployeeEntity employeeEntity = new EmployeeEntity();
+            employeeEntity.flag = 'G';
+            employeeEntity.reportId = "8";
+            employeeEntity.empCode = empCode;
+            employeeEntity.empType = empType;
+            TempData["EmployeeData"] = new Employee().GetEmployee(employeeEntity);
+            return Json(TempData["EmployeeData"], JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

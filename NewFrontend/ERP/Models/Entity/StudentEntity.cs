@@ -45,19 +45,6 @@ namespace ERP.Models.Entity
         public string stuPwd { get; set; }
         public string stuCPwd { get; set; }
         public string stuAccStat { get; set; }
-        public string stuTran { get; set; }
-        public string route { get; set; }
-        public string vType { get; set; }
-        public string vehicle { get; set; }
-        public string tranAmt { get; set; }
-        public string stopNm { get; set; }
-        public string hostel { get; set; }
-        public string hstlNm { get; set; }
-        public string floor { get; set; }
-        public string roomType { get; set; }
-        public string roomNo { get; set; }
-        public string bedNo { get; set; }
-        public string hostPrice { get; set; }
         public char flag { get; set; }
         public string reportId { get; set; }
         public string operType { get; set; }
