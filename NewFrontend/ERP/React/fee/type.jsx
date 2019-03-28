@@ -3,16 +3,16 @@ var grdFeeArray;
 var MyData = null;
 var fields = [];
 var feeMap = [];
+var feeDtlColDef=[];
 class FeeStructure extends React.Component {
     constructor(props) {
         super(props);
         grdArray = GetReportConfiguration("FeeManagement"); 
         //grdFeeArray = GetReportConfiguration("FeeMapping");
         var columnDefs = grdArray["$FeeType$"];
-        var columnFeeDefs = grdArray["$FeeMapping$"];
+        feeDtlColDef = grdArray["$FeeMapping$"];
         //var records;
         var records = JSON.parse(content.addParams);
-        var mappingRecords = JSON.parse(mappingContent.addParams);
         for (var i = 0; i < columnDefs.length; i++) {
             if (columnDefs[i].cellRenderer) {
                 if (columnDefs[i].cellRenderer == "CreateEdit") {
@@ -21,13 +21,6 @@ class FeeStructure extends React.Component {
                 else if (columnDefs[i].cellRenderer == "CreateActive") {
                     columnDefs[i].cellRenderer = this.CreateActive;
                 }
-            }
-        }
-        for (var i = 0; i < columnFeeDefs.length; i++) {
-            if (columnFeeDefs[i].cellRenderer) {
-                if (columnFeeDefs[i].cellRenderer == "CreateEdit") {
-                    columnFeeDefs[i].cellRenderer = this.CreateFeeEdit;
-                }                
             }
         }
         this.state = {
@@ -60,17 +53,18 @@ class FeeStructure extends React.Component {
             Fields: [],
             feeMap:[],
             columnDef: columnDefs,
-            columnFeeDef: columnFeeDefs,
+            feeDtlColDef:feeDtlColDef,
             rowData: records,
-            mappingrowData:mappingRecords,
+            feeDtlRowData:null,
             records: ((records == null) ? 0 : records.length),
-            mappingRecords: ((mappingRecords == null) ? 0 : mappingRecords.length),
+            mappingRecords: 0,
             label: "Save",
             flag: "A",
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleMapping = this.handleMapping.bind(this);
+        this.ShowFeeDetail = this.ShowFeeDetail.bind(this);
+        this.ResetColDef = this.ResetColDef.bind(this);
     }
     handleSubmit(e)
     {
@@ -94,7 +88,7 @@ class FeeStructure extends React.Component {
                 feeName: this.state.feeName,
                 paymentType: this.state.selectedPayType,
                 feeDesc: this.state.feeDescrep,
-                feeMonth: ((this.state.selectedMonth!=null && this.state.selectedMonth.indexOf(",")==-1) ? this.state.selectedMonth.join(",") : this.state.selectedMonth),
+                feeMonth: ((this.state.selectedMonth!=null && this.state.selectedMonth!=0 && this.state.selectedMonth.indexOf(",")==-1 && this.state.selectedMonth!="") ? this.state.selectedMonth.join(",") : this.state.selectedMonth),
                 isActive: this.state.selectedActive,
                 terms: ((this.state.selectedMonth!=null) ? this.state.selectedMonth.length : "1"),  
                 reportId:"10",
@@ -136,12 +130,12 @@ class FeeStructure extends React.Component {
                                 selectedMonth:0,
                                 label: "Save",
                                 flag: "A",
+                                rowData: MyData
                             })
-                        this.setState({ rowData: MyData });
                     }
                 }.bind(this),
                 error: function (evt) {
-                    btnloading("subjectForm", 'hide');
+                    btnloading("FeeType", 'show');
                     alert('Error! Please try again');
                 }
             })
@@ -150,80 +144,35 @@ class FeeStructure extends React.Component {
         }
     }
 
-    handleMapping(e) {
-        debugger;
+    ShowFeeDetail(e) {
         e.preventDefault();
-        var validForm = true;
-        feeMap.forEach(function (field) {
-            if (typeof field[0].isValid === "function") {
-                var validField;
-                if (field[0].props.type == 'ddl') {
-                    validField = field[0].isValid(field[0].refs.MySelect2);
-                } else {
-                    validField = field[0].isValid(field[0].refs[field[0].props.name]);
-                }
-                validForm = validForm && validField;
-            }
-        });
+        
         //after validation complete post to server
-        if (validForm) {
-            var d = {
+        var d = {
                 id: "",
                 academicYear: this.state.selectedYear,
                 courseId: this.state.selectedCourse,
-                feeType: ((this.state.SelectedFeeType!=null && this.state.SelectedFeeType.indexOf(",")==-1)? this.state.SelectedFeeType.join(",") : this.state.SelectedFeeType),              
-                flag: this.state.flag,
                 reportMapId: "11",
             }
             $.ajax({
                 type: "POST",
-                url: '/Fee/AddFeeMapping',
+                url: '/Fee/ShowFeeDetails',
                 data: d,
                 beforeSend: function () {
-                    btnloading("FeeMapping", 'show');
+                    btnloading("FeeDetail", 'show');
                 },
                 success: function (data) {
-                    btnloading("FeeMapping", 'hide');
-                    CallToast(data.msg, data.flag);
-                    if (data.flag == "S") {
-                        MyData = JSON.parse(data.addParams);
-                        this.setState
-                            ({
-
-                                feeName: "",
-                                payType: ReadDropDownData("Param", '20', true),
-                                feeDescrep: "",
-                                month: ReadDropDownData("Param", '21', true),
-                                active: ReadDropDownData("Param", '16', true),
-                                feeAcadeDet: [],
-                                CourseDet: [],
-                                mediumDet: [],
-                                feeAcadeStruct: [],
-                                CourseStruct: [],
-                                mediumStruct: ReadDropDownData("Param", '18', true),
-                                selectedPayType: 0,
-                                selectedAcadDet: 0,
-                                selectedCourseDet: 0,
-                                selectedMediumDet: 0,
-                                selectedAcadStruct: 0,
-                                selectedCourseStruct: 0,
-                                selectedMedStruct: 0,
-                                label: "Save",
-                                flag: "A",
-                            })
-                        this.setState({ mappingrowData: MyData });
-                    }
+                    btnloading("FeeDetail", 'hide');
+                    MyData=JSON.parse(data.addParams);
+                    this.setState({feeDtlRowData : MyData})
                 }.bind(this),
                 error: function (evt) {
-                    btnloading("FeeMapping", 'hide');
+                    btnloading("FeeDetail", 'hide');
                     alert('Error! Please try again');
                 }
-            })
-
-            e.preventDefault();
+            });
+             e.preventDefault();
         }
-    }
-
     onChangePayType(value) {
         //var jsonData = ReadDropDownData("Param", '20', true);
         //for (var i = 0; i < jsonData.length; i++) {
@@ -392,10 +341,22 @@ class FeeStructure extends React.Component {
     componentDidMount()
     {
         $('.testClass').on("click", this.handleClick.bind(this));
+        $('.nav-link').on("click",this.ResetColDef.bind(this));
     }
     componentDidUpdate() {
         $('.testClass').on("click", this.handleClick.bind(this));
+       $('.nav-link').on("click",this.ResetColDef);
     }
+    componentWillMount()
+    {
+       this.setState({
+            feeDtlColDef : grdArray["$FeeMapping$"]
+        })
+    }
+    ResetColDef = () =>{
+        this.setState({ state: this.state });
+    }
+
       // alert(window.dynamicData)
     render() {
         //Render form
@@ -419,13 +380,7 @@ class FeeStructure extends React.Component {
                                 <a className="nav-link active show" data-toggle="tab" href="#type">Fee Type</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" data-toggle="tab" href="#mapping">Course Fee Mapping</a>
-                            </li>
-                            <li className="nav-item">
                                 <a className="nav-link" data-toggle="tab" href="#details">Fee Details</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" data-toggle="tab" href="#structure">Fee Structure</a>
                             </li>
                         </ul>
                         <div className="tab-content">
@@ -465,83 +420,33 @@ class FeeStructure extends React.Component {
                                     <AgGrid columnDef={this.state.columnDef} name={'TypeGrid'} rowData={this.state.rowData} />
                                 </div>
                             </div>
-                            <div className="tab-pane" id="mapping">
-                                <form name='FeeType' className="tab-pane active show" id="FeeMapping" noValidate onSubmit={this.handleMapping}>
-                                <div className="einrformbase">
-                                    <ul className="einrform">   
-                                        <li>
-                                            <CreateInput type={'ddl'} value={this.state.selectedYear} data={this.state.academicYear} label={'Academic Year'} name={'academicYear'} htmlFor={'academicYear'} isrequired={true}
-                                                    keyId={'YEAR_ID'} keyName={'ACADEMIC_YEAR'} onChange={this.onChangeYear.bind(this)} className={'form-control'} onComponentMounted={this.registerMapping} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
-                                            <CreateInput type={'ddl'} value={this.state.selectedCourse} data={this.state.courseId} label={'Course'} name={'courseId'} htmlFor={'courseId'} isrequired={true}
-                                                    keyId={'COURSE_ID'} keyName={'COURSE_NAME'} onChange={this.onChangeCourse.bind(this)} className={'form-control'} onComponentMounted={this.registerMapping} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
-                                            <CreateInput type={'multiSelect'} value={this.state.SelectedFeeType} data={this.state.feeType} label={'Fee Type'} name={'feeType'} htmlFor={'feeType'} isrequired={true}
-                                                    keyId={'ID'} keyName={'FEE_NAME'} onChange={this.onChangeFeeType.bind(this)} className={'form-control'} onComponentMounted={this.registerMapping} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
-                                            <button type="submit" className="btn btn-info"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span>{this.state.label}</button>
-                                        </li>
-                                        </ul>
-                                         <div className="row cstdown clearfix">
-                                        <hr />
-                                            <AgGrid columnDef={this.state.columnFeeDef} name={'MappingGrid'} mappingrowData={this.state.mappingrowData} />
-                                        </div>
-                                </div>
-                               
-                                </form> 
-                            </div>
-
                             <div className="tab-pane" id="details">
+                                <form name='FeeDetail' className="tab-pane active show" id="FeeDetail" noValidate onSubmit={this.ShowFeeDetail}>
                                 <div className="einrformbase">
                                     <ul className="einrform">
+                                       <li>
+                                            <CreateInput type={'ddl'} value={this.state.selectedYear} data={this.state.academicYear} label={'Academic Year'} name={'academicYear'} htmlFor={'academicYear'} isrequired={true}
+                                                         keyId={'YEAR_ID'} keyName={'ACADEMIC_YEAR'} onChange={this.onChangeYear.bind(this)} className={'form-control'} onComponentMounted={this.registerMapping} messageRequired={'required.'} />
+                                       </li>
                                         <li>
-                                            <CreateInput type={'ddl'} value={this.state.selectedAcadDet} data={this.state.feeAcadeDet} label={'Academic Year'} name={'feeAcadeDet'} htmlFor={'feeAcadeDet'} isrequired={true}
-                                                keyId={'YEAR_ID'} keyName={'ACADEMIC_YEAR'} onChange={this.onChangeAcadeDet.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />                                        
+                                            <CreateInput type={'ddl'} value={this.state.selectedCourse} data={this.state.courseId} label={'Course'} name={'courseId'} htmlFor={'courseId'} isrequired={true}
+                                                         keyId={'COURSE_ID'} keyName={'COURSE_NAME'} onChange={this.onChangeCourse.bind(this)} className={'form-control'} onComponentMounted={this.registerMapping} messageRequired={'required.'} />
                                         </li>
                                         <li>
-                                            <CreateInput type={'ddl'} value={this.state.selectedCourseDet} data={this.state.CourseDet} label={'Course Name'} name={'CourseDet'} htmlFor={'CourseDet'} isrequired={true}
-                                                keyId={'COURSE_ID'} keyName={'COURSE_NAME'} onChange={this.onChangeCourseDet.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />                                          
-                                        </li>
-                                        <li>
-                                            <button type="submit" className="btn btn-info">Show</button>
+                                            <button type="submit" className="btn btn-info"><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span>Show</button>
                                         </li>
                                     </ul>
                                 </div>
+                                </form>
                                 <div className="row cstdown clearfix">
                                     <hr />
-                        <div className="text-center">
+                                    <AgGrid columnDef={this.state.feeDtlColDef} name={'DetailsGrid'} rowData={this.state.feeDtlRowData} />
+                                    <div className="text-center">
                                         <button type="submit" className="btn btn-info">Save</button>
                                     </div>
                                 </div>
 
-                            </div>
-                            <div className="tab-pane" id="structure">
-                                <div className="einrformbase">
-                                    <ul className="einrform">
-                                        <li>
-                                            <CreateInput type={'ddl'} value={this.state.selectedAcadStruct} data={this.state.feeAcadeStruct} label={'Academic Year'} name={'feeAcadeStruct'} htmlFor={'feeAcadeStruct'} isrequired={true}
-                                                keyId={'YEAR_ID'} keyName={'ACADEMIC_YEAR'} onChange={this.onChangeAcadeStruct.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />                                                                              
-                                        </li>
-                                        <li>
-                                            <CreateInput type={'ddl'} value={this.state.selectedCourseStruct} data={this.state.CourseStruct} label={'Course Name'} name={'CourseStruct'} htmlFor={'CourseStruct'} isrequired={true}
-                                                keyId={'COURSE_ID'} keyName={'COURSE_NAME'} onChange={this.onChangeCourseStruct.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
-                                            <CreateInput type={'ddl'} value={this.state.selectedMedStruct} data={this.state.mediumStruct} label={'Medium'} name={'mediumStruct'} htmlFor={'mediumStruct'} isrequired={true}
-                                                keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeMediumStruct} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
-                                        </li>
-                                        <li>
-                                            <button type="submit" className="btn btn-info">Show</button>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className="row cstdown clearfix">
-                                    <hr/>
-                    </div>
-                            </div>
+</div>
                         </div>
                     </div>
                 </div>

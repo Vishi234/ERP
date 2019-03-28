@@ -21,7 +21,7 @@ namespace ERP.Controllers
             accountEntity.reportId = "10";
             accountEntity.reportMapId = "11";
             TempData["FeeType"] = accountObj.AddFeeDetails(accountEntity);
-            TempData["FeeMapping"] = accountObj.AddFeeMapping(accountEntity);
+            //TempData["FeeMapping"] = accountObj.AddFeeMapping(accountEntity);
             return View();
         }
         [HttpPost]
@@ -33,11 +33,11 @@ namespace ERP.Controllers
 
         }
         [HttpPost]
-        public JsonResult AddFeeMapping(AccountEntity accountEntity)
+        public JsonResult ShowFeeDetails(AccountEntity accountEntity)
         {
             Account accountObj = new Account();
             //  UserEntity objUserEntity = UserEntity.GetInstance();
-            return Json(accountObj.AddFeeMapping(accountEntity));
+            return Json(accountObj.GetFeeDetails(accountEntity));
 
         }
         public ActionResult Payments()
