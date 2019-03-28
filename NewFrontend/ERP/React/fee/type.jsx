@@ -10,7 +10,7 @@ class FeeStructure extends React.Component {
         grdArray = GetReportConfiguration("FeeManagement"); 
         //grdFeeArray = GetReportConfiguration("FeeMapping");
         var columnDefs = grdArray["$FeeType$"];
-        feeDtlColDef = grdArray["$FeeMapping$"];
+
         //var records;
         var records = JSON.parse(content.addParams);
         for (var i = 0; i < columnDefs.length; i++) {

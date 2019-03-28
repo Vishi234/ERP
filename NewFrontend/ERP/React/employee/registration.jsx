@@ -1,6 +1,8 @@
 ﻿var grdArray;
 var MyData = null;
 var fields = [];
+var empCode = "";
+var empType = "";
 class EmployeeForm extends React.Component {
     constructor(props) {
         super(props);
@@ -85,6 +87,7 @@ class EmployeeForm extends React.Component {
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.getEmployeeFilter = this.getEmployeeFilter.bind(this);
     }
     handleSubmit(e) {
         var validForm = true;
@@ -179,12 +182,21 @@ class EmployeeForm extends React.Component {
             e.preventDefault();
         }
     }
-    getEmployeeDetails = () => {
-        $.get("/Employee/GetEmployeeDetails", function (data) {
+    getEmployeeDetails = () =>
+    {
+        $.get("/Employee/GetEmployeeDetails?empId="+empId+"&empName="+empName, function (data) {
             MyData = JSON.parse(data.addParams);
             this.setState({ rowData: MyData });
             this.setState({ records: MyData.length })
         });    
+    }
+
+    getEmployeeFilter = (e) => {
+        $.get("/Employee/GetEmployeeFilter?empCode=" + this.state.empCode + "&empType=" + this.state.selectedType, function (data) {
+                MyData = JSON.parse(data.addParams);
+                this.setState({ rowData: MyData });
+                this.setState({ records: MyData.length })
+            });
     }
     uploadImages = () => {
         $.ajax({
@@ -739,6 +751,27 @@ class EmployeeForm extends React.Component {
                                         </a>
                                     </li>
                                 </ul>
+                                <ul>
+                                    <li>
+                                        <CreateInput type={'text'} value={this.state.empCode} label={'Employee Code'} name={'empCode'} htmlFor={'empCode'}
+                                            onChange={this.onChangeCode.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'}  />
+                                    </li>
+                                    <li>
+                                        <CreateInput type={'ddl'} value={this.state.selectedDept} data={this.state.empDept} label={'Department'} name={'empDept'} htmlFor={'empDept'} isrequired={true}
+                                            keyId={'DEPT_ID'} keyName={'DEPT_NAME'} onChange={this.onChangeDept.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                    </li>
+                                    <li>
+                                        <CreateInput type={'ddl'} value={this.state.selectedDesig} data={this.state.empDesig} label={'Designation'} name={'empDesig'} htmlFor={'empDesig'} isrequired={true}
+                                            keyId={'DESG_ID'} keyName={'DESG_NAME'} onChange={this.onChangeDesig.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                    </li>
+                                    <li>
+                                        <CreateInput type={'ddl'} value={this.state.selectedType} data={this.state.empType} label={'Employee Type'} name={'empType'} htmlFor={'empType'} isrequired={true}
+                                            keyId={'PARAM_ID'} keyName={'PARAM_NAME'} onChange={this.onChangeType.bind(this)} className={'form-control'} onComponentMounted={this.register} messageRequired={'required.'} />
+                                    </li>
+                                </ul>
+                                <li>
+                                    <button type="submit" className="btn btn-info" onClick={this.getEmployeeFilter}><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span>Filter</button>
+                                 </li>   
                             </div>
                             <AgGrid columnDef={this.state.columnDef} rowData={this.state.rowData} />
                         </div>

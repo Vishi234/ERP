@@ -61,7 +61,6 @@ class CreateInput extends React.Component {
         //check required field
         if (input != undefined) {
             if (input.tagName == "INPUT") {
-                debugger;
                     if (input.getAttribute('required') != null && input.value === "") {
                         input.classList.add('input-validation-error'); //add class error
                         input.nextSibling.classList.add('field-validation-error');
