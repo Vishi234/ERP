@@ -87,7 +87,7 @@ class EmployeeForm extends React.Component {
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClick = this.handleClick.bind(this);
-        this.getEmployeeFilter = this.getEmployeeFilter.bind(this);
+       // this.getEmployeeFilter = this.getEmployeeFilter.bind(this);
     }
     handleSubmit(e) {
         var validForm = true;
@@ -186,16 +186,26 @@ class EmployeeForm extends React.Component {
     {
         $.get("/Employee/GetEmployeeDetails?empId="+empId+"&empName="+empName, function (data) {
             MyData = JSON.parse(data.addParams);
+           
             this.setState({ rowData: MyData });
             this.setState({ records: MyData.length })
         });    
     }
 
     getEmployeeFilter = (e) => {
-        $.get("/Employee/GetEmployeeFilter?empCode=" + this.state.empCode + "&empType=" + this.state.selectedType, function (data) {
-                MyData = JSON.parse(data.addParams);
-                this.setState({ rowData: MyData });
-                this.setState({ records: MyData.length })
+        $.get("/Employee/GetEmployeeFilter?empCode=" + this.state.empCode + "&empType=" + this.state.selectedType, function (data)
+        {
+            debugger;
+            MyData = JSON.parse(data.addParams);
+            this.setState({ rowData: MyData });
+
+
+
+       /////     onChange = { this.onChangeEmail.bind(this) }
+            //debugger;
+            //this.state({ rowData: MyData });
+              //  this.setState({ rowData: MyData });
+              //  this.setState({ records: MyData.length })
             });
     }
     uploadImages = () => {
@@ -217,7 +227,6 @@ class EmployeeForm extends React.Component {
         })
     }
     resetData = () => {
-        debugger;
         this.getEmployeeDetails();
         this.setState
             ({
@@ -281,7 +290,6 @@ class EmployeeForm extends React.Component {
     }
     onChangeDept(value) {
         var jsonData = ReadDropDownData("Designation", $("#hfCustomerId").val(), false);
-        debugger;
         obj = [];
         for (var i = 0; i < jsonData.length; i++) {
             if (jsonData[i].DESG_ID == value) {
@@ -552,7 +560,6 @@ class EmployeeForm extends React.Component {
         });
     }
     handleClick(param) {
-        debugger;
         var data = JSON.parse(param.currentTarget.getAttribute("dataattr"));
         stuCount = ReadLocationData("Location", 1, "");
         var jsonData = ReadLocationData("Location", 2, 1);
@@ -625,7 +632,6 @@ class EmployeeForm extends React.Component {
     $("#employee").modal("show");
     }
     CreateEdit=(params)=> {
-        debugger;
         var html = "";
         var domElement = "";
         var jsonObj = JSON.stringify(params.data);
@@ -770,7 +776,7 @@ class EmployeeForm extends React.Component {
                                     </li>
                                 </ul>
                                 <li>
-                                    <button type="submit" className="btn btn-info" onClick={this.getEmployeeFilter}><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span>Filter</button>
+                                    <button type="submit" className="btn btn-info" onChange={this.getEmployeeFilter.bind(this)}><span className="inload hide"><i className="fa fa-spinner fa-spin"></i></span>Filter</button>
                                  </li>   
                             </div>
                             <AgGrid columnDef={this.state.columnDef} rowData={this.state.rowData} />
