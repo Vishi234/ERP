@@ -27,7 +27,10 @@ namespace ERP
                         "~/Scripts/common.js",
                         "~/Scripts/custom.js",
                         "~/Scripts/ag-grid.min.js",
-                        "~/Scripts/fontawesome/all.js"
+                        "~/Scripts/fontawesome/all.js",
+                        "~/Scripts/jquery-1.10.2.js",
+                        "~/Scripts/sammy-0.7.4.js",
+                        "~/Scripts/routing.js"
                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(

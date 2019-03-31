@@ -204,6 +204,9 @@
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\routing.js" />
+    <Content Include="Scripts\sammy-0.7.4.js" />
+    <Content Include="Scripts\sammy-0.7.4.min.js" />
     <Content Include="webfonts\fa-brands-400.svg" />
     <Content Include="webfonts\fa-regular-400.svg" />
     <Content Include="webfonts\fa-solid-900.svg" />
@@ -334,6 +337,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Handlers\UploadImages.ashx" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Master\Academic2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

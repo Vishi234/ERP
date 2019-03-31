@@ -3,8 +3,580 @@
     ViewBag.Title = "Manage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div id="studentform"></div>
 <script type="text/javascript">
     var content = @Html.Raw(JsonConvert.SerializeObject(TempData["StudentData"]));
 </script>
-<script src="@Url.Content("../../React/student/manage.jsx")"></script>
+<div class="esubmenu">
+    <ul class="breadcrumb float-left">
+        <li><a href="#">Home /</a></li>
+        <li><a href="#">Pictures /</a></li>
+        <li><a href="#">Summer 15 /</a></li>
+        <li><a href="#" class="active">Summer 15</a></li>
+    </ul>
+    <div class="ever float-right">
+        <span>Version : 0.0.1</span>
+    </div>
+</div>
+<div class="pagebody">
+    <div class="einrformbase card pt-2 pl-2 pr-2">
+        <div class="card-title">
+            Student Management
+        </div>
+        <div class="card-body">
+            <div class="efltrform"></div>
+            <div class="action">
+                <ul>
+                    <li>
+                        <a href="javascript:void(0)" data-toggle="modal" data-target="#student" class="btn btn-secondary">
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                 width="357px" height="357px" viewBox="0 0 357 357" style="enable-background:new 0 0 357 357;" xml:space="preserve">
+                            <g>
+                            <g id="add">
+                            <path d="M357,204H204v153h-51V204H0v-51h153V0h51v153h153V204z" />
+                                    </g>
+                                </g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="btn btn-secondary exportToExcel">
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                            <g>
+                            <g>
+                            <path d="M382.56,233.376C379.968,227.648,374.272,224,368,224h-64V16c0-8.832-7.168-16-16-16h-64c-8.832,0-16,7.168-16,16v208h-64 c-6.272,0-11.968,3.68-14.56,9.376c-2.624,5.728-1.6,12.416,2.528,17.152l112,128c3.04,3.488,7.424,5.472,12.032,5.472 c4.608,0,8.992-2.016,12.032-5.472l112-128C384.192,245.824,385.152,239.104,382.56,233.376z" />
+                                    </g>
+                                </g>
+                            <g>
+                            <g>
+                            <path d="M432,352v96H80v-96H16v128c0,17.696,14.336,32,32,32h416c17.696,0,32-14.304,32-32V352H432z" />
+                                    </g>
+                                </g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            <g></g>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="actionbse">
+                <div id="studentGrid" style="height:350px;" class="ag-theme-balham"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="student" class="modal fade">
+    <div class="modal-dialog modal-dialog-vertical-center modal-lg" role="document">
+        <div class="modal-content bd-0 tx-14">
+            <form name='StudentAdmi' id="StudentAdmi" noValidate onSubmit="handleSubmit();">
+                <div class="modal-header">
+                    <h6 class="tx-14 tx-uppercase tx-inverse tx-bold">Add/Edit Student</h6>
+                    <button type="button" class="close" data-dismiss="modal" onClick="resetData()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                </div>
+                <div class="modal-body pd-25">
+                    <div class="einrformbase">
+
+                        <ul class="einrform ecustform">
+                            <li>
+                                <div class="text">
+                                    <div class="form-group">
+                                        <label for="stuCode">Student Code</label>
+                                        <input type="text" class="form-control" name="stuCode" />
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="text">
+                                    <div class="form-group">
+                                        <label for="stuFirst">First Name</label>
+                                        <input type="text" class="form-control" name="stuFirst" />
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="text">
+                                    <div class="form-group">
+                                        <label for="stuLast">Last Name</label>
+                                        <input type="text" class="form-control" name="stuLast" />
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="ddl">
+                                    <div class="form-group">
+                                        <label for="stuAcade">Academic Year</label>
+                                        <select class="registration-form-control dropdown" name="stuAcade"></select>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="ddl">
+                                    <div class="form-group">
+                                        <label for="stuCourse">Course</label>
+                                        <select class="registration-form-control dropdown" name="stuCourse"></select>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="ddl">
+                                    <div class="form-group">
+                                        <label for="stuSemester">Semester</label>
+                                        <select class="registration-form-control dropdown" name="stuSemester"></select>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="ddl">
+                                    <div class="form-group">
+                                        <label for="stuCategory">Category</label>
+                                        <select class="registration-form-control dropdown" name="stuCategory"></select>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="empbse">
+                            <div class="empimg">
+                                <img src="" />
+                            </div>
+                            <div class="efinput">
+                                Choose File
+                                <input type="file" id="uploadedImg" onChange="onChangeImage();" class="hide_file" />
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <hr />
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active show personal" data-toggle="tab" href="#personal">Personal Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link contact" data-toggle="tab" href="#contact">Contact Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link subject" data-toggle="tab" href="#subject">Subject Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link academic" data-toggle="tab" href="#academic">Academic Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link account" data-toggle="tab" href="#account">Account Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link account" data-toggle="tab" href="#transport">Transport Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link account" data-toggle="tab" href="#hostel">Hostel Details</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active show" id="personal">
+                            <ul class="einrform">
+                                <li>
+                                    <div class="text">
+                                        <div class="form-group">
+                                            <label for="empFather">Father Name</label>
+                                            <input type="text" class="form-control" name="empFather" />
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text">
+                                        <div class="form-group">
+                                            <label for="empMother">Mother Name</label>
+                                            <input type="text" class="form-control" name="empMother" />
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="ddl">
+                                        <div class="form-group">
+                                            <label for="empSex">Gender</label>
+                                            <select class="registration-form-control dropdown" name="empSex"></select>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="date">
+                                        <div class="form-group">
+                                            <label for="empDOB">Date Of Birth</label>
+                                            <input type="text" class="form-control" name="empDOB" />
+                                        </div>
+                                        <span class="calendarbase"><img src="../../Images/calendar.png" /></span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="ddl">
+                                        <div class="form-group">
+                                            <label for="empBGrp">Blood Group</label>
+                                            <select class="registration-form-control dropdown" name="empBGrp"></select>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text">
+                                        <div class="form-group">
+                                            <label for="empNation">Nationality</label>
+                                            <input type="text" class="form-control" name="empNation" />
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text">
+                                        <div class="form-group">
+                                            <label for="stuMTongue">Mother Tongue</label>
+                                            <input type="text" class="form-control" name="stuMTongue" />
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text">
+                                        <div class="form-group">
+                                            <label for="stuBirPlace">Place Of Birth</label>
+                                            <input type="text" class="form-control" name="stuBirPlace" />
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="ddl">
+                                        <div class="form-group">
+                                            <label for="stuHandi">Are You Handicap?</label>
+                                            <select class="registration-form-control dropdown" name="stuHandi"></select>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text">
+                                        <div class="form-group">
+                                            <label for="stuPIncome">Parent Income(Annually)</label>
+                                            <input type="text" class="form-control" name="stuPIncome" />
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane" id="contact">
+                            <ul class="einrform">
+                                <li>
+                                    <div class="text">
+                                        <div class="form-group">
+                                            <label for="empAdres">Address Line 1</label>
+                                            <input type="text" class="form-control" name="empAdres" />
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text">
+                                        <div class="form-group">
+                                            <label for="empAdres2">Address Line 2</label>
+                                            <input type="text" class="form-control" name="empAdres2" />
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="ddl">
+                                        <div class="form-group">
+                                            <label for="empCount">Country</label>
+                                            <select class="registration-form-control dropdown" name="empCount"></select>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="ddl">
+                                        <div class="form-group">
+                                            <label for="empState">State</label>
+                                            <select class="registration-form-control dropdown" name="empState"></select>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="ddl">
+                                        <div class="form-group">
+                                            <label for="empCity">City</label>
+                                            <select class="registration-form-control dropdown" name="empCity"></select>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text">
+                                        <div class="form-group">
+                                            <label for="empZip">Zip Code</label>
+                                            <input type="text" class="form-control" name="empZip" />
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text">
+                                        <div class="form-group">
+                                            <label for="empMobile">Mobile No</label>
+                                            <input type="text" class="form-control" name="empMobile" />
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text">
+                                        <div class="form-group">
+                                            <label for="empPhone">Phone No</label>
+                                            <input type="text" class="form-control" name="empPhone" />
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text">
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input type="text" class="form-control" name="email" />
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane" id="subject">
+                            <div class="selectBox">
+                                <div class="form-group">
+                                    <label for="empSub"></label>
+                                    <select class="registration-form-control dropdown" name="empSub"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="academic">
+                            <ul class="einrform">
+                                <li>
+                                    <div class="text">
+                                        <div class="form-group">
+                                            <label for="stuInst">Institute Name</label>
+                                            <input type="text" class="form-control" name="stuInst" />
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="ddl">
+                                        <div class="form-group">
+                                            <label for="stuBoard">University/Board</label>
+                                            <select class="registration-form-control dropdown" name="stuBoard"></select>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="ddl">
+                                        <div class="form-group">
+                                            <label for="stuPreCourse">Course</label>
+                                            <select class="registration-form-control dropdown" name="stuPreCourse"></select>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="date">
+                                        <div class="form-group">
+                                            <label for="couCompli">Year Of Compilation</label>
+                                            <input type="text" class="form-control" name="couCompli" />
+                                        </div>
+                                        <span class="calendarbase"><img src="../../Images/calendar.png" /></span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text">
+                                        <div class="form-group">
+                                            <label for="stuMarks">Obtained Marks</label>
+                                            <input type="text" class="form-control" name="stuMarks" />
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text">
+                                        <div class="form-group">
+                                            <label for="stuPercent">Percentage(%)</label>
+                                            <input type="text" class="form-control" name="stuPercent" />
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane" id="account">
+                            <ul class="einrform">
+                                <li>
+                                    <div class="text">
+                                        <div class="form-group">
+                                            <label for="empLogin">Login Id</label>
+                                            <input type="text" class="form-control" name="empLogin" />
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text">
+                                        <div class="form-group">
+                                            <label for="empPwd">Password</label>
+                                            <input type="text" class="form-control" name="empPwd" />
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text">
+                                        <div class="form-group">
+                                            <label for="empCPwd">Confirm Password</label>
+                                            <input type="text" class="form-control" name="empCPwd" />
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="ddl">
+                                        <div class="form-group">
+                                            <label for="empAccStat">Account Status</label>
+                                            <select class="registration-form-control dropdown" name="empAccStat"></select>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane" id="transport">
+                            <ul class="einrform">
+                                <li>   
+                                    <div class="ddl">
+                                        <div class="form-group">
+                                            <label for="stuTrans">Transport</label>
+                                            <select class="registration-form-control dropdown" name="stuTrans"></select>
+                                        </div>
+                                    </div> 
+                                </li>
+                                <li>
+                                    <div class="ddl">
+                                        <div class="form-group">
+                                            <label for="stuRoute">Route Name</label>
+                                            <select class="registration-form-control dropdown" name="stuRoute"></select>
+                                        </div>
+                                    </div> 
+                                </li>
+                                <li>
+                                    <div class="ddl">
+                                        <div class="form-group">
+                                            <label for="stuVehTyp">Vehicle Type</label>
+                                            <select class="registration-form-control dropdown" name="stuVehTyp"></select>
+                                        </div>
+                                    </div> 
+                                </li>
+                                <li>
+                                    <div class="ddl">
+                                        <div class="form-group">
+                                            <label for="stuVehNo">Vehicle Number</label>
+                                            <select class="registration-form-control dropdown" name="stuVehNo"></select>
+                                        </div>
+                                    </div> 
+                                </li>
+                                <li>
+                                    <div class="text">
+                                        <div class="form-group">
+                                            <label for="stuVecAmt">Amount</label>
+                                            <input type="text" class="form-control" name="stuVecAmt" />
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="ddl">
+                                        <div class="form-group">
+                                            <label for="stuVehStop">Stop Name</label>
+                                            <select class="registration-form-control dropdown" name="stuVehStop"></select>
+                                        </div>
+                                    </div> 
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane" id="hostel">
+                            <ul class="einrform">
+                                <li>
+                                    <div class="ddl">
+                                        <div class="form-group">
+                                            <label for="stuHostel">Hostel</label>
+                                            <select class="registration-form-control dropdown" name="stuHostel"></select>
+                                        </div>
+                                    </div> 
+                                </li>
+                                <li>
+                                    <div class="ddl">
+                                        <div class="form-group">
+                                            <label for="stuHostelName">Hostel Name</label>
+                                            <select class="registration-form-control dropdown" name="stuHostelName"></select>
+                                        </div>
+                                    </div> 
+                                </li>
+                                <li>
+                                    <div class="ddl">
+                                        <div class="form-group">
+                                            <label for="stuHostelFlr">Floor</label>
+                                            <select class="registration-form-control dropdown" name="stuHostelFlr"></select>
+                                        </div>
+                                    </div> 
+                                </li>
+                                <li>
+                                    <div class="ddl">
+                                        <div class="form-group">
+                                            <label for="stuRoomTyp">Room Type</label>
+                                            <select class="registration-form-control dropdown" name="stuRoomTyp"></select>
+                                        </div>
+                                    </div> 
+                                </li>
+                                <li>
+                                    <div class="text">
+                                        <div class="form-group">
+                                            <label for="stuRoomNo">Room Number</label>
+                                            <input type="text" class="form-control" name="stuRoomNo" />
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text">
+                                        <div class="form-group">
+                                            <label for="stuBedNo">Bed Number</label>
+                                            <input type="text" class="form-control" name="stuBedNo" />
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text">
+                                        <div class="form-group">
+                                            <label for="stuHostPrc">Price</label>
+                                            <input type="text" class="form-control" name="stuHostPrc" />
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-info pd-x-20"><span class="inload hide"><i class="fa fa-spinner fa-spin"></i></span> Save</button>
+                    <button type="button" class="btn btn-secondary pd-x-20" data-dismiss="modal" onClick="resetData();">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -21,7 +21,7 @@ namespace ERP.Controllers
             academicEntity.flag = 'G';
             academicEntity.reportId = "1";
             TempData["AcademicData"] = new Master().AddAcademicYear(academicEntity);
-            return View();
+            return PartialView();
         }
         [HttpPost]
         public JsonResult Academic(AcademicEntity academicEntity)
