@@ -35,7 +35,7 @@ namespace ERP.Controllers
             courseEntity.flag = 'G';
             courseEntity.reportId = "2";
             TempData["CourseData"] = new Master().AddCourse(courseEntity);
-            return PartialView();
+            return View();
         }
         [HttpPost]
         public ActionResult Course(CourseEntity courseEntity)
@@ -71,7 +71,7 @@ namespace ERP.Controllers
             activityEntity.flag = 'G';
             activityEntity.reportId = "6";
             TempData["ActivityData"] = new Master().AddActivity(activityEntity, objUserEntity.customerId, objUserEntity.userId);
-            return PartialView();
+            return View();
         }
         [HttpPost]
         public JsonResult Activity(ActivityEntity activityEntity)

@@ -276,6 +276,8 @@
     <Content Include="Views\Fee\Payments.cshtml" />
     <Content Include="Views\Fee\Type.cshtml" />
     <Content Include="Views\HR\Enquiry.cshtml" />
+    <Content Include="Views\Master\Academic.cshtml" />
+    <Content Include="Views\Master\Activity.cshtml" />
     <Content Include="Views\Master\Course.cshtml" />
     <Content Include="Views\Master\Duration.cshtml" />
     <Content Include="Views\Master\Mapping.cshtml" />
@@ -335,9 +337,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Handlers\UploadImages.ashx" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Master\Academic.cshtml" />
-    <Content Include="Views\Master\Activity.cshtml" />
-    <Content Include="Views\Master\Course2.cshtml" />
+    <Content Include="Views\Master\Academic2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
