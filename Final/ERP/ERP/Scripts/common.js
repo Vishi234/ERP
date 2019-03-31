@@ -1,4 +1,36 @@
-﻿function CallToast(message, flag) {
+﻿
+function ValidateFields(evt)
+{
+    boolFlag = false;
+    $("#" + evt.id + " select, input").each(function (i, data) {
+        if (data.tagName == 'INPUT') {
+            if (data.hasAttribute('isRequired')) {
+                if (data.value == "") {
+                    data.classList.add("input-validation-error");
+                    data.nextElementSibling.classList.add("field-validation-error");
+                    data.nextElementSibling.textContent = "Required";
+                    boolFlag = true;
+                } else
+                {
+                    data.classList.remove('input-validation-error');
+                    data.nextElementSibling.classList.remove('field-validation-error');
+                    data.nextElementSibling.textContent = "";
+                }
+            }
+        }
+        else if (data.tagName == 'SELECT') {
+            if (data.hasAttribute('isRequired')) {
+
+            }
+        }
+        else {
+
+        }
+    });
+    if (boolFlag) { return false; } else { return true; }        
+}
+
+function CallToast(message, flag) {
     var heading = ((flag == 'F') ? "Error" : ((flag == 'V') ? "Information" : "Success"));
     var icon = ((flag == 'F') ? "error" : ((flag == 'V') ? "info" : "success"));
     $.toast({
