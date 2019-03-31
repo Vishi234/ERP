@@ -3,9 +3,68 @@
     ViewBag.Title = "Section";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div id="sectionform"></div>
 <script type="text/javascript">
     var content = @Html.Raw(JsonConvert.SerializeObject(TempData["SectionData"]));
 </script>
-<script src="@Url.Content("../../React/master/section.jsx")"></script>
-
+<div class="esubmenu">
+    <ul class="breadcrumb float-left">
+        <li><a href="#">Home /</a></li>
+        <li><a href="#">Pictures /</a></li>
+        <li><a href="#">Summer 15 /</a></li>
+        <li><a href="#" class="active">Summer 15</a></li>
+    </ul>
+    <div class="ever float-right">
+        <span>Version : 0.0.1</span>
+    </div>
+</div>
+<div class="pagebody">
+    <div class="einrformbase card pt-2 pl-2 pr-2">
+        <div class="card-title">
+            Academic Year
+        </div>
+        <div class="card-body">
+            <form name='SectionForm' id="SectionForm" noValidate onSubmit="handleSubmit();">
+                <ul class="einrform">
+                    <li>
+                        <div class="ddl">
+                            <div class="form-group">
+                                <label for="course">Course</label>
+                                <select class="registration-form-control dropdown" name="course"></select>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="ddl">
+                            <div class="form-group">
+                                <label for="semester">Semester</label>
+                                <select class="registration-form-control dropdown" name="semester"></select>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="ddl">
+                            <div class="form-group">
+                                <label for="sectionName">Section Name</label>
+                                <select class="registration-form-control dropdown" name="sectionName"></select>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="ddl">
+                            <div class="form-group">
+                                <label for="active">Status</label>
+                                <select class="registration-form-control dropdown" name="active"></select>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <button type="submit" class="btn btn-info"><span class="inload hide"><i class="fa fa-spinner fa-spin"></i></span>Save</button>
+                    </li>
+                </ul>
+            </form>
+            <div class="actionbse">
+                <div id="sectionGrid" style="height:350px;" class="ag-theme-balham"></div>
+            </div>
+        </div>
+    </div>
+</div>
