@@ -25,6 +25,9 @@
         }
 
     });
+    InitializeSelect("ddl");
+    InitializeDate("dt");
+    InitializeSelectList("slbox");
 
     $(".user-dtl").click(function () {
         $(this).toggleClass("userinfoactive");
@@ -105,20 +108,14 @@ function btnloading(evt, action) {
     }
 }
 function InitializeSelect(name) {
-    //$('select[name=' + name + ']').SumoSelect(
-    //    {
-    //        forceCustomRendering: true,
-    //        search: true,
-    //        searchText: 'Enter here.'
-    //    });
-    $('select[name=' + name + ']').chosen();
-    $('select[name=' + name + ']').trigger("chosen:updated");
+    $('.' + name).chosen();
+    $('.' + name).trigger("chosen:updated");
 }
 function InitializeDate(name) {
     var thisYear = (new Date()).getFullYear();
     var start = new Date("1/1/" + thisYear);
     var defaultStart = moment(start.valueOf());
-    $('input[name=' + name + ']').daterangepicker({
+    $('.' + name).daterangepicker({
         singleDatePicker: true,
         //minDate: moment(start.valueOf()).format("DD-MMM-YYYY"),
         //startDate: moment(start.valueOf()).format("DD-MMM-YYYY"),
@@ -127,7 +124,7 @@ function InitializeDate(name) {
     });
 }
 function InitializeSelectList(name) {
-    $('select[name=' + name + ']').lwMultiSelect({
+    $('.' + name).lwMultiSelect({
         addAllText: "Select All",
         removeAllText: "Remove All",
         selectedLabel: "Values accepted",

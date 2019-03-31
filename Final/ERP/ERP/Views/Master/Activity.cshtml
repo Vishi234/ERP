@@ -1,8 +1,4 @@
 ﻿@using Newtonsoft.Json;
-@{
-    ViewBag.Title = "Activity";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
 <script type="text/javascript">
     var content = @Html.Raw(JsonConvert.SerializeObject(TempData["ActivityData"]));
 </script>
@@ -29,7 +25,7 @@
                         <div class="text">
                             <div class="form-group">
                                 <label for="actName">Activity Name</label>
-                                <input type="text" class="form-control" name="actName"/>
+                                <input type="text" class="form-control" name="actName" />
                             </div>
                         </div>
                     </li>
