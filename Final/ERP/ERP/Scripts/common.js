@@ -1,6 +1,5 @@
 ﻿
-function ValidateFields(evt)
-{
+function ValidateFields(evt) {
     boolFlag = false;
     $("#" + evt.id + " select, input").each(function (i, data) {
         if (data.tagName == 'INPUT') {
@@ -10,8 +9,7 @@ function ValidateFields(evt)
                     data.nextElementSibling.classList.add("field-validation-error");
                     data.nextElementSibling.textContent = "Required";
                     boolFlag = true;
-                } else
-                {
+                } else {
                     data.classList.remove('input-validation-error');
                     data.nextElementSibling.classList.remove('field-validation-error');
                     data.nextElementSibling.textContent = "";
@@ -27,9 +25,36 @@ function ValidateFields(evt)
 
         }
     });
-    if (boolFlag) { return false; } else { return true; }        
+    if (boolFlag) { return false; } else { return true; }
 }
-
+function GridInitializer(columnDef) {
+    var gridOptions = {
+        columnDefs: columnDef,
+        enableSorting: true,
+        rowData: null,
+        rowHeight: 25,
+        suppressRowClickSelection: false,
+        enableCellChangeFlash: true,
+        refreshCells: true,
+        enableColResize: true,
+        headerHeight: 35,
+        suppressHorizontalScroll: false,
+        colResizeDefault: 'shift',
+        pagination: true,
+        paginationPageSize: 20,
+        paginationNumberFormatter: function (params) {
+            return '[' + params.value.toLocaleString() + ']';
+        },
+        onGridReady: function (params) {
+            var allColumnIds = [];
+            gridOptions.columnApi.getAllColumns().forEach(function (column) {
+                allColumnIds.push(column.colId);
+            });
+            gridOptions.columnApi.autoSizeColumns(allColumnIds);
+        },
+    }
+    return gridOptions
+}
 function CallToast(message, flag) {
     var heading = ((flag == 'F') ? "Error" : ((flag == 'V') ? "Information" : "Success"));
     var icon = ((flag == 'F') ? "error" : ((flag == 'V') ? "info" : "success"));
@@ -80,24 +105,21 @@ function ReadDropDownData(key, customerId, isParam) {
     var MyData = null;
     var jsonData = GetJsonData('../../Content/DynamicJs/DropdownData.json');
 
-    if (isParam == false)
-    {
-        if (key == "Course" || key == "AcademicYear" || key == "Subject" || key == "Department" || key == "Designation" || key == "FeeName")
-        {
+    if (isParam == false) {
+        if (key == "Course" || key == "AcademicYear" || key == "Subject" || key == "Department" || key == "Designation" || key == "FeeName") {
             MyData = jsonData["" + key + ""];
 
-            if (MyData == null || MyData == undefined)
-              {
+            if (MyData == null || MyData == undefined) {
                 MyData = GetCommonDDL();
                 MyData = $.grep(MyData[key], function (item, i) {
                     return item.CUSTOMER_ID == customerId
                 });
-              }
+            }
             else {
-               MyData = $.grep(jsonData[key], function (item, i) {
-                   return item.CUSTOMER_ID == customerId
-               });
-           }
+                MyData = $.grep(jsonData[key], function (item, i) {
+                    return item.CUSTOMER_ID == customerId
+                });
+            }
         }
         else {
             MyData = $.grep(jsonData[key], function (item, i) {
@@ -106,11 +128,11 @@ function ReadDropDownData(key, customerId, isParam) {
         }
     }
     else {
-        
-            MyData = $.grep(jsonData[key], function (item, i) {
-                return item.PARAM_TYPE == customerId
-            });
-      
+
+        MyData = $.grep(jsonData[key], function (item, i) {
+            return item.PARAM_TYPE == customerId
+        });
+
     }
     return MyData;
 }
@@ -123,8 +145,7 @@ function GetCommonDDL() {
             type: 'get',
             dataType: 'json',
             async: false,
-            success: function (response)
-            {
+            success: function (response) {
                 resData = response;
             },
             error: function (xhr, status, error) {
@@ -134,7 +155,7 @@ function GetCommonDDL() {
     return resData;
 }
 function ReadLocationData(key, locationType, selectedVal) {
-    
+
     var MyData = null;
     var jsonData = GetJsonData('../../Content/DynamicJs/DropdownData.json');
 
@@ -279,8 +300,8 @@ function ExportExcel(HTMLTable, worksheetName, encoding) {
     var blobUrl = URL.createObjectURL(blob);
     return (blobUrl);
 }
-function base64(s) {return window.btoa(unescape(encodeURIComponent(s)));}
-function format(s, c) {return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; });}
+function base64(s) { return window.btoa(unescape(encodeURIComponent(s))); }
+function format(s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }); }
 function GetTimeUpdate() {
     var monthNames = [
         "Jan", "Feb", "Mar",

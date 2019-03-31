@@ -1,9 +1,6 @@
 ﻿@using Newtonsoft.Json;
-@{
-    ViewBag.Title = "Section";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
 <script type="text/javascript">
+    document.title="Section";
     var content = @Html.Raw(JsonConvert.SerializeObject(TempData["SectionData"]));
 </script>
 <div class="esubmenu">

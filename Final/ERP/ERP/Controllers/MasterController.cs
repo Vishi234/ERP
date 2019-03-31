@@ -35,7 +35,7 @@ namespace ERP.Controllers
             courseEntity.flag = 'G';
             courseEntity.reportId = "2";
             TempData["CourseData"] = new Master().AddCourse(courseEntity);
-            return View();
+            return PartialView();
         }
         [HttpPost]
         public ActionResult Course(CourseEntity courseEntity)
@@ -48,7 +48,7 @@ namespace ERP.Controllers
             durationEntity.flag = 'G';
             durationEntity.reportId = "3";
             TempData["DurationData"] = new Master().AddDuration(durationEntity);
-            return View();
+            return PartialView();
         }
         public string Durationddl()
         {
@@ -71,7 +71,7 @@ namespace ERP.Controllers
             activityEntity.flag = 'G';
             activityEntity.reportId = "6";
             TempData["ActivityData"] = new Master().AddActivity(activityEntity, objUserEntity.customerId, objUserEntity.userId);
-            return View();
+            return PartialView();
         }
         [HttpPost]
         public JsonResult Activity(ActivityEntity activityEntity)
@@ -86,7 +86,7 @@ namespace ERP.Controllers
             subjectEntity.flag = 'G';
             subjectEntity.reportId = "5";
             TempData["SubjectData"] = new Master().AddSubject(subjectEntity);
-            return View();
+            return PartialView();
         }
         [HttpPost]
         public ActionResult Subject(SubjectEntity subjectEntity)
@@ -101,7 +101,7 @@ namespace ERP.Controllers
             mapping.flag = 'G';
             mapping.reportId = "7";
             TempData["MappingData"] = new Master().AddMappingDetails(mapping);
-            return View();
+            return PartialView();
         }
         [HttpPost]
         public JsonResult Mapping(MappingEntity mapping)
@@ -132,7 +132,7 @@ namespace ERP.Controllers
             sectionEntity.operType = 'G';
             sectionEntity.reportId = "4";
             TempData["SectionData"] = new Master().SectionDetails(sectionEntity);
-            return View();
+            return PartialView();
         }
 
     }

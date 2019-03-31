@@ -161,79 +161,75 @@
     </div>
     <footer>
         <script type="text/javascript">
-           
-            function handleSubmit(evt)
-            {            
-                if (ValidateFields(evt))
-                {
+
+            function handleSubmit(evt) {
+                if (ValidateFields(evt)) {
                     var myData = [];
                     var obj = {};
-                    $("#" + evt.id + " select, input").each(function (i, data)
-                    {                      
+                    $("#" + evt.id + " select, input").each(function (i, data) {
                         obj[data.name] = data.value;
                     });
                     myData.push(obj);
-                    
-                    $.ajax({
-                        type: "POST",
-                        url: '/Auth/Login',
-                        data: myData[0],
-                        async: false,
-                        beforeSend: function () {
-                            $("#progress").show();
-                        },
-                        success: function (data)
-                        {
-                            $("#progress").hide();
-                            if (data.flag == "S") {
-                                $('.leftlist ul').empty();
-                                if (data.addParams != null)
-                                {
-                                    var customerList = JSON.parse(data.addParams); var dynamicLi = ""; var dynamicData = "";
-                                    var param;
-                                    $.each(customerList, function (i, data)
-                                    {
-                                        param =
-                                            {
-                                                customerId: data.CUSTOMER_ID,
-                                                customerCode: data.CUSTOMER_CODE,
-                                                customerName: data.CUSTOMER_NAME,
-                                                address: data.ADDRESS,
-                                                city: data.CITY,
-                                                mobile: data.MOBILE,
-                                                website: data.WEBSITE,
-                                                faxNo: data.FAX_NO,
-                                                cEmail: data.EMAIL_ADDRESS,
-                                                panNo: data.PAN_NO,
-                                                cActive: data.IS_ACTIVE,
-                                                state: data.STATE,
-                                                pinCode: data.PIN_CODE,
-                                                cWef: data.WEF_DATE,
-                                                cWet: data.WET_DATE
-                                            }
-                                        var a = JSON.stringify(param);
-                                        var url = "/Auth/Redirect?jsonData=" + a.split(' ').join('+');
-                                        dynamicLi += '<li><a href=' + url + '><i classNameName="fa fa-home" ></i> ' + ' ' + data.CUSTOMER_NAME + '</a></li>';
-                                        dynamicData = data.CUSTOMER_ID + '~' + data.CUSTOMER_NAME + '~' + data.ADDRESS_PRIMARY + '~' + data.ADDRESS_SECONDRY + '~' + data.FAX_NO;
-                                    });
-                                    $('.leftlist ul').append(dynamicLi);
-                                    $("#selectorg").modal("show");
+                    $("#progress").show();
+                    setTimeout(function () {
+                        $.ajax({
+                            type: "POST",
+                            url: '/Auth/Login',
+                            data: myData[0],
+                            async: false,
+                            beforeSend: function () {
+                                $("#progress").show();
+                            },
+                            success: function (data) {
+                                $("#progress").hide();
+                                if (data.flag == "S") {
+                                    $('.leftlist ul').empty();
+                                    if (data.addParams != null) {
+                                        var customerList = JSON.parse(data.addParams); var dynamicLi = ""; var dynamicData = "";
+                                        var param;
+                                        $.each(customerList, function (i, data) {
+                                            param =
+                                                {
+                                                    customerId: data.CUSTOMER_ID,
+                                                    customerCode: data.CUSTOMER_CODE,
+                                                    customerName: data.CUSTOMER_NAME,
+                                                    address: data.ADDRESS,
+                                                    city: data.CITY,
+                                                    mobile: data.MOBILE,
+                                                    website: data.WEBSITE,
+                                                    faxNo: data.FAX_NO,
+                                                    cEmail: data.EMAIL_ADDRESS,
+                                                    panNo: data.PAN_NO,
+                                                    cActive: data.IS_ACTIVE,
+                                                    state: data.STATE,
+                                                    pinCode: data.PIN_CODE,
+                                                    cWef: data.WEF_DATE,
+                                                    cWet: data.WET_DATE
+                                                }
+                                            var a = JSON.stringify(param);
+                                            var url = "/Auth/Redirect?jsonData=" + a.split(' ').join('+');
+                                            dynamicLi += '<li><a href=' + url + '><i classNameName="fa fa-home" ></i> ' + ' ' + data.CUSTOMER_NAME + '</a></li>';
+                                            dynamicData = data.CUSTOMER_ID + '~' + data.CUSTOMER_NAME + '~' + data.ADDRESS_PRIMARY + '~' + data.ADDRESS_SECONDRY + '~' + data.FAX_NO;
+                                        });
+                                        $('.leftlist ul').append(dynamicLi);
+                                        $("#selectorg").modal("show");
+                                    }
+                                    else {
+                                        CallToast(data.msg, data.flag);
+                                        window.location.href = "/Dashboard/Overview";
+                                    }
                                 }
                                 else {
                                     CallToast(data.msg, data.flag);
-                                    window.location.href = "/Dashboard/Overview";
                                 }
+                            }.bind(this),
+                            error: function (e) {
+                                console.log(e);
+                                $("#progress").hide();
+                                alert('Error! Please try again');
                             }
-                            else {
-                                CallToast(data.msg, data.flag);
-                            }
-                        }.bind(this),
-                        error: function (e) {
-                            console.log(e);
-                            $("#progress").hide();
-                            alert('Error! Please try again');
-                        }
-                    });
+                        });
+                    }, 1000);
                 }
                 else {
                     return false;

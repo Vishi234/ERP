@@ -1,4 +1,7 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
+    //InitializeDate("dt");
+    //InitializeSelect("ddl");
+    //InitializeSelectList("slbox");
     $(".top-menu li a").click(function () {
         $(".top-menu li").find("a").removeClass("top-menu-active");
         $(this).addClass("top-menu-active");
@@ -104,21 +107,15 @@ function btnloading(evt, action) {
         $("#" + evt).find(':button[type=submit]').prop('disabled', false);
     }
 }
-function InitializeSelect(name) {
-    //$('select[name=' + name + ']').SumoSelect(
-    //    {
-    //        forceCustomRendering: true,
-    //        search: true,
-    //        searchText: 'Enter here.'
-    //    });
-    $('select[name=' + name + ']').chosen();
-    $('select[name=' + name + ']').trigger("chosen:updated");
+function InitializeSelect() {
+    $('.chosen-select').chosen();
+    $('.chosen-select').trigger("chosen:updated");
 }
-function InitializeDate(name) {
+function InitializeDate() {
     var thisYear = (new Date()).getFullYear();
     var start = new Date("1/1/" + thisYear);
     var defaultStart = moment(start.valueOf());
-    $('input[name=' + name + ']').daterangepicker({
+    $('.chosen-date').daterangepicker({
         singleDatePicker: true,
         //minDate: moment(start.valueOf()).format("DD-MMM-YYYY"),
         //startDate: moment(start.valueOf()).format("DD-MMM-YYYY"),
@@ -126,8 +123,8 @@ function InitializeDate(name) {
         locale: { format: 'DD-MMM-YYYY' }
     });
 }
-function InitializeSelectList(name) {
-    $('select[name=' + name + ']').lwMultiSelect({
+function InitializeSelectList() {
+    $('.select-box').lwMultiSelect({
         addAllText: "Select All",
         removeAllText: "Remove All",
         selectedLabel: "Values accepted",
