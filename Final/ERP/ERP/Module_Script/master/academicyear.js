@@ -31,7 +31,7 @@ $("#ddlActive").trigger("chosen:updated");
 
 function OnEditClick(obj)
 {
-    debugger
+    
     var editData = JSON.parse($(obj).attr('dataattr'));
     $("input[name=academicYear]").val(editData.acYear);
     $("input[name=wfDate]").val(editData.wfDate);
@@ -54,7 +54,7 @@ function handleSubmit(evt)
             obj[data.name] = data.value;
         });
         myData.push(obj);
-        $("#progress").show();
+        btnloading("AcademicYear", 'show');
         setTimeout(function () {
             $.ajax({
                 type: "POST",
@@ -62,11 +62,11 @@ function handleSubmit(evt)
                 data: myData[0],
                 async: false,
                 beforeSend: function () {
-                    $("#progress").show();
+                    btnloading("AcademicYear", 'show');
                 },
                 success: function (data)
                 {
-                    $("#progress").hide();
+                    btnloading("AcademicYear", 'hide');
                     if (data.flag == "S")
                     {
                         $('#' + evt.id).trigger("reset");
@@ -83,7 +83,7 @@ function handleSubmit(evt)
                 }.bind(this),
                 error: function (e) {
                     console.log(e);
-                    $("#progress").hide();
+                    btnloading("AcademicYear", 'hide');
                     alert('Error! Please try again');
                 }
             });
@@ -95,7 +95,7 @@ function handleSubmit(evt)
     return false;
 }
 
-debugger;
+;
 function CreateEdit(params)
 {
     var html = "";
