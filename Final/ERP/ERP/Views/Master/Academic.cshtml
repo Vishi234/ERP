@@ -23,13 +23,14 @@
             Academic Year
         </div>
         <div class="card-body">
-            <form name='AcademicYear' id="AcademicYear" noValidate onSubmit="handleSubmit();">
+            <form name='AcademicYear' id="AcademicYear" method="post" noValidate onSubmit="return handleSubmit(this);">
                 <ul class="einrform">
                     <li>
                         <div class="text">
                             <div class="form-group">
                                 <label for="academicYear">Academic Year</label>
-                                <input type="text" class="form-control" name="academicYear" />
+                                <input type="text" class="form-control" isRequired="true" name="academicYear"/>
+                                <span class="field-validation-error"></span>
                             </div>
                         </div>
                     </li>
@@ -37,7 +38,8 @@
                         <div class="date">
                             <div class="form-group">
                                 <label for="date">Start Date</label>
-                                <input type="text" class="form-control chosen-date" name="date" />
+                                <input type="text" class="form-control chosen-date" isRequired="true" name="wfDate" />
+                                <span class="field-validation-error"></span>
                             </div>
                             <span class="calendarbase"><img src="../../Images/calendar.png" /></span>
                         </div>
@@ -46,7 +48,8 @@
                         <div class="date">
                             <div class="form-group">
                                 <label for="endDate">End Date</label>
-                                <input type="text" class="form-control chosen-date" name="endDate" />
+                                <input type="text" class="form-control chosen-date"  name="wtDate" />
+                                <span class="field-validation-error"></span>
                             </div>
                             <span class="calendarbase"><img src="../../Images/calendar.png" /></span>
                         </div>
@@ -55,13 +58,19 @@
                         <div class="ddl">
                             <div class="form-group">
                                 <label for="active">Status</label>
-                                <select class="chosen-select">
-                                    <option key="0" value="0">Select Status</option>
+                                <select class="chosen-select" id="ddlActive" isRequired="true" name="active">
+
+                                    <option value="0">Select Status</option>
                                 </select>
+                                <span class="field-validation-error"></span>
                             </div>
                         </div>
                     </li>
                     <li>
+                        <input type="text" style="display:none" value="" name="yearId" />
+                        <input type="text" style="display:none" value="A" name="flag" />
+                        <input type="text" style="display:none" value="1" name="reportId" />
+
                         <button type="submit" class="btn btn-info"><span class="inload hide"><i class="fa fa-spinner fa-spin"></i></span>Save</button>
                     </li>
                 </ul>

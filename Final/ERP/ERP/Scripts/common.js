@@ -17,7 +17,8 @@ function ValidateFields(evt) {
             }
         }
         else if (data.tagName == 'SELECT') {
-            if (data.hasAttribute('isRequired')) {
+            if (data.hasAttribute('isRequired'))
+            {
 
             }
         }
