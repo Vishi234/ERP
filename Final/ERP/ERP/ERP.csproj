@@ -194,6 +194,7 @@
     <Content Include="Images\loading.gif" />
     <Content Include="Images\user-img.png" />
     <Content Include="Module_Script\master\academicyear.js" />
+    <Content Include="Module_Script\student\manage.js" />
     <Content Include="Scripts\ag-grid.min.js" />
     <Content Include="Scripts\AppConfig.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -286,7 +287,7 @@
     <Content Include="Views\HR\Enquiry.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Student\Admission.cshtml" />
-    <Content Include="Views\Student\Manage.cshtml" />
+    <Content Include="Views\Student\Manage_old.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -345,6 +346,7 @@
     <Content Include="Views\Master\Mapping.cshtml" />
     <Content Include="Views\Master\Section.cshtml" />
     <Content Include="Views\Master\Subject.cshtml" />
+    <Content Include="Views\Student\Manage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -21,7 +21,7 @@ namespace ERP.Controllers
         public ActionResult Manage()
         {
             GetStudentDetails();
-            return View();
+            return PartialView();
         }
         [HttpGet]
         public JsonResult GetStudentDetails()

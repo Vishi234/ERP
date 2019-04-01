@@ -47,11 +47,11 @@ function GridInitializer(columnDef) {
             return '[' + params.value.toLocaleString() + ']';
         },
         onGridReady: function (params) {
-            var allColumnIds = [];
-            gridOptions.columnApi.getAllColumns().forEach(function (column) {
-                allColumnIds.push(column.colId);
-            });
-            gridOptions.columnApi.autoSizeColumns(allColumnIds);
+            //var allColumnIds = [];
+            //gridOptions.columnApi.getAllColumns().forEach(function (column) {
+            //    allColumnIds.push(column.colId);
+            //});
+            //gridOptions.columnApi.autoSizeColumns(allColumnIds);
         },
     }
     return gridOptions

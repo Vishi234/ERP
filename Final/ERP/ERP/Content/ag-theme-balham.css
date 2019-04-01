@@ -3073,3 +3073,20 @@
     .ag-theme-balham .ag-filter-toolpanel-body {
         background-color: white;
     }
+.ag-root ::-webkit-scrollbar {
+    width: 10px;
+    height: 8px;
+}
+.ag-root ::-webkit-scrollbar-button {
+    background: #f4f4f4;
+    height:1px;
+}
+.ag-root ::-webkit-scrollbar-track-piece {
+    background: #eee;
+    border:1px solid #ccc;
+}
+.ag-root ::-webkit-scrollbar-thumb {
+    background: #cfcfcf
+}​
+
+

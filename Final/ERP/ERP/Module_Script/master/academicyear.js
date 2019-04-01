@@ -17,10 +17,10 @@ for (var i = 0; i < columnDefs.length; i++) {
     }
 }
 gridOptions = GridInitializer(columnDefs);
-
 var gridDiv = document.querySelector('#academicgrid');
 new agGrid.Grid(gridDiv, gridOptions);
 gridOptions.api.setRowData(((rowData == null) ? null : rowData));
+gridOptions.api.sizeColumnsToFit();
 
 var isActiveData = ReadDropDownData("Param", '16', true);
 $.each(isActiveData, function (i, value)
@@ -87,7 +87,7 @@ function handleSubmit(evt)
                     alert('Error! Please try again');
                 }
             });
-        }, 1000);
+        }, 500);
     }
     else {
         return false;
@@ -95,7 +95,6 @@ function handleSubmit(evt)
     return false;
 }
 
-;
 function CreateEdit(params)
 {
     var html = "";
