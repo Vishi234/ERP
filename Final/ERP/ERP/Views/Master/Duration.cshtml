@@ -2,7 +2,10 @@
 <script type="text/javascript">
     document.title="Duration";
     var content = @Html.Raw(JsonConvert.SerializeObject(TempData["DurationData"]));
+    InitializeSelect();
+    InitializeDate();
 </script>
+<script src="~/Module_Script/master/duration.js"></script>
 <div class="esubmenu">
     <ul class="breadcrumb float-left">
         <li><a href="#">Home /</a></li>
@@ -20,13 +23,16 @@
             Course Semester Duration
         </div>
         <div class="card-body">
-            <form name='DurationForm' id="DurationForm" noValidate onSubmit="handleSubmit();">
+            <form name='DurationForm' id="DurationForm" method="post" noValidate onSubmit="return handleSubmit(this);">
                 <ul class="einrform">
                     <li>
                         <div class="ddl">
                             <div class="form-group">
                                 <label for="academicYear">Academic Year</label>
-                                <select class="registration-form-control dropdown" name="academicYear"></select>
+                                <select class="chosen-select" name="academicYear" id="ddlAcademic">
+                                    <option value="0">Select Academic Year</option>
+                                </select>
+                                <span class="field-validation-error"></span>
                             </div>
                         </div>
                     </li>
@@ -34,7 +40,10 @@
                         <div class="ddl">
                             <div class="form-group">
                                 <label for="courseId">Course</label>
-                                <select class="registration-form-control dropdown" name="courseId"></select>
+                                <select class="chosen-select" name="courseId" id="ddlCourse">
+                                    <option value="0">Select Course</option>
+                                </select>
+                                <span class="field-validation-error"></span>
                             </div>
                         </div>
                     </li>
@@ -42,7 +51,10 @@
                         <div class="ddl">
                             <div class="form-group">
                                 <label for="semester">Semester</label>
-                                <select class="registration-form-control dropdown" name="semester"></select>
+                                <select class="chosen-select" name="semester" id="ddlSemester">
+                                    <option value="0">Select Semester</option>
+                                </select>
+                                <span class="field-validation-error"></span>
                             </div>
                         </div>
                     </li>
@@ -50,29 +62,39 @@
                         <div class="date">
                             <div class="form-group">
                                 <label for="date">Start Date</label>
-                                <input type="text" class="form-control" name="date" />
+                                <input type="text" class="form-control chosen-date" name="date" />
+                                <span class="field-validation-error"></span>
                             </div>
                             <span class="calendarbase"><img src="../../Images/calendar.png" /></span>
+
                         </div>
                     </li>
                     <li>
                         <div class="date">
                             <div class="form-group">
                                 <label for="endDate">End Date</label>
-                                <input type="text" class="form-control" name="endDate" />
+                                <input type="text" class="form-control chosen-date" name="endDate" />
+                                <span class="field-validation-error"></span>
                             </div>
                             <span class="calendarbase"><img src="../../Images/calendar.png" /></span>
+
                         </div>
                     </li>
                     <li>
                         <div class="ddl">
                             <div class="form-group">
                                 <label for="active">Status</label>
-                                <select class="registration-form-control dropdown" name="active"></select>
+                                <select class="chosen-select" name="active" id="ddlActive">
+                                    <option value="0">Select Status</option>
+                                </select>
+                                <span class="field-validation-error"></span>
                             </div>
                         </div>
                     </li>
                     <li>
+                        <input type="text" style="display:none" value="" name="durId" />
+                        <input type="text" style="display:none" value="A" name="flag" />
+                        <input type="text" style="display:none" value="3" name="reportId" />
                         <button type="submit" class="btn btn-info"><span class="inload hide"><i class="fa fa-spinner fa-spin"></i></span> Save</button>
                     </li>
                 </ul>
