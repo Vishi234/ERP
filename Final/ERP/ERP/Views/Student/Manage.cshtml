@@ -1,11 +1,12 @@
 ﻿@using Newtonsoft.Json;
-@{
-    ViewBag.Title = "Manage";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
 <script type="text/javascript">
+    document.title="Student Management";
     var content = @Html.Raw(JsonConvert.SerializeObject(TempData["StudentData"]));
+    InitializeSelect();
+    InitializeDate();
+    InitializeSelectList()
 </script>
+<script src="~/Module_Script/student/manage.js"></script>
 <div class="esubmenu">
     <ul class="breadcrumb float-left">
         <li><a href="#">Home /</a></li>
@@ -96,10 +97,10 @@
 <div id="student" class="modal fade">
     <div class="modal-dialog modal-dialog-vertical-center modal-lg" role="document">
         <div class="modal-content bd-0 tx-14">
-            <form name='StudentAdmi' id="StudentAdmi" noValidate onSubmit="handleSubmit();">
+            <form name='StudentAdmi' id="StudentAdmi" noValidate onSubmit="handleSubmit(this);">
                 <div class="modal-header">
                     <h6 class="tx-14 tx-uppercase tx-inverse tx-bold">Add/Edit Student</h6>
-                    <button type="button" class="close" data-dismiss="modal" onClick="resetData()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <button type="button" class="close" data-dismiss="modal" ><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 </div>
                 <div class="modal-body pd-25">
                     <div class="einrformbase">
@@ -133,7 +134,7 @@
                                 <div class="ddl">
                                     <div class="form-group">
                                         <label for="stuAcade">Academic Year</label>
-                                        <select class="registration-form-control dropdown" name="stuAcade"></select>
+                                        <select class="chosen-select ddl" name="stuAcade"></select>
                                     </div>
                                 </div>
                             </li>
@@ -141,7 +142,7 @@
                                 <div class="ddl">
                                     <div class="form-group">
                                         <label for="stuCourse">Course</label>
-                                        <select class="registration-form-control dropdown" name="stuCourse"></select>
+                                        <select class="chosen-select ddl" name="stuCourse"></select>
                                     </div>
                                 </div>
                             </li>
@@ -149,7 +150,7 @@
                                 <div class="ddl">
                                     <div class="form-group">
                                         <label for="stuSemester">Semester</label>
-                                        <select class="registration-form-control dropdown" name="stuSemester"></select>
+                                        <select class="chosen-select ddl" name="stuSemester"></select>
                                     </div>
                                 </div>
                             </li>
@@ -157,7 +158,7 @@
                                 <div class="ddl">
                                     <div class="form-group">
                                         <label for="stuCategory">Category</label>
-                                        <select class="registration-form-control dropdown" name="stuCategory"></select>
+                                        <select class="chosen-select ddl" name="stuCategory"></select>
                                     </div>
                                 </div>
                             </li>
@@ -221,7 +222,7 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="empSex">Gender</label>
-                                            <select class="registration-form-control dropdown" name="empSex"></select>
+                                            <select class="chosen-select ddl" name="empSex"></select>
                                         </div>
                                     </div>
                                 </li>
@@ -229,7 +230,7 @@
                                     <div class="date">
                                         <div class="form-group">
                                             <label for="empDOB">Date Of Birth</label>
-                                            <input type="text" class="form-control" name="empDOB" />
+                                            <input type="text" class="form-control dt" name="empDOB" />
                                         </div>
                                         <span class="calendarbase"><img src="../../Images/calendar.png" /></span>
                                     </div>
@@ -238,7 +239,7 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="empBGrp">Blood Group</label>
-                                            <select class="registration-form-control dropdown" name="empBGrp"></select>
+                                            <select class="chosen-select ddl" name="empBGrp"></select>
                                         </div>
                                     </div>
                                 </li>
@@ -270,7 +271,7 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuHandi">Are You Handicap?</label>
-                                            <select class="registration-form-control dropdown" name="stuHandi"></select>
+                                            <select class="chosen-select ddl" name="stuHandi"></select>
                                         </div>
                                     </div>
                                 </li>
@@ -307,7 +308,7 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="empCount">Country</label>
-                                            <select class="registration-form-control dropdown" name="empCount"></select>
+                                            <select class="chosen-select ddl" name="empCount"></select>
                                         </div>
                                     </div>
                                 </li>
@@ -315,7 +316,7 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="empState">State</label>
-                                            <select class="registration-form-control dropdown" name="empState"></select>
+                                            <select class="chosen-select ddl" name="empState"></select>
                                         </div>
                                     </div>
                                 </li>
@@ -323,7 +324,7 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="empCity">City</label>
-                                            <select class="registration-form-control dropdown" name="empCity"></select>
+                                            <select class="chosen-select ddl" name="empCity"></select>
                                         </div>
                                     </div>
                                 </li>
@@ -365,7 +366,7 @@
                             <div class="selectBox">
                                 <div class="form-group">
                                     <label for="empSub"></label>
-                                    <select class="registration-form-control dropdown" name="empSub"></select>
+                                    <select class="select-box" name="empSub"></select>
                                 </div>
                             </div>
                         </div>
@@ -383,7 +384,7 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuBoard">University/Board</label>
-                                            <select class="registration-form-control dropdown" name="stuBoard"></select>
+                                            <select class="chosen-select ddl" name="stuBoard"></select>
                                         </div>
                                     </div>
                                 </li>
@@ -391,7 +392,7 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuPreCourse">Course</label>
-                                            <select class="registration-form-control dropdown" name="stuPreCourse"></select>
+                                            <select class="chosen-select ddl" name="stuPreCourse"></select>
                                         </div>
                                     </div>
                                 </li>
@@ -399,7 +400,7 @@
                                     <div class="date">
                                         <div class="form-group">
                                             <label for="couCompli">Year Of Compilation</label>
-                                            <input type="text" class="form-control" name="couCompli" />
+                                            <input type="text" class="form-control dt" name="couCompli" />
                                         </div>
                                         <span class="calendarbase"><img src="../../Images/calendar.png" /></span>
                                     </div>
@@ -452,7 +453,7 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="empAccStat">Account Status</label>
-                                            <select class="registration-form-control dropdown" name="empAccStat"></select>
+                                            <select class="chosen-select ddl" name="empAccStat"></select>
                                         </div>
                                     </div>
                                 </li>
@@ -460,37 +461,37 @@
                         </div>
                         <div class="tab-pane" id="transport">
                             <ul class="einrform">
-                                <li>   
+                                <li>
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuTrans">Transport</label>
-                                            <select class="registration-form-control dropdown" name="stuTrans"></select>
+                                            <select class="chosen-select ddl" name="stuTrans"></select>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </li>
                                 <li>
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuRoute">Route Name</label>
-                                            <select class="registration-form-control dropdown" name="stuRoute"></select>
+                                            <select class="chosen-select ddl" name="stuRoute"></select>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </li>
                                 <li>
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuVehTyp">Vehicle Type</label>
-                                            <select class="registration-form-control dropdown" name="stuVehTyp"></select>
+                                            <select class="chosen-select ddl" name="stuVehTyp"></select>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </li>
                                 <li>
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuVehNo">Vehicle Number</label>
-                                            <select class="registration-form-control dropdown" name="stuVehNo"></select>
+                                            <select class="chosen-select ddl" name="stuVehNo"></select>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </li>
                                 <li>
                                     <div class="text">
@@ -504,9 +505,9 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuVehStop">Stop Name</label>
-                                            <select class="registration-form-control dropdown" name="stuVehStop"></select>
+                                            <select class="chosen-select ddl" name="stuVehStop"></select>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </li>
                             </ul>
                         </div>
@@ -516,33 +517,33 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuHostel">Hostel</label>
-                                            <select class="registration-form-control dropdown" name="stuHostel"></select>
+                                            <select class="chosen-select ddl" name="stuHostel"></select>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </li>
                                 <li>
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuHostelName">Hostel Name</label>
-                                            <select class="registration-form-control dropdown" name="stuHostelName"></select>
+                                            <select class="chosen-select ddl" name="stuHostelName"></select>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </li>
                                 <li>
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuHostelFlr">Floor</label>
-                                            <select class="registration-form-control dropdown" name="stuHostelFlr"></select>
+                                            <select class="chosen-select ddl" name="stuHostelFlr"></select>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </li>
                                 <li>
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuRoomTyp">Room Type</label>
-                                            <select class="registration-form-control dropdown" name="stuRoomTyp"></select>
+                                            <select class="chosen-select ddl" name="stuRoomTyp"></select>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </li>
                                 <li>
                                     <div class="text">
@@ -574,7 +575,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-info pd-x-20"><span class="inload hide"><i class="fa fa-spinner fa-spin"></i></span> Save</button>
-                    <button type="button" class="btn btn-secondary pd-x-20" data-dismiss="modal" onClick="resetData();">Cancel</button>
+                    <button type="button" class="btn btn-secondary pd-x-20" data-dismiss="modal">Cancel</button>
                 </div>
             </form>
         </div>

@@ -23,6 +23,7 @@ namespace ERP
                         "~/Scripts/moment.min.js",
                         "~/Scripts/daterangepicker.js",
                         "~/Scripts/jquery.lwMultiSelect.js",
+                        "~/Scripts/less.js",
                         "~/Scripts/appconfig.js",
                         "~/Scripts/common.js",
                         "~/Scripts/custom.js",
@@ -30,6 +31,7 @@ namespace ERP
                         "~/Scripts/fontawesome/all.js",
                         "~/Scripts/jquery-1.10.2.js",
                         "~/Scripts/sammy-0.7.4.js",
+                        "~/Scripts/nprogress.js",
                         "~/Scripts/routing.js"
                         ));
 
@@ -48,7 +50,8 @@ namespace ERP
                       "~/Content/chosen.css",
                       "~/Content/ag-grid.css",
                       "~/Content/ag-theme-balham.css",
-                      "~/Content/jquery.lwMultiSelect.css"));
+                      "~/Content/jquery.lwMultiSelect.css",
+                      "~/Content/loading.less"));
         }
     }
 }
