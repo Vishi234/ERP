@@ -60,7 +60,7 @@ var routingApp = $.sammy("#MainContent", function () {
             HideLoading();
         });
     });
-    this.get("#/Employee/manage/", function (context) {
+    this.get("#/Employee/manage", function (context) {
         ShowLoading();
         $.get("/Employee/Manage", function (data) {
             context.$element().html(data);
@@ -68,9 +68,9 @@ var routingApp = $.sammy("#MainContent", function () {
         });
     });
 });
-//$(function () {
-//    routingApp.run("/Dashboard/Overview"); // default routing page.
-//});
+$(function () {
+    routingApp.run("/Dashboard/Overview"); // default routing page.
+});
 function ShowLoading() {
     if ($("#loading").length === 0) {
         // inject the bar..

@@ -24,7 +24,7 @@
         </div>
         <div class="card-body">
             <div class="efltrform">
-                <ul>
+                <ul class="einrform">
                     <li>
                         <div class="text">
                             <div class="form-group">
@@ -37,7 +37,7 @@
                         <div class="ddl">
                             <div class="form-group">
                                 <label for="empDept">Department</label>
-                                <select class="registration-form-control dropdown" name="empDept"></select>
+                                <select class="chosen-select ddl" name="empDept"></select>
                             </div>
                         </div>
                     </li>
@@ -45,7 +45,7 @@
                         <div class="ddl">
                             <div class="form-group">
                                 <label for="empDesig">Designation</label>
-                                <select class="registration-form-control dropdown" name="empDesig"></select>
+                                <select class="chosen-select ddl" name="empDesig"></select>
                             </div>
                         </div>
                     </li>
@@ -53,12 +53,12 @@
                         <div class="ddl">
                             <div class="form-group">
                                 <label for="empType">Employee Type</label>
-                                <select class="registration-form-control dropdown" name="empType"></select>
+                                <select class="chosen-select ddl" name="empType"></select>
                             </div>
                         </div>
                     </li>
                     <li>
-                        <button type="submit" class="btn btn-info" onChange={this.getEmployeeFilter.bind(this)}><span class="inload hide"><i class="fa fa-spinner fa-spin"></i></span>Filter</button>
+                        <button type="submit" class="btn btn-info"><span class="inload hide"><i class="fa fa-spinner fa-spin"></i></span>Filter</button>
                     </li>
                 </ul>
             </div>
