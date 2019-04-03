@@ -1,0 +1,10 @@
+﻿@using Newtonsoft.Json;
+@{
+
+}
+<div id="feeform"></div>
+<script type="text/javascript">
+    var content = @Html.Raw(JsonConvert.SerializeObject(TempData["FeeType"]));
+    var mappingContent = @Html.Raw(JsonConvert.SerializeObject(TempData["FeeMapping"]));
+</script>
+<script src="@Url.Content("../../React/fee/type.jsx")"></script>

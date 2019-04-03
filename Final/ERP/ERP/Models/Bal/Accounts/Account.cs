@@ -24,7 +24,7 @@ namespace ERP.Models.Bal.Accounts
             {
                 //  UserEntity objUserEntity = UserEntity.GetInstance();
                 SqlParameter[] sqlParameter = new SqlParameter[13];
-                sqlParameter[0] = new SqlParameter("@ID", accountEntity.id);
+                sqlParameter[0] = new SqlParameter("@ID", accountEntity.typeid);
                 sqlParameter[1] = new SqlParameter("@FEE_NAME", accountEntity.feeName);
                 sqlParameter[2] = new SqlParameter("@PAYMENT_TYPE", accountEntity.paymentType);
                 sqlParameter[3] = new SqlParameter("@MONTH", accountEntity.feeMonth);
@@ -50,7 +50,7 @@ namespace ERP.Models.Bal.Accounts
 
                 if (result.flag.ToUpper() == "S")
                 {
-                    if (ds != null)
+                    if (ds.Tables.Count > 0)
                     {
                         if (ds.Tables[0].Rows.Count > 0)
                         {

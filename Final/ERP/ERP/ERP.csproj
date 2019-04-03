@@ -194,6 +194,7 @@
     <Content Include="Images\icons\user.svg" />
     <Content Include="Images\loading.gif" />
     <Content Include="Images\user-img.png" />
+    <Content Include="Module_Script\fee\type.js" />
     <Content Include="Module_Script\master\duration.js" />
     <Content Include="Module_Script\master\course.js" />
     <Content Include="Module_Script\master\academicyear.js" />
@@ -286,7 +287,7 @@
     <Content Include="Views\Dashboard\Overview.cshtml" />
     <Content Include="Views\Employee\Manage_old.cshtml" />
     <Content Include="Views\Fee\Payments.cshtml" />
-    <Content Include="Views\Fee\Type.cshtml" />
+    <Content Include="Views\Fee\Type_old.cshtml" />
     <Content Include="Views\HR\Enquiry.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Student\Admission.cshtml" />
@@ -351,6 +352,7 @@
     <Content Include="Views\Master\Subject.cshtml" />
     <Content Include="Views\Student\Manage.cshtml" />
     <Content Include="Views\Employee\Manage.cshtml" />
+    <Content Include="Views\Fee\Type.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

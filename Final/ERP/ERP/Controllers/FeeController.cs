@@ -22,7 +22,7 @@ namespace ERP.Controllers
             accountEntity.reportMapId = "11";
             TempData["FeeType"] = accountObj.AddFeeDetails(accountEntity);
             //TempData["FeeMapping"] = accountObj.AddFeeMapping(accountEntity);
-            return View();
+            return PartialView();
         }
         [HttpPost]
         public JsonResult AddFeeType(AccountEntity accountEntity)
