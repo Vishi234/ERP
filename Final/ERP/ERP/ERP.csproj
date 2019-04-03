@@ -284,7 +284,7 @@
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Cache\Index.cshtml" />
     <Content Include="Views\Dashboard\Overview.cshtml" />
-    <Content Include="Views\Employee\Manage.cshtml" />
+    <Content Include="Views\Employee\Manage_old.cshtml" />
     <Content Include="Views\Fee\Payments.cshtml" />
     <Content Include="Views\Fee\Type.cshtml" />
     <Content Include="Views\HR\Enquiry.cshtml" />
@@ -350,6 +350,7 @@
     <Content Include="Views\Master\Section.cshtml" />
     <Content Include="Views\Master\Subject.cshtml" />
     <Content Include="Views\Student\Manage.cshtml" />
+    <Content Include="Views\Employee\Manage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
