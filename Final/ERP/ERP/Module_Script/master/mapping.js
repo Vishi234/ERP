@@ -5,7 +5,7 @@ var gridOptions = null;
 grdArray = GetReportConfiguration("Master");
 
 var rowData = JSON.parse(content.addParams);
-var columnDefs = grdArray["$CourseDetails$"];
+var columnDefs = grdArray["$MappingDetails$"];
 for (var i = 0; i < columnDefs.length; i++) {
     if (columnDefs[i].cellRenderer) {
         if (columnDefs[i].cellRenderer == "CreateEdit") {
@@ -18,39 +18,64 @@ for (var i = 0; i < columnDefs.length; i++) {
 }
 gridOptions = GridInitializer(columnDefs);
 
-var gridDiv = document.querySelector('#coruseGrid');
+var gridDiv = document.querySelector('#mappingGrid');
 new agGrid.Grid(gridDiv, gridOptions);
 gridOptions.api.setRowData(((rowData == null) ? null : rowData));
-
+debugger;
 var isActiveData = ReadDropDownData("Param", '16', true);
-var courseType = ReadDropDownData("Param", '17', true);
+var courseId = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
+var subject = ReadDropDownData("Subject", $("#hfCustomerId").val(), false);
 $.each(isActiveData, function (i, value)
 {
     $('#ddlActive').append(new Option(value.PARAM_NAME, value.PARAM_ID, false, false));
 });
-$.each(courseType, function (i, value) {
-    $('#ddlCType').append(new Option(value.PARAM_NAME, value.PARAM_ID, false, false));
+
+
+$.each(courseId, function (i, value) {
+    $('#ddlCourse').append(new Option(value.COURSE_NAME, value.COURSE_ID, false, false));
 });
+
+$("#ddlCourse").change(function () {
+    debugger;
+    var selectedCourse = $('#ddlCourse').val();
+    var obj = [];
+    var jsonData = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
+    for (var i = 0; i < jsonData.length; i++) {
+        if (jsonData[i].COURSE_ID == value) {
+            semester = jsonData[i].NO_OF_SEMESTER;
+        }
+    }
+    for (var i = 1; i <= semester; i++) {
+        data = {};
+        data.NO_SEMESTER = i;
+        obj.push(data);
+    }
+    $('#ddlSemester').append(new Option(data.NO_OF_SEMESTER, data.NO_OF_SEMESTER, false, false));
+    $("#ddlSemester").trigger("chosen:updated");
+});
+
 $("#ddlActive").trigger("chosen:updated");
-$("#ddlCType").trigger("chosen:updated");
+$("#ddlAcademic").trigger("chosen:updated");
+$("#ddlCourse").trigger("chosen:updated");
 
 function OnEditClick(obj)
 {
     var editData = JSON.parse($(obj).attr('dataattr'));
-    $('#ddlCType').val(editData.cTypeID);
-    $("input[name=courseName]").val(editData.cnm);
-    $("input[name=noOfSemester]").val(editData.nsem);
+    $('#ddlCourse').val(editData.cId);
+    $('#ddlSemester').val(editData.sem);
+    $('#ddlSubject').val(editData.subId);
     $('#ddlActive').val(editData.isActive);
     $('#ddlActive').trigger("chosen:updated");
-    $('#ddlCType').trigger("chosen:updated");
+    $('#ddlSubject').trigger("chosen:updated");
+    $('#ddlCourse').trigger("chosen:updated");
+    $('#ddlSemester').trigger("chosen:updated");
     $("input[name=flag]").val('M'); 
-    $("input[name=courserId]").val(editData.id);
+    $("input[name=durId]").val(editData.id);
 }
 
 
 function handleSubmit(evt)
 {
-
     if (ValidateFields(evt))
     {
         var myData = [];
@@ -63,20 +88,26 @@ function handleSubmit(evt)
         setTimeout(function () {
             $.ajax({
                 type: "POST",
-                url: '/Master/Course',
+                url: '/Master/Duration',
                 data: myData[0],
                 async: false,
                 beforeSend: function () {
-                    btnloading("CourseForm", 'show');
+                    btnloading("DurationForm", 'show');
                 },
                 success: function (data)
                 {
-                    btnloading("CourseForm", 'hide');
+                    btnloading("DurationForm", 'hide');
                     if (data.flag == "S")
                     {
                         $('#' + evt.id).trigger("reset");
                         $("#ddlActive").val(0);
+                        $('#ddlAcademic').val(0);
+                        $('#ddlCourse').val(0);
+                        $('#ddlSemester').val(0);
                         $("#ddlActive").trigger("chosen:updated");
+                        $('#ddlAcademic').trigger("chosen:updated");
+                        $('#ddlCourse').trigger("chosen:updated");
+                        $('#ddlSemester').trigger("chosen:updated");
                         CallToast(data.msg, data.flag);
                         MyData = JSON.parse(data.addParams);          
                         rowData = MyData; records = MyData.length;
@@ -88,7 +119,7 @@ function handleSubmit(evt)
                 }.bind(this),
                 error: function (e) {
                     console.log(e);
-                    btnloading("AcademicYear", 'hide');
+                    btnloading("DurationForm", 'hide');
                     alert('Error! Please try again');
                 }
             });

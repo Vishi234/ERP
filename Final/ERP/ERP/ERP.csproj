@@ -194,6 +194,7 @@
     <Content Include="Images\icons\user.svg" />
     <Content Include="Images\loading.gif" />
     <Content Include="Images\user-img.png" />
+    <Content Include="Module_Script\master\mapping.js" />
     <Content Include="Module_Script\master\duration.js" />
     <Content Include="Module_Script\master\course.js" />
     <Content Include="Module_Script\master\academicyear.js" />
