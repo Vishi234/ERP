@@ -194,6 +194,10 @@
     <Content Include="Images\icons\user.svg" />
     <Content Include="Images\loading.gif" />
     <Content Include="Images\user-img.png" />
+    <Content Include="Module_Script\master\activity.js" />
+    <Content Include="Module_Script\master\subject.js" />
+    <Content Include="Module_Script\master\section.js" />
+    <Content Include="Module_Script\master\mapping.js" />
     <Content Include="Module_Script\fee\type.js" />
     <Content Include="Module_Script\master\duration.js" />
     <Content Include="Module_Script\master\course.js" />

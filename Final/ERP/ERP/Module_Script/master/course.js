@@ -36,7 +36,6 @@ $("#ddlCType").trigger("chosen:updated");
 
 function OnEditClick(obj)
 {
-    debugger;
     var editData = JSON.parse($(obj).attr('dataattr'));
     $('#ddlCType').val(editData.cTypeID);
     $("input[name=courseName]").val(editData.cnm);

@@ -58,11 +58,10 @@ var DurationDetails_ExportCaption = ['EDIT','NO_OF_SEMESTER','START_DATE','END_D
 { headerName: labelArray['$SEMESTER_ID$'], field: 'semId', hide: false, headerTooltip: '', width: 150, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$SECTION_ID$'], field: 'secId', hide: true, headerTooltip: '', width: 150, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$SECTION_NAME$'], field: 'secName', hide: false, headerTooltip: '', width: 150, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
-{ headerName: labelArray['$IS_ACTIVE$'], field: 'isActive', hide: false, headerTooltip: '', width: 150, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateActive'},
-{ headerName: labelArray['$CREATED_BY$'], field: 'createdBy', hide: false, headerTooltip: '', width: 150, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true}
+{ headerName: labelArray['$IS_ACTIVE$'], field: 'isActive', hide: false, headerTooltip: '', width: 150, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateActive'}
  ];
- var SectionDetails_Export = ['Edit','secName','isActive','createdBy'];
-var SectionDetails_ExportCaption = ['EDIT','SECTION_NAME','IS_ACTIVE','CREATED_BY'];
+ var SectionDetails_Export = ['Edit','secName','isActive'];
+var SectionDetails_ExportCaption = ['EDIT','SECTION_NAME','IS_ACTIVE'];
 
  gridViewSettings['$SectionDetails$'] =SectionDetails;
  gridViewSettings['$SectionDetails_Export$'] =SectionDetails_Export;

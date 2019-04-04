@@ -1,5 +1,6 @@
 ﻿
 function ValidateFields(evt) {
+    debugger;
     boolFlag = false;
     $("#" + evt.id + " select, input").each(function (i, data) {
         if (data.tagName == 'INPUT') {
