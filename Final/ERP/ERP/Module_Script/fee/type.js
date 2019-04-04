@@ -23,6 +23,20 @@ new agGrid.Grid(gridDiv, typeGridOptions);
 typeGridOptions.api.setRowData(((rowData == null) ? null : rowData));
 typeGridOptions.api.sizeColumnsToFit();
 
+columnDefs = grdArray["$FeeMapping$"];
+for (var i = 0; i < columnDefs.length; i++) {
+    if (columnDefs[i].cellRenderer) {
+        if (columnDefs[i].cellRenderer == "CreateTextBox") {
+            columnDefs[i].cellRenderer = this.CreateTextBox;
+        }
+    }
+}
+dtGridOptions = GridInitializer(columnDefs);
+var gridDiv = document.querySelector('#feeDtlGrid');
+new agGrid.Grid(gridDiv, dtGridOptions);
+dtGridOptions.api.setRowData(null);
+dtGridOptions.api.sizeColumnsToFit();
+
 function OnEditClick(obj) {
     debugger;
     var editData = JSON.parse($(obj).attr('dataattr'));
@@ -70,7 +84,12 @@ function TypeSubmit(evt) {
         var myData = [];
         var obj = {};
         $("#" + evt.id + " select, input").each(function (i, data) {
-            obj[data.name] = data.value;
+            if ($(data).attr("name") == "feePeriod") {
+                obj[data.name] = (($(data).val() != "") ? $(data).val().join(",") : "");
+            }
+            else {
+                obj[data.name] = $(data).val();
+            }
         });
         myData.push(obj);
         btnloading("FeeType", 'show');
@@ -87,12 +106,16 @@ function TypeSubmit(evt) {
                     btnloading("FeeType", 'hide');
                     if (data.flag == "S") {
                         $('#' + evt.id).trigger("reset");
-                        $("select[name=payType]").val(0);
-                        $("select[name=payType]").trigger("chosen:updated");
-                        $("select[name=month]").val(0);
-                        $("select[name=month]").trigger("chosen:updated");
-                        $("select[name=active]").val(0);
-                        $("select[name=active]").trigger("chosen:updated");
+                        $("input[name=typeid]").val("");
+                        $("input[name=feeName]").val("");
+                        $("select[name=paymentType]").val(0);
+                        $("select[name=paymentType]").trigger("chosen:updated");
+                        $("select[name=feePeriod]").val("");
+                        $("select[name=feePeriod]").trigger("chosen:updated");
+                        $("input[name=feeDesc]").val("");
+                        $("select[name=isActive]").val(0);
+                        $("select[name=isActive]").trigger("chosen:updated");
+                        $("input[name=flag]").val('A');
 
                         CallToast(data.msg, data.flag);
                         MyData = JSON.parse(data.addParams);
@@ -146,4 +169,63 @@ function InitializeDDL() {
         $("select[name='courseId']").append(new Option(value.COURSE_NAME, value.COURSE_ID, false, false));
     });
     $("select[name='courseId']").trigger("chosen:updated");
+}
+function ShowFeeDetails(evt) {
+    if (ValidateFields(evt)) {
+        var myData = [];
+        var obj = {};
+        $("#" + evt.id + " select, input").each(function (i, data) {
+            obj[data.name] = $(data).val();
+        });
+        obj["reportMapId"] = "11";
+        myData.push(obj);
+        btnloading("FeeDetail", 'show');
+        setTimeout(function () {
+            $.ajax({
+                type: "POST",
+                url: '/Fee/ShowFeeDetails',
+                data: myData[0],
+                async: false,
+                beforeSend: function () {
+                    btnloading("FeeDetail", 'show');
+                },
+                success: function (data) {
+                    btnloading("FeeDetail", 'hide');
+                    MyData = JSON.parse(data.addParams);
+                    if (MyData.length > 0) {
+                        $("#feeDtlGrid").css("display", "block");
+                        rowData = MyData;
+                        records = MyData.length;
+                        dtGridOptions.api.setRowData(((rowData == null) ? null : rowData));
+                    }
+                    else {
+                        $("#feeDtlGrid").css("display", "none");
+                    }
+
+
+                }.bind(this),
+                error: function (e) {
+                    console.log(e);
+                    btnloading("FeeDetail", 'hide');
+                    alert('Error! Please try again');
+                }
+            });
+        }, 500);
+    }
+    else {
+        return false;
+    }
+    return false;
+}
+function DetailTab() {
+    $("#feeDtlGrid").css("display", "none");
+}
+function CreateTextBox(params)
+{
+    var html = "";
+    var domElement = "";
+    html = '<input type="text" class="form-control" style="height: 29px;margin-top: 3px;border-radius: 4px;width: 60%;" value=' + params.data.amt + '></input>'
+    domElement = document.createElement("div");
+    domElement.innerHTML = html;
+    return domElement;
 }

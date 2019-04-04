@@ -27,7 +27,7 @@ namespace ERP.Models.Bal.Accounts
                 sqlParameter[0] = new SqlParameter("@ID", accountEntity.typeid);
                 sqlParameter[1] = new SqlParameter("@FEE_NAME", accountEntity.feeName);
                 sqlParameter[2] = new SqlParameter("@PAYMENT_TYPE", accountEntity.paymentType);
-                sqlParameter[3] = new SqlParameter("@MONTH", accountEntity.feeMonth);
+                sqlParameter[3] = new SqlParameter("@MONTH", accountEntity.feePeriod);
                 sqlParameter[4] = new SqlParameter("@TERMS", Convert.ToInt32(accountEntity.terms));
                 sqlParameter[5] = new SqlParameter("@DESCRIPTION", accountEntity.feeDesc);
                 sqlParameter[6] = new SqlParameter("@CUSTOMER_ID", objUserEntity.customerId);
