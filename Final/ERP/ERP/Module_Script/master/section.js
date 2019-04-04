@@ -5,7 +5,7 @@ var gridOptions = null;
 grdArray = GetReportConfiguration("Master");
 
 var rowData = JSON.parse(content.addParams);
-var columnDefs = grdArray["$MappingDetails$"];
+var columnDefs = grdArray["$SectionDetails$"];
 for (var i = 0; i < columnDefs.length; i++) {
     if (columnDefs[i].cellRenderer) {
         if (columnDefs[i].cellRenderer == "CreateEdit") {
@@ -18,25 +18,23 @@ for (var i = 0; i < columnDefs.length; i++) {
 }
 gridOptions = GridInitializer(columnDefs);
 
-var gridDiv = document.querySelector('#mappingGrid');
+var gridDiv = document.querySelector('#sectionGrid');
 new agGrid.Grid(gridDiv, gridOptions);
 gridOptions.api.setRowData(((rowData == null) ? null : rowData));
 debugger;
 var isActiveData = ReadDropDownData("Param", '16', true);
 var courseId = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
-var subjectId = ReadDropDownData("Subject", $("#hfCustomerId").val(), false);
+var sectionName = ReadDropDownData("Param", '3', true);
 $.each(isActiveData, function (i, value)
 {
     $('#ddlActive').append(new Option(value.PARAM_NAME, value.PARAM_ID, false, false));
 });
-
-
 $.each(courseId, function (i, value) {
     $('#ddlCourse').append(new Option(value.COURSE_NAME, value.COURSE_ID, false, false));
 });
 
-$.each(subjectId, function (i, value) {
-    $('#ddlSubject').append(new Option(value.SUBJECT_NAME, value.SUBJECT_ID, false, false));
+$.each(sectionName, function (i, value) {
+    $('#ddlSection').append(new Option(value.PARAM_NAME, value.PARAM_ID, false, false));
 });
 
 $("#ddlCourse").change(function () {
@@ -56,28 +54,30 @@ $("#ddlCourse").change(function () {
         data.NO_SEMESTER = i;
         obj.push(data);
     }
-    $('#ddlSemester').append(new Option(data.NO_SEMESTER, data.semId,  false, false));
+    $('#ddlSemester').append(new Option(data.NO_SEMESTER, data.semId, false, false));
     $("#ddlSemester").trigger("chosen:updated");
 });
+
 
 $("#ddlActive").trigger("chosen:updated");
 $("#ddlAcademic").trigger("chosen:updated");
 $("#ddlCourse").trigger("chosen:updated");
-$("#ddlSubject").trigger("chosen:updated");
+$("#ddlSection").trigger("chosen:updated");
 
 function OnEditClick(obj)
 {
+    debugger;
     var editData = JSON.parse($(obj).attr('dataattr'));
-    $('#ddlCourse').val(editData.cId);
-    $('#ddlSemester').val(editData.sem);
-    $('#ddlSubject').val(editData.subId);
+    $('#ddlCourse').val(editData.courseId);
+    $('#ddlSection').val(editData.secId);  
+    $('#ddlSemester').val(editData.semId);
     $('#ddlActive').val(editData.isActive);
     $('#ddlActive').trigger("chosen:updated");
-    $('#ddlSubject').trigger("chosen:updated");
     $('#ddlCourse').trigger("chosen:updated");
     $('#ddlSemester').trigger("chosen:updated");
+    $('#ddlSection').trigger("chosen:updated");
     $("input[name=flag]").val('M'); 
-    $("input[name=mapId]").val(editData.id);
+    $("input[name=sectionId]").val(editData.id);
 }
 
 
@@ -91,32 +91,30 @@ function handleSubmit(evt)
             obj[data.name] = data.value;
         });
         myData.push(obj);
-        btnloading("MappingForm", 'show');
+        btnloading("SectionForm", 'show');
         setTimeout(function () {
             $.ajax({
                 type: "POST",
-                url: '/Master/Mapping',
+                url: '/Master/Section',
                 data: myData[0],
                 async: false,
                 beforeSend: function () {
-                    btnloading("MappingForm", 'show');
+                    btnloading("SectionForm", 'show');
                 },
                 success: function (data)
                 {
-                    btnloading("MappingForm", 'hide');
+                    btnloading("SectionForm", 'hide');
                     if (data.flag == "S")
                     {
                         $('#' + evt.id).trigger("reset");
                         $("#ddlActive").val(0);
-                        $('#ddlAcademic').val(0);
                         $('#ddlCourse').val(0);
                         $('#ddlSemester').val(0);
-                        $('#ddlSubject').val(0);
+                        $('#ddlSection').val(0);
                         $("#ddlActive").trigger("chosen:updated");
-                        $('#ddlAcademic').trigger("chosen:updated");
                         $('#ddlCourse').trigger("chosen:updated");
                         $('#ddlSemester').trigger("chosen:updated");
-                        $('#ddlSubject').trigger("chosen:updated");
+                        $('#ddlSection').trigger("chosen:updated");
                         CallToast(data.msg, data.flag);
                         MyData = JSON.parse(data.addParams);          
                         rowData = MyData; records = MyData.length;
@@ -128,7 +126,7 @@ function handleSubmit(evt)
                 }.bind(this),
                 error: function (e) {
                     console.log(e);
-                    btnloading("MappingForm", 'hide');
+                    btnloading("SectionForm", 'hide');
                     alert('Error! Please try again');
                 }
             });
