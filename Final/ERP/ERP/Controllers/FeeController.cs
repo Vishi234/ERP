@@ -40,6 +40,12 @@ namespace ERP.Controllers
             return Json(accountObj.GetFeeDetails(accountEntity));
 
         }
+        [HttpPost]
+        public JsonResult SaveFeeDetails(string record)
+        {
+            Account accountObj = new Account();
+            return Json(accountObj.SaveFeeRecords(record));
+        }
         public ActionResult Payments()
         {
             return View();

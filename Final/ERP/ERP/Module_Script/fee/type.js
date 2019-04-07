@@ -35,7 +35,8 @@ dtGridOptions = GridInitializer(columnDefs);
 var gridDiv = document.querySelector('#feeDtlGrid');
 new agGrid.Grid(gridDiv, dtGridOptions);
 dtGridOptions.api.setRowData(null);
-dtGridOptions.api.sizeColumnsToFit();
+
+
 
 function OnEditClick(obj) {
     debugger;
@@ -179,53 +180,94 @@ function ShowFeeDetails(evt) {
         });
         obj["reportMapId"] = "11";
         myData.push(obj);
-        btnloading("FeeDetail", 'show');
-        setTimeout(function () {
-            $.ajax({
-                type: "POST",
-                url: '/Fee/ShowFeeDetails',
-                data: myData[0],
-                async: false,
-                beforeSend: function () {
-                    btnloading("FeeDetail", 'show');
-                },
-                success: function (data) {
-                    btnloading("FeeDetail", 'hide');
-                    MyData = JSON.parse(data.addParams);
-                    if (MyData.length > 0) {
-                        $("#feeDtlGrid").css("display", "block");
-                        rowData = MyData;
-                        records = MyData.length;
-                        dtGridOptions.api.setRowData(((rowData == null) ? null : rowData));
-                    }
-                    else {
-                        $("#feeDtlGrid").css("display", "none");
-                    }
-
-
-                }.bind(this),
-                error: function (e) {
-                    console.log(e);
-                    btnloading("FeeDetail", 'hide');
-                    alert('Error! Please try again');
-                }
-            });
-        }, 500);
+        Show(myData)
     }
     else {
         return false;
     }
     return false;
+
 }
-function DetailTab() {
-    $("#feeDtlGrid").css("display", "none");
+function Show(myData) {
+    btnloading("FeeDetail", 'show');
+    setTimeout(function () {
+        $.ajax({
+            type: "POST",
+            url: '/Fee/ShowFeeDetails',
+            data: myData[0],
+            async: false,
+            beforeSend: function () {
+                btnloading("FeeDetail", 'show');
+            },
+            success: function (data) {
+                btnloading("FeeDetail", 'hide');
+                debugger;
+                if (data.addParams != null) {
+                    MyData = JSON.parse(data.addParams);
+                    $("#feeDtlGrid").css("display", "block");
+                    rowData = MyData;
+                    records = MyData.length;
+                    dtGridOptions.api.setRowData(((rowData == null) ? null : rowData));
+                    dtGridOptions.api.sizeColumnsToFit();
+                }
+                else {
+                    MyData = null;
+                    $("#feeDtlGrid").css("display", "block");
+                    rowData = MyData;
+                    dtGridOptions.api.setRowData(((rowData == null) ? null : rowData));
+                    dtGridOptions.api.sizeColumnsToFit();
+                }
+
+            }.bind(this),
+            error: function (e) {
+                console.log(e);
+                btnloading("FeeDetail", 'hide');
+                alert('Error! Please try again');
+            }
+        });
+    }, 500);
 }
-function CreateTextBox(params)
-{
+
+function CreateTextBox(params) {
     var html = "";
     var domElement = "";
-    html = '<input type="text" class="form-control" style="height: 29px;margin-top: 3px;border-radius: 4px;width: 60%;" value=' + params.data.amt + '></input>'
+    var input = document.createElement("input");
+    input.className = "form-control";
+    input.style = "height: 29px;margin-top: 3px;border-radius: 4px;width: 60%;";
+    input.value = params.data.amt;
     domElement = document.createElement("div");
-    domElement.innerHTML = html;
+    domElement.appendChild(input);
+    input.addEventListener("blur", function (evt) {
+        params.data.amt = evt.target.value;
+    })
     return domElement;
+}
+function GetRowData(evt) {
+    let rowData = [];
+    dtGridOptions.api.forEachNode(node => rowData.push(node.data));
+    var obj = {
+        record: JSON.stringify(rowData)
+    }
+    btnloading("SaveDetails", 'show');
+    setTimeout(function () {
+        $.ajax({
+            type: "POST",
+            url: '/Fee/SaveFeeDetails',
+            data: obj,
+            async: false,
+            beforeSend: function () {
+                btnloading("SaveDetails", 'show');
+            },
+            success: function (data) {
+                btnloading("SaveDetails", 'hide');
+                CallToast(data.msg, data.flag);
+                $("#FeeDetail").submit();
+            }.bind(this),
+            error: function (e) {
+                btnloading("SaveDetails", 'hide');
+                alert('Error! Please try again');
+            }
+        });
+    }, 500);
+    return false;
 }
