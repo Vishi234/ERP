@@ -34,7 +34,7 @@ function GridInitializer(columnDef) {
         columnDefs: columnDef,
         enableSorting: true,
         rowData: null,
-        rowHeight: 25,
+        rowHeight: 35,
         suppressRowClickSelection: false,
         enableCellChangeFlash: true,
         refreshCells: true,

@@ -27,7 +27,7 @@
                 <a class="nav-link active show" data-toggle="tab" href="#type">Fee Type</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#details">Fee Details</a>
+                <a class="nav-link" onclick="DetailTab();" data-toggle="tab" href="#details">Fee Details</a>
             </li>
         </ul>
         <div class="tab-content">
@@ -91,7 +91,7 @@
                 </div>
             </div>
             <div class="tab-pane" id="details">
-                <form name='FeeDetail' class="tab-pane active show" id="FeeDetail" noValidate onSubmit="ShowFeeDetails(this);">
+                <form name='FeeDetail' method="post" class="tab-pane active show" id="FeeDetail" noValidate onSubmit="return ShowFeeDetails(this);">
                     <div class="einrformbase">
                         <ul class="einrform">
                             <li>
