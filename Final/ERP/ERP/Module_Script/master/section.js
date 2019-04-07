@@ -43,6 +43,7 @@ $("#ddlCourse").change(function () {
     var selectedCourse = $('#ddlCourse').val();
     var obj = [];
     var jsonData = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
+    $('#ddlSemester').append(new Option("Select Semester", 0, false, false));
     for (var i = 0; i < jsonData.length; i++) {
         if (jsonData[i].COURSE_ID == selectedCourse) {
             semester = jsonData[i].NO_OF_SEMESTER;
@@ -53,8 +54,8 @@ $("#ddlCourse").change(function () {
         data.semId = i;
         data.NO_SEMESTER = i;
         obj.push(data);
+        $('#ddlSemester').append(new Option(data.NO_SEMESTER, data.semId, false, false));
     }
-    $('#ddlSemester').append(new Option(data.NO_SEMESTER, data.semId, false, false));
     $("#ddlSemester").trigger("chosen:updated");
 });
 
@@ -67,16 +68,29 @@ $("#ddlSection").trigger("chosen:updated");
 function OnEditClick(obj)
 {
     debugger;
+    var editObj = [];
     var editData = JSON.parse($(obj).attr('dataattr'));
+    $('#ddlSemester').empty();
+    $('#ddlSection').empty();
+    //var courseEdit = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
+    //for (var i = 0; i < courseEdit.length; i++) {
+    //    if (courseEdit[i].COURSE_ID == editData.courseId) {
+    //        semester = courseEdit[i].NO_OF_SEMESTER;
+    //    }
+    //}
+
+    $('#ddlSemester').append(new Option(editData.semId, editData.semId, false, false));
+    $('#ddlSection').append(new Option(editData.secName, editData.secId, false, false));
+
+
     $('#ddlCourse').val(editData.courseId);
-    $('#ddlSection').val(editData.secId);  
-    $('#ddlSemester').val(editData.semId);
+    //$('#ddlSection').val(editData.secId);  
     $('#ddlActive').val(editData.isActive);
     $('#ddlActive').trigger("chosen:updated");
     $('#ddlCourse').trigger("chosen:updated");
     $('#ddlSemester').trigger("chosen:updated");
     $('#ddlSection').trigger("chosen:updated");
-    $("input[name=flag]").val('M'); 
+    $("input[name=operType]").val('M'); 
     $("input[name=sectionId]").val(editData.id);
 }
 
@@ -95,7 +109,7 @@ function handleSubmit(evt)
         setTimeout(function () {
             $.ajax({
                 type: "POST",
-                url: '/Master/Section',
+                url: '/Master/SaveSectionDetails',
                 data: myData[0],
                 async: false,
                 beforeSend: function () {

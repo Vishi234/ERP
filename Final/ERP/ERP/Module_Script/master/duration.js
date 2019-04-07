@@ -63,9 +63,12 @@ $("#ddlCourse").trigger("chosen:updated");
 function OnEditClick(obj)
 {
     var editData = JSON.parse($(obj).attr('dataattr'));
+
+    $('#ddlSemester').empty();
+    $('#ddlSemester').append(new Option(editData.nsem, editData.nsem, false, false));
     $('#ddlAcademic').val(editData.acYearid);
     $('#ddlCourse').val(editData.cnmId);
-    $('#ddlSemester').val(editData.nsem);
+   // $('#ddlSemester').val(editData.nsem);
     $("input[name=wefDate]").val(editData.sDt);
     $("input[name=wetDate]").val(editData.eDt);
     $('#ddlActive').val(editData.isActive);
