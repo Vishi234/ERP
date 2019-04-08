@@ -96,6 +96,33 @@ namespace ERP.Models.Bal.Accounts
                 return result;
             }
         }
-
+        public ResultEntity SaveFeeRecords(string records)
+        {
+            ResultEntity result = new ResultEntity();
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            try
+            {
+                //  UserEntity objUserEntity = UserEntity.GetInstance();
+                SqlParameter[] sqlParameter = new SqlParameter[5];
+                sqlParameter[0] = new SqlParameter("@CUSTOMER_ID", objUserEntity.customerId);
+                sqlParameter[1] = new SqlParameter("@USER_ID", objUserEntity.userId);
+                sqlParameter[2] = new SqlParameter("@JSON_DATA", records);
+                sqlParameter[3] = new SqlParameter("@FLAG", SqlDbType.Char);
+                sqlParameter[3].Direction = ParameterDirection.Output;
+                sqlParameter[3].Size = 1;
+                sqlParameter[4] = new SqlParameter("@MSG", SqlDbType.NVarChar);
+                sqlParameter[4].Direction = ParameterDirection.Output;
+                sqlParameter[4].Size = 500;
+                SqlHelper.ExecuteScalar(sqlConn, CommandType.StoredProcedure, "SP_MANAGE_FEE_DETAILS", sqlParameter);
+                result.flag = sqlParameter[3].Value.ToString();
+                result.msg = sqlParameter[4].Value.ToString();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Excep.WriteException(ex);
+                return result;
+            }
+        }
     }
 }

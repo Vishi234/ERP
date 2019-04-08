@@ -122,7 +122,9 @@
                         <div id="feeDtlGrid" style="height:350px;" class="ag-theme-balham"></div>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-info">Save</button>
+                        <form name='SaveDetails' method="post" id="SaveDetails" noValidate onSubmit="return GetRowData(this)">
+                            <button type="submit" class="btn btn-info"><span class="inload hide"><i class="fa fa-spinner fa-spin"></i></span>Save Details</button>
+                        </form>
                     </div>
                 </div>
 
