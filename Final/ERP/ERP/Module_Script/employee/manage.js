@@ -135,7 +135,7 @@ function handleSubmit(evt)
         $("#" + evt.id + " select, input").each(function (i, data) {
             obj[data.name] = data.value;
         });
-
+        debugger;
         myData.push(obj);
         btnloading("EmpRegis", 'show');
         setTimeout(function ()
@@ -150,10 +150,10 @@ function handleSubmit(evt)
                 success: function (data) {
                     btnloading("EmpRegis", 'hide');
                     CallToast(data.msg, data.flag);
-                    if (data.flag == "S") {
+                    if (data.flag == "S") {                      
                         uploadImages();
-                        getStudentDetails();
-                        //this.resetData();
+                        getEmployeeDetail();
+                        resetData();
                     }
                 }.bind(this),
                 error: function (evt) {
@@ -164,6 +164,34 @@ function handleSubmit(evt)
             //e.preventDefault();
         }, 500)
     }
+}
+
+function resetData() {
+    debugger;
+
+    $('#EmpRegis').trigger("reset");
+    $("select[name=empDept]").val(0);
+    $("select[name=empDesig]").val(0);
+    $("select[name=empType]").val(0);
+    $("select[name=empJType]").val(0);
+    $("select[name=empCount]").val(0);
+    $("select[name=empState]").val(0);
+    $("select[name=empCity]").val(0);
+    $("select[name=empSex]").val(0);
+    $("select[name=empBGrp]").val(0);
+    $("select[name=empMStat]").val(0);
+
+    $("select[name=empDept]").trigger("chosen:updated");
+    $("select[name=empDesig]").trigger("chosen:updated");
+    $("select[name=empType]").trigger("chosen:updated");
+    $("select[name=empJType]").trigger("chosen:updated");
+    $("select[name=empCount]").trigger("chosen:updated");
+    $("select[name=empState]").trigger("chosen:updated");
+    $("select[name=empCity]").trigger("chosen:updated");
+    $("select[name=empSex]").trigger("chosen:updated");
+    $("select[name=empBGrp]").trigger("chosen:updated");
+    $("select[name=empMStat]").trigger("chosen:updated");
+
 }
 function uploadImages()
 {
@@ -184,16 +212,15 @@ function uploadImages()
         }
     })
 }
-//function getStudentDetails()
-//{
-//    $.get("/Student/GetStudentDetails", function (data) {
-//        MyData = JSON.parse(data.addParams);
-//        rowData = MyData; records = MyData.length;
-//        gridOptions.api.setRowData(((rowData == null) ? null : rowData));
-//        //this.setState({ rowData: MyData });
-//        //this.setState({ records: MyData.length })
-//    });
-//}
+function getEmployeeDetail()
+    {
+        $.get("/Employee/GetEmployeeDetails?empId="+empId+"&empName="+empName, function (data) {
+            MyData = JSON.parse(data.addParams);
+           
+            this.setState({ rowData: MyData });
+            this.setState({ records: MyData.length })
+        });    
+    }
 
 function CreateEdit(params) {
     var html = "";
@@ -224,8 +251,9 @@ function CreateActive(params) {
     return domElement;
 }
 function OnEditClick(obj) {
-    empCount = 1;
     debugger;
+ 
+
     var editData = JSON.parse($(obj).attr('dataattr'));
     $("select[name=empCount]").val(1);
 
@@ -297,6 +325,10 @@ function OnEditClick(obj) {
     $("input[name=empPwd]").val(editData.pass);
     $("input[name=empCPwd]").val(editData.pass);
 
+    $('#ddlSearch').val(0);
+    $('#ddlSearch').trigger("chosen:updated");
+    $('#search').val('');
+    $("#employee").modal("show");
 
     $("select[name=empDept]").trigger("chosen:updated");
     $("select[name=empDesig]").trigger("chosen:updated");
@@ -305,11 +337,17 @@ function OnEditClick(obj) {
     $("select[name=empCount]").trigger("chosen:updated");
     $("select[name=empState]").trigger("chosen:updated");
     $("select[name=empCity]").trigger("chosen:updated");
-
-
     $("select[name=empSex]").trigger("chosen:updated");
     $("select[name=empBGrp]").trigger("chosen:updated");
     $("select[name=empMStat]").trigger("chosen:updated");
     $("select[name=empState]").trigger("chosen:updated");
     $("select[name=empCity]").trigger("chosen:updated");
+}
+function getEmployeeFilter(empCode, selectedType) {
+    debugger;
+    $.get("/Employee/GetEmployeeFilter?empCode=" + empCode + "&empType=" + selectedType, function (data) {
+        var rowData = JSON.parse(data.addParams);
+        gridOptions.api.setRowData(gridOptions.rowData);
+        $events.refreshInfiniteCache();
+    });
 }

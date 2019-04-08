@@ -30,7 +30,7 @@
                         <div class="text">
                             <div class="form-group">
                                 <label for="empCode">Employee Code</label>
-                                <input type="text" class="form-control" name="empCode" />
+                                <input type="text" class="form-control" name="empCode" id="search"/>
                                 <span class="field-validation-error"></span>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                         <div class="ddl">
                             <div class="form-group">
                                 <label for="empDept">Department</label>
-                                <select class="chosen-select ddl" name="empDept">
+                                <select class="chosen-select ddl" name="empDept" id="ddlSearch">
                                     <option value="0">Select Depatment</option>
                                 </select>
                                 <span class="field-validation-error"></span>
@@ -50,7 +50,7 @@
                         <div class="ddl">
                             <div class="form-group">
                                 <label for="empDesig">Designation</label>
-                                <select class="chosen-select ddl" name="empDesig">
+                                <select class="chosen-select ddl" name="empDesig" id="ddlSearch">
                                     <option value="0">Select Designation</option>
                                 </select>
                                 <span class="field-validation-error"></span>
@@ -61,7 +61,7 @@
                         <div class="ddl">
                             <div class="form-group">
                                 <label for="empType">Employee Type</label>
-                                <select class="chosen-select ddl" name="empType">
+                                <select class="chosen-select ddl" name="empType" id="ddlSearch">
                                     <option value="0">Select Employee Type</option>
                                 </select>
                                 <span class="field-validation-error"></span>
@@ -69,7 +69,7 @@
                         </div>
                     </li>
                     <li>
-                        <button type="submit" class="btn btn-info"><span class="inload hide"><i class="fa fa-spinner fa-spin"></i></span>Filter</button>
+                        <button type="submit" class="btn btn-info" onClick="getEmployeeFilter($('#search').val(),$('#ddlSearch').val())"><span class="inload hide"><i class="fa fa-spinner fa-spin"></i></span>Filter</button>
                     </li>
                 </ul>
             </div>
@@ -307,7 +307,8 @@
                                     <div class="date">
                                         <div class="form-group">
                                             <label for="empDOB">Date Of Birth</label>
-                                            <input type="text" class="form-control chosen-date" name="empDOB" />
+                                            <input type="text" class="form-control chosen-date" name="empDOB" isRequired="true" />
+                                            <span class="field-validation-error"></span>
                                         </div>
                                         <span class="calendarbase"><img src="../../Images/calendar.png" /></span>
                                     </div>
@@ -316,7 +317,7 @@
                                     <div class="date">
                                         <div class="form-group">
                                             <label for="empDOJ">Date Of Joining</label>
-                                            <input type="text" class="form-control chosen-date" name="empDOJ" />
+                                            <input type="text" class="form-control chosen-date" name="empDOJ"/>
                                             <span class="field-validation-error"></span>
                                         </div>
                                         <span class="calendarbase"><img src="../../Images/calendar.png" /></span>
@@ -461,8 +462,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="preEmp">Employer Name</label>
-                                            <input type="text" class="form-control" name="preEmp" isRequired="false"/>
-                                            <span class="field-validation-error"></span>
+                                            <input type="text" class="form-control" name="preEmp" />
                                         </div>
                                     </div>
                                 </li>
@@ -470,8 +470,7 @@
                                     <div class="date">
                                         <div class="form-group">
                                             <label for="preDOJ">Date Of Joining</label>
-                                            <input type="text" class="form-control chosen-date" name="preDOJ" isRequired="false"/>
-                                            <span class="field-validation-error"></span>
+                                            <input type="text" class="form-control chosen-date" name="preDOJ" />
                                         </div>
                                         <span class="calendarbase"><img src="../../Images/calendar.png" /></span>
                                     </div>
@@ -480,8 +479,7 @@
                                     <div class="date">
                                         <div class="form-group">
                                             <label for="empDOL">Date Of Leaving</label>
-                                            <input type="text" class="form-control chosen-date" name="empDOL" isRequired="false"/>
-                                            <span class="field-validation-error"></span>
+                                            <input type="text" class="form-control chosen-date" name="empDOL" />
                                         </div>
                                         <span class="calendarbase"><img src="../../Images/calendar.png" /></span>
                                     </div>
@@ -490,8 +488,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="prePhone">Phone No</label>
-                                            <input type="text" class="form-control" name="prePhone" isRequired="false"/>
-                                            <span class="field-validation-error"></span>
+                                            <input type="text" class="form-control" name="prePhone"/>
                                         </div>
                                     </div>
                                 </li>
@@ -499,8 +496,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="empExpre">Total Experience</label>
-                                            <input type="text" class="form-control" name="empExpre" isRequired="false"/>
-                                            <span class="field-validation-error"></span>
+                                            <input type="text" class="form-control" name="empExpre" />
                                         </div>
                                     </div>
                                 </li>
@@ -508,8 +504,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="empResLeav">Reason Of Leaving</label>
-                                            <input type="text" class="form-control" name="empResLeav" isRequired="false"/>
-                                            <span class="field-validation-error"></span>
+                                            <input type="text" class="form-control" name="empResLeav" />
                                         </div>
                                     </div>
                                 </li>
@@ -517,8 +512,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="preSal">Last Salary</label>
-                                            <input type="text" class="form-control" name="preSal" isRequired="false"/>
-                                            <span class="field-validation-error"></span>
+                                            <input type="text" class="form-control" name="preSal"/>
                                         </div>
                                     </div>
                                 </li>
@@ -600,7 +594,6 @@
                                         <div class="form-group">
                                             <label for="empLogin">Login Id</label>
                                             <input type="text" class="form-control" name="empLogin" />
-                                            <span class="field-validation-error"></span>
                                         </div>
                                     </div>
                                 </li>
@@ -609,7 +602,6 @@
                                         <div class="form-group">
                                             <label for="empPwd">Password</label>
                                             <input type="text" class="form-control" name="empPwd" />
-                                            <span class="field-validation-error"></span>
                                         </div>
                                     </div>
                                 </li>
@@ -618,7 +610,6 @@
                                         <div class="form-group">
                                             <label for="empCPwd">Confirm Password</label>
                                             <input type="text" class="form-control" name="empCPwd" />
-                                            <span class="field-validation-error"></span>
                                         </div>
                                     </div>
                                 </li>
