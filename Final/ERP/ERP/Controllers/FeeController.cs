@@ -50,5 +50,9 @@ namespace ERP.Controllers
         {
             return PartialView();
         }
+        public ActionResult Collection()
+        {
+            return PartialView();
+        }
     }
 }
