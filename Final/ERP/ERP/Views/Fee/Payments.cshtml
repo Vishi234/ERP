@@ -1,11 +1,10 @@
 ﻿@using Newtonsoft.Json;
 <script type="text/javascript">
     document.title="Fee Payment";
-    @*var content = @Html.Raw(JsonConvert.SerializeObject(TempData["FeeType"]));
-    var mappingContent = @Html.Raw(JsonConvert.SerializeObject(TempData["FeeMapping"]));*@
+    var content = @Html.Raw(JsonConvert.SerializeObject(TempData["Payments"]));
     InitializeSelect();
 </script>
-<script src="~/Module_Script/fee/type.js"></script>
+<script src="~/Module_Script/fee/payment.js"></script>
 <script type="text/javascript">
     InitializeDDL();
 </script>
