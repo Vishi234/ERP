@@ -22,8 +22,8 @@ namespace ERP.Handlers
                 HttpPostedFile postedFile = context.Request.Files[0];
                 if (postedFile != null)
                 {
-                    string pic = System.IO.Path.GetFileName(postedFile.FileName+DateTime.Now.ToString());
-                    string path = System.IO.Path.Combine(HttpContext.Current.Server.MapPath("~/Content/images/"), pic);
+                    //string pic = System.IO.Path.GetFileName(postedFile.FileName+DateTime.Now.ToString());
+                    string path = System.IO.Path.Combine(HttpContext.Current.Server.MapPath("~/Content/images/"), postedFile.FileName+new Guid());
                     postedFile.SaveAs(path);
                 }
             }
