@@ -78,6 +78,8 @@
     Label_Header["$EMAIL$"] = "Email";
     Label_Header["$TERMS$"] = "Terms";
     Label_Header["$FEE_AMOUNT$"] = "Fee Amount";
-
+    Label_Header["$TOTAL$"] = "Total";
+    Label_Header["$FINE$"] = "Fine";
+    Label_Header["$VIEWPAY$"] = "View/Pay";
     return Label_Header;
 }
