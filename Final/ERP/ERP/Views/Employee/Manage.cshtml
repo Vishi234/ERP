@@ -1,11 +1,12 @@
 ﻿@using Newtonsoft.Json;
-@{
-    ViewBag.Title = "Manage";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
 <script type="text/javascript">
+    document.title="Employee Management";
     var content = @Html.Raw(JsonConvert.SerializeObject(TempData["EmployeeData"]));
+    InitializeSelect();
+    InitializeDate();
+    InitializeSelectList();
 </script>
+<script src="~/Module_Script/employee/manage.js"></script>
 <div class="esubmenu">
     <ul class="breadcrumb float-left">
         <li><a href="#">Home /</a></li>
@@ -24,12 +25,13 @@
         </div>
         <div class="card-body">
             <div class="efltrform">
-                <ul>
+                <ul class="einrform">
                     <li>
                         <div class="text">
                             <div class="form-group">
                                 <label for="empCode">Employee Code</label>
-                                <input type="text" class="form-control" name="empCode" />
+                                <input type="text" class="form-control" name="empCode" id="search"/>
+                                <span class="field-validation-error"></span>
                             </div>
                         </div>
                     </li>
@@ -37,7 +39,10 @@
                         <div class="ddl">
                             <div class="form-group">
                                 <label for="empDept">Department</label>
-                                <select class="registration-form-control dropdown" name="empDept"></select>
+                                <select class="chosen-select ddl" name="empDept" id="ddlSearch">
+                                    <option value="0">Select Depatment</option>
+                                </select>
+                                <span class="field-validation-error"></span>
                             </div>
                         </div>
                     </li>
@@ -45,7 +50,10 @@
                         <div class="ddl">
                             <div class="form-group">
                                 <label for="empDesig">Designation</label>
-                                <select class="registration-form-control dropdown" name="empDesig"></select>
+                                <select class="chosen-select ddl" name="empDesig" id="ddlSearch">
+                                    <option value="0">Select Designation</option>
+                                </select>
+                                <span class="field-validation-error"></span>
                             </div>
                         </div>
                     </li>
@@ -53,12 +61,15 @@
                         <div class="ddl">
                             <div class="form-group">
                                 <label for="empType">Employee Type</label>
-                                <select class="registration-form-control dropdown" name="empType"></select>
+                                <select class="chosen-select ddl" name="empType" id="ddlSearch">
+                                    <option value="0">Select Employee Type</option>
+                                </select>
+                                <span class="field-validation-error"></span>
                             </div>
                         </div>
                     </li>
                     <li>
-                        <button type="submit" class="btn btn-info" onChange={this.getEmployeeFilter.bind(this)}><span class="inload hide"><i class="fa fa-spinner fa-spin"></i></span>Filter</button>
+                        <button type="submit" class="btn btn-info" onClick="getEmployeeFilter($('#search').val(),$('#ddlSearch').val())"><span class="inload hide"><i class="fa fa-spinner fa-spin"></i></span>Filter</button>
                     </li>
                 </ul>
             </div>
@@ -71,6 +82,7 @@
                             <g>
                             <g id="add">
                             <path d="M357,204H204v153h-51V204H0v-51h153V0h51v153h153V204z" />
+
                                     </g>
                                 </g>
                             <g></g>
@@ -98,11 +110,13 @@
                             <g>
                             <g>
                             <path d="M382.56,233.376C379.968,227.648,374.272,224,368,224h-64V16c0-8.832-7.168-16-16-16h-64c-8.832,0-16,7.168-16,16v208h-64 c-6.272,0-11.968,3.68-14.56,9.376c-2.624,5.728-1.6,12.416,2.528,17.152l112,128c3.04,3.488,7.424,5.472,12.032,5.472 c4.608,0,8.992-2.016,12.032-5.472l112-128C384.192,245.824,385.152,239.104,382.56,233.376z" />
+
                                     </g>
                                 </g>
                             <g>
                             <g>
                             <path d="M432,352v96H80v-96H16v128c0,17.696,14.336,32,32,32h416c17.696,0,32-14.304,32-32V352H432z" />
+
                                     </g>
                                 </g>
                             <g></g>
@@ -134,7 +148,7 @@
 <div id="employee" class="modal fade">
     <div class="modal-dialog modal-dialog-vertical-center modal-lg" role="document">
         <div class="modal-content bd-0 tx-14">
-            <form name='EmpRegis' id="EmpRegis" noValidate onSubmit="handleSubmit()">
+            <form name='EmpRegis' id="EmpRegis" noValidate method="post" onSubmit="return handleSubmit(this)">
                 <div class="modal-header">
                     <h6 class="tx-14 tx-uppercase tx-inverse tx-bold">Profile Details</h6>
                     <button type="button" class="close" data-dismiss="modal" onClick="resetData()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -147,7 +161,8 @@
                                 <div class="text">
                                     <div class="form-group">
                                         <label for="empCode">Employee Code</label>
-                                        <input type="text" class="form-control" name="empCode" />
+                                        <input type="text" class="form-control" name="empCode" disabled/>
+                                        <span class="field-validation-error"></span>
                                     </div>
                                 </div>
                             </li>
@@ -155,7 +170,8 @@
                                 <div class="text">
                                     <div class="form-group">
                                         <label for="empFirst">First Name</label>
-                                        <input type="text" class="form-control" name="empFirst" />
+                                        <input type="text" class="form-control" name="empFirst" isRequired="true"/>
+                                        <span class="field-validation-error"></span>
                                     </div>
                                 </div>
                             </li>
@@ -163,7 +179,8 @@
                                 <div class="text">
                                     <div class="form-group">
                                         <label for="empLast">Last Name</label>
-                                        <input type="text" class="form-control" name="empLast" />
+                                        <input type="text" class="form-control" name="empLast" isRequired="true"/>
+                                        <span class="field-validation-error"></span>
                                     </div>
                                 </div>
                             </li>
@@ -171,7 +188,8 @@
                                 <div class="text">
                                     <div class="form-group">
                                         <label for="empQuali">Qualification</label>
-                                        <input type="text" class="form-control" name="empQuali" />
+                                        <input type="text" class="form-control" name="empQuali" isRequired="true"/>
+                                        <span class="field-validation-error"></span>
                                     </div>
                                 </div>
                             </li>
@@ -179,7 +197,10 @@
                                 <div class="ddl">
                                     <div class="form-group">
                                         <label for="empDept">Department</label>
-                                        <select class="registration-form-control dropdown" name="empDept"></select>
+                                        <select class="chosen-select ddl" name="empDept" isRequired="true">
+                                            <option value="0">Select Department</option>
+                                        </select>
+                                        <span class="field-validation-error"></span>
                                     </div>
                                 </div>
                             </li>
@@ -187,7 +208,10 @@
                                 <div class="ddl">
                                     <div class="form-group">
                                         <label for="empDesig">Designation</label>
-                                        <select class="registration-form-control dropdown" name="empDesig"></select>
+                                        <select class="chosen-select" name="empDesig" isRequired="true">
+                                            <option value="0">Select Designation</option>
+                                        </select>
+                                        <span class="field-validation-error"></span>
                                     </div>
                                 </div>
                             </li>
@@ -195,7 +219,10 @@
                                 <div class="ddl">
                                     <div class="form-group">
                                         <label for="empType">Employee Type</label>
-                                        <select class="registration-form-control dropdown" name="empType"></select>
+                                        <select class="chosen-select" name="empType" isRequired="true">
+                                            <option value="0">Select Employee Type</option>
+                                        </select>
+                                        <span class="field-validation-error"></span>
                                     </div>
                                 </div>
                             </li>
@@ -203,7 +230,10 @@
                                 <div class="ddl">
                                     <div class="form-group">
                                         <label for="empJType">Job Type</label>
-                                        <select class="registration-form-control dropdown" name="empJType"></select>
+                                        <select class="chosen-select" name="empJType" isRequired="true">
+                                            <option value="0">Select Job Type</option>
+                                        </select>
+                                        <span class="field-validation-error"></span>
                                     </div>
                                 </div>
                             </li>
@@ -248,7 +278,8 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="empFather">Father Name</label>
-                                            <input type="text" class="form-control" name="empFather" />
+                                            <input type="text" class="form-control" name="empFather" isRequired="true"/>
+                                            <span class="field-validation-error"></span>
                                         </div>
                                     </div>
                                 </li>
@@ -256,7 +287,8 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="empMother">Mother Name</label>
-                                            <input type="text" class="form-control" name="empMother" />
+                                            <input type="text" class="form-control" name="empMother" isRequired="true"/>
+                                            <span class="field-validation-error"></span>
                                         </div>
                                     </div>
                                 </li>
@@ -264,7 +296,10 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="empSex">Gender</label>
-                                            <select class="registration-form-control dropdown" name="empSex"></select>
+                                            <select class="chosen-select" name="empSex" isRequired="true">
+                                                <option value="0">Select Gender</option>
+                                            </select>
+                                            <span class="field-validation-error"></span>
                                         </div>
                                     </div>
                                 </li>
@@ -272,7 +307,8 @@
                                     <div class="date">
                                         <div class="form-group">
                                             <label for="empDOB">Date Of Birth</label>
-                                            <input type="text" class="form-control" name="empDOB" />
+                                            <input type="text" class="form-control chosen-date" name="empDOB" isRequired="true" />
+                                            <span class="field-validation-error"></span>
                                         </div>
                                         <span class="calendarbase"><img src="../../Images/calendar.png" /></span>
                                     </div>
@@ -281,7 +317,8 @@
                                     <div class="date">
                                         <div class="form-group">
                                             <label for="empDOJ">Date Of Joining</label>
-                                            <input type="text" class="form-control" name="empDOJ" />
+                                            <input type="text" class="form-control chosen-date" name="empDOJ"/>
+                                            <span class="field-validation-error"></span>
                                         </div>
                                         <span class="calendarbase"><img src="../../Images/calendar.png" /></span>
                                     </div>
@@ -290,7 +327,8 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="empSpoou">Spouse Name</label>
-                                            <input type="text" class="form-control" name="empSpoou" />
+                                            <input type="text" class="form-control" name="empSpoou" isRequired="true"/>
+                                            <span class="field-validation-error"></span>
                                         </div>
                                     </div>
                                 </li>
@@ -298,7 +336,10 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="empBGrp">Blood Group</label>
-                                            <select class="registration-form-control dropdown" name="empBGrp"></select>
+                                            <select class="chosen-select" name="empBGrp">
+                                                <option value="0">Select Blood Group</option>
+                                            </select>
+                                            <span class="field-validation-error"></span>
                                         </div>
                                     </div>
                                 </li>
@@ -306,7 +347,10 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="empMStat">Marital Status</label>
-                                            <select class="registration-form-control dropdown" name="empMStat"></select>
+                                            <select class="chosen-select" name="empMStat" isRequired="true">
+                                                <option value="0">Select Marital Status</option>
+                                            </select>
+                                            <span class="field-validation-error"></span>
                                         </div>
                                     </div>
                                 </li>
@@ -314,7 +358,8 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="empNation">Nationality</label>
-                                            <input type="text" class="form-control" name="empNation" />
+                                            <input type="text" class="form-control" name="empNation" isRequired="true" />
+                                            <span class="field-validation-error"></span>
                                         </div>
                                     </div>
                                 </li>
@@ -326,7 +371,8 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="empAdres">Address Line 1</label>
-                                            <input type="text" class="form-control" name="empAdres" />
+                                            <input type="text" class="form-control" name="empAdres" isRequired="true"/>
+                                            <span class="field-validation-error"></span>
                                         </div>
                                     </div>
                                 </li>
@@ -335,6 +381,7 @@
                                         <div class="form-group">
                                             <label for="empAdres2">Address Line 2</label>
                                             <input type="text" class="form-control" name="empAdres2" />
+                                            <span class="field-validation-error"></span>
                                         </div>
                                     </div>
                                 </li>
@@ -342,7 +389,10 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="empCount">Country</label>
-                                            <select class="registration-form-control dropdown" name="empCount"></select>
+                                            <select class="chosen-select" name="empCount" isRequired="true">
+                                                <option value="0">Select Country</option>
+                                            </select>
+                                            <span class="field-validation-error"></span>
                                         </div>
                                     </div>
                                 </li>
@@ -350,7 +400,10 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="empState">State</label>
-                                            <select class="registration-form-control dropdown" name="empState"></select>
+                                            <select class="chosen-select" name="empState" isRequired="true">
+                                                <option value="0">Select State</option>
+                                            </select>
+                                            <span class="field-validation-error"></span>
                                         </div>
                                     </div>
                                 </li>
@@ -358,7 +411,10 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="empCity">City</label>
-                                            <select class="registration-form-control dropdown" name="empCity"></select>
+                                            <select class="chosen-select" name="empCity" isRequired="true">
+                                                <option value="0">Select City</option>
+                                            </select>
+                                            <span class="field-validation-error"></span>
                                         </div>
                                     </div>
                                 </li>
@@ -366,7 +422,8 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="empZip">Zip Code</label>
-                                            <input type="text" class="form-control" name="empZip" />
+                                            <input type="text" class="form-control" name="empZip" isRequired="true" />
+                                            <span class="field-validation-error"></span>
                                         </div>
                                     </div>
                                 </li>
@@ -374,7 +431,8 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="empMobile">Mobile No</label>
-                                            <input type="text" class="form-control" name="empMobile" />
+                                            <input type="text" class="form-control" name="empMobile" isRequired="true"/>
+                                            <span class="field-validation-error"></span>
                                         </div>
                                     </div>
                                 </li>
@@ -382,7 +440,8 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="empPhone">Phone No</label>
-                                            <input type="text" class="form-control" name="empPhone" />
+                                            <input type="text" class="form-control" name="empPhone" isRequired="true"/>
+                                            <span class="field-validation-error"></span>
                                         </div>
                                     </div>
                                 </li>
@@ -390,7 +449,8 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="email">Email</label>
-                                            <input type="text" class="form-control" name="email" />
+                                            <input type="text" class="form-control" name="email" isRequired="true"/>
+                                            <span class="field-validation-error"></span>
                                         </div>
                                     </div>
                                 </li>
@@ -410,7 +470,7 @@
                                     <div class="date">
                                         <div class="form-group">
                                             <label for="preDOJ">Date Of Joining</label>
-                                            <input type="text" class="form-control" name="preDOJ" />
+                                            <input type="text" class="form-control chosen-date" name="preDOJ" />
                                         </div>
                                         <span class="calendarbase"><img src="../../Images/calendar.png" /></span>
                                     </div>
@@ -419,7 +479,7 @@
                                     <div class="date">
                                         <div class="form-group">
                                             <label for="empDOL">Date Of Leaving</label>
-                                            <input type="text" class="form-control" name="empDOL" />
+                                            <input type="text" class="form-control chosen-date" name="empDOL" />
                                         </div>
                                         <span class="calendarbase"><img src="../../Images/calendar.png" /></span>
                                     </div>
@@ -428,7 +488,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="prePhone">Phone No</label>
-                                            <input type="text" class="form-control" name="prePhone" />
+                                            <input type="text" class="form-control" name="prePhone"/>
                                         </div>
                                     </div>
                                 </li>
@@ -452,7 +512,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="preSal">Last Salary</label>
-                                            <input type="text" class="form-control" name="preSal" />
+                                            <input type="text" class="form-control" name="preSal"/>
                                         </div>
                                     </div>
                                 </li>
@@ -462,7 +522,10 @@
                             <div class="selectBox">
                                 <div class="form-group">
                                     <label for="empSub"></label>
-                                    <select class="registration-form-control dropdown" name="empSub"></select>
+                                    <select class="select-box" name="empSub">
+                                        <option value="0">Select Subject</option>
+                                    </select>
+                                    <span class="field-validation-error"></span>
                                 </div>
                             </div>
                         </div>
@@ -472,7 +535,8 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="empBank">Bank Name</label>
-                                            <input type="text" class="form-control" name="empBank" />
+                                            <input type="text" class="form-control" name="empBank" isRequired="true"/>
+                                            <span class="field-validation-error"></span>
                                         </div>
                                     </div>
                                 </li>
@@ -480,7 +544,8 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="empAccNo">Bank Account No</label>
-                                            <input type="text" class="form-control" name="empAccNo" />
+                                            <input type="text" class="form-control" name="empAccNo" isRequired="true"/>
+                                            <span class="field-validation-error"></span>
                                         </div>
                                     </div>
                                 </li>
@@ -488,7 +553,8 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="empIFSC">IFSC Code</label>
-                                            <input type="text" class="form-control" name="empIFSC" />
+                                            <input type="text" class="form-control" name="empIFSC" isRequired="true"/>
+                                            <span class="field-validation-error"></span>
                                         </div>
                                     </div>
                                 </li>
@@ -496,7 +562,8 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="empAdhar">Adhaar Number</label>
-                                            <input type="text" class="form-control" name="empAdhar" />
+                                            <input type="text" class="form-control" name="empAdhar" isRequired="true"/>
+                                            <span class="field-validation-error"></span>
                                         </div>
                                     </div>
                                 </li>
@@ -504,7 +571,8 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="empPF">PF Number</label>
-                                            <input type="text" class="form-control" name="empPF" />
+                                            <input type="text" class="form-control" name="empPF" isRequired="true"/>
+                                            <span class="field-validation-error"></span>
                                         </div>
                                     </div>
                                 </li>
@@ -512,7 +580,8 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="empSalary">Current Salary</label>
-                                            <input type="text" class="form-control" name="empSalary" />
+                                            <input type="text" class="form-control" name="empSalary" isRequired="true"/>
+                                            <span class="field-validation-error"></span>
                                         </div>
                                     </div>
                                 </li>
@@ -548,7 +617,10 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="empRole">Role</label>
-                                            <select class="registration-form-control dropdown" name="empRole"></select>
+                                            <select class="chosen-select" name="empRole" isRequired="true">
+                                                <option value="0">Select Role</option>
+                                            </select>
+                                            <span class="field-validation-error"></span>
                                         </div>
                                     </div>
                                 </li>
@@ -556,7 +628,10 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="empAccStat">Account Status</label>
-                                            <select class="registration-form-control dropdown" name="empAccStat"></select>
+                                            <select class="chosen-select" name="empAccStat" isRequired="true">
+                                                <option value="0">Select Account Status</option>
+                                            </select>
+                                            <span class="field-validation-error"></span>
                                         </div>
                                     </div>
                                 </li>

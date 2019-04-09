@@ -22,7 +22,7 @@ namespace ERP.Controllers
             accountEntity.reportMapId = "11";
             TempData["FeeType"] = accountObj.AddFeeDetails(accountEntity);
             //TempData["FeeMapping"] = accountObj.AddFeeMapping(accountEntity);
-            return View();
+            return PartialView();
         }
         [HttpPost]
         public JsonResult AddFeeType(AccountEntity accountEntity)
@@ -40,9 +40,26 @@ namespace ERP.Controllers
             return Json(accountObj.GetFeeDetails(accountEntity));
 
         }
+        [HttpPost]
+        public JsonResult SaveFeeDetails(string record)
+        {
+            Account accountObj = new Account();
+            return Json(accountObj.SaveFeeRecords(record));
+        }
         public ActionResult Payments()
         {
-            return View();
+            GetPayments();
+            return PartialView();
+        }
+        [HttpGet]
+        public JsonResult GetPayments()
+        {
+            AccountEntity accountEntity = new AccountEntity();
+            Account accountObj = new Account();
+            accountEntity.flag = 'G';
+            accountEntity.reportId = "12";
+            TempData["Payments"] = accountObj.GetPayments(accountEntity);
+            return Json(TempData["Payments"], JsonRequestBehavior.AllowGet);
         }
     }
 }

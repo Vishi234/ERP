@@ -76,6 +76,8 @@
     Label_Header["$IS_HANDICAP$"] = "Handicap";
     Label_Header["$PARENT_INCOME$"] = "Parent Income";
     Label_Header["$EMAIL$"] = "Email";
+    Label_Header["$TERMS$"] = "Terms";
+    Label_Header["$FEE_AMOUNT$"] = "Fee Amount";
 
     return Label_Header;
 }

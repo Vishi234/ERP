@@ -7,7 +7,7 @@ namespace ERP.Models.Entity
 {
     public class AccountEntity
     {
-        public string id { get; set; }
+        public string typeid { get; set; }
         public string feeName { get; set; }
         public string paymentType { get; set; }
         public string feeDesc { get; set; }

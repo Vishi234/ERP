@@ -30,8 +30,7 @@ $.each(isActiveData, function (i, value)
 $("#ddlActive").trigger("chosen:updated");
 
 function OnEditClick(obj)
-{
-    
+{    
     var editData = JSON.parse($(obj).attr('dataattr'));
     $("input[name=academicYear]").val(editData.acYear);
     $("input[name=wfDate]").val(editData.wfDate);
@@ -45,7 +44,6 @@ function OnEditClick(obj)
 
 function handleSubmit(evt)
 {
-
     if (ValidateFields(evt))
     {
         var myData = [];

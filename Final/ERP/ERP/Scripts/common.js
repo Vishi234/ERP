@@ -1,5 +1,6 @@
 ﻿
 function ValidateFields(evt) {
+    debugger;
     boolFlag = false;
     $("#" + evt.id + " select, input").each(function (i, data) {
         if (data.tagName == 'INPUT') {
@@ -33,7 +34,7 @@ function GridInitializer(columnDef) {
         columnDefs: columnDef,
         enableSorting: true,
         rowData: null,
-        rowHeight: 25,
+        rowHeight: 35,
         suppressRowClickSelection: false,
         enableCellChangeFlash: true,
         refreshCells: true,

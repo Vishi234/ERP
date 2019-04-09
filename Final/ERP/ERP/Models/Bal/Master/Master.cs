@@ -163,7 +163,7 @@ namespace ERP.Models.Bal.Master
             try
             {
                 SqlParameter[] sqlParameter = new SqlParameter[13];
-                sqlParameter[0] = new SqlParameter("@DUR_ID", durationEntity.id);
+                sqlParameter[0] = new SqlParameter("@DUR_ID", durationEntity.durId);
                 sqlParameter[1] = new SqlParameter("@CUSTOMER_ID", objUserEntity.customerId);
                 sqlParameter[2] = new SqlParameter("@USER_ID", objUserEntity.userId);
                 sqlParameter[3] = new SqlParameter("@YEAR_ID", durationEntity.academicYear);

@@ -63,11 +63,14 @@ $("#ddlCourse").trigger("chosen:updated");
 function OnEditClick(obj)
 {
     var editData = JSON.parse($(obj).attr('dataattr'));
+
+    $('#ddlSemester').empty();
+    $('#ddlSemester').append(new Option(editData.nsem, editData.nsem, false, false));
     $('#ddlAcademic').val(editData.acYearid);
     $('#ddlCourse').val(editData.cnmId);
-    $('#ddlSemester').val(editData.nsem);
-    $("input[name=date]").val(editData.sDt);
-    $("input[name=endDate]").val(editData.eDt);
+   // $('#ddlSemester').val(editData.nsem);
+    $("input[name=wefDate]").val(editData.sDt);
+    $("input[name=wetDate]").val(editData.eDt);
     $('#ddlActive').val(editData.isActive);
     $('#ddlActive').trigger("chosen:updated");
     $('#ddlAcademic').trigger("chosen:updated");
@@ -105,7 +108,13 @@ function handleSubmit(evt)
                     {
                         $('#' + evt.id).trigger("reset");
                         $("#ddlActive").val(0);
+                        $('#ddlAcademic').val(0);
+                        $('#ddlCourse').val(0);
+                        $('#ddlSemester').val(0);
                         $("#ddlActive").trigger("chosen:updated");
+                        $('#ddlAcademic').trigger("chosen:updated");
+                        $('#ddlCourse').trigger("chosen:updated");
+                        $('#ddlSemester').trigger("chosen:updated");
                         CallToast(data.msg, data.flag);
                         MyData = JSON.parse(data.addParams);          
                         rowData = MyData; records = MyData.length;
