@@ -124,5 +124,32 @@ namespace ERP.Models.Bal.Accounts
                 return result;
             }
         }
+        public ResultEntity GetPayments(AccountEntity accountEntity)
+        {
+            ResultEntity result = new ResultEntity();
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            try
+            {
+                //  UserEntity objUserEntity = UserEntity.GetInstance();
+                SqlParameter[] sqlParameter = new SqlParameter[2];
+                sqlParameter[0] = new SqlParameter("@CUSTOMER_ID", objUserEntity.customerId);
+                sqlParameter[1] = new SqlParameter("@REPORT_ID", accountEntity.reportId);
+                DataSet ds = new DataSet();
+                ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_GET_STUDENT_FEE_DETAILS", sqlParameter);
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        result.addParams = CommonFunc.DtToJSON(ds.Tables[0]);
+                    }
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Excep.WriteException(ex);
+                return result;
+            }
+        }
     }
 }

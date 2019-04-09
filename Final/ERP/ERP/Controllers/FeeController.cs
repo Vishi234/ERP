@@ -48,7 +48,18 @@ namespace ERP.Controllers
         }
         public ActionResult Payments()
         {
+            GetPayments();
             return PartialView();
+        }
+        [HttpGet]
+        public JsonResult GetPayments()
+        {
+            AccountEntity accountEntity = new AccountEntity();
+            Account accountObj = new Account();
+            accountEntity.flag = 'G';
+            accountEntity.reportId = "12";
+            TempData["Payments"] = accountObj.GetPayments(accountEntity);
+            return Json(TempData["Payments"], JsonRequestBehavior.AllowGet);
         }
     }
 }
