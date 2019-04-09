@@ -51,8 +51,7 @@ namespace ERP.Controllers
             GetPayments();
             return PartialView();
         }
-
-        public ActionResult Collection()
+ public ActionResult Collection()
         {
             return PartialView();
 		}
