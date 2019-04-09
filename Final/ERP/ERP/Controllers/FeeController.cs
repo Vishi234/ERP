@@ -48,7 +48,7 @@ namespace ERP.Controllers
         }
         public ActionResult Payments()
         {
-            return View();
+            return PartialView();
         }
     }
 }
