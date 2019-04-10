@@ -360,6 +360,7 @@
     <Content Include="Views\Employee\Manage.cshtml" />
     <Content Include="Views\Fee\Type.cshtml" />
     <Content Include="Views\Fee\Payments.cshtml" />
+    <Content Include="Views\Fee\Collection.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

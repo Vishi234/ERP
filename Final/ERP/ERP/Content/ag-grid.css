@@ -812,6 +812,7 @@ ag-grid, ag-grid-angular, ag-grid-ng2, ag-grid-polymer, ag-grid-aurelia {
     height: 100%;
     position: absolute;
     vertical-align: bottom;
+        border-right: 1px solid #ddd;
 }
 
 .ag-header-group-cell-label {

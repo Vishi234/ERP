@@ -51,6 +51,10 @@ namespace ERP.Controllers
             GetPayments();
             return PartialView();
         }
+ public ActionResult Collection()
+        {
+            return PartialView();
+		}
         [HttpGet]
         public JsonResult GetPayments()
         {

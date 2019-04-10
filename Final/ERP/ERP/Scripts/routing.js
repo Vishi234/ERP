@@ -74,7 +74,7 @@ var routingApp = $.sammy("#MainContent", function () {
             HideLoading();
         });
     });
-    this.get("#/Fee/Payments", function (context) {
+    this.get("#/Fee/Payments/", function (context) {
         ShowLoading();
         $.get("/Fee/Payments", function (data) {
             context.$element().html(data);

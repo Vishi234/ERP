@@ -31,3 +31,52 @@
         </div>
     </div>
 </div>
+<div id="feePay" class="modal fade">
+    <div class="modal-dialog modal-dialog-vertical-center modal-lg" role="document">
+        <div class="modal-content bd-0 tx-14">
+            <div class="modal-header">
+                <h6 class="tx-14 tx-uppercase tx-inverse tx-bold">Fee Payment</h6>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body pd-25">
+                <div class="einrformbase">
+                    <ul class="einrform">
+                        <li>
+                            <div class="text">
+                                <div class="form-group">
+                                    <label for="recieptNo">Reciept No.</label>
+                                    <input type="text" class="form-control" disabled="disabled" style="background-color:ghostwhite" name="recieptNo" />
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ddl">
+                                <div class="form-group">
+                                    <label for="payType">Payment Type</label>
+                                    <select class="chosen-select ddl" name="payType">
+                                        <option value="0">Select Course</option>
+                                        <option value="1" selected>Cash</option>
+                                        <option value="2">Cheque</option>
+                                    </select>
+                                    <span class="field-validation-error"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="text">
+                                <div class="form-group">
+                                    <label for="rmks">Reciept No.</label>
+                                    <textarea class="form-control" rows="3" cols="10" name="rmks"></textarea>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <hr />
+                <div class="actionbse">
+                    <div id="payDtlGrid" style="height:350px;" class="ag-theme-balham"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
