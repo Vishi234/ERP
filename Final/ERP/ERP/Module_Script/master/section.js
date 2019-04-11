@@ -96,6 +96,7 @@ function OnEditClick(obj)
 
 
 function handleSubmit(evt)
+
 {
     if (ValidateFields(evt))
     {
