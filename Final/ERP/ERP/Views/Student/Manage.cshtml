@@ -4,7 +4,8 @@
     var content = @Html.Raw(JsonConvert.SerializeObject(TempData["StudentData"]));
     InitializeSelect();
     InitializeDate();
-    InitializeSelectList()
+    InitializeSelectList();
+
 </script>
 <script src="~/Module_Script/student/manage.js"></script>
 <div class="esubmenu">
@@ -28,7 +29,7 @@
             <div class="action">
                 <ul>
                     <li>
-                        <a href="javascript:void(0)" data-toggle="modal" data-target="#student" class="btn btn-secondary">
+                        <a href="javascript:void(0)" data-toggle="modal" data-target="#student" class="btn btn-secondary custom">
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                  width="357px" height="357px" viewBox="0 0 357 357" style="enable-background:new 0 0 357 357;" xml:space="preserve">
                             <g>
@@ -123,7 +124,7 @@
                     </li>
                     
                     <li>
-                        <button type="button" id="filterStudents" class="btn btn-info pd-x-20" onclick="getStudentDetails();"><span class="inload hide"><i class="fa fa-spinner fa-spin"></i></span> Save</button>
+                        <button type="button" id="filterStudents" class="btn btn-info pd-x-20" onclick="getStudentDetails();"><span class="inload hide"><i class="fa fa-spinner fa-spin"></i></span> Submit</button>
                     </li>
 
 
@@ -438,7 +439,9 @@
                             <div class="selectBox">
                                 <div class="form-group">
                                     <label for="stuSub"></label>
-                                    <select class="select-box" name="stuSub"></select>
+                                    <select class="select-box" name="stuSub">
+
+                                    </select>
                                 </div>
                             </div>
                         </div>

@@ -179,9 +179,9 @@ function ReadLocationData(key, locationType, selectedVal) {
     return MyData;
 }
 
-
 //*********************************Export to Excel start*****************************
-function exportToExcel(records, title, columnDefs) {
+function exportToExcel(records, title, columnDefs)
+{
     var JSONData = records; var title = title; var columns = columnDefs;
     var data = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
     var table;
@@ -322,5 +322,18 @@ function GetTimeUpdate() {
     var currDate = day + "" + monthNames[monthIndex] + "" + year + "_" + time;
 
     return currDate;
+}
+
+
+
+function validateEmail(email)
+{
+    var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if (!regex.test(email))
+    {
+        return false;
+    } else {
+        return true;
+    }
 }
 //**************************************Export to excel end********************************
