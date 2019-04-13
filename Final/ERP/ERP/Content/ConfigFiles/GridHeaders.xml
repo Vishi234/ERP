@@ -33,6 +33,7 @@
     </report>
     <report name="SectionDetails" id="4" page-size="1500" alternate-row-css="" export="Y">
       <column name="" id="4" headerName="$EDIT$" dbFieldName="Edit" dbFieldAlias="Edit"  hide="false" headerTooltip="" width="115" cellClass="grid-center" cellStyle="" suppressMenu="false" export="true" wrapHeaderText="true" dataType="string"  cellRenderer="CreateEdit"></column>
+      <column name="SECTION_ID" id="2" headerName="$SECTION_ID$" dbFieldName="SECTION_ID" dbFieldAlias="id"  hide="true" headerTooltip="" width="150" cellClass="grid-center" cellStyle="" suppressMenu="false" export="false" wrapHeaderText="true" dataType="string" cellRenderer=""></column>
       <column name="COURSE_NAME" id="2" headerName="$COURSE_ID$" dbFieldName="COURSE_NAME" dbFieldAlias="courseName"  hide="false" headerTooltip="" width="150" cellClass="grid-center" cellStyle="" suppressMenu="false" export="false" wrapHeaderText="true" dataType="string" cellRenderer=""></column>
       <column name="COURSE_ID" id="2" headerName="$COURSE_ID$" dbFieldName="COURSE_ID" dbFieldAlias="courseId"  hide="true" headerTooltip="" width="150" cellClass="grid-center" cellStyle="" suppressMenu="false" export="false" wrapHeaderText="true" dataType="string" cellRenderer=""></column>
       <column name="SEMESTER_ID" id="2" headerName="$SEMESTER_ID$" dbFieldName="SEMESTER_ID" dbFieldAlias="semId"  hide="false" headerTooltip="" width="150" cellClass="grid-center" cellStyle="" suppressMenu="false" export="false" wrapHeaderText="true" dataType="string" cellRenderer=""></column>

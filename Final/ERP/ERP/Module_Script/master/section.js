@@ -68,28 +68,32 @@ $("#ddlSection").trigger("chosen:updated");
 function OnEditClick(obj)
 {
     debugger;
-    var editObj = [];
     var editData = JSON.parse($(obj).attr('dataattr'));
-    $('#ddlSemester').empty();
-    $('#ddlSection').empty();
-    //var courseEdit = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
-    //for (var i = 0; i < courseEdit.length; i++) {
-    //    if (courseEdit[i].COURSE_ID == editData.courseId) {
-    //        semester = courseEdit[i].NO_OF_SEMESTER;
-    //    }
-    //}
-
-    $('#ddlSemester').append(new Option(editData.semId, editData.semId, false, false));
-    $('#ddlSection').append(new Option(editData.secName, editData.secId, false, false));
-
-
     $('#ddlCourse').val(editData.courseId);
-    //$('#ddlSection').val(editData.secId);  
+    $('#ddlCourse').trigger("chosen:updated");
+
+        var editObj = [];
+        courseEdit = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
+        for (var i = 0; i < courseEdit.length; i++) {
+            if (courseEdit[i].COURSE_ID == editData.courseId) {
+                semester = courseEdit[i].NO_OF_SEMESTER;
+            }
+        }
+        for (var i = 1; i <= semester; i++) {
+            data = {};
+            data.SEMESTER_ID = i;
+            editObj.push(data);
+            $('#ddlSemester').append(new Option(data.SEMESTER_ID, data.SEMESTER_ID, false, false));
+        }
+    $('#ddlSection').val("5");
+    $('#ddlSection').trigger("chosen:updated");
+    $('#ddlSemester').val(4);
+    $('#ddlSemester').trigger("chosen:updated"); 
     $('#ddlActive').val(editData.isActive);
     $('#ddlActive').trigger("chosen:updated");
-    $('#ddlCourse').trigger("chosen:updated");
-    $('#ddlSemester').trigger("chosen:updated");
-    $('#ddlSection').trigger("chosen:updated");
+
+
+
     $("input[name=operType]").val('M'); 
     $("input[name=sectionId]").val(editData.id);
 }

@@ -68,9 +68,23 @@ $("#ddlSubject").trigger("chosen:updated");
 
 function OnEditClick(obj)
 {
-    $('#ddlSemester').empty();
+    //$('#ddlSemester').empty();
     var editData = JSON.parse($(obj).attr('dataattr'));
-    $('#ddlSemester').append(new Option(editData.sem, editData.sem, false, false));
+    //for (var i = 0; i < jsonData.length; i++) {
+    //    if (jsonData[i].COURSE_ID == selectedCourse) {
+    //        semester = jsonData[i].NO_OF_SEMESTER;
+    //    }
+    //}
+    debugger;
+    for (var i = 1; i <= editData.sem; i++) {
+        data = {};
+        data.semId = i;
+        data.NO_SEMESTER = i;
+        obj.push(data);
+        $('#ddlSemester').append(new Option(data.NO_SEMESTER, data.semId, false, false));
+    }
+
+    //$('#ddlSemester').append(new Option(editData.sem, editData.sem, false, false));
     $('#ddlCourse').val(editData.cId);
     $('#ddlSubject').val(editData.subId);
     $('#ddlActive').val(editData.isActive);
