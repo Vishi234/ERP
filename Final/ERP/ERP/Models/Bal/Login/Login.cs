@@ -54,7 +54,6 @@ namespace ERP.Models.Bal.Login
                     {
                         objUserEntity.userId = ds.Tables[1].Rows[0]["USER_ID"].ToString();
                         objUserEntity.firstName = ds.Tables[1].Rows[0]["FIRST_NAME"].ToString();
-                        objUserEntity.middleName = ds.Tables[1].Rows[0]["MIDDLE_NAME"].ToString();
                         objUserEntity.lastName = ds.Tables[1].Rows[0]["LAST_NAME"].ToString();
                         objUserEntity.fatherName = ds.Tables[1].Rows[0]["FATHER_NAME"].ToString();
                         objUserEntity.motherName = ds.Tables[1].Rows[0]["MOTHER_NAME"].ToString();
@@ -64,8 +63,8 @@ namespace ERP.Models.Bal.Login
                         objUserEntity.semester = ds.Tables[1].Rows[0]["SEMESTER"].ToString();
                         objUserEntity.category = ds.Tables[1].Rows[0]["CATEGORY"].ToString();
                         objUserEntity.academicYear = ds.Tables[1].Rows[0]["ACADEMIC_YEAR"].ToString();
-                        objUserEntity.admissionDate = ds.Tables[1].Rows[0]["ADMISSION_DATE"].ToString();
-                        objUserEntity.isActive = ds.Tables[1].Rows[0]["IS_ACTIVE"].ToString();
+                        //objUserEntity.admissionDate = ds.Tables[1].Rows[0]["ADMISSION_DATE"].ToString();
+                        //objUserEntity.isActive = ds.Tables[1].Rows[0]["IS_ACTIVE"].ToString();
                         objUserEntity.accountLocked = ds.Tables[1].Rows[0]["ACCOUNT_LOCKED"].ToString();
                     }
                     else
@@ -74,11 +73,11 @@ namespace ERP.Models.Bal.Login
                         objUserEntity.deptId = ds.Tables[1].Rows[0]["DEPARTMENT"].ToString();
                         objUserEntity.desigId = ds.Tables[1].Rows[0]["DESIGNATION"].ToString();
                         objUserEntity.firstName = ds.Tables[1].Rows[0]["FIRST_NAME"].ToString();
-                        objUserEntity.middleName = ds.Tables[1].Rows[0]["MIDDLE_NAME"].ToString();
+                        //objUserEntity.middleName = ds.Tables[1].Rows[0]["MIDDLE_NAME"].ToString();
                         objUserEntity.lastName = ds.Tables[1].Rows[0]["LAST_NAME"].ToString();
                         objUserEntity.gender = ds.Tables[1].Rows[0]["GENDER"].ToString();
                         objUserEntity.joinDate = ds.Tables[1].Rows[0]["JOINING_DATE"].ToString();
-                        objUserEntity.isActive = ds.Tables[1].Rows[0]["IS_ACTIVE"].ToString();
+                        //objUserEntity.isActive = ds.Tables[1].Rows[0]["IS_ACTIVE"].ToString();
                         objUserEntity.accountLocked = ds.Tables[1].Rows[0]["ACCOUNT_LOCKED"].ToString();
                         objUserEntity.role = ds.Tables[1].Rows[0]["ROLE"].ToString();
 
