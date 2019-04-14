@@ -40,11 +40,12 @@ $.each(courseId, function (i, value) {
 
 $("#ddlCourse").change(function () {
     debugger;
+            $('#ddlSemester').empty();
     var selectedCourse = $('#ddlCourse').val();
     var obj = [];
     var jsonData = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
+    $('#ddlSemester').append(new Option("Select Semester", 0, false, false));
     for (var i = 0; i < jsonData.length; i++) {
-        $('#ddlSemester').empty();
         if (jsonData[i].COURSE_ID == selectedCourse) {
             data = {};
             data.COURSE_ID = jsonData[i].COURSE_ID;
@@ -52,7 +53,7 @@ $("#ddlCourse").change(function () {
             obj.push(data);
         }
     }
-    $('#ddlSemester').append(new Option(data.NO_OF_SEMESTER, data.COURSE_ID, false, false));
+    $('#ddlSemester').append(new Option(data.NO_OF_SEMESTER, data.NO_OF_SEMESTER, false, false));
     $("#ddlSemester").trigger("chosen:updated");
 });
 
@@ -62,6 +63,7 @@ $("#ddlCourse").trigger("chosen:updated");
 
 function OnEditClick(obj)
 {
+    debugger;
     var editData = JSON.parse($(obj).attr('dataattr'));
 
     $('#ddlSemester').empty();
@@ -106,6 +108,7 @@ function handleSubmit(evt)
                     btnloading("DurationForm", 'hide');
                     if (data.flag == "S")
                     {
+                        debugger;
                         $('#' + evt.id).trigger("reset");
                         $("#ddlActive").val(0);
                         $('#ddlAcademic').val(0);

@@ -4,7 +4,6 @@ var MyData = null;
 var gridOptions = null;
 var courseData, category, academic, gender, bloodGrp, hadicap, country, subject, preCourse, status, transport, hostel = null;
 
-
 grdArray = GetReportConfiguration("Student");
 var rowData = JSON.parse(content.addParams);
 var columnDefs = grdArray["$StudentDetails$"];
@@ -131,7 +130,6 @@ function InitializeDDL() {
     });
     $("select[name='stuHostel']").trigger("chosen:updated")
 }
-//gridOptions.api.sizeColumnsToFit();
 
 $("select[name='studCountry']").change(function ()
 {
@@ -186,10 +184,28 @@ $("select[name='stuHostel']").change(function ()
     }
 });
 
+$("select[name='stuCourse']").change(function ()
+{
+    var subjectDetails = ReadDropDownData("Subject", $("#hfCustomerId").val(), false);
+    $('.lwms-available').empty();
+   $.each(subjectDetails, function (i, value)
+   {
+       $('.lwms-available').append("<li class='lwms-selectli' data- value=" + value.SUBJECT_ID + ">" + value.SUBJECT_NAME + "</li>");
+   });
+
+});
+
+$("input[name='stuEmail']").keyup(function ()
+{
+   
+    var dInput = this.value;
+    var bool = (validateEmail(dInput));
+    //debugger;
+
+})
+
 function handleSubmit(evt)
 {
-    debugger;
-
     if (ValidateFields(evt)) {
         var myData = [];
         var obj = {};
@@ -240,6 +256,23 @@ function handleSubmit(evt)
     }
     return false;
 }
+
+//reset fom elements on click of add after editing records
+$('.custom').click(function ()
+{
+    $('#StudentAdmi').trigger("reset");
+    $("#ddlActive").val(0);
+    $("#ddlActive").trigger("chosen:updated");
+});
+
+
+$('.exportToExcel').click(function ()
+{
+
+    MyData = ((MyData == null) ? rowData : MyData);
+    exportToExcel(MyData, 'student', columnDefs);
+});
+
 
 function OnEditClick(obj)
 {
@@ -306,7 +339,7 @@ function uploadImages(input)
         },
         error: function (evt) {
             btnloading("StuRegis", 'hide');
-            alert('Error! Please try again');
+         //   alert('Error! Please try again');
         }
     })
 }
