@@ -1,4 +1,3 @@
-
 {
   "AcademicYear": [
     {
@@ -598,6 +597,19 @@
     }
   ],
   "EmpType": [],
-  "JobType": []
+  "JobType": [],
+  "Role": [
+    {
+      "ROLE_ID": 0,
+      "ROLE_NAME": "Admin"
+    },
+    {
+      "ROLE_ID": 1,
+      "ROLE_NAME": "HR"
+    },
+    {
+      "ROLE_ID": 10,
+      "ROLE_NAME": "Super Admin"
+    }
+  ]
 }
-

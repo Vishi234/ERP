@@ -104,7 +104,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" class="btn btn-secondary">
+                        <a href="javascript:void(0)" class="btn btn-secondary" onclick="onExportClick()">
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                  viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
                             <g>
@@ -422,7 +422,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="empZip">Zip Code</label>
-                                            <input type="text" class="form-control" name="empZip" isRequired="true" />
+                                            <input type="text" class="form-control" name="empZip" isNumeric="true" isRequired="true" />
                                             <span class="field-validation-error"></span>
                                         </div>
                                     </div>
@@ -431,7 +431,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="empMobile">Mobile No</label>
-                                            <input type="text" class="form-control" name="empMobile" isRequired="true"/>
+                                            <input type="text" class="form-control" name="empMobile" isNumeric="true" lenCheck="true" max="10" isRequired="true"/>
                                             <span class="field-validation-error"></span>
                                         </div>
                                     </div>
@@ -440,7 +440,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="empPhone">Phone No</label>
-                                            <input type="text" class="form-control" name="empPhone" isRequired="true"/>
+                                            <input type="text" class="form-control" name="empPhone" isNumeric="true" lenCheck="true" max="4" isRequired="true"/>
                                             <span class="field-validation-error"></span>
                                         </div>
                                     </div>
@@ -449,7 +449,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="email">Email</label>
-                                            <input type="text" class="form-control" name="empEmail" isRequired="true"/>
+                                            <input type="text" class="form-control" name="empEmail" isRequired="true" emailCheck="true"/>
                                             <span class="field-validation-error"></span>
                                         </div>
                                     </div>
@@ -488,7 +488,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="prePhone">Phone No</label>
-                                            <input type="text" class="form-control" name="prePhone"/>
+                                            <input type="text" class="form-control" isNumeric="true" lenCheck="true" max="10" name="prePhone"/>
                                         </div>
                                     </div>
                                 </li>
@@ -496,7 +496,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="empExpre">Total Experience</label>
-                                            <input type="text" class="form-control" name="empExpre" />
+                                            <input type="text" class="form-control" isNumeric="true" name="empExpre" />
                                         </div>
                                     </div>
                                 </li>
@@ -512,7 +512,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="preSal">Last Salary</label>
-                                            <input type="text" class="form-control" name="preSal"/>
+                                            <input type="text" class="form-control" isNumeric="true" name="preSal"/>
                                         </div>
                                     </div>
                                 </li>
@@ -543,7 +543,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="empAccNo">Bank Account No</label>
-                                            <input type="text" class="form-control" name="empAccNo" isRequired="true"/>
+                                            <input type="text" class="form-control" name="empAccNo" isNumeric="true" lenCheck="true" max="14" isRequired="true"/>
                                             <span class="field-validation-error"></span>
                                         </div>
                                     </div>
@@ -579,7 +579,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="empSalary">Current Salary</label>
-                                            <input type="text" class="form-control" name="empSalary" isRequired="true"/>
+                                            <input type="text" class="form-control" name="empSalary" isNumeric="true" isRequired="true"/>
                                             <span class="field-validation-error"></span>
                                         </div>
                                     </div>

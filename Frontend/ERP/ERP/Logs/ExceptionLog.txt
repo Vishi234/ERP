@@ -9881,3 +9881,11 @@ Exception :System.IndexOutOfRangeException: There is no row at position 0.
 Time :14-Apr-2019 15:27:33
 
 ----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: There is no row at position 0.
+   at System.Data.RBTree`1.GetNodeByIndex(Int32 userIndex)
+   at System.Data.DataRowCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Login.CommonLogin.CheckLogin(String email, String password) in C:\Users\HP\Documents\GitHub\ERP\Final\ERP\ERP\Models\Bal\Login\Login.cs:line 72
+
+Time :14-Apr-2019 19:58:53
+
+----------------------------------------------------------------------------------------------------------------------
