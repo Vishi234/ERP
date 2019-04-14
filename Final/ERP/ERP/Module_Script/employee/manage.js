@@ -37,11 +37,24 @@ function InitializeDDL() {
     });
     $("select[name='empDept']").trigger("chosen:updated")
 
-    var empType = ReadDropDownData("Param", '9', true);
+
+    var empDesig = ReadDropDownData("Param", '9', true);
+    $.each(empDesig, function (i, value) {
+        $("select[name='empDesig']").append(new Option(value.PARAM_NAME, value.PARAM_ID, false, false));
+    });
+    $("select[name='empDesig']").trigger("chosen:updated")
+
+    var empType = ReadDropDownData("Param", '22', true);
     $.each(empType, function (i, value) {
         $("select[name='empType']").append(new Option(value.PARAM_NAME, value.PARAM_ID, false, false));
     });
     $("select[name='empType']").trigger("chosen:updated")
+
+    var empJType = ReadDropDownData("Param", '23', true);
+    $.each(empJType, function (i, value) {
+        $("select[name='empJType']").append(new Option(value.PARAM_NAME, value.PARAM_ID, false, false));
+    });
+    $("select[name='empJType']").trigger("chosen:updated")
 
     var empSex = ReadDropDownData("Param", '12', true);
     $.each(empSex, function (i, value) {
@@ -62,7 +75,7 @@ function InitializeDDL() {
     $("select[name='empMStat']").trigger("chosen:updated")
     empSub = ReadDropDownData("Subject", $("#hfCustomerId").val(), false);
     $.each(empSub, function (i, value) {
-        $("select[name='empSub']").append(new Option(value.SUBJECT_NAME, value.SUBJECT_ID, false, false));
+        $('.lwms-available').append("<li class='lwms-selectli' data- value=" + value.SUBJECT_ID + ">" + value.SUBJECT_NAME + "</li>");
     });
     $("select[name='empSub']").trigger("chosen:updated")
 
@@ -163,7 +176,10 @@ function handleSubmit(evt)
             })
             //e.preventDefault();
         }, 500)
+    } else {
+        return false;
     }
+    return false;
 }
 
 function resetData() {
@@ -347,7 +363,8 @@ function getEmployeeFilter(empCode, selectedType) {
     debugger;
     $.get("/Employee/GetEmployeeFilter?empCode=" + empCode + "&empType=" + selectedType, function (data) {
         var rowData = JSON.parse(data.addParams);
-        gridOptions.api.setRowData(gridOptions.rowData);
+        //gridOptions.api.setRowData(gridOptions.rowData);
+        gridOptions.api.setRowData(((rowData == null) ? null : rowData));
         $events.refreshInfiniteCache();
     });
 }

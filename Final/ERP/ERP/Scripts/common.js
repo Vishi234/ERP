@@ -11,6 +11,18 @@ function ValidateFields(evt) {
                     data.nextElementSibling.textContent = "Required";
                     boolFlag = true;
                 } else {
+                    debugger;
+                    if ($.isNumeric(data.value) && data.hasAttribute('isNumeric')) {
+                        data.classList.add("input-validation-error");
+                        data.nextElementSibling.classList.add("field-validation-error");
+                        data.nextElementSibling.textContent = "Numeric";
+                        boolFlag = true;
+                    }
+                    //} else {
+                    //    data.classList.remove('input-validation-error');
+                    //    data.nextElementSibling.classList.remove('field-validation-error');
+                    //    data.nextElementSibling.textContent = "";
+                    //}
                     data.classList.remove('input-validation-error');
                     data.nextElementSibling.classList.remove('field-validation-error');
                     data.nextElementSibling.textContent = "";
@@ -20,7 +32,16 @@ function ValidateFields(evt) {
         else if (data.tagName == 'SELECT') {
             if (data.hasAttribute('isRequired'))
             {
-
+                if (data.value == 0) {
+                    data.classList.add("input-validation-error");
+                    data.nextElementSibling.classList.add("field-validation-error");
+                    //data.nextSibling.textContent = "Required";
+                    boolFlag = true;
+                } else {
+                    data.classList.remove('input-validation-error');
+                    //data.nextElementSibling.classList.remove('field-validation-error');
+                    //data.nextElementSibling.textContent = "";
+                }
             }
         }
         else {
@@ -108,7 +129,7 @@ function ReadDropDownData(key, customerId, isParam) {
     var jsonData = GetJsonData('../../Content/DynamicJs/DropdownData.json');
 
     if (isParam == false) {
-        if (key == "Course" || key == "AcademicYear" || key == "Subject" || key == "Department" || key == "Designation" || key == "FeeName") {
+        if (key == "Course" || key == "AcademicYear" || key == "Subject" || key == "Department" || key == "Designation" || key == "FeeName" || key == "EmpType" || key =="JobType") {
             MyData = jsonData["" + key + ""];
 
             if (MyData == null || MyData == undefined) {

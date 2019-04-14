@@ -252,6 +252,8 @@ namespace ERP.Models.Cache
                    Department = CommonFunc.RdrToList(GetDropDownData("6", 'A')),
                    Designation = CommonFunc.RdrToList(GetDropDownData("7", 'A')),
                    FeeName = CommonFunc.RdrToList(GetDropDownData("8", 'A')),
+                   EmpType = CommonFunc.RdrToList(GetDropDownData("22", 'A')),
+                   JobType = CommonFunc.RdrToList(GetDropDownData("23", 'A')),
                });
             string path = HttpContext.Current.Server.MapPath("~/Content/DynamicJs/");
             File.WriteAllText(path + "DropdownData.json", JsonData);
@@ -269,6 +271,8 @@ namespace ERP.Models.Cache
                    Department = CommonFunc.RdrToList(GetDropDownData("6", 'A')),
                    Designation = CommonFunc.RdrToList(GetDropDownData("7", 'A')),
                    FeeName = CommonFunc.RdrToList(GetDropDownData("8", 'A')),
+                   EmpType = CommonFunc.RdrToList(GetDropDownData("22", 'A')),
+                   JobType = CommonFunc.RdrToList(GetDropDownData("23", 'A')),
                });
             return JsonData;
         }
