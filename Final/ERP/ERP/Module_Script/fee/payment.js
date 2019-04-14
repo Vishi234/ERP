@@ -21,9 +21,11 @@ gridOptions.api.sizeColumnsToFit();
 function CreateAction(params)
 {
     var html = "";
+    debugger;
     html = "<span><a href='javascript:void(0)' onclick='Payment();' class='cstanchor'>Pay</a> | <a href='javascript:void(0)' class='cstanchor'>View</a></span>";
     domElement = document.createElement("div");
     domElement.innerHTML = html;
     return domElement;
 }
+
 
