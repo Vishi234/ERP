@@ -37,7 +37,6 @@ function InitializeDDL() {
     });
     $("select[name='empDept']").trigger("chosen:updated")
 
-
     var empDesig = ReadDropDownData("Param", '9', true);
     $.each(empDesig, function (i, value) {
         $("select[name='empDesig']").append(new Option(value.PARAM_NAME, value.PARAM_ID, false, false));
@@ -78,8 +77,9 @@ function InitializeDDL() {
         $('.lwms-available').append("<li class='lwms-selectli' data- value=" + value.SUBJECT_ID + ">" + value.SUBJECT_NAME + "</li>");
     });
     $("select[name='empSub']").trigger("chosen:updated")
-
+    debugger;
     empRole = ReadDropDownData("Param", '8', true);
+    //var empRole = ReadDropDownData("Role", '9', true);
     $.each(empRole, function (i, value) {
         $("select[name='empRole']").append(new Option(value.PARAM_NAME, value.PARAM_ID, false, false));
     });
@@ -248,6 +248,7 @@ function CreateEdit(params) {
     return domElement;
 }
 
+
 function CreateActive(params) {
 
     var html = "";
@@ -367,4 +368,7 @@ function getEmployeeFilter(empCode, selectedType) {
         gridOptions.api.setRowData(((rowData == null) ? null : rowData));
         $events.refreshInfiniteCache();
     });
+}
+function onExportClick() {
+    exportToExcel(rowData, "EmployeeExport", columnDefs)
 }

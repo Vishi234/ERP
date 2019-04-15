@@ -11,21 +11,31 @@ function ValidateFields(evt) {
                     data.nextElementSibling.textContent = "Required";
                     boolFlag = true;
                 } else {
-                    debugger;
-                    if ($.isNumeric(data.value) && data.hasAttribute('isNumeric')) {
+                    if (!($.isNumeric(data.value)) && data.hasAttribute('isNumeric')) {
                         data.classList.add("input-validation-error");
                         data.nextElementSibling.classList.add("field-validation-error");
                         data.nextElementSibling.textContent = "Numeric";
                         boolFlag = true;
+                    } else if (data.value.length != data.max && data.value != "" && data.hasAttribute('lenCheck')) {
+                        data.classList.add("input-validation-error");
+                        data.nextElementSibling.classList.add("field-validation-error");
+                        data.nextElementSibling.textContent ="Length should be  " + data.max + " digits.";
+                        boolFlag = true;
+                        //} else {
+                    } else if (!validateEmail(data.value) && data.hasAttribute('emailCheck')) {
+                        data.classList.add('input-validation-error'); 
+                        data.nextElementSibling.classList.add('field-validation-error');
+                        data.nextElementSibling.textContent = "Please enter valid email address"; 
+                        boolFlag = true;
                     }
-                    //} else {
-                    //    data.classList.remove('input-validation-error');
-                    //    data.nextElementSibling.classList.remove('field-validation-error');
-                    //    data.nextElementSibling.textContent = "";
-                    //}
-                    data.classList.remove('input-validation-error');
-                    data.nextElementSibling.classList.remove('field-validation-error');
-                    data.nextElementSibling.textContent = "";
+                     else {
+                        data.classList.remove('input-validation-error');
+                        data.nextElementSibling.classList.remove('field-validation-error');
+                        data.nextElementSibling.textContent = "";
+                    }
+                    //data.classList.remove('input-validation-error');
+                    //data.nextElementSibling.classList.remove('field-validation-error');
+                    //data.nextElementSibling.textContent = "";
                 }
             }
         }
@@ -39,7 +49,7 @@ function ValidateFields(evt) {
                     boolFlag = true;
                 } else {
                     data.classList.remove('input-validation-error');
-                    //data.nextElementSibling.classList.remove('field-validation-error');
+                    data.nextElementSibling.classList.remove('field-validation-error');
                     //data.nextElementSibling.textContent = "";
                 }
             }
@@ -50,6 +60,10 @@ function ValidateFields(evt) {
     });
     if (boolFlag) { return false; } else { return true; }
 }
+function validateEmail(value){
+    let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(value);
+};
 function GridInitializer(columnDef) {
     var gridOptions = {
         columnDefs: columnDef,
@@ -129,7 +143,7 @@ function ReadDropDownData(key, customerId, isParam) {
     var jsonData = GetJsonData('../../Content/DynamicJs/DropdownData.json');
 
     if (isParam == false) {
-        if (key == "Course" || key == "AcademicYear" || key == "Subject" || key == "Department" || key == "Designation" || key == "FeeName" || key == "EmpType" || key =="JobType") {
+        if (key == "Course" || key == "AcademicYear" || key == "Subject" || key == "Department" || key == "Designation" || key == "FeeName" || key == "EmpType" || key =="JobType" ) {
             MyData = jsonData["" + key + ""];
 
             if (MyData == null || MyData == undefined) {
@@ -151,11 +165,9 @@ function ReadDropDownData(key, customerId, isParam) {
         }
     }
     else {
-
-        MyData = $.grep(jsonData[key], function (item, i) {
-            return item.PARAM_TYPE == customerId
-        });
-
+            MyData = $.grep(jsonData[key], function (item, i) {
+                return item.PARAM_TYPE == customerId
+            });
     }
     return MyData;
 }
@@ -349,6 +361,7 @@ function GetTimeUpdate() {
 
 function validateEmail(email)
 {
+    debugger;
     var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     if (!regex.test(email))
     {

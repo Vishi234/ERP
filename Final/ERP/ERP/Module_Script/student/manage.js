@@ -383,3 +383,6 @@ function CreateActive(params) {
     domElement.innerHTML = html;
     return domElement;
 }
+function onExportClick() {
+    exportToExcel(rowData, "StudentExport", columnDefs)
+}
