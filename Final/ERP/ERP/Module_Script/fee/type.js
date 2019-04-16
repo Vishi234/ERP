@@ -147,6 +147,17 @@ function InitializeDDL() {
     });
     $("select[name='paymentType']").trigger("chosen:updated")
 
+    $("select[name='paymentType']").change(function () {
+        debugger;
+        var selectedCourse = $("select[name='paymentType']").val();
+        if (selectedCourse == 82) {
+            // $("#x").prop("disabled", true);
+            $("#feePeriod").attr('disabled', 'disabled');
+        } else {
+            $("#feePeriod").removeAttr('disabled');
+        }
+    })
+
     month = ReadDropDownData("Param", '21', true);
     $.each(month, function (i, value) {
         $("select[name='feePeriod']").append(new Option(value.PARAM_NAME, value.PARAM_ID, false, false));

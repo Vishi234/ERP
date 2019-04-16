@@ -39,7 +39,8 @@
                                 <div class="text">
                                     <div class="form-group">
                                         <label for="feeName">Fee Name</label>
-                                        <input type="text" class="form-control" name="feeName" />
+                                        <input type="text" class="form-control" isRequired="true" name="feeName" />
+                                        <span class="field-validation-error"></span>
                                     </div>
                                 </div>
                             </li>
@@ -47,9 +48,10 @@
                                 <div class="ddl">
                                     <div class="form-group">
                                         <label for="paymentType">Payment Type</label>
-                                        <select class="chosen-select ddl" name="paymentType">
+                                        <select class="chosen-select ddl" name="paymentType" isRequired="true">
                                             <option value="0">Select Payment Type</option>
                                         </select>
+                                        <span class="field-validation-error"></span>
                                     </div>
                                 </div>
                             </li>
@@ -57,9 +59,28 @@
                                 <div class="multiSelect">
                                     <div class="form-group">
                                         <label for="feePeriod">Month</label>
-                                        <select class="chosen-select ddl" multiple name="feePeriod">
+                                        <select class="chosen-select ddl" multiple name="feePeriod" id="feePeriod" isRequired="true">
                                             <option value="0">Select Month</option>
                                         </select>
+                                        <span class="field-validation-error"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="text">
+                                    <div class="form-group">
+                                        <label for="feeSubmission">Fee Submission Day</label>
+                                        <input type="text" class="form-control" isRequired="true" name="feeSubmission" />
+                                        <span class="field-validation-error"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="text">
+                                    <div class="form-group">
+                                        <label for="feeRelaxDay">Fee Relaxation Days</label>
+                                        <input type="text" class="form-control" isRequired="true" name="feeRelaxDay" />
+                                        <span class="field-validation-error"></span>
                                     </div>
                                 </div>
                             </li>
@@ -67,7 +88,8 @@
                                 <div class="text">
                                     <div class="form-group">
                                         <label for="feeDesc">Description</label>
-                                        <input type="text" class="form-control" name="feeDesc" />
+                                        <input type="text" class="form-control" name="feeDesc" isRequired="true" />
+                                        <span class="field-validation-error"></span>
                                     </div>
                                 </div>
                             </li>
@@ -75,9 +97,10 @@
                                 <div class="multiSelect">
                                     <div class="form-group">
                                         <label for="isActive">Status</label>
-                                        <select class="chosen-select ddl" name="isActive">
+                                        <select class="chosen-select ddl" name="isActive" isRequired="true">
                                             <option value="0">Select Status</option>
                                         </select>
+                                        <span class="field-validation-error"></span>
                                     </div>
                                 </div>
                             </li>
@@ -104,9 +127,10 @@
                                 <div class="multiSelect">
                                     <div class="form-group">
                                         <label for="academicYear">Academic Year</label>
-                                        <select class="chosen-select ddl" name="academicYear">
+                                        <select class="chosen-select ddl" name="academicYear" isRequired="true">
                                             <option value="0">Select Academic Year</option>
                                         </select>
+                                        <span class="field-validation-error"></span>
                                     </div>
                                 </div>
                             </li>
@@ -114,9 +138,10 @@
                                 <div class="multiSelect">
                                     <div class="form-group">
                                         <label for="courseId">Course</label>
-                                        <select class="chosen-select ddl" name="courseId">
+                                        <select class="chosen-select ddl" name="courseId" isRequired="true">
                                             <option value="0">Select Course</option>
                                         </select>
+                                        <span class="field-validation-error"></span>
                                     </div>
                                 </div>
                             </li>

@@ -36,12 +36,12 @@ $("#ddlActive").trigger("chosen:updated");
 
 function OnEditClick(obj)
 {
-    
+    debugger;
     var editData = JSON.parse($(obj).attr('dataattr'));
     $("input[name=actName]").val(editData.anm);
     $('#ddlAct').val(editData.atypID);   
-    $("input[name=wefDate]").val(editData.sDt);
-    $("input[name=wetDate]").val(editData.eDt);
+    $("input[name=wfDate]").val(editData.sDt);
+    $("input[name=wtDate]").val(editData.eDt);
     $('#ddlActive').val(editData.isActive);
     $('#ddlActive').trigger("chosen:updated");
     $('#ddlAct').trigger("chosen:updated");

@@ -56,7 +56,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" class="btn btn-secondary exportToExcel">
+                        <a href="javascript:void(0)" class="btn btn-secondary" onclick="onExportClick()">
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                  viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
                             <g>
@@ -404,7 +404,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="stuZip">Zip Code</label>
-                                            <input type="text" class="form-control" name="stuZip" />
+                                            <input type="text" class="form-control" isNumeric="true" name="stuZip" />
                                         </div>
                                     </div>
                                 </li>
@@ -412,7 +412,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="stuMobile">Mobile No</label>
-                                            <input type="text" class="form-control" maxlength="10" isRequired="true" name="stuMobile" />
+                                            <input type="text" class="form-control" maxlength="10" isRequired="true" lenCheck="true" max="10" isNumeric="true" name="stuMobile" />
                                             <span class="field-validation-error"></span>
                                         </div>
                                     </div>
@@ -421,7 +421,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="stuPhone">Phone No</label>
-                                            <input type="text" class="form-control" name="stuPhone" />
+                                            <input type="text" class="form-control" name="stuPhone" lenCheck="true" max="10" isNumeric="true" />
                                         </div>
                                     </div>
                                 </li>
@@ -429,7 +429,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="email">Email</label>
-                                            <input type="text" class="form-control" name="stuEmail" />
+                                            <input type="text" class="form-control" name="stuEmail" emailCheck="true"/>
                                         </div>
                                     </div>
                                 </li>
@@ -474,7 +474,7 @@
                                         <div class="form-group">
                                             <label for="stuPreCourse">Course</label>
                                             <select class="chosen-select ddl" name="stuPreCourse">
-                                                <option value="0">Select preCourse</option>
+                                                <option value="0">Select Course</option>
                                             </select>
                                         </div>
                                     </div>
@@ -492,7 +492,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="stuMarks">Obtained Marks</label>
-                                            <input type="text" class="form-control" name="stuMarks" />
+                                            <input type="text" class="form-control" name="stuMarks" isNumeric="true" />
                                         </div>
                                     </div>
                                 </li>
@@ -500,7 +500,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="stuPercent">Percentage(%)</label>
-                                            <input type="text" class="form-control" name="stuPercent" />
+                                            <input type="text" class="form-control" name="stuPercent" isNumeric="true" />
                                         </div>
                                     </div>
                                 </li>
@@ -586,7 +586,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="stuVecAmt">Amount</label>
-                                            <input type="text" class="form-control" name="stuVecAmt" />
+                                            <input type="text" class="form-control" name="stuVecAmt" isNumeric="true" />
                                         </div>
                                     </div>
                                 </li>
@@ -640,7 +640,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="stuRoomNo">Room Number</label>
-                                            <input type="text" class="form-control"  name="stuRoomNo" />
+                                            <input type="text" class="form-control"  name="stuRoomNo" isNumeric="true"/>
                                         </div>
                                     </div>
                                 </li>
@@ -648,7 +648,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="stuBedNo">Bed Number</label>
-                                            <input type="text" class="form-control"  name="stuBedNo" />
+                                            <input type="text" class="form-control"  name="stuBedNo" isNumeric="true"/>
                                         </div>
                                     </div>
                                 </li>

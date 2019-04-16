@@ -59,6 +59,7 @@ function handleSubmit(evt)
             obj[data.name] = data.value;
         });
         myData.push(obj);
+        debugger;
         btnloading("CourseForm", 'show');
         setTimeout(function () {
             $.ajax({
@@ -76,7 +77,9 @@ function handleSubmit(evt)
                     {
                         $('#' + evt.id).trigger("reset");
                         $("#ddlActive").val(0);
+                        $('#ddlCType').val(0);
                         $("#ddlActive").trigger("chosen:updated");
+                        $("#ddlCType").trigger("chosen:updated");
                         CallToast(data.msg, data.flag);
                         MyData = JSON.parse(data.addParams);          
                         rowData = MyData; records = MyData.length;

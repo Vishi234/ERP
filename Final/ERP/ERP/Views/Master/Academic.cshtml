@@ -29,7 +29,7 @@
                         <div class="text">
                             <div class="form-group">
                                 <label for="academicYear">Academic Year</label>
-                                <input type="text" class="form-control" isRequired="true" name="academicYear"/>
+                                <input type="text" class="form-control" isRequired="true" lenCheck="true" max="9" name="academicYear"/>
                                 <span class="field-validation-error"></span>
                             </div>
                         </div>
@@ -59,7 +59,6 @@
                             <div class="form-group">
                                 <label for="active">Status</label>
                                 <select class="chosen-select" id="ddlActive" isRequired="true" name="active">
-
                                     <option value="0">Select Status</option>
                                 </select>
                                 <span class="field-validation-error"></span>

@@ -28,7 +28,7 @@
                         <div class="ddl">
                             <div class="form-group">
                                 <label for="courseType">Course Type</label>
-                                <select class="chosen-select" name="courseType" id="ddlCType">
+                                <select class="chosen-select" name="courseType" isRequired="true" id="ddlCType">
                                     <option value="0">Select Course Type</option>
                                 </select>
                                 <span class="field-validation-error"></span>
@@ -39,7 +39,7 @@
                         <div class="text">
                             <div class="form-group">
                                 <label for="courseName">Course Name</label>
-                                <input type="text" class="form-control" name="courseName" />
+                                <input type="text" class="form-control" isRequired="true" name="courseName" />
                                 <span class="field-validation-error"></span>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                         <div class="text">
                             <div class="form-group">
                                 <label for="noOfSemester">No. Of Semester</label>
-                                <input type="text" class="form-control" name="noOfSemester" />
+                                <input type="text" class="form-control" isRequired="true" isNumeric="true" lenCheck="true" max="1" name="noOfSemester" />
                                 <span class="field-validation-error"></span>
                             </div>
                         </div>
@@ -57,13 +57,14 @@
                         <div class="ddl">
                             <div class="form-group">
                                 <label for="active">Status</label>
-                                <select class="chosen-select" name="active" id="ddlActive">
+                                <select class="chosen-select" name="active" isRequired="true" id="ddlActive">
                                     <option value="0">Select Status</option>
                                 </select>
                                 <span class="field-validation-error"></span>
                             </div>
                         </div>
                     </li>
+
                     <li>
                         <input type="text" style="display:none" value="" name="courserId" />
                         <input type="text" style="display:none" value="A" name="flag" />

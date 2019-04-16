@@ -53,7 +53,7 @@ $("#ddlCourse").change(function () {
             obj.push(data);
         }
     }
-    $('#ddlSemester').append(new Option(data.NO_OF_SEMESTER, data.COURSE_ID, false, false));
+    $('#ddlSemester').append(new Option(data.NO_OF_SEMESTER, data.NO_OF_SEMESTER, false, false));
     $("#ddlSemester").trigger("chosen:updated");
 });
 
@@ -63,6 +63,7 @@ $("#ddlCourse").trigger("chosen:updated");
 
 function OnEditClick(obj)
 {
+    debugger;
     var editData = JSON.parse($(obj).attr('dataattr'));
 
     $('#ddlSemester').empty();
