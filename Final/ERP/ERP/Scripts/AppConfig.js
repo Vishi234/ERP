@@ -81,5 +81,8 @@
     Label_Header["$TOTAL$"] = "Total";
     Label_Header["$FINE$"] = "Fine";
     Label_Header["$VIEWPAY$"] = "View/Pay";
+    Label_Header["$DISCOUNT$"] = "Fee Discount";
+    Label_Header["$PAID$"] = "Paying Amount";
+    Label_Header["$DUE$"] = "Due Amount";
     return Label_Header;
 }

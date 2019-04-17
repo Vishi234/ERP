@@ -51,7 +51,7 @@ namespace ERP.Controllers
             GetPayments();
             return PartialView();
         }
- public ActionResult Collection()
+        public ActionResult Collection()
         {
             return PartialView();
 		}
@@ -64,6 +64,21 @@ namespace ERP.Controllers
             accountEntity.reportId = "12";
             TempData["Payments"] = accountObj.GetPayments(accountEntity);
             return Json(TempData["Payments"], JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult SavePayment(string record)
+        {
+            Account accountObj = new Account();
+            return Json(accountObj.SaveFeeRecords(record));
+        }
+
+       
+        [HttpPost]
+        public JsonResult GetPaymentDeatils(GetPaymentEntity paymentEntity)
+        {
+            Account accountObj = new Account();
+            return Json(accountObj.GetPaymentDeatils(paymentEntity));
         }
     }
 }

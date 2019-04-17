@@ -5,6 +5,17 @@ using System.Web;
 
 namespace ERP.Models.Entity
 {
+     
+
+    public class GetPaymentEntity
+    {
+        public string stuCode { get; set; }
+        public string academicYear { get; set; }
+        public string courseId { get; set; }
+        public string customerId { get; set; }
+        public string reportId { get; set; }
+    }
+
     public class AccountEntity
     {
         public string typeid { get; set; }
