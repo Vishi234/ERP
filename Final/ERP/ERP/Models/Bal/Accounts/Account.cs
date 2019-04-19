@@ -200,26 +200,32 @@ namespace ERP.Models.Bal.Accounts
             }
         }
 
-        public ResultEntity SavePaymentRecords(string records)
+        public ResultEntity SavePaymentRecords(string records,string studentCode,string courceName,string paymentType,string paymentDate)
         {
             ResultEntity result = new ResultEntity();
             UserEntity objUserEntity = UserEntity.GetInstance();
             try
             {
-                //  UserEntity objUserEntity = UserEntity.GetInstance();
-                SqlParameter[] sqlParameter = new SqlParameter[5];
-                sqlParameter[0] = new SqlParameter("@CUSTOMER_ID", objUserEntity.customerId);
-                sqlParameter[1] = new SqlParameter("@USER_ID", objUserEntity.userId);
-                sqlParameter[2] = new SqlParameter("@JSON_DATA", records);
-                sqlParameter[3] = new SqlParameter("@FLAG", SqlDbType.Char);
-                sqlParameter[3].Direction = ParameterDirection.Output;
-                sqlParameter[3].Size = 1;
-                sqlParameter[4] = new SqlParameter("@MSG", SqlDbType.NVarChar);
-                sqlParameter[4].Direction = ParameterDirection.Output;
-                sqlParameter[4].Size = 500;
-                SqlHelper.ExecuteScalar(sqlConn, CommandType.StoredProcedure, "SP_MANAGE_FEE_DETAILS", sqlParameter);
-                result.flag = sqlParameter[3].Value.ToString();
-                result.msg = sqlParameter[4].Value.ToString();
+                SqlParameter[] sqlParameter = new SqlParameter[12];
+                sqlParameter[0] = new SqlParameter("@STU_CODE", studentCode);
+                sqlParameter[1] = new SqlParameter("@STUDENT_NAME", "");
+                sqlParameter[2] = new SqlParameter("@ACADEMIC_YEAR", "");
+                sqlParameter[3] = new SqlParameter("@COURSE", courceName);
+                sqlParameter[4] = new SqlParameter("@PAYMENT_TYPE", paymentType);
+                sqlParameter[5] = new SqlParameter("@PAYMENT_DATE", paymentDate);
+                sqlParameter[6] = new SqlParameter("@RECIEPT_NO", "");
+                sqlParameter[7] = new SqlParameter("@RECORDS", records);
+                sqlParameter[8] = new SqlParameter("@CUSTOMER_ID", objUserEntity.customerId);
+                sqlParameter[9] = new SqlParameter("@USER_ID", objUserEntity.userId);
+                sqlParameter[10] = new SqlParameter("@FLAG", SqlDbType.Char);
+                sqlParameter[10].Direction = ParameterDirection.Output;
+                sqlParameter[10].Size = 1;
+                sqlParameter[11] = new SqlParameter("@MSG", SqlDbType.NVarChar);
+                sqlParameter[11].Direction = ParameterDirection.Output;
+                sqlParameter[11].Size = 500;
+                SqlHelper.ExecuteScalar(sqlConn, CommandType.StoredProcedure, "SP_STUDENT_FEE_PAYMENT", sqlParameter);
+                result.flag = sqlParameter[10].Value.ToString();
+                result.msg = sqlParameter[11].Value.ToString();
                 return result;
             }
             catch (Exception ex)

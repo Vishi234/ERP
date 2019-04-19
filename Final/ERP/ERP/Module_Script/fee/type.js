@@ -64,10 +64,10 @@ function CreateEdit(params) {
 function CreateActive(params) {
     var html = "";
     var domElement = "";
-    if ((params.data.isActive).trim() == 70) {
+    if ((params.data.isActive) == 70) {
         html = '<span style="margin-top: 5px;padding: 6px 20px;" class="badge badge-success">Active</span>'
     }
-    else if ((params.data.isActive).trim() == 71) {
+    else if ((params.data.isActive) == 71) {
         html = '<span style="margin-top: 5px;padding: 6px 20px;" class="badge badge-danger">In-Active</span>'
     }
     else {
@@ -79,9 +79,7 @@ function CreateActive(params) {
     return domElement;
 }
 function TypeSubmit(evt) {
-
-    debugger;
-    if (ValidateFields(evt)) {
+    if (true) {
         var myData = [];
         var obj = {};
         $("#" + evt.id + " select, input").each(function (i, data) {
@@ -183,7 +181,7 @@ function InitializeDDL() {
     $("select[name='courseId']").trigger("chosen:updated");
 }
 function ShowFeeDetails(evt) {
-    if (ValidateFields(evt)) {
+    if (true) {
         var myData = [];
         var obj = {};
         $("#" + evt.id + " select, input").each(function (i, data) {
