@@ -92,21 +92,40 @@ function Payment($obj)
 
    
 }
+debugger;
+$('.numeric11').keypress(function (event) {
+    debugger;
+    var keycode = event.which;
+    if (!(event.shiftKey == false && (keycode == 46 || keycode == 8 || keycode == 37 || keycode == 39 || (keycode >= 48 && keycode <= 57)))) {
+        event.preventDefault();
+    }
+});
+
+function numbersonly(e) {
+    var unicode = e.charCode ? e.charCode : e.keyCode
+    if (unicode != 8) { //if the key isn't the backspace key (which we should allow)
+        if (unicode < 48 || unicode > 57) //if not a number
+            return false //disable key press
+    }
+}
 
 function CreateInput(params)
 {
-  //  debugger
+   debugger
         var html = "";
         var domElement = "";
         var input = document.createElement("input");
         input.className = "form-control";
         input.style = "height: 27px;margin-top: 3px;border-radius: 4px;width: 60%;";
         input.value = params.data[params.colDef.field];
+       input.classList.add("numeric11");
+    
+    input.onkeypress = function () { return numbersonly(event); };
+
         domElement = document.createElement("div");
         domElement.appendChild(input);
         input.addEventListener("blur", function (evt)
-        {
-           
+        {         
             params.data[params.colDef.field] = evt.target.value;
         });
         return domElement;
