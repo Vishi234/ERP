@@ -239,7 +239,8 @@ function Show(myData) {
     }, 500);
 }
 
-function CreateTextBox(params) {
+function CreateTextBox(params)
+{
     var html = "";
     var domElement = "";
     var input = document.createElement("input");

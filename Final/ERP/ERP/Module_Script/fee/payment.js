@@ -95,13 +95,65 @@ function Payment($obj)
 
 function CreateInput(params)
 {
-    var html = "";
-    var domElement = "";
+  //  debugger
+        var html = "";
+        var domElement = "";
+        var input = document.createElement("input");
+        input.className = "form-control";
+        input.style = "height: 27px;margin-top: 3px;border-radius: 4px;width: 60%;";
+        input.value = params.data[params.colDef.field];
+        domElement = document.createElement("div");
+        domElement.appendChild(input);
+        input.addEventListener("blur", function (evt)
+        {
+           
+            params.data[params.colDef.field] = evt.target.value;
+        });
+        return domElement;
+
+}
+
+function SavePaymentDetails(evt)
+{
+    debugger;
+    let rowData = [];
+    gridOptions.api.forEachNode(node => rowData.push(node.data));
+
+    formDt =
+        {
+        studentCode: $("input[name=stuCode]").val(),
+        courceName: $("input[name=stuCourse]").val(),
+        paymentType: $("input[name=payType]").val(),
+        paymentDate: $("input[name=paymentDate]").val()
+    }
+
+    var obj = {
+        record: JSON.stringify(rowData),
+        formData: JSON.stringify(formDt)
+    }
+
+    btnloading("SaveDetails", 'show');
+    setTimeout(function () {
+        $.ajax({
+            type: "POST",
+            url: '/Fee/SavePaymentDetails',
+            data: obj,
+            async: false,
+            beforeSend: function () {
+                btnloading("SaveDetails", 'show');
+            },
+            success: function (data) {
+                btnloading("SaveDetails", 'hide');
+                CallToast(data.msg, data.flag);
+                $("#FeeDetail").submit();
+            }.bind(this),
+            error: function (e) {
+                btnloading("SaveDetails", 'hide');
+                alert('Error! Please try again');
+            }
+        });
+    }, 500);
+    return false;
    
-    var jsonObj = JSON.stringify(params.data); 
-    html = "<div><input type='text' style=' height: 27px;margin-top: 4px; margin-bottom: 3px;' value ='" + params.colDef.field + "' /></div>";
-    domElement = document.createElement("div");
-    domElement.innerHTML = html;
-    return domElement;
 }
 

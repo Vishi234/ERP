@@ -80,5 +80,12 @@ namespace ERP.Controllers
             Account accountObj = new Account();
             return Json(accountObj.GetPaymentDeatils(paymentEntity));
         }
+
+        [HttpPost]
+        public JsonResult SavePaymentDetails(string obj)
+        {
+            Account accountObj = new Account();
+            return Json(accountObj.SavePaymentRecords(obj));
+        }
     }
 }

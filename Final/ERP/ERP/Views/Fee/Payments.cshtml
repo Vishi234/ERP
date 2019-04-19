@@ -113,7 +113,14 @@
                 <div class="actionbse">
                     <div id="payDtlGrid" style="height:350px;" class="ag-theme-balham"></div>
                 </div>
-                <input type='button' value="Submit Fee" style="float:right" class="btn btn-info pd-x-20" />
+
+                @*<div class="text-center">
+                    <form name='SaveDetails' method="post" id="SaveDetails" noValidate onSubmit="return SavePaymentDetails(this)">
+                        <button type="submit" class="btn btn-info"><span class="inload hide"><i class="fa fa-spinner fa-spin"></i></span>Save Details</button>
+                    </form>
+                </div>*@
+
+                <input type='button' id="SaveDetails" value="Submit Fee" onclick="SavePaymentDetails(this);" style="float:right" class="btn btn-info pd-x-20" />
             </div>
         </div>
     </div>
