@@ -119,17 +119,14 @@ function SavePaymentDetails(evt)
     let rowData = [];
     gridOptions.api.forEachNode(node => rowData.push(node.data));
 
-    formDt =
-        {
+    var obj = {
+        record: JSON.stringify(rowData),
+
         studentCode: $("input[name=stuCode]").val(),
         courceName: $("input[name=stuCourse]").val(),
         paymentType: $("input[name=payType]").val(),
         paymentDate: $("input[name=paymentDate]").val()
-    }
 
-    var obj = {
-        record: JSON.stringify(rowData),
-        formData: JSON.stringify(formDt)
     }
 
     btnloading("SaveDetails", 'show');
