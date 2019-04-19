@@ -28,7 +28,7 @@ namespace ERP.Controllers
         public JsonResult AddFeeType(AccountEntity accountEntity)
         {
             Account accountObj = new Account();
-          //  UserEntity objUserEntity = UserEntity.GetInstance();
+            //  UserEntity objUserEntity = UserEntity.GetInstance();
             return Json(accountObj.AddFeeDetails(accountEntity));
 
         }
@@ -54,7 +54,7 @@ namespace ERP.Controllers
         public ActionResult Collection()
         {
             return PartialView();
-		}
+        }
         [HttpGet]
         public JsonResult GetPayments()
         {
@@ -73,7 +73,7 @@ namespace ERP.Controllers
             return Json(accountObj.SaveFeeRecords(record));
         }
 
-       
+
         [HttpPost]
         public JsonResult GetPaymentDeatils(GetPaymentEntity paymentEntity)
         {
@@ -82,10 +82,10 @@ namespace ERP.Controllers
         }
 
         [HttpPost]
-        public JsonResult SavePaymentDetails(string record,string studentCode,string courseName, string paymentType,string paymentDate)
+        public JsonResult SavePaymentDetails(string record, string studentCode, string courceName, string paymentType, string paymentDate)
         {
             Account accountObj = new Account();
-            return Json(accountObj.SavePaymentRecords(record,studentCode, courseName,paymentType,paymentDate));
+            return Json(accountObj.SavePaymentRecords(record, studentCode, courceName, paymentType, paymentDate));
         }
     }
 }

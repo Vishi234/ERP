@@ -60,6 +60,13 @@ function ValidateFields(evt) {
     });
     if (boolFlag) { return false; } else { return true; }
 }
+
+$('#isGridNumeric').keypress(function (event) {
+    if (event.which != 8 && isNaN(String.fromCharCode(event.which))) {
+        event.preventDefault(); //stop character from entering input
+    }
+});
+
 function validateEmail(value){
     let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(value);
