@@ -200,7 +200,7 @@ namespace ERP.Models.Bal.Accounts
             }
         }
 
-        public ResultEntity SavePaymentRecords(string records)
+        public ResultEntity SavePaymentRecords(string records,string studentCode,string courseName,string paymentType,string paymentDate)
         {
             ResultEntity result = new ResultEntity();
             UserEntity objUserEntity = UserEntity.GetInstance();

@@ -82,10 +82,10 @@ namespace ERP.Controllers
         }
 
         [HttpPost]
-        public JsonResult SavePaymentDetails(string record,string studentCode,string courceName,string paymentType,string paymentDate)
+        public JsonResult SavePaymentDetails(string record,string studentCode,string courseName, string paymentType,string paymentDate)
         {
             Account accountObj = new Account();
-            return Json(accountObj.SavePaymentRecords(record));
+            return Json(accountObj.SavePaymentRecords(record,studentCode, courseName,paymentType,paymentDate));
         }
     }
 }

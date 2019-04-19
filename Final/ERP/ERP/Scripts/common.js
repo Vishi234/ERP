@@ -370,4 +370,6 @@ function validateEmail(email)
         return true;
     }
 }
+
+
 //**************************************Export to excel end********************************
