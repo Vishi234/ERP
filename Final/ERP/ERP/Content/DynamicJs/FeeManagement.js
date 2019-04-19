@@ -38,6 +38,7 @@ var FeeMapping_ExportCaption = ['ACADEMIC_YEAR','COURSE','FEE_NAME','PAYMENT_TYP
  gridViewSettings['$FeeMapping_ExportCaption$'] =FeeMapping_ExportCaption;
 
  var Payments = [
+{ headerName: labelArray['$VIEWPAY$'], field: 'edit', hide: false, headerTooltip: '', width: 215, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateAction'},
 { headerName: labelArray['$STU_CODE$'], field: 'stuCode', hide: false, headerTooltip: '', width: 150, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$FIRST_NAME$'], field: 'fName', hide: false, headerTooltip: '', width: 150, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$LAST_NAME$'], field: 'lName', hide: false, headerTooltip: '', width: 150, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
@@ -50,27 +51,26 @@ var FeeMapping_ExportCaption = ['ACADEMIC_YEAR','COURSE','FEE_NAME','PAYMENT_TYP
 { headerName: labelArray['$DISCOUNT$'], field: 'discount', hide: false, headerTooltip: '', width: 150, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$PAID$'], field: 'paid', hide: false, headerTooltip: '', width: 150, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
 { headerName: labelArray['$DUE$'], field: 'due', hide: false, headerTooltip: '', width: 150, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
-{ headerName: labelArray['$FINE$'], field: 'fne', hide: true, headerTooltip: '', width: 150, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
-{ headerName: labelArray['$VIEWPAY$'], field: 'edit', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateAction'}
+{ headerName: labelArray['$FINE$'], field: 'fne', hide: true, headerTooltip: '', width: 150, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true}
  ];
- var Payments_Export = ['lName','yrId','acdYear','feeAmt','paid','due','fne','edit'];
-var Payments_ExportCaption = ['LAST_NAME','ACADEMIC_YEAR','ACADEMIC_YEAR','TOTAL','PAID','DUE','FINE','VIEWPAY'];
+ var Payments_Export = ['edit','lName','yrId','acdYear','feeAmt','paid','due','fne'];
+var Payments_ExportCaption = ['VIEWPAY','LAST_NAME','ACADEMIC_YEAR','ACADEMIC_YEAR','TOTAL','PAID','DUE','FINE'];
 
  gridViewSettings['$Payments$'] =Payments;
  gridViewSettings['$Payments_Export$'] =Payments_Export;
  gridViewSettings['$Payments_ExportCaption$'] =Payments_ExportCaption;
 
  var StudentFeePay = [
-{ headerName: labelArray['$STU_CODE$'], field: 'fName', hide: true, headerTooltip: '', width: 150, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$STU_CODE$'], field: 'sCode', hide: true, headerTooltip: '', width: 150, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$FEE_NAME$'], field: 'fId', hide: true, headerTooltip: '', width: 150, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
-{ headerName: labelArray['$FEE_NAME$'], field: 'fType', hide: false, headerTooltip: '', width: 150, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
+{ headerName: labelArray['$FEE_NAME$'], field: 'fName', hide: false, headerTooltip: '', width: 150, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true },
 { headerName: labelArray['$FEE_AMOUNT$'], field: 'fAmnt', hide: false, headerTooltip: '', width: 150, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
 { headerName: labelArray['$DUE$'], field: 'dueAmnt', hide: false, headerTooltip: '', width: 150, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
 { headerName: labelArray['$DISCOUNT$'], field: 'dis', hide: false, headerTooltip: '', width: 150, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false, cellRenderer: 'CreateInput'},
 { headerName: labelArray['$FINE$'], field: 'fine', hide: false, headerTooltip: '', width: 150, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateInput'},
 { headerName: labelArray['$PAID$'], field: 'paidAmnt', hide: false, headerTooltip: '', width: 150, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateInput'}
  ];
- var StudentFeePay_Export = ['fType','fAmnt','dueAmnt','fine','paidAmnt'];
+ var StudentFeePay_Export = ['fName','fAmnt','dueAmnt','fine','paidAmnt'];
 var StudentFeePay_ExportCaption = ['FEE_NAME','FEE_AMOUNT','DUE','FINE','PAID'];
 
  gridViewSettings['$StudentFeePay$'] =StudentFeePay;
