@@ -151,5 +151,82 @@ namespace ERP.Models.Bal.Accounts
                 return result;
             }
         }
+
+        public ResultEntity GetPaymentDeatils(GetPaymentEntity paymentEntity)
+        {
+            ResultEntity result = new ResultEntity();
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            try
+            {
+                //  UserEntity objUserEntity = UserEntity.GetInstance();
+                SqlParameter[] sqlParameter = new SqlParameter[9];
+                sqlParameter[0] = new SqlParameter("@STU_CODE", paymentEntity.stuCode);
+                sqlParameter[1] = new SqlParameter("@ACADEMIC_YEAR", paymentEntity.academicYear);
+                sqlParameter[2] = new SqlParameter("@COURSE", paymentEntity.courseId);
+                sqlParameter[3] = new SqlParameter("@CUSTOMER_ID", paymentEntity.customerId);
+                sqlParameter[4] = new SqlParameter("@REPORT_ID", Convert.ToInt32(paymentEntity.reportId));
+
+
+                sqlParameter[5] = new SqlParameter("@RECIEPT_NO", SqlDbType.Char);
+                sqlParameter[5].Direction = ParameterDirection.Output;
+                sqlParameter[5].Size = 200;
+                sqlParameter[6] = new SqlParameter("@PAYMENT_TYPE", SqlDbType.NVarChar);
+                sqlParameter[6].Direction = ParameterDirection.Output;
+                sqlParameter[6].Size = 2;
+                sqlParameter[7] = new SqlParameter("@REMARKS", SqlDbType.NVarChar);
+                sqlParameter[7].Direction = ParameterDirection.Output;
+                sqlParameter[7].Size = 500;
+                sqlParameter[8] = new SqlParameter("@PAYMENT_DATE", SqlDbType.NVarChar);
+                sqlParameter[8].Direction = ParameterDirection.Output;
+                sqlParameter[8].Size = 500;
+
+
+
+                DataSet ds = new DataSet();
+                ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_GET_STUDENT_FEE_PAY_LIST", sqlParameter);
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        result.addParams = CommonFunc.DtToJSON(ds.Tables[0]);
+                    }
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Excep.WriteException(ex);
+                return result;
+            }
+        }
+
+        public ResultEntity SavePaymentRecords(string records)
+        {
+            ResultEntity result = new ResultEntity();
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            try
+            {
+                //  UserEntity objUserEntity = UserEntity.GetInstance();
+                SqlParameter[] sqlParameter = new SqlParameter[5];
+                sqlParameter[0] = new SqlParameter("@CUSTOMER_ID", objUserEntity.customerId);
+                sqlParameter[1] = new SqlParameter("@USER_ID", objUserEntity.userId);
+                sqlParameter[2] = new SqlParameter("@JSON_DATA", records);
+                sqlParameter[3] = new SqlParameter("@FLAG", SqlDbType.Char);
+                sqlParameter[3].Direction = ParameterDirection.Output;
+                sqlParameter[3].Size = 1;
+                sqlParameter[4] = new SqlParameter("@MSG", SqlDbType.NVarChar);
+                sqlParameter[4].Direction = ParameterDirection.Output;
+                sqlParameter[4].Size = 500;
+                SqlHelper.ExecuteScalar(sqlConn, CommandType.StoredProcedure, "SP_MANAGE_FEE_DETAILS", sqlParameter);
+                result.flag = sqlParameter[3].Value.ToString();
+                result.msg = sqlParameter[4].Value.ToString();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Excep.WriteException(ex);
+                return result;
+            }
+        }
     }
 }
