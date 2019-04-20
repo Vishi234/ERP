@@ -748,7 +748,7 @@ ag-grid, ag-grid-angular, ag-grid-ng2, ag-grid-polymer, ag-grid-aurelia {
     display: -ms-flexbox;
     display: flex;
     position: relative;
-    top:-31px!important;
+    top: -31px !important;
 }
 
 .ag-layout-print .ag-body-horizontal-scroll {
@@ -812,7 +812,7 @@ ag-grid, ag-grid-angular, ag-grid-ng2, ag-grid-polymer, ag-grid-aurelia {
     height: 100%;
     position: absolute;
     vertical-align: bottom;
-        border-right: 1px solid #ddd;
+    border-right: 1px solid #ddd;
 }
 
 .ag-header-group-cell-label {
@@ -2501,4 +2501,13 @@ ag-grid, ag-grid-angular, ag-grid-ng2, ag-grid-polymer, ag-grid-aurelia {
 
 .ag-body .ag-pinned-left-cols-viewport, .ag-body .ag-body-viewport, .ag-body .ag-pinned-right-cols-viewport {
     -webkit-overflow-scrolling: touch;
+}
+
+.ag-row .btn {
+    height: auto!important;
+    margin-bottom: 4px!important;
+    margin-top: 0px!important;
+    font-size: 12px!important;
+    padding: 5px 15px!important;
+    border-radius: 4px!important;
 }

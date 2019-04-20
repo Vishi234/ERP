@@ -30,7 +30,6 @@ function CreateAction(params)
 
 function Payment($obj)
 {
-   // debugger;
     var rowData = $obj;
     var timestamp = new Date().getTime();
     $("input[name=recieptNo]").val(timestamp);
