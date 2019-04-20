@@ -10069,3 +10069,19 @@ Exception :System.IndexOutOfRangeException: There is no row at position 0.
 Time :19-Apr-2019 14:21:50
 
 ----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: There is no row at position 0.
+   at System.Data.RBTree`1.GetNodeByIndex(Int32 userIndex)
+   at System.Data.DataRowCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Login.CommonLogin.CheckLogin(String email, String password) in D:\Project\Github ERP\ERP\Final\ERP\ERP\Models\Bal\Login\Login.cs:line 72
+
+Time :19-Apr-2019 16:33:44
+
+----------------------------------------------------------------------------------------------------------------------
+Exception :System.IndexOutOfRangeException: There is no row at position 0.
+   at System.Data.RBTree`1.GetNodeByIndex(Int32 userIndex)
+   at System.Data.DataRowCollection.get_Item(Int32 index)
+   at ERP.Models.Bal.Login.CommonLogin.CheckLogin(String email, String password) in D:\Project\Github ERP\ERP\Final\ERP\ERP\Models\Bal\Login\Login.cs:line 72
+
+Time :19-Apr-2019 19:25:11
+
+----------------------------------------------------------------------------------------------------------------------
