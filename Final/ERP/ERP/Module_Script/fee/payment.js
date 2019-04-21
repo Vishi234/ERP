@@ -5,7 +5,7 @@ var gridOptions = null;
 grdArray = GetReportConfiguration("FeeManagement");
 var rowData = JSON.parse(content.addParams);
 var columnDefs = grdArray["$Payments$"];
-for(var i = 0; i < columnDefs.length; i++) {
+for (var i = 0; i < columnDefs.length; i++) {
     if (columnDefs[i].cellRenderer) {
         if (columnDefs[i].cellRenderer == "CreateAction") {
             columnDefs[i].cellRenderer = this.CreateAction;
@@ -18,55 +18,42 @@ new agGrid.Grid(gridDiv, gridOptions);
 gridOptions.api.setRowData(((rowData == null) ? null : rowData));
 gridOptions.api.sizeColumnsToFit();
 
-function CreateAction(params)
-{
+function CreateAction(params) {
     var html = "";
     var data = JSON.stringify(params.data);
-    html = "<span> <button type='button' class='btn btn-primary cstanchor' style='height: 26px;margin-bottom: 4px;margin-top: 4px;' onclick='Payment(" + data + ");' >Pay</button>   | <button type='button' style='height: 26px;margin-bottom: 4px;margin-top: 4px;' class='btn btn-success cstanchor' onclick='ViewPayment();' >View</button></span>";
+    html = "<span> <button type='button' id='payDtl' class='btn btn-primary cstanchor' style='height: 26px;margin-bottom: 4px;margin-top: 4px;' onclick='Payment(" + data + ");' >Pay</button>   | <button type='button' style='height: 26px;margin-bottom: 4px;margin-top: 4px;' class='btn btn-success cstanchor' onclick='ViewPayment();' >View</button></span>";
     domElement = document.createElement("div");
     domElement.innerHTML = html;
     return domElement;
 }
 
-function Payment($obj)
-{
-   // debugger;
+function Payment($obj) {
     var rowData = $obj;
     var timestamp = new Date().getTime();
     $("input[name=recieptNo]").val(timestamp);
     $("input[name=stuName]").val(rowData.fName + " " + rowData.lName);
     $("input[name=stuCode]").val(rowData.stuCode);
     $("input[name=stuCourse]").val(rowData.crNm);
-
-
     obj =
         {
-        stuCode: rowData.stuCode,
-        academicYear: rowData.yrId,
-        courseId: rowData.crsId,
-        customerId: $("#hfCustomerId").val(),
-        reportId: 13
-    }
+            stuCode: rowData.stuCode,
+            academicYear: rowData.yrId,
+            courseId: rowData.crsId,
+            customerId: $("#hfCustomerId").val(),
+            reportId: 13
+        }
 
     $.ajax({
         type: "POST",
         url: '/Fee/GetPaymentDeatils',
         data: obj,
         async: false,
-        beforeSend: function () {
-            btnloading("SaveDetails", 'show');
-        },
-        success: function (data)
-        {
-            //btnloading("SaveDetails", 'hide');
-            //CallToast(data.msg, data.flag);
-            //$("#FeeDetail").submit();
+        success: function (data) {
+            $("#payDtlGrid").empty();
             grdArray = GetReportConfiguration("FeeManagement");
             var rowData = JSON.parse(data.addParams);
-            debugger;
             var discount = 0; var dueAmount = 0; var feeAmount = 0; var fineAmount = 0; var paidAmount = 0;
-            $(rowData).each(function (i, data)
-            {
+            $(rowData).each(function (i, data) {
                 discount += parseInt(data.dis);
                 dueAmount += parseInt(data.dueAmnt);
                 feeAmount += parseInt(data.fAmnt);
@@ -75,9 +62,6 @@ function Payment($obj)
 
             });
             rowData.push({ "dis": discount, "dueAmnt": dueAmount, "fAmnt": feeAmount, "fId": "1", "fName": "Total", "fine": fineAmount, "paidAmnt": paidAmount, "sCode": "S101" });
-
-          
-            debugger;
             var columnDefs = grdArray["$StudentFeePay$"];
             for (var i = 0; i < columnDefs.length; i++) {
                 if (columnDefs[i].cellRenderer) {
@@ -86,29 +70,25 @@ function Payment($obj)
                     }
                 }
             }
+            
             gridOptions = GridInitializer(columnDefs);
             var gridDiv = document.querySelector('#payDtlGrid');
             new agGrid.Grid(gridDiv, gridOptions);
             gridOptions.api.setRowData(((rowData == null) ? null : rowData));
             gridOptions.api.sizeColumnsToFit();
 
-            $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child").css({ background: "gainsboro", "font-weight": "800"  });
+            $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child").css({ background: "gainsboro", "font-weight": "800" });
 
         }.bind(this),
         error: function (e) {
-            btnloading("SaveDetails", 'hide');
             alert('Error! Please try again');
         }
     });
-   
     $('#feePay').modal("show");
-
-
-   
 }
-debugger;
+
 $('.numeric11').keypress(function (event) {
-    debugger;
+
     var keycode = event.which;
     if (!(event.shiftKey == false && (keycode == 46 || keycode == 8 || keycode == 37 || keycode == 39 || (keycode >= 48 && keycode <= 57)))) {
         event.preventDefault();
@@ -123,62 +103,57 @@ function numbersonly(e) {
     }
 }
 
-function CreateInput(params)
-{
-        var html = "";
-        var domElement = "";
-        var input = document.createElement("input");
-        input.className = "form-control";
-        input.style = "height: 27px;margin-top: 3px;border-radius: 4px;width: 60%;";
-        input.value = params.data[params.colDef.field];
-       input.classList.add("numeric11");
-    
-    input.onkeypress = function () { return numbersonly(event); };
+function CreateInput(params) {
+    var html = "";
+    var domElement = "";
+    var input = document.createElement("input");
+    input.className = "form-control";
+    input.style = "height: 27px;margin-top: 3px;border-radius: 4px;width: 60%;";
+    input.value = 0;
+    if (params.data["dueAmnt"] == "0") {
+        input.setAttribute("disabled", "disabled");
+    }
+    else {
+        input.removeAttribute("disabled");
+    }
+    input.classList.add("numeric11");
 
-        domElement = document.createElement("div");
-        domElement.appendChild(input);
-        input.addEventListener("blur", function (evt)
-        {         
-        input.addEventListener("keyup", function (evt)
-        {
-            debugger;
-
-            params.data[params.colDef.field] = evt.target.value;
-            if (params.colDef.field == "dis") {
-                var totalDiscount = $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child div:eq(2) input").val();
-                var feeDis = "";
-                if (evt.target.value != "") feeDis = parseInt(totalDiscount) + parseInt(evt.target.value);
-                else feeDis = totalDiscount;
-                $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child div:eq(2) input").val(feeDis);
-            }
-            else if (params.colDef.field == "fine")
-            {
-                var totalDiscount = $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child div:eq(3) input").val();
-                var feeDis = "";
-                if (evt.target.value != "") feeDis = parseInt(totalDiscount) + parseInt(evt.target.value);
-                else feeDis = totalDiscount;
-                $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child div:eq(3) input").val(feeDis);
-            }
-            else if (params.colDef.field == "paidAmnt")
-            {
-                var totalDiscount = $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child div:eq(5) input").val();
-                var feeDis = "";
-                if (evt.target.value != "") feeDis = parseInt(totalDiscount) + parseInt(evt.target.value);
-                else feeDis = totalDiscount;
-                $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child div:eq(5) input").val(feeDis);
-            }
-
-        });
-        return domElement;
-
+    input.onkeypress = function () {
+        return numbersonly(event);
+    };
+    domElement = document.createElement("div");
+    domElement.appendChild(input);
+    input.addEventListener("blur", function (evt) {
+    });
+    input.addEventListener("keyup", function (evt) {
+        params.data[params.colDef.field] = evt.target.value;
+        if (params.colDef.field == "dis") {
+            var totalDiscount = $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child div:eq(2) input").val();
+            var feeDis = "";
+            if (evt.target.value != "") feeDis = parseInt(totalDiscount) + parseInt(evt.target.value);
+            else feeDis = totalDiscount;
+            $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child div:eq(2) input").val(feeDis);
+        }
+        else if (params.colDef.field == "fine") {
+            var totalDiscount = $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child div:eq(3) input").val();
+            var feeDis = "";
+            if (evt.target.value != "") feeDis = parseInt(totalDiscount) + parseInt(evt.target.value);
+            else feeDis = totalDiscount;
+            $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child div:eq(3) input").val(feeDis);
+        }
+        else if (params.colDef.field == "paidAmnt") {
+            var totalDiscount = $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child div:eq(5) input").val();
+            var feeDis = "";
+            if (evt.target.value != "") feeDis = parseInt(totalDiscount) + parseInt(evt.target.value);
+            else feeDis = totalDiscount;
+            $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child div:eq(5) input").val(feeDis);
+        }
+    });
+    return domElement;
 }
-
-function SavePaymentDetails(evt)
-{
-    debugger;
+function SavePaymentDetails(evt) {
     let rowData = [];
     gridOptions.api.forEachNode(node => rowData.push(node.data));
-
     var obj = {
         record: JSON.stringify(rowData),
 
@@ -188,8 +163,7 @@ function SavePaymentDetails(evt)
         paymentDate: $("input[name=paymentDate]").val()
 
     }
-
-    btnloading("SaveDetails", 'show');
+    btnloading("FeePayment", 'show');
     setTimeout(function () {
         $.ajax({
             type: "POST",
@@ -197,12 +171,12 @@ function SavePaymentDetails(evt)
             data: obj,
             async: false,
             beforeSend: function () {
-                btnloading("SaveDetails", 'show');
+                btnloading("FeePayment", 'show');
             },
             success: function (data) {
-                btnloading("SaveDetails", 'hide');
+                btnloading("FeePayment", 'hide');
                 CallToast(data.msg, data.flag);
-                $("#FeeDetail").submit();
+                $("#payDtl").trigger("click");
             }.bind(this),
             error: function (e) {
                 btnloading("SaveDetails", 'hide');
@@ -211,6 +185,6 @@ function SavePaymentDetails(evt)
         });
     }, 500);
     return false;
-   
+
 }
 
