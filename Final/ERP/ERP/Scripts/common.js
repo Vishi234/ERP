@@ -22,7 +22,9 @@ function ValidateFields(evt) {
                         data.nextElementSibling.textContent ="Length should be  " + data.max + " digits.";
                         boolFlag = true;
                         //} else {
-                    } else if (!validateEmail(data.value) && data.hasAttribute('emailCheck')) {
+                    } else if (data.hasAttribute('emailCheck')) {
+                        validateEmail(data.value);
+
                         data.classList.add('input-validation-error'); 
                         data.nextElementSibling.classList.add('field-validation-error');
                         data.nextElementSibling.textContent = "Please enter valid email address"; 
@@ -60,6 +62,8 @@ function ValidateFields(evt) {
     });
     if (boolFlag) { return false; } else { return true; }
 }
+
+
 
 $('#isGridNumeric').keypress(function (event) {
     if (event.which != 8 && isNaN(String.fromCharCode(event.which))) {

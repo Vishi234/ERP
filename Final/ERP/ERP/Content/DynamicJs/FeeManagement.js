@@ -38,7 +38,7 @@ var FeeMapping_ExportCaption = ['ACADEMIC_YEAR','COURSE','FEE_NAME','PAYMENT_TYP
  gridViewSettings['$FeeMapping_ExportCaption$'] =FeeMapping_ExportCaption;
 
  var Payments = [
-{ headerName: labelArray['$VIEWPAY$'], field: 'edit', hide: false, headerTooltip: '', width: 215, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateAction'},
+{ headerName: labelArray['$VIEWPAY$'], field: 'edit', hide: false, headerTooltip: '', width: 220, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateAction'},
 { headerName: labelArray['$STU_CODE$'], field: 'stuCode', hide: false, headerTooltip: '', width: 150, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$FIRST_NAME$'], field: 'fName', hide: false, headerTooltip: '', width: 150, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$LAST_NAME$'], field: 'lName', hide: false, headerTooltip: '', width: 150, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
@@ -63,7 +63,7 @@ var Payments_ExportCaption = ['VIEWPAY','LAST_NAME','ACADEMIC_YEAR','ACADEMIC_YE
  var StudentFeePay = [
 { headerName: labelArray['$STU_CODE$'], field: 'sCode', hide: true, headerTooltip: '', width: 150, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$FEE_NAME$'], field: 'fId', hide: true, headerTooltip: '', width: 150, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
-{ headerName: labelArray['$FEE_NAME$'], field: 'fName', hide: false, headerTooltip: '', width: 150, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true },
+{ headerName: labelArray['$FEE_NAME$'], field: 'fName', hide: false, headerTooltip: '', width: 150, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
 { headerName: labelArray['$FEE_AMOUNT$'], field: 'fAmnt', hide: false, headerTooltip: '', width: 150, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
 { headerName: labelArray['$DUE$'], field: 'dueAmnt', hide: false, headerTooltip: '', width: 150, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
 { headerName: labelArray['$DISCOUNT$'], field: 'dis', hide: false, headerTooltip: '', width: 150, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false, cellRenderer: 'CreateInput'},
