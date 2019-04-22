@@ -110,43 +110,54 @@ function CreateInput(params) {
     input.className = "form-control";
     input.style = "height: 27px;margin-top: 3px;border-radius: 4px;width: 60%;";
     input.value = 0;
-    if (params.data["dueAmnt"] == "0") {
+    if (params.data["dueAmnt"] == "0")
+    {
         input.setAttribute("disabled", "disabled");
     }
-    else {
+    else
+    {
         input.removeAttribute("disabled");
     }
     input.classList.add("numeric11");
+
+    if (params.colDef.field == "dis") { input.classList.add("calculateDiscount"); }
+    else if (params.colDef.field == "fine") { input.classList.add("calculateFine"); }
+    else { input.classList.add("calculateAmnt"); }
 
     input.onkeypress = function () {
         return numbersonly(event);
     };
     domElement = document.createElement("div");
     domElement.appendChild(input);
-    input.addEventListener("blur", function (evt) {
-    });
-    input.addEventListener("keyup", function (evt) {
+    var keyVal = 0;
+   
+    input.addEventListener("blur", function (evt)
+    {
         params.data[params.colDef.field] = evt.target.value;
-        if (params.colDef.field == "dis") {
-            var totalDiscount = $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child div:eq(2) input").val();
-            var feeDis = "";
-            if (evt.target.value != "") feeDis = parseInt(totalDiscount) + parseInt(evt.target.value);
-            else feeDis = totalDiscount;
-            $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child div:eq(2) input").val(feeDis);
+        if (params.colDef.field == "dis")
+        {
+            var totolVal = 0; var lastIndex = $(".calculateDiscount").length;
+            $(".calculateDiscount").each(function (i,data)
+            {             
+                if (i != lastIndex - 1) { if ($(this).val() != "") totolVal += parseInt($(this).val()); }        
+            });
+            $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child div:eq(2) input").val(totolVal);
         }
-        else if (params.colDef.field == "fine") {
-            var totalDiscount = $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child div:eq(3) input").val();
-            var feeDis = "";
-            if (evt.target.value != "") feeDis = parseInt(totalDiscount) + parseInt(evt.target.value);
-            else feeDis = totalDiscount;
-            $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child div:eq(3) input").val(feeDis);
+        else if (params.colDef.field == "fine")
+        {
+            var totolVal = 0; var lastIndex = $(".calculateFine").length;
+            $(".calculateFine").each(function (i, data) {
+                if (i != lastIndex - 1) { if ($(this).val() != "") totolVal += parseInt($(this).val()); }
+            });
+            $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child div:eq(3) input").val(totolVal);   
         }
         else if (params.colDef.field == "paidAmnt") {
-            var totalDiscount = $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child div:eq(5) input").val();
-            var feeDis = "";
-            if (evt.target.value != "") feeDis = parseInt(totalDiscount) + parseInt(evt.target.value);
-            else feeDis = totalDiscount;
-            $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child div:eq(5) input").val(feeDis);
+           // var totalDiscount = $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child div:eq(5) input").val();
+            var totolVal = 0; var lastIndex = $(".calculateAmnt").length;
+            $(".calculateAmnt").each(function (i, data) {
+                if (i != lastIndex - 1) { if ($(this).val() != "") totolVal += parseInt($(this).val()); }
+            });
+            $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child div:eq(5) input").val(totolVal);
         }
     });
     return domElement;
