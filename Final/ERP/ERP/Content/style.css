@@ -1272,3 +1272,8 @@ txtarea label {
         .table-body table > tbody > tr:nth-child(1) {
             background-color: #eee !important;
         }
+
+            .table-body table > tbody > tr:nth-child(1) th {
+                padding-bottom: 0px;
+                padding-top: 7px;
+            }
