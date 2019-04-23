@@ -21,12 +21,32 @@ gridOptions.api.sizeColumnsToFit();
 function CreateAction(params) {
     var html = "";
     var data = JSON.stringify(params.data);
-    html = "<span> <button type='button' id='payDtl' class='btn btn-primary cstanchor' style='height: 26px;margin-bottom: 4px;margin-top: 4px;' onclick='Payment(" + data + ");' >Pay</button>   | <button type='button' style='height: 26px;margin-bottom: 4px;margin-top: 4px;' class='btn btn-success cstanchor' onclick='ViewPayment();' >View</button></span>";
+    html = "<span> <button type='button' id='payDtl' class='btn btn-primary cstanchor' style='height: 26px;margin-bottom: 4px;margin-top: 4px;' onclick='Payment(" + data + ");' >Pay</button>   | <button type='button' style='height: 26px;margin-bottom: 4px;margin-top: 4px;' class='btn btn-success cstanchor' onclick='ViewPayment(" + data + ");'>View</button></span>";
     domElement = document.createElement("div");
     domElement.innerHTML = html;
     return domElement;
 }
-
+function ViewPayment($obj)
+{
+    debugger;
+    var rowData = $obj;
+    var timestamp = new Date().getTime();
+    //$("input[name=recieptNo]").val(timestamp);
+    //$("input[name=stuName]").val(rowData.fName + " " + rowData.lName);
+    //$("input[name=stuCode]").val(rowData.stuCode);
+    //$("input[name=stuCourse]").val(rowData.crNm);
+    obj =
+        {
+            stuCode: rowData.stuCode,
+            academicYear: rowData.yrId,
+            courseId: rowData.crsId,
+            customerId: $("#hfCustomerId").val(),
+            reportId: 13
+        }
+    data = GetPaymentList(obj);
+    console.log(data);
+    $('#viewDue').modal("show");
+}
 function Payment($obj) {
     var rowData = $obj;
     var timestamp = new Date().getTime();
@@ -42,51 +62,55 @@ function Payment($obj) {
             customerId: $("#hfCustomerId").val(),
             reportId: 13
         }
+    data = GetPaymentList(obj);
+    $("#payDtlGrid").empty();
+    grdArray = GetReportConfiguration("FeeManagement");
+    var rowData = JSON.parse(data.addParams);
+    var discount = 0; var dueAmount = 0; var feeAmount = 0; var fineAmount = 0; var paidAmount = 0;
+    $(rowData).each(function (i, data) {
+        discount += parseInt(data.dis);
+        dueAmount += parseInt(data.dueAmnt);
+        feeAmount += parseInt(data.fAmnt);
+        fineAmount += parseInt(data.fine);
+        paidAmount += parseInt(data.paidAmnt)
 
+    });
+    rowData.push({ "dis": discount, "dueAmnt": dueAmount, "fAmnt": feeAmount, "fId": "1", "fName": "Total", "fine": fineAmount, "paidAmnt": paidAmount, "sCode": "S101" });
+    var columnDefs = grdArray["$StudentFeePay$"];
+    for (var i = 0; i < columnDefs.length; i++) {
+        if (columnDefs[i].cellRenderer) {
+            if (columnDefs[i].cellRenderer == "CreateInput") {
+                columnDefs[i].cellRenderer = this.CreateInput;
+            }
+        }
+    }
+
+    gridOptions = GridInitializer(columnDefs);
+    var gridDiv = document.querySelector('#payDtlGrid');
+    new agGrid.Grid(gridDiv, gridOptions);
+    gridOptions.api.setRowData(((rowData == null) ? null : rowData));
+    gridOptions.api.sizeColumnsToFit();
+
+    $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child").css({ background: "gainsboro", "font-weight": "800" });
+    $('#feePay').modal("show");
+}
+function GetPaymentList()
+{
+    var MyData;
     $.ajax({
         type: "POST",
         url: '/Fee/GetPaymentDeatils',
         data: obj,
         async: false,
         success: function (data) {
-            $("#payDtlGrid").empty();
-            grdArray = GetReportConfiguration("FeeManagement");
-            var rowData = JSON.parse(data.addParams);
-            var discount = 0; var dueAmount = 0; var feeAmount = 0; var fineAmount = 0; var paidAmount = 0;
-            $(rowData).each(function (i, data) {
-                discount += parseInt(data.dis);
-                dueAmount += parseInt(data.dueAmnt);
-                feeAmount += parseInt(data.fAmnt);
-                fineAmount += parseInt(data.fine);
-                paidAmount += parseInt(data.paidAmnt)
-
-            });
-            rowData.push({ "dis": discount, "dueAmnt": dueAmount, "fAmnt": feeAmount, "fId": "1", "fName": "Total", "fine": fineAmount, "paidAmnt": paidAmount, "sCode": "S101" });
-            var columnDefs = grdArray["$StudentFeePay$"];
-            for (var i = 0; i < columnDefs.length; i++) {
-                if (columnDefs[i].cellRenderer) {
-                    if (columnDefs[i].cellRenderer == "CreateInput") {
-                        columnDefs[i].cellRenderer = this.CreateInput;
-                    }
-                }
-            }
-            
-            gridOptions = GridInitializer(columnDefs);
-            var gridDiv = document.querySelector('#payDtlGrid');
-            new agGrid.Grid(gridDiv, gridOptions);
-            gridOptions.api.setRowData(((rowData == null) ? null : rowData));
-            gridOptions.api.sizeColumnsToFit();
-
-            $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child").css({ background: "gainsboro", "font-weight": "800" });
-
+            MyData = data;
         }.bind(this),
         error: function (e) {
             alert('Error! Please try again');
         }
     });
-    $('#feePay').modal("show");
+    return MyData;
 }
-
 $('.numeric11').keypress(function (event) {
 
     var keycode = event.which;

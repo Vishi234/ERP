@@ -1236,3 +1236,39 @@ txtarea label {
 .grid.right {
     text-align: right;
 }
+
+.vdtl > li {
+    display: inline-block;
+    font-size: 13px;
+    color: #333;
+    font-family: inherit;
+}
+
+    .vdtl > li > label {
+        font-weight: 500;
+    }
+
+    .vdtl > li:last-child {
+        float: right;
+    }
+
+.table-body table {
+    background-color: #ffffff;
+    font-family: inherit;
+    font-size: 13px;
+    border: 1px solid #333;
+}
+
+    .table-body table > tbody > tr > td, th {
+        border: 1px solid #333;
+        font-family: inherit;
+    }
+
+    .table-body table > tbody > tr {
+        color: #333;
+        height: 30px;
+    }
+
+        .table-body table > tbody > tr:nth-child(1) {
+            background-color: #eee !important;
+        }
