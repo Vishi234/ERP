@@ -125,14 +125,18 @@ function CreateInput(params) {
     domElement.appendChild(input);
     input.addEventListener("blur", function (evt) {
     });
+
     input.addEventListener("keyup", function (evt) {
         params.data[params.colDef.field] = evt.target.value;
         if (params.colDef.field == "dis") {
-            var totalDiscount = $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child div:eq(2) input").val();
-            var feeDis = "";
-            if (evt.target.value != "") feeDis = parseInt(totalDiscount) + parseInt(evt.target.value);
-            else feeDis = totalDiscount;
-            $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child div:eq(2) input").val(feeDis);
+           // if (event.keyCode == 8 || event.keyCode == 46) {
+
+                var totalDiscount = $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child div:eq(2) input").val();
+                var feeDis = "";
+                if (evt.target.value != "") feeDis = parseInt(totalDiscount) + parseInt(evt.target.value);
+                else feeDis = totalDiscount;
+                $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child div:eq(2) input").val(feeDis);
+           // }
         }
         else if (params.colDef.field == "fine") {
             var totalDiscount = $("#payDtlGrid .ag-center-cols-container").find("div[role='row']:last-child div:eq(3) input").val();

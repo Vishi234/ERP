@@ -37,19 +37,27 @@ namespace ERP.Controllers
         public ActionResult UploadImages(HttpPostedFile postedFile)
         {
             //HttpContext context
-         
-
-
             if (postedFile != null)
             {
                 string pic = System.IO.Path.GetFileName(postedFile.FileName);
                 string path = System.IO.Path.Combine(
-                                       Server.MapPath("~/Content/images/"), pic);
+                Server.MapPath("~/Content/images/"), pic);
                 // file is uploaded
                 postedFile.SaveAs(path);
             }
-
             return View();
+        }
+
+        [HttpGet]
+        public JsonResult GetStudentFilter(string stuCode, string stuFirst)
+        {
+            StudentEntity studentEntity = new StudentEntity();
+            studentEntity.flag = 'G';
+            studentEntity.reportId = "9";
+            studentEntity.stuCode = stuCode;
+            studentEntity.stuFirst = stuFirst;
+            TempData["StudentData"] = new Student().GetStudent(studentEntity);
+            return Json(TempData["StudentData"], JsonRequestBehavior.AllowGet);
         }
     }
 
