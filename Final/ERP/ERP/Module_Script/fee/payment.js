@@ -1,7 +1,7 @@
 ﻿var grdArray;
 var MyData = null;
 var gridOptions = null;
-
+var testData = null;
 grdArray = GetReportConfiguration("FeeManagement");
 var rowData = JSON.parse(content.addParams);
 var columnDefs = grdArray["$Payments$"];
@@ -51,7 +51,7 @@ function Payment($obj) {
         success: function (data) {
             $("#payDtlGrid").empty();
             grdArray = GetReportConfiguration("FeeManagement");
-            var rowData = JSON.parse(data.addParams);
+            var rowData = JSON.parse(data.addParams); testData = rowData;
             var discount = 0; var dueAmount = 0; var feeAmount = 0; var fineAmount = 0; var paidAmount = 0;
             $(rowData).each(function (i, data) {
                 discount += parseInt(data.dis);
@@ -130,8 +130,8 @@ function CreateInput(params) {
     domElement = document.createElement("div");
     domElement.appendChild(input);
     var keyVal = 0;
-   
-    input.addEventListener("blur", function (evt)
+
+    input.addEventListener("keyup", function (evt)
     {
         params.data[params.colDef.field] = evt.target.value;
         if (params.colDef.field == "dis")
@@ -184,10 +184,16 @@ function SavePaymentDetails(evt) {
             beforeSend: function () {
                 btnloading("FeePayment", 'show');
             },
-            success: function (data) {
+            success: function (data)
+            {
+                debugger;
                 btnloading("FeePayment", 'hide');
                 CallToast(data.msg, data.flag);
                 $("#payDtl").trigger("click");
+
+                $("#invoiceContainer").append(invoiceHTML);
+
+
             }.bind(this),
             error: function (e) {
                 btnloading("SaveDetails", 'hide');
@@ -199,3 +205,19 @@ function SavePaymentDetails(evt) {
 
 }
 
+
+var dd = "";
+
+var invoiceHTML = "<div class='invoice-box' style='margin-top: 50px;background - color: white'><table cellpadding='0' cellspacing='0'> <tr class='top'><td colspan='2'><table> <tr> <td class='title'>  <img src='https://www.sparksuite.com/images/logo.png' style='width:100%; max-width:300px;'> </td>" +
+    "<td>Invoice #: 123<br> Created: " + new Date() + "<br>Due: February 1, 2019z</td>  </tr></table></td></tr><tr class='information'> <td colspan='2'>" +
+    " <table><tr><td>Sparksuite, Inc.<br>SVJ Group <br> Sunnyville, CA 12345</td> <td> Acme Corp.<br>John Doe<br>john@example.com  </td>  </tr>" +
+    " </table></td></tr> <tr class='heading'><td>Payment Method </td><td>Check #  </td></tr><tr class='details'> <td> Check</td><td> 1000 </td></tr>" +
+    " <tr class='heading'> <td>Fee Type </td> <td>Paid Fee  </td> </tr>" +
+    $(testData).each(function (i, d) {
+        dd += "<tr class='item'><td>" + d.fName + "</td><td>" + d.paidAmnt + "</td></tr>";
+    });
+    dd += "</table> </div>";
+
+    //"< td > Website design </td> <td>$300.00</td></tr><tr class='item'>" +
+    //" <td>Hosting (3 months)</td><td> $75.00</td></tr><tr class='item last'> <td>Domain name (1 year)</td><td> $10.00 </td> </tr> <tr class='total'>" +
+    //" <td></td> <td>Total: $385.00 </td> </tr>  </table> </div>";
