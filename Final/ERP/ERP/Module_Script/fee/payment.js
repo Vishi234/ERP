@@ -56,6 +56,7 @@ function ViewPayment($obj)
 }
 function buildTable(data) {// Create Dyanamic table by JSON Data
     var table = document.createElement("table");
+    table.width="100%"
     //table.className = "table-body";
     table.style = "width:100%  cellspacing:0 cellpadding:4";
     var thead = document.createElement("thead");
@@ -91,6 +92,7 @@ function buildTable(data) {// Create Dyanamic table by JSON Data
     var td = document.createElement('td');
     td.colSpan = '3';
     td.appendChild(document.createTextNode('Total'))
+    td.align = "center";
     tr.appendChild(td);
     var td = document.createElement('td');
     td.appendChild(document.createTextNode(dueAmount))
