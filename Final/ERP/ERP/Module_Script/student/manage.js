@@ -226,12 +226,13 @@ function handleSubmit(evt)
                 },
                 success: function (data) {
                     btnloading("StudentAdmi", 'hide');
+                    CallToast(data.msg, data.flag);
                     if (data.flag == "S")
                     {
                         $('#' + evt.id).trigger("reset");
-                        $("#ddlActive").val(0);
-                        $("#ddlActive").trigger("chosen:updated");
-                        CallToast(data.msg, data.flag);
+                        //$("#ddlActive").val(0);
+                        //$("#ddlActive").trigger("chosen:updated");
+                        
                         getStudentDetails();
                         $('.close').trigger('click');
                         //MyData = JSON.parse(data.addParams);
@@ -256,6 +257,15 @@ function handleSubmit(evt)
     }
     return false;
 }
+
+//function getStudentDetails(stuCode, stuName) {
+//    debugger; 
+//    $.get("/Student/GetStudentDetails?stuCode=" + stuCode + " &stuFirst=" + stuName, function (data) {
+//        MyData = JSON.parse(data.addParams);
+//        this.setState({ rowData: MyData });
+//        this.setState({ records: MyData.length })
+//    });
+//}
 
 //reset fom elements on click of add after editing records
 $('.custom').click(function ()
@@ -382,6 +392,22 @@ function CreateActive(params) {
     domElement = document.createElement("div");
     domElement.innerHTML = html;
     return domElement;
+}
+function demo() {
+    alert(11);
+}
+function getStudentFilter(stuCode, stuFirst) {
+    debugger;
+    $.get("/Student/GetStudentFilter?stuCode=" + stuCode + " &stuFirst=" + stuFirst, function (data) {
+        debugger;
+        var rowData = JSON.parse(data.addParams);
+        gridOptions = GridInitializer(columnDefs);
+        var gridDiv = document.querySelector('#studentGrid');
+        $("#studentGrid").empty();
+        new agGrid.Grid(gridDiv, gridOptions);
+        gridOptions.api.setRowData(((rowData == null) ? null : rowData));
+       
+    });
 }
 function onExportClick() {
     exportToExcel(rowData, "StudentExport", columnDefs)

@@ -33,8 +33,11 @@ function ViewPayment($obj)
     var timestamp = new Date().getTime();
     //$("input[name=recieptNo]").val(timestamp);
     //$("input[name=stuName]").val(rowData.fName + " " + rowData.lName);
-    //$("input[name=stuCode]").val(rowData.stuCode);
-    //$("input[name=stuCourse]").val(rowData.crNm);
+    $("#payStuCode").html(rowData.stuCode);
+    $("#payStuName").html(rowData.fName + " " + rowData.lName);
+    $("#payAcadYear").html(rowData.acdYear);
+    $("#payStuCourse").html(rowData.crNm);
+    
     obj =
         {
             stuCode: rowData.stuCode,
@@ -44,8 +47,59 @@ function ViewPayment($obj)
             reportId: 13
         }
     data = GetPaymentList(obj);
-    console.log(data);
+    console.log(data.addParams);
+    var table = document.createElement("table");
+    $('#my-container').append(buildTable(JSON.parse(data.addParams)));
+    console.log(table);
+  
     $('#viewDue').modal("show");
+}
+function buildTable(data) {// Create Dyanamic table by JSON Data
+    var table = document.createElement("table");
+    table.width="100%"
+    //table.className = "table-body";
+    table.style = "width:100%  cellspacing:0 cellpadding:4";
+    var thead = document.createElement("thead");
+    var tbody = document.createElement("tbody");
+    var headRow = document.createElement("tr");
+    var dueAmount = 0;
+    ["S.No.", "Fee Name", "Amount", "Due Amount"].forEach(function (el) {
+        var th = document.createElement("th");
+        th.appendChild(document.createTextNode(el));
+        headRow.appendChild(th);
+    });
+    thead.appendChild(headRow);
+    table.appendChild(thead);
+    var tr = document.createElement("tr");
+   
+    data.forEach(function (el) {
+        dueAmount += parseInt(el["dueAmnt"]);
+        tr = document.createElement("tr");
+        tr.style = "background - color: #94b8b8;"
+        for (var o in el) {
+            var td = document.createElement("td");
+            if (o == "fId" || o == "fName" || o == "fAmnt" || o == "dueAmnt") {
+                
+                //console.log(duea);
+                td.appendChild(document.createTextNode(el[o]))
+                tr.appendChild(td);
+            } 
+         
+        }
+        tbody.appendChild(tr);
+    });
+    tr = document.createElement("tr");
+    var td = document.createElement('td');
+    td.colSpan = '3';
+    td.appendChild(document.createTextNode('Total'))
+    td.align = "center";
+    tr.appendChild(td);
+    var td = document.createElement('td');
+    td.appendChild(document.createTextNode(dueAmount))
+    tr.appendChild(td);
+    tbody.appendChild(tr);
+    table.appendChild(tbody);
+    return table;
 }
 function Payment($obj) {
     var rowData = $obj;

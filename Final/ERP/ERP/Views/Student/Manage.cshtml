@@ -91,14 +91,14 @@
                     <li>
                         <div class="text">
                             <div class="form-group">                          
-                                <input type="text" class="form-control" placeholder="Student Code" style="height: 26px;border-radius: 3px;" name="stuCodeFilter" />
+                                <input type="text" class="form-control" placeholder="Student Code" style="height: 26px;border-radius: 3px;" id="stuCode" name="stuCodeFilter" />
                             </div>
                         </div>
                     </li>
                     <li>
                         <div class="text">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Student Name" style="height: 26px;border-radius: 3px;" name="stuNameFilter" />
+                                <input type="text" class="form-control" placeholder="Student Name" style="height: 26px;border-radius: 3px;" id="stuName" name="stuNameFilter" />
                             </div>
                         </div>
                     </li>
@@ -123,8 +123,8 @@
                         </div>
                     </li>
                     
-                    <li>
-                        <button type="button" id="filterStudents" class="btn btn-info pd-x-20" onclick="getStudentDetails();"><span class="inload hide"><i class="fa fa-spinner fa-spin"></i></span> Submit</button>
+                    <li>                      
+                        <button type="submit" class="btn btn-info" onClick="getStudentFilter($('#stuCode').val(), $('#stuName').val())"><span class="inload hide"><i class="fa fa-spinner fa-spin"></i></span> Filter</button>
                     </li>
 
 
