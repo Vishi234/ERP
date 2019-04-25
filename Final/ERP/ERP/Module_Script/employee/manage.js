@@ -364,11 +364,20 @@ function getEmployeeFilter(empCode, selectedType) {
     debugger;
     $.get("/Employee/GetEmployeeFilter?empCode=" + empCode + "&empType=" + selectedType, function (data) {
         var rowData = JSON.parse(data.addParams);
-        //gridOptions.api.setRowData(gridOptions.rowData);
         gridOptions = GridInitializer(columnDefs);
+        var gridDiv = document.querySelector('#employeeGrid');
+        $("#employeeGrid").empty();
+        new agGrid.Grid(gridDiv, gridOptions);
+        gridOptions.api.setRowData(((rowData == null) ? null : rowData));
+
+
+        //var rowData = JSON.parse(data.addParams);
+        //$("#employeeGrid").empty();
+        //gridOptions.api.setRowData(gridOptions.rowData);
+        //gridOptions = GridInitializer(columnDefs);
         //var gridDiv = document.querySelector('#employeeGrid');
         //new agGrid.Grid(gridDiv, gridOptions);
-        gridOptions.api.setRowData(((rowData == null) ? null : rowData));
+        //gridOptions.api.setRowData(((rowData == null) ? null : rowData));
        // $events.refreshInfiniteCache();
     });
 }

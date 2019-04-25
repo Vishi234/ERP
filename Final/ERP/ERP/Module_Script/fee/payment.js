@@ -61,6 +61,7 @@ function buildTable(data) {// Create Dyanamic table by JSON Data
     var thead = document.createElement("thead");
     var tbody = document.createElement("tbody");
     var headRow = document.createElement("tr");
+    var dueAmount = 0;
     ["S.No.", "Fee Name", "Amount", "Due Amount"].forEach(function (el) {
         var th = document.createElement("th");
         th.appendChild(document.createTextNode(el));
@@ -68,18 +69,33 @@ function buildTable(data) {// Create Dyanamic table by JSON Data
     });
     thead.appendChild(headRow);
     table.appendChild(thead);
+    var tr = document.createElement("tr");
+   
     data.forEach(function (el) {
-        var tr = document.createElement("tr");
+        dueAmount += parseInt(el["dueAmnt"]);
+        tr = document.createElement("tr");
         tr.style = "background - color: #94b8b8;"
         for (var o in el) {
             var td = document.createElement("td");
             if (o == "fId" || o == "fName" || o == "fAmnt" || o == "dueAmnt") {
+                
+                //console.log(duea);
                 td.appendChild(document.createTextNode(el[o]))
                 tr.appendChild(td);
-            }            
+            } 
+         
         }
         tbody.appendChild(tr);
     });
+    tr = document.createElement("tr");
+    var td = document.createElement('td');
+    td.colSpan = '3';
+    td.appendChild(document.createTextNode('Total'))
+    tr.appendChild(td);
+    var td = document.createElement('td');
+    td.appendChild(document.createTextNode(dueAmount))
+    tr.appendChild(td);
+    tbody.appendChild(tr);
     table.appendChild(tbody);
     return table;
 }

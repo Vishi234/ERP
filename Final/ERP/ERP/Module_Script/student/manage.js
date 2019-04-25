@@ -401,11 +401,11 @@ function getStudentFilter(stuCode, stuFirst) {
     $.get("/Student/GetStudentFilter?stuCode=" + stuCode + " &stuFirst=" + stuFirst, function (data) {
         debugger;
         var rowData = JSON.parse(data.addParams);
-        var columnDefs = grdArray["$StudentDetails$"];
-        this.gridOptions = GridInitializer(columnDefs);
-        //new agGrid.Grid(gridDiv, gridOptions);
+        gridOptions = GridInitializer(columnDefs);
+        var gridDiv = document.querySelector('#studentGrid');
+        $("#studentGrid").empty();
+        new agGrid.Grid(gridDiv, gridOptions);
         gridOptions.api.setRowData(((rowData == null) ? null : rowData));
-
        
     });
 }
