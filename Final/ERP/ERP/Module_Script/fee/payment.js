@@ -117,6 +117,24 @@ function Payment($obj) {
             reportId: 13
         }
     data = GetPaymentList(obj);
+
+    var jsonData = JSON.parse(data.addParams)
+    var dd = "";
+    $(jsonData).each(function (i, d) {
+        debugger
+        dd += "<tr class='item'><td>" + d.fName + "</td><td>" + d.dueAmnt+"</td><td>" + d.paidAmnt + "</td></tr>";
+    });
+    var date = new Date();  //or your date here
+    var currentDate=(date.getMonth() + 1) + '-' + date.getDate() + '-' + date.getFullYear();
+
+    var invoiceHTML = "<div class='invoice-box' style='margin-top: 50px;background-color: white'><table cellpadding='0' cellspacing='0'   border='1'> <tr class='top'><th style='text-align: center;' > IMS ENGINEERING COLLEGE</th><td colspan='2'><table> <tr> <td class='title'>   </td>" +
+        "<td>Receipt No #: " + $("input[name=recieptNo]").val() + "<br> Created: " + currentDate + "<br>Due Date: February 1, 2019z</td>  </tr></table></td></tr><tr class='information'> <td colspan='3'>" +
+        " <table><tr><td>Student Name-" + $("input[name=stuName]").val() + "</td></tr><tr> <td>Student Code- " + $("input[name=stuCode]").val() + "</td> </tr><tr><td>Course Name - " + $("input[name=stuCourse]").val()+"</td></tr><tr> <td> Payment Type- "+'Cash'+"  </td>  </tr>" +
+        " </table></td></tr> <tr class='heading'><td>Payment Method </td><td>Check #  </td><td>Amount<td></tr><tr class='details'> <td> Check</td><td>2322</td><td> 1000 </td></tr>" +
+        " <tr class='heading'> <td>Fee Type </td> <td>Due Amount</td><td>Paid Fee  </td> </tr>" + dd + "<tr class='item'><td><b> Total</b></td><td>2000</td><td>0<td></tr> </table> </div>";
+    $("#invoiceContainer").append(invoiceHTML);
+
+
     $("#payDtlGrid").empty();
     grdArray = GetReportConfiguration("FeeManagement");
     var rowData = JSON.parse(data.addParams);
@@ -158,6 +176,7 @@ function GetPaymentList()
         async: false,
         success: function (data) {
             MyData = data;
+
         }.bind(this),
         error: function (e) {
             alert('Error! Please try again');
@@ -269,7 +288,7 @@ function SavePaymentDetails(evt) {
                 CallToast(data.msg, data.flag);
                 $("#payDtl").trigger("click");
 
-                $("#invoiceContainer").append(invoiceHTML);
+             
 
 
             }.bind(this),
@@ -283,18 +302,6 @@ function SavePaymentDetails(evt) {
 
 }
 
-
-var dd = "";
-
-var invoiceHTML = "<div class='invoice-box' style='margin-top: 50px;background - color: white'><table cellpadding='0' cellspacing='0'> <tr class='top'><td colspan='2'><table> <tr> <td class='title'>  <img src='https://www.sparksuite.com/images/logo.png' style='width:100%; max-width:300px;'> </td>" +
-    "<td>Invoice #: 123<br> Created: " + new Date() + "<br>Due: February 1, 2019z</td>  </tr></table></td></tr><tr class='information'> <td colspan='2'>" +
-    " <table><tr><td>Sparksuite, Inc.<br>SVJ Group <br> Sunnyville, CA 12345</td> <td> Acme Corp.<br>John Doe<br>john@example.com  </td>  </tr>" +
-    " </table></td></tr> <tr class='heading'><td>Payment Method </td><td>Check #  </td></tr><tr class='details'> <td> Check</td><td> 1000 </td></tr>" +
-    " <tr class='heading'> <td>Fee Type </td> <td>Paid Fee  </td> </tr>" +
-    $(testData).each(function (i, d) {
-        dd += "<tr class='item'><td>" + d.fName + "</td><td>" + d.paidAmnt + "</td></tr>";
-    });
-    dd += "</table> </div>";
 
     //"< td > Website design </td> <td>$300.00</td></tr><tr class='item'>" +
     //" <td>Hosting (3 months)</td><td> $75.00</td></tr><tr class='item last'> <td>Domain name (1 year)</td><td> $10.00 </td> </tr> <tr class='total'>" +
