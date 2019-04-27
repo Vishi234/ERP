@@ -151,12 +151,13 @@ $("select[name='stuState']").change(function () {
 $("select[name='stuCourse']").change(function ()
 {
   //  debugger;
+    $("#stuSemester").empty();
     var jsonData = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
     for (var i = 0; i < jsonData.length; i++) {
-      //  $("#stuSemester").empty();
         if (jsonData[i].COURSE_ID == $("select[name='stuCourse']").val())
         {
-            $("select[name='stuSemester']").append(new Option(jsonData[i].NO_OF_SEMESTER, jsonData[i].COURSE_ID, false, false));
+            $('#stuSemester').append(new Option("Select Semester", 0, false, false));
+            $("select[name='stuSemester']").append(new Option(jsonData[i].NO_OF_SEMESTER, jsonData[i].NO_OF_SEMESTER, false, false));
         }
     }
     $("select[name='stuSemester']").trigger("chosen:updated");
