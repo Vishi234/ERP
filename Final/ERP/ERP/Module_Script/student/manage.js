@@ -400,13 +400,12 @@ function getStudentFilter(stuCode, stuFirst) {
     debugger;
     $.get("/Student/GetStudentFilter?stuCode=" + stuCode + " &stuFirst=" + stuFirst, function (data) {
         debugger;
-        var rowData = JSON.parse(data.addParams);
-        gridOptions = GridInitializer(columnDefs);
-        var gridDiv = document.querySelector('#studentGrid');
-        $("#studentGrid").empty();
-        new agGrid.Grid(gridDiv, gridOptions);
-        gridOptions.api.setRowData(((rowData == null) ? null : rowData));
-       
+            var rowData = JSON.parse(data.addParams);
+            gridOptions = GridInitializer(columnDefs);
+            var gridDiv = document.querySelector('#studentGrid');
+            $("#studentGrid").empty();
+            new agGrid.Grid(gridDiv, gridOptions);
+            gridOptions.api.setRowData(((rowData == null) ? null : rowData));    
     });
 }
 function onExportClick() {
