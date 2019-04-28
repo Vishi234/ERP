@@ -26,6 +26,7 @@
       "CUSTOMER_ID": 101,
       "IS_ACTIVE": "70"
     },
+
     {
       "COURSE_ID": 3,
       "COURSE_TYPE": 73,
@@ -587,17 +588,28 @@
   "FeeName": [
     {
       "ID": 1,
-      "FEE_NAME": "Admission Fee",
+      "FEE_NAME": "Registration Fee",
       "CUSTOMER_ID": "101"
     },
     {
       "ID": 2,
+      "FEE_NAME": "Admission Fee",
+      "CUSTOMER_ID": "101"
+    },
+    {
+      "ID": 3,
+      "FEE_NAME": "Transport Fee",
+      "CUSTOMER_ID": "101"
+    },
+    {
+      "ID": 4,
       "FEE_NAME": "Hostel Fee",
       "CUSTOMER_ID": "101"
     }
   ],
   "EmpType": [],
   "JobType": [],
+
   "Role": [
     {
       "ROLE_ID": 0,
@@ -611,5 +623,50 @@
       "ROLE_ID": 10,
       "ROLE_NAME": "Super Admin"
     }
-  ]
-}
+  ],
+
+  "CourseMapping": [
+    {
+      "YEAR_ID": "2",
+      "COURSE_ID": "2",
+      "COURSE_NAME": "BBA",
+      "CUSTOMER_ID": 101
+    },
+    {
+      "YEAR_ID": "2",
+      "COURSE_ID": "3",
+      "COURSE_NAME": "BCA",
+      "CUSTOMER_ID": 101
+    },
+    
+    {
+      "YEAR_ID": "3",
+      "COURSE_ID": "3",
+      "COURSE_NAME": "BCA",
+      "CUSTOMER_ID": 101
+    },
+    {
+      "YEAR_ID": null,
+      "COURSE_ID": null,
+      "COURSE_NAME": "BSC",
+      "CUSTOMER_ID": null
+    },
+    {
+      "YEAR_ID": "3",
+      "COURSE_ID": "5",
+      "COURSE_NAME": "B-tech",
+      "CUSTOMER_ID": 101
+    },
+    {
+      "YEAR_ID": null,
+      "COURSE_ID": null,
+      "COURSE_NAME": "MCA",
+      "CUSTOMER_ID": null
+    },
+    {
+      "YEAR_ID": null,
+      "COURSE_ID": null,
+      "COURSE_NAME": null,
+      "CUSTOMER_ID": null
+    }
+  ]}

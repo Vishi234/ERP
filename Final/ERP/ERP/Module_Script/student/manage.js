@@ -53,11 +53,12 @@ function InitializeDDL() {
         $("select[name='stuCategoryFilter']").append(new Option(value.PARAM_NAME, value.PARAM_ID, false, false));
     });
     $("select[name='stuCategoryFilter']").trigger("chosen:updated");
-    $.each(courseData, function (i, value) {
-        $("select[name='stuCourseFilter']").append(new Option(value.COURSE_NAME, value.COURSE_ID, false, false));
-    });
-    $("select[name='stuCourseFilter']").trigger("chosen:updated")
 
+    courseData = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
+    $.each(courseData, function (i, value) {
+        $("select[name='stuCourse']").append(new Option(value.COURSE_NAME, value.COURSE_ID, false, false));
+    });
+    $("select[name='stuCourse']").trigger("chosen:updated")
 
     academic = ReadDropDownData("AcademicYear", $("#hfCustomerId").val(), false);
     $.each(academic, function (i, value) {
@@ -65,38 +66,11 @@ function InitializeDDL() {
     });
     $("select[name='stuAcade']").trigger("chosen:updated")
 
-    courseData = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
-    $.each(courseData, function (i, value) {
-        $("select[name='stuCourse']").append(new Option(value.COURSE_NAME, value.COURSE_ID, false, false));
-    });
-    $("select[name='stuCourse']").trigger("chosen:updated");
-
-
-    //$("select[name='stuAcade']").change(function () {
-    //     debugger;
-    //    $("#stuCourse").empty();
-    //    var jsonData = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
-    //    for (var i = 0; i < jsonData.length; i++) {
-    //        if (jsonData[i].COURSE_ID == $("select[name='stuAcade']").val()) {
-    //            $('#stuCourse').append(new Option("Select Course", 0, false, false));
-    //            $("select[name='stuSemester']").append(new Option(jsonData[i].COURSE_NAME, jsonData[i].COURSE_ID, false, false));
-    //        }
-    //    }
-    //    $("select[name='stuCourse']").trigger("chosen:updated");
-    //});
-
-
     bloodGrp = ReadDropDownData("Param", '10', true);
     $.each(bloodGrp, function (i, value) {
         $("select[name='stuBGrp']").append(new Option(value.PARAM_NAME, value.PARAM_ID, false, false));
     });
     $("select[name='stuBGrp']").trigger("chosen:updated")
-
-    //locationData = ReadDropDownData("Location", $("#hfCustomerId").val(), false);
-    //$.each(bloodGrp, function (i, value) {
-    //    $("select[name='empBGrp']").append(new Option(value.PARAM_NAME, value.PARAM_ID, false, false));
-    //});
-
 
     hadicap = ReadDropDownData("Param", '15', true);
     $.each(hadicap, function (i, value) {
@@ -127,12 +101,6 @@ function InitializeDDL() {
     });
     $("select[name='stuSex']").trigger("chosen:updated")
 
-    //status = ReadDropDownData("Param", '1', true);
-    //$.each(status, function (i, value) {
-    //    $("select[name='empAccStat']").append(new Option(value.PARAM_NAME, value.PARAM_ID, false, false));
-    //});
-    //$("select[name='empAccStat']").trigger("chosen:updated")
-
     transport = ReadDropDownData("Param", '15', true);
     $.each(transport, function (i, value) {
         $("select[name='stuTrans']").append(new Option(value.PARAM_NAME, value.PARAM_ID, false, false));
@@ -144,6 +112,11 @@ function InitializeDDL() {
         $("select[name='stuHostel']").append(new Option(value.PARAM_NAME, value.PARAM_ID, false, false));
     });
     $("select[name='stuHostel']").trigger("chosen:updated")
+
+    empSub = ReadDropDownData("Subject", $("#hfCustomerId").val(), false);
+    $.each(empSub, function (i, value) {
+        $('.lwms-available').append("<li class='lwms-selectli' data-value=" + value.SUBJECT_ID + ">" + value.SUBJECT_NAME + "</li>");
+    });
 }
 
 $("select[name='studCountry']").change(function ()
@@ -154,6 +127,22 @@ $("select[name='studCountry']").change(function ()
         });
     $("select[name='stuState']").trigger("chosen:updated");
 });
+
+$("select[name='stuAcade']").change(function ()
+{
+    $("select[name='stuCourse1']").empty(); $("select[name='stuCourse1']").append(new Option("Select Course", 0, false, false));
+    courseData = ReadDropDownData("CourseMapping", $("#hfCustomerId").val(), false);
+    $.each(courseData, function (i, value)
+    {
+        if ($("select[name='stuAcade']").val() == value.COURSE_ID)
+        $("select[name='stuCourse1']").append(new Option(value.COURSE_NAME, value.COURSE_ID, false, false));
+    });
+    $("select[name='stuCourse1']").trigger("chosen:updated");
+});
+
+
+
+
 $("select[name='stuState']").change(function () {
 
     city= ReadLocationData("Location", 3, $("select[name='stuState']").val()),
@@ -222,15 +211,24 @@ $("input[name='stuEmail']").keyup(function ()
 
 function handleSubmit(evt)
 {
+
     if (ValidateFields(evt)) {
         var myData = [];
         var obj = {};
         $("#" + evt.id + " select, input,password").each(function (i, data) {
             obj[data.name] = data.value;
         });
+        var lisData = '';
+        debugger;
+        $('.lwms-right').find('li').each(function (i, data) {
+            lisData += data.dataset.value + ',';
+        });
+        lisData = lisData.substr(0, lisData.length - 1);
+        var newKey = "stuSub";
+        obj[newKey] = lisData;
+
         myData.push(obj);
         btnloading("StudentAdmi", 'show');
-
         setTimeout(function () {
             $.ajax({
                 type: "POST",

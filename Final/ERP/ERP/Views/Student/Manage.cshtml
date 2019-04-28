@@ -1,10 +1,15 @@
 ﻿@using Newtonsoft.Json;
+
+
 <script type="text/javascript">
     document.title="Student Management";
     var content = @Html.Raw(JsonConvert.SerializeObject(TempData["StudentData"]));
     InitializeSelect();
     InitializeDate();
     InitializeSelectList();
+
+
+
 
 </script>
 <script src="~/Module_Script/student/manage.js"></script>
@@ -36,6 +41,8 @@
                             <g id="add">
                             <path d="M357,204H204v153h-51V204H0v-51h153V0h51v153h153V204z" />
 
+
+
                                     </g>
                                 </g>
                             <g></g>
@@ -64,11 +71,15 @@
                             <g>
                             <path d="M382.56,233.376C379.968,227.648,374.272,224,368,224h-64V16c0-8.832-7.168-16-16-16h-64c-8.832,0-16,7.168-16,16v208h-64 c-6.272,0-11.968,3.68-14.56,9.376c-2.624,5.728-1.6,12.416,2.528,17.152l112,128c3.04,3.488,7.424,5.472,12.032,5.472 c4.608,0,8.992-2.016,12.032-5.472l112-128C384.192,245.824,385.152,239.104,382.56,233.376z" />
 
+
+
                                     </g>
                                 </g>
                             <g>
                             <g>
                             <path d="M432,352v96H80v-96H16v128c0,17.696,14.336,32,32,32h416c17.696,0,32-14.304,32-32V352H432z" />
+
+
 
                                     </g>
                                 </g>
@@ -105,20 +116,20 @@
                             </div>
                         </div>
                     </li>
-                    <li>
+                    <li style="width:120px;">
                         <div class="ddl">
                             <div class="form-group">
-                                <select class="chosen-select ddl" id="stuCourse" name="stuCourse">
+                                <select class="chosen-select ddl" id="stuCourse"  name="stuCourse">
                                     <option value="0">Select Course</option>
                                 </select>
 
                             </div>
                         </div>
                     </li>
-                    <li>
+                    <li style="width:120px;">
                         <div class="ddl">
                             <div class="form-group">
-                                <select class="chosen-select ddl" id="stuCategory" name="stuCategory">
+                                <select class="chosen-select ddl" id="stuCategory" style="width:160px!important" name="stuCategory">
                                     <option value="0">Select Category</option>
                                 </select>
 
@@ -148,7 +159,7 @@
             <form name='StudentAdmi' id="StudentAdmi" method="post" noValidate onSubmit="return handleSubmit(this);">
                 <div class="modal-header">
                     <h6 class="tx-14 tx-uppercase tx-inverse tx-bold">Add/Edit Student</h6>
-                    <button type="button" class="close" data-dismiss="modal" ><span aria-hidden="true" onClick="resetData()">&times;</span><span class="sr-only">Close</span></button>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" onClick="resetData()">&times;</span><span class="sr-only">Close</span></button>
                 </div>
                 <div class="modal-body pd-25">
                     <div class="einrformbase">
@@ -183,7 +194,7 @@
                                 <div class="ddl">
                                     <div class="form-group">
                                         <label for="stuAcade">Academic Year</label>
-                                        <select class="chosen-select ddl"  name="stuAcade">
+                                        <select class="chosen-select ddl" name="stuAcade">
                                             <option value="0">Select Academic Year</option>
                                         </select>
                                         <span class="field-validation-error"></span>
@@ -193,8 +204,8 @@
                             <li>
                                 <div class="ddl">
                                     <div class="form-group">
-                                        <label for="stuCourse">Course</label>
-                                        <select class="chosen-select ddl"   name="stuCourse">
+                                        <label for="stuCourse1">Course</label>
+                                        <select class="chosen-select ddl" name="stuCourse1">
                                             <option value="0">Select Course</option>
                                         </select>
                                         <span class="field-validation-error"></span>
@@ -227,7 +238,7 @@
                         <div class="empbse">
                             <div class="empimg">
                                 <img id="userImg" src="#" />
-                               
+
                             </div>
                             <div class="efinput">
                                 Choose File
@@ -277,7 +288,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="stuMother">Mother Name</label>
-                                            <input type="text" class="form-control"  name="stuMother" />
+                                            <input type="text" class="form-control" name="stuMother" />
                                         </div>
                                     </div>
                                 </li>
@@ -332,7 +343,7 @@
                                         <div class="form-group">
                                             <label for="stuBirPlace">Place Of Birth</label>
                                             <input type="text" class="form-control" name="stuBirPlace" />
-                                          
+
                                         </div>
                                     </div>
                                 </li>
@@ -435,7 +446,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="email">Email</label>
-                                            <input type="text" class="form-control" name="stuEmail" emailCheck="true"/>
+                                            <input type="text" class="form-control" name="stuEmail" emailCheck="true" />
                                         </div>
                                     </div>
                                 </li>
@@ -445,9 +456,7 @@
                             <div class="selectBox">
                                 <div class="form-group">
                                     <label for="stuSub"></label>
-                                    <select class="select-box" name="stuSub">
-
-                                    </select>
+                                    <select class="select-box" name="stuSub"></select>
                                 </div>
                             </div>
                         </div>
@@ -622,7 +631,7 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuHostelName">Hostel Name</label>
-                                            <select class="chosen-select ddl"  name="stuHostelName"></select>
+                                            <select class="chosen-select ddl" name="stuHostelName"></select>
                                         </div>
                                     </div>
                                 </li>
@@ -630,7 +639,7 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuHostelFlr">Floor</label>
-                                            <select class="chosen-select ddl"  name="stuHostelFlr"></select>
+                                            <select class="chosen-select ddl" name="stuHostelFlr"></select>
                                         </div>
                                     </div>
                                 </li>
@@ -638,7 +647,7 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuRoomTyp">Room Type</label>
-                                            <select class="chosen-select ddl"  name="stuRoomTyp"></select>
+                                            <select class="chosen-select ddl" name="stuRoomTyp"></select>
                                         </div>
                                     </div>
                                 </li>
@@ -646,7 +655,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="stuRoomNo">Room Number</label>
-                                            <input type="text" class="form-control"  name="stuRoomNo" isNumeric="true"/>
+                                            <input type="text" class="form-control" name="stuRoomNo" isNumeric="true" />
                                         </div>
                                     </div>
                                 </li>
@@ -654,7 +663,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="stuBedNo">Bed Number</label>
-                                            <input type="text" class="form-control"  name="stuBedNo" isNumeric="true"/>
+                                            <input type="text" class="form-control" name="stuBedNo" isNumeric="true" />
                                         </div>
                                     </div>
                                 </li>
@@ -662,7 +671,7 @@
                                     <div class="text">
                                         <div class="form-group">
                                             <label for="stuHostPrc">Price</label>
-                                            <input type="text" class="form-control"  name="stuHostPrc" />
+                                            <input type="text" class="form-control" name="stuHostPrc" />
                                         </div>
                                     </div>
                                 </li>
