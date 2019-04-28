@@ -200,7 +200,7 @@ namespace ERP.Models.Bal.Accounts
             }
         }
 
-        public ResultEntity SavePaymentRecords(string records,string studentCode,string courceName,string paymentType,string paymentDate)
+        public ResultEntity SavePaymentRecords(string records,string studentCode,string studentName,string acYear, string courceName,string paymentType,string paymentDate,string recieptNo)
         {
             ResultEntity result = new ResultEntity();
             UserEntity objUserEntity = UserEntity.GetInstance();
@@ -208,12 +208,12 @@ namespace ERP.Models.Bal.Accounts
             {
                 SqlParameter[] sqlParameter = new SqlParameter[12];
                 sqlParameter[0] = new SqlParameter("@STU_CODE", studentCode);
-                sqlParameter[1] = new SqlParameter("@STUDENT_NAME", "");
-                sqlParameter[2] = new SqlParameter("@ACADEMIC_YEAR", "");
+                sqlParameter[1] = new SqlParameter("@STUDENT_NAME", studentName);
+                sqlParameter[2] = new SqlParameter("@ACADEMIC_YEAR", acYear);
                 sqlParameter[3] = new SqlParameter("@COURSE", courceName);
                 sqlParameter[4] = new SqlParameter("@PAYMENT_TYPE", paymentType);
                 sqlParameter[5] = new SqlParameter("@PAYMENT_DATE", paymentDate);
-                sqlParameter[6] = new SqlParameter("@RECIEPT_NO", "");
+                sqlParameter[6] = new SqlParameter("@RECIEPT_NO", recieptNo);
                 sqlParameter[7] = new SqlParameter("@RECORDS", records);
                 sqlParameter[8] = new SqlParameter("@CUSTOMER_ID", objUserEntity.customerId);
                 sqlParameter[9] = new SqlParameter("@USER_ID", objUserEntity.userId);
@@ -226,6 +226,66 @@ namespace ERP.Models.Bal.Accounts
                 SqlHelper.ExecuteScalar(sqlConn, CommandType.StoredProcedure, "SP_STUDENT_FEE_PAYMENT", sqlParameter);
                 result.flag = sqlParameter[10].Value.ToString();
                 result.msg = sqlParameter[11].Value.ToString();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Excep.WriteException(ex);
+                return result;
+            }
+        }
+        public ResultEntity GetPaymentHistory(GetPaymentEntity paymentEntity)
+        {
+            ResultEntity result = new ResultEntity();
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[4];
+                sqlParameter[0] = new SqlParameter("@STU_CODE", paymentEntity.stuCode);
+                sqlParameter[1] = new SqlParameter("@ACADEMIC_YEAR", paymentEntity.academicYear);
+                sqlParameter[2] = new SqlParameter("@COURSE", paymentEntity.courseId);
+                sqlParameter[3] = new SqlParameter("@REPORT_ID", Convert.ToInt32(paymentEntity.reportId));
+                DataSet ds = new DataSet();
+                ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_GET_STUDENT_PAYMENT_HISTORY", sqlParameter);
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        result.addParams = CommonFunc.DtToJSON(ds.Tables[0]);
+                    }
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Excep.WriteException(ex);
+                return result;
+            }
+        }
+        public ResultEntity GetFeeCollectionReport(string acYear, string course, string semester, string feeType,string reportType,string reportId)
+        {
+            ResultEntity result = new ResultEntity();
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            try
+            {
+                //  UserEntity objUserEntity = UserEntity.GetInstance();
+                SqlParameter[] sqlParameter = new SqlParameter[7];
+                sqlParameter[0] = new SqlParameter("@ACADEMIC_YEAR", acYear);
+                sqlParameter[1] = new SqlParameter("@COURSE", course);
+                sqlParameter[2] = new SqlParameter("@SEMESTER", semester);
+                sqlParameter[3] = new SqlParameter("@FEE_TYPE", feeType);
+                sqlParameter[4] = new SqlParameter("@CUSTOMER_ID", objUserEntity.customerId);
+                sqlParameter[5] = new SqlParameter("@REPORT_TYPE", reportType);
+                sqlParameter[6] = new SqlParameter("@REPORT_ID",Convert.ToInt32(reportId));
+                DataSet ds = new DataSet();
+                ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_GET_FEE_COLLECTION_REPORT", sqlParameter);
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        result.addParams = CommonFunc.DtToJSON(ds.Tables[0]);
+                    }
+                }
                 return result;
             }
             catch (Exception ex)

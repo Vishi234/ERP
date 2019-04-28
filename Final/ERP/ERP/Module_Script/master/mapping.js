@@ -21,7 +21,7 @@ gridOptions = GridInitializer(columnDefs);
 var gridDiv = document.querySelector('#mappingGrid');
 new agGrid.Grid(gridDiv, gridOptions);
 gridOptions.api.setRowData(((rowData == null) ? null : rowData));
-debugger;
+
 var isActiveData = ReadDropDownData("Param", '16', true);
 var courseId = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
 var subjectId = ReadDropDownData("Subject", $("#hfCustomerId").val(), false);
@@ -40,7 +40,7 @@ $.each(subjectId, function (i, value) {
 });
 
 $("#ddlCourse").change(function () {
-    debugger;
+    
     $('#ddlSemester').empty();
     var selectedCourse = $('#ddlCourse').val();
     var obj = [];
@@ -68,7 +68,7 @@ $("#ddlSubject").trigger("chosen:updated");
 
 function OnEditClick(obj)
 {
-    debugger;
+    
     $('#ddlSemester').empty(); 
     var editData = JSON.parse($(obj).attr('dataattr'));
     $('#ddlSubject').val(editData.subId);

@@ -81,6 +81,13 @@ var routingApp = $.sammy("#MainContent", function () {
             HideLoading();
         });
     });
+    this.get("#/Fee/Collection/", function (context) {
+        ShowLoading();
+        $.get("/Fee/Collection", function (data) {
+            context.$element().html(data);
+            HideLoading();
+        });
+    });
 });
 $(function () {
     routingApp.run("/Dashboard/Overview"); // default routing page.
