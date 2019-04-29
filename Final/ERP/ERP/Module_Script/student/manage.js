@@ -42,11 +42,6 @@ gridOptions =
 InitializeDDL();
 function InitializeDDL() {
 
-    courseData = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
-    $.each(courseData, function (i, value) {
-        $("select[name='stuCourse']").append(new Option(value.COURSE_NAME, value.COURSE_ID, false, false));
-    });
-    $("select[name='stuCourse']").trigger("chosen:updated");
     category = ReadDropDownData("Param", '13', true);
     $.each(category, function (i, value) {
         $("select[name='stuCategory']").append(new Option(value.PARAM_NAME, value.PARAM_ID, false, false));
@@ -69,6 +64,26 @@ function InitializeDDL() {
         $("select[name='stuAcade']").append(new Option(value.ACADEMIC_YEAR, value.YEAR_ID, false, false));
     });
     $("select[name='stuAcade']").trigger("chosen:updated")
+
+    courseData = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
+    $.each(courseData, function (i, value) {
+        $("select[name='stuCourse']").append(new Option(value.COURSE_NAME, value.COURSE_ID, false, false));
+    });
+    $("select[name='stuCourse']").trigger("chosen:updated");
+
+
+    //$("select[name='stuAcade']").change(function () {
+    //     debugger;
+    //    $("#stuCourse").empty();
+    //    var jsonData = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
+    //    for (var i = 0; i < jsonData.length; i++) {
+    //        if (jsonData[i].COURSE_ID == $("select[name='stuAcade']").val()) {
+    //            $('#stuCourse').append(new Option("Select Course", 0, false, false));
+    //            $("select[name='stuSemester']").append(new Option(jsonData[i].COURSE_NAME, jsonData[i].COURSE_ID, false, false));
+    //        }
+    //    }
+    //    $("select[name='stuCourse']").trigger("chosen:updated");
+    //});
 
 
     bloodGrp = ReadDropDownData("Param", '10', true);
@@ -151,12 +166,13 @@ $("select[name='stuState']").change(function () {
 $("select[name='stuCourse']").change(function ()
 {
   //  debugger;
+    $("#stuSemester").empty();
     var jsonData = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
     for (var i = 0; i < jsonData.length; i++) {
-      //  $("#stuSemester").empty();
         if (jsonData[i].COURSE_ID == $("select[name='stuCourse']").val())
         {
-            $("select[name='stuSemester']").append(new Option(jsonData[i].NO_OF_SEMESTER, jsonData[i].COURSE_ID, false, false));
+            $('#stuSemester').append(new Option("Select Semester", 0, false, false));
+            $("select[name='stuSemester']").append(new Option(jsonData[i].NO_OF_SEMESTER, jsonData[i].NO_OF_SEMESTER, false, false));
         }
     }
     $("select[name='stuSemester']").trigger("chosen:updated");
@@ -230,14 +246,9 @@ function handleSubmit(evt)
                     if (data.flag == "S")
                     {
                         $('#' + evt.id).trigger("reset");
-                        //$("#ddlActive").val(0);
-                        //$("#ddlActive").trigger("chosen:updated");
-                        
+                        uploadImages();                      
                         getStudentDetails();
                         $('.close').trigger('click');
-                        //MyData = JSON.parse(data.addParams);
-                        //rowData = MyData; records = MyData.length;
-                        //gridOptions.api.setRowData(((rowData == null) ? null : rowData));
                     }
                     else {
                         CallToast(data.msg, data.flag);
@@ -256,6 +267,54 @@ function handleSubmit(evt)
         return false;
     }
     return false;
+}
+function resetData(){
+    $("select[name=stuAcade]").val(0);
+    $("select[name=stuCourse]").val(0);
+    $("select[name=stuSemester]").val(0);
+    $("select[name=stuCategory]").val(0);
+    $("select[name=stuBGrp]").val(0);
+    $("select[name=stuHandi]").val(0);
+    $("select[name=studCountry]").val(0);
+    $("select[name=stuState]").val(0);
+    $("select[name=stuCity]").val(0);
+    $("select[name=stuBoard]").val(0);
+    $("select[name=stuPreCourse]").val(0);
+    $("select[name=stuAccStat]").val(0);
+    $("select[name=stuTrans]").val(0);
+    $("select[name=stuRoute]").val(0);
+    $("select[name=stuVehTyp]").val(0);
+    $("select[name=stuVehStop]").val(0);
+    $("select[name=stuHostel]").val(0);
+    $("select[name=stuHostelName]").val(0);
+    $("select[name=stuHostelFlr]").val(0);
+    $("select[name=stuRoomTyp]").val(0);
+    $("select[name=stuSex]").val(0);
+
+    $("select[name=stuAcade]").trigger("chosen:updated")
+    $("select[name=stuCourse]").trigger("chosen:updated")
+    $("select[name=stuSemester]").trigger("chosen:updated")
+    $("select[name=stuCategory]").trigger("chosen:updated")
+    $("select[name=stuBGrp]").trigger("chosen:updated")
+    $("select[name=stuHandi]").trigger("chosen:updated")
+    $("select[name=studCountry]").trigger("chosen:updated")
+    $("select[name=stuState]").trigger("chosen:updated")
+    $("select[name=stuCity]").trigger("chosen:updated")
+    $("select[name=stuBoard]").trigger("chosen:updated")
+    $("select[name=stuPreCourse]").trigger("chosen:updated")
+    $("select[name=stuAccStat]").trigger("chosen:updated")
+    $("select[name=stuTrans]").trigger("chosen:updated")
+    $("select[name=stuRoute]").trigger("chosen:updated")
+    $("select[name=stuVehTyp]").trigger("chosen:updated")
+    $("select[name=stuVehStop]").trigger("chosen:updated")
+    $("select[name=stuHostel]").trigger("chosen:updated")
+    $("select[name=stuHostelName]").trigger("chosen:updated")
+    $("select[name=stuHostelFlr]").trigger("chosen:updated")
+    $("select[name=stuRoomTyp]").trigger("chosen:updated")
+    $("select[name=stuSex]").trigger("chosen:updated")
+
+
+
 }
 
 //function getStudentDetails(stuCode, stuName) {
@@ -393,22 +452,27 @@ function CreateActive(params) {
     domElement.innerHTML = html;
     return domElement;
 }
-function demo() {
-    alert(11);
-}
-function getStudentFilter(stuCode, stuFirst) {
+
+function getStudentFilter(stuCode, stuFirst, stuCourse, stuCategory) {
     debugger;
-    $.get("/Student/GetStudentFilter?stuCode=" + stuCode + " &stuFirst=" + stuFirst, function (data) {
+    $.get("/Student/GetStudentFilter?stuCode=" + stuCode + " &stuFirst=" + stuFirst + "&stuCourse=" + stuCourse + "&stuCategory=" + stuCategory, function (data) {
         debugger;
-        var rowData = JSON.parse(data.addParams);
-        gridOptions = GridInitializer(columnDefs);
-        var gridDiv = document.querySelector('#studentGrid');
-        $("#studentGrid").empty();
-        new agGrid.Grid(gridDiv, gridOptions);
-        gridOptions.api.setRowData(((rowData == null) ? null : rowData));
-       
+            var rowData = JSON.parse(data.addParams);
+            gridOptions = GridInitializer(columnDefs);
+            var gridDiv = document.querySelector('#studentGrid');
+            $("#studentGrid").empty();
+            new agGrid.Grid(gridDiv, gridOptions);
+            gridOptions.api.setRowData(((rowData == null) ? null : rowData));    
     });
 }
 function onExportClick() {
     exportToExcel(rowData, "StudentExport", columnDefs)
+}
+function resetFilter() {
+    debugger;
+    $("input:text").val("");
+    $('#stuCourse').val(0);
+    $('#stuCategory').val(0);
+    $("#stuCourse").trigger("chosen:updated");
+    $("#stuCategory").trigger("chosen:updated");
 }

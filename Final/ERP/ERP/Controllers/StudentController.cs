@@ -49,13 +49,15 @@ namespace ERP.Controllers
         }
 
         [HttpGet]
-        public JsonResult GetStudentFilter(string stuCode, string stuFirst)
+        public JsonResult GetStudentFilter(string stuCode, string stuFirst,string stuCourse,string stuCategory)
         {
             StudentEntity studentEntity = new StudentEntity();
             studentEntity.flag = 'G';
             studentEntity.reportId = "9";
             studentEntity.stuCode = stuCode;
             studentEntity.stuFirst = stuFirst;
+            studentEntity.stuCourse = stuCourse;
+            studentEntity.stuCategory = stuCategory;
             TempData["StudentData"] = new Student().GetStudent(studentEntity);
             return Json(TempData["StudentData"], JsonRequestBehavior.AllowGet);
         }
