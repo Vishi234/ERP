@@ -360,9 +360,9 @@ function OnEditClick(obj) {
     $("select[name=empState]").trigger("chosen:updated");
     $("select[name=empCity]").trigger("chosen:updated");
 }
-function getEmployeeFilter(empCode, empDept, empDesig, empType) {
+function getEmployeeFilter(empCode, selectedType) {
     debugger;
-    $.get("/Employee/GetEmployeeFilter?empCode=" + empCode + "&empDept=" + empDept + "&empDesig=" + empDesig + "&empType=" + empType, function (data) {
+    $.get("/Employee/GetEmployeeFilter?empCode=" + empCode + "&empType=" + selectedType, function (data) {
         var rowData = JSON.parse(data.addParams);
         gridOptions = GridInitializer(columnDefs);
         var gridDiv = document.querySelector('#employeeGrid');
@@ -383,15 +383,4 @@ function getEmployeeFilter(empCode, empDept, empDesig, empType) {
 }
 function onExportClick() {
     exportToExcel(rowData, "EmployeeExport", columnDefs)
-}
-
-function resetFilter() {
-    debugger;
-    $("input:text").val("");
-    $('#empDept').val(0);
-    $('#empDesig').val(0);
-    $('#empType').val(0);
-    $("#empDept").trigger("chosen:updated");
-    $("#empDesig").trigger("chosen:updated");
-    $("#empType").trigger("chosen:updated");
 }

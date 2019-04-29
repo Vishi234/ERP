@@ -30,7 +30,7 @@
                         <div class="text">
                             <div class="form-group">
                                 <label for="empCode">Employee Code</label>
-                                <input type="text" class="form-control" name="empCode" id="search" />
+                                <input type="text" class="form-control" name="empCode" id="search"/>
                                 <span class="field-validation-error"></span>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                         <div class="ddl">
                             <div class="form-group">
                                 <label for="empDept">Department</label>
-                                <select class="chosen-select ddl" name="empDept" id="empDept">
+                                <select class="chosen-select ddl" name="empDept" id="ddlSearch">
                                     <option value="0">Select Depatment</option>
                                 </select>
                                 <span class="field-validation-error"></span>
@@ -50,7 +50,7 @@
                         <div class="ddl">
                             <div class="form-group">
                                 <label for="empDesig">Designation</label>
-                                <select class="chosen-select ddl" name="empDesig" id="empDesig">
+                                <select class="chosen-select ddl" name="empDesig" id="ddlSearch">
                                     <option value="0">Select Designation</option>
                                 </select>
                                 <span class="field-validation-error"></span>
@@ -61,7 +61,7 @@
                         <div class="ddl">
                             <div class="form-group">
                                 <label for="empType">Employee Type</label>
-                                <select class="chosen-select ddl" name="empType" id="empType">
+                                <select class="chosen-select ddl" name="empType" id="ddlSearch">
                                     <option value="0">Select Employee Type</option>
                                 </select>
                                 <span class="field-validation-error"></span>
@@ -69,10 +69,7 @@
                         </div>
                     </li>
                     <li>
-                        <button type="submit" class="btn btn-info" onClick="getEmployeeFilter($('#search').val(),$('#empDept').val(),$('#empDesig').val(),$('#empType').val())"><span class="inload hide"><i class="fa fa-spinner fa-spin"></i></span>Filter</button>
-                    </li>
-                    <li>
-                        <button type="button" class="btn btn-secondary pd-x-20" onClick="resetFilter();"><span class="inload hide"><i class="fa fa-spinner fa-spin"></i></span>Clear</button>
+                        <button type="submit" class="btn btn-info" onClick="getEmployeeFilter($('#search').val(),$('#ddlSearch').val())"><span class="inload hide"><i class="fa fa-spinner fa-spin"></i></span>Filter</button>
                     </li>
                 </ul>
             </div>
