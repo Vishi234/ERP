@@ -56,7 +56,11 @@ function ViewPayment($obj)
 }
 function buildTable(data) {// Create Dyanamic table by JSON Data
     var table = document.createElement("table");
+<<<<<<< HEAD
     table.width = "100%";
+=======
+    table.width="100%"
+>>>>>>> parent of 8c36b87... Changes  by Vishal
     //table.className = "table-body";
     //table.style = "width:100%  cellspacing:0 cellpadding:4";
     var thead = document.createElement("thead");
