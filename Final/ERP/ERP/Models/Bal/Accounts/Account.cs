@@ -23,30 +23,32 @@ namespace ERP.Models.Bal.Accounts
             try
             {
                 //  UserEntity objUserEntity = UserEntity.GetInstance();
-                SqlParameter[] sqlParameter = new SqlParameter[13];
+                SqlParameter[] sqlParameter = new SqlParameter[15];
                 sqlParameter[0] = new SqlParameter("@ID", accountEntity.typeid);
                 sqlParameter[1] = new SqlParameter("@FEE_NAME", accountEntity.feeName);
                 sqlParameter[2] = new SqlParameter("@PAYMENT_TYPE", accountEntity.paymentType);
-                sqlParameter[3] = new SqlParameter("@MONTH", accountEntity.feePeriod);
-                sqlParameter[4] = new SqlParameter("@TERMS", Convert.ToInt32(accountEntity.terms));
+                sqlParameter[3] = new SqlParameter("@MONTH", accountEntity.feeMonth);
+                sqlParameter[4] = new SqlParameter("@TERMS", Convert.ToInt32(accountEntity.feePeriod));
                 sqlParameter[5] = new SqlParameter("@DESCRIPTION", accountEntity.feeDesc);
                 sqlParameter[6] = new SqlParameter("@CUSTOMER_ID", objUserEntity.customerId);
                 sqlParameter[7] = new SqlParameter("@USER_ID", objUserEntity.userId);
                 sqlParameter[8] = new SqlParameter("@IS_ACTIVE", accountEntity.isActive);
                 sqlParameter[9] = new SqlParameter("@OPER_TYPE", accountEntity.flag);
-                sqlParameter[10] = new SqlParameter("@REPORT_ID", accountEntity.reportId);
+                sqlParameter[10] = new SqlParameter("@FEE_SUBMISSION", accountEntity.feeSubmission);
+                sqlParameter[11] = new SqlParameter("@FEE_RELAXATION", accountEntity.feeRelaxDay);
+                sqlParameter[12] = new SqlParameter("@REPORT_ID", accountEntity.reportId);
 
-                sqlParameter[11] = new SqlParameter("@FLAG", SqlDbType.Char);
-                sqlParameter[11].Direction = ParameterDirection.Output;
-                sqlParameter[11].Size = 1;
-                sqlParameter[12] = new SqlParameter("@MSG", SqlDbType.NVarChar);
-                sqlParameter[12].Direction = ParameterDirection.Output;
-                sqlParameter[12].Size = 500;
+                sqlParameter[13] = new SqlParameter("@FLAG", SqlDbType.Char);
+                sqlParameter[13].Direction = ParameterDirection.Output;
+                sqlParameter[13].Size = 1;
+                sqlParameter[14] = new SqlParameter("@MSG", SqlDbType.NVarChar);
+                sqlParameter[14].Direction = ParameterDirection.Output;
+                sqlParameter[14].Size = 500;
 
                 DataSet ds = new DataSet();
                 ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_MANAGE_FEE_TYPE", sqlParameter);
-                result.flag = sqlParameter[11].Value.ToString();
-                result.msg = sqlParameter[12].Value.ToString();
+                result.flag = sqlParameter[13].Value.ToString();
+                result.msg = sqlParameter[14].Value.ToString();
 
                 if (result.flag.ToUpper() == "S")
                 {

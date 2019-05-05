@@ -86,5 +86,7 @@
     Label_Header["$DUE$"] = "Due";
     Label_Header["$RECIEPT_NO$"] = "Reciept No";
     Label_Header["$PAYMENT_DATE$"] = "Payment Date";
+    Label_Header["$FEE_SUBMISSION_DAY$"] = "Fee Submission Day";
+    Label_Header["$FEE_RELAXATION_DAYS$"] = "Fee Relaxation Day";
     return Label_Header;
 }

@@ -45,8 +45,8 @@ function OnEditClick(obj) {
     $("input[name=feeName]").val(editData.feeName);
     $("select[name=paymentType]").val(editData.pType);
     $("select[name=paymentType]").trigger("chosen:updated");
-    $("select[name=feePeriod]").val(editData.month);
-    $("select[name=feePeriod]").trigger("chosen:updated");
+    $("select[name=feeMonth]").val(editData.month);
+    $("select[name=feeMonth]").trigger("chosen:updated");
     $("input[name=feeDesc]").val(editData.descrip);
     $("select[name=isActive]").val(editData.isActive);
     $("select[name=isActive]").trigger("chosen:updated");
@@ -56,7 +56,7 @@ function CreateEdit(params) {
     var html = "";
     var domElement = "";
     var jsonObj = JSON.stringify(params.data);
-    html = "<div><a class='testClass' onclick='OnEditClick(this);' href='javascript:void(0)' dataAttr='" + jsonObj + "'><img class='editbtn' src='/Images/icons/edit.svg'/></a></div>";
+    html = "<div><a class='testClass' onclick='OnEditClick(this);' href='javascript:void(0)' dataAttr='" + jsonObj + "'><img style='margin:7px 0px;' class='editbtn' src='/Images/icons/edit.svg'/></a></div>";
     domElement = document.createElement("div");
     domElement.innerHTML = html;
     return domElement;
@@ -80,16 +80,18 @@ function CreateActive(params) {
 }
 function TypeSubmit(evt) {
     if (true) {
+        debugger;
         var myData = [];
         var obj = {};
         $("#" + evt.id + " select, input").each(function (i, data) {
-            if ($(data).attr("name") == "feePeriod") {
+            if ($(data).attr("name") == "feeMonth") {
                 obj[data.name] = (($(data).val() != "") ? $(data).val().join(",") : "");
             }
             else {
                 obj[data.name] = $(data).val();
             }
         });
+        obj["feePeriod"] = ((obj["feeMonth"] != "") ? ((obj["feeMonth"].indexOf(",") > -1) ? obj["feeMonth"].split(",").length : obj["feeMonth"]) : 0);
         myData.push(obj);
         btnloading("FeeType", 'show');
         setTimeout(function () {
@@ -109,8 +111,8 @@ function TypeSubmit(evt) {
                         $("input[name=feeName]").val("");
                         $("select[name=paymentType]").val(0);
                         $("select[name=paymentType]").trigger("chosen:updated");
-                        $("select[name=feePeriod]").val("");
-                        $("select[name=feePeriod]").trigger("chosen:updated");
+                        $("select[name=feeMonth]").val("");
+                        $("select[name=feeMonth]").trigger("chosen:updated");
                         $("input[name=feeDesc]").val("");
                         $("select[name=isActive]").val(0);
                         $("select[name=isActive]").trigger("chosen:updated");
@@ -150,17 +152,17 @@ function InitializeDDL() {
         var selectedCourse = $("select[name='paymentType']").val();
         if (selectedCourse == 82) {
             // $("#x").prop("disabled", true);
-            $("#feePeriod").attr('disabled', 'disabled');
+            $("#feeMonth").attr('disabled', 'disabled');
         } else {
-            $("#feePeriod").removeAttr('disabled');
+            $("#feeMonth").removeAttr('disabled');
         }
     })
 
     month = ReadDropDownData("Param", '21', true);
     $.each(month, function (i, value) {
-        $("select[name='feePeriod']").append(new Option(value.PARAM_NAME, value.PARAM_ID, false, false));
+        $("select[name='feeMonth']").append(new Option(value.PARAM_NAME, value.PARAM_ID, false, false));
     });
-    $("select[name='feePeriod']").trigger("chosen:updated");
+    $("select[name='feeMonth']").trigger("chosen:updated");
 
     active = ReadDropDownData("Param", '16', true);
     $.each(active, function (i, value) {
