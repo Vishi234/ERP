@@ -39,7 +39,7 @@ dtGridOptions.api.setRowData(null);
 
 
 function OnEditClick(obj) {
-    debugger;
+
     var editData = JSON.parse($(obj).attr('dataattr'));
     $("input[name=typeid]").val(editData.id);
     $("input[name=feeName]").val(editData.feeName);
@@ -146,7 +146,7 @@ function InitializeDDL() {
     $("select[name='paymentType']").trigger("chosen:updated")
 
     $("select[name='paymentType']").change(function () {
-        debugger;
+
         var selectedCourse = $("select[name='paymentType']").val();
         if (selectedCourse == 82) {
             // $("#x").prop("disabled", true);
@@ -210,7 +210,7 @@ function Show(myData) {
             },
             success: function (data) {
                 btnloading("FeeDetail", 'hide');
-                debugger;
+
                 if (data.addParams != null) {
                     MyData = JSON.parse(data.addParams);
                     $("#feeDtlGrid").css("display", "block");
@@ -237,8 +237,7 @@ function Show(myData) {
     }, 500);
 }
 
-function CreateTextBox(params)
-{
+function CreateTextBox(params) {
     var html = "";
     var domElement = "";
     var input = document.createElement("input");
