@@ -195,6 +195,7 @@
     <Content Include="Images\loading.gif" />
     <Content Include="Images\user-img.png" />
     <Content Include="Module_Script\employee\manage.js" />
+    <Content Include="Module_Script\fee\collection.js" />
     <Content Include="Module_Script\fee\payment.js" />
     <Content Include="Module_Script\master\activity.js" />
     <Content Include="Module_Script\master\subject.js" />

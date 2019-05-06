@@ -21,12 +21,11 @@ gridOptions = GridInitializer(columnDefs);
 var gridDiv = document.querySelector('#mappingGrid');
 new agGrid.Grid(gridDiv, gridOptions);
 gridOptions.api.setRowData(((rowData == null) ? null : rowData));
-debugger;
+
 var isActiveData = ReadDropDownData("Param", '16', true);
 var courseId = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
 var subjectId = ReadDropDownData("Subject", $("#hfCustomerId").val(), false);
-$.each(isActiveData, function (i, value)
-{
+$.each(isActiveData, function (i, value) {
     $('#ddlActive').append(new Option(value.PARAM_NAME, value.PARAM_ID, false, false));
 });
 
@@ -40,7 +39,7 @@ $.each(subjectId, function (i, value) {
 });
 
 $("#ddlCourse").change(function () {
-    debugger;
+
     $('#ddlSemester').empty();
     var selectedCourse = $('#ddlCourse').val();
     var obj = [];
@@ -66,10 +65,9 @@ $("#ddlAcademic").trigger("chosen:updated");
 $("#ddlCourse").trigger("chosen:updated");
 $("#ddlSubject").trigger("chosen:updated");
 
-function OnEditClick(obj)
-{
-    debugger;
-    $('#ddlSemester').empty(); 
+function OnEditClick(obj) {
+
+    $('#ddlSemester').empty();
     var editData = JSON.parse($(obj).attr('dataattr'));
     $('#ddlSubject').val(editData.subId);
     var selectedSub = $('#ddlSubject').val();
@@ -97,15 +95,13 @@ function OnEditClick(obj)
     $('#ddlSubject').trigger("chosen:updated");
     $('#ddlCourse').trigger("chosen:updated");
     $('#ddlSemester').trigger("chosen:updated");
-    $("input[name=flag]").val('M'); 
+    $("input[name=flag]").val('M');
     $("input[name=mapId]").val(editData.id);
 }
 
 
-function handleSubmit(evt)
-{
-    if (ValidateFields(evt))
-    {
+function handleSubmit(evt) {
+    if (ValidateFields(evt)) {
         var myData = [];
         var obj = {};
         $("#" + evt.id + " select, input").each(function (i, data) {
@@ -122,11 +118,9 @@ function handleSubmit(evt)
                 beforeSend: function () {
                     btnloading("MappingForm", 'show');
                 },
-                success: function (data)
-                {
+                success: function (data) {
                     btnloading("MappingForm", 'hide');
-                    if (data.flag == "S")
-                    {
+                    if (data.flag == "S") {
                         $('#' + evt.id).trigger("reset");
                         $("#ddlActive").val(0);
                         $('#ddlAcademic').val(0);
@@ -139,9 +133,9 @@ function handleSubmit(evt)
                         $('#ddlSemester').trigger("chosen:updated");
                         $('#ddlSubject').trigger("chosen:updated");
                         CallToast(data.msg, data.flag);
-                        MyData = JSON.parse(data.addParams);          
+                        MyData = JSON.parse(data.addParams);
                         rowData = MyData; records = MyData.length;
-                        gridOptions.api.setRowData(((rowData == null) ? null : rowData));       
+                        gridOptions.api.setRowData(((rowData == null) ? null : rowData));
                     }
                     else {
                         CallToast(data.msg, data.flag);
@@ -162,8 +156,7 @@ function handleSubmit(evt)
 }
 
 ;
-function CreateEdit(params)
-{
+function CreateEdit(params) {
     var html = "";
     var domElement = "";
     var jsonObj = JSON.stringify(params.data);
