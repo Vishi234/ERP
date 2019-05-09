@@ -96,7 +96,11 @@ function InitializeDDL() {
     //$.each(bloodGrp, function (i, value) {
     //    $("select[name='empBGrp']").append(new Option(value.PARAM_NAME, value.PARAM_ID, false, false));
     //});
-
+    var sectionName = ReadDropDownData("Param", '3', true);
+    $.each(sectionName, function (i, value) {            
+        $('#ddlSection').append(new Option(value.PARAM_NAME, value.PARAM_ID, false, false));
+    });
+    $("#ddlSection").trigger("chosen:updated");
 
     hadicap = ReadDropDownData("Param", '15', true);
     $.each(hadicap, function (i, value) {
@@ -165,7 +169,7 @@ $("select[name='stuState']").change(function () {
 
 $("select[name='stuCourse']").change(function ()
 {
-  //  debugger;
+    debugger;
     $("#stuSemester").empty();
     var jsonData = ReadDropDownData("Course", $("#hfCustomerId").val(), false);
     for (var i = 0; i < jsonData.length; i++) {
@@ -290,6 +294,7 @@ function resetData(){
     $("select[name=stuHostelFlr]").val(0);
     $("select[name=stuRoomTyp]").val(0);
     $("select[name=stuSex]").val(0);
+    $("select[name=sectionName]").val(0);
 
     $("select[name=stuAcade]").trigger("chosen:updated")
     $("select[name=stuCourse]").trigger("chosen:updated")
@@ -312,6 +317,7 @@ function resetData(){
     $("select[name=stuHostelFlr]").trigger("chosen:updated")
     $("select[name=stuRoomTyp]").trigger("chosen:updated")
     $("select[name=stuSex]").trigger("chosen:updated")
+    $("select[name=sectionName]").trigger("chosen:updated")
 
 
 
