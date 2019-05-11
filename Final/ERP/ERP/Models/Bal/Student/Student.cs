@@ -119,7 +119,7 @@ namespace ERP.Models.Bal.Employee
                 UserEntity objUserEntity = UserEntity.GetInstance();
 
                 SqlParameter[] sqlParameter = new SqlParameter[9];
-                string stuFullName = studentEntity.stuFirst + studentEntity.stuFirst;
+                string stuFullName = studentEntity.stuFirst + studentEntity.stuLast;
                 sqlParameter[0] = new SqlParameter("@STU_CODE", studentEntity.stuCode);
                 sqlParameter[1] = new SqlParameter("@STUDENT_NAME", stuFullName);
                 sqlParameter[2] = new SqlParameter("@COURSE", studentEntity.stuCourse);

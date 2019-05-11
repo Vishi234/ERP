@@ -108,7 +108,7 @@
                     <li>
                         <div class="ddl">
                             <div class="form-group">
-                                <select class="chosen-select ddl" id="stuCourse" name="stuCourse">
+                                <select class="chosen-select ddl" id="stuCourseFilter" name="stuCourseFilter">
                                     <option value="0">Select Course</option>
                                 </select>
 
@@ -118,7 +118,7 @@
                     <li>
                         <div class="ddl">
                             <div class="form-group">
-                                <select class="chosen-select ddl" id="stuCategory" name="stuCategory">
+                                <select class="chosen-select ddl" id="stuCategoryFilter" name="stuCategoryFilter">
                                     <option value="0">Select Category</option>
                                 </select>
 
@@ -127,7 +127,7 @@
                     </li>
 
                     <li>
-                        <button type="submit" class="btn btn-info" onClick="getStudentFilter($('#stuCode').val(), $('#stuName').val(),$('#stuCourse').val(),$('#stuCategory').val())"><span class="inload hide"><i class="fa fa-spinner fa-spin"></i></span> Filter</button>
+                        <button type="submit" class="btn btn-info" onClick="getStudentFilter($('#stuCode').val(), $('#stuName').val(),$('#stuCourseFilter').val(),$('#stuCategoryFilter').val())"><span class="inload hide"><i class="fa fa-spinner fa-spin"></i></span> Filter</button>
                     </li>
                     <li>
                         <button type="button" class="btn btn-secondary pd-x-20" data-dismiss="modal" onClick="resetFilter();">Clear</button>
@@ -579,7 +579,9 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuRoute">Route Name</label>
-                                            <select class="chosen-select ddl" name="stuRoute"></select>
+                                            <select class="chosen-select ddl" name="stuRoute">
+                                                <option value="0">Select Route Name</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </li>
@@ -587,7 +589,9 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuVehTyp">Vehicle Type</label>
-                                            <select class="chosen-select ddl" name="stuVehTyp"></select>
+                                            <select class="chosen-select ddl" name="stuVehTyp">
+                                                <option value="0">Select Vehicle Type</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </li>
@@ -595,7 +599,9 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuVehNo">Vehicle Number</label>
-                                            <select class="chosen-select ddl" name="stuVehNo"></select>
+                                            <select class="chosen-select ddl" name="stuVehNo">
+                                                <option value="0">Select Vehicle Number</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </li>
@@ -611,7 +617,9 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuVehStop">Stop Name</label>
-                                            <select class="chosen-select ddl" name="stuVehStop"></select>
+                                            <select class="chosen-select ddl" name="stuVehStop">
+                                                <option value="0">Select Stop Name</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </li>
@@ -633,7 +641,9 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuHostelName">Hostel Name</label>
-                                            <select class="chosen-select ddl"  name="stuHostelName"></select>
+                                            <select class="chosen-select ddl" name="stuHostelName">
+                                                <option value="0">Select Hostel Name</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </li>
@@ -641,7 +651,9 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuHostelFlr">Floor</label>
-                                            <select class="chosen-select ddl"  name="stuHostelFlr"></select>
+                                            <select class="chosen-select ddl" name="stuHostelFlr">
+                                                <option value="0">Select Floor</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </li>
@@ -649,7 +661,9 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuRoomTyp">Room Type</label>
-                                            <select class="chosen-select ddl"  name="stuRoomTyp"></select>
+                                            <select class="chosen-select ddl" name="stuRoomTyp">
+                                                <option value="0">Select Room Type</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </li>
