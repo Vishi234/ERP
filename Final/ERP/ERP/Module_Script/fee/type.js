@@ -43,9 +43,11 @@ function OnEditClick(obj) {
     var editData = JSON.parse($(obj).attr('dataattr'));
     $("input[name=typeid]").val(editData.id);
     $("input[name=feeName]").val(editData.feeName);
-    $("select[name=paymentType]").val(editData.pType);
+    $("input[name=feeSubmission]").val(editData.fsd);
+    $("input[name=feeRelaxDay]").val(editData.frd);
+    $("select[name=paymentType]").val(editData.pTypeId);
     $("select[name=paymentType]").trigger("chosen:updated");
-    $("select[name=feeMonth]").val(editData.month);
+    $("select[name=feeMonth]").val(editData.monthId);
     $("select[name=feeMonth]").trigger("chosen:updated");
     $("input[name=feeDesc]").val(editData.descrip);
     $("select[name=isActive]").val(editData.isActive);

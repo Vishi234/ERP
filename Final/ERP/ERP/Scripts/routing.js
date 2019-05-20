@@ -53,6 +53,13 @@ var routingApp = $.sammy("#MainContent", function () {
             HideLoading();
         });
     });
+    this.get("#/Master/HolidayList/", function (context) {
+        ShowLoading();
+        $.get("/Master/HolidayList", function (data) {
+            context.$element().html(data);
+            HideLoading();
+        });
+    });
     this.get("#/Student/manage/", function (context) {
         ShowLoading();
         $.get("/Student/Manage", function (data) {

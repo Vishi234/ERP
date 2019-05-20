@@ -130,6 +130,10 @@ namespace ERP.Controllers
             TempData["SectionData"] = new Master().SectionDetails(sectionEntity);
             return PartialView();
         }
+        public ActionResult HolidayList()
+        {
+            return PartialView();
+        }
 
     }
 }
