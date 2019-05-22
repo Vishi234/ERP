@@ -98,5 +98,20 @@ namespace ERP.Models.Entity
 
     }
 
+    public class HolidayListEntity
+    {
+        public string acyr { get; set; }
+        public string hldy { get; set; }
+        public string wfDate { get; set; }
+        public string wtDate { get; set; }
+        public string res { get; set; }
+        public string active { get; set; }
+        public char flag { get; set; }
+        public string reportId { get; set; }
+
+
+
+    }
+
 
 }

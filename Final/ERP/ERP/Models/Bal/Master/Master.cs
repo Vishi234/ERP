@@ -379,5 +379,54 @@ namespace ERP.Models.Bal.Master
             }
         }
 
+        public ResultEntity AddHoliday(HolidayListEntity holidayEntity)
+        {
+            objUserEntity = (UserEntity)HttpContext.Current.Session["UserDetails"];
+            ResultEntity result = new ResultEntity();
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[12];
+                sqlParameter[0] = new SqlParameter("@ACADEMIC_ID", holidayEntity.acyr);
+                sqlParameter[1] = new SqlParameter("@HOLIDAY_ID", holidayEntity.hldy);
+                sqlParameter[2] = new SqlParameter("@START_DATE", holidayEntity.wfDate);
+                sqlParameter[3] = new SqlParameter("@END_DATE", holidayEntity.wtDate);
+                sqlParameter[4] = new SqlParameter("@RH_ID", holidayEntity.res);
+                sqlParameter[5] = new SqlParameter("@CUSTOMER_ID", objUserEntity.customerId);
+                sqlParameter[6] = new SqlParameter("@USER_ID", objUserEntity.userId);
+                sqlParameter[7] = new SqlParameter("@IS_ACTIVE", holidayEntity.active);
+                sqlParameter[8] = new SqlParameter("@REPORT_ID", Convert.ToInt32(holidayEntity.reportId));
+                sqlParameter[9] = new SqlParameter("@OPER_TYPE", holidayEntity.flag);
+                sqlParameter[10] = new SqlParameter("@FLAG", SqlDbType.Char);
+                sqlParameter[10].Direction = ParameterDirection.Output;
+                sqlParameter[10].Size = 1;
+                sqlParameter[11] = new SqlParameter("@MSG", SqlDbType.NVarChar);
+                sqlParameter[11].Direction = ParameterDirection.Output;
+                sqlParameter[11].Size = 500;
+
+                DataSet ds = new DataSet();
+                ds = SqlHelper.ExecuteDataset(sqlConn, CommandType.StoredProcedure, "SP_HOLIDAY_LIST", sqlParameter);
+                result.flag = sqlParameter[10].Value.ToString();
+                result.msg = sqlParameter[11].Value.ToString();
+
+                if (result.flag.ToUpper() == "S")
+                {
+                    if (ds != null)
+                    {
+                        if (ds.Tables[0].Rows.Count > 0)
+                        {
+                            result.addParams = CommonFunc.DtToJSON(ds.Tables[0]);
+                        }
+                    }
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Excep.WriteException(ex);
+                return result;
+            }
+        }
+
     }
 }

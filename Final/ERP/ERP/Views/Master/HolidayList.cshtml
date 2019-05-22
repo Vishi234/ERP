@@ -1,7 +1,7 @@
 ﻿@using Newtonsoft.Json;
 <script type="text/javascript">
-    @*document.title="Academic";
-    var content = @Html.Raw(JsonConvert.SerializeObject(TempData["AcademicData"]));*@
+    document.title ="HolidayList";
+    var content = @Html.Raw(JsonConvert.SerializeObject(TempData["HolidayList"]));
     InitializeSelect();
     InitializeDate();
 </script>
@@ -29,7 +29,7 @@
                         <div class="text">
                             <div class="form-group">
                                 <label for="academicYear">Academic Year</label>
-                                <select class="chosen-select" id="ddlAcademicYear" isRequired="true" name="acyr">
+                                <select class="chosen-select" id="ddlAcademic" isRequired="true" name="acyr">
                                     <option value="0">Select Academic Year</option>
                                 </select>
                                 <span class="field-validation-error"></span>
@@ -42,6 +42,8 @@
                                 <label for="academicYear">Holiday List</label>
                                 <select class="chosen-select" id="ddlHoliday" isRequired="true" name="hldy">
                                     <option value="0">Select Holiday</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2" selected="selected">No</option>
                                 </select>
                                 <span class="field-validation-error"></span>
                             </div>
@@ -50,7 +52,7 @@
                     <li>
                         <div class="date">
                             <div class="form-group">
-                                <label for="date">Date</label>
+                                <label for="date">Start Date</label>
                                 <input type="text" class="form-control chosen-date" isRequired="true" name="wfDate" />
                                 <span class="field-validation-error"></span>
                             </div>
@@ -58,21 +60,13 @@
                         </div>
                     </li>
                     <li>
-                        <div class="text">
+                        <div class="date">
                             <div class="form-group">
-                                <label for="academicYear">Day</label>
-                                <select class="chosen-select" id="ddlDay" isRequired="true" name="day">
-                                    <option value="0">Select Day</option>
-                                    <option value="mon">Monday</option>
-                                    <option value="tue">Tuesday</option>
-                                    <option value="wed">Wedenesday</option>
-                                    <option value="thr">Thursday</option>
-                                    <option value="fri">Friday</option>
-                                    <option value="sat">Saturday</option>
-                                    <option value="sun">Sunday</option>
-                                </select>
+                                <label for="date">End Date</label>
+                                <input type="text" class="form-control chosen-date" isRequired="true" name="wtDate" />
                                 <span class="field-validation-error"></span>
                             </div>
+                            <span class="calendarbase"><img src="../../Images/calendar.png" /></span>
                         </div>
                     </li>
                     <li>
