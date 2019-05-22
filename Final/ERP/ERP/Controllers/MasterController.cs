@@ -146,6 +146,9 @@ namespace ERP.Controllers
             UserEntity objUserEntity = UserEntity.GetInstance();
             return Json(objMaster.AddHoliday(holidayEntity));
         }
-
+        public ActionResult TimeTableConfiguration()
+        {
+            return PartialView();
+        }
     }
 }
