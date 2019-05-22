@@ -60,6 +60,13 @@ var routingApp = $.sammy("#MainContent", function () {
             HideLoading();
         });
     });
+    this.get("#/Master/TimeTableConfiguration/", function (context) {
+        ShowLoading();
+        $.get("/Master/TimeTableConfiguration", function (data) {
+            context.$element().html(data);
+            HideLoading();
+        });
+    });
     this.get("#/Student/manage/", function (context) {
         ShowLoading();
         $.get("/Student/Manage", function (data) {

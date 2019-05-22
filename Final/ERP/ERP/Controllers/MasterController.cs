@@ -135,7 +135,7 @@ namespace ERP.Controllers
             HolidayListEntity holidayEntity = new HolidayListEntity();
             holidayEntity.flag = 'G';
             holidayEntity.reportId = "16";
-            TempData["HolidayDetails"] = new Master().AddHoliday(holidayEntity);
+            TempData["HolidayList"] = new Master().AddHoliday(holidayEntity);
             return PartialView();
         }
         [HttpPost]
