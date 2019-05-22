@@ -364,6 +364,7 @@
     <Content Include="Views\Fee\Payments.cshtml" />
     <Content Include="Views\Fee\Collection.cshtml" />
     <Content Include="Views\Master\HolidayList.cshtml" />
+    <Content Include="Views\Master\TimeTableConfiguration.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
