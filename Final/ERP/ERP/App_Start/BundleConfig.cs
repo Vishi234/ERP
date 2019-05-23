@@ -31,7 +31,6 @@ namespace ERP
                         "~/Scripts/fontawesome/all.js",
                         "~/Scripts/jquery-1.10.2.js",
                         "~/Scripts/sammy-0.7.4.js",
-                        "~/Scripts/jquery.num2words.js",
                         "~/Scripts/nprogress.js",
                         "~/Scripts/routing.js"
                         ));

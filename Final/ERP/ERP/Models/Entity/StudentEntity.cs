@@ -62,5 +62,6 @@ namespace ERP.Models.Entity
         public string stuRoomNo       {get;set;}
         public string stuBedNo        {get;set;}
         public string stuHostPrc { get; set; }
+        public string sectionName { get; set; }
     }
 }

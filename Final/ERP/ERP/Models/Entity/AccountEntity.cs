@@ -21,6 +21,8 @@ namespace ERP.Models.Entity
         public string typeid { get; set; }
         public string feeName { get; set; }
         public string paymentType { get; set; }
+        public string feeSubmission { get; set; }
+        public string feeRelaxDay { get; set; }
         public string feeDesc { get; set; }
         public string feePeriod { get; set; }
         public string isActive { get; set; }

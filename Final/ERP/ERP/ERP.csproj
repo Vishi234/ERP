@@ -198,6 +198,7 @@
     <Content Include="Module_Script\fee\collection.js" />
     <Content Include="Module_Script\fee\payment.js" />
     <Content Include="Module_Script\master\activity.js" />
+    <Content Include="Module_Script\master\holidaylist.js" />
     <Content Include="Module_Script\master\subject.js" />
     <Content Include="Module_Script\master\section.js" />
     <Content Include="Module_Script\master\mapping.js" />
@@ -218,7 +219,6 @@
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper.min.js.map" />
-    <Content Include="Scripts\jquery.num2words.js" />
     <Content Include="Scripts\less.js" />
     <Content Include="Scripts\nprogress.js" />
     <Content Include="Scripts\nprogress.min.js" />
@@ -363,6 +363,8 @@
     <Content Include="Views\Fee\Type.cshtml" />
     <Content Include="Views\Fee\Payments.cshtml" />
     <Content Include="Views\Fee\Collection.cshtml" />
+    <Content Include="Views\Master\HolidayList.cshtml" />
+    <Content Include="Views\Master\TimeTableConfiguration.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

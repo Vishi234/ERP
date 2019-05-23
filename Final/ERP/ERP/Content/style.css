@@ -1111,8 +1111,8 @@ txtarea label {
 }
 
 .ag-cell .badge {
-    margin-top: 2px !important;
-    padding: 6px 20px !important;
+    margin-top: 5px !important;
+    padding: 8px 25px !important;
 }
 
 .cstdown {
@@ -1289,36 +1289,36 @@ txtarea label {
     }
 
 
-.payGrid .ag-paging-panel {
-    display: none !important;
-}
-
-.payGrid .ag-root {
-    border: 1px solid #333 !important;
-}
-
-.payGrid .ag-header {
-    background-color: #eee !important;
-    border-bottom: 1px solid #333 !important;
-    color: #333 !important;
-}
-
-.payGrid .ag-header-cell {
-    border-right: 1px solid #333 !important;
-}
-
-    .payGrid .ag-header-cell:last-child {
-        border-right: 0px !important;
+    .payGrid .ag-paging-panel {
+        display: none !important;
     }
 
-.payGrid .ag-cell {
-    border-right: 1px solid #333 !important;
-}
+    .payGrid .ag-root {
+        border: 1px solid #333 !important;
+    }
+
+    .payGrid .ag-header {
+        background-color: #eee !important;
+        border-bottom: 1px solid #333 !important;
+        color: #333 !important;
+    }
+
+    .payGrid .ag-header-cell {
+        border-right: 1px solid #333 !important;
+    }
+
+        .payGrid .ag-header-cell:last-child {
+            border-right: 0px !important;
+        }
+
+    .payGrid .ag-cell {
+        border-right: 1px solid #333 !important;
+    }
 
 
-.payGrid .ag-row {
-    border-color: #333 !important;
-}
+    .payGrid .ag-row {
+        border-color: #333 !important;
+    }
 
 .custBse {
     display: inline-block;
@@ -1446,6 +1446,7 @@ txtarea label {
     width: 40% !important;
     text-align: left !important;
 }
+
 .payHis {
     height: 240px;
     margin-bottom: 10px;
@@ -1457,29 +1458,29 @@ txtarea label {
     }
 
 
-.payHis .ag-root {
-    border: 1px solid #333 !important;
-}
-
-.payHis .ag-header {
-    background-color: #eee !important;
-    border-bottom: 1px solid #333 !important;
-    color: #333 !important;
-}
-
-.payHis .ag-header-cell {
-    border-right: 1px solid #333 !important;
-}
-
-    .payHis .ag-header-cell:last-child {
-        border-right: 0px !important;
+    .payHis .ag-root {
+        border: 1px solid #333 !important;
     }
 
-.payHis .ag-cell {
-    border-right: 1px solid #333 !important;
-}
+    .payHis .ag-header {
+        background-color: #eee !important;
+        border-bottom: 1px solid #333 !important;
+        color: #333 !important;
+    }
+
+    .payHis .ag-header-cell {
+        border-right: 1px solid #333 !important;
+    }
+
+        .payHis .ag-header-cell:last-child {
+            border-right: 0px !important;
+        }
+
+    .payHis .ag-cell {
+        border-right: 1px solid #333 !important;
+    }
 
 
-.payHis .ag-row {
-    border-color: #333 !important;
-}
+    .payHis .ag-row {
+        border-color: #333 !important;
+    }

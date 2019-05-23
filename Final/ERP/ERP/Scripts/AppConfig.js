@@ -28,7 +28,7 @@
     Label_Header["$SUBJECT_TYPE$"] = "Subject Type";
     Label_Header["$IS_ACTIVE$"] = "Is Active";
     Label_Header["$SEMESTER$"] = "Semester";
-   //Employee Details	
+    //Employee Details	
     Label_Header["$ID$"] = "EMP Code";
     Label_Header["$FIRST_NAME$"] = "First Name";
     Label_Header["$LAST_NAME$"] = "Last Name";
@@ -86,5 +86,7 @@
     Label_Header["$DUE$"] = "Due";
     Label_Header["$RECIEPT_NO$"] = "Reciept No";
     Label_Header["$PAYMENT_DATE$"] = "Payment Date";
+    Label_Header["$FEE_SUBMISSION_DAY$"] = "Fee Submission Day";
+    Label_Header["$FEE_RELAXATION_DAYS$"] = "Fee Relaxation Day";
     return Label_Header;
 }

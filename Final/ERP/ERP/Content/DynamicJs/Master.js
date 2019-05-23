@@ -120,5 +120,24 @@ var MappingDetails_ExportCaption = ['EDIT','SUBJECT_ID','SUBJECT_NAME','IS_ACTIV
  gridViewSettings['$MappingDetails$'] =MappingDetails;
  gridViewSettings['$MappingDetails_Export$'] =MappingDetails_Export;
  gridViewSettings['$MappingDetails_ExportCaption$'] =MappingDetails_ExportCaption;
+
+ var HolidayDetails = [
+{ headerName: labelArray['$EDIT$'], field: 'Edit', hide: false, headerTooltip: '', width: 150, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateEdit'},
+{ headerName: labelArray['$YEAR_ID$'], field: 'acid', hide: true, headerTooltip: '', width: 250, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$ACADEMIC_YEAR$'], field: 'acName', hide: false, headerTooltip: '', width: 250, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$HOLIDAY_NAME_ID$'], field: 'holyNameId', hide: true, headerTooltip: '', width: 200, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$HOLIDAY_NAME$'], field: 'holyName', hide: false, headerTooltip: '', width: 200, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$RISTRICT_ID$'], field: 'resId', hide: true, headerTooltip: '', width: 200, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$RISTRICT$'], field: 'resHoly', hide: false, headerTooltip: '', width: 200, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$START_DATE$'], field: 'wfDate', hide: false, headerTooltip: '', width: 200, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
+{ headerName: labelArray['$END_DATE$'], field: 'wtDate', hide: false, headerTooltip: '', width: 100, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
+{ headerName: labelArray['$IS_ACTIVE$'], field: 'isActive', hide: false, headerTooltip: '', width: 100, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true, cellRenderer: 'CreateActive'}
+ ];
+ var HolidayDetails_Export = ['Edit','wfDate','wtDate','isActive'];
+var HolidayDetails_ExportCaption = ['EDIT','START_DATE','END_DATE','IS_ACTIVE'];
+
+ gridViewSettings['$HolidayDetails$'] =HolidayDetails;
+ gridViewSettings['$HolidayDetails_Export$'] =HolidayDetails_Export;
+ gridViewSettings['$HolidayDetails_ExportCaption$'] =HolidayDetails_ExportCaption;
   return gridViewSettings;
 }

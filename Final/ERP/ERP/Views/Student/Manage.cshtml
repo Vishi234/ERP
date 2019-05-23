@@ -35,6 +35,7 @@
                             <g>
                             <g id="add">
                             <path d="M357,204H204v153h-51V204H0v-51h153V0h51v153h153V204z" />
+
                                     </g>
                                 </g>
                             <g></g>
@@ -62,11 +63,13 @@
                             <g>
                             <g>
                             <path d="M382.56,233.376C379.968,227.648,374.272,224,368,224h-64V16c0-8.832-7.168-16-16-16h-64c-8.832,0-16,7.168-16,16v208h-64 c-6.272,0-11.968,3.68-14.56,9.376c-2.624,5.728-1.6,12.416,2.528,17.152l112,128c3.04,3.488,7.424,5.472,12.032,5.472 c4.608,0,8.992-2.016,12.032-5.472l112-128C384.192,245.824,385.152,239.104,382.56,233.376z" />
+
                                     </g>
                                 </g>
                             <g>
                             <g>
                             <path d="M432,352v96H80v-96H16v128c0,17.696,14.336,32,32,32h416c17.696,0,32-14.304,32-32V352H432z" />
+
                                     </g>
                                 </g>
                             <g></g>
@@ -90,7 +93,7 @@
 
                     <li>
                         <div class="text">
-                            <div class="form-group">                          
+                            <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Student Code" style="height: 26px;border-radius: 3px;" id="stuCode" name="stuCodeFilter" />
                             </div>
                         </div>
@@ -105,10 +108,10 @@
                     <li>
                         <div class="ddl">
                             <div class="form-group">
-                                 <select class="chosen-select ddl" id="stuCourseFilter" name="stuCourseFilter">
+                                <select class="chosen-select ddl" id="stuCourseFilter" name="stuCourseFilter">
                                     <option value="0">Select Course</option>
                                 </select>
-                              
+
                             </div>
                         </div>
                     </li>
@@ -122,9 +125,12 @@
                             </div>
                         </div>
                     </li>
-                    
-                    <li>                      
-                        <button type="submit" class="btn btn-info" onClick="getStudentFilter($('#stuCode').val(), $('#stuName').val())"><span class="inload hide"><i class="fa fa-spinner fa-spin"></i></span> Filter</button>
+
+                    <li>
+                        <button type="submit" class="btn btn-info" onClick="getStudentFilter($('#stuCode').val(), $('#stuName').val(),$('#stuCourseFilter').val(),$('#stuCategoryFilter').val())"><span class="inload hide"><i class="fa fa-spinner fa-spin"></i></span> Filter</button>
+                    </li>
+                    <li>
+                        <button type="button" class="btn btn-secondary pd-x-20" data-dismiss="modal" onClick="resetFilter();">Clear</button>
                     </li>
 
 
@@ -142,7 +148,7 @@
             <form name='StudentAdmi' id="StudentAdmi" method="post" noValidate onSubmit="return handleSubmit(this);">
                 <div class="modal-header">
                     <h6 class="tx-14 tx-uppercase tx-inverse tx-bold">Add/Edit Student</h6>
-                    <button type="button" class="close" data-dismiss="modal" ><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <button type="button" class="close" data-dismiss="modal" ><span aria-hidden="true" onClick="resetData()">&times;</span><span class="sr-only">Close</span></button>
                 </div>
                 <div class="modal-body pd-25">
                     <div class="einrformbase">
@@ -177,7 +183,7 @@
                                 <div class="ddl">
                                     <div class="form-group">
                                         <label for="stuAcade">Academic Year</label>
-                                        <select class="chosen-select ddl"  name="stuAcade">
+                                        <select class="chosen-select ddl" name="stuAcade">
                                             <option value="0">Select Academic Year</option>
                                         </select>
                                         <span class="field-validation-error"></span>
@@ -188,7 +194,7 @@
                                 <div class="ddl">
                                     <div class="form-group">
                                         <label for="stuCourse">Course</label>
-                                        <select class="chosen-select ddl"   name="stuCourse">
+                                        <select class="chosen-select ddl" name="stuCourse">
                                             <option value="0">Select Course</option>
                                         </select>
                                         <span class="field-validation-error"></span>
@@ -201,6 +207,17 @@
                                         <label for="stuSemester">Semester</label>
                                         <select class="chosen-select ddl" id="stuSemester" name="stuSemester">
                                             <option value="0">Select Semester</option>
+                                        </select>
+                                        <span class="field-validation-error"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="ddl">
+                                    <div class="form-group">
+                                        <label for="sectionName">Section Name</label>
+                                        <select class="chosen-select" name="sectionName" isRequired="true" id="ddlSection">
+                                            <option value="0">Select Section</option>
                                         </select>
                                         <span class="field-validation-error"></span>
                                     </div>
@@ -562,7 +579,9 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuRoute">Route Name</label>
-                                            <select class="chosen-select ddl" name="stuRoute"></select>
+                                            <select class="chosen-select ddl" name="stuRoute">
+                                                <option value="0">Select Route Name</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </li>
@@ -570,7 +589,9 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuVehTyp">Vehicle Type</label>
-                                            <select class="chosen-select ddl" name="stuVehTyp"></select>
+                                            <select class="chosen-select ddl" name="stuVehTyp">
+                                                <option value="0">Select Vehicle Type</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </li>
@@ -578,7 +599,9 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuVehNo">Vehicle Number</label>
-                                            <select class="chosen-select ddl" name="stuVehNo"></select>
+                                            <select class="chosen-select ddl" name="stuVehNo">
+                                                <option value="0">Select Vehicle Number</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </li>
@@ -594,7 +617,9 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuVehStop">Stop Name</label>
-                                            <select class="chosen-select ddl" name="stuVehStop"></select>
+                                            <select class="chosen-select ddl" name="stuVehStop">
+                                                <option value="0">Select Stop Name</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </li>
@@ -616,7 +641,9 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuHostelName">Hostel Name</label>
-                                            <select class="chosen-select ddl"  name="stuHostelName"></select>
+                                            <select class="chosen-select ddl" name="stuHostelName">
+                                                <option value="0">Select Hostel Name</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </li>
@@ -624,7 +651,9 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuHostelFlr">Floor</label>
-                                            <select class="chosen-select ddl"  name="stuHostelFlr"></select>
+                                            <select class="chosen-select ddl" name="stuHostelFlr">
+                                                <option value="0">Select Floor</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </li>
@@ -632,7 +661,9 @@
                                     <div class="ddl">
                                         <div class="form-group">
                                             <label for="stuRoomTyp">Room Type</label>
-                                            <select class="chosen-select ddl"  name="stuRoomTyp"></select>
+                                            <select class="chosen-select ddl" name="stuRoomTyp">
+                                                <option value="0">Select Room Type</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </li>
@@ -666,7 +697,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-info pd-x-20"><span class="inload hide"><i class="fa fa-spinner fa-spin"></i></span> Save</button>
-                    <button type="button" class="btn btn-secondary pd-x-20" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-secondary pd-x-20" data-dismiss="modal" onClick="resetData();">Cancel</button>
                 </div>
             </form>
         </div>

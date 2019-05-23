@@ -130,6 +130,25 @@ namespace ERP.Controllers
             TempData["SectionData"] = new Master().SectionDetails(sectionEntity);
             return PartialView();
         }
-
+        public ActionResult HolidayList()
+        {
+            HolidayListEntity holidayEntity = new HolidayListEntity();
+            holidayEntity.flag = 'G';
+            holidayEntity.reportId = "16";
+            TempData["HolidayList"] = new Master().AddHoliday(holidayEntity);
+            return PartialView();
+        }
+        [HttpPost]
+        public JsonResult HolidayList(HolidayListEntity holidayEntity)
+        {
+            Master objMaster = new Master();
+            //return null;
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            return Json(objMaster.AddHoliday(holidayEntity));
+        }
+        public ActionResult TimeTableConfiguration()
+        {
+            return PartialView();
+        }
     }
 }

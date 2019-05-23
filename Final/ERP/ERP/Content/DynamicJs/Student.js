@@ -11,6 +11,8 @@ function getStudentGridSettings() {
 { headerName: labelArray['$SEMESTER$'], field: 'semester', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: true},
 { headerName: labelArray['$CATEGORY_ID$'], field: 'categoryID', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$CATEGORY_NAME$'], field: 'categoryName', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: true},
+{ headerName: labelArray['$SECTION_ID$'], field: 'sectionID', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false},
+{ headerName: labelArray['$SECTION_NAME$'], field: 'sectionName', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: true},
 { headerName: labelArray['$ACADEMIC_ID$'], field: 'acedeYearID', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: false},
 { headerName: labelArray['$ACADEMIC_YEAR$'], field: 'acedeYear', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-left', cellStyle: '', suppressMenu: false, export: true},
 { headerName: labelArray['$FATHER_NAME$'], field: 'fName', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: true},
@@ -44,8 +46,8 @@ function getStudentGridSettings() {
 { headerName: labelArray['$LOGIN_ID$'], field: 'login', hide: false, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: true},
 { headerName: labelArray['$PASSWORD$'], field: 'password', hide: true, headerTooltip: '', width: 115, cellClass: 'grid-center', cellStyle: '', suppressMenu: false, export: false}
  ];
- var StudentDetails_Export = ['stuCode','stufname','lname','courseName','semester','categoryName','acedeYear','fName','mName','gender','dob','bldGrp','nation','mTongue','placeBirth','handicap','pIncome','addressLine1','addressLine2','mobile','state','email','city','zpCode','instName','BOARD','preCourse','YEAR','MARKS','subject','login'];
-var StudentDetails_ExportCaption = ['STU_CODE','FIRST_NAME','LAST_NAME','COURSE_NAME','SEMESTER','CATEGORY_NAME','ACADEMIC_YEAR','FATHER_NAME','MOTHER_NAME','GENDER','DOB','BLOOD_GROUP','NATIONALITY','MMOTHER_TONGUE','PLACE_OF_BIRTH','IS_HANDICAP','PARENT_INCOME','ADDRESS_LINE_1','ADDRESS_LINE_2','MOBILE_NO','STATE','EMAIL','CITY','ZIPCODE','INSTITUTE_NAME','BOARD','PRE_COURSE','YEAR','MARKS','SUBJECTS','LOGIN_ID'];
+ var StudentDetails_Export = ['stuCode','stufname','lname','courseName','semester','categoryName','sectionName','acedeYear','fName','mName','gender','dob','bldGrp','nation','mTongue','placeBirth','handicap','pIncome','addressLine1','addressLine2','mobile','state','email','city','zpCode','instName','BOARD','preCourse','YEAR','MARKS','subject','login'];
+var StudentDetails_ExportCaption = ['STU_CODE','FIRST_NAME','LAST_NAME','COURSE_NAME','SEMESTER','CATEGORY_NAME','SECTION_NAME','ACADEMIC_YEAR','FATHER_NAME','MOTHER_NAME','GENDER','DOB','BLOOD_GROUP','NATIONALITY','MMOTHER_TONGUE','PLACE_OF_BIRTH','IS_HANDICAP','PARENT_INCOME','ADDRESS_LINE_1','ADDRESS_LINE_2','MOBILE_NO','STATE','EMAIL','CITY','ZIPCODE','INSTITUTE_NAME','BOARD','PRE_COURSE','YEAR','MARKS','SUBJECTS','LOGIN_ID'];
 
  gridViewSettings['$StudentDetails$'] =StudentDetails;
  gridViewSettings['$StudentDetails_Export$'] =StudentDetails_Export;

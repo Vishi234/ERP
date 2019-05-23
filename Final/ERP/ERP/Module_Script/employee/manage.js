@@ -77,7 +77,7 @@ function InitializeDDL() {
         $('.lwms-available').append("<li class='lwms-selectli' data- value=" + value.SUBJECT_ID + ">" + value.SUBJECT_NAME + "</li>");
     });
     $("select[name='empSub']").trigger("chosen:updated")
-    debugger;
+    
     empRole = ReadDropDownData("Param", '8', true);
     //var empRole = ReadDropDownData("Role", '9', true);
     $.each(empRole, function (i, value) {
@@ -140,7 +140,7 @@ function InitializeDDL() {
 //gridOptions.api.sizeColumnsToFit();
 function handleSubmit(evt)
 {
-    debugger;
+    
     if (ValidateFields(evt))
     {
         var myData = [];
@@ -148,7 +148,7 @@ function handleSubmit(evt)
         $("#" + evt.id + " select, input").each(function (i, data) {
             obj[data.name] = data.value;
         });
-        debugger;
+        
         myData.push(obj);
         btnloading("EmpRegis", 'show');
         setTimeout(function ()
@@ -183,7 +183,7 @@ function handleSubmit(evt)
 }
 
 function resetData() {
-    debugger;
+    
 
     $('#EmpRegis').trigger("reset");
     $("select[name=empDept]").val(0);
@@ -268,9 +268,6 @@ function CreateActive(params) {
     return domElement;
 }
 function OnEditClick(obj) {
-    debugger;
- 
-
     var editData = JSON.parse($(obj).attr('dataattr'));
     $("select[name=empCount]").val(1);
 
@@ -360,9 +357,9 @@ function OnEditClick(obj) {
     $("select[name=empState]").trigger("chosen:updated");
     $("select[name=empCity]").trigger("chosen:updated");
 }
-function getEmployeeFilter(empCode, selectedType) {
-    debugger;
-    $.get("/Employee/GetEmployeeFilter?empCode=" + empCode + "&empType=" + selectedType, function (data) {
+function getEmployeeFilter(empCode, empDept, empDesig, empType) {
+    
+    $.get("/Employee/GetEmployeeFilter?empCode=" + empCode + "&empDept=" + empDept + "&empDesig=" + empDesig + "&empType=" + empType, function (data) {
         var rowData = JSON.parse(data.addParams);
         gridOptions = GridInitializer(columnDefs);
         var gridDiv = document.querySelector('#employeeGrid');
@@ -383,4 +380,15 @@ function getEmployeeFilter(empCode, selectedType) {
 }
 function onExportClick() {
     exportToExcel(rowData, "EmployeeExport", columnDefs)
+}
+
+function resetFilter() {
+    
+    $("input:text").val("");
+    $('#empDept').val(0);
+    $('#empDesig').val(0);
+    $('#empType').val(0);
+    $("#empDept").trigger("chosen:updated");
+    $("#empDesig").trigger("chosen:updated");
+    $("#empType").trigger("chosen:updated");
 }
