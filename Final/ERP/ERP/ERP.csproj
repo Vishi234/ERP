@@ -206,6 +206,7 @@
     <Content Include="Module_Script\master\duration.js" />
     <Content Include="Module_Script\master\course.js" />
     <Content Include="Module_Script\master\academicyear.js" />
+    <Content Include="Module_Script\master\timetableconfig.js" />
     <Content Include="Module_Script\student\manage.js" />
     <Content Include="Scripts\ag-grid.min.js" />
     <Content Include="Scripts\AppConfig.js" />
@@ -365,6 +366,7 @@
     <Content Include="Views\Fee\Collection.cshtml" />
     <Content Include="Views\Master\HolidayList.cshtml" />
     <Content Include="Views\Master\TimeTableConfiguration.cshtml" />
+    <Content Include="Views\Master\TimeTable.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

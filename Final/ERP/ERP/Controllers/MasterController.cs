@@ -150,5 +150,9 @@ namespace ERP.Controllers
         {
             return PartialView();
         }
+        public ActionResult TimeTable()
+        {
+            return PartialView();
+        }
     }
 }
