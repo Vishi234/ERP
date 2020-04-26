@@ -1,6 +1,5 @@
 ﻿
 function ValidateFields(evt) {
-    debugger;
     boolFlag = false;
     $("#" + evt.id + " select, input").each(function (i, data) {
         if (data.tagName == 'INPUT') {
@@ -22,13 +21,12 @@ function ValidateFields(evt) {
                         data.nextElementSibling.textContent ="Length should be  " + data.max + " digits.";
                         boolFlag = true;
                         //} else {
-                    } else if (data.hasAttribute('emailCheck')) {
+                    } else if (data.hasAttribute('emailCheck') && !validateEmail(data.value)) {
                         validateEmail(data.value);
-
                         data.classList.add('input-validation-error'); 
                         data.nextElementSibling.classList.add('field-validation-error');
                         data.nextElementSibling.textContent = "Please enter valid email address"; 
-                        boolFlag = true;
+                        boolFlag = !validateEmail(data.value);
                     }
                      else {
                         data.classList.remove('input-validation-error');
@@ -71,7 +69,8 @@ $('#isGridNumeric').keypress(function (event) {
     }
 });
 
-function validateEmail(value){
+function validateEmail(value) {
+    debugger;
     let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(value);
 };

@@ -197,6 +197,7 @@
     <Content Include="Module_Script\employee\manage.js" />
     <Content Include="Module_Script\fee\collection.js" />
     <Content Include="Module_Script\fee\payment.js" />
+    <Content Include="Module_Script\master\timetable.js" />
     <Content Include="Module_Script\master\activity.js" />
     <Content Include="Module_Script\master\holidaylist.js" />
     <Content Include="Module_Script\master\subject.js" />
@@ -206,6 +207,7 @@
     <Content Include="Module_Script\master\duration.js" />
     <Content Include="Module_Script\master\course.js" />
     <Content Include="Module_Script\master\academicyear.js" />
+    <Content Include="Module_Script\master\timetableconfig.js" />
     <Content Include="Module_Script\student\manage.js" />
     <Content Include="Scripts\ag-grid.min.js" />
     <Content Include="Scripts\AppConfig.js" />
