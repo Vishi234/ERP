@@ -1,0 +1,73 @@
+﻿@using Newtonsoft.Json;
+<script type="text/javascript">
+    document.title ="Time Table";
+    @*var content = @Html.Raw(JsonConvert.SerializeObject(TempData["HolidayList"]));*@
+    InitializeSelect();
+    InitializeDate();
+</script>
+<script src="~/Module_Script/master/holidaylist.js"></script>
+<div class="esubmenu">
+    <ul class="breadcrumb float-left">
+        <li><a href="#">Home /</a></li>
+        <li><a href="#">Pictures /</a></li>
+        <li><a href="#">Summer 15 /</a></li>
+        <li><a href="#" class="active">Summer 15</a></li>
+    </ul>
+    <div class="ever float-right">
+        <span>Version : 0.0.1</span>
+    </div>
+</div>
+<div class="pagebody">
+    <div class="einrformbase card pt-2 pl-2 pr-2">
+        <div class="card-title">
+            Time Table
+        </div>
+        <div class="card-body">
+           <table border="1" width="100%">
+               <thead>
+                   <tr>
+                       <td rowspan="2">
+                           Periods
+                       </td>
+                       <td>
+                           <table width="100">
+                             <tr>
+                                 <td>1</td>
+                                 <td>2</td>
+                                 <td>3</td>
+                                 <td>4</td>
+                                 <td>5</td>
+                                 <td>6/td>
+                                 <td>7</td>
+                                 <td>8</td>
+                             </tr>
+                               <tr>
+                                   <td>09:00 - 10:00</td>
+                                   <td>10:00 - 11:00</td>
+                                   <td>11:00 - 12:00</td>
+                                   <td>12:00 - 01:00</td>
+                                   <td>01:00 - 02:00</td>
+                                   <td>02:00 - 03:00</td>
+                                   <td>03:00 - 04:00</td>
+                                   <td>04:00 - 05:00</td>
+                               </tr>
+                           </table>
+                       </td>
+                   </tr>
+                   <tr>
+                       <td>Mon</td>
+                       <td>Mon</td>
+                       <td>Mon</td>
+                       <td>Mon</td>
+                       <td>Mon</td>
+                       <td>Mon</td>
+                       <td>Mon</td>
+                       <td>Mon</td>
+                   </tr>
+               </thead>
+           </table>
+
+        </div>
+    </div>
+</div>
+
